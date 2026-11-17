@@ -1,0 +1,167 @@
+[
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/branno — \"levande skärgårdsö i södra delen av Göteborgs skärgård med cirka 900 bofasta invånare\", \"Sommargästerna började inta ön på 1930-talet och numera är pendlarna i klar majoritet\", \"jordbruket, lots-historien, tullarna och sjöfarten\", \"Viskompositören Lasse Dahlqvist har gjort ön känd genom sina visor\", \"Från berget vid den gamla lotsutkiken, på öns högsta punkt, har du utsikt från Vinga till inloppet till Göteborg\", \"hembygdsmuseet mitt på ön\"",
+  "ny": "      // KÄLLA: https://www.goteborg.com/platser/branno — \"levande skärgårdsö i södra delen av Göteborgs skärgård med cirka 900 bofasta invånare\", \"Sommargästerna började inta ön på 1930-talet och numera är pendlarna i klar majoritet\", \"jordbruket, lots-historien, tullarna och sjöfarten\", \"Från berget vid den gamla lotsutkiken, på öns högsta punkt, har du utsikt från Vinga till inloppet till Göteborg\", \"hembygdsmuseet mitt på ön\"",
+  "rader": [
+   "lag3b-N001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.goteborg.com/platser/branno — \"Vill du uppleva den klassiska dansen på Brännö brygga tar du båten till Husvik på sydvästra sidan\", \"De’ ä’ dans på Brännö brygga\" (läst 2026-09-27). Samma sida har en bildtext som säger \"dans vid Rödstens brygga\" – den motsägs av arrangören, Styrsöbolaget och sidans egen brödtext.\n      // KÄLLA: https://transdev.se/wp-content/uploads/sites/5/2026/03/25-056-Annons-Ockero-Tidning-252x370-3.pdf — \"STENPIREN – BRÄNNÖ HUSVIK\" (läst 2026-09-27)\n      'Ön är känd genom Lasse Dahlquists visa om dansen på Brännö brygga, och dansen finns kvar. Bryggan ligger i Husvik på öns sydvästra sida, med utsikt mot västerhavet och Vinga fyr. Brännöföreningen ordnar dansen på sommaren: 2026 var det dans på torsdagar från 25 juni till 30 juli och en avslutning lördag 8 augusti, kl. 19.30 till 22.00 med olika band. Styrsöbolagets M/S Kungsö gick då en kvällstur från Stenpiren i Göteborg till Brännö Husvik.',",
+  "ny": "      // KÄLLA: https://www.goteborg.com/platser/branno — \"Vill du uppleva den klassiska dansen på Brännö brygga tar du båten till Husvik på sydvästra sidan\" (läst 2026-09-27). Samma sida har en bildtext som säger \"dans vid Rödstens brygga\" – den motsägs av arrangören, Styrsöbolaget och sidans egen brödtext.\n      // KÄLLA: https://transdev.se/wp-content/uploads/sites/5/2026/03/25-056-Annons-Ockero-Tidning-252x370-3.pdf — \"STENPIREN – BRÄNNÖ HUSVIK\" (läst 2026-09-27)\n      // Rättad 2026-11-17 (Lag 3 b, punkt 4): att ön är känd genom Lasse Dahlquists visa stod bara hos Göteborg & Co (nivå 3), och historia kräver nivå 1. Struket; arrangörens egen uppgift om dansen i stället.\n      // KÄLLA: https://www.brannoforeningen.se/kulturevenemang/dans-pa-branno-brygga/ — \"Vi är beroende av våra funktionärer för att kunna hålla i danserna.\" (läst 2026-11-17)\n      'Dansen på Brännö brygga ordnas av Brännöföreningen, som enligt egen uppgift är beroende av sina funktionärer för att kunna hålla i danserna. Bryggan ligger i Husvik på öns sydvästra sida, med utsikt mot västerhavet och Vinga fyr. Sommaren 2026 var det dans på torsdagar från 25 juni till 30 juli och en avslutning lördag 8 augusti, kl. 19.30 till 22.00 med olika band. Styrsöbolagets M/S Kungsö gick då en kvällstur från Stenpiren i Göteborg till Brännö Husvik.',",
+  "rader": [
+   "lag3b-N001"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      // KÄLLA: https://www.svenskakyrkan.se/ornskoldsvikssodra/natra-sidensjo/trysunda-kapell — \"Kapellet är byggt av liggande timmer\", \"Målningarna i kapellet är utförda av Olof Gåhlin\", \"År 1711 då målningarna gjordes\", \"Västra väggen skildrar S:t Göran som bekämpar draken\"; https://trysunda.se/upplev-pa-on/fiskemuseum/ — \"Nyckeln hänger på sidan, välkommen in.\" (läst 2026-09-27)\n      { icon: '⛪', name: 'Trysunda kapell', desc: 'Kapellet från 1654 är byggt av liggande timmer. Väggmålningarna gjordes 1711 av Olof Gåhlin, med motiv ur Gamla och Nya testamentet och S:t Göran som bekämpar draken på västra väggen. Nyckeln hänger på sidan av kapellet.' },",
+  "ny": "      // Rättad 2026-11-17 (Lag 3 b, punkt 4): «Väggmålningarna gjordes 1711 av Olof Gåhlin» stod bara hos församlingen (nivå 2), och historia kräver nivå 1. Struket. Årtalet 1654 står i Länsstyrelsens folder; byggnaden och målningarnas motiv tillskrivs församlingen.\n      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf — \"I fiskeläget finns också ett litet kapell, från 1654 och en sjöbod med ett fiskemuseum.\" (läst 2026-11-17)\n      // KÄLLA: https://www.svenskakyrkan.se/ornskoldsvikssodra/natra-sidensjo/trysunda-kapell — \"Kapellet är byggt av liggande timmer\"; \"Invändigt har kapellet målningar på väggarna men inte i taket.\"; \"Motiven till målningarna på norra väggen är hämtade ur Gamla testamentet, på östra och södra väggarna ur Nya testamentet.\"; \"Västra väggen skildrar S:t Göran som bekämpar draken.\" (läst 2026-11-17)\n      // KÄLLA: https://trysunda.se/upplev-pa-on/fiskemuseum/ — \"Nyckeln hänger på sidan, välkommen in.\" (läst 2026-11-17)\n      { icon: '⛪', name: 'Trysunda kapell', desc: 'Kapellet i fiskeläget är från 1654 enligt Länsstyrelsen. Enligt församlingen är det byggt av liggande timmer och har målningar på väggarna men inte i taket: motiv ur Gamla testamentet på norra väggen, ur Nya testamentet på östra och södra väggarna och S:t Göran som bekämpar draken på västra väggen. Nyckeln hänger på sidan av kapellet.' },",
+  "rader": [
+   "lag3b-N002"
+  ]
+ },
+ {
+  "fil": "src/app/guider/[slug]/guide-content.ts",
+  "gammal": "<!-- KÄLLA: https://www.svenskakyrkan.se/ornskoldsvikssodra/natra-sidensjo/trysunda-kapell — \"Trysunda kapell byggdes av de sk gävlefiskarna under 1600-talet. Kapellet är byggt av liggande timmer\"; \"Målningarna i kapellet är utförda av Olof Gåhlin.\"; \"År 1711 då målningarna gjordes\"; \"Motiven till målningarna på norra väggen är hämtade ur Gamla testamentet, på östra och södra väggarna ur Nya testamentet.\"; \"Västra väggen skildrar S:t Göran som bekämpar draken.\"; \"Trysunda har två kyrkogårdar. En liten, som omger kapellet och en större som anlades 1949\" (läst 2026-09-28) -->\n<!-- KÄLLA: https://trysunda.se/upplev-pa-on/fiskemuseum/ — \"Nyckeln hänger på sidan, välkommen in.\" (läst 2026-09-28) -->\n<p style=\"font-size:16px;line-height:1.8;color:var(--txt2)\">Kapellet byggdes av gävlefiskarna under 1600-talet, av liggande timmer. Väggmålningarna gjordes 1711 av Olof Gåhlin: på norra väggen motiv ur Gamla testamentet, på östra och södra väggarna ur Nya testamentet och på västra väggen S:t Göran och draken. Ön har två kyrkogårdar, en runt kapellet och en större från 1949. Enligt trysunda.se hänger nyckeln på sidan, så du kan gå in själv.</p>",
+  "ny": "<!-- Rättad 2026-11-17 (Lag 3 b, punkt 4): «Väggmålningarna gjordes 1711 av Olof Gåhlin», «byggdes av gävlefiskarna» och kyrkogårdens år stod bara hos församlingen (nivå 2); historia kräver nivå 1. Strukna; 1654 enligt Länsstyrelsens folder. -->\n<!-- KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf — \"I fiskeläget finns också ett litet kapell, från 1654 och en sjöbod med ett fiskemuseum.\" (läst 2026-11-17) -->\n<!-- KÄLLA: https://www.svenskakyrkan.se/ornskoldsvikssodra/natra-sidensjo/trysunda-kapell — \"Kapellet är byggt av liggande timmer\"; \"Invändigt har kapellet målningar på väggarna men inte i taket.\"; \"Motiven till målningarna på norra väggen är hämtade ur Gamla testamentet, på östra och södra väggarna ur Nya testamentet.\"; \"Västra väggen skildrar S:t Göran som bekämpar draken.\"; \"Trysunda har två kyrkogårdar. En liten, som omger kapellet\"; \"i en talldunge några hundra meter in på ön.\" (läst 2026-11-17) -->\n<!-- KÄLLA: https://trysunda.se/upplev-pa-on/fiskemuseum/ — \"Nyckeln hänger på sidan, välkommen in.\" (läst 2026-11-17) -->\n<p style=\"font-size:16px;line-height:1.8;color:var(--txt2)\">Kapellet i fiskeläget är från 1654 enligt Länsstyrelsen. Enligt församlingen är det byggt av liggande timmer och har målningar på väggarna men inte i taket: på norra väggen motiv ur Gamla testamentet, på östra och södra väggarna ur Nya testamentet och på västra väggen S:t Göran som bekämpar draken. Ön har två kyrkogårdar, en liten runt kapellet och en större i en talldunge några hundra meter in på ön. Enligt trysunda.se hänger nyckeln på sidan, så du kan gå in själv.</p>",
+  "rader": [
+   "lag3b-N003"
+  ]
+ },
+ {
+  "fil": "src/app/guider/[slug]/guide-content.ts",
+  "gammal": "<!-- KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — \"hans fru Calla Curman har blivit känd som Stångehuvuds räddare efter att ha köpt och donerat området, som numera är naturreservat.\" (läst 2026-09-27) -->\n<p style=\"font-size:16px;line-height:1.8;color:var(--txt2)\">Enligt Västsverige köpte Calla Curman området och donerade det, och hon har blivit känd som Stångehuvuds räddare.</p>",
+  "ny": "<!-- Rättad 2026-11-17 (Lag 3 b, punkt 4): att Calla Curman köpte och donerade området stod bara hos Västsverige (nivå 3), och historia kräver nivå 1. Struket; Länsstyrelsen om donationsmarken och Galleberget i stället. -->\n<!-- KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — \"Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin. Donationen tillkom i en tid då stenindustrin stod på sin höjdpunkt och huvudsyftet var att undanta ett naturskönt område från stentäkt.\"; \"Som kontrast till de välbevarade klipporna i söder står Galleberget, där täktverksamhet tidigare har bedrivits. Detta utgör norra delen av reservatet.\"; \"Här har av kulturhistoriska skäl inga efterbehandlingsarbeten vidtagits\" (läst 2026-11-17) -->\n<p style=\"font-size:16px;line-height:1.8;color:var(--txt2)\">Området är donationsmark som ägs av Kungliga Vetenskapsakademin. Enligt Länsstyrelsen kom donationen till när stenindustrin stod på sin höjdpunkt, för att undanta ett naturskönt område från stentäkt. På Galleberget i reservatets norra del bröts sten tidigare, och där har man av kulturhistoriska skäl inte gjort några efterbehandlingar.</p>",
+  "rader": [
+   "lag3b-N004"
+  ]
+ },
+ {
+  "fil": "src/app/o/bohuslan-data.ts",
+  "gammal": "      // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — \"hans fru Calla Curman har blivit känd som Stångehuvuds räddare efter att ha köpt och donerat området, som numera är naturreservat\" (läst 2026-09-27)\n      // Rättat 2026-09-27: stod att Vetenskapsakademien skänkte marken. Akademien äger den; det var Calla Curman som köpte och donerade området. Stod också 'broar' (källan: spänger).\n      'Stångehuvud vid stadens södra kant är naturreservat sedan 1983 och omfattar cirka 48 hektar. Det är den sydligaste utlöparen av det bohuslänska granitområdet. Marken köptes och donerades av Calla Curman och ägs i dag av Kungliga Vetenskapsakademien, som förvaltar reservatet tillsammans med Lysekils kommun. Donationen kom till när stenindustrin stod på sin höjdpunkt, för att rädda området från stenbrytning. Karaktäristiskt är rundhällarna med slipade, mjuka former och tydliga isräfflor, här och var genomdragna av pegmatitgångar. På Galleberget i norr syns spår av tidigare brytning. Den delen har av kulturhistoriska skäl lämnats nästan precis som den var när stenbrytningen upphörde. Stigarna går genom smala klyftor och förbi grottliknande bildningar och är gjorda lättgångna med trappor och spänger, och längs klippstranden i väster finns bad och fritidsfiske.',",
+  "ny": "      // Rättad 2026-11-17 (Lag 3 b, punkt 4, samma fel som guiden): att Calla Curman köpte och donerade marken stod bara hos Västsverige (nivå 3), och historia kräver nivå 1. Struket; Länsstyrelsen: donationsmark som ägs av Kungliga Vetenskapsakademin. Kompensation: reservatets föreskrifter.\n      // Rättat 2026-09-27: stod att Vetenskapsakademien skänkte marken. Akademien äger den; det var Calla Curman som köpte och donerade området. Stod också 'broar' (källan: spänger).\n      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — \"Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin.\"; \"tälta eller ställa upp husvagn\"; \"medföra ej kopplad hund\"; \"göra upp eld på annat sätt än av förvaltaren anvisade platser\" (läst 2026-11-17)\n      'Stångehuvud vid stadens södra kant är naturreservat sedan 1983 och omfattar cirka 48 hektar. Det är den sydligaste utlöparen av det bohuslänska granitområdet. Marken är donationsmark och ägs av Kungliga Vetenskapsakademien, som förvaltar reservatet tillsammans med Lysekils kommun. Donationen kom till när stenindustrin stod på sin höjdpunkt, för att rädda området från stenbrytning. Karaktäristiskt är rundhällarna med slipade, mjuka former och tydliga isräfflor, här och var genomdragna av pegmatitgångar. På Galleberget i norr syns spår av tidigare brytning. Den delen har av kulturhistoriska skäl lämnats nästan precis som den var när stenbrytningen upphörde. Stigarna går genom smala klyftor och förbi grottliknande bildningar och är gjorda lättgångna med trappor och spänger, och längs klippstranden i väster finns bad och fritidsfiske. I reservatet får du inte tälta eller ställa upp husvagn, hunden ska vara kopplad och du får bara elda på platser som förvaltaren anvisat.',",
+  "rader": [
+   "lag3b-N005"
+  ]
+ },
+ {
+  "fil": "src/app/guider/[slug]/guide-content.ts",
+  "gammal": "<!-- KÄLLA: https://www.kungligaslotten.se/artiklar-film-360/kungliga-parker/2025-06-09-fjaderholmarnas-historia.html — \"disponerades av marinen som ammunitionsdepå\"; \"På holmarna finns flera stora bergrum och även luftvärnskanoner bevarade\"; \"1940 infördes totalt landstigningsförbud på Fjäderholmarna.\"; \"Öns historia kan du ta del av på skyltprogrammet.\" (läst 2026-09-28) -->\n<ul style=\"font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px\">\n<li><strong>Allmogebåtar:</strong> Föreningen Allmogebåtars arbetslag i Stockholm har verksamhet och museum på ön.</li>\n<li><strong>Boule:</strong> Röda Villan hyr ut bouleklot för spel på sina banor.</li>\n<li><strong>Historia:</strong> marinen hade ammunitionsdepå här, och 1940 infördes landstigningsförbud. Bergrum och luftvärnskanoner finns kvar, och öns historia berättas på skyltar.</li>",
+  "ny": "<!-- Rättad 2026-11-17 (Lag 3 b, punkt 4): luftvärnskanonerna och ammunitionsdepån stod bara hos förvaltaren (De Kungliga Slotten), och historia kräver nivå 1. Nu Lidingö stads kulturmiljöprogram, som i oar-runda10. -->\n<!-- KÄLLA: https://share.mediaflow.com/sv/?K7CCE1YEFB (Lidingö stad, kulturmiljöprogrammet, Stora Fjäderholmen, pdf via Hämta dokument) — \"Fjäderholmarna användes bland annat till för ammunitionsförvaring.\"; \"Bergrummen i norr härstammar från försvarsepoken.\"; \"1940 utfärdades ett landstigningsförbud, som i princip rådde fram till 1976 då Försvarsmakten lämnade holmarna.\"; \"Längs holmens stigar och vägar står informationsskyltar som markerar\" (läst 2026-11-17) -->\n<ul style=\"font-size:16px;line-height:1.9;color:var(--txt2);padding-left:20px\">\n<li><strong>Allmogebåtar:</strong> Föreningen Allmogebåtars arbetslag i Stockholm har verksamhet och museum på ön.</li>\n<li><strong>Boule:</strong> Röda Villan hyr ut bouleklot för spel på sina banor.</li>\n<li><strong>Historia:</strong> holmarna användes bland annat för ammunitionsförvaring, och 1940 utfärdades ett landstigningsförbud som i princip gällde till 1976, då Försvarsmakten lämnade holmarna. Bergrummen i norr är från försvarsepoken, och längs stigarna och vägarna står informationsskyltar om natur- och kulturobjekt.</li>",
+  "rader": [
+   "lag3b-N006"
+  ]
+ },
+ {
+  "fil": "src/app/o/bohuslan-data.ts",
+  "gammal": "    related: ['tjorn', 'orust', 'marstrand'],\n    tags: ['mat', 'skaldjur', 'historia', 'bastu', 'romantisk', 'bohuslän'],\n    insiderTips: [],\n",
+  "ny": "    related: ['tjorn', 'orust', 'marstrand'],\n    tags: ['mat', 'skaldjur', 'historia', 'bastu', 'romantisk', 'bohuslän'],\n    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — \"Badplatsen ligger strax efter bron på Koholmens östra sida. Parkeringsplats finns till höger efter bron och härifrån är det 100 meter till badet.\"; \"Badplatsen har betongbrygga, en liten sandstrand, klippor, badbrygga och toaletter.\"; \"Badplatsen är inte tillgänglighetsanpassad.\" (läst 2026-11-17)\n      'Klädesholmens badplats ligger strax efter bron på Koholmens östra sida, 100 meter från parkeringen till höger efter bron. Där finns betongbrygga, badbrygga, en liten sandstrand, klippor och toaletter, men badplatsen är inte tillgänglighetsanpassad.',\n      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — \"Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola.\" (läst 2026-11-17)\n      'Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola.',\n      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — \"Sedan 1972 firas Samhällets dag den första lördagen i juli månad med mängder av aktiviteter och gemensam sillunch.\" (läst 2026-11-17)\n      'Den första lördagen i juli firar Klädesholmen Samhällets dag, sedan 1972, med aktiviteter och en gemensam sillunch.',\n    ],\n",
+  "rader": [
+   "lag3b-N007",
+   "lag3b-N008",
+   "lag3b-N009"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['gotland', 'ulvon'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.borgholm.se/uppleva-och-gora/badplatser/ — \"Här ansvarar kommunen för renhållningen\"; \"Dovreviken\"; \"Sandvik\"; \"Köpingsvik\"; \"Sjöstugan\"; \"Böda hamn\"; \"Klinta Bodar\"; \"Kommunen tar som rutin tre vattenprover per sommar och strandbad. Ett prov tas på försäsong i början av juni och två prover under själva badsäsongen i juli-augusti.\" (läst 2026-11-17)\n      'I Borgholms kommun sköter kommunen renhållningen vid badplatserna Dovreviken, Sandvik, Köpingsvik, Sjöstugan, Böda hamn och Klinta Bodar. Vid strandbaden tar kommunen som rutin tre vattenprover per sommar: ett i början av juni och två under badsäsongen i juli och augusti.',\n      // KÄLLA: https://www.borgholm.se/uppleva-och-gora/badplatser/ — \"Du får inte ha med dig hund till allmänna badplatser mellan 1 juni och 31 augusti, enligt kommunens lokala ordningsföreskrifter. På övriga ej utpekade stränder är hundar välkomna.\" (läst 2026-11-17)\n      'Enligt Borgholms kommuns lokala ordningsföreskrifter får du inte ha med dig hund till allmänna badplatser 1 juni till 31 augusti. På övriga stränder som inte är utpekade är hundar välkomna.',\n    ],\n    related: ['gotland', 'ulvon'],\n",
+  "rader": [
+   "lag3b-N010",
+   "lag3b-N011"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['branno', 'styrso', 'vinga'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.ockero.se/fritid-och-kultur/idrott-motion-och-friluftsliv/badplatser/hjalviks-badplats — \"Hjälviks badplats ligger på Öckerö. I området Prästängen finns det fotbollsplaner och en inomhushall Göstahallen, ishall, lekpark, skatepark och motionsspår.\"; \"Volleybollplan\"; \"Toalett (WC och för funktionshindrade)\"; \"Ramp för funktionshindrade\"; \"Hundförbud från 1 maj till 30 september\"; \"Campingförbud\" (läst 2026-11-17)\n      'Hjälviks badplats ligger på Öckerö, och i området Prästängen finns fotbollsplaner, inomhushallen Göstahallen, ishall, lekpark, skatepark och motionsspår. På badplatsen finns volleybollplan, toalett även för funktionshindrade och ramp, och inom badplatsområdet gäller hundförbud 1 maj till 30 september och campingförbud.',\n    ],\n    related: ['branno', 'styrso', 'vinga'],\n",
+  "rader": [
+   "lag3b-N012"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['vaxholm', 'resaro', 'rindo'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.vaxholm.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — \"Badet Myrholmsmaren ligger vid sjön Stora Maren. Badplatsen sköts av Tynningö Idrottsförening som också anordnar simskola varje sommar.\"; \"Sandstrand\"; \"Bryggor\"; \"Grillplats med fasta bänkar och lösa bord\"; \"Omklädningshytt\"; \"Baja-maja under badsäsong\" (läst 2026-11-17)\n      'Badplatsen Myrholmsmaren ligger vid sjön Stora Maren och sköts av Tynningö Idrottsförening, som också anordnar simskola varje sommar. Där finns sandstrand, bryggor, grillplats med fasta bänkar och lösa bord, omklädningshytt och bajamaja under badsäsongen.',\n      // KÄLLA: https://www.vaxholm.se/download/18.7540ce651827e350272a8e08/1661434105419/Bilaga%203%20-%20Kulturmilj%C3%B6underlag%20o%20.pdf — \"Många av de målpunkter som finns på ön vänder sig främst till de boende och inte till turister.\"; \"På ön finns bland annat en bygdegård, skidbacke, fotbollsplan\" (läst 2026-11-17)\n      'Enligt Vaxholms stad vänder sig många av målpunkterna på ön främst till de boende och inte till turister. På ön finns bland annat en bygdegård, en skidbacke och en fotbollsplan.',\n    ],\n    related: ['vaxholm', 'resaro', 'rindo'],\n",
+  "rader": [
+   "lag3b-N013",
+   "lag3b-N014"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['namdo', 'langviksskaret', 'ormsko'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — \"Bullerö är nationalparkens entré.\"; \"Delar av ön är tillgänglighetsanpassade så att det går att ta sig runt med rullstol, barnvagn eller rullator.\" (läst 2026-11-17)\n      'Delar av Bullerö är tillgänglighetsanpassade, så att det går att ta sig runt med barnvagn, rullstol eller rullator.',\n      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — \"Du får tälta upp till två dygn på samma plats i nästan hela nationalparken. På Bullerö finns en tältplats där du får tälta upp till sju dygn.\" (läst 2026-11-17)\n      'I nästan hela nationalparken får du tälta högst två dygn på samma plats, men på tältplatsen på Bullerö får du stanna upp till sju dygn.',\n    ],\n    related: ['namdo', 'langviksskaret', 'ormsko'],\n",
+  "rader": [
+   "lag3b-N015",
+   "lag3b-N016"
+  ]
+ },
+ {
+  "fil": "src/app/o/bohuslan-data.ts",
+  "gammal": "    related: ['fjallbacka', 'kosterhavet', 'hamburgsund'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.tanum.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.7664b4813898b7df9845725.html — \"På badplatserna vid Badberget i Fjällbacka, Tanum Strand strax söder om Grebbestad, Östad samt Edsviksbadet finns handikappramper som underlättar för rörelsehindrade att kunna njuta av sköna bad.\" (läst 2026-11-17)\n      'Vid badplatsen Tanum Strand strax söder om Grebbestad finns en handikappramp som gör det lättare för rörelsehindrade att bada.',\n    ],\n    related: ['fjallbacka', 'kosterhavet', 'hamburgsund'],\n",
+  "rader": [
+   "lag3b-N017"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "    related: ['finnhamn', 'svartso', 'ljustero'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://stockholmarchipelagotrail.com/sv/section/etapp-ingmarso/ — \"Om du kliver av vid södra bryggan så kommer du snart förbi gästhamnen, därifrån går leden rakt norrut, på grusvägen. Du kan inte gå längs vattnet då du kommer in på ett farligt varvsområde.\" (läst 2026-11-17)\n      'Kliver du av vid södra bryggan går Stockholm Archipelago Trail förbi gästhamnen och sedan rakt norrut på grusvägen. Längs vattnet kan du inte gå, eftersom du då kommer in på ett farligt varvsområde.',\n    ],\n    related: ['finnhamn', 'svartso', 'ljustero'],\n",
+  "rader": [
+   "lag3b-N018"
+  ]
+ },
+ {
+  "fil": "src/app/o/bohuslan-data.ts",
+  "gammal": "    related: ['astol', 'kladesholmen', 'tjorn'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — \"Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn.\"; \"Toalett finns vid småbåtshamnen.\"; \"Badplatsen är delvis tillgänglighetsanpassad med en bred trappa svagt sluttande ner i vattnet.\"; \"Badplatsen sköts sommartid av Dyröns samhällsförening, som också anordnar simskola.\" (läst 2026-11-17)\n      'Dyröns badplats cirka 300 meter öster om färjeläget sköts sommartid av Dyröns samhällsförening, som också anordnar simskola. Den är delvis tillgänglighetsanpassad med en bred trappa som sluttar svagt ner i vattnet, och toalett finns vid småbåtshamnen.',\n    ],\n    related: ['astol', 'kladesholmen', 'tjorn'],\n",
+  "rader": [
+   "lag3b-N019"
+  ]
+ },
+ {
+  "fil": "src/app/o/bohuslan-data.ts",
+  "gammal": "    related: ['fiskebackskil', 'grundsund', 'kosterhavet'],\n",
+  "ny": "    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under \"Tips om …\".\n    insiderTips: [\n      // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — \"På flera av badplatserna finns vinterstegar för den som vill bada även under årets kallare månader.\"; \"Lysekils tätort\"; \"Pinnevik\"; \"Norra Hamnen\"; \"Rinkenäs\"; \"Fridhem\"; \"Stångholmesund\"; \"Kallbadhuset och Trampen\" (läst 2026-11-17)\n      'På flera av Lysekils kommuns badplatser finns vinterstegar för den som vill bada även under årets kallare månader. I Lysekils tätort gäller det Pinnevik, Norra Hamnen, Rinkenäs, Fridhem, Stångholmesund och Kallbadhuset och Trampen.',\n    ],\n    related: ['fiskebackskil', 'grundsund', 'kosterhavet'],\n",
+  "rader": [
+   "lag3b-N020"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      { icon: '🏖️', name: 'Sandstränder', desc: 'Sandstränder på norra ön.' },",
+  "ny": "      // Lag 3 b 2026-11-17: badsidan under 95 % av main.\n      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — \"Här finns hällmarkstallskog och många fina badstränder med klippor och sand.\"; \"Mellan Brommö och grannön Hovden finns en grund, sandig passage som gör det möjligt att vada mellan öarna.\" (läst 2026-11-17)\n      { icon: '🏖️', name: 'Sandstränder', desc: 'Sandstränder på norra ön. Enligt Länsstyrelsen finns många badstränder med klippor och sand i reservatet, och mellan Brommö och grannön Hovden finns en grund, sandig passage där du kan vada mellan öarna.' },",
+  "rader": [
+   "lag3b-N021"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      { icon: '🏖️', name: 'Sandstränder', desc: 'Det finns sandstränder vid Sandhamn och Kappelhamn.' },",
+  "ny": "      // Lag 3 b 2026-11-17: badsidan under 95 % av main.\n      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — \"Det finns inte så många sandstränder men vattnet är klart och rent.\"; \"Sandhamn på östra sidan av ön.\"; \"På sommaren går de från Torekov och Båstad till Sandhamn på ön\" (läst 2026-11-17)\n      { icon: '🏖️', name: 'Sandstränder', desc: 'Det finns sandstränder vid Sandhamn och Kappelhamn, men enligt Länsstyrelsen inte så många, och vattnet är klart och rent. Sandhamn ligger på östra sidan av ön, och dit går turbåtarna på sommaren.' },",
+  "rader": [
+   "lag3b-N022"
+  ]
+ },
+ {
+  "fil": "src/app/o/island-data.ts",
+  "gammal": "      { icon: '🏛', name: 'Kapellen', desc: 'Kapellen i Agö och Kråkö hamn byggdes 1660 respektive 1736.' },",
+  "ny": "      // Lag 3 b 2026-11-17: aktivitetssidan under 95 % av main.\n      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — \"Agöns kapell är Hälsingekusten största.\" (läst 2026-11-17)\n      { icon: '🏛', name: 'Kapellen', desc: 'Kapellen i Agö och Kråkö hamn byggdes 1660 respektive 1736. Agöns kapell är enligt Länsstyrelsen det största på Hälsingekusten.' },",
+  "rader": [
+   "lag3b-N023"
+  ]
+ },
+ {
+  "fil": "src/app/o/hantverkare-data.ts",
+  "gammal": "    noteringar: 'Ramsmora 818, 130 43 Möja. Båttaxi för upp till 7 personer, båten Lisa. Inget pris publicerat.',\n  },\n",
+  "ny": "    noteringar: 'Ramsmora 818, 130 43 Möja. Båttaxi för upp till 7 personer, båten Lisa. Inget pris publicerat.',\n  },\n  {\n    // Lag 3 b 2026-11-17 (Möjas hantverkarsida under 95 % av main): företagets egen sida anger adress på Möja.\n    // KÄLLA: https://www.mojabattaxi.se/ — \"Möja Båttaxi AB\"; \"Reguljära turer från Sollenkroka till Möja och Möja till Sollenkroka.\"; \"MÖJA BERGS BY 118, 130 43 Möja\"; \"08-98 11 15\"; \"info@mojabattaxi.se\"; \"Charter vi tar er ut i Skärgården max 23 passagerare.\" (läst 2026-11-17)\n    slug: 'moja-battaxi',\n    namn: 'Möja Båttaxi AB',\n    ort: 'Bergs by, Möja',\n    bas: 'Bergs by, Möja',\n    yrken: ['sjotransport'],\n    telefon: '08-98 11 15',\n    epost: 'info@mojabattaxi.se',\n    webb: 'https://www.mojabattaxi.se',\n    oar: ['moja'],\n    kalla: { niva: 'egen-sajt', url: 'https://www.mojabattaxi.se', last: '2026-11-17' },\n    verifierad: false,\n    noteringar: 'Möja Bergs by 118, 130 43 Möja. Reguljära turer mellan Sollenkroka och Möja, mellanliggande öar trafikeras på vägen. Egen taxibåt och charter för upp till 23 passagerare.',\n  },\n",
+  "rader": [
+   "lag3b-N024"
+  ]
+ }
+]
