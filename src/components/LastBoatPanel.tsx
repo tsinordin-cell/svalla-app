@@ -15,6 +15,7 @@
  *  - Om det är efter midnatt (visar dagens datum imorgon)
  */
 import { useEffect, useState } from 'react'
+import { getIslandTransit, getReseplanerare } from '@/lib/transit-stops'
 
 interface TripLeg {
   category: string
@@ -96,6 +97,25 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
     return () => clearInterval(id)
   }, [])
 
+  // P0 24 (2026-11-17, Kontrollanten): avstängd brygga (stangd i transit-stops.ts) visas
+  // inte som om båtar gick därifrån.
+  const stangd = getIslandTransit(islandSlug)?.stangd ?? null
+  if (stangd) {
+    return (
+      <section aria-labelledby="last-boat-title" style={{
+        background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)', borderRadius: 16,
+        padding: '20px 22px', marginBottom: 28, color: '#fff',
+      }}>
+        <h2 id="last-boat-title" style={{ fontSize: 15, fontWeight: 700, margin: '0 0 8px' }}>
+          Sista båten från {islandName}
+        </h2>
+        <p role="note" style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.5, margin: 0 }}>
+          {stangd}
+        </p>
+      </section>
+    )
+  }
+
   // Dölj om okänd destination eller om vi laddar för första gången
   if (loading) return null
   if (error) return null
@@ -133,6 +153,9 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
 
   const accentText = isCancelled ? '#fca5a5' : isUrgent ? '#fdba74' : isWarning ? '#fde68a' : '#fbbf24'
   const dur = formatDuration(lastTrip.durationMin)
+  // P0 24 (2026-11-17): se bestallningTabell och getReseplanerare i transit-stops.ts.
+  const bestallningTabell = getIslandTransit(islandSlug)?.bestallningTabell ?? null
+  const reseplanerare = getReseplanerare(islandSlug)
 
   return (
     <section
@@ -224,15 +247,31 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
         </div>
       </div>
 
+      {/* P0 24 (2026-11-17, Kontrollanten MÄTT): rutan visade en torsdag 20:50 från Sandhamn,
+          som är tur 1612 med anmärkning B i Waxholmsbolagets tabell 16: den går bara om resan
+          har beställts i förväg. Utan beställning gick sista båten 17:35 (tur 1630). ResRobot
+          säger inte vilka turer som kräver beställning, så på öar med bestallningTabell står
+          det direkt under tiden. KÄLLA-raderna står vid värdet i transit-stops.ts. */}
+      {bestallningTabell && (
+        <p role="note" style={{
+          fontSize: 12.5, fontWeight: 700, lineHeight: 1.5,
+          margin: '10px 0 0', padding: '8px 10px', borderRadius: 8,
+          background: 'rgba(0,0,0,0.30)', border: '1px solid rgba(253,230,138,0.55)',
+        }}>
+          Tiden kan gälla en tur som bara går eller stannar här om resan har beställts i förväg. Är det så, går sista båten utan beställning tidigare. Se turens anmärkning i {bestallningTabell}.
+        </p>
+      )}
+
       {isCancelled && (
         <p style={{
           fontSize: 12, color: 'rgba(255,255,255,0.85)',
           margin: '12px 0 0', lineHeight: 1.5, fontWeight: 600,
         }}>
+          {/* P0 24 (2026-11-17): länken gick till SL även på Västtrafiks öar. */}
           ⚠️ Sista avgången är inställd: kolla{' '}
-          <a href="https://sl.se/sv/reseplaneraren" target="_blank" rel="noopener noreferrer"
+          <a href={reseplanerare.url} target="_blank" rel="noopener noreferrer"
              style={{ color: '#fde68a', textDecoration: 'underline' }}>
-            SL.se
+            {reseplanerare.namn}
           </a> för alternativ.
         </p>
       )}

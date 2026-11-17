@@ -8,7 +8,7 @@ import { suggestStops, type Interest, type PlaceInput } from '@/lib/planner'
 import { resolvePlaceName, listSupportedPlaces } from '@/lib/placeResolver'
 import { logger } from '@/lib/logger'
 import { fetchTripsResult, type TripSummary } from '@/lib/trafiklab'
-import { getIslandTransit, ISLAND_TRANSIT } from '@/lib/transit-stops'
+import { getIslandTransit, getReseplanerare, ISLAND_TRANSIT } from '@/lib/transit-stops'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { byggPlatslista, rensaLankar, PLATSLISTA_REGLER, THORKEL_PLATSTYPER, type PlatsRad } from '@/lib/thorkel-platser'
 
@@ -416,7 +416,8 @@ Kommentera t.ex. säsong, vilken avgång du själv hade tagit, eller hänvisa ti
 att kortet visar tiderna. Spotta inte ut tiderna i texten, kortet visar dem.
 
 GER VERKTYGET INGA AVGÅNGAR: säg att du inte kan hämta dem just nu och
-hänvisa till sl.se eller waxholmsbolaget.se. Beskriv INTE vägen dit ur minnet
+hänvisa till den reseplanerare som verktygsresultatet anger (fältet
+reseplanerare). Beskriv INTE vägen dit ur minnet
 — ingen hamn, ingen brygga, ingen busslinje. Fel hamn är värre än inget svar.
 
 UTAN EGEN BÅT = ENDAST get_transit_to_island. Frågar någon hur de tar sig
@@ -440,7 +441,7 @@ Tillgängliga öar med transit-data: ${Object.keys(ISLAND_TRANSIT).sort().join('
 
 OBS: om användaren frågar om transit till en ö som INTE finns i listan: säg
 ärligt att du inte har tabelldata för just den ön och föreslå att de söker
-sl.se eller waxholmsbolaget.se. Hitta inte på tider.`
+resan i reseplaneraren hos trafikbolaget i den regionen. Hitta inte på tider.`
 
 /**
  * ISLAND_INDEX — Thorkels förteckning över vilka öar Svalla faktiskt täcker.
@@ -633,6 +634,21 @@ async function executeTool(
         transitData: null,
       }
     }
+    // P0 24 (2026-11-17, Redaktören): avstängd brygga (stangd i transit-stops.ts). Inga tider och inget
+    // ruttkort; Thorkel återger texten.
+    if (cfg.stangd) {
+      return {
+        result: {
+          error: 'BRYGGAN ÄR AVSTÄNGD.',
+          stangd: cfg.stangd,
+          reseplanerare: getReseplanerare(slug),
+          instruktion:
+            'Återge texten i stangd. Nämn inga avgångstider och beskriv INTE vägen dit ur minnet.',
+        } as ToolResult,
+        planData: null,
+        transitData: null,
+      }
+    }
     const { trips, fel } = await fetchTripsResult(cfg.originStopId, cfg.destStopId, 4)
     /**
      * Kortet visade "Från Stockholm Strömkajen" även när resan faktiskt
@@ -699,9 +715,11 @@ async function executeTool(
       ? fel
         ? {
             error: `KUNDE INTE HÄMTA avgångarna (${fel}).`,
+            // P0 24 (2026-11-17): hänvisade alla öar till sl.se, även Västtrafiks öar.
+            reseplanerare: getReseplanerare(slug),
             instruktion:
-              'Säg att tidtabellen inte svarar just nu och hänvisa till sl.se ' +
-              'eller waxholmsbolaget.se. BESKRIV INTE vägen dit, nämn INGEN ' +
+              `Säg att tidtabellen inte svarar just nu och hänvisa till ${getReseplanerare(slug).namn} ` +
+              `(${getReseplanerare(slug).url}). BESKRIV INTE vägen dit, nämn INGEN ` +
               'hamn, brygga eller busslinje ur minnet: du vet inte vilken ' +
               'hamn som gäller utan data, och fel hamn får någon att missa båten.',
           }
@@ -719,6 +737,8 @@ async function executeTool(
            * för att den ska stå närmast felet när modellen frestas som mest.
            */
           error: 'INGA AVGÅNGAR ÅTERSTÅR i dag för denna ö (uppslaget lyckades).',
+          // P0 24 (2026-11-17, Redaktören): systemprompten säger att Thorkel ska hänvisa hit.
+          reseplanerare: getReseplanerare(slug),
           instruktion:
             'Säg att dagens sista avgång redan gått och föreslå att de reser ' +
             'i morgon. BESKRIV INTE vägen dit, ' +
