@@ -223,6 +223,14 @@ const HANDPLOCKADE = {
   smaskar: 'Småskären - KMB - 16000300023835.jpg',
   sandskar: 'Sandskär - KMB - 16000300023797.jpg',
   maloren: 'Malören - KMB - 16000300023810.jpg',
+  // 2026-11-17: sju nya ösidor (Skåne, Halland, Vänern, Blekinge, Gotland). Alla granskade med ögonen i kontaktark: inga människor, ingen alkohol. Licens PD, CC0 eller CC BY.
+  utklippan: 'Utklippans lighthouse.jpg',
+  'hallands-vadero': 'Hallands Väderö 13 juli 2022 - 2.jpg',
+  tarno: 'Lighthouse-Tärnö-20170723.jpg',
+  nidingen: 'Nidingen - KMB - 16000700003139.jpg',
+  'djuro-nationalpark': 'Fyren på Djurö.jpg',
+  'stora-karlso': 'Excursion to Stora Karlsö.jpg',
+  asunden: 'Raukar at Asunden.jpg',
 }
 
 /**

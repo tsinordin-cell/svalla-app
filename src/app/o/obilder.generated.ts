@@ -1072,8 +1072,78 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC BY 2.5",
     "licensUrl": "https://creativecommons.org/licenses/by/2.5",
     "kalla": "https://commons.wikimedia.org/wiki/File:Mal%C3%B6ren_-_KMB_-_16000300023810.jpg"
+  },
+  "utklippan": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Utklippans_lighthouse.jpg/1280px-Utklippans_lighthouse.jpg",
+    "bredd": 1200,
+    "hojd": 1600,
+    "ar": 2006,
+    "fotograf": "J K",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Utklippans_lighthouse.jpg"
+  },
+  "hallands-vadero": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fa/Hallands_V%C3%A4der%C3%B6_13_juli_2022_-_2.jpg/1280px-Hallands_V%C3%A4der%C3%B6_13_juli_2022_-_2.jpg",
+    "bredd": 1200,
+    "hojd": 564,
+    "ar": 2022,
+    "fotograf": "David Castor",
+    "licens": "CC0",
+    "licensUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Hallands_V%C3%A4der%C3%B6_13_juli_2022_-_2.jpg"
+  },
+  "tarno": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Lighthouse-T%C3%A4rn%C3%B6-20170723.jpg",
+    "bredd": 1200,
+    "hojd": 1600,
+    "ar": 2017,
+    "fotograf": "Heje",
+    "licens": "CC BY 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Lighthouse-T%C3%A4rn%C3%B6-20170723.jpg"
+  },
+  "nidingen": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Nidingen_-_KMB_-_16000700003139.jpg",
+    "bredd": 1200,
+    "hojd": 786,
+    "ar": 1997,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Nidingen_-_KMB_-_16000700003139.jpg"
+  },
+  "djuro-nationalpark": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Fyren_p%C3%A5_Djur%C3%B6.jpg/1280px-Fyren_p%C3%A5_Djur%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2014,
+    "fotograf": "Torbjörn Einarsson from Stockholm, Sweden",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Fyren_p%C3%A5_Djur%C3%B6.jpg"
+  },
+  "stora-karlso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Excursion_to_Stora_Karls%C3%B6.jpg/1280px-Excursion_to_Stora_Karls%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 834,
+    "ar": 1996,
+    "fotograf": "N Stjerna",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Excursion_to_Stora_Karls%C3%B6.jpg"
+  },
+  "asunden": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Raukar_at_Asunden.jpg/1280px-Raukar_at_Asunden.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2023,
+    "fotograf": "AndreasGannholm",
+    "licens": "CC0",
+    "licensUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Raukar_at_Asunden.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 105
+export const OAR_MED_BILD = 112
