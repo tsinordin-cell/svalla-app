@@ -79,46 +79,45 @@ export default function NewsletterOptInBanner() {
       style={{
         position: 'relative',
         margin: '0 0 14px',
-        padding: '14px 16px 14px 18px',
+        padding: '14px 16px',
         borderRadius: 16,
         background: 'linear-gradient(135deg, rgba(10,123,140,0.10), rgba(201,110,42,0.10))',
         border: '1px solid rgba(10,123,140,0.20)',
-        display: 'flex', alignItems: 'center', gap: 14,
       }}
     >
-      <div style={{
-        width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-        background: 'linear-gradient(135deg, var(--sea), var(--acc, #c96e2a))',
-        color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 4px 12px rgba(10,123,140,0.25)',
-      }} aria-hidden>
-        <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="5" width="18" height="14" rx="2" />
-          <path d="M3 7l9 6 9-6" />
-        </svg>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        <div style={{
+          width: 40, height: 40, borderRadius: 11, flexShrink: 0,
+          background: 'linear-gradient(135deg, var(--sea), var(--acc, #c96e2a))',
+          color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 4px 12px rgba(10,123,140,0.25)',
+        }} aria-hidden>
+          <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+        </div>
+        <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.3 }}>
+          {lage === 'tack' ? 'Tack, du får månadsbrevet' : 'Vill du ha månadsbrevet?'}
+        </div>
       </div>
 
       {lage === 'tack' ? (
-        <div style={{ flex: 1, minWidth: 0, fontSize: 14, color: 'var(--txt)', lineHeight: 1.4 }}>
-          <strong>Tack.</strong> Nästa brev kommer första tisdagen i månaden till {email}. Avsluta när du vill via länken i brevet.
-        </div>
+        <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
+          Nästa brev kommer första tisdagen i månaden. Avsluta när du vill via länken i brevet.
+        </p>
       ) : (
         <>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2, lineHeight: 1.3 }}>
-              Vill du ha månadsbrevet?
-            </div>
-            <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.45 }}>
-              Vad som har öppet i skärgården, båtar som byter tidtabell och månadens öar. En gång i månaden till {email}, avsluta när du vill.
-            </div>
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0 }}>
+          <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
+            Vad som har öppet i skärgården, båtar som byter tidtabell och månadens öar. En gång i månaden, avsluta när du vill.
+          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 12, flexWrap: 'wrap' }}>
             <button
               type="button"
               onClick={jaTack}
               disabled={lage === 'skickar'}
               style={{
-                padding: '8px 14px', borderRadius: 999, border: 'none',
+                padding: '9px 18px', borderRadius: 999, border: 'none',
                 background: 'var(--sea)', color: '#fff', fontWeight: 700, fontSize: 13,
                 cursor: lage === 'skickar' ? 'wait' : 'pointer', opacity: lage === 'skickar' ? 0.7 : 1,
               }}
@@ -128,13 +127,15 @@ export default function NewsletterOptInBanner() {
             <button
               type="button"
               onClick={inteNu}
-              style={{
-                padding: '6px 14px', borderRadius: 999, border: 'none',
-                background: 'transparent', color: 'var(--txt2)', fontSize: 12, cursor: 'pointer',
-              }}
+              style={{ padding: '9px 4px', border: 'none', background: 'transparent', color: 'var(--txt2)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}
             >
               Inte nu
             </button>
+            {/* Adressen för sig, sist och dämpad: i brödtexten bröts den mitt i ordet
+                på mobil och Safaris datadetektor strök under den. */}
+            <span style={{ marginLeft: 'auto', fontSize: 11.5, color: 'var(--txt3)', overflowWrap: 'anywhere', textDecoration: 'none' }}>
+              Till {email}
+            </span>
           </div>
         </>
       )}
