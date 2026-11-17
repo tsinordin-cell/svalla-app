@@ -1424,7 +1424,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/dalaro/",
       "org": "haninge.se",
       "vad": "Dalarö är lots- och tullsamhället som sedan blev badortsidyll; snirkliga gator, gränder och villor med snickarglädje i schweizisk anda; Strindberg kallade det porten till paradiset",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -1463,17 +1463,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "839 Handens station–Dalarö (–Smådalarö), Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; Handens station → Hotellbryggan 33–40 min ;  — 869 Globen–Dalarö, Ingen trafik lördag, söndag och helgdag; 46–50 min . Pendeltågets restid Stockholm C–Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Haninge centrum, Hotellbryggan, Alla hållplatser för buss 839 mot Smådalarö finns ovan., Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37). Handens station finns inte bland hållplatserna.",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v869.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h869.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "869 Globen–Dalarö, Lördag, söndag och helgdag, Ingen trafik; Slakthuset (Globen) → Hotellbryggan 46–50 min, fyra turer vardagar",
-      "last": "2026-09-27",
+      "vad": "869 Globen–Dalarö, SLAKTHUSET (GLOBEN), Ingen trafik, Giltig 18 mars–18 juni samt 17 augusti–12 december 2026 ; Slakthuset (Globen) → Hotellbryggan 46 till 50 min. Pendeltågets restid Stockholm C till Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/s839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Giltig 19 juni–16 augusti 2026, Måndag–fredag, Lördag, Söndag och helgdag",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -1500,7 +1507,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://smadalarogard.se/",
       "org": "smadalarogard.se",
-      "vad": "Smådalarö Gård Hotell & Spa, Ett av Sveriges största spahotell i Stockholms skärgård, Spa, aktiviteter, närodlad mat och personlig service ;  — 839 Handens station–Dalarö (–Smådalarö), Endast vissa turer",
+      "vad": "Smådalarö Gård Hotell & Spa, Ett av Sveriges största spahotell i Stockholms skärgård, Spa, aktiviteter, närodlad mat och personlig service",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -4897,18 +4904,32 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v845.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h845.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Västerhaninge station–Gålö, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026, Tidtabellen är anpassad till pendeltåg från Stockholm vid . Lördag, söndag: Västerhaninge station 09.18 → Skälåker 09.42 och 11.18 → 11.43; måndag–fredag når bara 18.05-turen Skälåker (18.31). Sommartabellen 19/6–16/8 fanns inte som PDF.",
-      "last": "2026-09-27",
+      "vad": "Västerhaninge station–Gålö, Skälåker 1), 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 18 mars–18 juni samt 17 augusti–12 december 2026 . Västerhaninge station → Skälåker 24 till 26 min; måndag till fredag når en tur Skälåker, lördag, söndag och helgdag två (MÄTT i tabellen).",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Handens station–Dalarö (–Smådalarö), Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; måndag–fredag Handens station 09.14 → Gålövägen 09.32 (18 min) .  — Alla bussar till Dalarö stannar vid Gålö handel, strax utanför reservatet i norr.",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Gålövägen, Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Gålövägen 16 till 19 min (MÄTT i tabellen: måndag till fredag 18 till 19, lördag, söndag och helgdag 16 till 18)",
+      "last": "2026-11-17",
       "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/s839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Gålövägen, Giltig 19 juni–16 augusti 2026",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/",
+      "org": "galohavsbad.se",
+      "vad": "Endast 35 km söder om Stockholm",
+      "last": "2026-09-27",
+      "myndighet": false
     },
     {
       "url": "https://galohavsbad.se/",
@@ -4932,17 +4953,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://galohavsbad.se/om-oss/kontakta-oss/",
+      "org": "galohavsbad.se",
+      "vad": "Som dagsbesökare får man endast parkera på den stora parkeringen., Man kan betala sin parkering via parkster, mobill eller via smsparkering.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
       "url": "https://galohavsbad.se/ata/",
       "org": "galohavsbad.se",
       "vad": "Välkomna till vår charmiga Bistro, matbit, fika, smarriga smörgåsar, Minilivs, Camping för dig och din familj",
       "last": "2026-10-01",
-      "myndighet": false
-    },
-    {
-      "url": "https://galohavsbad.se/om-oss/kontakta-oss/",
-      "org": "galohavsbad.se",
-      "vad": "Som dagsbesökare får man endast parkera på den stora parkeringen., Man kan betala sin parkering via parkster, mobill eller via smsparkering.",
-      "last": "2026-09-27",
       "myndighet": false
     },
     {
@@ -5243,10 +5264,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Handens station 06.14 07.14 07.44 08.14 09.14, Hotellbryggan 05.46 06.50 07.50 08.23 08.50 09.51, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Hotellbryggan, Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -5522,10 +5543,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Handens station–Dalarö (–Smådalarö), 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026  — 14 ankomster till Smådalarö måndag–fredag och 9 lördag–söndag i tabellen.",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Haninge centrum, 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 17 augusti–12 december 2026 ; 14 turer till Smådalarö måndag till fredag och 9 lördag, söndag och helgdag; Rudsjöterrassen → Smådalarö 45 till 54 min (MÄTT i tabellen)",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -5546,7 +5567,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/",
       "org": "smadalarogard.se",
       "vad": "Smådalarö Gård Hotell & Spa ligger idylliskt i Hemviken i Stockholms skärgård, Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city, som går från Haninge Centrum hela vägen till vår grind",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": false
     },
     {

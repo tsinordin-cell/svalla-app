@@ -120,8 +120,8 @@ export const SEGELKURS_SUBS: SegelkursSub[] = [
       },
       {
         q: 'Hur tar jag mig till Sjöbris på Dalarö utan bil?',
-        // KÄLLA: SL tidtabell 839 (se Dalarö-sidans källor) — Handens station → Hotellbryggan 33–40 min
-        a: 'Med pendeltåg till Handen och sedan buss 839, 33 till 40 minuter från Handens station. Se Dalarösidan på Svalla för nästa avgångar.',
+        // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Hotellbryggan", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)
+        a: 'Med pendeltåg till Handen och sedan buss 839 från Rudsjöterrassen, som enligt SL:s tabell till 12 december 2026 tar 33 till 39 minuter till Hotellbryggan i Dalarö. Bussens tider är anpassade till pendeltågen vid Handens station. Se Dalarösidan på Svalla för nästa avgångar.',
       },
     ],
   },
