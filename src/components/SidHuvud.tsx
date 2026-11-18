@@ -165,11 +165,7 @@ const MENY: { href: string; text: string; aktivFor: string[]; grupper: [string, 
     [
      [
       "/krogar-och-mat",
-      "Krogar och kaféer"
-     ],
-     [
-      "/krogar-och-mat?typ=brygga",
-      "Bryggserveringar"
+      "Krogar, kaféer och bryggserveringar"
      ],
      [
       "/boende",

@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import OmradesVal from '@/components/OmradesVal'
+import { byggOmraden } from '@/lib/omraden'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
 
@@ -112,6 +114,7 @@ export default function BoendePage() {
     <>
       <JsonLd data={jsonLd} />
       <CategoryLanding
+       regionNav={<OmradesVal rubrik="Boende i skärgården" vad="boenden" omraden={byggOmraden('boende')} />}
         heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Boende"
       title="Sov i skärgården"

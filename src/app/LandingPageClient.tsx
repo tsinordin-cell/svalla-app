@@ -612,8 +612,7 @@ const LANDING_HTML = `
  <li class="nav-dropdown">
  <a href="/krogar-och-mat">Mat &amp; boende</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/krogar-och-mat" class="nav-dd-link">Krogar och kaféer</a>
- <a href="/krogar-och-mat?typ=brygga" class="nav-dd-link">Bryggserveringar</a>
+ <a href="/krogar-och-mat" class="nav-dd-link">Krogar, kaféer och bryggserveringar</a>
  <a href="/boende" class="nav-dd-link">Boende</a>
  <a href="/hamnar-och-bryggor" class="nav-dd-link">Gästhamnar och naturhamnar</a>
  <a href="/farjor" class="nav-dd-link">Färjetider</a>
