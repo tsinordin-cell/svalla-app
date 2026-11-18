@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
@@ -46,6 +47,24 @@ export default async function PlaneraPage() {
   }
 
   return (
+    <PlaneraVy
+      inloggad={!!session}
+      myRoutes={myRoutes}
+      vader={<WeatherPillServer lat={59.32} lng={18.20} />}
+    />
+  )
+}
+
+function PlaneraVy({
+  inloggad,
+  myRoutes,
+  vader,
+}: {
+  inloggad: boolean
+  myRoutes: PlannedRoute[]
+  vader: ReactNode
+}) {
+  return (
     <div style={{
       minHeight: '100dvh', background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
@@ -80,7 +99,7 @@ export default async function PlaneraPage() {
         padding: '16px 16px 28px',
         paddingTop: 'calc(16px + env(safe-area-inset-top, 0px))',
       }}>
-        <div style={{ maxWidth: 560, margin: '0 auto' }}>
+        <div className="planera-innehall">
           <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>
             Ruttplanerare
           </div>
@@ -90,7 +109,7 @@ export default async function PlaneraPage() {
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.72)', margin: '0 0 20px', lineHeight: 1.55 }}>
             Välj start, mål och intressen. Vi hittar krogar, bastun och bryggor längs vägen.
           </p>
-          <Link href="/planera/ny" style={{
+          <Link href="/planera/ny" className="planera-ny-rutt" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '13px 24px', borderRadius: 50,
             background: '#fff', color: 'var(--sea)',
@@ -104,29 +123,30 @@ export default async function PlaneraPage() {
               att ge sig ut. Serverrenderad sedan 2026-08-05: klientwidgeten satt
               fast i "Laddar väder…" eftersom hero-delträdet aldrig hydrerades. */}
           <div style={{ marginTop: 16 }}>
-            <WeatherPillServer lat={59.32} lng={18.20} />
+            {vader}
           </div>
         </div>
       </div>
 
-      <div style={{ padding: '20px 16px', maxWidth: 560, margin: '0 auto' }}>
+      <div style={{ padding: '20px 16px' }}>
+      <div className="planera-innehall">
 
         {/* Mina rutter */}
-        {session && myRoutes.length > 0 && (
+        {inloggad && myRoutes.length > 0 && (
           <MyRoutesList initialRoutes={myRoutes} />
         )}
 
         {/* Inte inloggad — Visa exempel-rutt */}
-        {!session && (
+        {!inloggad && (
           <>
-            <div style={{
+            <div className="planera-yta" style={{
               background: 'var(--white)', borderRadius: 16, padding: '24px',
               border: '1px solid rgba(10,123,140,0.08)', marginBottom: 24,
             }}>
               <div style={{
                 display: 'flex', alignItems: 'flex-start', gap: 16,
               }}>
-                <div style={{
+                <div className="planera-ikon" style={{
                   display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                   width: 56, height: 56, borderRadius: 14,
                   background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
@@ -136,10 +156,10 @@ export default async function PlaneraPage() {
                 </div>
                 <div style={{ flex: 1 }}>
                   <p style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>Planera en rutt utan att logga in</p>
-                  <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px', lineHeight: 1.5 }}>
+                  <p className="planera-sekundar" style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 14px', lineHeight: 1.5 }}>
                     Testa ruttplaneringen direkt: se hur Svalla hittar krogar, hamnar och stopp längs vägen. Logga in när du vill spara och dela.
                   </p>
-                  <div style={{
+                  <div className="planera-inre" style={{
                     background: 'rgba(10,123,140,0.04)', borderRadius: 12, padding: '12px 16px',
                     fontSize: 13, color: 'var(--txt)', lineHeight: 1.6, marginBottom: 14,
                   }}>
@@ -182,12 +202,12 @@ export default async function PlaneraPage() {
         )}
 
         {/* Tom state */}
-        {session && myRoutes.length === 0 && (
-          <div style={{
+        {inloggad && myRoutes.length === 0 && (
+          <div className="planera-yta" style={{
             background: 'var(--white)', borderRadius: 16, padding: '32px 20px',
             border: '1px solid rgba(10,123,140,0.08)', textAlign: 'center',
           }}>
-            <div style={{
+            <div className="planera-ikon" style={{
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               width: 60, height: 60, borderRadius: 16,
               background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
@@ -196,7 +216,7 @@ export default async function PlaneraPage() {
               <Icon name="map" size={32} stroke={1.6} />
             </div>
             <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Inga rutter ännu</p>
-            <p style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 20px' }}>
+            <p className="planera-sekundar" style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 20px' }}>
               Planera din första skärgårdsrutt och se vilka stopp som passar.
             </p>
             <Link href="/planera/ny" style={{
@@ -211,7 +231,7 @@ export default async function PlaneraPage() {
         )}
 
         {/* Länk till Thorkel */}
-        <div style={{
+        <div className="planera-yta" style={{
           background: 'rgba(10,123,140,0.05)', borderRadius: 16, padding: '16px',
           border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
           display: 'flex', alignItems: 'center', gap: 14,
@@ -219,9 +239,9 @@ export default async function PlaneraPage() {
           <ThorkelAvatar size={56} />
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 3 }}>Fråga Thorkel</div>
-            <div style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.45 }}>Berätta vad du letar efter, vår skärgårdsguide svarar på sekunder.</div>
+            <div className="planera-sekundar" style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.45 }}>Berätta vad du letar efter, vår skärgårdsguide svarar på sekunder.</div>
           </div>
-          <Link href="/guide" style={{
+          <Link href="/guide" className="planera-chip" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',
             padding: '7px 14px', borderRadius: 20, background: 'rgba(10,123,140,0.1)',
             flexShrink: 0,
@@ -231,27 +251,28 @@ export default async function PlaneraPage() {
         </div>
 
         {/* Länk till kurerade turer */}
-        <div style={{
+        <div className="planera-yta" style={{
           background: 'rgba(10,123,140,0.05)', borderRadius: 16, padding: '14px 16px',
           border: '1px solid rgba(10,123,140,0.1)', marginTop: 8,
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
-          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 10, background: 'rgba(10,123,140,0.10)', color: 'var(--sea)' }}>
+          <span className="planera-ikon" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 10, background: 'rgba(10,123,140,0.10)', color: 'var(--sea)' }}>
             <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
               <path d="M2 20h20M12 4v12M12 4L5 16h14L12 4Z" />
             </svg>
           </span>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Utforska utvalda turer</div>
-            <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med waypoints, svårighetsgrad och tips.</div>
+            <div className="planera-sekundar" style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med waypoints, svårighetsgrad och tips.</div>
           </div>
-          <Link href="/rutter" style={{
+          <Link href="/rutter" className="planera-chip" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',
             padding: '6px 12px', borderRadius: 20, background: 'rgba(10,123,140,0.1)',
           }}>
             Se alla →
           </Link>
         </div>
+      </div>
       </div>
     </div>
   )

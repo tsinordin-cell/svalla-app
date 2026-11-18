@@ -1,5 +1,9 @@
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import { describe, it, expect } from 'vitest'
 import { ACHIEVEMENTS, calcStreak, computeUnlocked, totalDistanceNM, type TripForAch } from './achievements'
+
+const IKON_KALLA = readFileSync(join(__dirname, '../components/Icon.tsx'), 'utf8')
 
 // ── helpers ───────────────────────────────────────────────────────────────────
 
@@ -226,6 +230,12 @@ describe('ACHIEVEMENTS registry', () => {
     for (const a of ACHIEVEMENTS) {
       expect(a.label.length).toBeGreaterThan(0)
       expect(a.desc.length).toBeGreaterThan(0)
+    }
+  })
+
+  it('every badge uses a known svg icon name', () => {
+    for (const a of ACHIEVEMENTS) {
+      expect(IKON_KALLA.includes(`\n  ${a.icon}:`), a.id).toBe(true)
     }
   })
 

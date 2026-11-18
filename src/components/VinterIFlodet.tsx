@@ -57,16 +57,14 @@ export default function VinterIFlodet({ manad = new Date().getMonth() + 1 }: { m
             style={{
               display: 'flex', alignItems: 'center', gap: 12,
               padding: '12px 14px', borderRadius: 14,
-              // --surface-1 är vit i ljust läge och #0f1e2c i mörkt; --card fanns inte
-              // och föll tillbaka på vitt, så korten blev vita med ljus text i mörkt läge (17 nov).
-              background: 'var(--surface-1)',
-              border: '1px solid var(--input-border)',
+              background: 'var(--surface)',
+              border: '1px solid var(--teal-12)',
               textDecoration: 'none', color: 'inherit',
             }}
           >
             <div style={{
               width: 38, height: 38, flexShrink: 0, borderRadius: 11,
-              background: 'rgba(10,123,140,0.10)', color: 'var(--sea)',
+              background: 'var(--teal-10)', color: 'var(--sea)',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             }} aria-hidden>
               <Icon name={r.icon} size={20} stroke={1.9} />

@@ -30,8 +30,7 @@ import { analytics } from '@/lib/analytics'
 import { track } from '@/lib/analytics-events'
 import CrewPicker, { type CrewUser } from '@/components/CrewPicker'
 import LocationSearch from '@/components/LocationSearch'
-import Icon from '@/components/Icon'
-import { emojiToIcon } from '@/lib/iconMap'
+import Icon, { type IconName } from '@/components/Icon'
 import { recoveryExtraSeconds, mergeRecoveredPoints, mergeRecoveredStops, type ServerGpsRow } from '@/lib/tracking'
 
 const LiveTrackMap = dynamic(() => import('@/components/LiveTrackMap'), { ssr: false, loading: () => null })
@@ -107,7 +106,7 @@ export default function SparaPage() {
   const [passeradeOar, setPasseradeOar] = useState<string[]>([])   // sedda från sjön utan stopp (2026-10-26)
 
   // ── Achievement celebration ──
-  const [newAchievements, setNewAchievements] = useState<{ emoji: string; label: string }[]>([])
+  const [newAchievements, setNewAchievements] = useState<{ icon: IconName; label: string }[]>([])
   const [showCelebration, setShowCelebration] = useState(false)
   const [taggedCrew,      setTaggedCrew]      = useState<CrewUser[]>([])
   const [currentUserId,   setCurrentUserId]   = useState('')
@@ -982,7 +981,7 @@ export default function SparaPage() {
       const after  = computeUnlocked(newList)
       const justUnlocked = after.filter(a => !before.has(a.id))
       if (justUnlocked.length > 0) {
-        setNewAchievements(justUnlocked.map(a => ({ emoji: a.emoji, label: a.label })))
+        setNewAchievements(justUnlocked.map(a => ({ icon: a.icon, label: a.label })))
         setShowCelebration(true)
         achievementUnlocked = true
         // Persistera achievement-events för feed + notiser
@@ -1743,7 +1742,7 @@ export default function SparaPage() {
                   background: 'rgba(255,255,255,.12)', borderRadius: 16,
                   padding: '12px 16px',
                 }}>
-                  <span aria-hidden><Icon name={emojiToIcon(a.emoji)} size={26} /></span>
+                  <span aria-hidden><Icon name={a.icon} size={26} /></span>
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ fontSize: 14, fontWeight: 600, color: '#fff' }}>{a.label}</div>
                     <div style={{ fontSize: 11, color: 'rgba(255,255,255,.6)', marginTop: 1 }}>Nytt märke uppnått</div>

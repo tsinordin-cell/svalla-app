@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { AchievementEvent } from '@/lib/achievementEvents'
 import { timeAgo } from '@/lib/utils'
+import Icon from './Icon'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
 
 export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
@@ -49,17 +50,15 @@ export default function AchievementFeedCard({ ev }: { ev: AchievementEvent }) {
         )}
       </div>
 
-      {/* Stort emoji-badge till höger. Emojin kommer från ACHIEVEMENTS via achievementEvents.ts;
-          saknas den visas pokalen. (Till 2026-11-07 stod här texten "getIconForEvent(ev.type)"
-          utan klamrar, en platshållare som aldrig byttes ut, så kortet visade koden i klartext.) */}
+      {/* Orange medaljcirkel. Ikonen är en SVG från märkesdefinitionen. Saknas den visas pokalen. */}
       <div aria-hidden style={{
         width: 56, height: 56, borderRadius: '50%', flexShrink: 0,
         background: 'linear-gradient(135deg,#e8a020,#c96e2a)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: 28,
+        color: '#fff',
         boxShadow: '0 4px 14px rgba(201,110,42,0.35)',
       }}>
-        {ev.emoji || '🏆'}
+        <Icon name={ev.icon ?? 'trophy'} size={26} stroke={1.9} />
       </div>
     </article>
   )
