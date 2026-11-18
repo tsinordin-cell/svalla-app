@@ -144,22 +144,6 @@ export default async function TipsArticlePage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: html }}
       />
 
-      {/* TAGS */}
-      {a.tags && a.tags.length > 0 && (
-        <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 32px', display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-          {a.tags.map(tag => (
-            <span key={tag} style={{
-              fontSize: 12,
-              color: 'var(--sea)',
-              background: 'rgba(30,92,130,0.08)',
-              padding: '5px 11px',
-              borderRadius: 20,
-              fontWeight: 600,
-            }}>#{tag}</span>
-          ))}
-        </div>
-      )}
-
       {/* Newsletter */}
       <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px 40px' }}>
         <EmailSignup
