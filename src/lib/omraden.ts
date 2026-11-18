@@ -21,12 +21,26 @@ const OMRADEN: { namn: string; etiketter: string[] }[] = [
   { namn: 'Insjöar', etiketter: ['Mälaren', 'Vänern', 'Vättern'] },
 ]
 
-export function byggOmraden(vad: 'krogar' | 'boende' | 'hamnar'): OmradeData[] {
+// Aktiviteternas typ läses ur namnet på aktiviteten i island-data, inget gissas.
+const AKT_TYPER: [RegExp, string][] = [
+  [/kajak|paddl|kanot|sup\b/i, 'Kajak och paddling'],
+  [/bad|strand|simn/i, 'Bad'],
+  [/vandr|promen|stig|led\b|leden/i, 'Vandring'],
+  [/cykl|cykel/i, 'Cykling'],
+  [/fisk/i, 'Fiske'],
+  [/segl/i, 'Segling'],
+  [/dyk|snork/i, 'Dykning'],
+  [/bastu/i, 'Bastu'],
+]
+const aktTyp = (namn: string) => AKT_TYPER.find(([re]) => re.test(namn))?.[1] ?? 'Annat'
+
+export function byggOmraden(vad: 'krogar' | 'boende' | 'hamnar' | 'aktiviteter'): OmradeData[] {
   return OMRADEN.map(o => {
     const oar = ALL_ISLANDS.filter(i => i.regionLabel && o.etiketter.includes(i.regionLabel))
     const platser = oar.flatMap(i => {
       if (vad === 'krogar') return (i.restaurants ?? []).map(r => ({ name: r.name, typ: r.type, o: i.name, oSlug: i.slug }))
       if (vad === 'boende') return (i.accommodation ?? []).map(a => ({ name: a.name, typ: a.type, o: i.name, oSlug: i.slug }))
+      if (vad === 'aktiviteter') return (i.activities ?? []).map(a => ({ name: a.name, typ: aktTyp(a.name), o: i.name, oSlug: i.slug }))
       return (i.harbors ?? []).map(h => ({ name: h.name, typ: h.fuel ? 'Gästhamn med bränsle' : 'Gästhamn', o: i.name, oSlug: i.slug }))
     })
     return { namn: o.namn, platser }
