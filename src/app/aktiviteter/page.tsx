@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import OmradesVal from '@/components/OmradesVal'
+import { byggOmraden } from '@/lib/omraden'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
@@ -47,7 +49,7 @@ const ITEMS: LandingItem[] = [
     title: 'Fiske',
     // KÄLLA: https://www.lansstyrelsen.se/stockholm/djur/fiske.html — "I havet längs kusten och i de fem stora sjöarna får du fiska fritt med handredskap utan fiskekort." (läst 2026-11-16)
     description: 'Gädda i vassbrynen, havsöring längs kusten, strömming från bryggan och torsk i djupare vatten. I havet längs kusten fiskar du fritt med handredskap utan fiskekort, men fredningsområden, fredningstider och artregler gäller.',
-    href: '/platser?kategori=fiske',
+    href: '/aktivitet/fiske',
   },
   {
     icon: 'swim',
@@ -71,7 +73,7 @@ const ITEMS: LandingItem[] = [
     icon: '🤿',
     title: 'Dykning & snorkling',
     description: 'Vrakdykning i Dalarö och Bålsta, snorkling i Möjas grunda vikar och längs Gotlands östkust, Sverige har över 20 välkända vrak och fantastisk skaldjursfauna.',
-    href: '/platser?kategori=dyk',
+    href: '/guider/dykning-snorkling-skargard',
   },
   {
     icon: '🧊',
@@ -128,6 +130,7 @@ export default function AktiviteterPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <CategoryLanding
+       regionNav={<OmradesVal rubrik="Aktiviteter där du är" vad="aktiviteter" omraden={byggOmraden('aktiviteter')} />}
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Aktiviteter"
       title="Gör Svenska kusten och skärgårdarna till ditt äventyr"

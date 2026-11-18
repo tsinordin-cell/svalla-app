@@ -255,7 +255,7 @@ export default function AIGuidePage() {
             {
               icon: '🧭',
               title: 'Öar i 6 regioner',
-              desc: 'Från Fjäderholmarna (20 min från Stockholm) till Göteborgs södra skärgård, Gotland och Höga Kusten. Thorkel kan hela Sverige.',
+              desc: 'Från Fjäderholmarna (25 till 30 min från Stockholm) till Göteborgs södra skärgård, Gotland och Höga Kusten. Thorkel kan hela Sverige.',
             },
           ].map((f, i) => (
             <div key={i} style={{

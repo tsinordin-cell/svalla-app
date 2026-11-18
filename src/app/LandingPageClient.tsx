@@ -570,136 +570,75 @@ const LANDING_HTML = `
  <text x="23" y="20" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5" fill="#ffffff">SVALLA</text>
  </svg>
  </a>
+ <style>.nav-sok input::placeholder{color:rgba(255,255,255,.7)}@media (max-width:1100px){.nav-sok{display:none!important}}@media (min-width:1101px){.hero-search{display:none!important}}</style>
+ <!-- FÖRHANDSVISNING 2026-11-18: ny menyrad (Regioner, Se & göra, Mat & boende, Planera, Guider) och sökfält. Inte för main. -->
  <ul class="nav-links">
  <li class="nav-dropdown">
- <a href="/resmal">Skärgården</a>
+ <a href="/resmal">Regioner</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <div class="nav-dd-section">Regioner</div>
+ <div class="nav-dd-section">Ostkusten</div>
  <a href="/stockholms-skargard" class="nav-dd-link">Stockholms skärgård</a>
- <a href="/bohuslan" class="nav-dd-link">Bohuslän</a>
- <a href="/gotland" class="nav-dd-link">Gotland</a>
  <a href="/aland" class="nav-dd-link">Åland</a>
+ <a href="/gotland" class="nav-dd-link">Gotland</a>
  <a href="/oland" class="nav-dd-link">Öland</a>
- <a href="/blekinge-skargard" class="nav-dd-link">Blekinges skärgård</a>
- <a href="/vasterhav" class="nav-dd-link">Västerhavet</a>
- <a href="/hoga-kusten" class="nav-dd-link">Höga Kusten</a>
- <a href="/halland" class="nav-dd-link">Halland</a>
- <a href="/goteborg-skargard" class="nav-dd-link">Göteborgs skärgård</a>
  <a href="/malaren" class="nav-dd-link">Mälaren</a>
  <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Hitta</div>
+ <div class="nav-dd-section">Syd och väst</div>
+ <a href="/blekinge-skargard" class="nav-dd-link">Blekinge skärgård</a>
+ <a href="/halland" class="nav-dd-link">Halland</a>
+ <a href="/goteborg-skargard" class="nav-dd-link">Göteborgs skärgård</a>
+ <a href="/bohuslan" class="nav-dd-link">Bohuslän</a>
+ <a href="/vasterhav" class="nav-dd-link">Västerhavet</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Norr och mer</div>
+ <a href="/hoga-kusten" class="nav-dd-link">Höga Kusten</a>
+ <a href="/oar" class="nav-dd-link">Alla öar</a>
  <a href="/karta" class="nav-dd-link">Karta över skärgården</a>
- <a href="/o" class="nav-dd-link">Alla öar</a>
  <a href="/jamfor" class="nav-dd-link">Jämför öar</a>
- <a href="/oar/barnvanliga" class="nav-dd-link">Barnvänliga öar</a>
- <a href="/oar/avskild" class="nav-dd-link">Avskilda pärlor</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
- <a href="/resetips">Dagsplaner &amp; Resetips</a>
- <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/resetips" class="nav-dd-link">Alla turer</a>
- <div class="nav-dd-divider"></div>
- <a href="/resetips?typ=dagsutflykt" class="nav-dd-link">Dagsutflykter</a>
- <a href="/resetips?typ=overnattning" class="nav-dd-link">Utflykt med övernattning</a>
- <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Säsongstips</div>
- <a href="/sommar" class="nav-dd-link">Skärgården på sommaren</a>
- <a href="/host" class="nav-dd-link">Skärgården på hösten</a>
- <a href="/vinter" class="nav-dd-link">Skärgården på vintern</a>
- <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Praktiska guider</div>
- <a href="/guider" class="nav-dd-link">Alla guider</a>
- <a href="/guider/midsommar-skargarden" class="nav-dd-link">Midsommar i skärgården</a>
- <a href="/guider/packlista-skargarden" class="nav-dd-link">Packlista för skärgården</a>
- <a href="/guider/allemansratten-pa-sjon" class="nav-dd-link">Allemansrätten på sjön</a>
- </div></div>
- </li>
- <li class="nav-dropdown">
- <a href="/aktiviteter">Aktiviteter</a>
+ <a href="/aktiviteter">Se &amp; göra</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
  <a href="/aktiviteter" class="nav-dd-link">Alla aktiviteter</a>
- <div class="nav-dd-divider"></div>
+ <a href="/bastu-och-bad" class="nav-dd-link">Bad och bastu</a>
+ <a href="/vandring-och-natur" class="nav-dd-link">Vandring och natur</a>
  <a href="/aktivitet/segling" class="nav-dd-link">Segling</a>
- <a href="/aktivitet/bada" class="nav-dd-link">Bada &amp; bryggor</a>
- <a href="/aktivitet/vandring" class="nav-dd-link">Vandring</a>
- <a href="/aktivitet/cykla" class="nav-dd-link">Cykling</a>
- <a href="/bastu-och-bad" class="nav-dd-link">Bastu &amp; spa</a>
- <a href="/aktivitet/mat" class="nav-dd-link">Mat &amp; dryck</a>
- <div class="nav-dd-divider"></div>
- <a href="/topplista" class="nav-dd-link">Topplistor</a>
- <a href="/skargardsdatum" class="nav-dd-link">Skärgårdens datum</a>
- <a href="/bingo" class="nav-dd-link">Skärgårdsbingo 2026</a>
- <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Boka en upplevelse</div>
- <a href="/upplevelser?kategori=guidade" class="nav-dd-link">Guidade turer</a>
- <a href="/upplevelser" class="nav-dd-link">Alla upplevelser →</a>
+ <a href="/aktivitet/kajak" class="nav-dd-link">Kajak</a>
+ <a href="/segelkurs" class="nav-dd-link">Kurser</a>
+ <a href="/vinter" class="nav-dd-link">Skärgården på vintern</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
- <a href="/segelkurs">Kurser</a>
- <div class="nav-dd-panel"><div class="nav-dd-inner nav-dd-mega">
- <div>
- <div class="nav-dd-section">Kurser</div>
- <a href="/segelkurs/stockholms-skargard" class="nav-dd-link nav-dd-kurs"><span>Segelkurser<small>Stockholms skärgård</small></span></a>
- <a href="/segelkurs/goteborg" class="nav-dd-link nav-dd-kurs"><span>Segelkurser<small>Göteborg och Bohuslän</small></span></a>
- <a href="/aktivitet/kajak" class="nav-dd-link nav-dd-kurs"><span>Kajak<small>Kurser och turer</small></span></a>
- <a href="/upplevelser?kategori=guidade" class="nav-dd-link nav-dd-kurs"><span>Guidade turer<small>Med skeppare eller guide</small></span></a>
- <div class="nav-dd-divider"></div>
- <a href="/segelkurs" class="nav-dd-link">Alla kurser →</a>
- </div>
- <div>
- <div class="nav-dd-section">Utvalt</div>
- <a href="https://sjobris-stockholm.se/?ref=svalla" target="_blank" rel="noopener" class="nav-dd-partner"><span class="nav-dd-partner-ikon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="10.5" y1="2" x2="11.5" y2="16.5"/><path d="M10.5 2 L19 15.5 L11.5 16.5 Z"/><path d="M10.5 6 L3 16.5 L11.5 16.5"/><path d="M2.5 16.5 Q7 19 12 20 Q17 19 21.5 16.5"/></svg></span><span>Sjöbris Stockholm<small>Seglarkurser från Dalarö</small></span></a>
- </div>
- </div></div>
- </li>
- <li class="nav-dropdown">
- <a href="/boende">Boende</a>
+ <a href="/krogar-och-mat">Mat &amp; boende</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/boende" class="nav-dd-link">Allt boende</a>
- <div class="nav-dd-divider"></div>
- <a href="/boende/stugor-stugbyar" class="nav-dd-link">Stugor &amp; stugbyar</a>
- <a href="/boende/hotell-vandrarhem" class="nav-dd-link">Hotell &amp; vandrarhem</a>
- <a href="/boende/camping-talt" class="nav-dd-link">Camping &amp; tält</a>
- <a href="/boende/bb" class="nav-dd-link">B&amp;B</a>
- <div class="nav-dd-divider"></div>
- <a href="/hamnar-och-bryggor" class="nav-dd-link">Gästhamnar</a>
+ <a href="/krogar-och-mat" class="nav-dd-link">Krogar, kaféer och bryggserveringar</a>
+ <a href="/boende" class="nav-dd-link">Boende</a>
+ <a href="/hamnar-och-bryggor" class="nav-dd-link">Gästhamnar och naturhamnar</a>
  <a href="/farjor" class="nav-dd-link">Färjetider</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
- <a href="/krogar-och-mat">Mat &amp; dryck</a>
+ <a href="/utflykt">Planera</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/krogar-och-mat" class="nav-dd-link">Alla restauranger och caféer</a>
- <div class="nav-dd-divider"></div>
- <a href="/krogar-och-mat?typ=skargardskrog" class="nav-dd-link">Skärgårdskrogar</a>
- <a href="/krogar-och-mat?typ=fine-dining" class="nav-dd-link">Fine dining</a>
- <a href="/krogar-och-mat?typ=cafe" class="nav-dd-link">Caféer &amp; bagerier</a>
- <a href="/krogar-och-mat?typ=brygga" class="nav-dd-link">Bryggservering</a>
- <a href="/aktivitet/mat" class="nav-dd-link">Sjömatskrogar</a>
- <div class="nav-dd-divider"></div>
- <a href="/erbjudanden" class="nav-dd-link">Erbjudanden</a>
+ <a href="/utflykt" class="nav-dd-link">Dagsutflykt, utan konto</a>
+ <a href="/resetips" class="nav-dd-link">Dagsplaner och resetips</a>
+ <a href="/planera" class="nav-dd-link">Egen tur med Thorkel (gratis konto)</a>
  </div></div>
  </li>
  <li class="nav-dropdown">
- <a href="/forum">Forum</a>
+ <a href="/guider">Guider</a>
  <div class="nav-dd-panel"><div class="nav-dd-inner">
- <a href="/forum" class="nav-dd-link">Diskussioner</a>
- <a href="/forum/loppis" class="nav-dd-link">Loppis</a>
- <div class="nav-dd-divider"></div>
- <div class="nav-dd-section">Kategorier</div>
- <a href="/forum/segling" class="nav-dd-link">Segling</a>
- <a href="/forum/motorbat" class="nav-dd-link">Motorbåt</a>
- <a href="/forum/hamnar-bryggor" class="nav-dd-link">Hamnar &amp; bryggor</a>
- <a href="/forum/vader-sakerhet" class="nav-dd-link">Väder &amp; säkerhet</a>
- <a href="/forum/fiske" class="nav-dd-link">Fiske</a>
- <a href="/forum/teknik-underhall" class="nav-dd-link">Teknik &amp; underhåll</a>
- <a href="/forum/nyborjare" class="nav-dd-link">Nybörjare</a>
+ <a href="/guider" class="nav-dd-link">Alla guider</a>
+ <a href="/guider/midsommar-skargarden" class="nav-dd-link">Midsommar i skärgården</a>
+ <a href="/guider/packlista-skargarden" class="nav-dd-link">Packlista för skärgården</a>
+ <a href="/guider/allemansratten-pa-sjon" class="nav-dd-link">Allemansrätten på sjön</a>
+ <a href="/forum" class="nav-dd-link">Forum: fråga andra</a>
  </div></div>
  </li>
  </ul>
  <div class="nav-cta">
+ <form action="/sok" method="get" role="search" class="nav-sok" style="display:flex;align-items:center;margin-right:6px"><input type="search" name="q" placeholder="Sök ö, hamn eller krog" aria-label="Sök på Svalla" style="width:190px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.14);color:#fff;font:inherit;font-size:13px;outline:none"></form>
  <button class="nav-hamburger" id="navHamburger" aria-label="Öppna meny">
  <span></span><span></span><span></span>
  </button>

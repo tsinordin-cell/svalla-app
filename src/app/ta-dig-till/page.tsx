@@ -94,7 +94,7 @@ export default function TaDigTillIndex() {
               Hur tar man sig till skärgården?
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 16, lineHeight: 1.6, margin: 0, maxWidth: 620 }}>
-              Restid, linjer, biljetter och praktiska tips för {ALL_ISLANDS.length} öar i Stockholms skärgård, Bohuslän och Västkusten.
+              Restid, linjer, biljetter och praktiska tips för {ALL_ISLANDS.length} öar och kustorter längs hela kusten.
             </p>
           </div>
 

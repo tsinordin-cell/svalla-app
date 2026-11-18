@@ -35,7 +35,8 @@ function resolveIcon(raw?: string): IconName | null {
 export type LandingItem = {
  title: string
  description: string
- href: string
+ /** Utan href visas kortet som information, inte som länk (2026-11-18: kort som ledde tillbaka till samma sida). */
+ href?: string
  /** Valfri emoji/unicode-prefix ( , ️ etc). För SEO spelar ikoner roll bara om de har aria-label. */
  icon?: string
  /** Valfri subtext (ex: "38 platser", "Sommar 2026") */
@@ -74,6 +75,8 @@ export type CategoryLandingProps = {
  related?: RelatedLink[]
  /** Knapp direkt under rubriken, för sidor där besökaren oftast vill vidare direkt (t.ex. kartan). */
  heroCta?: { label: string; href: string }
+ /** FÖRHANDSVISNING 2026-11-18: "Allt om regionen" direkt under rubriken. */
+ regionNav?: ReactNode
 }
 
 export default function CategoryLanding(props: CategoryLandingProps) {
@@ -89,9 +92,10 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  itemsTitle = 'Populärt just nu',
  itemsDescription,
  deeperContent,
- cta = { label: 'Öppna kartan', href: '/kom-igang' },
+ cta = { label: 'Öppna kartan', href: '/upptack' },
  related,
  heroCta,
+ regionNav,
  } = props
  void _egenFarg
  const heroGradient: [string, string] = ['#1e5c82', '#2d7d8a']
@@ -198,6 +202,8 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  )}
  </div>
  </header>
+
+ {regionNav}
 
  {/* INTRO */}
  <section
@@ -518,6 +524,7 @@ function LandingCard({ item, accent, reservera }: { item: LandingItem; accent: s
  </p>
  </>
  )
+ if (!item.href) return <div style={cardStyle}>{cardContent}</div>
  return (
  <Link href={item.href} prefetch={prefetchFor(item.href)} style={cardStyle}>
  {cardContent}
