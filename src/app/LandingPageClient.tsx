@@ -570,7 +570,7 @@ const LANDING_HTML = `
  <text x="23" y="20" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5" fill="#ffffff">SVALLA</text>
  </svg>
  </a>
- <style>.nav-sok input::placeholder{color:rgba(255,255,255,.7)}@media (max-width:1100px){.nav-sok{display:none!important}}</style>
+ <style>.nav-sok input::placeholder{color:rgba(255,255,255,.7)}@media (max-width:1100px){.nav-sok{display:none!important}}@media (min-width:1101px){.hero-search{display:none!important}}</style>
  <!-- FÖRHANDSVISNING 2026-11-18: ny menyrad (Regioner, Se & göra, Mat & boende, Planera, Guider) och sökfält. Inte för main. -->
  <ul class="nav-links">
  <li class="nav-dropdown">
