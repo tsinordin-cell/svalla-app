@@ -32,13 +32,6 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: 'map',
-    title: 'Öarna här',
-    description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
-    href: '/goteborg-skargard#oar',
-    meta: 'Gratis',
-  },
-  {
     icon: '🗼',
     title: 'Vinga',
     // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html — "Kommun: Göteborg"; "Vingas skärgård är den yttersta delen av övärlden i Göteborg." (läst 2026-10-19)

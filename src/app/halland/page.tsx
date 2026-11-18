@@ -32,13 +32,6 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '🗺️',
-    title: 'Öarna här',
-    description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
-    href: '/halland#oar',
-    meta: 'Gratis',
-  },
-  {
     icon: '🗼',
     title: 'Nidingen',
     // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Efter freden vid Brömsebro, år 1645, kom Nidingen under svensk administration och blev därmed Sveriges första fyrplats." (läst 2026-11-17)

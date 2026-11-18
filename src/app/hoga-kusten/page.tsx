@@ -33,13 +33,6 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '🗺️',
-    title: 'Öarna här',
-    description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
-    href: '/hoga-kusten#oar',
-    meta: 'Gratis',
-  },
-  {
     icon: '🦅',
     title: 'Ulvön',
     // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Det var en gång i tiden Norrlands största fiskeläge" (läst 2026-09-27)

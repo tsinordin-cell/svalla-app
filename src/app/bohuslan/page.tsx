@@ -44,12 +44,6 @@ export const metadata: Metadata = {
  * Carlstens. Nu pekar korten på det som finns: 19 ö-sidor med hamnar.
  */
 const ITEMS: LandingItem[] = [
- {
- icon: 'map',
- title: 'Öarna i Bohuslän',
- description: 'Marstrand, Smögen, Koster, Käringön, Gullholmen, Åstol och fler. Listan finns längre ner på sidan.',
- href: '/bohuslan#oar',
- },
   {
     icon: '🏰',
     title: 'Marstrand',

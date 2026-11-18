@@ -36,13 +36,6 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: '🗺️',
- title: 'Öarna här',
- description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
- href: '/malaren#oar',
- meta: 'Gratis',
- },
   {
     icon: '🏰',
     title: 'Birka',

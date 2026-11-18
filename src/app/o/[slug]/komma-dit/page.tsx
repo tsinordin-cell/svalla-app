@@ -136,7 +136,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
         subtitle={`${island.facts.travel_time ? `Restid: ${island.facts.travel_time}.` : ''}${kollektivt ? `${island.facts.travel_time ? ' ' : ''}Ingen egen båt krävs.` : ''}`}
       />
 
-      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '24px auto 0', padding: '0 16px 60px' }}>
 
         {/* Snabb restid-info */}
         {island.transport_meta && (

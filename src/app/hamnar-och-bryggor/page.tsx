@@ -59,8 +59,8 @@ const ITEMS: LandingItem[] = [
   },
   {
     icon: 'fuel',
-    title: 'Sjömackar',
-    description: 'Bränsle och septiktömning i utforskaren. Öppettider varierar med säsong. Ring innan du räknar med dem.',
+    title: 'Sjömackar i Stockholms skärgård',
+    description: 'Sjömackarna i utforskaren finns hittills bara i Stockholms skärgård. Öppettider varierar med säsong, så ring innan du räknar med dem.',
     href: '/upptack?typ=bensin',
   },
   {

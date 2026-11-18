@@ -34,13 +34,6 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: 'map',
- title: 'Öarna här',
- description: 'Alla öar i regionen med hamnar, aktiviteter och källor. Listan finns längre ner på sidan.',
- href: '/vasterhav#oar',
- meta: 'Gratis',
- },
   {
     icon: '⛵',
     title: 'Segelrutter längs Bohuslän',
@@ -49,9 +42,9 @@ const ITEMS: LandingItem[] = [
   },
   {
     icon: '⚓',
-    title: 'Gästhamnar och naturhamnar',
-    description: 'Hamnar längs svenska kusten, bland annat i Bohuslän.',
-    href: '/hamnar-och-bryggor',
+    title: 'Naturhamnar och allemansrätten',
+    description: 'Vad som gäller när du ankrar i en vik eller lånar en brygga, och var du inte får gå i land under häckningstiden.',
+    href: '/hamnar-och-bryggor#naturhamnar',
   },
   {
     icon: '⚓',
