@@ -20,6 +20,7 @@ export const metadata: Metadata = {
  alternates: { canonical: 'https://svalla.se/bastu-och-bad' },
 }
 
+// 2026-11-18: Spa och Vinterbad saknar länk. /platser?kategori=… omdirigerade tillbaka till den här sidan.
 const ITEMS: LandingItem[] = [
  {
  icon: '🪵',
@@ -31,7 +32,6 @@ const ITEMS: LandingItem[] = [
  icon: 'bathtub',
  title: 'Elbastur & spa',
  description: 'Moderna spabastur i hotell och badhus, för den som vill hoppa över vedhuggningen.',
- href: '/platser?kategori=spa',
  },
  {
  icon: '🛟',
@@ -43,7 +43,6 @@ const ITEMS: LandingItem[] = [
  icon: '🧊',
  title: 'Vinterbad & isvak',
  description: 'Organiserade vinterbad, isvakar och klubbar som samlas året runt, hjärtvänligt dopp.',
- href: '/platser?kategori=vinterbad',
  },
  {
  icon: 'beach',
@@ -105,7 +104,7 @@ export default function BastuOchBadPage() {
  related={[
  { label: 'Hamnar & bryggor', href: '/hamnar-och-bryggor' },
  { label: 'Aktiviteter', href: '/aktiviteter' },
- { label: 'Alla öar', href: '/rutter?vy=oar' },
+ { label: 'Alla öar', href: '/oar' },
  { label: 'Kartan', href: '/upptack' },
  ]}
  />

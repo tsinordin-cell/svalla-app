@@ -126,7 +126,15 @@ export default function UtflyktClient({ islands, hubs }: Props) {
   const ranked = useMemo(() => rankDagIslands(islands, hub, vill), [islands, hub, vill])
   const utanFilter = useMemo(() => (vill.length ? rankDagIslands(islands, hub, []) : []), [islands, hub, vill])
   const hubInfo = hubs.find(h => h.slug === hub)
-  const visade = visaAlla ? ranked : ranked.slice(0, 12)
+  // Kom besökaren från en ösida (?o=slug) visas den ön först, så att den
+  // syns även när den inte hör till de tolv första (2026-11-18, t.ex. Tärnö).
+  const ordnade = useMemo(() => {
+    const pre = preselected.current
+    if (!pre) return ranked
+    const vald = ranked.filter(i => i.slug === pre)
+    return vald.length ? [...vald, ...ranked.filter(i => i.slug !== pre)] : ranked
+  }, [ranked])
+  const visade = visaAlla ? ordnade : ordnade.slice(0, 12)
 
   function toggleVill(c: IslandChip) {
     setVill(v => (v.includes(c) ? v.filter(x => x !== c) : [...v, c]))
@@ -211,7 +219,7 @@ export default function UtflyktClient({ islands, hubs }: Props) {
         <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12, flexWrap: 'wrap', marginBottom: 6 }}>
           <h2 id="dag-resultat-rubrik" style={{ fontSize: 22, fontWeight: 700, margin: 0, fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--txt)' }}>
             {ranked.length === 0 ? 'Inga öar matchar allt du valt'
-              : `${ranked.length} ${ranked.length === 1 ? 'ö' : 'öar'} ${hub === ALLA_HUB_SLUG ? 'längs hela kusten' : `från ${hubInfo?.label ?? ''}`}`}
+              : `${ranked.length} resmål ${hub === ALLA_HUB_SLUG ? 'längs hela kusten' : `från ${hubInfo?.label ?? ''}`}`}
           </h2>
           <button type="button" onClick={dela} style={{
             display: 'inline-flex', alignItems: 'center', gap: 6, padding: '8px 14px', borderRadius: 999,
@@ -255,7 +263,7 @@ export default function UtflyktClient({ islands, hubs }: Props) {
             background: 'var(--white)', color: 'var(--sea)', border: '1.5px solid var(--surface-3)',
             fontSize: 14, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
           }}>
-            Visa alla {ranked.length} öar
+            Visa alla {ranked.length} resmål
           </button>
         )}
       </section>
