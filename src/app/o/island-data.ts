@@ -1539,14 +1539,16 @@ export const ISLANDS: Island[] = [
     emoji: '⛴',
     // KÄLLA: https://www.fjaderholmarna.se/ — "Fjäderholmarna – Stockholms närmsta skärgårdsöar – är ett populärt och uppskattat besöksmål" (läst 2026-09-27)
     // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Endast 30 minuters båtresa från city", "Strandvägen - Kajplatsområde 13" (läst 2026-09-27)
-    // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "under perioden 1 maj", "Resan tar ca 25 minuter." (läst 2026-09-27); samma sida: "Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18). Visitskargarden.se och ResRobot (tidigare källor) är inga operatörer och är strukna.
+    // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "under perioden 1 maj", "Resan tar ca 25 minuter." (läst 2026-09-27). Visitskargarden.se och ResRobot (tidigare källor) är inga operatörer och är strukna.
+    // Avgångsplats enligt http://www.fjaderholmslinjen.se/valkommen/index.asp: "Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18)
     tagline: 'Närmaste skärgårdsöarna från centrala Stockholm, en kort båttur ut.',
     seoTitle: 'Fjäderholmarna 2026: dagstur 25 till 30 min från Stockholm',
     seoDescription: 'Fjäderholmarna, närmaste skärgårdsupplevelsen från Stockholm. Båt från Gamla stan och Strandvägen, restauranger, bryggeri och hantverk. Guide till din dagstur.',
     description: [
       // KÄLLA: https://www.fjaderholmarna.se/ — Fjäderholmarnas Krog, Restaurang Rökeriet och Fjäderholmarnas Bryggeri anges som verksamheter på ön, liksom hantverkare (trä, textil, keramik, glas)
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — avgång Strandvägen kajplats 13, restid ca 30 minuter
-      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "Resan tar ca 25 minuter." (läst 2026-09-27); samma sida: "Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18)
+      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "Resan tar ca 25 minuter." (läst 2026-09-27)
+      // Avgångsplats enligt http://www.fjaderholmslinjen.se/valkommen/index.asp: "Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18)
       'Fjäderholmarna är det enklaste svaret på frågan hur man snabbt tar sig ut i skärgården. En halvtimme med båt från Strandvägen, eller 25 minuter från Skeppsbron i Gamla stan, och du står på en ö med rökeri, krog, bryggeri och hantverkare. Ingen bil och ingen övernattning att boka.',
       // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — "Fjäderholmarna, som består av de fyra öarna Fjäderholmen, Ängsholmen, Libertas och Rövarns holme" (läst 2026-09-27)
       // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — "Libertas och Rövarns holme är ett fågelskyddsområde där det är landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli", "Stockholms största koloni av silltrut", "På Libertas står en fyr som är förklarad som byggnadsminne" (läst 2026-09-27)
