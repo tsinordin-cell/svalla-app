@@ -3,8 +3,8 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
 
 export const metadata: Metadata = {
- title: 'Blekinges skärgård: Logga turer, hitta platser',
- description: 'Segling i Blekinges skärgård: Karlskrona gästhamn, Hanö, Hanöbukten. Logga båtturer, ankringsplatser och naturhamnar på Svalla.',
+ title: 'Blekinges skärgård: Hanö, Tjärö, Tärnö och Utklippan',
+ description: 'Sju öar i Blekinges skärgård, från Hanö till Utklippan. Så tar du dig ut med vägfärja, skärgårdsbåt, öns egen färja eller egen båt.',
  keywords: [
  'blekinge skärgård',
  'segla blekinge',
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
  'karlskrona unesco',
  ],
  openGraph: {
- title: 'Blekinges skärgård: Logga turer',
- description: 'Logga dina båtturer i Blekinges skärgård med Svalla.',
+ title: 'Blekinges skärgård på Svalla',
+ description: 'Sju öar i Blekinges skärgård, med resvägar och regler.',
  url: 'https://svalla.se/blekinge-skargard',
  },
  alternates: { canonical: 'https://svalla.se/blekinge-skargard' },
@@ -74,25 +74,15 @@ export default function BlekingeSkargardPage() {
  mainEntity: [
  {
  '@type': 'Question',
- name: 'Är Blekinges skärgård bra för nybörjarseglare?',
- acceptedAnswer: { '@type': 'Answer', text: 'Ja, absolut. Innerskärgården kring Karlskrona har väl märkta farleder och lugna, skyddade vatten, perfekt för att bygga självförtroende. Undvik öppet hav mot Hanö utan seglererfarenhet, men annars är Blekinge mycket nybörjarvänligt.' },
- },
- {
- '@type': 'Question',
  name: 'Hur nära är Blekinge till Danmark och Tyskland?',
  // UPPMÄTT: storcirkelavstånd beräknade 2026-08-16 — Karlskrona–Hammeren (Bornholms nordspets) 59 nm, Karlskrona–Rønne 71 nm, Karlskrona–Kap Arkona (Rügen) 115 nm. Tidigare siffror 80 resp 50 var fel åt båda hållen.
- acceptedAnswer: { '@type': 'Answer', text: 'Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll.' },
  },
  {
  '@type': 'Question',
  name: 'Finns det en märkt segelled längs ostkusten?',
  // KÄLLA: faktagranskning 2026-08-23 — ingen myndighet eller operatör känner en märkt segelrutt Sthlm–Malmö. ARK56: naturkartan.se/ark56 (läst 2026-08-23)
  acceptedAnswer: { '@type': 'Answer', text: 'Nej, någon officiellt märkt segelrutt Stockholm till Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56, Blekinges länkade kustleder.' },
- },
- {
- '@type': 'Question',
- name: 'Vad är speciellt med Karlskronas skärgård jämfört med Stockholm?',
- acceptedAnswer: { '@type': 'Answer', text: 'Stockholms skärgård är spektakulär men väletablerad: Karlskronas är mjukare, grönare och markant lugnare. Inga storstadsinfrastruktur eller överbefolkning, men all charm. Blekinge är perfekt för den seglare som söker äventyr utan att vilja stöta på hundra andra båtar.' },
  },
  ],
  }
@@ -111,8 +101,8 @@ export default function BlekingeSkargardPage() {
  <CategoryLanding
  heroGradient={['#4a3728', '#6b5040']}
  eyebrow="Blekinges skärgård"
- title="Östersjöns gröna kust"
- tagline="Välbevarad och underskattad | Svalla hjälper dig utforska Blekinges skärgård och logga varje tur längs Sveriges sydligaste kust."
+ title="Från Hanö till Utklippan"
+ tagline="Sju öar i Blekinges skärgård, med färjor, skärgårdsbåtar och gästhamnar."
  heroIcon={
  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -121,98 +111,86 @@ export default function BlekingeSkargardPage() {
  }
  intro={
  <>
+ {/* KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp och ett populärt besöksmål för båtfolk."; "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna." (läst 2026-11-17) */}
  <p>
- Blekinges skärgård är Sveriges bäst bevarade hemlighet. <strong>Frodig vegetation, lugna vatten och Karlskrona som maritimt världsarv</strong>, en region som belönar den seglare som tar sig dit. Från Karlskronas färgglada trähus till Hanös ödsliga naturhamnar ligger några av Östersjöns mest autentiska ankringsplatser bara vänta.
+ På Svalla finns sju öar i Blekinges skärgård, från Hanö i Sölvesborgs kommun till Utklippan, Sveriges sydöstligaste ögrupp. Till några kör du bil, till andra går färja eller skärgårdsbåt, och till Utklippan behöver du egen båt.
  </p>
  <p>
- Till skillnad från Stockholms arkaipelags väletablerade infrastruktur behåller Blekinge sin skärgårdsromantik: grönare, mjukare och lugnare, men fullt tillräckligt utrustad för moderna seglare. Området är idealt för både nybörjare som vill slippa öppet hav och erfarna seglare som söker atmosfär.
- </p>
- <p>
- Svalla låter dig logga alla turer längs kusten, hitta naturhamnar och krogar på kartan och spara minnen från en skärgård som fortfarande känns oprövad. Planera din tur längs Östersjöleden, kartlägga ankringsplatser och spåra dina vägar genom Blekinges gröna övärldar.
- </p>
- <p>
- Segla från världshärvsstaden Karlskrona till Hanös ödsliga fågelskyddsområde på en dag. Eller ta det långsamt och utforska Ronneby skärgård, Aspö, Tjurkö och de mindre kända öarna som gör Blekinge speciellt för den seglare som vet vad hen letar efter.
+ Med ett gratis konto på Svalla kan du logga dina turer med GPS, bilder och anteckningar.
  </p>
  </>
  }
  itemsTitle="Blekinge med Svalla"
- itemsDescription="Utforska Blekinges kust och skärgård."
+ itemsDescription="Öarna, resvägarna och var du loggar dina turer."
  items={ITEMS}
  deeperContent={
  <>
- {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
  <RegionOar rubrik="Öar i Blekinge skärgård" etiketter={['Blekinge']} />
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Ta dig dit: kollektivtrafik
+ Så tar du dig ut till öarna
  </h2>
+ {/* KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Mellan Nogersund och Hanö finns skärgårdstrafik året runt. Gå ombord på M/F Vitaskär i Nogersund och 25 minuter senare befinner du dig på sköna Hanö." (läst 2026-10-19) */}
+ {/* KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Till Nogersund kan du ta dig med buss från Sölvesborg eller med bil."; "Närmaste busshållplats är Nogersunds hamn som trafikeras av linje 2."; "Ta av från E22:an vid trafikplats Listerlandet (47) och följ väg 123 (Hälleviksvägen) till Nogersund." (läst 2026-10-19) */}
  <p>
- <strong>Till Karlskrona</strong> med tåg: SJ och Öresundståg trafikerar Stockholm till Karlskrona, restid ca 4,5 timmar. Karlskrona C ligger centralt i staden nära gästhamnen.
+ <strong>Hanö</strong>: M/F Vitaskär går året runt från Nogersund, och överfarten tar 25 minuter. Till Nogersund kommer du med buss från Sölvesborg eller med bil.
  </p>
+ {/* KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/ — "Aspöleden går mellan Karlskrona och Aspö i Karlskrona skärgård. Färjeledens längd är 6700 meter och överfartstiden är cirka 25 minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://www.karlskrona.se/hitta-verksamheter/badplatser/aspo-havsbad — "Långgrund sandstrand i skärgårdsmiljö. Stor gräsyta samt lekplats." (läst 2026-09-27); https://www.visitkarlskrona.se/sv/gasthamn-lokanabben-aspo — "På ön finns mataffär, samt restaurang och café sommartid." (läst 2026-09-27) */}
  <p>
- <strong>Lokalt i skärgården</strong>: Blekingetrafiken kör pendelbåtar från Trossö (centrala Karlskrona) till öarna Sturkö, Hasslö och Trummenäs. Till Hanö: Blekingetrafikens båt från Nogersund (Sölvesborgs kommun) sommartid, du behöver alltså ingen egen båt för att besöka Hanö.
+ <strong>Aspö</strong>: Trafikverkets vägfärja Aspöleden går från Karlskrona. Överfarten tar cirka 25 minuter och är avgiftsfri.
  </p>
-
- <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
- Karlskrona: marinstadens gästhamn
- </h2>
+ {/* KÄLLA: https://www.visitblekinge.se/en/sturko-a-picturesque-island — "reached via Sturkövägen – a permanent road bridge running across the islands of Senoren and Skällö" (läst 2026-09-27) */}
+ {/* KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlskrona-skargard/ — "Handelshamnen–Sturkö"; "Sturköpendeln har juluppehåll 21 december - 6 januari. Vi hänvisar resenärer till buss linje 123." (läst 2026-09-27). Tidtabellsdata på sidan: 17 aug–20 dec 2026 måndag–fredag 5 turer Handelshamnen→Bredavik (06.40, 07.40, 14.40, 15.40, 16.50), 20 min; 22 juni–16 aug 2026 även helger (11.20, 14.40, 16.40, 19.30), 20–25 min. */}
  <p>
- <strong>Karlskrona</strong> är en av Europas bäst bevarade marinstäder och UNESCO Världsarv sedan 1998. Staden ligger på en skärgårdsgrupp mitt i sydöstra Sverige och bjuder på något av det vackraste segelmål längs Östersjön. Gästhamnen vid Stumholmen är centralt belägen, välutrustad med både dugger och bryggplatser, och en naturlig mötesplats för seglare från hela världen.
+ <strong>Sturkö</strong>: du kör bil på Sturkövägen, som går över broar via Senoren och Skällö. Utan bil tar du Sturköpendeln från Handelshamnen i Karlskrona. Den har juluppehåll 21 december till 6 januari.
  </p>
+ {/* KÄLLA: https://tjaro.com/farjeavgangar/ — "Färjan tar 15 minuter enkel väg. Färjan går inte att förboka och åker fram och tillbaka tills alla kommit över.", "Biljett köpes på Tjärö och visas upp på hemvägen." (läst 2026-09-27) */}
+ {/* KÄLLA: https://tjaro.com/ — "Tjärö håller öppet mellan den 30 april - 20 september 2026" (läst 2026-09-27) */}
  <p>
- Stöta in över Karlskronas mjukt öppnande farleder och ankra vid Stumholmen medan du njuter av utsikten över <strong>Örlogsvarvet</strong> (dagens Marinmuseum), den gotiska <strong>Amiralitetskyrkan</strong> och Stortorgets vita hus och träd. Logga ankomsten med GPS för ett minne för livet. Under juli kan hamnen bli fylld av seglare. Boka bryggplats i förväg via Svalla eller direkt med hamnstyrelsen.
+ <strong>Tjärö</strong>: öns egen färja går från Järnavik och tar 15 minuter. Den går inte att förboka, men åker fram och tillbaka tills alla har kommit över. Tjärö höll öppet 30 april till 20 september 2026.
  </p>
-
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Skärgården kring Karlskrona
- </h3>
+ {/* KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Tärnö nås sommartid med båt enligt tidtabell. Det går en passagerarfärja från både Karlshamn och Matvik." (läst 2026-11-17) */}
+ {/* KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/ — "Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö." (läst 2026-11-17) */}
  <p>
- Omkring Karlskrona sprider sig en härlig skärgård med både välkända och dolda pärlor. <strong>Aspö</strong> och <strong>Tjurkö</strong> är två större öar med gästbryggor och idyllisk skärgårdsstämning, perfekta för ett fritidsbesök eller att ankra över natten. <strong>Hästö</strong> väcker ofta intresse för sin populära kafébrygga där du kan få fika och god mat utan att lämna båten.
+ <strong>Tärnö</strong>: sommartid går passagerarfärja från Karlshamn och Matvik. Från skärgårdsterminalen i centrala Karlshamn tar resan cirka 30 minuter.
  </p>
+ {/* KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Öarna nås med egen båt."; "Öarna har gästhamn och på Södraskär finns bland annat en fågelstation." (läst 2026-11-17) */}
  <p>
- För seglare som föredrar naturhamnar ligger <strong>Senoren</strong> lite inåt och erbjuder lugna ankringsförhållanden omgiven av skog och natur. De inre fahrlederna runt Karlskrona är väl märkta med röda och vita märken, men grundare partier förekommer | Svallakartan visar platser och hamnar; djup och grund läser du av på sjökortet.
+ <strong>Utklippan</strong>: du når öarna med egen båt. Där finns en gästhamn.
  </p>
-
- <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Hanö: Blekinges utpost
- </h3>
+ {/* KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Du tar av från E22 mot Torhamn i Jämjö, följ skyltningen mot Yttre Park. Där går en kabelfärja." (läst 2026-11-17) */}
  <p>
- <strong>Hanö</strong> ligger cirka 15 kilometer ut i öppet Östersjö-hav och representerar Blekinges radikalaste utpost. Ön är klassificerad som <strong>fågelskyddsområde</strong> och är känd för sin rika fågelliv, säsongsvis ankommer miljontals fåglar på vägen mellan Afrika och norden. På Hanö hittar du också <strong>en unik engelsk kyrkogård från Napoleonkrigen</strong>, den enda av sitt slag i Sverige, en märklig minnesmärke över sjömän från andra länder.
- </p>
- <p>
- Ankring runt Hanö kräver erfaret öga och lokal kunskap, naturhamnen är en av Östersjökustens råaste med exponerad botten och vindkapell. <strong>Endast dagsbesök rekommenderas</strong> vid instabilt väder. Om du seglar ut till Hanö, logga ankomsten i Svalla tillsammans med dina iakttagelser, varje logg bidrar till kunskapen om denna magiska men krävande destination.
+ <strong>Hästholmen och Ytterön</strong>: ta av från E22 mot Torhamn i Jämjö och följ skyltningen mot Yttre Park. Enligt Länsstyrelsen går det en kabelfärja därifrån.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
- Ronneby och norra Blekinge
+ Aspö och örlogsstaden
  </h3>
+ {/* KÄLLA: https://www.visitkarlskrona.se/sv/drottningskars-kastells-historia — "För de stora örlogsskeppen är inloppet mellan Aspö och Tjurkö det enda sättet att nå Karlskrona." (läst 2026-09-27); https://www.visitkarlskrona.se/sv/drottningskarskastell — "Drottningskärs kastell är en del av världsarvet Örlogsstaden Karlskrona", "Själva fastigheten förvaltas av Statens fastighetsverk" (läst 2026-09-27); https://www.visitkarlskrona.se/sv/aspo-kyrka — "Aspö kyrka stod färdig 1891.", "Aspö kyrka är uppförd i nygotisk stil." (läst 2026-09-27) */}
  <p>
- Väster och norr om Karlskrona öppnar sig ytterligare ett klassiska skärgårdslandskap. <strong>Ronneby skärgård</strong> är geologiskt unik för sina <strong>serpentinsklippor</strong>, en rödbrun stenart som skapar dramatiska färgkontraster mot havet och skogarna. Denna område är perfekt för både kajakpaddling och kortare dagsutflykter med större båt, ett annat sätt att logga och utforska skärgårdslivet i Svalla.
+ Inloppet mellan Aspö och Tjurkö var det enda sättet för de stora örlogsskeppen att nå Karlskrona. På Aspö ligger Drottningskärs kastell, som ingår i världsarvet Örlogsstaden Karlskrona och förvaltas av Statens fastighetsverk.
  </p>
+
+ <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
+ Hanö och den engelska kyrkogården
+ </h3>
+ {/* KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hano.html — "Engelska kyrkogården är ett minne från åren 1810-1812, då Hanö fungerade som engelsmännens flottbas i Östersjön under Napoleons blockad. Kyrkogården besöks fortfarande regelbundet av passerande fartyg ur den brittiska flottan." (läst 2026-10-19) */}
  <p>
- Mindre kända platser som <strong>Bräkne-Hoby</strong> och <strong>Tromtö</strong> erbjuder lugnare fahrvatten och en känsla av avskildhet. Längre västerut hittar du <strong>Sölvesborg</strong> med sin egen lilla skärgård, en bra startpunkt om du planerar att segla längs Östersjöleden mot Gotland eller vidare söder ut mot Danmark och Tyskland. Från Sölvesborg är det bara några få sjömil innan du dyker in i det stora äventyret längs den svenska kusten.
+ Åren 1810 till 1812, under Napoleons blockad, var Hanö den brittiska flottans bas i Östersjön. Engelska kyrkogården är ett minne från den tiden, och den besöks fortfarande regelbundet av fartyg ur den brittiska flottan.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vanliga frågor
  </h3>
  <p>
- <strong>Är Blekinge bra för nybörjarseglare?</strong><br />
- Ja, absolut. Innerskärgården kring Karlskrona har väl märkta farleder och lugna, skyddade vatten, perfekt för att bygga självförtroende. Undvik öppet hav mot Hanö utan seglererfarenhet, men annars är Blekinge mycket nybörjarvänligt.
- </p>
- <p>
  <strong>Hur nära är Blekinge till Danmark och Tyskland?</strong><br />
  {/* UPPMÄTT: storcirkelavstånd beräknade 2026-08-16 — Karlskrona–Hammeren 59 nm, Karlskrona–Kap Arkona 115 nm */}
- Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll. Blekinge fungerar som ett naturligt utgångsläge för större Östersjöseglaturer, många seglare tar sig hit före längre kryss.
+ Bornholms nordspets ligger knappt 60 sjömil sydväst om Karlskrona, och Rügen i Tyskland cirka 115 sjömil bort åt samma håll.
  </p>
  <p>
  <strong>Finns det en märkt segelled längs ostkusten?</strong><br />
  {/* KÄLLA: faktagranskning 2026-08-23 — ingen märkt segelrutt Sthlm–Malmö existerar; ARK56 enligt naturkartan.se/ark56 (läst 2026-08-23) */}
- Nej, någon officiellt märkt segelrutt Stockholm till Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56, Blekinges länkade kustleder. Svalla hjälper dig logga varje dag och planera dina etapper.
- </p>
- <p>
- <strong>Vad är speciellt med Karlskronas skärgård jämfört med Stockholm?</strong><br />
- Stockholms skärgård är spektakulär men väletablerad: Karlskronas är mjukare, grönare och markant lugnare. Ingen storstadsinfrastruktur eller överbefolkning, men all charm som sitter i just det: öar som fortfarande känns lika utforskade och okända. Det gör Blekinge perfekt för den seglare som söker äventyr utan att vilja stöta på hundra andra båtar i samma hamn.
+ Nej, någon officiellt märkt segelrutt Stockholm till Malmö finns inte. Kusten seglas ändå flitigt i väl utprickade farleder, och Blekinge är en naturlig etapp mellan Kalmarsund och Öresund. För paddling, vandring och cykel finns ARK56, Blekinges länkade kustleder.
  </p>
  </>
  }
