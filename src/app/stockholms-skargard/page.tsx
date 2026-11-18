@@ -58,7 +58,7 @@ const ITEMS: LandingItem[] = [
   // KÄLLA: src/lib/data/precomputed-routes.json (validated=true) stromkajen_to_vaxholm 20,3 km = 11,0 sjömil; går i öppet vatten (Lilla Värtan) och berörs inte av vattenmask-buggen i Skurusundet. Tidigare stod 20 sjömil — km lästa som sjömil.
  description: 'Skärgårdens infartsport: ungefär en timme från Strömkajen med Waxholmsbolaget, 50 min med buss 670, eller ca 11 sjömil med segelbåt. Vaxholms kastell (nuvarande byggnad 1833 till 1863; platsen befästes redan i början av 1500-talet och Gustav Vasas kraftigare fästning kom 1548), charmig trästad, gästhamn och restauranger. Perfekt för en dagsutflykt eller stopphav på väg ut.',
  href: '/vaxholm',
- meta: 'Innerskärgården · 30 min med båt',
+ meta: 'Innerskärgården · ca 1 tim med båt',
  },
  {
  icon: '🌿',
@@ -80,8 +80,8 @@ const ITEMS: LandingItem[] = [
  {
  icon: '🌊',
  title: 'Fjäderholmarna',
- // KÄLLA: Kungliga Djurgårdsförvaltningen, Fjäderholmsguiden 2026 (kungligaslotten.se) — "Ta båten från Slussen, eller Nybroplan ... Under den 25 minuter långa båtresan"; fjaderholmslinjen.se via kallor.generated.ts — "Resan tar ca 25 minuter." (läst 2026-11-18)
- description: 'Närmaste skärgårdsupplevelsen, cirka 25 minuter med Fjäderholmslinjen från Slussen. Öppen hela säsongen från vår till sen höst. Restauranger, konsthantverksbutiker och härliga klippbad. Utmärkt dagsutflykt även för dem utan båt.',
+ // KÄLLA: fjaderholmslinjen.se — "Resan tar ca 25 minuter. Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18)
+ description: 'Närmaste skärgårdsupplevelsen, cirka 25 minuter med Fjäderholmslinjen från Skeppsbron i Gamla stan. Öppen hela säsongen från vår till sen höst. Restauranger, konsthantverksbutiker och härliga klippbad. Utmärkt dagsutflykt även för dem utan båt.',
  href: '/o/fjaderholmarna',
  meta: 'Innerskärgården · 25 min · Öppen apr till okt',
  },
@@ -140,7 +140,7 @@ export default function StockholmsSkargardPage() {
  intro={
  <>
  <p>
- Stockholms skärgård är världsunik: <strong>30 000 öar och skär</strong>, hundratals krogar, naturhamnar och bryggor som öppnar varje sommar. Från Fjäderholmarna bara 15 minuter från Slussen till Landsort i södern finns ett helt universum av möjligheter för den som älskar att segla, ankra och uppleva Sveriges vackraste kustlandskap.
+ Stockholms skärgård är världsunik: <strong>30 000 öar och skär</strong>, hundratals krogar, naturhamnar och bryggor som öppnar varje sommar. Från Fjäderholmarna, cirka 25 minuter med båt från Gamla stan, till Landsort i södern finns ett helt universum av möjligheter för den som älskar att segla, ankra och uppleva Sveriges vackraste kustlandskap.
  </p>
  <p>
  Att hålla koll på allt var omöjligt förr. Var ligger den bästa restaurangen? Vilka naturhamnar är egna för en skärgårdsmiddag? Hur gick det för dina vänner på deras senaste segeltur? Svalla samlar allt på ett ställe, en app skapad av seglare för seglare.
@@ -155,7 +155,7 @@ export default function StockholmsSkargardPage() {
  }
  itemsTitle="Populära destinationer i Stockholms skärgård"
  // UPPMÄTT: precomputed-routes stromkajen_to_sandhamn 58,9 km = 31,8 NM, validated (2026-09-13)
- itemsDescription="Sex klassiska öar, från Fjäderholmarna 25 minuter från Slussen till Sandhamn 31 sjömil ut i ytterskärgården."
+ itemsDescription="Sex klassiska öar, från Fjäderholmarna 25 minuter från Skeppsbron i Gamla stan till Sandhamn 31 sjömil ut i ytterskärgården."
  items={ITEMS}
  deeperContent={
  <>
@@ -169,9 +169,9 @@ export default function StockholmsSkargardPage() {
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Innerskärgården: perfekt för nybörjare
  </h3>
- {/* KÄLLA: Fjäderholmsguiden 2026, Kungliga Djurgårdsförvaltningen — "Ta båten från Slussen ... Under den 25 minuter långa båtresan" (läst 2026-11-18) */}
+ {/* KÄLLA: fjaderholmslinjen.se — "Resan tar ca 25 minuter. Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18) */}
  <p>
- Innerskärgården är skärgårdens mest lättillgängliga del. Hit tar det cirka 25 minuter från Slussen till <strong>Fjäderholmarna</strong>, där du hittar flera restauranger och ett populärt naturhamnsbad. För första gången ute i skärgården? Fjäderholmarna är startpunkten.
+ Innerskärgården är skärgårdens mest lättillgängliga del. Hit tar det cirka 25 minuter från Skeppsbron i Gamla stan till <strong>Fjäderholmarna</strong>, där du hittar flera restauranger och ett populärt naturhamnsbad. För första gången ute i skärgården? Fjäderholmarna är startpunkten.
  </p>
  <p>
  <strong>Vaxholm</strong> ligger ca 40 minuter ut med bil, 50 med buss 670 och ungefär en timme med Waxholmsbolagets båt, och erbjuder historia, kultur och gästhamn. Vaxholms fästning, ursprungligen byggd på 1500-talet av Gustav Vasa och ombyggd till sitt nuvarande utseende på 1800-talet, är väl värd ett besök. Restauranger och affärer gör det enkelt att tillbringa en hel dag här. <strong>Nämdö</strong> är nästa naturliga steg, fortfarande väl skyddat vatten men med mer avskildhet än Fjäderholmarna.
@@ -233,7 +233,7 @@ export default function StockholmsSkargardPage() {
  Vilka är de bästa naturhamnarna i Stockholms skärgård?
  </h3>
  <p>
- <strong>Klasärterna på Ornö</strong>, <strong>Kyrkogårdsfjärden på Nämdö</strong> och de vackra vikarna runt <strong>Huvudskär</strong> räknas till de absolut vackraste ankringsplatserna. För nybörjare är Nämdö överhuvudtaget en säker miljö: lugnt vatten, fin natur och enkelt att ankra. Med Svalla kan du boka på många ställen i förväg, vilket gör planeringen enklare.
+ <strong>Klasärterna på Ornö</strong>, <strong>Kyrkogårdsfjärden på Nämdö</strong> och de vackra vikarna runt <strong>Huvudskär</strong> räknas till de absolut vackraste ankringsplatserna. För nybörjare är Nämdö överhuvudtaget en säker miljö: lugnt vatten, fin natur och enkelt att ankra.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
@@ -247,8 +247,8 @@ export default function StockholmsSkargardPage() {
  Ta dig dit: kollektivtrafik
  </h2>
  <p>
-{/* KÄLLA: Fjäderholmsguiden 2026, Kungliga Djurgårdsförvaltningen — "Ta båten från Slussen, eller Nybroplan ... Under den 25 minuter långa båtresan"; stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Avgår från: Strandvägen & Nacka Strand", "Turens längd: 30 min" (läst 2026-11-18) */}
- <strong>Till Fjäderholmarna</strong> går Fjäderholmslinjen från Slussen, cirka 25 minuter, och Strömmas båt från Strandvägen, 30 minuter.
+{/* KÄLLA: fjaderholmslinjen.se — "Resan tar ca 25 minuter. Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand"; stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Avgår från: Strandvägen & Nacka Strand", "Turens längd: 30 min" (läst 2026-11-18) */}
+ <strong>Till Fjäderholmarna</strong> går Fjäderholmslinjen från Skeppsbron i Gamla stan, cirka 25 minuter, och Strömmas båt från Strandvägen, 30 minuter.
  </p>
  <p>
  <strong>Till Utö</strong> tar du Waxholmsbolagets båt från Årsta brygga, 35 till 75 min beroende på tur och med beställningsplikt på Gruvbryggan: Nynäshamnslinjen slutar på grannön Ålö, inte på Utö by. Nynäshamn nås med <strong>pendeltåg linje 43</strong> från Stockholm City, ca 1 timme.

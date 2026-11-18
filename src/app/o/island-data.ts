@@ -1539,15 +1539,15 @@ export const ISLANDS: Island[] = [
     emoji: '⛴',
     // KÄLLA: https://www.fjaderholmarna.se/ — "Fjäderholmarna – Stockholms närmsta skärgårdsöar – är ett populärt och uppskattat besöksmål" (läst 2026-09-27)
     // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Endast 30 minuters båtresa från city", "Strandvägen - Kajplatsområde 13" (läst 2026-09-27)
-    // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "under perioden 1 maj", "Resan tar ca 25 minuter." (läst 2026-09-27). Visitskargarden.se och ResRobot (tidigare källor) är inga operatörer och är strukna.
+    // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "under perioden 1 maj", "Resan tar ca 25 minuter." (läst 2026-09-27); samma sida: "Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18). Visitskargarden.se och ResRobot (tidigare källor) är inga operatörer och är strukna.
     tagline: 'Närmaste skärgårdsöarna från centrala Stockholm, en kort båttur ut.',
     seoTitle: 'Fjäderholmarna 2026: dagstur 25 till 30 min från Stockholm',
-    seoDescription: 'Fjäderholmarna, närmaste skärgårdsupplevelsen från Stockholm. Båt från Slussen och Strandvägen, restauranger, bryggeri och hantverk. Guide till din dagstur.',
+    seoDescription: 'Fjäderholmarna, närmaste skärgårdsupplevelsen från Stockholm. Båt från Gamla stan och Strandvägen, restauranger, bryggeri och hantverk. Guide till din dagstur.',
     description: [
       // KÄLLA: https://www.fjaderholmarna.se/ — Fjäderholmarnas Krog, Restaurang Rökeriet och Fjäderholmarnas Bryggeri anges som verksamheter på ön, liksom hantverkare (trä, textil, keramik, glas)
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — avgång Strandvägen kajplats 13, restid ca 30 minuter
-      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "Resan tar ca 25 minuter." (läst 2026-09-27)
-      'Fjäderholmarna är det enklaste svaret på frågan hur man snabbt tar sig ut i skärgården. En halvtimme med båt från Strandvägen, eller 25 minuter från Slussen, och du står på en ö med rökeri, krog, bryggeri och hantverkare. Ingen bil och ingen övernattning att boka.',
+      // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "Resan tar ca 25 minuter." (läst 2026-09-27); samma sida: "Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18)
+      'Fjäderholmarna är det enklaste svaret på frågan hur man snabbt tar sig ut i skärgården. En halvtimme med båt från Strandvägen, eller 25 minuter från Skeppsbron i Gamla stan, och du står på en ö med rökeri, krog, bryggeri och hantverkare. Ingen bil och ingen övernattning att boka.',
       // KÄLLA: https://lidingo.se/stad-politik/om-lidingo/lidingo-skargard/ — "Fjäderholmarna, som består av de fyra öarna Fjäderholmen, Ängsholmen, Libertas och Rövarns holme" (läst 2026-09-27)
       // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — "Libertas och Rövarns holme är ett fågelskyddsområde där det är landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli", "Stockholms största koloni av silltrut", "På Libertas står en fyr som är förklarad som byggnadsminne" (läst 2026-09-27)
       'Ögruppen består av fyra öar: Stora Fjäderholmen, Ängsholmen, Libertas och Rövarns holme. Det är Stora Fjäderholmen man kliver av på. Libertas och Rövarns holme är fågelskyddsområde med landstigningsförbud under häckningstiden 1 april till 15 juli. Där finns Stockholms största koloni av silltrut, och på Libertas står en fyr som är byggnadsminne. Fågellivet går att följa med kikare från Stora Fjäderholmen.',
@@ -1556,7 +1556,7 @@ export const ISLANDS: Island[] = [
       // Rättad 2026-10-19: säsongen 2026 är slut. Strömmas sida visar nu bara tidtabellen för 2027, så uppgiften om halvtimmestrafik 2026 är ersatt med 2027 års datum.
       // Rättad 2026-10-20: Strömmas datum för 2026 går inte längre att belägga, så bara Fjäderholmslinjens säsong 2026 anges.
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Strandvägen - Kajplatsområde 13"; "Vissa turer stannar även vid Nacka Strand"; "Åter maj 2027"; "Tidtabell 2027"; "18 juni – 15 augusti:"; "Varje halvtimme 10:30–17:00" (läst 2026-10-20)
-      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, och vissa avgångar stannar vid Nacka Strand. Fjäderholmslinjen går från Slussen och stannar i Nacka Strand vid behov. Fjäderholmslinjen gick 2026 från 1 maj till 13 september, och båda sommarbåtarnas säsong för 2026 är slut. Strömma går åter i maj 2027, och mellan 18 juni och 15 augusti 2027 går båten från Strandvägen varje halvtimme mellan 10.30 och 17.00.',
+      'Tre operatörer trafikerar öarna: Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen. Strömmas båt går från Strandvägen kajplats 13, och vissa avgångar stannar vid Nacka Strand. Fjäderholmslinjen går från Skeppsbron i Gamla stan och stannar i Nacka Strand vid behov. Fjäderholmslinjen gick 2026 från 1 maj till 13 september, och båda sommarbåtarnas säsong för 2026 är slut. Strömma går åter i maj 2027, och mellan 18 juni och 15 augusti 2027 går båten från Strandvägen varje halvtimme mellan 10.30 och 17.00.',
       // KÄLLA: https://www.rokeriet-fjaderholmarna.se/om-rokeriet-fjaderholmarna — "fokus på våra egna rökta produkter, tillagade på plats", "under sommarmånaderna även besöka vår deli och glasskiosk", "Rökeriets uteservering bjuder på sol hela dagen och en fantastisk utsikt över Stockholms inlopp" (läst 2026-09-27)
       'Restaurang Rökeriet har fokus på egna rökta produkter som tillagas på plats. Under sommarmånaderna finns också en deli och en glasskiosk, så det går att ta med sig något ut på klipporna. Uteserveringen har sol hela dagen och vetter mot Stockholms inlopp.',
       // KÄLLA: https://fjaderholmarnasbryggeri.se/fjaderholmarnas-bryggeri-at-sea — "offering a wide variety of our beers served directly from the Brite Beer Tanks", "You can also grab a bite from our pub menu", "We offer Beer Flights", "We only accept drop-ins" (läst 2026-09-27)
@@ -1602,7 +1602,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.fjaderholmarna.se/ — "Här njuter man av mat och dryck, hantverk och kultur under sommarhalvåret", "ingår sedan 1995 i Kungliga Nationalstadsparken" (läst 2026-09-27)
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Det här är ett perfekt utflyktsmål för hela familjen." (läst 2026-09-27)
       // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/stockholm-fjaderholmarna/ — "Gästplatser", "35 (1/5-31/9)" (läst 2026-09-27)
-      travel_time: '25 min från Slussen, 30 min från Strandvägen (maj till sep) · Waxholmsbåt linje 2 vår och höst',
+      travel_time: '25 min från Skeppsbron i Gamla stan, 30 min från Strandvägen (maj till sep) · Waxholmsbåt linje 2 vår och höst',
       character: 'Mat, bryggeri och hantverk i Kungliga nationalstadsparken',
       season: 'Maj till mitten av september',
       best_for: 'Dagstur, lunch, barnfamiljer, båtfolk (35 gästplatser)',
@@ -1631,7 +1631,7 @@ export const ISLANDS: Island[] = [
       { method: 'Strömma', from: 'Strandvägen kajplats 13 eller Nacka Strand', time: '30 min', desc: 'Sommarbåten. Säsongen 2026 är slut, och båten går åter från 1 maj 2027. Bokad avgång ger förtur.', icon: '⛴', url: 'https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/' },
       // KÄLLA: http://www.fjaderholmslinjen.se/valkommen/index.asp — "Fjäderholmslinjen går under perioden 1 maj till 13 september 2026."; "Resan tar ca 25 minuter."; "Det går inte att reservera platser."; "Vi accepterar Visa/Mastercard, ej kontanter."; "Snälla hundar i koppel är välkomna." (läst 2026-10-20)
       // Rättad 2026-10-20: säsongen 2026 är slut. Sidan säger inget om 2027.
-      { method: 'Fjäderholmslinjen', from: 'Slussen (via Nacka Strand vid behov)', time: '25 min', desc: 'Sommarbåt. Säsongen 2026 gick 1 maj till 13 september och är slut. Platser kan inte bokas; betalning ombord med kort, inte kontanter. Hundar i koppel får följa med.', icon: '⛴' },
+      { method: 'Fjäderholmslinjen', from: 'Skeppsbron i Gamla stan (stannar i Nacka Strand om du säger till ombord)', time: '25 min', desc: 'Sommarbåt. Säsongen 2026 gick 1 maj till 13 september och är slut. Platser kan inte bokas; betalning ombord med kort, inte kontanter. Hundar i koppel får följa med.', icon: '⛴' },
       // KÄLLA: Waxholmsbolaget linje 2, https://kund.printhuset-sthlm.se/wa/h2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM", gäller 2 april–18 juni och 17 augusti–12 december 2026; Fjäderholmarna angörs på vissa turer med X = "trafikeras utan fast avgångstid" (läst 2026-09-21). Waxholmsbolaget, Alla SL-biljetter gäller mellan 44 bryggor, https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd"; "SL-biljetter gäller endast på de linjer som går via Vaxholm" (läst 2026-09-21). Tidigare källa ResRobot är ingen operatör och är struken.
       // Rättad 2026-10-19: "När Strömma inte går" var fel (tabellen gäller även maj, juni, augusti och september). Uppgiften om SL-biljett är borttagen: Waxholmsbolagets sida kräver JavaScript och tidtabellen säger inget om biljetter.
       { method: 'Waxholmsbolaget linje 2', from: 'Strömkajen eller Nacka strand', time: '', desc: 'Linje 2 mot Vaxholm lägger till vid Fjäderholmarna på vissa turer, utan fast tid. Tabellen gäller 2 april till 18 juni och 17 augusti till 12 december 2026. Sök resan i SL-appen.', icon: '⛴' },
@@ -1657,7 +1657,7 @@ export const ISLANDS: Island[] = [
     ],
     tips: [
       // KÄLLA: https://www.fjaderholmarna.se/ — Waxholmsbolaget, Strömma Kanalbolaget och Fjäderholmslinjen trafikerar öarna
-      'Tre rederier går hit från olika kajer i stan: Strömma från Strandvägen, Fjäderholmslinjen från Slussen och Waxholmsbolaget från Strömkajen. Välj den kaj som ligger närmast dig.',
+      'Tre rederier går hit från olika kajer i stan: Strömma från Strandvägen, Fjäderholmslinjen från Skeppsbron i Gamla stan och Waxholmsbolaget från Strömkajen. Välj den kaj som ligger närmast dig.',
       // KÄLLA: https://www.fjaderholmarnaskrog.se/ — bordsbokning sker online
       'Boka bord på Fjäderholmarnas Krog online i förväg om du vill äta på en sommarhelg.',
       // KÄLLA: https://www.naturkartan.se/sv/stockholms-lan/libertas-fagelskyddsomrade (Lidingö stads sida på Naturkartan) — "landstigningsförbud under fåglarnas häckningstid från 1 april till 15 juli", "Med en bra kikare kan man titta på holmarnas fågelliv från Stora Fjäderholmen" (läst 2026-09-27)

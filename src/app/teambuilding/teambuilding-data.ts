@@ -72,7 +72,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         name: 'Fjäderholmarnas Krog',
-        location: 'Fjäderholmarna, 25 min från Slussen/Nybroplan',
+        location: 'Fjäderholmarna, 25 min från Skeppsbron i Gamla stan',
         capacity: '10 till 200 personer',
         description: 'Närmaste konferensalternativet utanför stan. Exceptionell mat och naturlig miljö. Passar utmärkt för halvdagskonferenser och AW-event.',
         type: 'Restaurant & event',
@@ -350,7 +350,7 @@ export const TEAMBUILDING_SUBS: TeambuildingSub[] = [
       },
       {
         name: 'Fjäderholmarnas Krog',
-        location: 'Fjäderholmarna, 25 min från Slussen',
+        location: 'Fjäderholmarna, 25 min från Skeppsbron i Gamla stan',
         capacity: '20 till 200 personer',
         description: 'Närmaste premium AW-lokalen utanför stan. Svensk matlagning i toppklass, havsutsikt, stor terrass. Perfekt för halvdagsevent och AW.',
         type: 'Restaurant & event',

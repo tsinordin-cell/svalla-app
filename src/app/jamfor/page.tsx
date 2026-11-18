@@ -21,7 +21,7 @@ const COMPARISONS = [
   { a: 'moja',     b: 'svartso', hook: 'Större hamn mot lugnare granne' },
   { a: 'finnhamn', b: 'rodloga', hook: 'Mellanskärgård mot ytterskärgård' },
   { a: 'arholma',  b: 'rodloga', hook: 'Norra mot östra ytterskärgård' },
-  { a: 'vaxholm',  b: 'fjaderholmarna', hook: 'Skärgårdens port mot 25 minuter från Slussen' },
+  { a: 'vaxholm',  b: 'fjaderholmarna', hook: 'Skärgårdens port, 25 minuter från Gamla stan' },
   { a: 'uto',      b: 'orno',    hook: 'Cykelö mot lugnt boendeläge' },
   { a: 'namdo',    b: 'runmaro',  hook: 'Stillhet mot konstnärsby' },
 ]
