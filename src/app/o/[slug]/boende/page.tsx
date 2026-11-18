@@ -91,7 +91,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
       <IslandSubPageHeader island={island} tab="boende" />
       <Vidareklick islandSlug={island.slug} standard="boende" />
 
-      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '24px auto 0', padding: '0 16px 60px' }}>
 
         {/* Intro — visas om ön har specifik boende-text */}
         {island.accommodationIntro && (
