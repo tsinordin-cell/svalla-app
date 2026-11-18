@@ -32,34 +32,33 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: 'map',
-    title: 'Öarna här',
-    description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
-    href: '/goteborg-skargard#oar',
-    meta: 'Gratis',
-  },
-  {
     icon: '🗼',
     title: 'Vinga',
-    description: 'Ösidan om Vinga: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html — "Kommun: Göteborg"; "Vingas skärgård är den yttersta delen av övärlden i Göteborg." (läst 2026-10-19)
+    // KÄLLA: Winga Vänner — fadern Carl Gunnar Taube fyrvaktare på Vinga 1889–1905 — https://vinga.nu/ ; Sjöfartsverket, Vinga – Göteborgarnas fyr — båken och fyrarna — https://www.sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/vinga--goteborgarnas-fyr/ ; Länsstyrelsen Västra Götaland, Vinga — naturreservat — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/vinga.html (läst 2026-09-16)
+    description: 'Fyr, båk och naturreservat längst ut i Göteborgs skärgård. Evert Taubes far var fyrvaktare här.',
     href: '/o/vinga',
   },
   {
     icon: '⚓',
     title: 'Brännö',
-    description: 'Ösidan om Brännö: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.goteborg.com/platser/branno (Göteborg & Co, läst 2026-09-26) — "Ö med välkänd bryggdans, barnvänlig badplats och genuint värdshus"
+    description: 'Ö med välkänd bryggdans, barnvänlig badplats och värdshus.',
     href: '/o/branno',
   },
   {
     icon: '🏰',
     title: 'Marstrand',
-    description: 'Ösidan om Marstrand: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar Carlsten som statligt byggnadsminne på Marstrand — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
+    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar sillhandelns centrum på 1500-talet — https://www.vastsverige.com/en/kungalv/products/marstrand/ ; att Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
+    description: 'Carlstens fästning, den gamla sillstaden och matchracing i juli.',
     href: '/o/marstrand',
   },
   {
     icon: '⛵',
     title: 'Tjörn',
-    description: 'Ösidan om Tjörn: så tar du dig dit och vad som finns på ön.',
+    // KÄLLA: https://www.akvarellmuseet.org/om/historia — "16 juni invigdes Nordiska Akvarellmuseet" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "idag kommer 40 procent av alla svenska sillkonserver från Klädesholmen" ; https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/pilane-gravfalt/ — "Det har ungefär 80 synliga gravar från järnåldern" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/natur-och-gronomraden/utsiktsplatser — "Den 15 juni 1960 invigdes Tjörnbroleden – en fast förbindelse mellan Stenungsund på fastlandet och Almön på Tjörn" (läst 2026-09-27)
+    description: 'Akvarellmuseum, sillhistoria och järnåldersgravar, broförbunden ö i Bohuslän.',
     href: '/o/tjorn',
   },
   {
