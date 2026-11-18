@@ -75,6 +75,8 @@ export type CategoryLandingProps = {
  related?: RelatedLink[]
  /** Knapp direkt under rubriken, för sidor där besökaren oftast vill vidare direkt (t.ex. kartan). */
  heroCta?: { label: string; href: string }
+ /** FÖRHANDSVISNING 2026-11-18: "Allt om regionen" direkt under rubriken. */
+ regionNav?: ReactNode
 }
 
 export default function CategoryLanding(props: CategoryLandingProps) {
@@ -93,6 +95,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  cta = { label: 'Öppna kartan', href: '/upptack' },
  related,
  heroCta,
+ regionNav,
  } = props
  void _egenFarg
  const heroGradient: [string, string] = ['#1e5c82', '#2d7d8a']
@@ -199,6 +202,8 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  )}
  </div>
  </header>
+
+ {regionNav}
 
  {/* INTRO */}
  <section

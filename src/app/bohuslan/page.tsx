@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import { BOHUSLAN_ISLANDS } from '@/app/o/bohuslan-data'
+import RegionNav from '@/components/RegionNav'
+import { byggRegionNav } from '@/lib/region-nav'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 
@@ -121,6 +123,7 @@ export default function BohuslanPage() {
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
  <CategoryLanding
+ regionNav={<RegionNav data={byggRegionNav('Bohuslän', BOHUSLAN_ISLANDS.map(o => o.slug), ['bohuslan-skargard-guide', 'smogen-guide', 'marstrand-guide', 'hummersafari-bohuslan', 'midsommar-bohuslan', 'gotland-vs-bohuslan'])} />}
  heroGradient={['#2d6a4f', '#3a8a65']}
  eyebrow="Bohuslän"
  title="Västkustens råa skärgård"
