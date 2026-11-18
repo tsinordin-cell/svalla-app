@@ -152,7 +152,7 @@ export default function BoendePage() {
         </>
       }
       related={[
-        { label: 'Alla öar', href: '/rutter?vy=oar' },
+        { label: 'Alla öar', href: '/oar' },
         { label: 'Färjetider', href: '/rutter?vy=farjor' },
         { label: 'Krogar & mat', href: '/krogar-och-mat' },
         { label: 'Kartan', href: '/upptack' },

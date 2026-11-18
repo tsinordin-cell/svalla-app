@@ -113,7 +113,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
         }
       />
 
-      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '24px auto 0', padding: '0 16px 60px' }}>
 
         {island.activities.length === 0 ? (
           <div style={{

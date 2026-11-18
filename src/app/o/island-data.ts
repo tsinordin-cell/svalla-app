@@ -80,7 +80,7 @@ export type Island = {
    * Kosterhavet en nationalpark — de ligger under /o/ för att sidmallen passar,
    * men ska inte kallas ö för besökaren (Toms delegation 2026-09-20).
    */
-  slag?: 'ö' | 'ort' | 'nationalpark'
+  slag?: 'ö' | 'ort' | 'nationalpark' | 'naturreservat'
   emoji: string
   tagline: string
   lat?: number   // approx center coordinate
@@ -1917,13 +1917,16 @@ export const ISLANDS: Island[] = [
       'Den bebyggelse som möter en i dag rymmer många rikt utsirade trävillor från slutet av 1800-talet och början av 1900-talet, och Stockholms läns museum beskriver Dalarö som ett fortfarande levande skärgårdssamhälle. Dalarö är också Haninge kommuns äldsta tätort, med Dalarö torg som central plats.',
     ],
     facts: {
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "839 Handens station–Dalarö (–Smådalarö)", "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026", "Tidtabellen är anpassad till pendeltåg från Stockholm vid" Handens station; Handens station → Hotellbryggan 33–40 min, alla dagar (läst 2026-09-27)
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v869.pdf — "869 Globen–Dalarö", "Lördag, söndag och helgdag", "Ingen trafik"; Slakthuset (Globen) → Hotellbryggan 46–50 min, fyra turer vardagar (läst 2026-09-27)
-      travel_time: 'Buss 839 från Handens station 33 till 40 min, alla dagar (buss 869 från Slakthuset/Globen vardagar, 46 till 50 min)',
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Haninge centrum", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Måndag–fredag", "Lördag, söndag helgdag", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h869.pdf — "869 Globen–Dalarö", "Lördag, söndag och helgdag", "Ingen trafik", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-17); Slakthuset (Globen) → Hotellbryggan 46 till 50 min, fyra turer måndag till fredag
+      travel_time: 'Pendeltåg till Handen och buss 839 från Rudsjöterrassen, 33 till 39 min till Hotellbryggan alla dagar (SL:s tabell till 12 december 2026); buss 869 från Slakthuset/Globen vardagar, 46 till 50 min',
       // KÄLLA: https://stockholmslansmuseum.se/besoksmal/dalaro-och-dalaro-skans/ — "Dalarö är ett gammalt lots- och tullsamhälle som vid slutet av 1800-talet blev semesterort för välbärgade stockholmare" (läst 2026-09-27)
       character: 'Lots- och tullsamhälle från 1636 som blev semesterort vid slutet av 1800-talet',
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — trafik alla dagar året runt enligt tabellen; https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser "40 (15/5-15/9)" (läst 2026-09-27)
-      season: 'Året runt med buss och bil; gästhamnssäsong 15 maj till 15 september',
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/s839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Giltig 19 juni–16 augusti 2026", "Måndag–fredag", "Lördag", "Söndag och helgdag" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Giltig 17 augusti–12 december 2026", "Måndag–fredag", "Lördag, söndag helgdag" (läst 2026-11-17); s839 och h839 har turer alla dagar från 19 juni till 12 december 2026
+      // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/dalaro/ — "Dalarö når du enkelt med bil eller bus från Haninge och Stockholm." (läst 2026-11-17)
+      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser "40 (15/5-15/9)" (läst 2026-09-27)
+      season: 'Buss 839 alla dagar i SL:s tabeller för 19 juni till 12 december 2026, och Dalarö nås också med bil; gästhamnssäsong 15 maj till 15 september',
       // UPPSKATTNING: redaktionell bedömning utifrån kommunikationer och sevärdheter ovan
       best_for: 'Dagsturer utan båt, kulturhistoria, vrakdykning, båt vidare till Ornö och Utö',
     },
@@ -1938,7 +1941,8 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/oevrigt/dalaro-tullhus — "Idag används huset av Haninge kommun som turistbyrå och skärgårdsmuseum" (läst 2026-09-27); https://stockholmslansmuseum.se/besoksmal/dalaro-och-dalaro-skans/ — "I tullhuset från 1788 finns nu Dalarö Kultur- och Föreningscentrum med ett skärgårdsmuseum och turistbyrå" (läst 2026-09-27)
       { icon: '🚶', name: 'Skärgårdsmuseet i Tullhuset', desc: 'Haninge kommun har turistbyrå och skärgårdsmuseum i tullhuset från 1787 till 88, ritat av Erik Palmstedt.' },
     ],
-    // KÄLLA: https://smadalarogard.se/ — "Smådalarö Gård Hotell & Spa", "Ett av Sveriges största spahotell i Stockholms skärgård", "Spa, aktiviteter, närodlad mat och personlig service" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v839.pdf — "839 Handens station–Dalarö (–Smådalarö)", "Endast vissa turer" (läst 2026-09-27)
+    // KÄLLA: https://smadalarogard.se/ — "Smådalarö Gård Hotell & Spa", "Ett av Sveriges största spahotell i Stockholms skärgård", "Spa, aktiviteter, närodlad mat och personlig service" (läst 2026-09-27)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "1) Endast vissa turer." (läst 2026-11-17)
     // KÄLLA: https://vandrarhemmetlotsen.se/ — "VI HAR ÖPPET ÅRET RUNT!", "I Fiskehamnen precis vid vattnet ligger Vandrarhemmet Lotsen", "Huset har 12 bäddar fördelat på 4 rum, alla med sjöutsikt" (läst 2026-09-27). Inte STF. Dalarö Strand Hotell gick inte att belägga; Dalarö Skans är evenemangsplats (SFV), inget boende (läst 2026-09-14).
     accommodation: [
       { name: 'Smådalarö Gård', type: 'Hotell', desc: 'Hotell och spa på Smådalarö utanför Dalarö, med spa, restauranger och konferens. Buss 839 fortsätter till Smådalarö på vissa turer.', websiteUrl: 'https://smadalarogard.se' },
@@ -1947,8 +1951,9 @@ export const ISLANDS: Island[] = [
     getting_there: [
       // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/dalaro/ — "Dalarö når du enkelt med bil eller bus från Haninge och Stockholm" (läst 2026-09-27)
       { method: 'Bil', from: 'Stockholm', time: '', desc: 'Dalarö nås med bil från Haninge och Stockholm, ingen båt behövs.', icon: '🚗' },
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "839 Handens station–Dalarö (–Smådalarö)", "Tidtabellen är anpassad till pendeltåg från Stockholm vid" Handens station, "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026"; Handens station → Hotellbryggan 33–40 min (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v869.pdf — "869 Globen–Dalarö", "Ingen trafik" lördag, söndag och helgdag; 46–50 min (läst 2026-09-27). Pendeltågets restid Stockholm C–Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).
-      { method: 'Pendeltåg + Buss', from: 'Handens station', time: '33 till 40 min', desc: 'Pendeltåg till Handens station, sedan SL-buss 839 till Dalarö (Hotellbryggan), alla dagar och anpassad till tågen. Buss 869 går vardagar från Slakthuset vid Globen (46 till 50 min).', icon: '🚌' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Haninge centrum", "Hotellbryggan", "Alla hållplatser för buss 839 mot Smådalarö finns ovan.", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Måndag–fredag", "Lördag, söndag helgdag", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37). Handens station finns inte bland hållplatserna.
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h869.pdf — "869 Globen–Dalarö", "SLAKTHUSET (GLOBEN)", "Ingen trafik", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-17); Slakthuset (Globen) → Hotellbryggan 46 till 50 min. Pendeltågets restid Stockholm C till Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).
+      { method: 'Pendeltåg + Buss', from: 'Rudsjöterrassen', time: '33 till 39 min', desc: 'Pendeltåg till Handen, sedan SL-buss 839 från Rudsjöterrassen via Haninge centrum till Dalarö (Hotellbryggan), alla dagar. Enligt SL:s tabell till 12 december 2026 stannar bussen inte vid Handens station, men tiderna är anpassade till pendeltågen från Stockholm där. Buss 869 går vardagar från Slakthuset vid Globen (46 till 50 min).', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — "Klubbhamn vid Dalarö kanals södra mynning", "Centrum 500 m - gångstig över Askfatsberget", gästplatser "40 (15/5-15/9)"; färskvatten, toalett ("kodlås"), dusch och eluttag ("50 kr/dygn") finns; diesel och bensin "1 km" bort (läst 2026-09-27)
@@ -1979,8 +1984,8 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://stockholmslansmuseum.se/besoksmal/dalaro-och-dalaro-skans/ — "Dalarö blev 1636 platsen för den så kallade stora sjötullen och landets viktigaste tullstation" (läst 2026-09-27); https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/oevrigt/dalaro-tullhus — "Inloppsstation för Stockholm blev Dalarö", "I samband med att systemet avskaffades 1928 drogs även tullstationen in", "Byggår:" "1787–88" (läst 2026-09-27)
     did_you_know: 'Dalarö blev 1636 platsen för "stora sjötullen", landets viktigaste tullstation och inloppsstation för Stockholm. Tullstationen drogs in först 1928, och tullhuset från 1787 till 88 står kvar vid vattnet.',
     insiderTips: [
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "839 Handens station–Dalarö (–Smådalarö)", "Lördag, söndag helgdag" med turer hela dagen (läst 2026-09-27)
-      'Buss 839 från Handens station går alla dagar och tar 33 till 40 minuter till Hotellbryggan. Du behöver varken bil eller båt för en dagstur hit.',
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Hotellbryggan", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Måndag–fredag", "Lördag, söndag helgdag", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)
+      'Buss 839 från Rudsjöterrassen går alla dagar och tar 33 till 39 minuter till Hotellbryggan (SL:s tabell till 12 december 2026). Tiderna är anpassade till pendeltågen från Stockholm vid Handens station. Du behöver varken bil eller båt för en dagstur hit.',
       // KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/oevrigt/dalaro-tullhus — "Dalarö tullhus uppfördes under åren 1787–88, efter ritningar av Erik Palmstedt", "Inloppsstation för Stockholm blev Dalarö" (läst 2026-09-27)
       'Tullhuset i Dalarö byggdes 1787 till 88 efter ritningar av Erik Palmstedt. Dalarö var inloppsstation för Stockholm i det tullsystem som infördes 1636 och avskaffades 1928.',
       // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/sevardheter/dalaro-skeppsvraksomrade/ — "Dalarö med omnejd är ett av Sveriges mest fornlämningstäta när det gäller fartygslämningar äldre än 100 år" (läst 2026-09-27)
@@ -1992,8 +1997,10 @@ export const ISLANDS: Island[] = [
       open: 'Hela året',
       peak: 'Juli till Augusti',
       best: 'Juni eller September',
-      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser "40 (15/5-15/9)" (läst 2026-09-27); https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/havsbadet-schweizerbadet-dalaro.html — "10 Bajamajor + 1 Handikapp finns 1 juni - 15 september" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v839.pdf — trafik alla dagar
-      bestReason: 'Buss 839 går hela året, men gästplatserna i Askfatshamnen gäller 15 maj till 15 september och Schweizerbadet har full service 1 juni till 15 september. Juni och första halvan av september ligger inom båda.',
+      // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/dalaro-askfatshamnen/ — gästplatser "40 (15/5-15/9)" (läst 2026-09-27); https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-haninge-kommun/havsbadet-schweizerbadet-dalaro.html — "10 Bajamajor + 1 Handikapp finns 1 juni - 15 september" (läst 2026-09-27)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/s839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Giltig 19 juni–16 augusti 2026", "Måndag–fredag", "Lördag", "Söndag och helgdag" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Giltig 17 augusti–12 december 2026", "Måndag–fredag", "Lördag, söndag helgdag" (läst 2026-11-17); s839 och h839 har turer alla dagar från 19 juni till 12 december 2026
+      bestReason: 'Buss 839 går alla dagar i SL:s tabeller för 19 juni till 12 december 2026, men gästplatserna i Askfatshamnen gäller 15 maj till 15 september och Schweizerbadet har full service 1 juni till 15 september. Juni och första halvan av september ligger inom båda.',
       months: ['limited','limited','limited','open','open','open','peak','peak','open','open','limited','limited'],
     },
     activity_meta: {
@@ -2642,8 +2649,13 @@ export const ISLANDS: Island[] = [
     description: [
       // KÄLLA: Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård"; "Färjeledens längd är 600 meter"; "överfartstiden är fyra minuter"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19)
       // KÄLLA: Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård"; "Färjeledens längd är 600 meter"; "överfartstiden är fyra minuter"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19) ; Trafikverket, https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård"; "Färjeledens längd är 530 meter"; "överfartstiden är fyra minuter"; "Resan med vägfärjan är avgiftsfri" (läst 2026-09-19)
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "Stämmarsund (Blidö)" (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h26.pdf — "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)" (läst 2026-09-27)
-      'Blidö nås med bil hela vägen, via två avgiftsfria vägfärjor: Furusundsleden mellan Furusund och Yxlan, 600 meter och fyra minuter, och därefter Blidöleden mellan Yxlan och Blidö, 530 meter och lika kort överfart. Utan bil går det att ta Waxholmsbolagets båtar från Strömkajen via Vaxholm: linje 24 angör Stämmarsund och linje 26 Norrsund på Blidö.',
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h634.pdf — "Norrtälje–Blidö", "Giltig 17 augusti–12 december 2026", "Norrtälje busstation" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s24.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      'Blidö nås med bil hela vägen, via två avgiftsfria vägfärjor: Furusundsleden mellan Furusund och Yxlan, 600 meter och fyra minuter, och därefter Blidöleden mellan Yxlan och Blidö, 530 meter och lika kort överfart. Utan bil går SL-buss 634 från Norrtälje busstation ut till Blidö. Waxholmsbolagets båtar från Strömkajen via Vaxholm, linje 24 till Stämmarsund och Norrsund och linje 26 till Norrsund, hade 2026 tabeller som gällde från 2 april till 1 november. Bland bolagets linjetidtabeller som gäller till 12 december 2026 finns ingen av de två linjerna.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/linkudden.html — "Skyddat sedan: 1969"; "Storlek: 18 hektar varav land 14 hektar"; "Förvaltare: Norrtälje kommun"; "Ändamålet med reservatet är att bevara ett område med säregen, vacker natur och stor betydelse för allmänhetens friluftsliv." (läst 2026-09-30) ; https://www.norrtalje.se/info/bygga-bo-miljo/klimat-och-natur/naturreservat-och-annan-skyddad-natur/linkudden/ — "Naturreservatet Linkudden är beläget på sydöstra delen av Blidö." (läst 2026-09-30)
       'På sydöstra Blidö ligger Linkuddens naturreservat, skyddat sedan 1969. Det är litet, 18 hektar varav 14 på land, och förvaltas av Norrtälje kommun. Syftet är att bevara ett område med säregen, vacker natur och stor betydelse för allmänhetens friluftsliv.',
       // KÄLLA: https://www.norrtalje.se/info/bygga-bo-miljo/klimat-och-natur/naturreservat-och-annan-skyddad-natur/linkudden/ — "Reservatets östra och västra delar består av två stora hällmarksområden. Mellan dessa två bergsryggar växer blandskog med hög lövandel"; "Fågellivet är även det rikt med bland annat häckande sjöfågel."; "rosettjungfrulin, darrgräs, vildlin, Adam och Eva, solvända, ormrot, älväxing, svartkämpar, liten blåklocka, bockrot och småborre"; "I söder och öster finns badvänliga klippstränder." (läst 2026-09-30)
@@ -2692,10 +2704,15 @@ export const ISLANDS: Island[] = [
     getting_there: [
       // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård", "Färjeledens längd är 600 meter och överfartstiden är fyra minuter", "Resan med vägfärjan är avgiftsfri" (läst 2026-09-27); https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård" (läst 2026-09-27)
       { method: 'Bil + två bilfärjor', from: 'Furusund', time: '', desc: 'Kör mot Furusund, vägfärja till Yxlan (Furusundsleden, 600 m, fyra minuter), sedan vägfärja Yxlan till Blidö (Blidöleden, 530 m). Båda avgiftsfria.', icon: '🚗' },
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "Stämmarsund (Blidö)" (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h26.pdf — "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)" (läst 2026-09-27)
-      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', time: '', desc: 'Linje 24 (Stockholm, Vaxholm, Blidösundet) angör Stämmarsund och linje 26 Norrsund på Blidö. Vår- och hösttabellen gäller till 1 november 2026.', icon: '⛴' },
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA", "Bromskär (Blidö)" (läst 2026-09-27)
-      { method: 'Waxholmsbåt', from: 'Furusund', time: '', desc: 'Linje 28 från Furusund angör Bromskär på Blidö.', icon: '⛴' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s24.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      { method: 'Waxholmsbåt (2026: 2 april till 1 november)', from: 'Strömkajen, Stockholm', time: '', desc: 'Linje 24 (Stockholm, Vaxholm, Blidösundet) angör Stämmarsund och Norrsund och linje 26 (Stockholm, Vaxholm, Norrsund, Rödlöga) angör Norrsund på Blidö. Under 2026 gällde tabellerna för båda linjerna från 2 april till 1 november. Bland Waxholmsbolagets linjetidtabeller som gäller till 12 december 2026 finns ingen av dem, och utan bil tar du då buss 634 från Norrtälje.', icon: '⛴' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h634.pdf — "Norrtälje–Blidö", "Giltig 17 augusti–12 december 2026", "Norrtälje busstation", "Furusunds färjeläge", "Norrsund (Blidö färjeläge)", "Stämmarsund", "Bromskärs brygga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Bromskär (Blidö)", "Bryggan är avstängd till juni 2027 på grund av renoveringsarbeten." (läst 2026-11-17)
+      { method: 'Buss', from: 'Norrtälje busstation', time: '', desc: 'SL-buss 634 från Norrtälje busstation har hållplatser bland annat vid Furusunds färjeläge, Norrsund (Blidö färjeläge), Stämmarsund och Bromskärs brygga. Bryggan Bromskär på Blidö, som ligger på Waxholmsbolagets linje 28 från Furusund, är enligt tabell 28 avstängd till juni 2027 på grund av renoveringsarbeten.', icon: '🚌' },
     ],
     harbors: [
       // KÄLLA: https://www.svenskagasthamnar.se/stockholms-skargard/blido/ — "Hamn i skyddat läge vid restaurang Blidö Brygga", 50 gästplatser, "Boj/ mooringlina/ långsides", "Blidö Brygga & Bistro", diesel och bensin "3 dist." bort (läst 2026-09-27); https://blidorestaurang.se/bryggan/ — "Det går INTE att boka bryggplats hos oss", "Behöver du fylla dunkar kan du göra det här", "El finns tyvärr inte nere på bryggan", "Vi har flera duschar och toaletter" (läst 2026-09-27)
@@ -2891,8 +2908,10 @@ export const ISLANDS: Island[] = [
       travel_time: 'ca 3 h 10 till 3 h 35 min med Waxholmsbåt från Strömkajen · ca 40 min från Furusund',
       // KÄLLA: https://www.norrora.se/saltkrakan/ (inspelningsö), https://www.norrora.se/gronomraden/ — "vårt vägnät på 4 km grusvägar", "totalt på ön ca 7 km stigar"; https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Det finns varken livsmedelsbutiker eller restauranger på öarna" (läst 2026-09-29)
       character: 'Saltkråkans inspelningsö, stigar och grusvägar, ingen service',
-      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra" (läst 2026-09-27); tabell 26 gäller till 1 november 2026 (se ovan)
-      season: 'Båt från Strömkajen april till 1 november, vintertid från Köpmanholm',
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under våren, sommaren och hösten kommer du till Norröra och Söderöra genom att åka från Strömkajen.", "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra." (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      season: 'Båt från Strömkajen under våren, sommaren och hösten (2026: 2 april till 1 november), under vintern och början av våren från Köpmanholm',
       // UPPSKATTNING: målgrupp bedömd utifrån Saltkråkan-kopplingen och att ön saknar affär och restaurang
       best_for: 'Saltkråkan-fans, barnfamiljer, dagstur med matsäck',
     },
@@ -2912,8 +2931,9 @@ export const ISLANDS: Island[] = [
     getting_there: [
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "Går under perioderna 8 maj - 18 juni och 17", "Går under perioden 17 augusti - 30 augusti". Måndag–torsdag går turerna 2601 (8 maj–18 juni) och 2611 (17–30 augusti), fredag 2621 och 2623, lördag 08.45 → Norröra 12.15, söndag 10.00 → 13.10 (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026": två turer om dagen, t.ex. måndag–torsdag 09.00 → 12.10 och 17.15 → 20.50 (läst 2026-09-27)
-      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan" (läst 2026-09-27)
-      { method: 'Waxholmsbolaget linje 26', from: 'Strömkajen via Vaxholm', time: 'ca 3 h 10 till 3 h 35 min', desc: 'Linje 26 Stockholm, Vaxholm, Norrsund, Rödlöga angör Norröra och Söderöra. Sommartid, 19 juni till 16 augusti, går två turer om dagen. Vår och höst (2 april till 18 juni och 17 augusti till 1 november) går båten fredag till söndag; måndag till torsdag bara 8 maj till 18 juni och 17 till 30 augusti. Vintertid åker du i stället från Köpmanholm.', icon: '⛴' },
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under våren, sommaren och hösten kommer du till Norröra och Söderöra genom att åka från Strömkajen.", "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra." (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      { method: 'Waxholmsbolaget linje 26 (vår till höst)', from: 'Strömkajen via Vaxholm', time: 'ca 3 h 10 till 3 h 35 min', desc: 'Linje 26 Stockholm, Vaxholm, Norrsund, Rödlöga angör Norröra och Söderöra. Enligt Waxholmsbolaget åker du dit från Strömkajen under våren, sommaren och hösten. Under 2026 gällde vår- och hösttabellen 2 april till 18 juni och 17 augusti till 1 november och sommartabellen 19 juni till 16 augusti, och linjen finns inte bland bolagets linjetidtabeller som gäller till 12 december 2026. Under vintern och början av våren åker du i stället från Köpmanholm på Yxlan.', icon: '⛴' },
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026", "Beställ resan i SL-appen"; Furusund 07.50 → Köpmanholm 07.52 → Norröra 08.30, 10.05 → 10.45b (läst 2026-09-27). https://kund.printhuset-sthlm.se/wa/v28.pdf — "17 AUGUSTI 2026 – 12 DECEMBER 2026", samma tider Furusund–Norröra (läst 2026-09-27)
       // KÄLLA: https://kund.printhuset-sthlm.se/sl/h632.pdf — "Norrtälje–Yxlan", "Furusunds färjeläge", "Köpmanholm" (läst 2026-09-27)
       { method: 'Waxholmsbolaget linje 28', from: 'Furusund eller Köpmanholm (Yxlan)', time: 'ca 40 min', desc: 'Kortaste vägen: linje 28 från Furusund och Köpmanholm. Vissa turer och bryggor är beställningstrafik. Boka i SL-appen. Till Furusund och Köpmanholm går SL-buss 632 från Norrtälje.', icon: '⛴' },
@@ -2925,9 +2945,12 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — Furusund 07.50 → Norröra 08.30, 10.05 → 10.45 (40 min) (läst 2026-09-27)
       from_nearest_hub_min: 40,
       operator: 'Waxholmsbolaget',
-      line: '26 / 28',
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — två avgångar om dagen från Strömkajen 19 juni–16 augusti; https://kund.printhuset-sthlm.se/wa/h26.pdf — vår och höst lördag 08.45, söndag 10.00, fredag 08.45 och (till 13 september) 16.30, måndag–torsdag bara 8 maj–18 juni och 17–30 augusti (läst 2026-09-27). https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora skriver "det går ofta två turer om dagen", vilket bara stämmer med sommartabellen.
-      frequency: 'Två turer om dagen från Strömkajen sommartid, vår och höst i regel en tur om dagen fredag till söndag',
+      line: '28 (Furusund, Köpmanholm), 26 (Strömkajen, vår till höst)',
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under våren, sommaren och hösten kommer du till Norröra och Söderöra genom att åka från Strömkajen.", "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra." (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Köpmanholm (Yxlan)" (läst 2026-11-17)
+      frequency: 'Från Strömkajen under våren, sommaren och hösten (2026: 2 april till 1 november, sommartabell 19 juni till 16 augusti); under vintern och början av våren från Köpmanholm',
     },
     harbors: [
       // KÄLLA: https://www.norrora.se/gronomraden/ — "Föreningen byggde ny ångbåtsbrygga 1987-88", "Den lilla gästbryggan i trä byggdes först 1997", "de soptunnor och den torrtoalett som finns där för turister och gästande båtar" (läst 2026-09-27). El, vatten och bränsle nämns inte.
@@ -2953,10 +2976,13 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", två turer om dagen; https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan" (läst 2026-09-27)
     // UPPSKATTNING: månadsraden är en bedömning utifrån tidtabellerna (tätast trafik 19 juni–16 augusti).
     seasonal: {
-      open: 'Båt året runt: från Strömkajen 2 april till 1 november, vintertid från Köpmanholm',
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora — "Under våren, sommaren och hösten kommer du till Norröra och Söderöra genom att åka från Strömkajen.", "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Norröra eller Söderöra." (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      open: 'Båt året runt: från Strömkajen under våren, sommaren och hösten (2026: 2 april till 1 november), under vintern och början av våren från Köpmanholm',
       peak: '19 juni till 16 augusti',
       best: 'Vår till höst',
-      bestReason: 'Linje 26 från Strömkajen går 2 april till 1 november och har två turer om dagen 19 juni till 16 augusti. Vintertid åker du från Köpmanholm på Yxlan.',
+      bestReason: 'Linje 26 från Strömkajen gick 2026 från 2 april till 1 november, med sommartabell 19 juni till 16 augusti. Under vintern och början av våren åker du från Köpmanholm på Yxlan.',
       warning: 'Ingen affär eller restaurang på ön. Vintertid går båten bara från Köpmanholm på Yxlan.',
       months: ['limited','limited','limited','limited','open','open','peak','open','open','limited','limited','limited'],
     },
@@ -3970,9 +3996,12 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/rodloga — "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten. Resan tar fyra timmar."; "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga."; "Heldagsutflykt till Rödlöga" (läst 2026-09-27)
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/rodloga — "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten.", "Resan tar fyra timmar.", "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga." (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Rödlöga"; restiden Furusund till Rödlöga, 2 h 15 min, är uppmätt i 28A (läst 2026-11-17)
       // KÄLLA: https://rodlogaboden.se/pages/om-oss — "På ön finns ingen fast el"; "Butiken har öppet sommartid." (läst 2026-09-27)
-      travel_time: 'ca 4 tim med Waxholmsbåt från Strömkajen (linje 26)',
+      travel_time: 'ca 4 tim från Strömkajen med linje 26 under våren, sommaren och hösten (2026: 2 april till 1 november), 2 tim 15 min från Furusund med linje 28',
       character: 'Ytterskärgårdsby utan vägar och fast el, naturhamnar',
       season: 'Båt året runt; butik och café öppna sommartid',
       best_for: 'Båtfolk, heldagstur med Waxholmsbåt, kulturmiljö',
@@ -3995,11 +4024,15 @@ export const ISLANDS: Island[] = [
     ],
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026"; "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA" — måndag–torsdag tur 2601 Strömkajen 09.00, Rödlöga 13.00; tur 2602 Rödlöga 15.00, Strömkajen 19.00 (läst 2026-09-27)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026" — tur 2621 Strömkajen 08.45, Rödlöga 13.00 (mån–tors); tur 2671 söndag Strömkajen 10.00, Rödlöga 14.00 (läst 2026-09-27)
-    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026"; "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA" — lördag tur 2851 och söndag tur 2871: Furusund 10.05, Rödlöga 12.20 (läst 2026-09-27)
+      // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/rodloga — "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten.", "Resan tar fyra timmar.", "Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga." (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Rödlöga"; restiden Furusund till Rödlöga, 2 h 15 min, är uppmätt i 28A (läst 2026-11-17)
     // KÄLLA: https://rodlogaboden.se/pages/hitta-hit — "Båtturen från Furusund till Rödlöga tar drygt två timmar."; "Om du kommer med bil finns parkering strax innan Furusunds värdshus."; "Det är tidtabellerna 26 och 28 som gäller för Rödlöga." (läst 2026-09-27)
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 4 tim', desc: 'Linje 26 (Strömkajen, Vaxholm, Norrsund, Norröra, Söderöra, Svartlöga, Rödlöga) går utan byte, och Rödlöga är ändhållplats. Sommaren 2026 (19 juni till 16 augusti) gick båten måndag till torsdag 09.00 från Strömkajen och var framme 13.00; tillbaka 15.00, i Stockholm 19.00. Under hösttabellen (17 augusti till 1 november 2026) går vardagsturen 08.45 och är framme 13.00, söndagsturen 10.00 och framme 14.00. Vintertid åker man i stället från Köpmanholm på Yxlan.', icon: '⛴' },
-      { method: 'Waxholmsbåt', from: 'Furusund', time: 'drygt 2 tim', desc: 'Linje 28 går från Furusund och Köpmanholm. Våren och hösten 2026 (till 30 september) gick lördags- och söndagsturen 10.05 från Furusund och var på Rödlöga 12.20. Parkering finns strax innan Furusunds värdshus.', icon: '⛴' },
+      { method: 'Waxholmsbåt (vår till höst)', from: 'Strömkajen', time: 'ca 4 tim', desc: 'Linje 26 (Strömkajen, Vaxholm, Norrsund, Norröra, Söderöra, Svartlöga, Rödlöga) går utan byte, och Rödlöga är ändhållplats. Enligt Waxholmsbolaget kan du åka från Strömkajen under våren, sommaren och hösten. Under 2026 gällde tabellerna för linje 26 från 2 april till 1 november, och linjen finns inte bland bolagets linjetidtabeller som gäller till 12 december 2026. Under vintern och början av våren åker man i stället från Köpmanholm på Yxlan.', icon: '⛴' },
+      { method: 'Waxholmsbåt', from: 'Furusund', time: 'drygt 2 tim', desc: 'Linje 28 går från Furusund och Köpmanholm. I tabellen för 1 oktober till 12 december 2026 tar resan från Furusund till Rödlöga 2 timmar 15 minuter. Parkering finns strax innan Furusunds värdshus.', icon: '⛴' },
       // KÄLLA: https://rodlogaboden.se/ — "Gästbryggan ligger inne i byviken, nedanför Café Truten."; "Ej nattförtöjning (gäller ej fartyg med särskilt tillstånd), endast stävtillägg och båtvikt max 3 ton gäller för bryggan." (läst 2026-09-27)
       { method: 'Egen båt', from: 'Valfri hamn', desc: 'Ankra i någon av naturhamnarna. För ett kort besök i butiken och caféet finns Rödlögabodens gästbrygga inne i byviken: endast stävtillägg, max 3 ton och ingen nattförtöjning.', icon: '⛵' },
     ],
@@ -4101,7 +4134,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.grisslehamnsmarina.se/singo-sjokrog/ — "Krogen är just nu stängd i väntan på beviljat serveringstillstånd" (läst 2026-09-27)
       'Handla i Singöaffären, som har fullsortiment av dagligvaror och är apoteks- och Systembolagsombud, Singö sjökrog (Grisslehamns Marina) är just nu stängd i väntan på serveringstillstånd.',
     ],
-    related: ['arholma', 'vaddo', 'norrora'],
+    related: ['arholma', 'vaddo', 'norrora', 'graso'],
     tags: ['kyrka', 'vandring', 'bad', 'norra', 'kulturhistoria'],
     // KÄLLA: https://www.svenskakyrkan.se/roslagens-ostra-pastorat/singo-kyrka — "Skeppet tros vara ett av de äldsta i Stockholms län och är en gåva till församlingen från Norrtäljeborgaren Eric Brant och hans hustru Maria Tillman år 1752"; "Den okände sjömannen hittades en stormig dag vid Eskiln på Singös ostkust" (läst 2026-09-27)
     did_you_know: 'Votivskeppet i Singö kyrka tros vara ett av de äldsta i Stockholms län. Det skänktes 1752 av Norrtäljeborgaren Eric Brant och hans hustru Maria Tillman, året innan kyrkan stod klar. På kyrkogården finns Den okände sjömannens grav, prydd med en livboj: sjömannen hittades en stormig dag vid Eskiln på Singös ostkust med handen kring livbojens tåg.',
@@ -4368,7 +4401,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/vaddo-kanal.pdf — "Längs kanalen finns promenadstigar som har sin grund i de dragvägar", "Skutorna drogs igenom kanalen, ofta med hjälp av dragdjur" (läst 2026-09-27). «Kryssningen tar 45 minuter» saknade källa.
       'Gå längs Väddö kanal vid Älmsta: promenadstigarna följer de gamla dragvägarna, där skutorna drogs genom kanalen, ofta med hjälp av dragdjur.',
     ],
-    related: ['singo', 'blido', 'norrora'],
+    related: ['singo', 'blido', 'norrora', 'graso'],
     tags: ['lindy hop', 'kanal', 'Roslagens', 'norra', 'kultur'],
     // KÄLLA: https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/vaddo-kanal.pdf — "Den första kanalanläggningen byggdes vid den lägsta tröskeln mellan Kistahavet och Storfjärden", "Arbetet med att anlägga nuvarande Väddö kanal påbörjades år 1819", "Kanalen öppnades för trafik 1835, och 1840 invigdes den officiellt av Karl XIV Johan", "Vaxholmsbolaget trafikerade kanalen för färd mot Öregrund och Östhammar fram till 1950-talet" (läst 2026-09-27); https://roslagen.se/oar/vaddo-roslagens-storsta-o/ — "Sin nuvarande sträckning fick kanalen 1899–1902" (läst 2026-09-27). «18 km» och «Samuel Owens ångdrivna mudderverk» saknade tillåten källa – strukna.
     did_you_know: 'Den första kanalen genom Väddö byggdes troligen redan på 1200 till 1300-talen vid tröskeln mellan Kistahavet och Storfjärden. Dagens kanal påbörjades 1819, grävdes 1820 till 1831 av 2 930 soldater och öppnades för trafik 1835; Karl XIV Johan invigde den officiellt 1840. Sin nuvarande sträckning fick kanalen 1899 till 1902, och Vaxholmsbolaget trafikerade den mot Öregrund och Östhammar fram till 1950-talet.',
@@ -4383,12 +4416,2438 @@ export const ISLANDS: Island[] = [
       months: ['limited','limited','limited','limited','open','open','peak','open','open','open','limited','limited'],
     },
   },
+  // ─── GRÄSÖ ───────────────────────────────────────────────────
+  {
+    slug: 'graso',
+    name: 'Gräsö',
+    region: 'ovriga',
+    regionLabel: 'Roslagen',
+    emoji: '🌲',
+    // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Bottenhavets största ö är Gräsö." (läst 2026-11-17)
+    // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Resan med vägfärjan är avgiftsfri." (läst 2026-11-17)
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — "Skyddsår: 1982" (läst 2026-11-17)
+    tagline: 'Bottenhavets största ö, fem minuter med avgiftsfri vägfärja från Öregrund.',
+    seoTitle: 'Gräsö: färja från Öregrund, bad och camping',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Bottenhavets största ö är Gräsö." (läst 2026-11-17)
+    seoDescription: 'Bottenhavets största ö når du på fem minuter med avgiftsfri vägfärja från Öregrund. Bada vid Gräsöbadet eller Storsand, eller campa vid Gräsöbadens Camping.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4s%C3%B6 — Lantmäteriet Min Karta, sökning "Gräsö" → Gräsö | Östhammar | Trakt, SWEREF 99 TM 694391/6694384 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 60.3392,
+    lng: 18.5223,
+    description: [
+      // KÄLLA: https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf — "Bottenhavets största ö är Gräsö."; tabell 5.1 "Gräsö Östhammar 705 636 -69"; "vid utgången av 2020" (läst 2026-11-17)
+      'Gräsö i Östhammars kommun är Bottenhavets största ö. Vid utgången av 2020 var 636 personer folkbokförda på ön.',
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Gräsöleden går mellan Öregrund och Gräsö"; "Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-11-17)
+      'Du kommer hit med Trafikverkets vägfärja Gräsöleden från Öregrund. Överfarten är 1 000 meter, tar fem minuter och är avgiftsfri.',
+      // KÄLLA: https://www.orskarsfyr.se/hitta-hit.html — "På Gräsö kör du mot Örskärssund, 22 km till vägs ände." (läst 2026-11-17)
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Örskär ligger norr om Gräsö och nås med båt från Örskärssund." (läst 2026-11-17)
+      'På Gräsö är det 22 kilometer till vägs ände vid Örskärssund. Därifrån går båten till Örskär.',
+    ],
+    facts: {
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "överfartstiden är fem minuter" (läst 2026-11-17)
+      travel_time: 'Vägfärja från Öregrund, fem minuter',
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "bada från klippor och härlig sandstrand" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — "Skyddsår: 1982" (läst 2026-11-17)
+      character: 'Stor ö med badstränder och naturreservat',
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Gräsöbadet arrenderas av Östhammars kommun" (läst 2026-11-17)
+      // KÄLLA: https://grasobadenscamping.se/ — "Vi har ca 400 platser för husvagn, husbil eller tält" (läst 2026-11-17)
+      best_for: 'Bad och camping',
+    },
+    facts_provenance: { travel_time: 'matt', character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Gräsöbadet arrenderas av Östhammars kommun"; "bada från klippor och härlig sandstrand"; "Därefter ligger badet cirka 1 km norrut på Gräsö" (läst 2026-11-17)
+      { icon: '🏖', name: 'Gräsöbadet', desc: 'Badet ligger cirka en kilometer norr om färjeläget och har klippor och sandstrand. Östhammars kommun arrenderar badet.' },
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Storsand ligger strax söder om Mårtensboda … består av sand, grus och släta klippor." (läst 2026-11-17)
+      { icon: '🏖', name: 'Storsand', desc: 'Storsand ligger strax söder om Mårtensboda och har sand, grus och släta klippor.' },
+      // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Kattskär ingår i Gräsö gårds naturreservat"; "Här finns en eldstad med vedförråd … Det är inte tillåtet att elda på andra platser i reservatet." (läst 2026-11-17)
+      { icon: '🔥', name: 'Eldstad vid Kattskär', desc: 'Vid Kattskär i Gräsö gårds naturreservat finns en eldstad med vedförråd. På andra platser i reservatet är det inte tillåtet att elda.' },
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — "Skyddsår: 1982"; "Areal: 313 ha" (läst 2026-11-17)
+      { icon: '🌿', name: 'Gräsö gårds naturreservat', desc: 'Reservatet bildades 1982 och är 313 hektar.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://grasobadenscamping.se/ — "Vi har ca 400 platser för husvagn, husbil eller tält"; "Vi har stängt för säsongen och öppnar åter i slutet av april -27." (läst 2026-11-17)
+      { name: 'Gräsöbadens Camping', type: 'Camping', desc: 'Cirka 400 platser för husvagn, husbil eller tält. Campingen öppnar igen i slutet av april 2027.', websiteUrl: 'https://grasobadenscamping.se/' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf — "811 Uppsala - Alunda - Gimo - Östhammar - Öregrund"; "17 augusti - 12 december 2026"; ändhållplats "Öregrund färjeläget" (läst 2026-11-17)
+      { method: 'Buss', from: 'Uppsala', desc: 'UL:s buss 811 går från Uppsala via Alunda, Gimo och Östhammar till Öregrund färjeläget. Tidtabellen gäller 17 augusti till 12 december 2026.', icon: '🚌', url: 'https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf' },
+      // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/ — "Gräsöleden går mellan Öregrund och Gräsö"; "Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri."; "Vecka 25–33 Två färjor trafikerar leden alla dagar"; "Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. Du kan även kalla på färjan direkt i appen." (läst 2026-11-17)
+      { method: 'Vägfärja', from: 'Öregrund', time: '5 min', desc: 'Trafikverkets vägfärja Gräsöleden går mellan Öregrund och Gräsö. Överfarten är 1 000 meter och avgiftsfri. Enligt Trafikverkets sommarupplägg trafikerar två färjor leden alla dagar vecka 25 till 33. Tidtabellen finns i appen Trafikinfo Färjerederiet, där du också kan kalla på färjan.', icon: '⛴', url: 'https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/' },
+      // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf — "854 Öregrund - Norra Gräsö"; "Helgfri måndag - fredag"; "A Turen körs endast skoldagar"; "U … Turen måste förbeställas på tel. 018-617 57 02 senast 3 tim. före avresa" (läst 2026-11-17)
+      { method: 'Buss på ön', from: 'Öregrund', desc: 'UL:s buss 854 går helgfria vardagar mellan Öregrund och Örskärssund på norra Gräsö. Alla turer körs antingen bara skoldagar eller måste förbeställas per telefon senast tre timmar före avresa. Tidtabellen gäller 17 augusti till 12 december 2026.', icon: '🚌', url: 'https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html — föreskrift 4 "Medföra hund som inte är kopplad"; 5 "Göra upp eld annat än på särskilt anvisade platser"; 6 "Tälta eller förtöja båt utanför anvisade platser mer än ett dygn i följd" (läst 2026-11-17)
+      'I Gräsö gårds naturreservat ska hunden vara kopplad och eld får bara göras på anvisade platser. Du får inte tälta eller förtöja mer än ett dygn i följd utanför anvisade platser.',
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-ostra-skargard.html — "medföra ej kopplad hund under tiden 1 mars - 20 augusti"; "ett flertal djurskyddsområden med landstigningsförbud" (läst 2026-11-17)
+      'I naturreservatet Gräsö östra skärgård ska hunden vara kopplad 1 mars till 20 augusti, och flera djurskyddsområden har landstigningsförbud.',
+    ],
+    related: ['orskar', 'singo', 'vaddo'],
+    tags: ['roslagen', 'östhammar', 'bad', 'naturreservat', 'vägfärja', 'camping'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "bada från klippor och härlig sandstrand"; "Därefter ligger badet cirka 1 km norrut på Gräsö" (läst 2026-11-17)
+          { name: 'Gräsöbadet', desc: 'Klippor och sandstrand cirka en kilometer norr om färjeläget. Östhammars kommun arrenderar badet.', type: 'sandstrand' },
+          // KÄLLA: https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/ — "Storsand ligger strax söder om Mårtensboda … består av sand, grus och släta klippor." (läst 2026-11-17)
+          { name: 'Storsand', desc: 'Sand, grus och släta klippor strax söder om Mårtensboda.', type: 'sandstrand' },
+        ],
+      },
+    },
+  },
+  // ─── ÖRSKÄR ──────────────────────────────────────────────────
+  {
+    slug: 'orskar',
+    name: 'Örskär',
+    region: 'ovriga',
+    regionLabel: 'Roslagen',
+    emoji: '🗼',
+    // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "den nuvarande fyren som tändes 1740"; "ritades av den kände arkitekten Carl Hårleman. Fyren är unik eftersom den helt saknar trappor" (läst 2026-11-17)
+    // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter." (läst 2026-11-17)
+    tagline: 'Fyrön norr om Gräsö. Carl Hårlemans fyr från 1740 saknar trappor, och arton av landets orkidéarter växer i naturreservatet.',
+    seoTitle: 'Örskär: fyren, båten och naturreservatet',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "den nuvarande fyren som tändes 1740"; "Fyren är unik eftersom den helt saknar trappor" (läst 2026-11-17)
+    seoDescription: 'Carl Hårlemans fyr från 1740 saknar trappor, och arton av landets orkidéarter växer på ön. Båten till Örskär går från Örskärssund på norra Gräsö.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96rsk%C3%A4r — Lantmäteriet Min Karta, sökning "Örskär" → Örskär | Östhammar | Natur- och terrängnamn, SWEREF 99 TM 686419/6714367 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 60.5221,
+    lng: 18.3968,
+    description: [
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Örskär ligger norr om Gräsö och nås med båt från Örskärssund." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Skyddstyp: Naturreservat, Natura 2000" (läst 2026-11-17)
+      'Örskär ligger norr om Gräsö och nås med båt från Örskärssund. Ön är naturreservat.',
+      // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "den nuvarande fyren som tändes 1740 … Den är 36,5 meter hög och ritades av den kände arkitekten Carl Hårleman. Fyren är unik eftersom den helt saknar trappor"; "Fyren automatiserades 1978 och avbemannades året därpå." (läst 2026-11-17)
+      'Örskärs fyr tändes 1740, är 36,5 meter hög och ritades av Carl Hårleman. Fyren saknar trappor. Den automatiserades 1978 och avbemannades året därpå.',
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter."; "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Vid Bodalsträsket kan man höra gölgrodorna spela i maj – juni." (läst 2026-11-17)
+      'På ön växer arton av landets orkidéarter. Vid Bodalsträsket kan du höra gölgrodorna spela i maj och juni, och de bästa baden finns på klipporna i öster.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Skyddstyp: Naturreservat, Natura 2000" (läst 2026-11-17)
+      character: 'Fyrö och naturreservat',
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "DAGSTURERNA har slutat gå för denna säsong! Välkomna åter till Maj 2027" (läst 2026-11-17)
+      season: 'Dagsturerna börjar igen i maj 2027',
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "Fyren går att besöka under dagsturen." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter."; "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+      best_for: 'Fyrbesök, vandring och klippbad',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "Fyren går att besöka under dagsturen." (läst 2026-11-17)
+      // KÄLLA: https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/ — "Den är 36,5 meter hög"; "Fyren är unik eftersom den helt saknar trappor" (läst 2026-11-17)
+      { icon: '🗼', name: 'Örskärs fyr', desc: 'Fyren går att besöka under dagsturen. Den är 36,5 meter hög och saknar trappor.' },
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar-english/ — "Nature and Culture Trail, 2.5 km"; "All destinations: … about 8 km"; "The trails are marked with blue and yellow ribbons around the trees." (läst 2026-11-17)
+      { icon: '🚶', name: 'Vandring', desc: 'Natur- och kulturstigen är 2,5 kilometer, och en slinga till alla mål är cirka 8 kilometer. Lederna är märkta med blå och gula band.' },
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Här växer arton av landets orkidéarter." (läst 2026-11-17)
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "Vid Bodalsträsket kan man höra gölgrodorna spela i maj – juni." (läst 2026-11-17)
+      { icon: '🌿', name: 'Orkidéer och gölgrodor', desc: 'Arton av landets orkidéarter växer på Örskär. Vid Bodalsträsket kan du höra gölgrodorna spela i maj och juni.' },
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+      { icon: '🏊', name: 'Klippbad', desc: 'De bästa baden finns på klipporna i öster.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.orskarsfyr.se/l-genheter-stugor/ — "På fyrplatsen finns fyra boenden att hyra under perioden 6/5-26/9"; "fasta vistelser på två till sju dagar" (läst 2026-11-17)
+      { name: 'Boende på fyrplatsen', type: 'Lägenheter och stugor', desc: 'Örskärs fyr hyr ut fyra boenden på fyrplatsen under säsongen, för vistelser på två till sju dagar.', websiteUrl: 'https://www.orskarsfyr.se/l-genheter-stugor/' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.orskarsfyr.se/hitta-hit.html — "På Gräsö kör du mot Örskärssund, 22 km till vägs ände." (läst 2026-11-17)
+      { method: 'Bil till Örskärssund', from: 'Gräsö', desc: 'Ta vägfärjan från Öregrund till Gräsö. På Gräsö är det 22 kilometer till vägs ände vid Örskärssund.', icon: '🚗', url: 'https://www.orskarsfyr.se/hitta-hit.html' },
+      // KÄLLA: https://www.upplandsstiftelsen.se/orskar/ — "du kan åka med någon av de fasta båtturer som körs av Örskärs fyr … I andra hand går det att boka båttransport med Tommy Mattson som kör turer i mån av tid" (läst 2026-11-17)
+      // KÄLLA: https://www.orskarsfyr.se/dagsturer/ — "DAGSTURERNA har slutat gå för denna säsong! Välkomna åter till Maj 2027" (läst 2026-11-17)
+      { method: 'Båt', from: 'Örskärssund', desc: 'De fasta båtturerna körs av Örskärs fyr. I andra hand går det att boka båttransport med en privat båtförare i mån av tid. Dagsturerna har slutat för säsongen och börjar igen i maj 2027.', icon: '⛴', url: 'https://www.orskarsfyr.se/dagsturer/' },
+      // KÄLLA: https://www.orskarsfyr.se/hitta-hit.html — "busstiderna inte matchar båttiderna" (läst 2026-11-17)
+      // KÄLLA: https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf — "Helgfri måndag - fredag" (läst 2026-11-17)
+      { method: 'Buss', from: 'Öregrund', desc: 'Busstiderna matchar inte båttiderna. UL:s buss 854 till Örskärssund går inte på helger.', icon: '🚌', url: 'https://www.orskarsfyr.se/hitta-hit.html' },
+    ],
+    harbors: [],
+    restaurants: [
+      // KÄLLA: https://www.orskarsfyr.se/restaurang-och-kiosk.html — "Restaurangen ligger i den gamla fyrmästarbostaden"; "STÄNGT för säsongen. Öppnar igen i maj 2027."; "För att äta oss hos måste man alltid boka." (läst 2026-11-17)
+      { name: 'Restaurangen på Örskärs fyr', type: 'Restaurang', desc: 'Restaurangen ligger i den gamla fyrmästarbostaden och öppnar igen i maj 2027. Du måste alltid boka.', websiteUrl: 'https://www.orskarsfyr.se/restaurang-och-kiosk.html', book_required: true },
+    ],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — föreskrift 2 "Medföra hund som inte är kopplad"; 3 "Göra upp eld" (läst 2026-11-17)
+      'I reservatet ska hunden vara kopplad och du får inte göra upp eld.',
+      // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — föreskrift 5 "Utan markägares tillstånd tälta mer än två dygn"; 6 "förtöja eller förankra båt vid samma strand för längre tid än två dygn" (läst 2026-11-17)
+      'Utan markägarens tillstånd får du inte tälta mer än två dygn eller förtöja vid samma strand längre än två dygn.',
+    ],
+    related: ['graso', 'arholma'],
+    tags: ['roslagen', 'östhammar', 'fyr', 'naturreservat', 'orkidéer', 'vandring'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html — "Bästa baden finns på klipporna i öster" (läst 2026-11-17)
+          { name: 'Klipporna i öster', desc: 'De bästa baden på Örskär finns på klipporna i öster.', type: 'klippbad' },
+        ],
+      },
+    },
+  },
+  // ─── ÄMTÖ ────────────────────────────────────────────────────
+  {
+    slug: 'amto',
+    name: 'Ämtö',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    emoji: '🌲',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Ämtö är en av de största öarna i Gryts skärgård."; "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet" (läst 2026-11-17)
+    tagline: 'En av de största öarna i Gryts skärgård, med över 9 kilometer skyltad vandringsled.',
+    seoTitle: 'Ämtö: naturreservat i Gryts skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Ämtö är en av de största öarna i Gryts skärgård." (läst 2026-11-17)
+    seoDescription: 'Över 9 kilometer skyltad vandringsled, grillplatser och fritt fiske med handredskap. Skärgårdsbåten till Ämtö går från Getterö och bokas dagen innan.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%84mt%C3%B6 — Lantmäteriet Min Karta, sökning "Ämtö" → Ämtö | Valdemarsvik | Trakt, SWEREF 99 TM 610063/6458464 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.2535,
+    lng: 16.8754,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Ämtö är en av de största öarna i Gryts skärgård."; "Storlek: 457,5 hektar"; "Skyddsår: 1975"; "Markägare: Valdemarsviks kommun" (läst 2026-11-17)
+      'Ämtö är en av de största öarna i Gryts skärgård. Ämtö naturreservat bildades 1975 och är 457,5 hektar. Valdemarsviks kommun äger marken i reservatet.',
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet"; "flera grillplatser och rastbord och gott om naturliga badmöjligheter" (läst 2026-11-17)
+      'I reservatet finns över 9 kilometer skyltad vandringsled, flera grillplatser och rastbord och gott om naturliga badmöjligheter.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Skyddsår: 1975" (läst 2026-11-17)
+      character: 'Naturreservat med vandringsleder och betesmarker',
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "välskyltad vandringsled"; "Fisket är fritt om du använder handredskap." (läst 2026-11-17)
+      best_for: 'Vandring, bad och fiske',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet" (läst 2026-11-17)
+      { icon: '🚶', name: 'Vandring', desc: 'Över 9 kilometer skyltad vandringsled i reservatet.' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "flera grillplatser och rastbord och gott om naturliga badmöjligheter" (läst 2026-11-17)
+      { icon: '🔥', name: 'Grillplatser och bad', desc: 'Flera grillplatser och rastbord och gott om naturliga badmöjligheter.' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Fisket är fritt om du använder handredskap." (läst 2026-11-17)
+      { icon: '🎣', name: 'Fiske', desc: 'Fisket är fritt med handredskap.' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Idag betas återigen stora delar av ön"; "Betet pågår under maj till oktober." (läst 2026-11-17)
+      { icon: '🌾', name: 'Betesmarker', desc: 'Stora delar av ön betas från maj till oktober.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Getterö mot Ämtö"; "Gäller från 1 november 2026 till 13 juni 2027."; "Avgångar lördag: Inga avgångar." (läst 2026-11-17)
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan"; "Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna." (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Getterö', desc: 'Östgötatrafikens linje 776 går från Getterö till Ämtö. Tidtabellen gäller 1 november 2026 till 13 juni 2027, och på lördagar går inga turer. Resan bokas senast klockan 18.00 dagen innan. Skärgårdstrafiken är öppen för alla, men i första hand för dem som bor på öarna.', icon: '⛴', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik' },
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Långholmsvikens hamnbrygga (Ämtö stugby, brygga 2) trafikeras av Skärgårdstrafiken." (läst 2026-11-17)
+      { method: 'Brygga', from: 'Långholmsviken', desc: 'Skärgårdstrafiken går till Långholmsvikens hamnbrygga (Ämtö stugby, brygga 2), som är reservatets huvudentré.', icon: '⚓' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan" (läst 2026-11-17)
+      'Boka båten senast klockan 18.00 dagen innan.',
+      // KÄLLA: https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html — "Samtliga regler för reservatet finner du i beslutet." (läst 2026-11-17)
+      'Reglerna för reservatet står i Länsstyrelsens beslut, som du hittar på reservatets sida.',
+    ],
+    related: ['harstena'],
+    tags: ['östergötland', 'gryt', 'valdemarsvik', 'naturreservat', 'vandring'],
+  },
+  // ─── HARSTENA ────────────────────────────────────────────────
+  {
+    slug: 'harstena',
+    name: 'Harstena',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    emoji: '🐟',
+    // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "en arkipelag med ett 70-tal öar"; "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (publicerad 2022-01-20, läst 2026-11-17)
+    tagline: 'Ett 70-tal öar i Gryts skärgård, med en gammal by och ett trankokeri som är byggnadsminne.',
+    seoTitle: 'Harstena: båt från Fyrudden och byn på ön',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Harstena ligger nästan 13 km (7 M) nordost om Fyrudden." (läst 2026-11-17)
+    seoDescription: 'Ett 70-tal öar nästan 13 kilometer nordost om Fyrudden, med en gammal by och ett trankokeri som är byggnadsminne. Båten från Fyrudden bokas dagen innan.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harstena — Lantmäteriet Min Karta, sökning "Harstena" → Harstena | Valdemarsvik | Trakt, SWEREF 99 TM 617759/6458610 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.2528,
+    lng: 17.0066,
+    description: [
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Harstena består av en arkipelag med ett 70-tal öar. Huvudön är drygt 150 hektar stor."; "Harstena ligger nästan 13 km (7 M) nordost om Fyrudden." (publicerad 2022-01-20, läst 2026-11-17)
+      'Harstena är en arkipelag med ett 70-tal öar. Huvudön är drygt 150 hektar. Harstena ligger nästan 13 kilometer nordost om Fyrudden.',
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "På Harstena är byn fortfarande oskiftad med bevarad karaktär."; "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (publicerad 2022-01-20, läst 2026-11-17)
+      'Enligt Valdemarsviks kommun var byn på Harstena fortfarande oskiftad 2022. Det gamla trankokeriet finns kvar och är skyddat som byggnadsminne.',
+    ],
+    facts: {
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "en arkipelag med ett 70-tal öar" (läst 2026-11-17)
+      character: 'Ögrupp med en gammal by',
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (läst 2026-11-17)
+      best_for: 'Besök i en gammal skärgårdsby',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/ — "Det gamla trankokeriet finns kvar på Harstena och är skyddat som byggnadsminne." (läst 2026-11-17)
+      { icon: '🏛', name: 'Trankokeriet', desc: 'Det gamla trankokeriet finns kvar och är skyddat som byggnadsminne.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf — "Från Fyrudden mot Harstena"; "Gäller från 1 november 2026 till 13 juni 2027."; "Avgångar lördag: Inga avgångar." (läst 2026-11-17)
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan"; "Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna." (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Fyrudden', desc: 'Östgötatrafikens linje 776 går från Fyrudden till Harstena. Tidtabellen gäller 1 november 2026 till 13 juni 2027, och på lördagar går inga turer. Resan bokas senast klockan 18.00 dagen innan. Skärgårdstrafiken är öppen för alla, men i första hand för dem som bor på öarna.', icon: '⛴', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik' },
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/bryggor-som-baten-gar-till — "Harstena, postbryggan (Turistbrygga) 3"; "Harstena södra 68"; "Harstena, Hundhålet 109" (läst 2026-11-17)
+      { method: 'Bryggor', from: 'Harstena', desc: 'På Harstena kan du beställa resa till tre bryggor: postbryggan (turistbryggan), Harstena södra och Hundhålet.', icon: '⚓', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/bryggor-som-baten-gar-till' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan" (läst 2026-11-17)
+      'Boka båten senast klockan 18.00 dagen innan. Enligt tidtabellen som gäller till 13 juni 2027 går inga turer på lördagar.',
+    ],
+    related: ['amto'],
+    tags: ['östergötland', 'gryt', 'valdemarsvik', 'kulturmiljö', 'fiskeläge'],
+  },
+  // ─── KOPPARHOLMARNA ──────────────────────────────────────────
+  {
+    slug: 'kopparholmarna',
+    name: 'Kopparholmarna',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    emoji: '🏖',
+    // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett drygt tiotal öar ingår i reservatet varav Kopparholmarna är de två största."; "Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+    tagline: 'Naturreservat utanför Arkösund med vindskydd, bad och en natur- och vrakutställning. Sommartid går turbåtar från piren.',
+    seoTitle: 'Kopparholmarna: naturreservat vid Arkösund',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Åk länsväg 209 österut till Arkösund. Parkering finns vid affären. Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+    seoDescription: 'Vindskydd med eldstad, bad och en natur- och vrakutställning. Sommartid går turbåtar från piren i Arkösund ut till Kopparholmarna.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kopparholmarnas%20naturreservat — Lantmäteriet Min Karta, sökning "Kopparholmarnas naturreservat" → Norrköping | Naturvårdsområde, SWEREF 99 TM 613212/6482448 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.4680,
+    lng: 16.9409,
+    description: [
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett drygt tiotal öar ingår i reservatet varav Kopparholmarna är de två största." (läst 2026-11-17)
+      'Ett drygt tiotal öar ingår i Kopparholmarnas naturreservat, och Kopparholmarna är de två största.',
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "På östra ön finns ett torrdass, samt en natur- och vrakutställning. Ett vindskydd med eldstad ligger på den västra ön." (läst 2026-11-17)
+      'På den östra ön finns ett torrdass och en natur- och vrakutställning. På den västra ön finns ett vindskydd med eldstad.',
+    ],
+    facts: {
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett drygt tiotal öar ingår i reservatet" (läst 2026-11-17)
+      character: 'Naturreservat med ett drygt tiotal öar',
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+      season: 'Turbåtar sommartid',
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "här tas inte badvattenprov då badplatsen är belägen på en ö" (läst 2026-11-17)
+      best_for: 'Dagsutflykt och bad',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "På östra ön finns ett torrdass, samt en natur- och vrakutställning." (läst 2026-11-17)
+      { icon: '🏛', name: 'Natur- och vrakutställning', desc: 'På den östra ön finns en natur- och vrakutställning och ett torrdass.' },
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Ett vindskydd med eldstad ligger på den västra ön." (läst 2026-11-17)
+      { icon: '🔥', name: 'Vindskydd', desc: 'På den västra ön finns ett vindskydd med eldstad.' },
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "här tas inte badvattenprov då badplatsen är belägen på en ö vilket medför logistiska hinder" (läst 2026-11-17)
+      { icon: '🏊', name: 'Bad', desc: 'Kommunen har en badplats här men tar inga badvattenprover, eftersom badplatsen ligger på en ö.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat — "Åk länsväg 209 österut till Arkösund. Parkering finns vid affären. Från piren går sommartid turbåtar till Kopparholmarna." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Arkösund', desc: 'Sommartid går turbåtar från piren i Arkösund till Kopparholmarna. Kommunen anger inga datum.', icon: '⛴', url: 'https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://lansstyrelsen.se/download/18.6ae610001636c9c68e5981/1526553838599/F%C3%B6reskrifter%20om%20bildande%20av%20naturreservatet%20Kopparholmarna%20i%20Norrk%C3%B6pings%20kommun%202012.11.pdf — C3 "medföra okopplad hund eller annat lösgående husdjur"; C6 "göra upp eld annat än på anvisad plats"; C2 "tälta eller förtöja båt längre tid än två dygn i följd på samma plats" (läst 2026-11-17)
+      'I reservatet ska hunden vara kopplad och eld får bara göras på anvisad plats. Du får inte tälta eller förtöja båt längre än två dygn i följd på samma plats.',
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Du får inte ha med hund på de kommunala badplatserna." (läst 2026-11-17)
+      'På kommunens badplats på Kopparholmarna får du inte ha med hund.',
+    ],
+    related: ['arkosund', 'harstena'],
+    tags: ['östergötland', 'norrköping', 'naturreservat', 'bad'],
+  },
+  // ─── ARKÖSUND ────────────────────────────────────────────────
+  {
+    slug: 'arkosund',
+    name: 'Arkösund',
+    region: 'ovriga',
+    regionLabel: 'Östergötlands skärgård',
+    slag: 'ort',
+    emoji: '⚓',
+    // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja" (läst 2026-11-17)
+    // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Badholmarna (Arkösund)", "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+    tagline: 'Ort i Norrköpings kommun där skärgårdstrafiken mot Aspöja och Birkö utgår. Tre kommunala badplatser, bland dem Badholmarna.',
+    seoTitle: 'Arkösund: båt till skärgården och bad',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja" (läst 2026-11-17)
+    seoDescription: 'Härifrån går skärgårdsbåten mot Aspöja och Birkö. I Arkösund har kommunen tre badplatser, bland dem Badholmarna, fyra små öar med broar emellan.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ark%C3%B6sund — Lantmäteriet Min Karta, sökning "Arkösund" → Arkösund | Norrköping | Bebyggelse, SWEREF 99 TM 613239/6485251 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.4931,
+    lng: 16.9427,
+    description: [
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja"; "Gäller från 17 augusti 2026 till 13 juni 2027." (läst 2026-11-17)
+      'Från Arkösund går Östgötatrafikens skärgårdslinje 781 mot Birkö via Aspöja. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027.',
+      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Badholmarna ligger strax utanför Arkösund och består av fyra små öar som förbinds med broar." (läst 2026-11-17)
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Badholmarna (Arkösund)", "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+      'Kommunen har hand om tre badplatser i Arkösund: Badholmarna, Nordanskog och Sköldvik. Badholmarna ligger strax utanför orten och är fyra små öar som förbinds med broar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja" (läst 2026-11-17)
+      character: 'Ort där skärgårdstrafiken utgår',
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Badholmarna (Arkösund)", "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+      best_for: 'Bad och båt vidare ut i skärgården',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Badholmarna ligger strax utanför Arkösund och består av fyra små öar som förbinds med broar." (läst 2026-11-17)
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Tillgång till toaletter i servicebyggnad 400 meter från badet. Affär och restaurang inom gångavstånd." (läst 2026-11-17)
+      { icon: '🏖', name: 'Badholmarna', desc: 'Fyra små öar som förbinds med broar, strax utanför Arkösund. Toaletter finns i en servicebyggnad 400 meter från badet, och affär och restaurang ligger inom gångavstånd.' },
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Nordanskog (Arkösund)", "Sköldvik (Arkösund)" (läst 2026-11-17)
+      { icon: '🏊', name: 'Nordanskog och Sköldvik', desc: 'Två av kommunens badplatser i Arkösund.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel — "Ta buss 440 till hållplats Arkösunds hamn." (publicerad 2026-07-02, läst 2026-11-17)
+      { method: 'Buss', from: 'Norrköping', desc: 'Kommunen tipsade sommaren 2026 om buss 440 till hållplatsen Arkösunds hamn. Kontrollera aktuell tidtabell hos Östgötatrafiken.', icon: '🚌', url: 'https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel' },
+      // KÄLLA: https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf — "Från Arkösund mot Birkö via Aspöja"; "Gäller från 17 augusti 2026 till 13 juni 2027." (läst 2026-11-17)
+      // KÄLLA: https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik — "Beställ senast klockan 18:00 dagen innan" (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Arkösund', desc: 'Östgötatrafikens linje 781 går från Arkösund mot Birkö via Aspöja. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027. Resan bokas senast klockan 18.00 dagen innan.', icon: '⛴', url: 'https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/tidtabeller-for-skargardstrafik' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser — "Du får inte ha med hund på de kommunala badplatserna." (läst 2026-11-17)
+      'Hundar får inte vara med på kommunens badplatser.',
+    ],
+    related: ['kopparholmarna', 'harstena'],
+    tags: ['östergötland', 'norrköping', 'hamn', 'bad'],
+  },
+  // ─── HARTSÖ ──────────────────────────────────────────────────
+  {
+    slug: 'hartso',
+    name: 'Hartsö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🐦',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Hargberget som med sina 40 meter över havet är en av skärgårdens högsta punkter"; "På Hartsö-Enskär ligger en fågelstation som bland annat ringmärker och räknar fåglar som sträcker förbi." (läst 2026-11-17)
+    tagline: 'Naturreservat i Nyköpings skärgård med rundslinga, utsikt från Hargberget och en fågelstation på Enskär.',
+    seoTitle: 'Hartsö: naturreservat i Nyköpings skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Reservatet nås endast med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö." (läst 2026-11-17)
+    seoDescription: 'Rundslinga på cirka 3,3 kilometer och utsikt från Hargberget, 40 meter över havet. Hartsö i Nyköpings skärgård når du bara med båt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harts%C3%B6 — Lantmäteriet Min Karta, sökning "Hartsö" → Hartsö | Nyköping | Trakt, SWEREF 99 TM 643882/6511396 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7187,
+    lng: 17.4845,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Skyddsår: 1982. Nytt beslut och skötselplan 2021"; "Areal: 5 535 hektar"; "På Hartsö finns två familjer som bor på ön året runt." (läst 2026-11-17)
+      'Hartsö naturreservat bildades 1982, fick nytt beslut och skötselplan 2021 och är 5 535 hektar. Två familjer bor på Hartsö året runt.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer. Till Hargberget tillkommer 1,2 kilometer enkel väg."; "Hargberget som med sina 40 meter över havet är en av skärgårdens högsta punkter" (läst 2026-11-17)
+      'Rundslingan är cirka 3,3 kilometer. Till Hargberget, som med 40 meter över havet är en av skärgårdens högsta punkter, är det ytterligare 1,2 kilometer enkel väg.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Areal: 5 535 hektar" (läst 2026-11-17)
+      character: 'Naturreservat med leder och fågelskyddsområden',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer."; "fågelstation" (läst 2026-11-17)
+      best_for: 'Vandrare och fågelskådare',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Rundslingan är cirka 3,3 kilometer. Till Hargberget tillkommer 1,2 kilometer enkel väg." (läst 2026-11-17)
+      { icon: '🚶', name: 'Rundslingan och Hargberget', desc: 'Rundslingan är cirka 3,3 kilometer. Till Hargberget är det ytterligare 1,2 kilometer enkel väg.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "På Hartsö-Enskär ligger en fågelstation som bland annat ringmärker och räknar fåglar som sträcker förbi." (läst 2026-11-17)
+      { icon: '🐦', name: 'Fågelstationen på Enskär', desc: 'På Hartsö-Enskär finns en fågelstation som bland annat ringmärker och räknar fåglar.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "Reservatet nås endast med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö." (läst 2026-11-17)
+      { method: 'Båt', from: 'Nyköpings skärgård', desc: 'Reservatet nås bara med båt. Sörmlandstrafiken har skärgårdstrafik till Hartsö.', icon: '⛴', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "En del områden får man inte besöka 1 april till 31 juli, för andra delar gäller 1 februari till 15 augusti." (läst 2026-11-17)
+      'Vissa områden får du inte besöka 1 april till 31 juli, andra 1 februari till 15 augusti.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "förtöja eller ankra upp båt mer än två dygn i följd vid samma plats, med följande undantag: Detta gäller inte dem som hyr övernattningsstugor inom reservatet och har sina båtar förankrade vid särskilt iordningsställd båtplats." (läst 2026-11-17)
+      'Båten får inte ligga förtöjd eller ankrad mer än två dygn i följd på samma plats. Undantaget gäller den som hyr stuga i reservatet och har båten vid en särskild båtplats.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html — "medföra hund eller annat husdjur som inte är kopplat eller förvarat i bur"; "framföra maskindrivet fartyg eller ankra inom ett vattenområde sydöst om Hartsö, enligt karta bilaga 4 i beslutet" (läst 2026-11-17)
+      'Hunden ska vara kopplad eller i bur. I ett vattenområde sydost om Hartsö, utmärkt på kartan i reservatsbeslutet, får du inte köra motordriven båt eller ankra.',
+    ],
+    related: ['ringso', 'savo', 'stendorren'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'fåglar', 'vandring'],
+  },
+  // ─── RINGSÖ ──────────────────────────────────────────────────
+  {
+    slug: 'ringso',
+    name: 'Ringsö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🏖',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård."; "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+    tagline: 'Den största ön i Nyköpings skärgård, med sandstränder i söder och restaurerade fiskebodar vid djupsundet.',
+    seoTitle: 'Ringsö: största ön i Nyköpings skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård." (läst 2026-11-17)
+    seoDescription: 'Sandstränder i söder och restaurerade fiskebodar vid djupsundet. Ringsö är den största ön i Nyköpings skärgård.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Rings%C3%B6 — Lantmäteriet Min Karta, sökning "Ringsö" → Ringsö | Nyköping | Trakt, SWEREF 99 TM 641390/6512305 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7277,
+    lng: 17.4421,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård."; "Reservatet ligger 25 kilometer öster om Nyköping, i skärgården ett par kilometer utanför Studsvik." (läst 2026-11-17)
+      'Ringsö är den största ön i Nyköpings skärgård. Reservatet ligger 25 kilometer öster om Nyköping, ett par kilometer utanför Studsvik.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor."; "Vid djupsundet ligger Österbodarna, gamla fiskebodar, som har restaurerats"; "Skyddsår: 1980 / Areal: 2044,5 hektar" (läst 2026-11-17)
+      'På södra Ringsö finns sandstränder, och du kan bada från klippor. Vid djupsundet ligger Österbodarna, gamla fiskebodar som har restaurerats. Reservatet bildades 1980 och är 2 044,5 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Ringsö är den största ön i Nyköpings skärgård." (läst 2026-11-17)
+      character: 'Största ön i Nyköpings skärgård, naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+      best_for: 'Bad och gamla fiskebodar',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+      { icon: '🏖', name: 'Bad', desc: 'På södra Ringsö finns sandstränder, och du kan bada från klippor.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Vid djupsundet ligger Österbodarna, gamla fiskebodar, som har restaurerats" (läst 2026-11-17)
+      { icon: '🏛', name: 'Österbodarna', desc: 'Gamla fiskebodar vid djupsundet som har restaurerats.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Till reservatet tar du dig med egen båt. Sörmlandstrafiken har också skärgårdstrafik till Ringsö." (läst 2026-11-17)
+      { method: 'Båt', from: 'Nyköpings skärgård', desc: 'Du tar dig dit med egen båt, och Sörmlandstrafiken har skärgårdstrafik till Ringsö.', icon: '⛴', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "Delar av Ringsö naturreservat är fågelskyddsområde med beträdningsförbud 1 februari till 15 augusti."; "tälta längre tid än två dygn på samma plats" (läst 2026-11-17)
+      'Delar av reservatet är fågelskyddsområde med beträdnadsförbud 1 februari till 15 augusti. Du får inte tälta längre än två dygn på samma plats.',
+    ],
+    related: ['hartso', 'savo', 'stendorren'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'bad'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html — "På södra Ringsö finns sandstränder och möjlighet att bada från klippor." (läst 2026-11-17)
+          { name: 'Södra Ringsö', desc: 'Sandstränder, och möjlighet att bada från klippor.', type: 'sandstrand' },
+        ],
+      },
+    },
+  },
+  // ─── SÄVÖ ────────────────────────────────────────────────────
+  {
+    slug: 'savo',
+    name: 'Sävö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🚶',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sörmlandsleden med orange markering och Sävöleden med blå markering"; "De före detta lotsbostäderna används idag som vandrarhem" (läst 2026-11-17)
+    tagline: 'Naturreservat i Nyköpings skärgård med två leder, ett litet museum och vandrarhem i de gamla lotsbostäderna.',
+    seoTitle: 'Sävö: leder, lotsbostäder och naturreservat',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt." (läst 2026-11-17)
+    seoDescription: 'Två leder på cirka 3 kilometer, ett litet museum och vandrarhem i de gamla lotsbostäderna. Sävö når du bara med båt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=S%C3%A4v%C3%B6 — Lantmäteriet Min Karta, sökning "Sävö" → Sävö | Nyköping | Trakt, SWEREF 99 TM 643223/6516933 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7686,
+    lng: 17.4767,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt. … Sörmlandstrafiken har skärgårdstrafik till Sävö."; "Skyddsår: 1987 / Areal: 303,1 hektar" (läst 2026-11-17)
+      'Sävö nås bara med båt, och Sörmlandstrafiken har skärgårdstrafik till ön. Reservatet bildades 1987 och är 303,1 hektar.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "På öns sydöstra spets ligger ett litet museum … De före detta lotsbostäderna används idag som vandrarhem" (läst 2026-11-17)
+      'På öns sydöstra spets finns ett litet museum, och de före detta lotsbostäderna används i dag som vandrarhem.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Skyddsår: 1987" (läst 2026-11-17)
+      character: 'Naturreservat med betesmark och lotsmiljö',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "De är båda cirka 3 km långa." (läst 2026-11-17)
+      best_for: 'Vandring och en natt på vandrarhem',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sörmlandsleden med orange markering och Sävöleden med blå markering, som delvis överlappar. De är båda cirka 3 km långa." (läst 2026-11-17)
+      { icon: '🚶', name: 'Två leder', desc: 'Sörmlandsleden med orange markering och Sävöleden med blå markering. Båda är cirka 3 kilometer.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "På öns sydöstra spets ligger ett litet museum" (läst 2026-11-17)
+      { icon: '🏛', name: 'Museum', desc: 'Ett litet museum på öns sydöstra spets.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "De före detta lotsbostäderna används idag som vandrarhem"; "Eftersom får och kor går fria på ön är det bäst att använda tältplatserna som ligger innanför staket." (läst 2026-11-17)
+      { name: 'Vandrarhem och tältplatser', type: 'Vandrarhem och tält', desc: 'De före detta lotsbostäderna används i dag som vandrarhem. Får och kor går fria på ön, så tälta helst på tältplatserna innanför staket.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "Sävö nås endast med båt. … Sörmlandstrafiken har skärgårdstrafik till Sävö." (läst 2026-11-17)
+      { method: 'Båt', from: 'Nyköpings skärgård', desc: 'Sävö nås bara med båt. Sörmlandstrafiken har skärgårdstrafik till ön.', icon: '⛴', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html — "medföra hund … som inte är kopplat eller förvarat i bur"; "göra upp öppen eld på annan än särskilt iordningställd plats som är markerad med skylt" (läst 2026-11-17)
+      'Hunden ska vara kopplad eller i bur, och eld får bara göras på särskilt iordningställd plats som är markerad med skylt.',
+    ],
+    related: ['hartso', 'ringso', 'stendorren'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'vandring', 'vandrarhem'],
+  },
+  // ─── STENDÖRREN ──────────────────────────────────────────────
+  {
+    slug: 'stendorren',
+    name: 'Stendörren',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    slag: 'naturreservat',
+    emoji: '🌲',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det är lätt att nå från fastlandet och du kommer ut på de närmaste skärgårdsöarna via flera hängbroar."; "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+    tagline: 'Naturreservat vid Nyköpings kust där du går över hängbroar ut till de närmaste öarna.',
+    seoTitle: 'Stendörren: hängbroar ut i skärgården',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa." (läst 2026-11-17)
+    seoDescription: 'Gå över hängbroarna ut till de närmaste öarna. Reservatet har 20 grillplatser och två parkeringar, och vägen är skyltad från E4 och väg 219.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stend%C3%B6rren — Lantmäteriet Min Karta, sökning "Stendörren" → Stendörren | Nyköping | Bebyggelse, SWEREF 99 TM 638935/6513976 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7435,
+    lng: 17.4008,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det är lätt att nå från fastlandet och du kommer ut på de närmaste skärgårdsöarna via flera hängbroar."; "Skyddsår: 1972 / Areal: 923 hektar" (läst 2026-11-17)
+      'Stendörrens naturreservat är lätt att nå från fastlandet, och du kommer ut på de närmaste öarna via flera hängbroar. Reservatet bildades 1972 och är 923 hektar.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa. Det finns två parkeringar i reservatet"; "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+      'Vägen är skyltad från E4 och väg 219 mellan Nyköping och Trosa, och det finns två parkeringar och 20 grillplatser i reservatet.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "via flera hängbroar" (läst 2026-11-17)
+      character: 'Naturreservat på fastlandet och närmaste öarna',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+      best_for: 'Dagsutflykt, grill och promenad över hängbroarna',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "du kommer ut på de närmaste skärgårdsöarna via flera hängbroar." (läst 2026-11-17)
+      { icon: '🚶', name: 'Hängbroarna', desc: 'Flera hängbroar tar dig från fastlandet ut på de närmaste öarna.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Det finns 20 grillplatser i reservatet." (läst 2026-11-17)
+      { icon: '🔥', name: 'Grillplatser', desc: 'Det finns 20 grillplatser i reservatet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Skyltat från E4 och väg 219 mellan Nyköping och Trosa. Det finns två parkeringar i reservatet" (läst 2026-11-17)
+      { method: 'Bil', from: 'E4 eller väg 219', desc: 'Vägen är skyltad från E4 och väg 219 mellan Nyköping och Trosa. Det finns två parkeringar i reservatet.', icon: '🚗', url: 'https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html — "Övernattning är förbjudet i området innanför den röda linjen på kartan, förutom i båt."; "Nej, du får inte använda drönare i naturreservatet … Om du vill använda drönare behöver du söka dispens" (läst 2026-11-17)
+      'Övernattning är förbjuden innanför den röda linjen på reservatskartan, utom i båt. Du får inte flyga drönare i reservatet utan dispens.',
+    ],
+    related: ['ringso', 'hartso', 'savo'],
+    tags: ['sörmland', 'nyköping', 'naturreservat', 'dagsutflykt'],
+  },
+  // ─── KRÅMÖ ───────────────────────────────────────────────────
+  {
+    slug: 'kramo',
+    name: 'Kråmö',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '🪨',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden."; "Förvaltare: Trosa kommun" (läst 2026-11-17)
+    tagline: 'Naturreservat i Trosa skärgård med jättegrytor från senaste istiden på ön Grytan.',
+    seoTitle: 'Kråmö: naturreservat i Trosa skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Hit kommer du med egen båt eller via båttaxi." (läst 2026-11-17)
+    seoDescription: 'Jättegrytor från senaste istiden på ön Grytan. Till Kråmö i Trosa skärgård tar du dig med egen båt eller båttaxi.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kr%C3%A5m%C3%B6 — Lantmäteriet Min Karta, sökning "Kråmö" → Kråmö | Trosa | Natur- och terrängnamn, SWEREF 99 TM 652647/6525074 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.8384,
+    lng: 17.6450,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Kommun: Trosa"; "Trosa kommun har bildat och förvaltar naturreservatet."; "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
+      'Kråmö är ett naturreservat i Trosa kommun, som också förvaltar det. På ön Grytan finns flera jättegrytor från senaste istiden.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Förvaltare: Trosa kommun" (läst 2026-11-17)
+      character: 'Reservatsö med jättegrytor',
+      // KÄLLA: https://kramoskargardsby.se/general-6 — "2026 trafikerar vi 11 juni till 2 augusti samt 6 - 9 augusti." (läst 2026-11-17)
+      season: 'Båt från Trosa sommaren 2026',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
+      best_for: 'Båtfolk och utflykt till jättegrytorna',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "På ön Grytan finns flera jättegrytor från senaste istiden." (läst 2026-11-17)
+      { icon: '🪨', name: 'Jättegrytorna på Grytan', desc: 'På ön Grytan finns flera jättegrytor från senaste istiden.' },
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Fiska annat än med handredskap." (läst 2026-11-17)
+      { icon: '🎣', name: 'Fiske', desc: 'Du får fiska, men bara med handredskap.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Hit kommer du med egen båt eller via båttaxi." (läst 2026-11-17)
+      { method: 'Egen båt eller båttaxi', from: 'Trosa skärgård', desc: 'Du tar dig hit med egen båt eller båttaxi.', icon: '⛵' },
+      // KÄLLA: https://kramoskargardsby.se/general-6 — "Skärgårdstrafik i Trosa 2026"; "2026 trafikerar vi 11 juni till 2 augusti samt 6 - 9 augusti." (läst 2026-11-17)
+      { method: 'Sommarbåt', from: 'Trosa', desc: 'Enligt Kråmö skärgårdsby gick deras båt från Trosa sommaren 2026 mellan 11 juni och 2 augusti, och 6 till 9 augusti.', icon: '⛴', url: 'https://kramoskargardsby.se/general-6' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html — "Det är förbjudet att utan tillstånd från Trosa kommun: … Förankra båt eller tälta längre tid är två dygn i följd på samma plats." (läst 2026-11-17)
+      'Utan tillstånd från Trosa kommun får du inte ankra eller tälta på samma plats mer än två dygn i följd.',
+    ],
+    related: ['asko', 'stendorren'],
+    tags: ['sörmland', 'trosa', 'naturreservat', 'jättegrytor'],
+  },
+  // ─── FÅGELSKÄR ───────────────────────────────────────────────
+  {
+    slug: 'fagelskar',
+    name: 'Fågelskär',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
+    emoji: '⛺',
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Fågelskär är en ö som ligger cirka tre kilometer utanför Oxelösund."; "en populär tältplats. Här finns soptunnor och utedass." (läst 2026-11-17)
+    tagline: 'Liten reservatsö cirka tre kilometer utanför Oxelösund, med brygga och en populär tältplats.',
+    seoTitle: 'Fågelskär: tältö utanför Oxelösund',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Hit tar du dig med egen båt. Det finns en brygga i östra viken." (läst 2026-11-17)
+    seoDescription: 'Liten ö cirka tre kilometer utanför Oxelösund, med brygga i östra viken och en populär tältplats på de norra uddarna.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=F%C3%A5gelsk%C3%A4r — Lantmäteriet Min Karta, sökning "Fågelskär" → Fågelskär | Oxelösund | Natur- och terrängnamn, SWEREF 99 TM 627149/6504161 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.6590,
+    lng: 17.1917,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Fågelskär är en ö som ligger cirka tre kilometer utanför Oxelösund."; "Skyddsår: 1997 / Areal: 10,8 hektar" (läst 2026-11-17)
+      'Fågelskär ligger cirka tre kilometer utanför Oxelösund. Reservatet bildades 1997 och är 10,8 hektar.',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "På de norra uddarna"; "en populär tältplats. Här finns soptunnor och utedass." (läst 2026-11-17)
+      'På de norra uddarna finns en populär tältplats med soptunnor och utedass.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Areal: 10,8 hektar" (läst 2026-11-17)
+      character: 'Liten reservatsö',
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "en populär tältplats" (läst 2026-11-17)
+      best_for: 'Båtfolk som vill tälta',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "På de norra uddarna"; "en populär tältplats. Här finns soptunnor och utedass." (läst 2026-11-17)
+      { icon: '⛺', name: 'Tältplats', desc: 'På de norra uddarna finns en populär tältplats med soptunnor och utedass.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "en populär tältplats"; "tälta längre än två dygn i följd på samma plats" (läst 2026-11-17)
+      { name: 'Tältning i reservatet', type: 'Tält', desc: 'Tältplats på de norra uddarna. Du får inte tälta längre än två dygn i följd på samma plats.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "Hit tar du dig med egen båt. Det finns en brygga i östra viken." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Oxelösund', desc: 'Du tar dig hit med egen båt. Det finns en brygga i östra viken.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html — "tälta längre än två dygn i följd på samma plats" (läst 2026-11-17)
+      'Du får inte tälta längre än två dygn i följd på samma plats.',
+    ],
+    related: ['stendorren'],
+    tags: ['sörmland', 'oxelösund', 'naturreservat', 'tältning'],
+  },
+  // ─── RÅGÖ ────────────────────────────────────────────────────
+  {
+    slug: 'rago',
+    name: 'Rågö',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    emoji: '🚶',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer"; "Gästhamnen ligger i Alviken." (läst 2026-11-17)
+    tagline: 'Reservatsö i Tjust skärgård med två vandringsleder, gästhamn i Alviken och bokningsbar båt från Gränsö kanal.',
+    seoTitle: 'Rågö: båt från Gränsö kanal och vandring',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "Bokningsbar Skärgårdstrafik till/från Gränsö kanal (gäller 17 augusti 2026 - 13 juni 2027)" (läst 2026-11-17)
+    seoDescription: 'Två vandringsleder, gästhamn i Alviken och tältplats. Båten från Gränsö kanal till Rågö bokas senast vardagen före avresa.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%A5g%C3%B6 — Lantmäteriet Min Karta, sökning "Rågö" → Rågö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 603056/6415211 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.8669,
+    lng: 16.7372,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Beslutsår: 2013"; "Areal: 875 hektar varav 244,3 hektar land"; "Förvaltare: Länsstyrelsen Kalmar län" (läst 2026-11-17)
+      'Rågö naturreservat i Västerviks kommun beslutades 2013 och är 875 hektar, varav 244,3 hektar land. Länsstyrelsen förvaltar reservatet.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer"; "Tillgänglighetsanpassad toalett finns i anslutning till Rågö by och torrdass finns vid gästhamnen i Alviken och vid tältplatsen." (läst 2026-11-17)
+      'Två vandringsleder går på ön: Norra Rågöslingan (blå) på 1 kilometer och Södra Rågöslingan (röd) på 3 kilometer. Tillgänglighetsanpassad toalett finns vid Rågö by, och torrdass finns vid gästhamnen i Alviken och vid tältplatsen.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Areal: 875 hektar varav 244,3 hektar land" (läst 2026-11-17)
+      character: 'Naturreservat med by, leder och gästhamn',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer" (läst 2026-11-17)
+      best_for: 'Vandring och båtfolk',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer" (läst 2026-11-17)
+      { icon: '🚶', name: 'Två leder', desc: 'Norra Rågöslingan (blå) på 1 kilometer och Södra Rågöslingan (röd) på 3 kilometer.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "torrdass finns vid gästhamnen i Alviken och vid tältplatsen."; "Förtöja eller ankra båt mer än högst två dygn på samma ställe." (läst 2026-11-17)
+      { name: 'Tältplats', type: 'Tält', desc: 'Det finns en tältplats med torrdass.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf — "Bokningsbar Skärgårdstrafik till/från Gränsö kanal (gäller 17 augusti 2026 - 13 juni 2027)"; hållplats "Rågö"; "resa måste bokas måndag-fredag mellan 9.00-16.00 på 0490-91019 senast vardag före avresa" (läst 2026-11-17)
+      { method: 'Skärgårdstrafik', from: 'Gränsö kanal', desc: 'Kalmar länstrafiks bokningsbara båt från Gränsö kanal lägger till vid Rågö på de flesta turerna. Tidtabellen gäller 17 augusti 2026 till 13 juni 2027, och resan måste bokas senast vardagen före avresa.', icon: '⛴', url: 'https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Gästhamnen ligger i Alviken."; "torrdass finns vid gästhamnen i Alviken" (läst 2026-11-17)
+      { name: 'Alviken', desc: 'Gästhamnen ligger i Alviken. Där finns torrdass.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Vistas eller färdas inom de områden på och kring Flåtarna och Lindholmen som är markerade på bifogad beslutskarta ... under tiden 1 april till och med 10 juli." (läst 2026-11-17)
+      '1 april till och med 10 juli får du inte vistas eller färdas inom de markerade områdena på och kring Flåtarna och Lindholmen. Se reservatskartan och skyltar på plats.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html — "Förtöja eller ankra båt mer än högst två dygn på samma ställe."; "Medföra okopplad hund eller annat lösgående sällskapsdjur." (läst 2026-11-17)
+      'Båt får inte ligga förtöjd eller ankrad mer än två dygn på samma ställe, och hunden ska vara kopplad.',
+    ],
+    related: ['granso'],
+    tags: ['kalmar län', 'västervik', 'tjust', 'naturreservat', 'vandring'],
+  },
+  // ─── GRÄNSÖ ──────────────────────────────────────────────────
+  {
+    slug: 'granso',
+    name: 'Gränsö',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    slag: 'naturreservat',
+    emoji: '🏖',
+    // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal."; "Gränsöleden löper runt hela naturreservatet och är 12 km lång." (läst 2026-11-17)
+    tagline: 'Halvö och naturreservat utanför Västervik med Gränsöleden på 12 kilometer, snorkelled och sandstränder.',
+    seoTitle: 'Gränsö: naturreservat, led och bad vid Västervik',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "ett naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
+    seoDescription: 'Gränsöleden på 12 kilometer, snorkelled och barnvänliga sandstränder, cirka 5 kilometer från Västerviks stadskärna.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4ns%C3%B6 — Lantmäteriet Min Karta, sökning "Gränsö" → Gränsö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 600919/6402880 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.7566,
+    lng: 16.6959,
+    description: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal."; "ett naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/granso.html — "naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna" (läst 2026-11-17)
+      'Gränsö är en halvö som skiljs från fastlandet av den 700 meter långa Gränsö kanal. Naturreservatet är 328 hektar och ligger cirka 5 kilometer från Västerviks stadskärna.',
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsö är ett naturreservat sedan 1995 och ägs och förvaltas av Västerviks kommun. Det ingår i EU:s nätverk av skyddade områden; Natura 2000." (läst 2026-11-17)
+      'Gränsö är naturreservat sedan 1995, ägs och förvaltas av Västerviks kommun och ingår i Natura 2000.',
+    ],
+    facts: {
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsö är egentligen en halvö" (läst 2026-11-17)
+      character: 'Halvö och naturreservat',
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsöleden löper runt hela naturreservatet"; "Vid Gränsö udde finns en snorkelled" (läst 2026-11-17)
+      best_for: 'Vandring, snorkling och bad',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Gränsöleden löper runt hela naturreservatet och är 12 km lång." (läst 2026-11-17)
+      { icon: '🚶', name: 'Gränsöleden', desc: 'Leden går runt hela reservatet och är 12 kilometer.' },
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Vid Gränsö udde finns en snorkelled" (läst 2026-11-17)
+      { icon: '🤿', name: 'Snorkelled', desc: 'Vid Gränsö udde finns en snorkelled.' },
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "barnvänliga sandstränder vid Bondbacken, Sandvik och Gränsö slott" (läst 2026-11-17)
+      { icon: '🏖', name: 'Sandstränder', desc: 'Barnvänliga sandstränder vid Bondbacken, Sandvik och Gränsö slott.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Det är tillåtet att tälta i enlighet med allemansrätten i Gränsö naturreservat. Det vill säga att tälta med ett par tält under något enstaka dygn." (läst 2026-11-17)
+      { name: 'Tältning', type: 'Tält', desc: 'Du får tälta enligt allemansrätten, det vill säga med ett par tält under något enstaka dygn.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "cirka 5 kilometer från Västerviks stadskärna"; "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal." (läst 2026-11-17)
+      { method: 'Från Västervik', from: 'Västervik', desc: 'Reservatet ligger cirka 5 kilometer från Västerviks stadskärna, på andra sidan Gränsö kanal.', icon: '🚗', url: 'https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "Ta gärna med din hund i reservatet och håll den kopplad året runt." (läst 2026-11-17)
+      'Hunden ska vara kopplad året runt.',
+    ],
+    related: ['rago'],
+    tags: ['kalmar län', 'västervik', 'tjust', 'naturreservat', 'bad', 'snorkling'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/ — "barnvänliga sandstränder vid Bondbacken, Sandvik och Gränsö slott" (läst 2026-11-17)
+          { name: 'Bondbacken, Sandvik och Gränsö slott', desc: 'Barnvänliga sandstränder.', type: 'sandstrand', child_friendly: true },
+        ],
+      },
+    },
+  },
+  // ─── RUNNÖ ───────────────────────────────────────────────────
+  {
+    slug: 'runno',
+    name: 'Runnö',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Över stora delar av Runnö breder plana ytor med sandsten ut sig."; "den största gruppen tomtningar utmed hela Kalmarsund" (läst 2026-11-17)
+    tagline: 'Reservatsö utanför Påskallavik med plana sandstenshällar och den största gruppen tomtningar längs Kalmarsund.',
+    seoTitle: 'Runnö: sandsten och tomtningar vid Påskallavik',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt. Närmaste samhälle på fastlandet är Påskallavik." (läst 2026-11-17)
+    seoDescription: 'Plana sandstenshällar och den största gruppen tomtningar längs Kalmarsund. Till Runnö utanför Påskallavik kommer du bara med egen båt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Runn%C3%B6 — Lantmäteriet Min Karta, sökning "Runnö" → Runnö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 593261/6336501 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.1622,
+    lng: 16.5420,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt. Närmaste samhälle på fastlandet är Påskallavik."; "Beslutsår: 2007 / Areal: 2385 hektar varav 532 hektar land" (läst 2026-11-17)
+      'Till Runnö tar du dig bara med egen båt. Närmaste samhälle på fastlandet är Påskallavik. Reservatet beslutades 2007 och är 2 385 hektar, varav 532 hektar land.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Över stora delar av Runnö breder plana ytor med sandsten ut sig."; "Här finns till exempel den största gruppen tomtningar utmed hela Kalmarsund." (läst 2026-11-17)
+      'Över stora delar av ön finns plana ytor av sandsten. Här finns den största gruppen tomtningar längs hela Kalmarsund.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Areal: 2385 hektar varav 532 hektar land" (läst 2026-11-17)
+      character: 'Naturreservat med sandstenshällar och fornlämningar',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Flera promenadstigar går över huvudön" (läst 2026-11-17)
+      best_for: 'Båtfolk, promenader och kulturhistoria',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Flera promenadstigar går över huvudön, genom skogen ner till vattnet." (läst 2026-11-17)
+      { icon: '🚶', name: 'Promenadstigar', desc: 'Flera stigar går över huvudön, genom skogen ner till vattnet.' },
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "den största gruppen tomtningar utmed hela Kalmarsund" (läst 2026-11-17)
+      { icon: '🏛', name: 'Tomtningar', desc: 'Den största gruppen tomtningar längs hela Kalmarsund.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Till Runnö kan man endast ta sig med egen båt. Närmaste samhälle på fastlandet är Påskallavik." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Påskallavik', desc: 'Till Runnö tar du dig bara med egen båt. Närmaste samhälle på fastlandet är Påskallavik.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "färdas eller uppehålla sig på Lång- och Lövgrund samt på Runnö Rödskär eller komma närmare stranden av dessa öar än 100 m"; "omfattas av tillträdesförbud under tiden 1 april-10 juli" (läst 2026-11-17)
+      '1 april till 10 juli får du inte vara på Lövgrund, Långgrund och Runnö Rödskär eller komma närmare än 100 meter från deras stränder.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html — "Göra upp eld."; "Förtöja eller ankra båt mer än ett dygn på samma ställe."; "Tälta mer än ett dygn på samma ställe." (läst 2026-11-17)
+      'Du får inte göra upp eld, och du får inte förtöja, ankra eller tälta mer än ett dygn på samma ställe.',
+    ],
+    related: ['furon', 'misterhult'],
+    tags: ['kalmar län', 'oskarshamn', 'naturreservat', 'fornlämningar'],
+  },
+  // ─── FURÖN ───────────────────────────────────────────────────
+  {
+    slug: 'furon',
+    name: 'Furön',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    emoji: '⚓',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Furön ligger utslängd i havet, 1 mil rakt österut från Oskarshamn."; "Furön hade tidigare en lotsplats. Den var i bruk fram till 1965" (läst 2026-11-17)
+    tagline: 'Gammal lotsö en mil öster om Oskarshamn, med strövstig runt ön och brygga i Västra hamnen.',
+    seoTitle: 'Furön: lotsön utanför Oskarshamn',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Du är välkommen att lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen." (läst 2026-11-17)
+    seoDescription: 'Gammal lotsö en mil öster om Oskarshamn. Lägg till vid lotsbryggan i Västra hamnen och gå strövstigen runt ön.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Fur%C3%B6 — Lantmäteriet Min Karta, sökning "Furö" → Furö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 597723/6350008 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.2826,
+    lng: 16.6211,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Furön ligger utslängd i havet, 1 mil rakt österut från Oskarshamn."; "Furön hade tidigare en lotsplats. Den var i bruk fram till 1965" (läst 2026-11-17)
+      'Furön ligger en mil rakt österut från Oskarshamn. Ön hade en lotsplats som var i bruk fram till 1965.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön. Respektera de boende – gå inte för nära husen." (läst 2026-11-17)
+      'En strövstig går runt ön. Respektera de boende och gå inte för nära husen.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Furön hade tidigare en lotsplats." (läst 2026-11-17)
+      character: 'Gammal lotsö, naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön." (läst 2026-11-17)
+      best_for: 'Båtfolk och promenad runt ön',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "En strövstig går runt ön." (läst 2026-11-17)
+      { icon: '🚶', name: 'Strövstigen', desc: 'En strövstig går runt ön.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Du är välkommen att lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Oskarshamn', desc: 'Med egen båt kan du lägga till vid den gamla lotsbryggan i Västra hamnen.', icon: '⛵' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "lägga till med egen båt vid den gamla lotsbryggan i Västra hamnen" (läst 2026-11-17)
+      { name: 'Västra hamnen', desc: 'Gamla lotsbryggan, där du kan lägga till med egen båt.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Östra delen av ön är avsatt som fågelskyddsområde med tillträdesförbud under tiden 1/4 - 31/7." (läst 2026-11-17)
+      'Östra delen av ön är fågelskyddsområde med tillträdesförbud 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html — "Göra upp eld."; "Tälta, ställa upp gömsle eller liknande."; "i vattenområdet i högre hastighet än 5 knop" (läst 2026-11-17)
+      'Du får inte göra upp eld eller tälta. I reservatets vatten får motorbåt inte köra fortare än 5 knop.',
+    ],
+    related: ['runno', 'misterhult'],
+    tags: ['kalmar län', 'oskarshamn', 'naturreservat', 'lotsplats'],
+  },
+  // ─── MISTERHULTS SKÄRGÅRD ────────────────────────────────────
+  {
+    slug: 'misterhult',
+    name: 'Misterhults skärgård',
+    region: 'ovriga',
+    regionLabel: 'Kalmar läns skärgård',
+    slag: 'naturreservat',
+    emoji: '🏝',
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "De fyra bebyggda öarna i reservatet"; "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+    tagline: 'Naturreservat i Oskarshamns skärgård med fyra bebyggda öar, leder på Örö och Strupö och hamn i Klintemåla.',
+    seoTitle: 'Misterhults skärgård: Örö, Strupö, Älö, Marsö',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
+    seoDescription: 'Fyra bebyggda öar, vandringsleder på Örö och Strupö och den mest tillgängliga hamnen i Klintemåla.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Misterhults%20sk%C3%A4rg%C3%A5rd — Lantmäteriet Min Karta, sökning "Misterhults skärgård" → Misterhults skärgårds naturreservat | Oskarshamn | Naturvårdsområde, SWEREF 99 TM 602350/6375385 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.5094,
+    lng: 16.7083,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "De fyra bebyggda öarna i reservatet" (Örö, Strupö, Älö, Marsö); "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+      'I Misterhults skärgårds naturreservat finns fyra bebyggda öar: Örö, Strupö, Älö och Marsö. Vandringsleder finns på Örö och Strupö.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
+      'Den mest tillgängliga hamnen finns i Klintemåla.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "De fyra bebyggda öarna i reservatet" (läst 2026-11-17)
+      character: 'Skärgårdsreservat med fyra bebyggda öar',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+      best_for: 'Båtfolk och vandring',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Vandringsleder finns på Örö och Strupö." (läst 2026-11-17)
+      { icon: '🚶', name: 'Vandring på Örö och Strupö', desc: 'Vandringsleder finns på Örö och Strupö.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Den mest tillgängliga hamnen finns i Klintemåla." (läst 2026-11-17)
+      { method: 'Båt', from: 'Klintemåla', desc: 'Den mest tillgängliga hamnen finns i Klintemåla.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Under tiden 1 april till 10 juli inom områden markerade med röd raster på bifogad beslutskarta ... uppehålla sig på eller färdas på närmare avstånd än 100 meter från öar och skär." (läst 2026-11-17)
+      '1 april till 10 juli får du inte vara på, eller färdas närmare än 100 meter från, öar och skär inom de områden som är markerade på reservatskartan.',
+      // KÄLLA: https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html — "Framföra motorbåt eller annan motordriven farkost med högre hastighet än 10 knop utanför allmän farled."; "Släppa ut toalettavfall från fritidsbåt." (läst 2026-11-17)
+      'Utanför allmän farled får motorbåt inte köra fortare än 10 knop, och du får inte släppa ut toalettavfall från fritidsbåt.',
+    ],
+    related: ['furon', 'runno'],
+    tags: ['kalmar län', 'oskarshamn', 'naturreservat', 'skärgård'],
+  },
+  // ─── LIMÖN ───────────────────────────────────────────────────
+  {
+    slug: 'limon',
+    name: 'Limön',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🏖',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet."; "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats" (läst 2026-11-17)
+    tagline: 'Reservatsö i Gävlebukten med tre badplatser, café och en hamn som är skyddad för alla vindar.',
+    seoTitle: 'Limön: ön i Gävlebukten',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Gävle Strand 5,5 Nm"; "Hamnen är skyddad för alla vindar." (läst 2026-11-17)
+    seoDescription: 'Tre badplatser, café och en hamn som är skyddad för alla vindar, 5,5 nautiska mil sjövägen från Gävle Strand.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lim%C3%B6n — Lantmäteriet Min Karta, sökning "Limön" → Limön | Gävle | Natur- och terrängnamn, SWEREF 99 TM 628243/6733344 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 60.7151,
+    lng: 17.3504,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet."; "Areal: 205,3 hektar"; "Skyddsår: 2020"; "Limöns naturreservat förvaltas av Gävle kommun."; "Skyddsområde: naturreservat, Natura 2000" (läst 2026-11-17)
+      'Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet. Naturreservatet är 205,3 hektar, skyddades 2020, ingår i Natura 2000 och förvaltas av Gävle kommun.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats"; "Badplatsen Tärnviken"; "Badplatsen Scoutviken"; "Vid Limö café har du tillgång till dricksvatten och torrdass" (läst 2026-11-17)
+      'Det finns tre badplatser: Kalkudden bredvid Limöbåtens angöringsplats, Tärnviken och Scoutviken. Vid Limö café finns dricksvatten och torrdass.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Skyddsområde: naturreservat, Natura 2000" (läst 2026-11-17)
+      character: 'Naturreservat i Gävlebukten',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats" (läst 2026-11-17)
+      best_for: 'Bad och båtfolk',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats"; "Badplatsen Tärnviken"; "Badplatsen Scoutviken" (läst 2026-11-17)
+      { icon: '🏊', name: 'Bad', desc: 'Tre badplatser: Kalkudden bredvid Limöbåtens angöringsplats, Tärnviken och Scoutviken.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Sjövägen, runt fyrar och genom farleder"; "Gävle Strand 5,5 Nm"; "Du lägger till din båt mot brygga. Hamnen är skyddad för alla vindar."; "Djup 1,7 meter." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Gävle Strand', desc: 'Sjövägen, runt fyrar och genom farleder, är det 5,5 nautiska mil från Gävle Strand. Du lägger till mot brygga i en hamn som är skyddad för alla vindar. Hamndjupet är 1,7 meter.', icon: '⛵', url: 'https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/ — "Du lägger till din båt mot brygga. Hamnen är skyddad för alla vindar."; "Djup 1,7 meter." (läst 2026-11-17)
+      { name: 'Limö hamn', desc: 'Tilläggning mot brygga i en hamn som är skyddad för alla vindar. Djup 1,7 meter.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "medföra hund som inte är kopplad"; "cykla."; "ta ved eller göra upp eld annat än på anvisad eldningsplats. Endast egen medhavd ved eller ved från kommunens iordningställda vedförråd får användas" (läst 2026-11-17)
+      'Hunden ska vara kopplad, och du får inte cykla. Eld får bara göras på anvisad eldningsplats, med egen ved eller ved från kommunens vedförråd.',
+    ],
+    related: ['storjungfrun'],
+    tags: ['gävleborg', 'gävle', 'naturreservat', 'bad'],
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Kalkudden ligger bredvid Limöbåtens angöringsplats" (läst 2026-11-17)
+          { name: 'Kalkudden', desc: 'Bredvid Limöbåtens angöringsplats.', type: 'badvik' },
+          // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html — "Badplatsen Tärnviken"; "Badplatsen Scoutviken" (läst 2026-11-17)
+          { name: 'Tärnviken och Scoutviken', desc: 'Två badplatser till på ön.', type: 'badvik' },
+        ],
+      },
+    },
+  },
+  // ─── AGÖN OCH KRÅKÖN ─────────────────────────────────────────
+  {
+    slug: 'agon',
+    name: 'Agön och Kråkön',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🦭',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen och ligger 2 landmil sydost om Hudiksvall." (läst 2026-11-17)
+    // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "I reservatet finns en av kustens största kolonier med gråsäl." (läst 2026-11-17)
+    tagline: 'Två stora skärgårdsöar med gamla fiskelägen sydost om Hudiksvall, med kapell från 1600-talet och en av kustens största gråsälkolonier.',
+    seoTitle: 'Agön och Kråkön: fiskelägen och gråsäl',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "ligger 2 landmil sydost om Hudiksvall"; "du kan ta dig hit med egen båt eller genom att beställa båt som avgår från fastlandet" (läst 2026-11-17)
+    seoDescription: 'Gamla fiskelägen, kapell från 1660 och 1736 och en av kustens största gråsälkolonier, 2 landmil sydost om Hudiksvall.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ag%C3%B6n — Lantmäteriet Min Karta, sökning "Agön" → Agön | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 628655/6826232 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 61.5481,
+    lng: 17.4209,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen och ligger 2 landmil sydost om Hudiksvall."; "kapellen i Agö och Kråkö hamn, byggda 1660 respektive 1736" (läst 2026-11-17)
+      'Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen, 2 landmil sydost om Hudiksvall. Kapellen i Agö och Kråkö hamn byggdes 1660 respektive 1736.',
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "I reservatet finns en av kustens största kolonier med gråsäl."; "Delar av naturreservatet ingår i … Natura 2000." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "Skyddsår: 2004"; "Areal: 4 540 hektar" (läst 2026-11-17)
+      'I reservatet finns en av kustens största kolonier med gråsäl. Reservatet skyddades 2004 och är 4 540 hektar. Delar av det ingår i Natura 2000.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "två stora skärgårdsöar med gamla fiskelägen" (läst 2026-11-17)
+      character: 'Skärgårdsöar med gamla fiskelägen',
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "I reservatet finns en av kustens största kolonier med gråsäl." (läst 2026-11-17)
+      best_for: 'Båtfolk, kulturmiljö och säl',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "kapellen i Agö och Kråkö hamn, byggda 1660 respektive 1736" (läst 2026-11-17)
+      { icon: '🏛', name: 'Kapellen', desc: 'Kapellen i Agö och Kråkö hamn byggdes 1660 respektive 1736.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "tälta, annat än inom naturhamnarna (föreskriftsområde B3)" (läst 2026-11-17)
+      { name: 'Tältning i naturhamnarna', type: 'Tält', desc: 'Du får bara tälta inom naturhamnarna.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html — "du kan ta dig hit med egen båt eller genom att beställa båt som avgår från fastlandet" (läst 2026-11-17)
+      { method: 'Båt', from: 'Hudiksvall', desc: 'Du tar dig hit med egen båt, eller beställer en båt från fastlandet.', icon: '⛴', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "elda, annat än på iordningställda eld- och grillplatser. Eldning får endast ske med utlagd ved"; "Dessa föreskrifter träder i kraft den 30 mars 2024" (läst 2026-11-17)
+      'Du får bara elda på iordningställda eld- och grillplatser, och bara med utlagd ved. Reglerna gäller sedan 30 mars 2024.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html — "under tiden 1/2 – 31/8 vistas inom område som anges på bilaga 1" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf — "Tihällans område för sälskydd" (läst 2026-11-17)
+      'Inom sälskyddsområdet vid Tihällan får du inte vistas 1 februari till 31 augusti.',
+    ],
+    related: ['kuggorarna', 'storjungfrun'],
+    tags: ['gävleborg', 'hudiksvall', 'naturreservat', 'säl', 'fiskeläge'],
+  },
+  // ─── STORJUNGFRUN ────────────────────────────────────────────
+  {
+    slug: 'storjungfrun',
+    name: 'Storjungfrun',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🗼',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Storjungfrun är den största av de 500 öarna i Söderhamns kommun." (läst 2026-11-17)
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Storjungfruns fyr byggdes 1839"; "Statligt byggnadsminne: 1935" (läst 2026-11-17)
+    tagline: 'Den största av Söderhamns 500 öar, med en fyrplats som är statligt byggnadsminne och stugor att hyra vid fyren.',
+    seoTitle: 'Storjungfrun: fyrön utanför Söderhamn',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Intill fyren finns fyra uthyrningsstugor"; "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
+    seoDescription: 'Bo i en av fyra stugor vid fyren på Söderhamns största ö. Transporten ut bokas tillsammans med stugan.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Storjungfrun — Lantmäteriet Min Karta, sökning "Storjungfrun" → Storjungfrun | Söderhamn | Natur- och terrängnamn, SWEREF 99 TM 624579/6782504 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 61.1572,
+    lng: 17.3151,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Storjungfrun är den största av de 500 öarna i Söderhamns kommun."; "Storjungfruns naturreservat ägs och förvaltas av Söderhamns kommun."; "Areal: 1280 hektar"; "Skyddsår: 2014" (läst 2026-11-17)
+      'Storjungfrun är den största av de 500 öarna i Söderhamns kommun. Naturreservatet ägs och förvaltas av kommunen, är 1 280 hektar och skyddades 2014.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Storjungfruns fyr byggdes 1839"; "Den var den sista stenkolseldade fyren som byggdes i Sverige"; "Det putsade fyrtornet av sten, som fortfarande är i bruk, byggdes 1923."; "Statligt byggnadsminne: 1935" (läst 2026-11-17)
+      'Den första fyren byggdes 1839 och var den sista stenkolseldade fyren som byggdes i Sverige. Dagens fyrtorn i sten är från 1923. Fyrplatsen är statligt byggnadsminne sedan 1935.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Storjungfrun är den största av de 500 öarna i Söderhamns kommun." (läst 2026-11-17)
+      character: 'Största ön i Söderhamns kommun, naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Intill fyren finns fyra uthyrningsstugor" (läst 2026-11-17)
+      best_for: 'Stugboende vid fyren',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html — "Storjungfruns fyr byggdes 1839"; "Det putsade fyrtornet av sten, som fortfarande är i bruk, byggdes 1923." (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyrplatsen', desc: 'Den första fyren byggdes 1839. Dagens fyrtorn i sten är från 1923.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Intill fyren finns fyra uthyrningsstugor"; "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
+      { name: 'Stugor vid fyren', type: 'Stuga', desc: 'Intill fyren finns fyra uthyrningsstugor. Transport till ön bokas tillsammans med stugan.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html — "Transport till ön bokas i samband med stugbokningen." (läst 2026-11-17)
+      { method: 'Båt', from: 'Söderhamn', desc: 'Transport till ön bokas tillsammans med stugan.', icon: '⛴', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.visitsoderhamn.se/sv/storjungfrun — "Medtag mat och dryck – affär finns inte"; "Medtag dricksvatten! Vatten till matlagning, disk och städ finns att hämta vid gårdspump/brunn" (läst 2026-11-17)
+      'Det finns ingen affär på ön, så ta med mat och dryck. Ta också med dricksvatten, eftersom vattnet vid gårdspumpen är till för matlagning, disk och städning.',
+    ],
+    related: ['limon', 'agon'],
+    tags: ['gävleborg', 'söderhamn', 'naturreservat', 'fyr'],
+  },
+  // ─── KUGGÖRARNA ──────────────────────────────────────────────
+  {
+    slug: 'kuggorarna',
+    name: 'Kuggörarna',
+    region: 'ovriga',
+    regionLabel: 'Gävleborgs skärgård',
+    emoji: '🏛',
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "består av en ö, förbunden med Hornslandet med en cirka 150 meter lång vägbank"; "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
+    tagline: 'Ö vid Hornslandet som du når via en vägbank, med kapell från 1770-talet, labyrint och gravfält.',
+    seoTitle: 'Kuggörarna: fiskeläge vid Hornslandet',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "Ö vid nordöstra Hornslandet, 23 kilometer ost sydost om Hudiksvall." (läst 2026-11-17)
+    seoDescription: 'Kapell från 1770-talet, en labyrint och ett gravfält från sen järnålder. Hit kör du över en vägbank från Hornslandet.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kugg%C3%B6rarna — Lantmäteriet Min Karta, sökning "Kuggörarna" → Kuggörarna | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 633051/6843473 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 61.7013,
+    lng: 17.5161,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "består av en ö, förbunden med Hornslandet med en cirka 150 meter lång vägbank"; "Ö vid nordöstra Hornslandet, 23 kilometer ost sydost om Hudiksvall." (läst 2026-11-17)
+      'Kuggörarna är en ö som förbinds med Hornslandet av en cirka 150 meter lång vägbank, 23 kilometer ostsydost om Hudiksvall.',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777"; "I den nordvästra delen finns en labyrint och på öns sydvästra del finns ett gravfält från sen järnålder."; "Areal: 51 hektar"; "Skyddsår: 1996" (läst 2026-11-17)
+      'Kapellet uppfördes 1776 till 1777. I nordvästra delen finns en labyrint och på sydvästra delen ett gravfält från sen järnålder. Reservatet är 51 hektar och skyddades 1996.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
+      character: 'Ö med fiskeläge, kapell och fornlämningar',
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "en labyrint"; "ett gravfält från sen järnålder" (läst 2026-11-17)
+      best_for: 'Dagsutflykt med bil',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "ett kapell, uppfört åren 1776–1777" (läst 2026-11-17)
+      { icon: '🏛', name: 'Kapellet', desc: 'Kapellet uppfördes 1776 till 1777.' },
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "I den nordvästra delen finns en labyrint och på öns sydvästra del finns ett gravfält från sen järnålder." (läst 2026-11-17)
+      { icon: '🪨', name: 'Labyrint och gravfält', desc: 'En labyrint i nordväst och ett gravfält från sen järnålder i sydväst.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "förbunden med Hornslandet med en cirka 150 meter lång vägbank"; "Parkering" (läst 2026-11-17)
+      { method: 'Bil', from: 'Hudiksvall', desc: 'Ön förbinds med Hornslandet av en cirka 150 meter lång vägbank. Det finns parkering.', icon: '🚗', url: 'https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html — "tälta, elda eller ta ved, gäller ej drivved" (läst 2026-11-17)
+      'Du får inte tälta, elda eller ta ved. Förbudet mot att ta ved gäller inte drivved.',
+    ],
+    related: ['agon'],
+    tags: ['gävleborg', 'hudiksvall', 'naturreservat', 'kulturmiljö'],
+  },
+  // ─── KLUNTARNA ───────────────────────────────────────────────
+  {
+    slug: 'kluntarna',
+    name: 'Kluntarna',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Missa inte att besöka någon av öns fem stenlabyrinter."; "'Kluntgubben', en klippa med ett ansikte i profil" (läst 2026-11-17)
+    tagline: 'Reservatsö i Luleå skärgård med fem stenlabyrinter, klippan Kluntgubben och gästhamn där turbåten lägger till.',
+    seoTitle: 'Kluntarna: labyrinter i Luleå skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Reservatet kan nås sommartid med båt och vintertid med skidor eller skoter." (läst 2026-11-17)
+    seoDescription: 'Fem stenlabyrinter och Kluntgubben, en klippa med ett ansikte i profil. Sommartid kommer du till Kluntarna med båt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kluntarna — Lantmäteriet Min Karta, sökning "Kluntarna" → Kluntarna | Luleå | Natur- och terrängnamn, SWEREF 99 TM 852359/7280587 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.4557,
+    lng: 22.6166,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter som troligen härstammar från 1300- eller 1400-talet" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "'Kluntgubben', en klippa med ett ansikte i profil"; "Bildat år: 1997"; "Skyddsform: Naturreservat, Natura 2000" (läst 2026-11-17)
+      'På Kluntarna finns fem stenlabyrinter, som troligen är från 1300- eller 1400-talet, och Kluntgubben, en klippa med ett ansikte i profil. Ön är naturreservat sedan 1997 och ingår i Natura 2000.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Reservatet kan nås sommartid med båt och vintertid med skidor eller skoter." (läst 2026-11-17)
+      'Reservatet nås sommartid med båt och vintertid med skidor eller skoter.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Skyddsform: Naturreservat, Natura 2000" (läst 2026-11-17)
+      character: 'Naturreservat med stenlabyrinter',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      season: 'Turbåt 2026, högsäsong 19 juni till 16 augusti',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter" (läst 2026-11-17)
+      best_for: 'Dagstur med turbåt från Luleå',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html — "fem stenlagda labyrinter som troligen härstammar från 1300- eller 1400-talet" (läst 2026-11-17)
+      { icon: '🪨', name: 'Stenlabyrinterna', desc: 'Fem stenlabyrinter, troligen från 1300- eller 1400-talet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön."; "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Södra hamnplan, Luleå', desc: 'Enligt turlistan för 2026 (högsäsong 19 juni till 16 augusti) angjorde Luleå kommuns turbåtar från Södra hamnplan bland annat Kluntarna.', icon: '⛴', url: 'https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Gästplatser: 20 stycken"; "Turbåtsangöring" (läst 2026-11-17)
+      { name: 'Kluntarnas gästhamn', desc: '20 gästplatser. Turbåten lägger till här.', spots: 20 },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html — "Det är inte tillåtet att köra snöskoter på öarna"; "göra upp eld, men inte direkt på klipphällar. Kom ihåg att ta med egen ved!" (läst 2026-11-17)
+      'Du får inte köra snöskoter på öarna. Du får göra upp eld, men inte direkt på klipphällar. Ta med egen ved.',
+    ],
+    related: ['junkon', 'smaskar', 'rodkallen'],
+    tags: ['norrbotten', 'luleå', 'naturreservat', 'labyrinter'],
+  },
+  // ─── JUNKÖN ──────────────────────────────────────────────────
+  {
+    slug: 'junkon',
+    name: 'Junkön',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🐟',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske." (läst 2026-11-17)
+    tagline: 'Ö i Luleå skärgård med skärgårdsmuseum, en över 200 år gammal hattkvarn och levande yrkesfiske.',
+    seoTitle: 'Junkön: skärgårdsmuseum i Luleå skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "På Junkön finns ett skärgårdsmuseum" (läst 2026-11-17)
+    seoDescription: 'Skärgårdsmuseum, en över 200 år gammal hattkvarn och levande yrkesfiske. Stora delar av ön är militärt skjutfält med tillträdesförbud.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Junk%C3%B6n — Lantmäteriet Min Karta, sökning "Junkön" → Junkön | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842683/7278326 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.4459,
+    lng: 22.4038,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske."; "den över 200 år gamla hattkvarnen" (läst 2026-11-17)
+      'På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske. På ön står en över 200 år gammal hattkvarn.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett levande yrkesfiske" (läst 2026-11-17)
+      character: 'Ö med bofasta och yrkesfiske',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      season: 'Turbåt sommaren 2026',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett skärgårdsmuseum" (läst 2026-11-17)
+      best_for: 'Dagstur med turbåt och museibesök',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "ett skärgårdsmuseum"; "den över 200 år gamla hattkvarnen" (läst 2026-11-17)
+      { icon: '🏛', name: 'Skärgårdsmuseum och hattkvarn', desc: 'Ett skärgårdsmuseum och en över 200 år gammal hattkvarn.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Södra hamnplan, Luleå', desc: 'Sommaren 2026 gick Luleå kommuns turbåtar från Södra hamnplan till Junkön.', icon: '⛴', url: 'https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html — "Stora delar av Junkön är militärt skjutfält med tillträdesförbud." (läst 2026-11-17)
+      'Stora delar av Junkön är militärt skjutfält med tillträdesförbud.',
+    ],
+    related: ['kluntarna', 'rodkallen'],
+    tags: ['norrbotten', 'luleå', 'museum', 'fiske'],
+  },
+  // ─── SMÅSKÄR ─────────────────────────────────────────────────
+  {
+    slug: 'smaskar',
+    name: 'Småskär',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🏝',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Med hela 120 fritidshus är Småskär ön som stoltserar med högsta antalet fritidshus i hela Luleå ytterskärgård."; "Småskär är ett kommunalt naturreservat" (läst 2026-11-17)
+    tagline: 'Ön med flest fritidshus i Luleå ytterskärgård, kommunalt naturreservat och turbåtsangöring.',
+    seoTitle: 'Småskär: naturreservat i Luleå skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Med hela 120 fritidshus" (läst 2026-11-17)
+    seoDescription: 'Med 120 fritidshus är Småskär den ö i Luleå ytterskärgård som har flest. Ön är kommunalt naturreservat, och sommaren 2026 gick turbåten hit.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sm%C3%A5sk%C3%A4ren — Lantmäteriet Min Karta, sökning "Småskären" → Småskären | Luleå | Natur- och terrängnamn, SWEREF 99 TM 857223/7284103 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.4816,
+    lng: 22.7298,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Med hela 120 fritidshus är Småskär ön som stoltserar med högsta antalet fritidshus i hela Luleå ytterskärgård."; "Småskär är ett kommunalt naturreservat" (läst 2026-11-17)
+      'Med 120 fritidshus är Småskär den ö i Luleå ytterskärgård som har flest fritidshus. Småskär är ett kommunalt naturreservat.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Småskär är ett kommunalt naturreservat" (läst 2026-11-17)
+      character: 'Fritidshusö och kommunalt naturreservat',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Högsäsong 19 juni – 16 augusti" (läst 2026-11-17)
+      season: 'Turbåt sommaren 2026',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "ingår i ett fågelskyddsområde" (läst 2026-11-17)
+      best_for: 'Båtfolk och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Södra hamnplan, Luleå', desc: 'Sommaren 2026 gick Luleå kommuns turbåtar från Södra hamnplan till Småskär.', icon: '⛴', url: 'https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html — "Småskär och Finnskär ingår i ett fågelskyddsområde där jakt på sjöfågel och änder är förbjuden." (läst 2026-11-17)
+      'Småskär och Finnskär ingår i ett fågelskyddsområde där jakt på sjöfågel och änder är förbjuden.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/smaskarens-klippor.html — "tio obebyggda öar och hällar söder och öster om ön Småskär"; "På vissa öar råder landstigningsförbud under period med öppet vatten. Det är även förbjudet att uppehålla sig inom 200 meter från öarna." (läst 2026-11-17)
+      'Naturreservatet Småskärens klippor består av tio obebyggda öar och hällar söder och öster om Småskär. På vissa av öarna råder landstigningsförbud under perioden med öppet vatten, och det är förbjudet att uppehålla sig inom 200 meter från öarna. Detaljerna finns i reservatsbeslutet.',
+    ],
+    related: ['kluntarna', 'junkon'],
+    tags: ['norrbotten', 'luleå', 'naturreservat', 'fågelskydd'],
+  },
+  // ─── RÖDKALLEN ───────────────────────────────────────────────
+  {
+    slug: 'rodkallen',
+    name: 'Rödkallen',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🗼',
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872"; "Med sin 21,4 meter höga stålkonstruktion" (läst 2026-11-17)
+    tagline: 'Fyrö i Luleå ytterskärgård med fyr från 1872 och privat gästhamn. Delar av ön är naturreservat.',
+    seoTitle: 'Rödkallen: fyrön i Luleå skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
+    seoDescription: 'Fyr från 1872 i Luleå ytterskärgård. Kommunens turbåtar gick inte hit 2026, så du behöver egen båt. Gästhamnen är privat.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%B6dkallen — Lantmäteriet Min Karta, sökning "Rödkallen" → Rödkallen | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842626/7263977 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.3183,
+    lng: 22.3665,
+    description: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872 … Med sin 21,4 meter höga stålkonstruktion" (läst 2026-11-17)
+      'Fyren på Rödkallen är från 1872 och har en 21,4 meter hög stålkonstruktion.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html — "Det är de västra och östra delarna av Rödkallen som ingår i naturreservatet" (läst 2026-11-17)
+      'Den västra och den östra delen av Rödkallen ingår i naturreservatet Rödkallen-Söräspen.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
+      character: 'Fyrö i ytterskärgården',
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872" (läst 2026-11-17)
+      best_for: 'Fyrbesök och båtfolk',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html — "Den ståtliga fyren från 1872 … Med sin 21,4 meter höga stålkonstruktion" (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyren', desc: 'Fyr från 1872 med en 21,4 meter hög stålkonstruktion.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html — "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön." (läst 2026-11-17)
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Privata hamnar med gästplats … Rödkallen" (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Luleå', desc: 'Luleå kommuns turbåtar gick inte till Rödkallen 2026, så du behöver egen båt. Gästhamnen på ön är privat.', icon: '⛵' },
+    ],
+    harbors: [
+      // KÄLLA: https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html — "Privata hamnar med gästplats … Rödkallen" (läst 2026-11-17)
+      { name: 'Rödkallens gästhamn', desc: 'Privat gästhamn.' },
+    ],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html — "I vissa delar av reservatet råder landstigningsförbud mellan 1 maj och 31 juli. Det är även förbjudet att uppehålla sig inom 200 meter från öarna. Läs mer i beslutet." (läst 2026-11-17)
+      'I vissa delar av reservatet råder landstigningsförbud 1 maj till 31 juli. Det är även förbjudet att uppehålla sig inom 200 meter från öarna. Detaljerna finns i reservatsbeslutet.',
+    ],
+    related: ['junkon', 'kluntarna'],
+    tags: ['norrbotten', 'luleå', 'fyr', 'naturreservat'],
+  },
+  // ─── HAPARANDA SANDSKÄR ──────────────────────────────────────
+  {
+    slug: 'sandskar',
+    name: 'Haparanda Sandskär',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🐦',
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Bildat år: 1995"; "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken — "Under sommaren (juli–augusti) går det en turbåt några dagar i veckan till den största ön, Sandskär." (läst 2026-11-17)
+    tagline: 'Största ön i Haparanda skärgårds nationalpark, där 251 fågelarter har setts. Turbåt från Nikkala.',
+    seoTitle: 'Haparanda Sandskär: nationalpark i Bottenviken',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "Från Haparanda hamn i Nikkala går turbåtar till Sandskär." (läst 2026-11-17)
+    seoDescription: 'På Sandskär, den största ön i Haparanda skärgårds nationalpark, har man sett 251 fågelarter. Turbåtar går från Nikkala.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sandsk%C3%A4r — Lantmäteriet Min Karta, sökning "Sandskär" → Sandskär | Haparanda | Natur- och terrängnamn, SWEREF 99 TM 903069/7300276 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.5716,
+    lng: 23.7570,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Storlek: 6600 hektar (66 kvadratkilometer)"; "Bildat år: 1995"; "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+      'Haparanda skärgårds nationalpark bildades 1995 och är 6 600 hektar. På Sandskär har man sett 251 olika fågelarter.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken — "Det finns ingen el på Sandskär." (läst 2026-11-17)
+      'Det finns ingen el på Sandskär.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Bildat år: 1995" (läst 2026-11-17)
+      character: 'Nationalpark',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+      best_for: 'Fågelskådning och vildmark',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "På ön har man sett 251 olika fågelarter." (läst 2026-11-17)
+      { icon: '🐦', name: 'Fågelskådning', desc: 'På Sandskär har man sett 251 olika fågelarter.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "Från Haparanda hamn i Nikkala går turbåtar till Sandskär." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Haparanda hamn, Nikkala', desc: 'Från Haparanda hamn i Nikkala går turbåtar till Sandskär.', icon: '⛴', url: 'https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html — "Vissa öar inom nationalparken får inte angöras eller beträdas från 1 maj till 31 juli varje år." (läst 2026-11-17)
+      'Vissa öar i nationalparken får inte angöras eller beträdas 1 maj till 31 juli varje år.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit — "på öarna är det skoterförbud. Stugägare får dock köra närmaste väg till huset." (läst 2026-11-17)
+      'På öarna är det skoterförbud. Stugägare får köra närmaste väg till huset.',
+    ],
+    related: ['maloren'],
+    tags: ['norrbotten', 'haparanda', 'nationalpark', 'fåglar'],
+  },
+  // ─── MALÖREN ─────────────────────────────────────────────────
+  {
+    slug: 'maloren',
+    name: 'Malören',
+    region: 'ovriga',
+    regionLabel: 'Norrbottens skärgård',
+    emoji: '🗼',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770"; "Kommun: Kalix" (läst 2026-11-17)
+    tagline: 'Fyrö i Kalix skärgård med fyr från 1850 och kyrka från 1770. Här fanns lots fram till 1967.',
+    seoTitle: 'Malören: fyrön i Kalix skärgård',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "cirka 1 mil sydväst om Haparanda Sandskär"; "En brygga finns i viken på södra sidan av ön." (läst 2026-11-17)
+    seoDescription: 'Fyr från 1850, kyrka från 1770 och lots på ön fram till 1967. Malören ligger cirka 1 mil sydväst om Haparanda Sandskär.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6ren — Lantmäteriet Min Karta, sökning "Malören" → Malören | Kalix | Natur- och terrängnamn, SWEREF 99 TM 894665/7293978 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 65.5260,
+    lng: 23.5584,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Kommun: Kalix"; "cirka 1 mil sydväst om Haparanda Sandskär"; "Naturreservatet bildat år: 1997" (läst 2026-11-17)
+      'Malören ligger i Kalix kommun, cirka 1 mil sydväst om Haparanda Sandskär. Ön är naturreservat sedan 1997.',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "från 1800-talet fram till 1967 fanns det lots på ön. Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
+      'Fyren är från 1850 och kyrkan från 1770. Från 1800-talet fram till 1967 fanns det lots på ön.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Naturreservatet bildat år: 1997" (läst 2026-11-17)
+      character: 'Fyrö och naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
+      best_for: 'Fyrbesök och kulturhistoria',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Fyren från 1850 ger tillsammans med kyrkan från 1770" (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyren och kyrkan', desc: 'Fyr från 1850 och kyrka från 1770.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "En brygga finns i viken på södra sidan av ön." (läst 2026-11-17)
+      { method: 'Båt', from: 'Kalix skärgård', desc: 'En brygga finns i viken på södra sidan av ön.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html — "Det är inte tillåtet att köra snöskoter på öarna." (läst 2026-11-17)
+      'Du får inte köra snöskoter på öarna.',
+    ],
+    related: ['sandskar'],
+    tags: ['norrbotten', 'kalix', 'fyr', 'naturreservat'],
+  },
+  // ─── SKÅNE OCH HALLAND ───────────────────────────────────────
+  {
+    slug: 'hallands-vadero',
+    name: 'Hallands Väderö',
+    region: 'ovriga',
+    regionLabel: 'Skånes kust',
+    emoji: '🦭',
+    // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Kommun: Båstad"; "Runt ön ses ofta knubbsälar ligga och vila på klipporna." (läst 2026-11-17)
+    tagline: 'Naturreservat utanför Torekov i Båstads kommun, där knubbsälar ofta vilar på klipporna runt ön.',
+    seoTitle: 'Hallands Väderö: turbåt, sälar och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På sommaren går de från Torekov och Båstad till Sandhamn på ön, övrig tid på året måste du beställa båttur." (läst 2026-11-17)
+    seoDescription: 'Knubbsälar på klipporna, vandringsleder och sandstränder. På sommaren går turbåtar från Torekov och Båstad till Hallands Väderö.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hallands%20V%C3%A4der%C3%B6 — Lantmäteriet Min Karta, sökning "Hallands Väderö" → Hallands Väderö | Båstad | Natur- och terrängnamn, SWEREF 99 TM 350297/6257682 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 56.4399,
+    lng: 12.5717,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Kommun: Båstad"; "Skyddstyp: Naturreservat och Natura 2000"; "Förvaltare: Länsstyrelsen Skåne"; "På den cirka 3 km långa ön finns flera vandringsleder att välja på." (läst 2026-11-17)
+      'Hallands Väderö ligger i Båstads kommun. Ön är naturreservat, ingår i Natura 2000 och förvaltas av Länsstyrelsen Skåne. Den är cirka 3 kilometer lång och har flera vandringsleder.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Runt ön ses ofta knubbsälar ligga och vila på klipporna."; "I ett av öns äldsta hus, "Lotsstugan", även kallad "Stenhuggarehuset", finns Hallands Väderös utemuseum." (läst 2026-11-17)
+      'Runt ön ser man ofta knubbsälar som vilar på klipporna. I Lotsstugan, ett av öns äldsta hus, finns Hallands Väderös utemuseum.',
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.1e9f682716e44cbf6f5cb7d/1618590550398/folder_Hallands%20V%C3%A4der%C3%B6_NR_BushLife_tgh.pdf — "Skären runt ön är den enda plats i Kattegatt där de tre alkorna sillgrissla, tobisgrissla och tordmule häckar." (läst 2026-11-17)
+      'Skären runt ön är den enda platsen i Kattegatt där alla tre alkorna sillgrissla, tobisgrissla och tordmule häckar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "Skyddstyp: Naturreservat och Natura 2000" (läst 2026-11-17)
+      character: 'Naturreservat och Natura 2000',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "övrig tid på året måste du beställa båttur" (läst 2026-11-17)
+      season: 'Turbåt sommartid, annars beställd båttur',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På den cirka 3 km långa ön finns flera vandringsleder att välja på."; "Runt ön ses ofta knubbsälar" (läst 2026-11-17)
+      best_for: 'Vandring och sälskådning',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På den cirka 3 km långa ön finns flera vandringsleder att välja på." (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsleder', desc: 'Flera vandringsleder på den cirka 3 kilometer långa ön.' },
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "I ett av öns äldsta hus, "Lotsstugan", även kallad "Stenhuggarehuset", finns Hallands Väderös utemuseum." (läst 2026-11-17)
+      { icon: '🏛️', name: 'Utemuseet i Lotsstugan', desc: 'Hallands Väderös utemuseum finns i ett av öns äldsta hus.' },
+      // KÄLLA: https://www.lansstyrelsen.se/download/18.1e9f682716e44cbf6f5cb7d/1618590550398/folder_Hallands%20V%C3%A4der%C3%B6_NR_BushLife_tgh.pdf — "Det finns flera fina sandstränder vid Sandhamn och Kappelhamn" (läst 2026-11-17)
+      { icon: '🏖️', name: 'Sandstränder', desc: 'Det finns sandstränder vid Sandhamn och Kappelhamn.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "På sommaren går de från Torekov och Båstad till Sandhamn på ön, övrig tid på året måste du beställa båttur." (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Torekov och Båstad', desc: 'Enligt Länsstyrelsen går Väderötrafikens turbåtar på sommaren från Torekov och Båstad till Sandhamn på ön. Resten av året måste du beställa båttur.', icon: '⛴️' },
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "I Torekov och Båstad finns både busstation och parkering i närheten av hamnen." (läst 2026-11-17)
+      { method: 'Buss och bil', from: 'Torekov och Båstad', desc: 'I Torekov och Båstad finns busstation och parkering nära hamnen.', icon: '🚌' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "elda utomhus: såväl öppen eld som eldning i stormkök, spritkök, gasolkök, grillar eller motsvarande" (läst 2026-11-17)
+      'Du får inte elda utomhus i reservatet. Det gäller även stormkök, spritkök, gasolkök och grillar.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "tälta eller övernatta utomhus på ön"; "ta med okopplad hund eller annat lösgående husdjur" (läst 2026-11-17)
+      'Du får inte tälta eller övernatta utomhus på ön, och hunden ska vara kopplad.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "framföra cyklar, mountainbikes (terränggående cyklar) eller liknande"; "ankra i Sandhamnsbukten"; "dra upp båtar på sandstränderna" (läst 2026-11-17)
+      'Du får inte cykla på ön, ankra i Sandhamnsbukten eller dra upp båtar på sandstränderna.',
+      // KÄLLA: https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html — "vara i sälskyddsområdet (gäller hela året)"; "vara i fågelskyddsområdena mellan 1 april och 15 juli."; "Det är tillåtet att ankra längs kusten, med undantag för Sandhamn och i områden som har tillträdesförbud" (läst 2026-11-17)
+      'Sälskyddsområdet får du aldrig gå in i, och fågelskyddsområdena inte 1 april till 15 juli. I områden med tillträdesförbud får du inte heller ankra. Se Länsstyrelsens karta.',
+    ],
+    related: ['ven'],
+    tags: ['skåne', 'båstad', 'torekov', 'sälar', 'naturreservat'],
+  },
+  {
+    slug: 'nidingen',
+    name: 'Nidingen',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🗼',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Efter freden vid Brömsebro, år 1645, kom Nidingen under svensk administration och blev därmed Sveriges första fyrplats." (läst 2026-11-17)
+    tagline: 'Fyrön i Kungsbacka kommun som blev Sveriges första fyrplats efter freden vid Brömsebro 1645.',
+    seoTitle: 'Nidingen: Sveriges första fyrplats',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Nidingen nås endast med båt. Sommartid går båtturer till Nidingen."; "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+    seoDescription: 'Sveriges första fyrplats, två fyrtorn från 1834 och enligt Länsstyrelsen Sveriges enda koloni av tretåig mås. Nidingen når du bara med båt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Nidingen — Lantmäteriet Min Karta, sökning "Nidingen" → Nidingen | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 313373/6355451 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.3038,
+    lng: 11.9019,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Ön är belägen sydväst om Malön utanför Onsalahalvöns sydspets i Kungsbacka kommun."; "Ön är cirka en kilometer lång och trehundra meter bred"; "idag finns inga fast boende på ön." (läst 2026-11-17)
+      'Nidingen ligger sydväst om Malön, utanför Onsalahalvöns sydspets i Kungsbacka kommun. Ön är cirka en kilometer lång och trehundra meter bred. I dag bor ingen fast på ön.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Efter freden vid Brömsebro, år 1645, kom Nidingen under svensk administration och blev därmed Sveriges första fyrplats."; "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+      'Efter freden vid Brömsebro 1645 kom Nidingen under svensk administration och blev Sveriges första fyrplats. År 1834 byggdes två sexkantiga fyrtorn, som i dag är byggnadsminnen.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Göteborgs Ornitologiska Förening håller i verksamheten"; "Dessutom finns Sveriges enda koloni av tretåig mås här." (läst 2026-11-17)
+      'På ön finns en fågelstation som Göteborgs Ornitologiska Förening driver. Enligt Länsstyrelsen finns här Sveriges enda koloni av tretåig mås.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Areal: 725 hektar, varav ön är på 13,5 hektar"; "Skyddat sedan: 1980"; "Området ingår i Natura 2000" (läst 2026-11-17)
+      'Naturreservatet är skyddat sedan 1980 och är 725 hektar, varav ön är 13,5 hektar. Det ingår i Natura 2000.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+      character: 'Fyrö och naturreservat',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Sommartid går båtturer till Nidingen." (läst 2026-11-17)
+      season: 'Båtturer sommartid',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn"; "På ön finns sedan drygt 30 år tillbaka en fågelstation." (läst 2026-11-17)
+      best_for: 'Fyrhistoria och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "1834 byggdes två sexkantiga fyrtorn, dessa är idag byggnadsminnen." (läst 2026-11-17)
+      { icon: '🗼', name: 'Fyrtornen', desc: 'Två sexkantiga fyrtorn från 1834, i dag byggnadsminnen.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Nidingen nås endast med båt. Sommartid går båtturer till Nidingen." (läst 2026-11-17)
+      { method: 'Båt', from: 'Kungsbacka kommun', desc: 'Nidingen nås bara med båt. Enligt Länsstyrelsen går det båtturer till ön sommartid.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "under tiden den 1 april till den 15 juli årligen landa med båt eller vistas på Nidingen eller inom det omgivande vattenområdet intill ett avstånd av 100 meter från stranden med undantag av öns sydvästra del och intilliggande vattenområde" (läst 2026-11-17)
+      '1 april till 15 juli får du inte landa med båt, vara på ön eller i vattnet inom 100 meter från stranden. Undantaget är öns sydvästra del och vattnet intill den.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "tälta,"; "att elda."; "medföra ej kopplad hund eller annat lösgående husdjur" (läst 2026-11-17)
+      'Du får inte tälta eller elda, och hunden ska vara kopplad.',
+    ],
+    related: ['malon', 'vendelso'],
+    tags: ['halland', 'kungsbacka', 'fyr', 'fåglar', 'naturreservat'],
+  },
+  {
+    slug: 'vendelso',
+    name: 'Vendelsö',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🏝️',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar."; "klipplandskap med strandgrottor" (läst 2026-11-17)
+    tagline: 'Ö i Varbergs kommun med strandgrottor på södra delen och sex mindre öar med sandstränder runt omkring.',
+    seoTitle: 'Vendelsö i Halland: båt, stränder och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.fjordexpress.se/?lang=sv — "Stenudden (Åsa) ⇄ Vendelsö"; "Gottskär ⇄ Vendelsö"; "Bua ⇄ Vendelsö" (läst 2026-11-17)
+    seoDescription: 'Strandgrottor på södra Vendelsö och sex mindre öar med sandstränder. Fjordexpress har rutter hit från Bua, Åsa och Gottskär.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vendels%C3%B6 — Lantmäteriet Min Karta, sökning "Vendelsö" → Vendelsö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 326187/6354678 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.3019,
+    lng: 12.1149,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar." (läst 2026-11-17)
+      'Vendelsö ligger i Varbergs kommun. I naturreservatet Vendelsöarna ingår Vendelsö och sex mindre öar.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Missa inte att besöka södra Vendelsö, här finns ett fantastiskt klipplandskap med strandgrottor"; "På några höjdpartier kan man hitta rösen från bronsåldern" (läst 2026-11-17)
+      'På södra Vendelsö finns ett klipplandskap med strandgrottor. På några höjdpartier på Vendelsö finns rösen från bronsåldern.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Öarna når man med egen båt och alla sex öarna har fina sandstränder!" (läst 2026-11-17)
+      'De sex mindre öarna runt Vendelsö har alla sandstränder och nås med egen båt.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Areal: 1582 hektar varav 262 hektar är landareal"; "Skyddat sedan: 2002, utvidgat 2015" (läst 2026-11-17)
+      'Reservatet är skyddat sedan 2002, utvidgades 2015 och är 1 582 hektar, varav 262 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar." (läst 2026-11-17)
+      character: 'Naturreservat med sju öar',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "alla sex öarna har fina sandstränder!"; "klipplandskap med strandgrottor" (läst 2026-11-17)
+      best_for: 'Bad, kajak och strandgrottor',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Missa inte att besöka södra Vendelsö, här finns ett fantastiskt klipplandskap med strandgrottor" (läst 2026-11-17)
+      { icon: '🪨', name: 'Strandgrottorna', desc: 'Klipplandskap med strandgrottor på södra Vendelsö.' },
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I Stavders hamn kan du sjösätta om du har egen mindre båt eller kajak." (läst 2026-11-17)
+      { icon: '🛶', name: 'Kajak', desc: 'I Stavders hamn kan du sjösätta en egen mindre båt eller kajak.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.fjordexpress.se/?lang=sv — "Stenudden (Åsa) ⇄ Vendelsö"; "Gottskär ⇄ Vendelsö"; "Bua ⇄ Vendelsö" (läst 2026-11-17)
+      { method: 'Båt', from: 'Bua, Åsa och Gottskär', desc: 'Fjordexpress har rutter till Vendelsö från Bua, Stenudden i Åsa och Gottskär. Kolla på fjordexpress.se vilka turer som går innan du åker.', icon: '⛴️' },
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "På Vendelsö finns brygga för gästande båtar. Gästande båtar ska lägga till på yttersidan av bryggan" (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Varbergs kommun', desc: 'På Vendelsö finns en brygga för gästande båtar. Lägg till på bryggans yttersida.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "Det är tillåtet att tälta i reservatet men inte mer än två dygn." (läst 2026-11-17)
+      'Du får tälta i reservatet, men inte mer än två dygn.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "elda annat än på anvisad plats,"; "medföra okopplad hund," (läst 2026-11-17)
+      'Du får bara elda på anvisad plats, och hunden ska vara kopplad.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "under tiden 1 april"; "31 juli årligen färdas eller uppehålla sig i vattenområdet i Älmö sund och på stränderna kring Älmö sund samt landstiga på del av Knarrskär eller befara vattenområdet inom 100 meter från ön, enligt markeringar på beslutskartan" (läst 2026-11-17)
+      '1 april till 31 juli får du inte färdas eller uppehålla dig i Älmö sund eller på stränderna kring sundet. Under samma tid får du inte gå i land på delar av Knarrskär eller åka i vattnet inom 100 meter från ön. Se beslutskartan.',
+    ],
+    related: ['nidingen', 'balgo', 'malon'],
+    tags: ['halland', 'varberg', 'stränder', 'naturreservat'],
+  },
+  {
+    slug: 'balgo',
+    name: 'Balgö',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🐸',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Hallands viktigaste lokal för strandpadda"; "Kommun: Varberg" (läst 2026-11-17)
+    tagline: 'Naturreservat i Varbergs kommun och Hallands viktigaste lokal för strandpadda.',
+    seoTitle: 'Balgö: naturreservat med sälar och strandpadda',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Du behöver ha tillgång till egen båt för att ta dig till reservatet."; "I Balgöfjorden finns ett bestånd av knubbsäl" (läst 2026-11-17)
+    seoDescription: 'Knubbsäl i Balgöfjorden och Hallands viktigaste lokal för strandpadda. Till Balgö i Varbergs kommun behöver du egen båt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Balg%C3%B6 — Lantmäteriet Min Karta, sökning "Balgö" → Balgö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 328824/6339216 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.1642,
+    lng: 12.1692,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Kommun: Varberg"; "På ön finns både klapperstensfält och strandvallar." (läst 2026-11-17)
+      'Balgö ligger i Varbergs kommun. På ön finns klapperstensfält och strandvallar.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "I Balgöfjorden finns ett bestånd av knubbsäl"; "Även gråsäl förekommer i området."; "Hallands viktigaste lokal för strandpadda" (läst 2026-11-17)
+      'I Balgöfjorden finns knubbsäl, och även gråsäl förekommer i området. Balgö är Hallands viktigaste lokal för strandpadda.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Areal: 2200 hektar varav 250 hektar land"; "Skyddat sedan: 1950" (läst 2026-11-17)
+      'Reservatet är skyddat sedan 1950 och är 2 200 hektar, varav 250 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Skyddat sedan: 1950" (läst 2026-11-17)
+      character: 'Ö med klapperstensfält och strandvallar',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "I Balgöfjorden finns ett bestånd av knubbsäl" (läst 2026-11-17)
+      best_for: 'Båtfolk och sälskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Du behöver ha tillgång till egen båt för att ta dig till reservatet." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Varbergs kommun', desc: 'Du behöver egen båt för att ta dig till reservatet.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "råder tillträdesförbud i delar av reservatet under tiden 1 april till 31 juli." (läst 2026-11-17)
+      'I delar av reservatet är det tillträdesförbud 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Öarna Lilla och Stora Både är sälskyddsområden och här råder tillträdesförbud mellan 15 maj och 15 juli." (läst 2026-11-17)
+      'Lilla och Stora Både är sälskyddsområden med tillträdesförbud 15 maj till 15 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "tälta,"; "elda,"; "samt att medföra hund." (läst 2026-11-17)
+      'Du får inte tälta, elda eller ta med hund.',
+    ],
+    related: ['vendelso'],
+    tags: ['halland', 'varberg', 'sälar', 'naturreservat'],
+  },
+  {
+    slug: 'malon',
+    name: 'Malön',
+    region: 'ovriga',
+    regionLabel: 'Hallands skärgård',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält." (läst 2026-11-17)
+    tagline: 'Karg och flack ö i Kungsbacka kommun med gräshedar, klapperstensfält och ett röse från bronsåldern.',
+    seoTitle: 'Malön i Kungsbacka: naturreservat och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Området nås endast med båt och lämplig angöringsplats är sandstranden på östra sidan." (läst 2026-11-17)
+    seoDescription: 'Karg och flack ö med gräshedar och ett stort röse från bronsåldern. Lägg till vid sandstranden på östra sidan.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6n — Lantmäteriet Min Karta, sökning "Malön" → Malön | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 317061/6359586 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.3424,
+    lng: 11.9600,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält." (läst 2026-11-17)
+      'Malön i Kungsbacka kommun är en karg och flack ö med gräshedar och stora klapperstensfält.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
+      'I nordöst finns ett stort bronsåldersröse som kallas Malöros.',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Areal: 107 hektar"; "Skyddat sedan: 1965"; "Förvaltare: Onsala sockens skifteslag" (läst 2026-11-17)
+      'Reservatet är skyddat sedan 1965, är 107 hektar och förvaltas av Onsala sockens skifteslag.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "en karg, flack ö som består av gräshedar och stora klapperstensfält" (läst 2026-11-17)
+      character: 'Karg och flack ö',
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
+      best_for: 'Båtfolk och fornlämningar',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "I nordöst finns ett stort bronsåldersröse som kallas Malöros." (läst 2026-11-17)
+      { icon: '🪨', name: 'Malöros', desc: 'Ett stort röse från bronsåldern i nordöst.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Området nås endast med båt och lämplig angöringsplats är sandstranden på östra sidan." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Kungsbacka kommun', desc: 'Malön nås bara med båt. En lämplig plats att lägga till är sandstranden på östra sidan.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "medföra okopplad hund,"; "tälta samt"; "elda." (läst 2026-11-17)
+      'Du får inte tälta eller elda, och hunden ska vara kopplad.',
+    ],
+    related: ['nidingen', 'vendelso'],
+    tags: ['halland', 'kungsbacka', 'fornlämningar', 'naturreservat'],
+  },
+  // ─── VÄNERN ──────────────────────────────────────────────────
+  {
+    slug: 'djuro-nationalpark',
+    name: 'Djurö nationalpark',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🦌',
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "Djurö skärgård ligger i Vänern och består av ett trettiotal öar och skär."; "Ön var bebodd från 1600-talet ända fram till 1969 då den siste fyrvaktaren lämnade ön." (läst 2026-11-17)
+    tagline: 'Nationalpark i Vänern med ett trettiotal öar och skär, där huvudön var bebodd fram till 1969.',
+    seoTitle: 'Djurö nationalpark i Vänern: båt, leder och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Du kan ta dig till Djurö nationalpark med egen båt eller taxibåt."; "Det finns ingen reguljär båttrafik till Djurö nationalpark" (läst 2026-11-17)
+    seoDescription: 'Ett trettiotal öar och skär i Vänern, där huvudön var bebodd fram till 1969. Ingen reguljär båt går hit, men du kan beställa taxibåt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6 — Lantmäteriet Min Karta, sökning "Djurö" → Djurö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 411864/6525690 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.8620,
+    lng: 13.4720,
+    description: [
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "Djurö skärgård ligger i Vänern och består av ett trettiotal öar och skär. Huvudön Djurö ligger längst norrut i nationalparken." (läst 2026-11-17)
+      'Djurö nationalpark ligger i Vänern och består av ett trettiotal öar och skär. Huvudön Djurö ligger längst norrut i nationalparken.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "På huvudön kan du vandra längs slingrande stigar, se den gamla fyren"; "Ön var bebodd från 1600-talet ända fram till 1969 då den siste fyrvaktaren lämnade ön." (läst 2026-11-17)
+      'På huvudön finns stigar och den gamla fyren. Ön var bebodd från 1600-talet fram till 1969, då den siste fyrvaktaren lämnade ön.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "En mindre stam dovhjort finns kvar sedan den tiden." (läst 2026-11-17)
+      'En mindre stam dovhjort finns kvar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Bildat: 1991"; "Areal: cirka 2 358 hektar"; "Kommun: Mariestad" (läst 2026-11-17)
+      'Nationalparken bildades 1991, är cirka 2 358 hektar och ligger i Mariestads kommun.',
+    ],
+    facts: {
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "består av ett trettiotal öar och skär" (läst 2026-11-17)
+      character: 'Nationalpark med ett trettiotal öar och skär',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "passar bra för fågelskådning"; "ett välkänt och populärt utflyksmål för båtlivet i Vänern" (läst 2026-11-17)
+      best_for: 'Båtfolk, vandring och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Malbergshamn är öarnas bästa hamn och härifrån utgår tre vandringsleder som tar besökaren runt på huvudön." (läst 2026-11-17)
+      { icon: '🥾', name: 'Tre vandringsleder', desc: 'Från Malbergs hamn utgår tre vandringsleder runt huvudön.' },
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/ — "se den gamla fyren" (läst 2026-11-17)
+      { icon: '🗼', name: 'Den gamla fyren', desc: 'Fyren står på huvudön. Den siste fyrvaktaren lämnade ön 1969.' },
+    ],
+    accommodation: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Husen som hyrs ut heter Djuröstugan och Fyrvaktarstugan. Dessa hyrs ut dygnsvis eller veckovis." (läst 2026-11-17)
+      { name: 'Djuröstugan och Fyrvaktarstugan', type: 'Stuga', desc: 'Två hus i nationalparken hyrs ut dygnsvis eller veckovis.' },
+    ],
+    getting_there: [
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Det finns ingen reguljär båttrafik till Djurö nationalpark men det finns flera aktörer som kör taxibåt till parken."; "Från Lidköping"; "Från Mariestad"; "Från Gullspång"; "Från Säffle" (läst 2026-11-17)
+      { method: 'Taxibåt', from: 'Lidköping, Mariestad, Gullspång eller Säffle', desc: 'Det finns ingen reguljär båttrafik. Taxibåt kan beställas från aktörer i Lidköping, Mariestad, Gullspång och Säffle.', icon: '🚤' },
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "Malbergs hamn är nationalparkens huvudentré"; "Nationalparken östra sidan är grund och är därför inte lämplig att lägga till vid."; "Båtfärden till nationalparken är väldigt väderberoende." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Vänern', desc: 'Malbergs hamn är nationalparkens huvudentré. Den östra sidan är grund, så där kan du inte lägga till. Båtfärden är mycket väderberoende.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "Här samt på Tribergs ö, Långön och Dunderkarlarna finns toaletter, sopmajor och eldstäder." (läst 2026-11-17)
+      'Vid Malbergs hamn och på Tribergs ö, Långön och Dunderkarlarna finns toaletter, sopmajor och eldstäder.',
+      // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit — "På öst- och sydsidan finns fågelskyddsområden. Där är det tillträdesförbud från den 1 april till den 31 juli." (läst 2026-11-17)
+      'I fågelskyddsområdena på östra och södra sidan är det tillträdesförbud 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "framföra motorbåt eller annan motordriven farkost med högre hastighet än 7 knop närmare stranden än 100 meter"; "framföra vattenskoter" (läst 2026-11-17)
+      'Närmare stranden än 100 meter får du inte köra motorbåt fortare än 7 knop. Vattenskoter är förbjuden.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "förtöja båt längre tid än två dygn i följd vid samma plats"; "tälta eller sätta upp vindskydd eller liknande anordning"; "inom det område på gräsmarken mitt på Djurö som har markerats på karta"; "i övrigt inom nationalparken fler än två nätter i följd på samma plats" (läst 2026-11-17)
+      'Du får inte förtöja båt längre än två dygn i följd på samma plats eller tälta fler än två nätter i följd på samma plats. Du får inte tälta inom det markerade området på gräsmarken mitt på Djurö.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html — "elda, förutom på anvisad plats. Användning av grill och friluftskök är dock tillåten"; "medföra okopplad hund eller annat husdjur som inte är kopplat"; "fiska, förutom med handredskap. Trollingfiske är förbjudet." (läst 2026-11-17)
+      'Du får bara elda på anvisad plats, men grill och friluftskök är tillåtna. Hunden ska vara kopplad. Du får bara fiska med handredskap, och trollingfiske är förbjudet.',
+    ],
+    related: ['brommo', 'luro', 'kallandso'],
+    tags: ['vänern', 'mariestad', 'nationalpark', 'fyr'],
+  },
+  {
+    slug: 'brommo',
+    name: 'Brommö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🏖️',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Brommö ligger utanför Torsö, norr om Mariestad."; "På norra ön finns härliga sandstränder."; "Öarna har flera stigar och markerade leder som utgår från Brommös färjeläge."; "Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat." (läst 2026-11-17)
+    tagline: 'Ö utanför Torsö norr om Mariestad, med sandstränder och leder. Västra Brommö ingår i ett naturreservat.',
+    seoTitle: 'Brommö i Vänern: färja, stränder och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du tar dig dit via Torsö och en mindre färja till Brommö eller med egen båt. Parkera bilen i Laxhall, färjan tar endast cyklister och gående." (läst 2026-11-17)
+    seoDescription: 'Sandstränder, leder och cykel att hyra. Till Brommö går en mindre färja via Torsö, för cyklister och gående.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bromm%C3%B6 — Lantmäteriet Min Karta, sökning "Brommö" → Brommö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 424077/6520497 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.8177,
+    lng: 13.6854,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Brommö ligger utanför Torsö, norr om Mariestad."; "Kommun: Mariestad" (läst 2026-11-17)
+      'Brommö ligger utanför Torsö, norr om Mariestad, i Mariestads kommun.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat." (läst 2026-11-17)
+      'Västra Brommö, Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "På norra ön finns härliga sandstränder."; "Mellan Brommö och grannön Hovden finns en grund, sandig passage som gör det möjligt att vada mellan öarna." (läst 2026-11-17)
+      'På norra ön finns sandstränder, och mellan Brommö och Hovden kan du vada över en grund, sandig passage.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Bildat: 1987"; "Areal: cirka 950 hektar" (läst 2026-11-17)
+      'Naturreservatet bildades 1987 och är cirka 950 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat." (läst 2026-11-17)
+      character: 'Ö med sandstränder och leder',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du kan hyra en cykel och ta dig runt."; "flera stigar och markerade leder" (läst 2026-11-17)
+      best_for: 'Bad, cykel och vandring',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Öarna har flera stigar och markerade leder som utgår från Brommös färjeläge." (läst 2026-11-17)
+      { icon: '🥾', name: 'Leder från färjeläget', desc: 'Flera stigar och markerade leder utgår från färjeläget.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du kan hyra en cykel och ta dig runt." (läst 2026-11-17)
+      { icon: '🚲', name: 'Cykel', desc: 'Du kan hyra en cykel och ta dig runt.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "På norra ön finns härliga sandstränder." (läst 2026-11-17)
+      { icon: '🏖️', name: 'Sandstränder', desc: 'Sandstränder på norra ön.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Du tar dig dit via Torsö och en mindre färja till Brommö eller med egen båt. Parkera bilen i Laxhall, färjan tar endast cyklister och gående." (läst 2026-11-17)
+      { method: 'Färja', from: 'Torsö', desc: 'Du tar dig dit via Torsö och en mindre färja till Brommö. Parkera bilen i Laxhall, eftersom färjan bara tar cyklister och gående.', icon: '⛴️' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Östsidan av Lindökroken har en fin naturhamn med toaletter och sopstation." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Vänern', desc: 'Östsidan av Lindökroken har en naturhamn med toaletter och sopstation.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Toaletter, eld- och rastplatser finns på flera ställen." (läst 2026-11-17)
+      'Toaletter, eldplatser och rastplatser finns på flera ställen.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "Det finns fem fågelskyddsområden med tillträdesförbud"; "titta på skyltarna vad som gäller i området"; "färdas eller uppehålla sig inom de områden som angivits på bifogad karta under tiden 1 april-31 juli" (läst 2026-11-17)
+      'Det finns fem fågelskyddsområden. 1 april till 31 juli får du varken färdas eller uppehålla dig inom de områden som är markerade på kartan i reservatsbeslutet. Titta på skyltarna på plats.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "elda på annat än av naturvårdsförvaltaren iordningställda eldstäder"; "förtöja båt mer än två dygn i följd på samma plats"; "tälta mer än två dygn i följd på samma plats"; "medföra okopplad hund på land" (läst 2026-11-17)
+      'Du får bara elda på de eldstäder som förvaltaren har iordningställt. Du får inte förtöja båt eller tälta mer än två dygn i följd på samma plats. Hunden ska vara kopplad på land.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html — "På sydvästra delen av Hovden får du varken plocka eller kasta sten." (läst 2026-11-17)
+      'På sydvästra Hovden får du inte plocka eller kasta sten.',
+    ],
+    related: ['onso', 'djuro-nationalpark'],
+    tags: ['vänern', 'mariestad', 'stränder', 'naturreservat'],
+  },
+  {
+    slug: 'luro',
+    name: 'Lurö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🗼',
+    // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "spännande platser som klosterruinen, Stånguddens fyr" (läst 2026-11-17)
+    tagline: 'Ö i Lurö skärgård mitt i Vänern, med vandringsleder, klosterruinen och Stånguddens fyr.',
+    seoTitle: 'Lurö i Vänern: båten från Ekenäs och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "På sommaren går turbåtar från Ekenäs till ön" (läst 2026-11-17)
+    seoDescription: 'Klosterruin, Stånguddens fyr och gott om vandringsleder mitt i Vänern. Luröbåten från Ekenäs tar cirka en timme.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lur%C3%B6 — Lantmäteriet Min Karta, sökning "Lurö" → Lurön | Säffle | Natur- och terrängnamn, SWEREF 99 TM 398477/6518156 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7914,
+    lng: 13.2434,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Lurö skärgård ligger i Värmlands län, Säffle kommun, mitt i Vänern rakt söder om Värmlandsnä och cirka 30 kilometer söder om Säffle." (läst 2026-11-17)
+      'Lurö skärgård ligger i Säffle kommun, mitt i Vänern, cirka 30 kilometer söder om Säffle.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "På Lurö (som endast i vissa delar ingår i naturreservatet) finns gott om vandringsleder och sevärdheter." (läst 2026-11-17)
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "spännande platser som klosterruinen, Stånguddens fyr" (läst 2026-11-17)
+      'På Lurö finns gott om vandringsleder och sevärdheter, bland annat klosterruinen och Stånguddens fyr. Bara vissa delar av Lurö ingår i naturreservatet.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Längre norrut i skärgården, på ön Vithall, finns ett gammalt skärgårdstorp bevarat och står öppet som museum" (läst 2026-11-17)
+      'På ön Vithall, längre norrut i skärgården, finns ett gammalt skärgårdstorp som står öppet som museum.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Bildat: 1967"; "Storlek: cirka 15 000 hektar varav 800 hektar land fördelat på cirka 250 öar" (läst 2026-11-17)
+      'Lurö skärgårds naturreservat bildades 1967 och är cirka 15 000 hektar, varav 800 hektar land fördelat på cirka 250 öar.',
+    ],
+    facts: {
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "Luröbåten tar cirka 1 timme." (läst 2026-11-17)
+      travel_time: 'Luröbåten från Ekenäs cirka 1 timme',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Lurö (som endast i vissa delar ingår i naturreservatet)" (läst 2026-11-17)
+      character: 'Ö med leder, klosterruin och fyr',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "På sommaren går turbåtar från Ekenäs till ön" (läst 2026-11-17)
+      season: 'Turbåt från Ekenäs sommartid',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "finns gott om vandringsleder och sevärdheter" (läst 2026-11-17)
+      best_for: 'Vandring, klosterruinen och fyren',
+    },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "finns gott om vandringsleder och sevärdheter" (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsleder', desc: 'På Lurö finns gott om vandringsleder.' },
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "spännande platser som klosterruinen, Stånguddens fyr" (läst 2026-11-17)
+      { icon: '🏛️', name: 'Klosterruinen och Stånguddens fyr', desc: 'Bland sevärdheterna på Lurö finns klosterruinen och Stånguddens fyr.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "Området nås sommartid endast med båt."; "På sommaren går turbåtar från Ekenäs till ön" (läst 2026-11-17)
+      // KÄLLA: https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html — "Resan till Lurö startar vid Ekenäs gästhamn, belägen på Värmlandsnäs."; "Luröbåten lägger till på västra sidan av Husön vid gården Stenstaka"; "Därefter går båten vidare till Basteviken, Lurös huvudbrygga."; "Luröbåten tar cirka 1 timme."; "Tänk på att boka din resa i förväg!" (läst 2026-11-17)
+      { method: 'Turbåt', from: 'Ekenäs på Värmlandsnäs', desc: 'Sommartid når du området bara med båt. Enligt Säffle kommun startar Luröbåten vid Ekenäs gästhamn, lägger till vid Stenstaka på Husön och går vidare till Basteviken, som är Lurös huvudbrygga. Turen tar cirka en timme. Boka resan i förväg.', icon: '⛴️' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "bryggan vid Stenstaka (toalett, gästhamn, restaurang, vandrarhem och sopstation)" (läst 2026-11-17)
+      'Vid bryggan vid Stenstaka finns toalett, gästhamn och sopstation.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "under tiden 1 april-31 juli landstiga eller varaktigt vistas i närliggande vattenområde på öar och delområden som är utpekade som fågelskyddsområden. Det förbjudna vattenområdet sträcker sig i normalfallet 100 m ut från ön." (läst 2026-11-17)
+      '1 april till 31 juli får du inte gå i land på öar och delområden som är fågelskyddsområden, och inte heller uppehålla dig varaktigt i vattnet runt dem. Det förbjudna vattenområdet sträcker sig normalt 100 meter ut från ön.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "på land medföra ej kopplad hund eller annat lösgående husdjur"; "På Sunnervassen, Ärnön, Gunnarsholmen och Vithall betas markerna återigen av nötdjur och får. Tänk på att inte ta med hund på öarna där det finns betesdjur." (läst 2026-11-17)
+      'Hunden ska vara kopplad på land. Länsstyrelsen ber dig också att inte ta med hund till öarna med betesdjur: Sunnervassen, Ärnön, Gunnarsholmen och Vithall.',
+      // KÄLLA: https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html — "tälta mer än två (2) dygn i sträck på samma plats"; "förtöja båt eller husbåt mer än två (2) dygn i sträck på samma plats"; "göra upp öppen eld annat än på av reservatsförvaltaren anvisad och särskilt iordningställd plats"; "Medhavda grillar och friluftskök får dock användas även på annan plats." (läst 2026-11-17)
+      'I reservatet får du inte tälta eller förtöja mer än två dygn i sträck på samma plats. Öppen eld får bara göras på anvisad plats, men egen grill och friluftskök är tillåtna.',
+    ],
+    related: ['djuro-nationalpark', 'kallandso'],
+    tags: ['vänern', 'säffle', 'fyr', 'naturreservat'],
+  },
+  {
+    slug: 'kallandso',
+    name: 'Kållandsö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🚲',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Alldeles intill Läckö slott ligger naturum Vänerskärgården."; "Det finns också flera fina cykelvägar på Kållandsö." (läst 2026-11-17)
+    tagline: 'Ö i Lidköpings kommun med naturum Vänerskärgården intill Läckö slott, cykelvägar och kajak att hyra.',
+    seoTitle: 'Kållandsö: buss, naturum, kajak och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf — "Området trafikeras av linje 132 som kör från Lidköping"; "med sluthållplatserna Spikens fiskeläge och Läckö slott" (läst 2026-11-17)
+    seoDescription: 'Naturum vid Läckö slott, cykelvägar och kajak att hyra. Buss 132 går från Lidköping till Läckö slott och Spikens fiskeläge.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=K%C3%A5llands%C3%B6 — Lantmäteriet Min Karta, sökning "Kållandsö" → Kållandsö | Lidköping | Natur- och terrängnamn, SWEREF 99 TM 393785/6503936 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.6626,
+    lng: 13.1690,
+    description: [
+      // KÄLLA: https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf — "blev Kållandsö en enda sammanhållen ö" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Kommun: Lidköping"; "Skärgården sträcker sig väster- och norrut från Kållandsö" (läst 2026-11-17)
+      'Kållandsö är en ö i Lidköpings kommun. Väster och norr om ön ligger Kållands skärgårdar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Alldeles intill Läckö slott ligger naturum Vänerskärgården."; "Fiskehamnen i Spiken, en av Europas största insjöfiskehamnar" (läst 2026-11-17)
+      'Intill Läckö slott ligger naturum Vänerskärgården. Fiskehamnen i Spiken är en av Europas största insjöfiskehamnar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Det finns också flera fina cykelvägar på Kållandsö."; "möjlighet att hyra kajak vid Läckö och Naven" (läst 2026-11-17)
+      'På Kållandsö finns flera cykelvägar, och du kan hyra kajak vid Läckö och Naven.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Det finns också flera fina cykelvägar på Kållandsö."; "Skärgården sträcker sig väster- och norrut från Kållandsö" (läst 2026-11-17)
+      character: 'Ö med cykelvägar och fiskehamn',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "möjlighet att hyra kajak vid Läckö och Naven"; "naturum Vänerskärgården" (läst 2026-11-17)
+      best_for: 'Cykling, kajak och naturum',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Alldeles intill Läckö slott ligger naturum Vänerskärgården. Här finns utställningar och information om innanhavet Vänern" (läst 2026-11-17)
+      { icon: '🏛️', name: 'Naturum Vänerskärgården', desc: 'Utställningar och information om Vänern, intill Läckö slott.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "möjlighet att hyra kajak vid Läckö och Naven" (läst 2026-11-17)
+      { icon: '🛶', name: 'Kajak', desc: 'Du kan hyra kajak vid Läckö och Naven.' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Från Roparudden, vid Läckö slott, utgår en tre kilometer lång led." (läst 2026-11-17)
+      { icon: '🥾', name: 'Leden från Roparudden', desc: 'Från Roparudden vid Läckö slott utgår en tre kilometer lång led.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf — "Området trafikeras av linje 132 som kör från Lidköping"; "med sluthållplatserna Spikens fiskeläge och Läckö slott" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Du kan även resa med närtrafik när inte bussen går." (läst 2026-11-17)
+      { method: 'Buss', from: 'Lidköping', desc: 'Buss 132 går från Lidköping till Läckö slott och Spikens fiskeläge. När bussen inte går finns närtrafik.', icon: '🚌' },
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Parkeringsplats finns vid Läckö slott, vid fiskehamnen Spiken" (läst 2026-11-17)
+      { method: 'Bil', from: 'Läckö slott eller Spiken', desc: 'Parkering finns bland annat vid Läckö slott och vid fiskehamnen Spiken.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "Cirka 15 områden som är särskilt känsliga för störningar är avsatta som fågelskyddsområden."; "färdas eller uppehålla sig inom det område som angivits på bifogad karta årligen under tiden 1 april"; "31juli." (läst 2026-11-17)
+      'I Kållands skärgårdar är cirka 15 områden fågelskyddsområden. Inom de områden som är markerade på kartan får du varken färdas eller uppehålla dig 1 april till 31 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "framföra motorbåt med högre hastighet än 7 knop inom farlederna Flakesjön - Klitt, Klitt - Naven och Klitt - Järna" (läst 2026-11-17)
+      'I farlederna Flakesjön till Klitt, Klitt till Naven och Klitt till Järna får du inte köra motorbåt fortare än 7 knop.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html — "förtöja båt mer än två dygn i följd på samma plats"; "tälta på samma plats mer än två dygn i följd"; "medföra okopplad hund på land" (läst 2026-11-17)
+      'I Kållands skärgårdar får du inte förtöja eller tälta mer än två dygn i följd på samma plats. Hunden ska vara kopplad på land.',
+    ],
+    related: ['luro', 'djuro-nationalpark'],
+    tags: ['vänern', 'lidköping', 'cykel', 'kajak'],
+  },
+  {
+    slug: 'onso',
+    name: 'Onsö',
+    region: 'ovriga',
+    regionLabel: 'Vänern',
+    emoji: '🌳',
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Onsö ligger i Vänern, strax väster om Dillö."; "med fina naturhamnar och platser för bad och avkoppling" (läst 2026-11-17)
+    tagline: 'Naturreservat i Vänern strax väster om Dillö, med naturhamnar, badplatser och hagmarker.',
+    seoTitle: 'Onsö i Vänern: naturhamnar och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Du kan bara komma hit med egen båt." (läst 2026-11-17)
+    seoDescription: 'Naturhamnar, badplatser och hagmarker strax väster om Dillö i Vänern. Till Onsö kommer du bara med egen båt eller kajak.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ons%C3%B6 — Lantmäteriet Min Karta, sökning "Onsö" → Onsö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 423731/6511151 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 58.7337,
+    lng: 13.6826,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Onsö ligger i Vänern, strax väster om Dillö."; "Kommun: Mariestad" (läst 2026-11-17)
+      'Onsö ligger i Vänern, strax väster om Dillö, i Mariestads kommun.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "med fina naturhamnar och platser för bad och avkoppling"; "På Onsöns södra del finns också fantastiskt vackra och vidsträckta hagmarker och öppna strandängar." (läst 2026-11-17)
+      'Ön har naturhamnar och platser för bad. På södra Onsö finns hagmarker och öppna strandängar.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Bildat: 2005"; "Areal: cirka 813 hektar" (läst 2026-11-17)
+      'Naturreservatet bildades 2005 och är cirka 813 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "med fina naturhamnar och platser för bad och avkoppling"; "hagmarker och öppna strandängar" (läst 2026-11-17)
+      character: 'Naturreservat med naturhamnar och hagmarker',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "värdefullt utflyktsområde för båtburna besökare"; "lägga i kajaker eller en mindre båt" (läst 2026-11-17)
+      best_for: 'Båtfolk och kajak',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Du kan bara komma hit med egen båt."; "I reservatet ingår också en liten hamn på Dillö där besökarna kan lägga i kajaker eller en mindre båt." (läst 2026-11-17)
+      { method: 'Egen båt eller kajak', from: 'Vänern eller hamnen på Dillö', desc: 'Du kan bara komma hit med egen båt. I reservatet ingår en liten hamn på Dillö, där du kan sjösätta kajak eller en mindre båt.', icon: '🛶' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Ha hund okopplad under tiden 1 mars"; "30 september." (läst 2026-11-17)
+      'Hunden ska vara kopplad 1 mars till 30 september.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Under tiden 1 april till 31 juli vistas inom det område kring Yttre Armholmarna som markerats med tillträdesförbud" (läst 2026-11-17)
+      '1 april till 31 juli får du inte vistas inom det markerade området kring Yttre Armholmarna.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html — "Förtöja båt eller annan farkost mer än två nätter i sträck på samma plats."; "Elda annat än i medhavda grillar, gasol- och spritkök eller liknande." (läst 2026-11-17)
+      'Du får inte förtöja mer än två nätter i sträck på samma plats. Du får bara elda i medhavd grill, gasolkök, spritkök eller liknande.',
+    ],
+    related: ['brommo', 'djuro-nationalpark'],
+    tags: ['vänern', 'mariestad', 'naturreservat'],
+  },
+  // ─── BLEKINGE (komplettering 2026-11-17) ─────────────────────
+  {
+    slug: 'utklippan',
+    name: 'Utklippan',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '🗼',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp och ett populärt besöksmål för båtfolk."; "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna." (läst 2026-11-17)
+    tagline: 'Sveriges sydöstligaste ögrupp, med Utklippans fyr på Södraskär och en gästhamn för båtfolk.',
+    seoTitle: 'Utklippan: Sveriges sydöstligaste ögrupp',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Öarna nås med egen båt."; "Öarna har gästhamn och på Södraskär finns bland annat en fågelstation." (läst 2026-11-17)
+    seoDescription: 'Sveriges sydöstligaste ögrupp, med fyr, gråsälar och gästhamn. Utklippan når du med egen båt.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Utklippan — Lantmäteriet Min Karta, sökning "Utklippan" → Utklippan | Karlskrona | Trakt, SWEREF 99 TM 543816/6201041 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 55.9527,
+    lng: 15.7017,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp och ett populärt besöksmål för båtfolk."; "ligger ungefär åtta kilometer syd-sydväst om Utlängan"; "Kommun: Karlskrona" (läst 2026-11-17)
+      'Utklippan är Sveriges sydöstligaste ögrupp och ligger i Karlskrona kommun, ungefär åtta kilometer sydsydväst om Utlängan.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklipporna består av de nästan kala öarna, Norraskär, Södraskär och Degerhuvudet samt flera mindre skär." (läst 2026-11-17)
+      'Ögruppen består av de nästan kala öarna Norraskär, Södraskär och Degerhuvudet samt flera mindre skär.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna."; "Fyren, fyrvaktarsamhället och miljön på Södraskär och Norraskär är statliga byggnadsminnen."; "Numera används byggnaderna bland annat av Utklippans fågelstation och Svenska Kryssarklubben." (läst 2026-11-17)
+      'På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna. Fyren, fyrvaktarsamhället och miljön på Södraskär och Norraskär är statliga byggnadsminnen. I dag används byggnaderna bland annat av Utklippans fågelstation och Svenska Kryssarklubben.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Gråsäl ses ofta vila på Degerhuvudet och klipporna där omkring, och ibland även knubbsäl."; "På öarna rastar stora mängder flyttfåglar under vår och höst." (läst 2026-11-17)
+      'Gråsäl ses ofta vila på Degerhuvudet och klipporna där omkring, och ibland även knubbsäl. På öarna rastar stora mängder flyttfåglar under vår och höst.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Bildat 1988, utvidgat 2011 och 2018"; "5 168 hektar, varav 12 hektar land" (läst 2026-11-17)
+      'Naturreservatet bildades 1988, utvidgades 2011 och 2018 och är 5 168 hektar, varav 12 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Utklippan är Sveriges sydöstligaste ögrupp" (läst 2026-11-17)
+      character: 'Nästan kala öar med fyr och fågelstation',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "ett populärt besöksmål för båtfolk"; "På öarna rastar stora mängder flyttfåglar under vår och höst." (läst 2026-11-17)
+      best_for: 'Båtfolk och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna." (läst 2026-11-17)
+      { icon: '🗼', name: 'Utklippans fyr', desc: 'Fyren står på Södraskär.' },
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Gråsäl ses ofta vila på Degerhuvudet och klipporna där omkring, och ibland även knubbsäl." (läst 2026-11-17)
+      { icon: '🦭', name: 'Sälar', desc: 'Gråsäl ses ofta vila på Degerhuvudet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Öarna nås med egen båt."; "I gästhamnen finns en informationspaviljong, uppförd 2015." (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Karlskrona skärgård', desc: 'Du når öarna med egen båt. Vid gästhamnen finns en informationspaviljong från 2015.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Naturreservatet Utklippan utgörs av ögruppen Utklipporna med omgivande havsområde."; "medföra hund, katt eller annat rovdjur som inte är kopplat" (läst 2026-11-17)
+      'Naturreservatet omfattar ögruppen och havet runt den. Hundar och katter ska vara kopplade.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "göra upp eld eller använda grillar, spritkök eller motsvarande annat än på anvisad grillplats"; "tälta annat än på anvisad plats, och i högst 2 dygn" (läst 2026-11-17)
+      'Du får bara göra upp eld eller använda grill, spritkök eller motsvarande på anvisad grillplats. Du får bara tälta på anvisad plats, och högst två dygn.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "under längre än tre dygn i följd ligga med båt invid brygga, kaj eller annan plats, med undantag för nödsituationer vid exempelvis dåligt väder" (läst 2026-11-17)
+      'Du får inte ligga med båt vid brygga, kaj eller annan plats längre än tre dygn i följd, utom i nödsituationer som dåligt väder.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "tomgångsköra motor eller använda motordrivet laddningsaggregat"; "bedriva vattenlek med motordriven farkost." (läst 2026-11-17)
+      'Du får inte tomgångsköra motor, använda motordrivet laddningsaggregat eller bedriva vattenlek med motordriven farkost.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html — "Inom naturreservatet finns fågelskyddsområden som är viktiga att respektera" (läst 2026-11-17)
+      'Inom reservatet finns fågelskyddsområden som är viktiga att respektera.',
+    ],
+    related: ['aspo-blekinge', 'sturko', 'hano'],
+    tags: ['blekinge', 'karlskrona', 'fyr', 'sälar', 'naturreservat'],
+  },
+  {
+    slug: 'tarno',
+    name: 'Tärnö',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '⛵',
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Tärnö är belägen i det yttersta havsbandet och är den största av öarna i Hällaryds skärgård."; "Från Tärnös högsta punkt, Drakaberget, kan man se mer än halva Blekinges kust." (läst 2026-11-17)
+    tagline: 'Den största ön i Hällaryds skärgård utanför Karlshamn. Från Drakaberget ser du mer än halva Blekinges kust.',
+    seoTitle: 'Tärnö: båten från Karlshamn, leder och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/ — "Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö." (läst 2026-11-17)
+    seoDescription: 'Från Drakaberget ser du mer än halva Blekinges kust, och på Ifberget står Sveriges äldsta träfyr som ännu är i drift. Båten från Karlshamn tar cirka 30 minuter.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=T%C3%A4rn%C3%B6 — Lantmäteriet Min Karta, sökning "Tärnö" → Tärnö | Karlshamn | Natur- och terrängnamn, SWEREF 99 TM 497780/6219319 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 56.1189,
+    lng: 14.9643,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Tärnö är belägen i det yttersta havsbandet och är den största av öarna i Hällaryds skärgård."; "ön är inte större än att du kan vandra runt den på några timmar"; "Kommun: Karlshamn" (läst 2026-11-17)
+      'Tärnö ligger i Karlshamns kommun och är den största av öarna i Hällaryds skärgård. Du kan vandra runt ön på några timmar.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Från Tärnös högsta punkt, Drakaberget, kan man se mer än halva Blekinges kust."; "På Ifberget finns Sveriges äldsta träfyr som ännu är i drift" (läst 2026-11-17)
+      'Från Drakaberget, öns högsta punkt, kan du se mer än halva Blekinges kust. På Ifberget finns Sveriges äldsta träfyr som ännu är i drift.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "På 1600-talet fann man en silverskatt på Tärnö."; "Delar av skatten förvaras idag på Historiska museet i Stockholm." (läst 2026-11-17)
+      'På 1600-talet hittade man en silverskatt på Tärnö. Delar av den finns i dag på Historiska museet i Stockholm.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "I naturreservatet på de två öarna Tärnö och Yttre Ekö"; "1980 och 1988, ändring och utvidgning 2021"; "112,8 hektar" (läst 2026-11-17)
+      'Naturreservatet ligger på de två öarna Tärnö och Yttre Ekö. Det skyddades 1980 och 1988, ändrades och utvidgades 2021 och är 112,8 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/ — "Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö." (läst 2026-11-17)
+      travel_time: 'Cirka 30 minuter med båt från Karlshamn',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "den största av öarna i Hällaryds skärgård" (läst 2026-11-17)
+      character: 'Största ön i Hällaryds skärgård',
+      // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/ — "Från maj till september reser du ut till öar som Tjärö, Tärnö och Kastellet." (läst 2026-11-17)
+      season: 'Båt maj till september',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Runt ön finns vandringsleder, grillplatser och rastplatser." (läst 2026-11-17)
+      best_for: 'Dagstur, vandring och utsikt',
+    },
+    facts_provenance: { travel_time: 'matt', character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Runt ön finns vandringsleder, grillplatser och rastplatser." (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsleder', desc: 'Runt ön finns vandringsleder, grillplatser och rastplatser.' },
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "I Sandvik på Tärnös södra sida finns en vik med sandstrand där det går att bada, men botten har ett stort inslag av sten och det kan vara svårt att ta sig ut." (läst 2026-11-17)
+      { icon: '🏖️', name: 'Sandvik', desc: 'I Sandvik på södra Tärnö finns en vik med sandstrand där det går att bada. Botten har mycket sten, och det kan vara svårt att ta sig ut.' },
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "På Ifberget finns Sveriges äldsta träfyr som ännu är i drift" (läst 2026-11-17)
+      { icon: '🗼', name: 'Träfyren på Ifberget', desc: 'Sveriges äldsta träfyr som ännu är i drift.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "Tärnö nås sommartid med båt enligt tidtabell. Det går en passagerarfärja från både Karlshamn och Matvik." (läst 2026-11-17)
+      // KÄLLA: https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/ — "Vid gästhamnen i centrala Karlshamn hittar du skärgårdsterminalen."; "Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö."; "Du köper din biljett när du går ombord"; "Det går bra att ta med djur ombord på våra båtar." (läst 2026-11-17)
+      { method: 'Passagerarfärja', from: 'Karlshamn eller Matvik', desc: 'Tärnö nås sommartid med båt enligt tidtabell, och det går passagerarfärja från både Karlshamn och Matvik. Från skärgårdsterminalen vid gästhamnen i centrala Karlshamn tar resan cirka 30 minuter. Biljetten köper du ombord, och det går bra att ta med djur.', icon: '⛴️' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "tälta eller på annat sätt slå läger mer än 2 dygn"; "göra upp eld eller använda grillar, annat än på särskilt iordningställda grillplatser" (läst 2026-11-17)
+      'I reservatet får du inte tälta mer än två dygn, och du får bara göra upp eld eller grilla på särskilt iordningställda grillplatser.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "cykla annat än på befintliga vägar och stigar, och då endast på sätt som inte ger förslitningsskador på markerna, verkar störande på naturen eller på övrigt friluftsliv i området" (läst 2026-11-17)
+      'Du får bara cykla på befintliga vägar och stigar, och bara så att du inte sliter på marken eller stör naturen eller andra besökare.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html — "tomgångsköra motor (mer än 1 minut)" (läst 2026-11-17)
+      'Du får inte tomgångsköra motor mer än en minut.',
+    ],
+    related: ['tjaro', 'hano'],
+    tags: ['blekinge', 'karlshamn', 'fyr', 'naturreservat'],
+  },
+  {
+    slug: 'hastholmen-ytteron',
+    name: 'Hästholmen och Ytterön',
+    region: 'ovriga',
+    regionLabel: 'Blekinge',
+    emoji: '🐄',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Naturreservatet Hästholmen-Ytterön är en kulturhistoriskt värdefull skärgårdsmiljö."; "Öarna består mest av flacka hällmarker, enbuskhedar och strandängar." (läst 2026-11-17)
+    tagline: 'Flacka öar i Karlskrona kommun med hällmarker, enbuskhedar och strandängar, där sjöfågel samlas i vikarna på vintern.',
+    seoTitle: 'Hästholmen och Ytterön: kabelfärja och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Du tar av från E22 mot Torhamn i Jämjö, följ skyltningen mot Yttre Park. Där går en kabelfärja." (läst 2026-11-17)
+    seoDescription: 'Strandängar, hällmarker och mängder med sjöfågel i vikarna på vintern. Med bil tar du av från E22 i Jämjö mot Torhamn.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=H%C3%A4stholmen — Lantmäteriet Min Karta, sökning "Hästholmen" → Hästholmen | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM 546627/6215417 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 56.0816,
+    lng: 15.7492,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Naturreservatet Hästholmen-Ytterön är en kulturhistoriskt värdefull skärgårdsmiljö."; "Kommun: Karlskrona" (läst 2026-11-17)
+      'Länsstyrelsen beskriver naturreservatet Hästholmen och Ytterön i Karlskrona kommun som en kulturhistoriskt värdefull skärgårdsmiljö.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Öarna består mest av flacka hällmarker, enbuskhedar och strandängar."; "Norr om Hästholmens by breder ett stort strandängsområde ut sig." (läst 2026-11-17)
+      'Öarna består mest av flacka hällmarker, enbuskhedar och strandängar. Norr om Hästholmens by finns ett stort strandängsområde.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "På sommaren är det full aktivitet med häckande trutar, måsar och tärnor. Under vintern samlas mängder med sjöfågel i vikarna." (läst 2026-11-17)
+      'På sommaren häckar trutar, måsar och tärnor, och på vintern samlas mängder med sjöfågel i vikarna.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "1975, reviderat/ändrat 2025"; "1152 hektar, varav 392 hektar land" (läst 2026-11-17)
+      'Naturreservatet bildades 1975, ändrades 2025 och är 1 152 hektar, varav 392 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Naturreservatet Hästholmen-Ytterön är en kulturhistoriskt värdefull skärgårdsmiljö." (läst 2026-11-17)
+      character: 'Flacka öar med strandängar',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Öarna består mest av flacka hällmarker, enbuskhedar och strandängar."; "Under vintern samlas mängder med sjöfågel i vikarna." (läst 2026-11-17)
+      best_for: 'Promenader och fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "Du tar av från E22 mot Torhamn i Jämjö, följ skyltningen mot Yttre Park. Där går en kabelfärja." (läst 2026-11-17)
+      { method: 'Bil och kabelfärja', from: 'Jämjö', desc: 'Ta av från E22 mot Torhamn i Jämjö och följ skyltningen mot Yttre Park. Enligt Länsstyrelsen går det en kabelfärja därifrån.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "medföra okopplad hund inom reservatet, annat än vid vallning av boskap och jakt samt vid eftersök på skadat djur" (läst 2026-11-17)
+      'Hunden ska vara kopplad i reservatet, utom vid vallning av boskap, jakt och eftersök på skadat djur.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "tälta eller på annat sätt slå läger mer än två dygn"; "göra upp eld eller använda grillar, annat än på särskilt iordningställd grillplats" (läst 2026-11-17)
+      'Du får inte tälta mer än två dygn, och du får bara göra upp eld eller grilla på särskilt iordningställd grillplats.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "ankra, lägga till eller dra upp båt eller annan vattenfarkost annat än vid tillfällig vistelse (högst två dygn) i området"; "Förbudet gäller inte befintliga enskilda bryggor eller andra iordningställda båtplatser"; "ankra båt eller annan vattenfarkost inom områden med Ankringsförbud enligt beslutsbilaga 2a" (läst 2026-11-17)
+      'Du får ankra, lägga till eller dra upp båt eller annan vattenfarkost bara vid tillfällig vistelse, högst två dygn. Det gäller inte befintliga enskilda bryggor eller andra iordningställda båtplatser. I vissa områden får du inte ankra alls, enligt kartan i reservatsbeslutet.',
+      // KÄLLA: https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html — "tomgångsköra motor (mer än en minut)" (läst 2026-11-17)
+      'Du får inte tomgångsköra motor mer än en minut.',
+    ],
+    related: ['utklippan', 'sturko', 'aspo-blekinge'],
+    tags: ['blekinge', 'karlskrona', 'naturreservat', 'fåglar'],
+  },
+  // ─── GOTLAND (komplettering 2026-11-17) ──────────────────────
+  {
+    slug: 'stora-karlso',
+    name: 'Stora Karlsö',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🐦',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö."; "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön." (läst 2026-11-17)
+    tagline: 'Ön 15 kilometer sydväst om Klintehamn där tusentals par sillgrissla och tordmule häckar.',
+    seoTitle: 'Stora Karlsö: båten från Klintehamn och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn" (läst 2026-11-17)
+    seoDescription: 'Tusentals par sillgrissla och tordmule, orkidéer i slutet av maj och en guidad tur som ingår i resan. Båten går från Klintehamn.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Karls%C3%B6 — Lantmäteriet Min Karta, sökning "Stora Karlsö" → Stora Karlsö | Gotland | Natur- och terrängnamn, SWEREF 99 TM 679283/6353065 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.2853,
+    lng: 17.9746,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö."; "Skyddsform: Naturreservat och Natura 2000" (läst 2026-11-17)
+      'Stora Karlsö ligger 15 kilometer sydväst om Klintehamn och 4,7 kilometer från Lilla Karlsö. Ön är naturreservat och ingår i Natura 2000.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön."; "I slutet av maj och början av juni bildar tusentals blommande Adam och Eva och S:t Pers nycklar formliga orkidéängar." (läst 2026-11-17)
+      'Sillgrissla och tordmule häckar båda med tusentals par på ön. I slutet av maj och början av juni blommar tusentals Adam och Eva och S:t Pers nycklar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Öns högsta punkt ligger 51,6 meter över havet på den centrala delen av Roisu haid"; "Ett flertal gravar och åtskilliga andra fynd vittnar om att Stora Karlsö ända sedan stenåldern har nyttjats av människan" (läst 2026-11-17)
+      'Öns högsta punkt ligger 51,6 meter över havet. Gravar och andra fynd visar att människor har använt Stora Karlsö ända sedan stenåldern.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Skyddsår: 1970"; "Areal: 1180 hektar varav 246 hektar land och 934 hektar vatten" (läst 2026-11-17)
+      'Naturreservatet bildades 1970 och är 1 180 hektar, varav 246 hektar land.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Karaktär: Fågelberg, alvarmark och stenstränder" (läst 2026-11-17)
+      character: 'Fågelberg, alvarmark och stenstränder',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Från början av maj till augusti/september går regel"; "bunden båttrafik till ön från Klintehamn." (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "6 maj"; "29 augusti" (läst 2026-11-17)
+      season: 'Reguljär båt från Klintehamn maj till augusti',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön." (läst 2026-11-17)
+      best_for: 'Fågelskådning och guidad tur',
+    },
+    facts_provenance: { character: 'matt', season: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "En guidad tur med våra kunniga guider erbjuds till alla våra besökare och ingår i priset för resan." (läst 2026-11-17)
+      { icon: '🧭', name: 'Guidad tur', desc: 'En guidad tur erbjuds alla besökare och ingår i resan.' },
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön." (läst 2026-11-17)
+      { icon: '🐦', name: 'Fågelkolonierna', desc: 'Sillgrissla och tordmule häckar med tusentals par på ön.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn"; "Turer kan ställas in vid dåligt väder."; "Resenärer skall vara på kaj senast 30 minuter före avgång." (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Om du kommer med egen bil finns gratis parkering nära båten i hamnen i Klintehamn." (läst 2026-11-17)
+      { method: 'Båt', from: 'Klintehamn', desc: 'Båten till Stora Karlsö går från Klintehamn. Var på kajen senast 30 minuter före avgång. Turer kan ställas in vid dåligt väder. Det finns gratis parkering nära båten i hamnen.', icon: '⛴️' },
+      // KÄLLA: https://storakarlso.se/ovriga-resor/egen-bat-till-on/ — "Man får endast lägga till i Norderhamn på den västra sidan av bryggan eftersom den östra sidan används av Karlsöbåten."; "Ta kontakt med tillsynsmannen, när du närmar dig eller kommit iland" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "31 augusti förtöja eller ankra fartyg i Norderhamn"; "Tillsynsman (april" (läst 2026-11-17)
+      { method: 'Egen båt', from: 'Norderhamn', desc: '15 mars till 31 augusti krävs tillstånd från Länsstyrelsen eller tillsynsmannen för att förtöja eller ankra i Norderhamn. Du får bara lägga till på västra sidan av bryggan. Kontakta tillsynsmannen när du närmar dig eller har kommit i land.', icon: '⛵' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Ön har eget dricksvatten." (läst 2026-11-17)
+      'Ön har eget dricksvatten.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "31 augusti stiga iland på ön utan tillstånd av Länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet."; "landstiga på annan plats än Norderhamn utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet" (läst 2026-11-17)
+      '15 mars till 31 augusti behöver du tillstånd från Länsstyrelsen eller reservatets tillsynsman för att gå i land på ön. Året runt krävs tillstånd för att gå i land någon annanstans än i Norderhamn.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Under tiden 1 september"; "14 mars äger allmänheten rätt att vistas på ön efter skriftlig anmälan."; "Besökare skall göra sådan anmälan omedelbart efter ilandstigning vid bryggan i Norderhamn." (läst 2026-11-17)
+      '1 september till 14 mars får alla vistas på ön efter skriftlig anmälan, som görs vid bryggan i Norderhamn direkt när du gått i land.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "15 augusti beträda eller vistas inom de delar av naturreservatet som markerats med röd snedstreckning på kartan" (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Runt hela ön finns ett fågelskyddsområde där det råder tillträdesförbud mellan 15/3 och 15/8, undantaget stranden i Norderhamn och Hien. Fågelskyddsområdet är markerat med gula skyltar." (läst 2026-11-17)
+      '15 mars till 15 augusti får du inte gå in i de delar av reservatet som är markerade med röd snedstreckning på kartan. Enligt Karlsöbolaget går fågelskyddsområdet runt hela ön, utom stranden i Norderhamn och Hien, och det är markerat med gula skyltar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "föra iland hund, katt eller annat sällskapsdjur"; "göra upp öppen eld"; "tälta"; "plocka eller gräva upp växter eller svampar"; "samla in fossil eller förflytta eller bortföra block eller sten" (läst 2026-11-17)
+      'Du får inte ta med hund, katt eller annat sällskapsdjur i land, göra upp öppen eld, tälta, plocka eller gräva upp växter eller svampar, samla in fossil, eller flytta eller ta med block och sten.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "under tiden 15 mars"; "15 augusti fiska med annat än handredskap eller att fiska från stranden"; "brädsegla, åka vattenskidor eller framföra vattenskoter"; "landa med luftfarkost" (läst 2026-11-17)
+      '15 mars till 15 augusti får du bara fiska med handredskap, och inte från stranden. Du får inte brädsegla, åka vattenskidor, köra vattenskoter eller landa med luftfarkost.',
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "det är inte tillåtet att flyga med drönare över Stora Karlsö under perioden 15 mars till 15 augusti. Förbudet gäller hela ön." (läst 2026-11-17)
+      'Enligt Karlsöbolaget får du inte flyga drönare över ön 15 mars till 15 augusti.',
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "Vill man av någon anledning gå på egen hand får man bara gå på guidestigen och man måste ha med sig en karta." (läst 2026-11-17)
+      'Går du på egen hand får du bara gå på guidestigen, och du måste ha med dig en karta.',
+    ],
+    related: ['lilla-karlso', 'gotland'],
+    tags: ['gotland', 'klintehamn', 'fåglar', 'naturreservat'],
+  },
+  {
+    slug: 'furilden',
+    name: 'Furilden',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🦆',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka."; "Socken: Rute"; "Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden." (läst 2026-11-17)
+    tagline: 'Ö i Rute socken på Gotland, med ett naturreservat, en vandringsstig och ett fågeltorn över strandängarna.',
+    seoTitle: 'Furilden på Gotland: naturreservat och fågeltorn',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från P-platsen innanför Östervik leder en hårdgjord stig till en anpassad grillplats och vidare cirka 800 meter till ett fågeltorn med ramp." (läst 2026-11-17)
+    seoDescription: 'Fågeltorn med ramp över strandängarna innanför Fitudden och en 2 kilometer lång vandringsstig genom tallskogen.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Furilden — Lantmäteriet Min Karta, sökning "Furilden" → Furilden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 739469/6410632 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.7736,
+    lng: 19.0274,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka." (läst 2026-11-17)
+      'Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 kilometer sydost om Rute kyrka.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Ett utmärkt sätt att bekanta sig med naturreservatet är att gå den 2 kilometer långa vandringsstig som går genom området."; "Tall är det dominerande trädslaget." (läst 2026-11-17)
+      'En 2 kilometer lång vandringsstig går genom reservatet. Tall är det dominerande trädslaget.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden."; "här häckar bland annat grågås, gravand, skedand, storspov" (läst 2026-11-17)
+      'Från fågeltornet har du god utsikt över de fågelrika strandängarna innanför Fitudden. Där häckar bland annat grågås, gravand, skedand och storspov.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Den södra udden av Furilden ingår i reservatet och här finns gammalskog, klappersten och slingrande grusvägar." (läst 2026-11-17)
+      'Den södra udden av Furilden ingår i naturreservatet Slite skärgård. Där finns gammal skog, klappersten och slingrande grusvägar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Skyddsår: 2009"; "Areal: 131 hektar" (läst 2026-11-17)
+      'Furilden naturreservat bildades 2009 och är 131 hektar.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Ön Furilden är starkt präglad av lång beteshävd." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Tall är det dominerande trädslaget."; "strandängarna innanför Fitudden" (läst 2026-11-17)
+      character: 'Betespräglad ö med tallskog och strandängar',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden." (läst 2026-11-17)
+      best_for: 'Fågelskådning',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från P-platsen innanför Östervik leder en hårdgjord stig till en anpassad grillplats och vidare cirka 800 meter till ett fågeltorn med ramp." (läst 2026-11-17)
+      { icon: '🔭', name: 'Fågeltornet', desc: 'Från parkeringen innanför Östervik leder en hårdgjord stig till ett fågeltorn med ramp.' },
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "gå den 2 kilometer långa vandringsstig som går genom området" (läst 2026-11-17)
+      { icon: '🥾', name: 'Vandringsstigen', desc: 'En 2 kilometer lång vandringsstig genom reservatet.' },
+    ],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Det går också ta sig landvägen till södra änden av Furilden där förbindelse till ön finns strax söder om Lergrav." (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "Från P-platsen innanför Östervik leder en hårdgjord stig till en anpassad grillplats och vidare cirka 800 meter till ett fågeltorn med ramp." (läst 2026-11-17)
+      { method: 'Bil', from: 'Lergrav', desc: 'Du kan ta dig landvägen till södra änden av Furilden, där förbindelsen till ön finns strax söder om Lergrav. Furilden naturreservat ligger på öns nordligaste del. Där leder en hårdgjord stig från parkeringen innanför Östervik till ett fågeltorn med ramp.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "under tiden 15 mars"; "15 juli beträda eller vistas inom den del av reservatet som markerats på reservatskartan" (läst 2026-11-17)
+      'I Furilden naturreservat får du inte gå in i den del som är markerad på reservatskartan 15 mars till 15 juli.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html — "föra motordrivet fordon annat än på anvisad parkeringsplats,"; "göra upp eld,"; "plocka eller gräva upp växter,"; "bryta kvistar eller på annat sätt skada levande eller dött träd eller buske," (läst 2026-11-17)
+      'I Furilden naturreservat får du bara köra motorfordon till den anvisade parkeringen. Du får inte göra upp eld, plocka eller gräva upp växter, eller bryta kvistar och skada träd eller buskar.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Den södra udden av Furilden ingår i reservatet"; "medföra hund som inte är kopplad eller annat lösgående sällskapsdjur under perioden 1 mars"; "31 oktober" (läst 2026-11-17)
+      'Södra udden av Furilden ligger i naturreservatet Slite skärgård. Där ska hunden vara kopplad 1 mars till 31 oktober.',
+    ],
+    related: ['asunden', 'faro', 'gotland'],
+    tags: ['gotland', 'rute', 'fåglar', 'naturreservat', 'tillgänglighet'],
+  },
+  {
+    slug: 'asunden',
+    name: 'Asunden',
+    region: 'ovriga',
+    regionLabel: 'Gotland',
+    emoji: '🪨',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Utan vattentransport tar man sig lättast in via Asunden, strax öster om Slite."; "Här finns bland annat ett av Gotlands vackraste raukområden, beläget i den nordöstra delen av ön." (läst 2026-11-17)
+    tagline: 'Ö strax öster om Slite med raukar på den nordöstra delen och fågelrika strandängar.',
+    seoTitle: 'Asunden vid Slite: raukar och regler',
+    // Sammanfattning av sidans fakta. Varje uppgift har belägg i KÄLLA-raderna längre ned i samma post.
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Ön nås via skyltad grusväg från Vägume." (läst 2026-11-17)
+    seoDescription: 'Höga raukar på nordöstra delen och fågelrika strandängar, strax öster om Slite. Ön nås via skyltad grusväg från Vägume.',
+    // KÄLLA: https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asunden — Lantmäteriet Min Karta, sökning "Asunden" → Asunden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 729251/6402619 omräknat till WGS 84 (läst 2026-11-17)
+    lat: 57.7072,
+    lng: 18.8483,
+    description: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Utan vattentransport tar man sig lättast in via Asunden, strax öster om Slite."; "men ingår nu, sedan 2021, i det större reservatet Slite skärgård." (läst 2026-11-17)
+      'Asunden ligger strax öster om Slite och ingår sedan 2021 i naturreservatet Slite skärgård.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Här finns bland annat ett av Gotlands vackraste raukområden, beläget i den nordöstra delen av ön."; "Många av raukarna är både höga och har fantasieggande former." (läst 2026-11-17)
+      'På öns nordöstra del finns ett raukområde. Många av raukarna är höga och märkligt formade.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "en rik flora med bland annat strandkål och luddvedel"; "ett mycket rikt fågelliv på strandängarna på öns nordvästra del." (läst 2026-11-17)
+      'Här växer bland annat strandkål och luddvedel, och på strandängarna på öns nordvästra del finns ett mycket rikt fågelliv.',
+    ],
+    facts: {
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Här finns bland annat ett av Gotlands vackraste raukområden"; "men ingår nu, sedan 2021, i det större reservatet Slite skärgård." (läst 2026-11-17)
+      character: 'Ö med raukar i naturreservatet Slite skärgård',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Många av raukarna är både höga och har fantasieggande former."; "ett mycket rikt fågelliv på strandängarna på öns nordvästra del." (läst 2026-11-17)
+      best_for: 'Fågelskådning och en promenad bland raukarna',
+    },
+    facts_provenance: { character: 'matt', best_for: 'bedomning' },
+    activities: [],
+    accommodation: [],
+    getting_there: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Ön nås via skyltad grusväg från Vägume." (läst 2026-11-17)
+      { method: 'Bil', from: 'Vägume', desc: 'Ön nås via skyltad grusväg från Vägume.', icon: '🚗' },
+    ],
+    harbors: [],
+    restaurants: [],
+    tips: [
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "Som besökare är det då bra att tänka på att bara gå på anvisade stigar och vägar, för att värna om fåglarnas bon och ägg." (läst 2026-11-17)
+      'På våren och försommaren är det bra att bara gå på anvisade stigar och vägar, för att värna om fåglarnas bon och ägg.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "borra, hacka, spränga, rista, gräva, måla eller på något sätt skada berg, block, raukar, jord, sten eller bottensediment"; "förflytta eller bortföra block, sten eller fossil exempelvis genom att bygga höga stentorn" (läst 2026-11-17)
+      'Du får inte skada berg, block, raukar eller sten, och inte flytta eller ta med sten eller fossil, till exempel genom att bygga höga stentorn.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "göra upp eld eller använda grill annat än på grillplatser iordningställda av förvaltaren, eller platser där växtlighet eller berggrund inte kan skadas, till exempel i strandgrus nära vattnet" (läst 2026-11-17)
+      'Eld och grill får bara användas på grillplatser som förvaltaren har ordnat, eller där växtlighet och berggrund inte kan skadas, till exempel i strandgrus nära vattnet.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "medföra hund som inte är kopplad eller annat lösgående sällskapsdjur under perioden 1 mars"; "31 oktober" (läst 2026-11-17)
+      '1 mars till 31 oktober ska hunden vara kopplad, och andra sällskapsdjur får inte gå lösa.',
+      // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html — "klättra i eller skada boträd eller bobuske, uppehålla sig nära fågelbo, samla in djur eller på annat sätt medvetet skada eller störa fågel"; "under tidsperioden 15 mars till 30 juni beträda Reveln" (läst 2026-11-17)
+      'Du får inte uppehålla dig nära fågelbon, klättra i eller skada boträd och bobuskar, samla in djur eller medvetet störa fågellivet. I samma reservat får du inte gå i land på Reveln 15 mars till 30 juni.',
+    ],
+    related: ['furilden', 'gotland'],
+    tags: ['gotland', 'slite', 'raukar', 'naturreservat'],
+  },
   // ─── ASKÖ ────────────────────────────────────────────────────
   {
     slug: 'asko',
     name: 'Askö',
-    region: 'södra',
-    regionLabel: 'Södra skärgården',
+    region: 'ovriga',
+    regionLabel: 'Sörmlands skärgård',
     emoji: '🔬',
     // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html — "Askö är länets första marina naturreservat.", "Skyddsår: 2001 och 2007", "Areal: 5 849 hektar, varav land 624 hektar", "Kommun: Trosa", "För den som vill bada finns den populära sandstranden Storsand" (läst 2026-09-27)
     // KÄLLA: https://su.se/stockholms-universitets-ostersjocentrum/infrastruktur/ask%C3%B6laboratoriet — "anlades Askölaboratoriet 1961 av professor Lars Silén" (läst 2026-09-27)
@@ -4481,8 +6940,10 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/galo/ — "Gålö – med skärgårdens längsta sandstrand" (läst 2026-09-27); https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — "Buss från Västerhaninge till Gålö" (läst 2026-09-27)
     tagline: 'Halvö i Haninge med skärgårdens längsta sandstrand, nåbar med bil och SL-buss.',
     description: [
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — "Västerhaninge station–Gålö", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Haninge centrum", "Gålövägen", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17)
       // KÄLLA: https://www.stegsholmsgard.se/ — "vi finns på Gålö i Haninge som är en halvö i Stockholms södra skärgård" (läst 2026-09-27); https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — "Med bil från Nynäsvägen (väg 73), avfart mot Dalarö. Efter 10 km avfart mot Gålö." (läst 2026-09-27); https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/ — "Endast 35 km söder om Stockholm" (läst 2026-09-27)
-      'Gålö är en halvö i Stockholms södra skärgård i Haninge kommun, ungefär 35 km söder om Stockholm. Med bil tar man väg 73 (Nynäsvägen), avfarten mot Dalarö och efter 10 km avfarten mot Gålö. SL-bussar går från Västerhaninge och Handen.',
+      'Gålö är en halvö i Stockholms södra skärgård i Haninge kommun, ungefär 35 km söder om Stockholm. Med bil tar man väg 73 (Nynäsvägen), avfarten mot Dalarö och efter 10 km avfarten mot Gålö. SL-buss 845 går från Västerhaninge station ut på Gålö, och buss 839 från Rudsjöterrassen via Haninge centrum mot Dalarö stannar vid Gålövägen.',
       // KÄLLA: https://www.haninge.se/uppleva-och-gora/simhallar-och-bad/badplatser/ — "Stort bad vid havet med lång strandremsa.", "Ja, och minigolfbana.", "Stor parkering.", "Gålö havsbad är inte ett kommunalt bad." (läst 2026-09-27); https://skargardsstiftelsen.se/omraden/galo/ — "finns en populär anläggning med camping, skärgårdskrog, äventyrsgolf och kajakuthyrning", "Gålö är ett naturreservat som förvaltas av" (läst 2026-09-27); https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — "Storlek: 3834 hektar varav land 1756 hektar", "Flera vandringsleder utgår från Skälåker och Stegsholm", "Vid Nor på mellersta Gålö kan du se en fornborg och flera jättegrytor" (läst 2026-09-27)
       'Vid Skälåker ligger Gålö havsbad, ett stort bad med lång strandremsa, kiosk och minigolf sommartid, grillplats, hundbad och stor parkering. Badet är inte kommunalt utan drivs av anläggningen, som också har camping, skärgårdskrog, äventyrsgolf och kajakuthyrning. Gålö naturreservat omfattar 3 834 hektar, varav 1 756 hektar land, och förvaltas av Skärgårdsstiftelsen. Vandringslederna utgår från Skälåker och Stegsholm, och vid Nor på mellersta Gålö finns en fornborg och flera jättegrytor.',
       // KÄLLA: https://skargardsstiftelsen.se/omraden/galo/ — "Gålö är ett lättillgängligt fastlandsområde på Södertörn där du enkelt kan kombinera bad, vandring och naturupplevelser året runt.", "Området passar också för paddling, cykling, fiske och fågelskådning." (läst 2026-09-27)
@@ -4490,7 +6951,8 @@ export const ISLANDS: Island[] = [
     ],
 
     facts: {
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v845.pdf — "Västerhaninge station–Gålö", "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026"; lördag Västerhaninge station 09.18 → Skälåker 09.42 (24 min) (läst 2026-09-27); https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/ — "Endast 35 km söder om Stockholm" (läst 2026-09-27)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — "Västerhaninge station–Gålö", "Skälåker", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-17); Västerhaninge station → Skälåker 24 till 26 min (MÄTT i tabellen)
+      // KÄLLA: https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/ — "Endast 35 km söder om Stockholm" (läst 2026-09-27)
       travel_time: 'ca 35 km med bil från Stockholm / buss 845 från Västerhaninge ca 25 min',
       // KÄLLA: https://skargardsstiftelsen.se/omraden/galo/ — "Gålö är ett lättillgängligt fastlandsområde på Södertörn", "kombinera bad, vandring och naturupplevelser året runt" (läst 2026-09-27)
       character: 'Lättillgängligt fastlandsområde, sandstrand, naturreservat',
@@ -4515,10 +6977,13 @@ export const ISLANDS: Island[] = [
       { name: 'Stugor på Gålö', type: 'Stugor', desc: 'Gålö havsbad hyr ut stugor med 2 till 16 bäddar, med husdjur tillåtna i en del av dem. Skärgårdsstiftelsen hyr också ut stugor veckovis från vår till höst.' },
     ],
     getting_there: [
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v845.pdf — "Västerhaninge station–Gålö", "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026", "Tidtabellen är anpassad till pendeltåg från Stockholm vid" (läst 2026-09-27). Lördag, söndag: Västerhaninge station 09.18 → Skälåker 09.42 och 11.18 → 11.43; måndag–fredag når bara 18.05-turen Skälåker (18.31). Sommartabellen 19/6–16/8 fanns inte som PDF.
+      // KÄLLA: https://galohavsbad.se/om-oss/kontakta-oss/ — "För att åka hela vägen rekommenderas att ni tar buss 845 från Västerhaninge.", "Stationen ni vill åka till är Skälåker." (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — "Västerhaninge station–Gålö", "Skälåker 1)", "1) Endast vissa turer.", "Tidtabellen är anpassad till pendeltåg från Stockholm vid", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-17). Västerhaninge station → Skälåker 24 till 26 min; måndag till fredag når en tur Skälåker, lördag, söndag och helgdag två (MÄTT i tabellen).
       { method: 'Buss', from: 'Västerhaninge station', time: 'ca 25 min', desc: 'SL-buss 845 (Västerhaninge till Gålö) till hållplats Skälåker vid Gålö havsbad. Bara vissa turer går via Skälåker, så kontrollera tidtabellen. Bussen är anpassad till pendeltåget från Stockholm.', icon: '🚌' },
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "Handens station–Dalarö (–Smådalarö)", "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026"; måndag–fredag Handens station 09.14 → Gålövägen 09.32 (18 min) (läst 2026-09-27). https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — "Alla bussar till Dalarö stannar vid Gålö handel, strax utanför reservatet i norr." (läst 2026-09-27)
-      { method: 'Buss', from: 'Handens station', time: 'ca 18 min', desc: 'SL-buss 839 (Handen till Dalarö/Smådalarö) till hållplats Gålövägen, strax utanför reservatet i norr. Därifrån går buss 845 vidare ut på halvön.', icon: '🚌' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Gålövägen", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); Rudsjöterrassen → Gålövägen 16 till 19 min (MÄTT i tabellen: måndag till fredag 18 till 19, lördag, söndag och helgdag 16 till 18)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — "Gålövägen", "Västerhaninge station–Gålö" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — "Alla bussar till Dalarö stannar vid Gålö handel, strax utanför reservatet i norr." (läst 2026-09-27)
+      { method: 'Buss', from: 'Rudsjöterrassen', time: '16 till 19 min', desc: 'Pendeltåg till Handen och SL-buss 839 (Rudsjöterrassen till Dalarö/Smådalarö) till hållplats Gålövägen, strax utanför reservatet i norr. Bussens tider är anpassade till pendeltågen vid Handens station (SL:s tabell till 12 december 2026). Därifrån går buss 845 vidare ut på halvön.', icon: '🚌' },
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — "Med bil från Nynäsvägen (väg 73), avfart mot Dalarö. Efter 10 km avfart mot Gålö." (läst 2026-09-27); https://galohavsbad.se/om-oss/kontakta-oss/ — "Som dagsbesökare får man endast parkera på den stora parkeringen." (läst 2026-09-27)
       { method: 'Bil', from: 'Stockholm', time: '', desc: 'Väg 73 (Nynäsvägen), avfart mot Dalarö och efter 10 km avfart mot Gålö. Dagsbesökare vid havsbadet parkerar på den stora parkeringen.', icon: '🚗' },
     ],
@@ -4539,7 +7004,10 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/galo/ — "Under andra världskriget hade försvaret en hemlig sälstation i Långgarnsviken där sälar tränades för att spåra ubåtar och minor. Sälarnas gamla bassäng finns kvar, och i dag erbjuder området både boende och konferensmöjligheter." (läst 2026-09-27)
     did_you_know: 'Under andra världskriget hade försvaret en hemlig sälstation i Långgarnsviken på Gålö, där sälar tränades för att spåra ubåtar och minor. Sälarnas gamla bassäng finns kvar, och i dag finns boende och konferens på platsen.',
     seasonal: {
-      // KÄLLA: https://skargardsstiftelsen.se/omraden/galo/ — "kombinera bad, vandring och naturupplevelser året runt" (läst 2026-09-27); https://galohavsbad.se/bo/stugor/ — "Besök oss året om" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/v845.pdf — "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026" (läst 2026-09-27)
+      // KÄLLA: https://skargardsstiftelsen.se/omraden/galo/ — "kombinera bad, vandring och naturupplevelser året runt" (läst 2026-09-27); https://galohavsbad.se/bo/stugor/ — "Besök oss året om" (läst 2026-09-27)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-17); buss 845 går bara under de perioderna och belägger inte året runt
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/s839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Gålövägen", "Giltig 19 juni–16 augusti 2026" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Gålövägen", "Måndag–fredag", "Lördag, söndag helgdag", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); buss 839 stannar vid Gålövägen alla dagar från 19 juni till 12 december 2026
       open: 'Året runt',
       // UPPSKATTNING: juli som högsäsong är vår bedömning utifrån badsäsongen och att Stegsholms gårdscafé har utökat öppet 24/6–9/8.
       peak: 'Juli',
@@ -4548,7 +7016,7 @@ export const ISLANDS: Island[] = [
       bestReason: 'I juni har badsäsongen börjat och Stegsholms gårdscafé har helgöppet sedan maj. Försommaren är också en bra tid att besöka det fågelrika viltvattnet vid Nor, och i Stegsholms hagmarker växer orkidén Adam och Eva.',
       // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/galo.html — "under tiden 1 april - 31 juli landstiga på öarna Fågelgrundet, Mödomen samt Västra och Östra Fjäderholmen", "befara vattenområdet inom 100 meter från dessa öar", "medföra okopplad hund" (läst 2026-09-27)
       warning: 'Hundar ska vara kopplade i reservatet. Den 1 april till 31 juli får man inte gå i land på Fågelgrundet, Mödomen eller Västra och Östra Fjäderholmen, och inte heller färdas inom 100 meter från öarna.',
-      // UPPSKATTNING: vintermånaderna är satta till 'limited' i stället för 'off' eftersom buss 845 och stuguthyrningen finns året runt, medan badsäsongen är slut.
+      // UPPSKATTNING: vintermånaderna är satta till 'limited' i stället för 'off' eftersom buss 839 stannar vid Gålövägen alla dagar i SL:s tabeller (19 juni till 12 december 2026) och stuguthyrningen finns året runt, medan badsäsongen är slut.
       months: ['limited','limited','limited','limited','open','open','peak','peak','open','limited','limited','limited'],
     },
   },
@@ -4814,22 +7282,32 @@ export const ISLANDS: Island[] = [
     regionLabel: 'Norra skärgården',
     emoji: '🚲',
     // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h24.pdf — "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Vagnsunda (Yxlan)", "Alsvik (Yxlan)", "Yxlövik (Yxlan)", "Duvnäs (Yxlan)", "Kolsvik (Yxlan)", "Yxlö (Yxlan)", "Köpmanholm (Yxlan)" (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/h632.pdf — "Norrtälje–Yxlan" (läst 2026-09-27); https://stockholmarchipelagotrail.com/section/ — "Section Yxlan" (läst 2026-09-27)
-    tagline: 'Ön mellan två avgiftsfria vägfärjor, Furusundsleden från Furusund och Blidöleden vidare till Blidö, med sju bryggor på Waxholmsbolagets linje 24.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s24.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+    tagline: 'Ön mellan två avgiftsfria vägfärjor, Furusundsleden från Furusund och Blidöleden vidare till Blidö, med sju bryggor på Waxholmsbolagets linje 24, som 2026 gick från 2 april till 1 november.',
     seoTitle: 'Yxlan: färja från Furusund, bryggor & cykling',
-    seoDescription: 'Yxlan mellan Furusund och Blidö: avgiftsfria vägfärjor på fyra minuter, Waxholmsbolagets linje 24 till sju bryggor, SL-buss 632 från Norrtälje och vandringsled över ön.',
+    seoDescription: 'Yxlan mellan Furusund och Blidö: avgiftsfria vägfärjor på fyra minuter, Waxholmsbolagets linje 24 till sju bryggor (2026: 2 april till 1 november), SL-buss 632 från Norrtälje och vandringsled över ön.',
     // Ifylld 2026-09-21 efter Toms beslut "fyll ut med belagt innehåll". Boende, affär och krog på ön har inte kunnat beläggas hos någon operatör och står därför inte här.
     description: [
       // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/ — "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://kund.printhuset-sthlm.se/sl/h632.pdf — "Giltig 17 augusti–12 december 2026", "Norrtälje busstation", "Furusunds färjeläge", "Köpmanholm", "Yxlö brygga", "Yxlövik", "Vagnsunda" (läst 2026-09-27); https://stockholmarchipelagotrail.com/section/section-yxlan/ — "Yxlan is a long island situated between Furusund and Blidö", "Today, Yxlan is home to nearly 300 permanent residents.", "The island's name derives from the village Yxlö, located in the middle of the island" (läst 2026-09-27)
       'Yxlan är en långsträckt ö mellan Furusund och Blidö i norra skärgården och nås med bil: Trafikverkets vägfärjor går både från Furusund (Furusundsleden, 600 meter, fyra minuter) och vidare till Blidö (Blidöleden, 530 meter, fyra minuter). Båda är avgiftsfria. Utan bil tar du SL:s buss 632 från Norrtälje busstation: efter Furusunds färjeläge fortsätter den via Köpmanholm, Yxlö brygga och Yxlövik till ändhållplatsen Vagnsunda. Knappt 300 personer bor på ön året runt, och namnet kommer från byn Yxlö mitt på ön, enligt Stockholm Archipelago Trail.',
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "Strömkajen (Stockholm) 08.45", "Vagnsunda (Yxlan) 11.01 11.21 11.01", "Kolsvik (Yxlan) 13.02 13.45", "utan fast avgångstid", "Går under perioden 2 april - 18 juni." (läst 2026-09-27). Utåt (24A) har Vagnsunda fast tid och övriga Yxlanbryggor X; hemåt (24B) har Kolsvik fast tid och Vagnsunda X. Yxlö och Köpmanholm finns bara på söndagsturerna märkta I (2 april–18 juni). Strömkajen 08.45 → Vagnsunda 11.01 = 2 h 16 min.
-      'Från Stockholm går Waxholmsbolagets linje 24 från Strömkajen via Vaxholm och Siaröfortet ut i Blidösundet och angör sju bryggor på Yxlan: Vagnsunda, Alsvik, Yxlövik, Duvnäs, Kolsvik, Yxlö och Köpmanholm. Strömkajen till Vagnsunda tar omkring 2 timmar 15 minuter. På utresan har Vagnsunda fast tid och på hemresan Kolsvik; de andra bryggorna trafikeras utan fast avgångstid, och Yxlö och Köpmanholm angörs bara av söndagsturer 2 april till 18 juni. Sök resan i SL-appen.',
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24B BLIDÖSUNDET – VAXHOLM – STOCKHOLM", "Duvnäs (Yxlan)", "Yxlövik (Yxlan)", "Alsvik (Yxlan)", "Vagnsunda (Yxlan)", "utan fast avgångstid"; i 24B har två hemturer fasta tider vid Duvnäs, Yxlövik, Alsvik och Vagnsunda (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s24.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h632.pdf — "Norrtälje–Yxlan", "Giltig 17 augusti–12 december 2026", "Köpmanholm", "Vagnsunda" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Köpmanholm (Yxlan)" (läst 2026-11-17)
+      'Waxholmsbolagets linje 24 från Strömkajen via Vaxholm och Siaröfortet ut i Blidösundet angör sju bryggor på Yxlan: Vagnsunda, Alsvik, Yxlövik, Duvnäs, Kolsvik, Yxlö och Köpmanholm. Under 2026 gällde tabellerna för linjen från 2 april till 1 november, och bland Waxholmsbolagets linjetidtabeller som gäller till 12 december 2026 finns den inte. I vår- och hösttabellen 2026 tog Strömkajen till Vagnsunda omkring 2 timmar 15 minuter, Vagnsunda hade fast tid på utresan och Kolsvik på hemresan, de andra bryggorna trafikerades på de flesta turerna utan fast avgångstid men hade fasta tider på ett par hemturer, och Yxlö och Köpmanholm angjordes bara av söndagsturer 2 april till 18 juni. Utan bil når du Yxlan med SL-buss 632 från Norrtälje, och Köpmanholm på Yxlan ligger också på linje 28 från Furusund.',
       // KÄLLA: https://stockholmarchipelagotrail.com/section/ — "Section Yxlan", "24 km" (läst 2026-09-27); https://stockholmarchipelagotrail.com/section/section-yxlan/ — "The Yxlan hike is best started from the ferry terminal in Köpmanholm", "On Yxlan, the trail is not physically marked." (läst 2026-09-27); https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/sjalbottna-ostra-lagno.html — "skyddat sedan: 1977", "Förvaltare: Skärgårdsstiftelsen", "Njut av blankslipade klippor och mäktig utsikt.", "bra tältplats", "De strövvänliga skogarna är rika på bär och svamp.", "Till Själbottna går reguljär Waxholmsbåt sommartid." (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h24.pdf — "Själbottna 11.00 11.20 11.00", "Vagnsunda (Yxlan) 11.01 11.21 11.01" (läst 2026-09-27)
       // UPPSKATTNING: att ön passar för cykling bygger på att buss 632 och vägfärjorna binder ihop Köpmanholm och Vagnsunda med väg.
       'Ön passar den som vill cykla eller gå: Stockholm Archipelago Trail har en 24 kilometer lång etapp på Yxlan som bäst börjar vid färjeläget i Köpmanholm, och buss 632 kör samma väg ut till Vagnsunda. Leden är inte uppmärkt i terrängen. Bryggan före Vagnsunda är Själbottna, som ingår i naturreservatet Själbottna till Östra Lagnö: skyddat sedan 1977 och förvaltat av Skärgårdsstiftelsen, med blankslipade klippor, tältplats och skog som är rik på bär och svamp. Waxholmsbåten lägger till där en minut innan den når Yxlan.',
     ],
     // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://kund.printhuset-sthlm.se/wa/h24.pdf — "Strömkajen (Stockholm) 08.45", "Vagnsunda (Yxlan) 11.01", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026" (läst 2026-09-27); https://stockholmarchipelagotrail.com/section/section-yxlan/ — "Yxlan is a long island", "You can travel to Yxlan daily by the SL bus from Norrtälje", "We recommend leaving your car at home or in Furusund." (läst 2026-09-27)
     // UPPSKATTNING: best_for är en bedömning utifrån leden, busslinjen och reservatet Själbottna.
-    facts: { travel_time: 'Bil + avgiftsfri vägfärja från Furusund (fyra minuter) · Waxholmsbåt linje 24 ca 2 h 15 min till Vagnsunda', character: 'Långsträckt ö med bilfärja åt två håll och sju Waxholmsbryggor', season: 'Året runt med buss 632 och vägfärja · linje 24 till 1 november 2026', best_for: 'Vandring, cykling, dagstur med buss och färja, ö-hopp till Själbottna' },
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s24.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+    facts: { travel_time: 'Bil + avgiftsfri vägfärja från Furusund (fyra minuter) · Waxholmsbåt linje 24 ca 2 h 15 min till Vagnsunda (2026: 2 april till 1 november)', character: 'Långsträckt ö med bilfärja åt två håll och sju Waxholmsbryggor', season: 'Året runt med buss 632 och vägfärja · linje 24 till 1 november 2026', best_for: 'Vandring, cykling, dagstur med buss och färja, ö-hopp till Själbottna' },
     facts_provenance: { travel_time: 'matt', character: 'matt', season: 'bedomning', best_for: 'bedomning' },
     activities: [
       // Tidigare stod "bilfärja från Räfsnäs" — Räfsnäs ligger på Rådmansö och färjan därifrån går till Tjockö, inte Yxlan. Struket 2026-09-21.
@@ -4846,7 +7324,11 @@ export const ISLANDS: Island[] = [
     getting_there: [
       { method: 'Bil + bilfärja', from: 'Stockholm via Furusund', desc: 'Kör mot Norrtälje och vidare till Furusund. Furusundsleden (Trafikverkets vägfärja, 600 m, fyra minuter, avgiftsfri) över till Yxlan; Blidöleden (530 m, fyra minuter, avgiftsfri) fortsätter till Blidö. Stockholm Archipelago Trail varnar för att parkering på Yxlan kan vara svår och att det inte går att parkera i småhusområdena.', icon: '🚗' },
       { method: 'Buss', from: 'Norrtälje busstation', time: '1 h 15 min till 1 h 25 min till Vagnsunda', desc: 'SL-buss 632 Norrtälje till Yxlan åker från Furusunds färjeläge över till Köpmanholm och stannar vid bland annat Yxlö brygga, Yxlövik, Alsvik och Vagnsunda. På vissa turer körs sträckan efter Köpmanholms skola bara om det finns resenärer i bussen. Tiderna gäller 17 augusti till 12 december 2026.', icon: '🚌' },
-      { method: 'Waxholmsbolaget linje 24', from: 'Strömkajen via Vaxholm', time: 'ca 2 h 15 min till Vagnsunda', desc: 'Linje 24 Stockholm, Vaxholm, Blidösundet har fast tid vid Vagnsunda på utresan och vid Kolsvik på hemresan; Alsvik, Yxlövik och Duvnäs trafikeras utan fast avgångstid, Yxlö och Köpmanholm bara på söndagsturer 2 april till 18 juni. Sök resan i SL-appen; tabellen gäller 2 april till 18 juni och 17 augusti till 1 november 2026.', icon: '⛴' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24B BLIDÖSUNDET – VAXHOLM – STOCKHOLM", "Duvnäs (Yxlan)", "Yxlövik (Yxlan)", "Alsvik (Yxlan)", "Vagnsunda (Yxlan)", "utan fast avgångstid"; i 24B har två hemturer fasta tider vid Duvnäs, Yxlövik, Alsvik och Vagnsunda (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s24.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      { method: 'Waxholmsbolaget linje 24 (2026: 2 april till 1 november)', from: 'Strömkajen via Vaxholm', time: 'ca 2 h 15 min till Vagnsunda', desc: 'I vår- och hösttabellen 2026 hade linje 24 Stockholm, Vaxholm, Blidösundet fast tid vid Vagnsunda på utresan och vid Kolsvik på hemresan; Alsvik, Yxlövik och Duvnäs trafikerades på de flesta turerna utan fast avgångstid men hade fasta tider på ett par hemturer, Yxlö och Köpmanholm bara på söndagsturer 2 april till 18 juni. Under 2026 gällde tabellerna från 2 april till 1 november, med sommartabell 19 juni till 16 augusti, och linjen finns inte bland Waxholmsbolagets linjetidtabeller som gäller till 12 december 2026.', icon: '⛴' },
     ],
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "Strömkajen (Stockholm) 08.45", "Vagnsunda (Yxlan) 11.01", "utan fast avgångstid" (läst 2026-09-27) (08.45 → 11.01 = 136 min); https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/ — "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri." (läst 2026-09-27); https://stockholmarchipelagotrail.com/section/section-yxlan/ — "We recommend leaving your car at home or in Furusund." (läst 2026-09-27)
     transport_meta: {
@@ -4854,8 +7336,12 @@ export const ISLANDS: Island[] = [
       nearest_hub: 'Furusund',
       from_nearest_hub_min: 4,
       operator: 'Waxholmsbolaget',
-      line: '24',
-      frequency: 'Enstaka turer per dag; de flesta bryggor utan fast tid',
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s24.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Köpmanholm (Yxlan)" (läst 2026-11-17)
+      line: '24 (2026: 2 april till 1 november), 28 vid Köpmanholm',
+      frequency: 'Linje 24 hade 2026 tabeller från 2 april till 1 november och finns inte bland Waxholmsbolagets linjetidtabeller som gäller till 12 december 2026; Köpmanholm ligger på linje 28 från Furusund',
       car_parking: 'Stockholm Archipelago Trail rekommenderar att lämna bilen hemma eller i Furusund; på Yxlan får du inte parkera i småhusområdena.',
     },
     harbors: [],
@@ -4871,7 +7357,8 @@ export const ISLANDS: Island[] = [
       'På Yxlan finns livsmedelsbutik och kiosk. Bygdegården går att hyra.',
       'Båda vägfärjorna (Furusund till Yxlan och Yxlan till Blidö) är avgiftsfria och tar fyra minuter.',
       'Buss 632 från Norrtälje åker ända till Vagnsunda: vandrar du ledens etapp åt ett håll, planera efter när bussen går tillbaka.',
-      'Linje 24 har fast tid vid Vagnsunda på utresan och vid Kolsvik på hemresan. Ska du av eller på vid någon annan brygga, sök resan i SL-appen och kontrollera att turen angör den.',
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Stämmarsund (Blidö)", "Norrsund (Blidö)" (läst 2026-11-17)
+      'I vår- och hösttabellen 2026, som gällde till 1 november, hade linje 24 fast tid vid Vagnsunda på utresan och vid Kolsvik på hemresan. Ska du av eller på vid någon annan brygga, sök resan i SL-appen och kontrollera att turen angör den.',
       // KÄLLA: https://roslagen.se/oar/yxlan/ (Destination Roslagen), läst 2026-09-28 , listar Restaurant Yxlan och Ting Tong Take Away under Mat och dryck. Tidigare tips här sa att krog inte gick att belägga. Det är nu belagt och tipset är struket.
     ],
     activity_meta: {
@@ -4933,8 +7420,8 @@ export const ISLANDS: Island[] = [
       { method: 'Waxholmsbåt', from: 'Dalarö (Hotellbryggan)', time: 'oftast 12 till 17 min', desc: 'Linje 19 (Stockholm, Dalarö, Ornö, Utö) stannar vid Kymmendö. Turer märkta b i tidtabellen måste beställas minst 1 timme före avgång i SL-appen, på Waxholmsbolagets webb eller via kundtjänst.', icon: '⛴' },
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "Strömkajen (Stockholm) 16.25 16.25", "Dalarö ank. 18.57 18.57", "Kymmendö 07.12a 16.50 09.45b 09.45b 12.25 16.22 19.15 19.15" (läst 2026-09-27)
       { method: 'Waxholmsbåt', from: 'Strömkajen', time: '2 h 50 min', desc: 'Direktbåt på fredagar: Strömkajen 16.25, framme vid Kymmendö 19.15 (gäller 2 april till 18 juni och 17 augusti till 12 december 2026). För 19 juni till 16 augusti gäller en separat sommartidtabell.', icon: '⛴' },
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "Handens station 06.14 07.14 07.44 08.14 09.14", "Hotellbryggan 05.46 06.50 07.50 08.23 08.50 09.51", "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026" (läst 2026-09-27)
-      { method: 'Buss + båt', from: 'Handens station', time: 'ca 36 till 39 min till Dalarö', desc: 'SL-buss 839 Handens station till Dalarö (hållplats Hotellbryggan), därefter Waxholmsbåt linje 19 till Kymmendö.', icon: '🚌' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Hotellbryggan", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)
+      { method: 'Buss + båt', from: 'Rudsjöterrassen', time: '33 till 39 min till Dalarö', desc: 'Pendeltåg till Handen och SL-buss 839 från Rudsjöterrassen till Dalarö (hållplats Hotellbryggan), därefter Waxholmsbåt linje 19 till Kymmendö. Bussens tider är anpassade till pendeltågen vid Handens station (SL:s tabell till 12 december 2026).', icon: '🚌' },
       // KÄLLA: https://kymendo.se/battaxi/ — "Vi har en småbåtstaxi som tar 9 personer." (läst 2026-09-27)
       { method: 'Båttaxi', from: 'Dalarö m.fl.', time: 'Varierar', desc: 'Kymendö Service kör båttaxi med en småbåt för 9 personer.', icon: '🚤' },
       // KÄLLA: https://ny.kymendo.com/upplev/ — "Den ena på Kymendös västra udde Persholmen mot Jungfrufjärden och den andra Kymendö sunds södra inlopp vid Rävskärsudd, Maren." (läst 2026-09-27)
@@ -5118,11 +7605,11 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://www.smadalarogard.se/hotellet/om-oss/var-historia/ — "Kapten Bloms bygge av Smådalarö Gård år 1810" (läst 2026-09-27); https://www.smadalarogard.se/spa/ — "Smådalarö Spa är 2000 kvm stort" (läst 2026-09-27); https://www.smadalarogard.se/hotellet/gasthamn/ — "Här finns 30 gästplatser vid bryggan" (läst 2026-09-27); https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — "Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city" (läst 2026-09-27)
     tagline: 'Smådalarö Gård från 1810 vid Hemviken: spahotell med 2 000 m² spa, gästhamn och golf, 50 minuter med bil från Stockholm.',
     description: [
-      // KÄLLA: https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — "Smådalarö Gård Hotell & Spa ligger idylliskt i Hemviken i Stockholms skärgård", "Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city", "som går från Haninge Centrum hela vägen till vår grind" (läst 2026-09-27)
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "Handens station–Dalarö (–Smådalarö)" (läst 2026-09-27)
+      // KÄLLA: https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — "Smådalarö Gård Hotell & Spa ligger idylliskt i Hemviken i Stockholms skärgård", "Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city", "som går från Haninge Centrum hela vägen till vår grind" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Haninge centrum", "1) Endast vissa turer.", "Alla hållplatser för buss 839 mot Smådalarö finns ovan.", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17)
       // KÄLLA: https://www.haninge.se/uppleva-och-gora/idrott-och-friluftsliv/utomhusaktiviteter/ — "Smådalarö golf", "9-hålsbana i skärgårdsmiljö" (läst 2026-09-27)
       // KÄLLA: https://www.smadalarogard.se/hotellet/om-oss/var-historia/ — "Grunden till den stora rörelsen på Smådalarö Gård lades av löjtnanten Carl Christian Gyldener, som tillsammans med tullinspektören Nils Sondell arrenderade halva Smådalarö i 20 år", "tillsammans startade herrarna produktion av både öl och brännvin", "därför fick han 1750 ett eget arrendekontrakt på livstid", "År 1802 förvärvade Blom, endast 40 år gammal, den stora egendomen ”Tyresö skärgårdsdel” från grevinnan Brita Bonde för 12.000 riksdaler banco", "Kofferdikaptenen Carl Peter Blom", "som stod färdigt år 1810" (läst 2026-09-27)
-      'Smådalarö ligger vid Hemviken i Haninge kommun, bortom Dalarö i Stockholms södra skärgård. Med bil tar resan från Stockholms city omkring 50 minuter, och SL-buss 839 går från Handens station via Dalarö ända fram till Smådalarö Gårds grind. Platsen har lång historia: på 1700-talet arrenderade löjtnanten Carl Christian Gyldener och tullinspektören Nils Sondell halva Smådalarö, startade produktion av öl och brännvin, och 1750 fick Gyldener ett eget arrendekontrakt på livstid. År 1802 köpte kofferdikaptenen Carl Peter Blom hela egendomen "Tyresö skärgårdsdel" av grevinnan Brita Bonde för 12 000 riksdaler banco, och 1810 stod hans herrgård på Smådalarö klar.',
+      'Smådalarö ligger vid Hemviken i Haninge kommun, bortom Dalarö i Stockholms södra skärgård. Med bil tar resan från Stockholms city omkring 50 minuter, och vissa turer med SL-buss 839 går från Rudsjöterrassen via Haninge centrum och Dalarö ända fram till Smådalarö Gårds grind. Platsen har lång historia: på 1700-talet arrenderade löjtnanten Carl Christian Gyldener och tullinspektören Nils Sondell halva Smådalarö, startade produktion av öl och brännvin, och 1750 fick Gyldener ett eget arrendekontrakt på livstid. År 1802 köpte kofferdikaptenen Carl Peter Blom hela egendomen "Tyresö skärgårdsdel" av grevinnan Brita Bonde för 12 000 riksdaler banco, och 1810 stod hans herrgård på Smådalarö klar.',
       // KÄLLA: https://www.smadalarogard.se/hotellet/om-oss/ — "Sedan 2011 ägs och drivs hotellet av det familjeägda företaget", "och sommaren 2021 nylanserades Smådalarö Gård", "110 Hotellrum inkl. Kapten Bloms Svit", "2000 kvm spa, ute & inne", "10 Event- och möteslokaler", "2 Restauranger & 2 barer", "2 Padelbanor & 2 Tennisbanor", "9-håls Golfbana", "Haninge arkitekturpris 2022" (läst 2026-09-27)
       'Sedan 2011 ägs och drivs Smådalarö Gård av familjeföretaget Sabis, och sommaren 2021 nylanserades hotellet. I dag har det 110 rum inklusive Kapten Bloms svit, ett spa på 2 000 m² inne och ute, två restauranger och två barer, tio mötes- och eventlokaler, padel- och tennisbanor och en niohålsbana för golf. Byggnaden vann Haninge arkitekturpris 2022.',
       // KÄLLA: https://www.smadalarogard.se/spa/dagspa/ — "behöver du inte vara en övernattande gäst" (läst 2026-09-27)
@@ -5131,8 +7618,8 @@ export const ISLANDS: Island[] = [
       'Smådalarö fungerar för en spahelg, en konferens eller en dagstur, dagspa kan bokas även av den som inte bor på hotellet. Från Dalarö går Waxholmsbolagets båtar vidare ut i södra skärgården, bland annat linje 19 till Ornö och Utö (tidtabell för 2 april till 18 juni och 17 augusti till 12 december 2026), och båtar till Kymmendö och Fjärdlång. I närheten ligger också Gålö, en halvö och naturreservat med fem mil strandlinje.',
     ],
     // KÄLLA: https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — "Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city", "unik och naturnära året-runt-destination" (läst 2026-09-27)
-    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "Handens station–Dalarö (–Smådalarö)", "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026" (läst 2026-09-27) — restid Handens station → Smådalarö 45–53 min enligt tabellen (t.ex. 06.14–06.59 helg, 14.47–15.40 vardag).
-    facts: { travel_time: '50 min med bil från Stockholm city, 45 till 55 min med buss 839 från Handens station', character: 'Spahotell i herrgårdsmiljö från 1810, nås med bil och SL-buss', season: 'Helår', best_for: 'Spahelg, konferens, dagspa, golf' },
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); Rudsjöterrassen → Smådalarö 45 till 54 min (MÄTT i tabellen: måndag till fredag 49 till 54, lördag, söndag och helgdag 45 till 50)
+    facts: { travel_time: '50 min med bil från Stockholm city, 45 till 54 min med buss 839 från Rudsjöterrassen (SL:s tabell till 12 december 2026)', character: 'Spahotell i herrgårdsmiljö från 1810, nås med bil och SL-buss', season: 'Helår', best_for: 'Spahelg, konferens, dagspa, golf' },
     activities: [
       // KÄLLA: https://www.smadalarogard.se/spa/ — "Smådalarö Spa är 2000 kvm stort", "4 pooler, 2 inne & 2 ute", "3 olika bastur - ångbastu, torrbastu & ett sanarium", "infinity-poolen som sträcker ut sig mot Hemviken", "Spabehandlingar signerat Kerstin Florian" (läst 2026-09-27); https://www.smadalarogard.se/spa/dagspa/ — "behöver du inte vara en övernattande gäst" (läst 2026-09-27)
       { icon: '🧖', name: 'Smådalarö Gård Spa', desc: 'Spa på 2 000 m² med fyra pooler, två inne och två ute, bland annat en infinitypool mot Hemviken. Här finns ångbastu, torrbastu, sanarium och behandlingar signerade Kerstin Florian. Dagspa kan bokas även av den som inte bor på hotellet.' },
@@ -5148,8 +7635,8 @@ export const ISLANDS: Island[] = [
     getting_there: [
       // KÄLLA: https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — "Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city", "Parkering framför entrén, laddning för elbil finns", "Smådalarövägen 100" (läst 2026-09-27)
       { method: 'Bil', from: 'Stockholm city', time: '50 min', desc: 'Kör mot Dalarö och vidare ut till Smådalarö Gård, Smådalarövägen 100. Parkering finns framför entrén, med laddning för elbil.', icon: '🚗' },
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "Handens station–Dalarö (–Smådalarö)", "1) Endast vissa turer.", "Tidtabellen är anpassad till pendeltåg från Stockholm vid", "Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026" (läst 2026-09-27) — 14 ankomster till Smådalarö måndag–fredag och 9 lördag–söndag i tabellen.
-      { method: 'Pendeltåg + buss 839', from: 'Handens station', time: '45 till 55 min', desc: 'SL-buss 839 går från Handens station via Dalarö till Smådalarö och är anpassad till pendeltåget från Stockholm. Bara vissa turer går hela vägen till Smådalarö: i tabellen för 14 december 2025 till 18 juni och 17 augusti till 12 december 2026 är det 14 turer måndag till fredag och 9 på helger.', icon: '🚌', url: 'https://kund.printhuset-sthlm.se/sl/v839.pdf' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)", "Haninge centrum", "1) Endast vissa turer.", "Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station.", "Måndag–fredag", "Lördag, söndag helgdag", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17); 14 turer till Smådalarö måndag till fredag och 9 lördag, söndag och helgdag; Rudsjöterrassen → Smådalarö 45 till 54 min (MÄTT i tabellen)
+      { method: 'Pendeltåg + buss 839', from: 'Rudsjöterrassen', time: '45 till 54 min', desc: 'Pendeltåg till Handen, sedan SL-buss 839 från Rudsjöterrassen via Haninge centrum och Dalarö till Smådalarö. Bussens tider är anpassade till pendeltåget från Stockholm vid Handens station. Bara vissa turer går hela vägen till Smådalarö: i SL:s tabell för 17 augusti till 12 december 2026 är det 14 turer måndag till fredag och 9 på lördagar, söndagar och helgdagar.', icon: '🚌', url: 'https://kund.printhuset-sthlm.se/sl/h839.pdf' },
       // KÄLLA: https://www.smadalarogard.se/hotellet/gasthamn/ — "Här finns 30 gästplatser vid bryggan" (läst 2026-09-27)
       { method: 'Egen båt', from: 'Hemviken', desc: 'Hotellets gästhamn i Hemviken har 30 gästplatser vid bryggan. Se hamnen nedan för inseglingen.', icon: '⛵' },
     ],
@@ -5163,7 +7650,7 @@ export const ISLANDS: Island[] = [
     tips: [
       // KÄLLA: https://www.smadalarogard.se/spa/dagspa/ — "I dagspa ingår entré till vårt spa inklusive gym under en slottid på 3 timmar", "Det är möjligt att boka entré för upp till 10 personer direkt via vår" (läst 2026-09-27)
       'Dagspa är en slottid på tre timmar med gym, badrock, handduk och tofflor. Upp till 10 personer kan boka direkt på hotellets webbplats; större sällskap mejlar spat.',
-      // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — "1) Endast vissa turer.", "Alla hållplatser för buss 839 mot Smådalarö finns ovan." (läst 2026-09-27)
+      // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "1) Endast vissa turer.", "Alla hållplatser för buss 839 mot Smådalarö finns ovan.", "Giltig 17 augusti–12 december 2026" (läst 2026-11-17)
       'Bara vissa turer med buss 839 går hela vägen till Smådalarö; övriga slutar i Dalarö. Kontrollera att din tur har en tid vid Smådalarö i tabellen.',
       // KÄLLA: https://www.smadalarogard.se/spa/ — "Barn och tonåringar mellan 6-16 år är välkomna i målsmans sällskap på slottiden 08.00-11.00", "Observera att vi kan ha andra tillgängliga tider för barn under skollov" (läst 2026-09-27)
       'Barn 6 till 16 år får följa med en vuxen till spat kl. 08.00 till 11.00. Under skollov kan andra tider gälla.',
@@ -5778,29 +8265,39 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.norrtalje.se/info/bygga-bo-miljo/norrtalje-vaxer/samhallsplanering/detaljplanering/gallande-detaljplaner/grasko-grasken-171-grasko-112-vastra-delen-av-grasko-och-grasken-1199/ — "Tilläggen till byggnadsplanerna syftar till att utöka byggrätten till 200 m2 för befintliga bostadsfastigheter inom de aktuella planområdena efter att Gräskö fått kommunalt vatten och avlopp (VA)."; "Tilläggen till byggnadsplanerna vann laga kraft den 27 juni 2014." (Norrtälje kommun) (läst 2026-09-27)
       'Gräskö har kommunalt vatten och avlopp. Efter att VA kommit på plats utökade Norrtälje kommun byggrätten till 200 m² för befintliga bostadsfastigheter inom detaljplanerna för bland annat västra Gräskö; tilläggen vann laga kraft 27 juni 2014.',
       // KÄLLA: https://www.norrtalje.se/osternas — "På Östernäs finns passbåtstrafik till linje 28 till bland annat Gräskö, Norröra, Söderöra, Svartlöga och Rödlöga."; "Godslinje 60 F utgår från Östernäs och går till Gräskö, Norröra, Söderöra, Svartlöga och Rödlöga." (Norrtälje kommun) (läst 2026-09-27)
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA"; "Gräskö 12.05 12.20 12.05" (läst 2026-09-27)
-      'Waxholmsbolagets linje 28 angör Gräskö från Furusund och Östernäs på Yxlan och fortsätter ut mot Norröra, Söderöra, Svartlöga och Rödlöga. Linje 27 mellan Strömkajen och Arholma stannar också vid Gräskö, och godslinje 60 F går från Östernäs till ön.',
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA", "Strömkajen (Stockholm)", "Gräskö" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s27.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA / NORRTÄLJE", "Gräskö" (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      'Waxholmsbolagets linje 28 angör Gräskö från Furusund och Östernäs på Yxlan och fortsätter ut mot Norröra, Söderöra, Svartlöga och Rödlöga. Linje 27 mellan Strömkajen och Arholma stannade också vid Gräskö under 2026 från 2 april till 1 november, och godslinje 60 F går från Östernäs till ön.',
     ],
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; "Strömkajen (Stockholm) 08.45 08.45 08.45"; "Gräskö 12.05 12.20 12.05" — Strömkajen 08.45, Gräskö 12.05 resp. 12.20 = 3 h 20–35 min (läst 2026-09-27)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026"; "Furusund 07.50 10.05 10.05 10.05"; "Gräskö 08.15 10.30b 10.30b 10.30b"; "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026" — Furusund 07.50/10.05, Gräskö 08.15/10.30 = 25 min; Gräskö finns även i höst-/vintertabellen 1 oktober–12 december (läst 2026-09-27)
     // UPPSKATTNING: best_for är vår bedömning utifrån båtlinjerna.
-    facts: { travel_time: 'Ca 3 h 20 min från Strömkajen (linje 27), ca 25 min från Furusund (linje 28)', character: 'Bebodd kärnö i norra skärgården med kommunalt VA', season: 'Året runt: Waxholmsbolaget trafikerar ön även på hösten', best_for: 'Båtutflykt i norra skärgården, vidare mot Rödlöga' },
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA", "Strömkajen (Stockholm)", "Gräskö"; restiden 3 h 00 till 3 h 35 min är uppmätt i 27A (läst 2026-11-17)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s27.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA / NORRTÄLJE", "Gräskö" (läst 2026-11-17)
+    facts: { travel_time: 'Ca 3 h till 3 h 35 min från Strömkajen (linje 27, 2026: 2 april till 1 november), ca 25 min från Furusund (linje 28)', character: 'Bebodd kärnö i norra skärgården med kommunalt VA', season: 'Året runt: Waxholmsbolaget trafikerar ön även på hösten', best_for: 'Båtutflykt i norra skärgården, vidare mot Rödlöga' },
     activities: [
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA"; "Gräskö 08.15 10.30b 10.30b 10.30b" (läst 2026-09-27)
       { icon: '⛴', name: 'Båttur mot havsbandet', desc: 'Linje 28 fortsätter från Gräskö till Norröra och Söderöra, och vissa turer går ända ut till Svartlöga och Rödlöga.' },
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA"; "Vaxholm avg. 09.40 09.40 09.40"; "Norrsund (Blidö) 11.50 12.05 11.50" (läst 2026-09-27)
-      { icon: '🚢', name: 'Direktbåt från Stockholm', desc: 'Linje 27 går från Strömkajen via Vaxholm och Norrsund på Blidö till Gräskö och vidare mot Arholma.' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA", "Strömkajen (Stockholm)", "Gräskö" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s27.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA / NORRTÄLJE", "Gräskö" (läst 2026-11-17)
+      { icon: '🚢', name: 'Direktbåt från Stockholm', desc: 'Linje 27 gick under 2026 från 2 april till 1 november från Strömkajen via Vaxholm och Norrsund på Blidö till Gräskö och vidare mot Arholma.' },
     ],
     accommodation: [],
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026"; "Furusund 07.50 10.05 10.05 10.05"; "Östernäs 08.05 10.20"; "Gräskö 08.15 10.30b 10.30b 10.30b"; "Beställ resan i SL-appen, på"; "minst 1 timme innan avgång" (läst 2026-09-27)
     // KÄLLA: https://www.norrtalje.se/osternas — "Cirka 570 meter från trafikverkets brygga finns en parkering och det är cirka 900 meter till närmsta busshållplats."; "buss 631" (Norrtälje kommun) (läst 2026-09-27)
-    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026"; "Strömkajen (Stockholm) 08.45 08.45 08.45"; "Gräskö 12.05 12.20 12.05" (läst 2026-09-27)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s27.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA / NORRTÄLJE", "Gräskö" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA", "Strömkajen (Stockholm)", "Gräskö"; restiden Strömkajen till Gräskö, 3 h 00 till 3 h 35 min, är uppmätt i 27A (läst 2026-11-17)
     getting_there: [
       { method: 'Waxholmsbåt', from: 'Furusund / Östernäs (Yxlan)', desc: 'Linje 28: ca 25 min från Furusund och 10 min från Östernäs (tidtabell 2 april till 18 juni och 17 augusti till 30 september 2026). Flera turer är beställningsturer som bokas i SL-appen, på Waxholmsbolagets webb eller via kundtjänst. Vid Östernäs finns parkering ca 570 m från bryggan och buss 631 ca 900 m bort.', icon: '⛴' },
-      { method: 'Waxholmsbåt', from: 'Strömkajen, Stockholm', desc: 'Linje 27 mot Arholma via Vaxholm och Norrsund: ca 3 h 20 till 35 min (tidtabell 2 april till 18 juni och 17 augusti till 1 november 2026).', icon: '⛴' },
+      { method: 'Waxholmsbåt (2026: 2 april till 1 november)', from: 'Strömkajen, Stockholm', desc: 'Linje 27 mot Arholma via Vaxholm och Norrsund: ca 3 h till 3 h 35 min i vår- och hösttabellen 2026. Under 2026 gällde tabellerna från 2 april till 1 november, med sommartabell 19 juni till 16 augusti, och linjen finns inte bland Waxholmsbolagets linjetidtabeller som gäller till 12 december 2026.', icon: '⛴' },
     ],
     // KÄLLA: https://www.norrtalje.se/osternas — "Godslinje 60 F utgår från Östernäs och går till Gräskö, Norröra, Söderöra, Svartlöga och Rödlöga." (Norrtälje kommun) (läst 2026-09-27)
-    harbors: [{ name: 'Gräskö brygga', desc: 'Angörs av Waxholmsbolagets linje 27 och 28 och av godslinje 60 F från Östernäs. Någon gästhamn med service på ön har vi inte hittat.' }],
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA", "Strömkajen (Stockholm)", "Gräskö" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s27.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA / NORRTÄLJE", "Gräskö" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Gräskö" (läst 2026-11-17)
+    harbors: [{ name: 'Gräskö brygga', desc: 'Angörs av Waxholmsbolagets linje 28, av linje 27 under 2026 från 2 april till 1 november och av godslinje 60 F från Östernäs. Någon gästhamn med service på ön har vi inte hittat.' }],
     restaurants: [
       // KÄLLA: https://roslagen.se/oar/grasko-en-badvanlig-o-i-fjarden/ (Destination Roslagen, officiellt platsvarumärke för Roslagen), läst 2026-09-29 , anger under Mat och dryck: "Sommarkafé i det gamla posthuset i Byviken". Namnet på verksamheten står inte där.
       { name: 'Sommarkafé i gamla posthuset, Byviken', type: 'Café', desc: 'Sommarkafé i det gamla posthuset i Byviken.' },
@@ -7510,8 +10007,8 @@ export const ISLANDS: Island[] = [
     ],
     accommodation: [],
     getting_there: [
-      // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Turlista Lilla Karlsö 2026", "Avgång kl. 09.00 från", "Återresa och ankomst till Djupvik senast kl. 13.30", "Pris 890 kr / person (minst 4 betalande) - max 6 personer.", "Förbokning och betalning krävs minst 4 dagar i förväg", "Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland" (läst 2026-09-27)
-      { method: 'Båt med guidad rundvandring från Djupvik', from: 'Djupvik (Eksta, Gotland)', time: '09.00 till 13.30', desc: 'Gotland Sea Guides kör i samarbete med Naturskyddsföreningen Gotland 15 juni till 15 augusti 2026, vid lämpligt väder. Avgång 09.00, tillbaka i Djupvik senast 13.30. Högst sex personer per tur; pris 2026 890 kr per person med minst fyra betalande. Förbokning och betalning minst fyra dagar i förväg.', icon: '⛴', url: 'https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso' },
+      // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Turlista Lilla Karlsö 2026", "Avgång kl. 09.00 från", "Återresa och ankomst till Djupvik senast kl. 13.30", "max 6 personer.", "Förbokning och betalning krävs minst 4 dagar i förväg", "Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland" (läst 2026-09-27)
+      { method: 'Båt med guidad rundvandring från Djupvik', from: 'Djupvik (Eksta, Gotland)', time: '09.00 till 13.30', desc: 'Gotland Sea Guides kör i samarbete med Naturskyddsföreningen Gotland 15 juni till 15 augusti 2026, vid lämpligt väder. Avgång 09.00, tillbaka i Djupvik senast 13.30. Högst sex personer per tur. Förbokning och betalning minst fyra dagar i förväg.', icon: '⛴', url: 'https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso' },
       // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Under säsongen har vi regelbunden båttrafik till och från ön", "kontakta oss i god tid innan ankomst" (läst 2026-09-27); https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "landstiga på annan plats än vid bryggan på öns östra sida" (läst 2026-09-27)
       { method: 'Egen båt', from: 'Valfri hamn', desc: 'Välkommen med egen båt, men kontakta tillsynsmannen i god tid, plats vid bryggan kan inte garanteras utan förbokning. Landstigning bara vid bryggan på östra sidan; 1 mars till 31 augusti krävs tillstånd för att vistas på ön.', icon: '⛵' },
     ],
@@ -7535,8 +10032,9 @@ export const ISLANDS: Island[] = [
       'Ta med kikare: flera havsörnar ses i området och pilgrimsfalk jagar över havet.',
       // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "under tiden 1/2–31/8 beträda eller vistas inom de delar av naturreservatet som omfattas av fågelskydd", "föra iland hund, katt eller annat sällskapsdjur" (läst 2026-09-27)
       'Fågelskyddsområdena får inte beträdas 1 februari till 31 augusti och hundar får inte tas i land, lämna hunden hemma.',
-      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn och båtresan tar ungefär 35 minuter", "I priset ingår båtresa t/r samt guidad tur på ön" (läst 2026-09-27)
-      'Grannön Stora Karlsö nås med egen båt från Klintehamn (ca 35 min) med guidad tur i priset: räkna med en egen dag, eftersom Lilla Karlsö-turen går från Djupvik och är tillbaka först 13.30.',
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/ — "Båten till Stora Karlsö avgår från Klintehamn" (läst 2026-11-17)
+      // KÄLLA: https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/ — "En guidad tur med våra kunniga guider erbjuds till alla våra besökare och ingår i priset för resan." (läst 2026-11-17)
+      'Grannön Stora Karlsö nås med båt från Klintehamn, och en guidad tur ingår i resan. Räkna med en egen dag för den, eftersom Lilla Karlsö-turen går från Djupvik och är tillbaka först 13.30.',
     ],
     related: ['gotland', 'faro', 'oland'],
     tags: ['fågelliv', 'naturreservat', 'gotland', 'dagsutflykt', 'guidad tur', 'fotografi'],
@@ -8493,9 +10991,10 @@ export const ISLANDS: Island[] = [
       known_for: 'Fiskeläge med sjöbodar, kulturmiljö av riksintresse, Arboretum Lassas Hagar',
       // KÄLLA: https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/svartloga---rodloga.pdf — "Öarna har regelbunden reguljärtrafik året runt. Sommartid trafikeras öarna dagligen av Waxholmsbolaget." (Norrtälje kommun, Kulturmiljöutredning nr 4, 2016) (läst 2026-09-27)
       season: 'Sommarö; båt året runt',
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026" — tur 2601 måndag–torsdag Strömkajen 09.00, Svartlöga 12.40 (läst 2026-09-27)
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026" — tur 2819 onsdag Furusund 14.10, Svartlöga 14.55; lördag tur 2851 Furusund 10.05, Svartlöga 11.50 (läst 2026-09-27)
-      travel_time: 'ca 3 tim 40 min från Strömkajen (linje 26), 45 min till 1 tim 45 min från Furusund (linje 28)',
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "26B RÖDLÖGA – NORRSUND – VAXHOLM – STOCKHOLM", "Strömkajen (Stockholm)", "Svartlöga"; restiden 3 h 40 min är uppmätt i s26, tur 2601 (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Bromskär (Blidö)", "Bryggan är avstängd till juni 2027 på grund av renoveringsarbeten." (läst 2026-11-17)
+      travel_time: 'ca 3 tim 40 min från Strömkajen (linje 26, 2026: 2 april till 1 november), 45 min till 1 tim 45 min från Furusund (linje 28)',
       character: 'Flack ytterskärgårdsö utan fast el, fiskeläge och sommarby',
       // KÄLLA: https://www.explorearchipelago.com/sthlm/outer-archipelago/svartloga — "The island is nestled in greenery and offers over a 10 km of marked trails" (läst 2026-09-27)
       best_for: 'Kulturhistoria, trädgårdsintresserade, promenader på märkta stigar',
@@ -8524,7 +11023,10 @@ export const ISLANDS: Island[] = [
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026"; "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA" — onsdag tur 2819 Furusund 14.10, Svartlöga 14.55; fredag, lördag och söndag Furusund 10.05, Svartlöga 11.50; lördag retur tur 2852 Svartlöga 13.10, Furusund 15.00 (läst 2026-09-27)
     // KÄLLA: https://www.lassashagar.se/hitta-hit/ — "Reser du tex med bil finns bra parkering vid Furusund Värdshus där Waxholmsbåtarna angör bryggan i Furusund." (läst 2026-09-27)
     getting_there: [
-      { method: 'Waxholmsbåt', from: 'Strömkajen', time: 'ca 3 tim 40 min', desc: 'Linje 26 (Strömkajen, Vaxholm, Norrsund, Norröra, Söderöra, Svartlöga, Rödlöga) går utan byte; Svartlöga är näst sista bryggan. Sommaren 2026 (19 juni till 16 augusti) gick båten måndag till torsdag 09.00 från Strömkajen och var framme 12.40; tillbaka 15.15, i Stockholm 19.00. Under hösttabellen (17 augusti till 1 november 2026) går vardagsbåten 08.45 och är framme 12.40. Svartlöga är beställningsbrygga, så resan måste bokas.', icon: '⛴' },
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga"; vid Svartlöga har 10 av 12 stopp i h26 anmärkning b (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga"; vid Svartlöga har 10 av 15 stopp anmärkning b (läst 2026-11-17)
+      // KÄLLA: https://waxholmsbolaget.linjetidtabeller.se/ — "Beställ tryckta tidtabeller", "Furusund - Östernäs - Söderöra - Bromskär / Rödlöga", "Furusund - Högmarsö - Solö"; listan har ingen tabell för linje 24 eller 26 (läst 2026-11-17)
+      { method: 'Waxholmsbåt (2026: 2 april till 1 november)', from: 'Strömkajen', time: 'ca 3 tim 40 min', desc: 'Linje 26 (Strömkajen, Vaxholm, Norrsund, Norröra, Söderöra, Svartlöga, Rödlöga) går utan byte; Svartlöga är näst sista bryggan. Under 2026 gällde tabellerna för linje 26 från 2 april till 1 november, med sommartabell 19 juni till 16 augusti, och linjen finns inte bland Waxholmsbolagets linjetidtabeller som gäller till 12 december 2026. På linje 26 stannade båten vid Svartlöga på de flesta turerna bara efter beställning.', icon: '⛴' },
       { method: 'Waxholmsbåt', from: 'Furusund', time: '45 min till 1 tim 45 min', desc: 'Linje 28 från Furusund. Under perioden 1 oktober till 12 december 2026 går onsdagsturen 14.10 och är framme 14.55; fredag, lördag och söndag går båten 10.05 och är framme 11.50. På lördagar går båten tillbaka 13.10 och är i Furusund 15.00. Parkering finns vid Furusunds värdshus.', icon: '⛴' },
       // KÄLLA: https://www.norrtalje.se/globalassets/dokument/dokument-kultur--fritid/dokument-kultur/dokument-riksintressen-i-norrtalje-kommun/svartloga---rodloga.pdf — "Farvattnen runt ön är mycket grunda och svårnavigerade på grund av hundratals grynnor och småskär." (Norrtälje kommun, Kulturmiljöutredning nr 4, 2016) (läst 2026-09-27)
       { method: 'Egen båt', desc: 'Farvattnen runt ön är mycket grunda och svårnavigerade, med hundratals grynnor och småskär. Planera inseglingen med aktuellt sjökort.', icon: '⛵' },
@@ -8534,7 +11036,10 @@ export const ISLANDS: Island[] = [
       nearest_hub: 'Furusund',
       from_nearest_hub_min: 45,
       operator: 'Waxholmsbolaget',
-      line: '26 (Strömkajen), 28 (Furusund)',
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Köpmanholm (Yxlan)" (läst 2026-11-17)
+      line: '28 (Furusund), 26 (Strömkajen, 2026: 2 april till 1 november)',
       frequency: 'Dagligen sommartid; vår och höst några turer i veckan. Beställningsbrygga: boka resan',
       car_parking: 'Parkering vid Furusunds värdshus',
     },
@@ -8546,8 +11051,9 @@ export const ISLANDS: Island[] = [
       'Ta med mat och vatten. Det finns varken affär eller servering på ön.',
       // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00." (läst 2026-09-27)
       'Svartlöga är beställningsbrygga. Boka resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00 minst en timme före avgång, dock senast kl. 17.00.',
-      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026" — måndag–torsdag tur 2601 framme 12.40, tur 2602 från Svartlöga 15.15, Strömkajen 19.00 (läst 2026-09-27)
-      'Dagstur från Stockholm går sommartid: måndag till torsdag sommaren 2026 var båten framme 12.40 och gick tillbaka 15.15. Du får drygt två och en halv timme på ön.',
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "Strömkajen (Stockholm)", "Norrsund (Blidö)", "Svartlöga", "Rödlöga" (läst 2026-11-17)
+      // KÄLLA: https://kund.printhuset-sthlm.se/wa/s26.pdf — "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026", "26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA", "26B RÖDLÖGA – NORRSUND – VAXHOLM – STOCKHOLM", "Strömkajen (Stockholm)", "Svartlöga"; tiden på ön, 2 h 35 min, är uppmätt i s26 mellan tur 2601 och tur 2602 (läst 2026-11-17)
+      'Dagstur från Stockholm går att göra med linje 26, som under 2026 gick från 2 april till 1 november. I sommartabellen 2026 hade du drygt två och en halv timme på ön mellan morgonbåten ut och eftermiddagsbåten hem.',
       // KÄLLA: https://www.lassashagar.se/hitta-hit/ — "Att ta sig från Ångbåtsbryggan på Svartlöga där Waxholmsbåtarna angör är det sedan en promenad om ca 15 minuter, 1,3km plan och fin väg att gå till Lassas Hagar." (läst 2026-09-27)
       'Från ångbåtsbryggan är det ca 15 minuters promenad på plan väg till Lassas Hagar.',
     ],

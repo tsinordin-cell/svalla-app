@@ -1424,7 +1424,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.haninge.se/uppleva-och-gora/lekplatser-natur-och-sevardheter/platser-att-besoka/dalaro/",
       "org": "haninge.se",
       "vad": "Dalarö är lots- och tullsamhället som sedan blev badortsidyll; snirkliga gator, gränder och villor med snickarglädje i schweizisk anda; Strindberg kallade det porten till paradiset",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -1463,17 +1463,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "839 Handens station–Dalarö (–Smådalarö), Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; Handens station → Hotellbryggan 33–40 min ;  — 869 Globen–Dalarö, Ingen trafik lördag, söndag och helgdag; 46–50 min . Pendeltågets restid Stockholm C–Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Haninge centrum, Hotellbryggan, Alla hållplatser för buss 839 mot Smådalarö finns ovan., Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37). Handens station finns inte bland hållplatserna.",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v869.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h869.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "869 Globen–Dalarö, Lördag, söndag och helgdag, Ingen trafik; Slakthuset (Globen) → Hotellbryggan 46–50 min, fyra turer vardagar",
-      "last": "2026-09-27",
+      "vad": "869 Globen–Dalarö, SLAKTHUSET (GLOBEN), Ingen trafik, Giltig 18 mars–18 juni samt 17 augusti–12 december 2026 ; Slakthuset (Globen) → Hotellbryggan 46 till 50 min. Pendeltågets restid Stockholm C till Handen är inte belagd (ingen aktuell tryckt tabell för linje 43 hittades).",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/s839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Giltig 19 juni–16 augusti 2026, Måndag–fredag, Lördag, Söndag och helgdag",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -1500,7 +1507,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://smadalarogard.se/",
       "org": "smadalarogard.se",
-      "vad": "Smådalarö Gård Hotell & Spa, Ett av Sveriges största spahotell i Stockholms skärgård, Spa, aktiviteter, närodlad mat och personlig service ;  — 839 Handens station–Dalarö (–Smådalarö), Endast vissa turer",
+      "vad": "Smådalarö Gård Hotell & Spa, Ett av Sveriges största spahotell i Stockholms skärgård, Spa, aktiviteter, närodlad mat och personlig service",
       "last": "2026-09-27",
       "myndighet": false
     },
@@ -2215,6 +2222,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/sl/h634.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Norrtälje–Blidö, Giltig 17 augusti–12 december 2026, Norrtälje busstation, Furusunds färjeläge, Norrsund (Blidö färjeläge), Stämmarsund, Bromskärs brygga",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/blidoleden/",
       "org": "Trafikverket",
       "vad": "Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård, Resan med vägfärjan är avgiftsfri ;  — Blidö, Rådmansholmen är ett EU-bad ; Blidö kyrka invigd 1859 enligt RAÄ:s bebyggelseregister (se description)",
@@ -2231,15 +2245,36 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h24.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, Stämmarsund (Blidö) ;  — 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Norrsund (Blidö)",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, Stämmarsund (Blidö), Norrsund (Blidö)",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s24.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, Stämmarsund (Blidö), Norrsund (Blidö)",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Strömkajen (Stockholm), Norrsund (Blidö), Svartlöga, Rödlöga",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Norrsund (Blidö), Svartlöga, Rödlöga",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — BROMSKÄR / RÖDLÖGA, Bromskär (Blidö)",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026, 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA, Bromskär (Blidö), Bryggan är avstängd till juni 2027 på grund av renoveringsarbeten.",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -2282,6 +2317,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "tovejansson.com",
       "vad": "She also makes lengthy visits to her grandparents, who live on the Swedish island of Blidö",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -2390,28 +2432,28 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/norrora-och-soderora",
       "org": "Waxholmsbolaget",
       "vad": "ligger i den vackra Svartlögafjärden, precis utanför Furusund; Saltkråkan är framför allt inspelat på Norröra. Där ligger till exempel det bostadshus som i tv-serien kallades Snickargården, det hus som farbror Melker först hyrde och sedan köpte; Från Norröra kan du även enkelt ta dig över till Söderöra — båtturen tar bara 10 minuter … Framför allt vinterscenerna spelades in på ön",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, Går under perioderna 8 maj - 18 juni och 17, Går under perioden 17 augusti - 30 augusti. Måndag–torsdag går turerna 2601 (8 maj–18 juni) och 2611 (17–30 augusti), fredag 2621 och 2623, lördag 08.45 → Norröra 12.15, söndag 10.00 → 13.10",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "två avgångar om dagen från Strömkajen 19 juni–16 augusti;  — vår och höst lördag 08.45, söndag 10.00, fredag 08.45 och (till 13 september) 16.30, måndag–torsdag bara 8 maj–18 juni och 17–30 augusti .  skriver \"det går ofta två turer om dagen\", vilket bara stämmer med sommartabellen.",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, två turer om dagen;  — GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026;  — Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "FURUSUND — ÖSTERNÄS — SÖDERÖRA — BROMSKÄR / RÖDLÖGA, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026, Beställ resan i SL-appen; Furusund 07.50 → Köpmanholm 07.52 → Norröra 08.30, 10.05 → 10.45b .  — 17 AUGUSTI 2026 — 12 DECEMBER 2026, samma tider Furusund–Norröra",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -2447,6 +2489,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "norrora.se",
       "vad": "Hundar ska vara kopplade vilket gäller alla öar utan vägförbindelse",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -3310,29 +3359,29 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://waxholmsbolaget.se/reseplanering/resmal/rodloga",
       "org": "Waxholmsbolaget",
-      "vad": "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten. Resan tar fyra timmar.; Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga.; Heldagsutflykt till Rödlöga",
-      "last": "2026-09-27",
+      "vad": "Under våren, sommaren och hösten kan du åka ut till Rödlöga från Strömkajen utan byten., Resan tar fyra timmar., Under vintern och början av våren behöver du åka från Köpmanholm på Yxlan för att ta dig till Rödlöga.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Strömkajen (Stockholm), Norrsund (Blidö), Svartlöga, Rödlöga",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA — måndag–torsdag tur 2601 Strömkajen 09.00, Rödlöga 13.00; tur 2602 Rödlöga 15.00, Strömkajen 19.00",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
-      "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026 — tur 2621 Strömkajen 08.45, Rödlöga 13.00 (mån–tors); tur 2671 söndag Strömkajen 10.00, Rödlöga 14.00",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026; 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — BROMSKÄR / RÖDLÖGA — lördag tur 2851 och söndag tur 2871: Furusund 10.05, Rödlöga 12.20",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026, 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA, Furusund, Rödlöga; restiden Furusund till Rödlöga, 2 h 15 min, är uppmätt i 28A",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -3389,6 +3438,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "rodlogaboden.se",
       "vad": "Här kan du njuta av en kopp kaffe eller the, saft och läsk, hembakade pajer och kakor, en god smörgås - eller kanske en hamburgare som du grillar själv!",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -3694,6 +3750,1100 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
+  "graso": [
+    {
+      "url": "https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-gard.html",
+      "org": "Länsstyrelsen Uppsala län",
+      "vad": "föreskrift 4 \"Medföra hund som inte är kopplad\"; 5 \"Göra upp eld annat än på särskilt anvisade platser\"; 6 \"Tälta eller förtöja båt utanför anvisade platser mer än ett dygn i följd\"",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/graso-ostra-skargard.html",
+      "org": "Länsstyrelsen Uppsala län",
+      "vad": "medföra ej kopplad hund under tiden 1 mars - 20 augusti; ett flertal djurskyddsområden med landstigningsförbud",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4s%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Gräsö\" → Gräsö | Östhammar | Trakt, SWEREF 99 TM 694391/6694384 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.scb.se/contentassets/7edbcfbb3a87470387d8c95868ecaf04/mi0812_2020a01_sm_mi50sm2301.pdf",
+      "org": "scb.se",
+      "vad": "Bottenhavets största ö är Gräsö.; tabell 5.1 Gräsö Östhammar 705 636 -69; vid utgången av 2020",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/grasoleden/",
+      "org": "Trafikverket",
+      "vad": "Gräsöleden går mellan Öregrund och Gräsö; Färjeledens längd är 1000 meter och överfartstiden är fem minuter. Resan med vägfärjan är avgiftsfri.; Vecka 25–33 Två färjor trafikerar leden alla dagar; Med vår app Trafikinfo Färjerederiet får du tillgång till tidtabeller och trafikinformation. Du kan även kalla på färjan direkt i appen.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://grasobadenscamping.se/",
+      "org": "grasobadenscamping.se",
+      "vad": "Vi har ca 400 platser för husvagn, husbil eller tält; Vi har stängt för säsongen och öppnar åter i slutet av april -27.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/hitta-hit.html",
+      "org": "orskarsfyr.se",
+      "vad": "På Gräsö kör du mot Örskärssund, 22 km till vägs ände.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.osthammar.se/sv/roslagen/oregrund/badplatser-i-oregrund/",
+      "org": "osthammar.se",
+      "vad": "Kattskär ingår i Gräsö gårds naturreservat; Här finns en eldstad med vedförråd … Det är inte tillåtet att elda på andra platser i reservatet.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_811_260817_261212.pdf",
+      "org": "ul.se",
+      "vad": "811 Uppsala - Alunda - Gimo - Östhammar - Öregrund; 17 augusti - 12 december 2026; ändhållplats Öregrund färjeläget",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf",
+      "org": "ul.se",
+      "vad": "854 Öregrund - Norra Gräsö; Helgfri måndag - fredag; A Turen körs endast skoldagar; U … Turen måste förbeställas på tel. 018-617 57 02 senast 3 tim. före avresa",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.upplandsstiftelsen.se/orskar/",
+      "org": "upplandsstiftelsen.se",
+      "vad": "Örskär ligger norr om Gräsö och nås med båt från Örskärssund.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "orskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/uppsala/besoksmal/naturreservat/orskar.html",
+      "org": "Länsstyrelsen Uppsala län",
+      "vad": "föreskrift 5 \"Utan markägares tillstånd tälta mer än två dygn\"; 6 \"förtöja eller förankra båt vid samma strand för längre tid än två dygn\"",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%96rsk%C3%A4r",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Örskär\" → Örskär | Östhammar | Natur- och terrängnamn, SWEREF 99 TM 686419/6714367 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://sjofartsverket.se/sv/om-oss/fyrar-och-kulturfastigheter/visningsfyrar/orskar/",
+      "org": "sjofartsverket.se",
+      "vad": "den nuvarande fyren som tändes 1740 … Den är 36,5 meter hög och ritades av den kände arkitekten Carl Hårleman. Fyren är unik eftersom den helt saknar trappor; Fyren automatiserades 1978 och avbemannades året därpå.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.orskarsfyr.se/dagsturer/",
+      "org": "orskarsfyr.se",
+      "vad": "DAGSTURERNA har slutat gå för denna säsong! Välkomna åter till Maj 2027",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/l-genheter-stugor/",
+      "org": "orskarsfyr.se",
+      "vad": "På fyrplatsen finns fyra boenden att hyra under perioden 6/5-26/9; fasta vistelser på två till sju dagar",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/hitta-hit.html",
+      "org": "orskarsfyr.se",
+      "vad": "På Gräsö kör du mot Örskärssund, 22 km till vägs ände.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.orskarsfyr.se/restaurang-och-kiosk.html",
+      "org": "orskarsfyr.se",
+      "vad": "Restaurangen ligger i den gamla fyrmästarbostaden; STÄNGT för säsongen. Öppnar igen i maj 2027.; För att äta oss hos måste man alltid boka.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ul.se/globalassets/tidtabeller/nya/Regionbuss/260817_261212/Regionbuss_854_260817_261212.pdf",
+      "org": "ul.se",
+      "vad": "Helgfri måndag - fredag",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.upplandsstiftelsen.se/orskar/",
+      "org": "upplandsstiftelsen.se",
+      "vad": "du kan åka med någon av de fasta båtturer som körs av Örskärs fyr … I andra hand går det att boka båttransport med Tommy Mattson som kör turer i mån av tid",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.upplandsstiftelsen.se/orskar-english/",
+      "org": "upplandsstiftelsen.se",
+      "vad": "Nature and Culture Trail, 2.5 km; All destinations: … about 8 km; The trails are marked with blue and yellow ribbons around the trees.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "amto": [
+    {
+      "url": "https://www.lansstyrelsen.se/ostergotland/besoksmal/naturreservat/amto-naturreservat.html",
+      "org": "Länsstyrelsen Östergötland",
+      "vad": "sammanlagt finns över 9 kilometer välskyltad vandringsled i reservatet; flera grillplatser och rastbord och gott om naturliga badmöjligheter",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=%C3%84mt%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Ämtö\" → Ämtö | Valdemarsvik | Trakt, SWEREF 99 TM 610063/6458464 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf",
+      "org": "ostgotatrafiken.se",
+      "vad": "Från Getterö mot Ämtö; Gäller från 1 november 2026 till 13 juni 2027.; Avgångar lördag: Inga avgångar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik",
+      "org": "ostgotatrafiken.se",
+      "vad": "Beställ senast klockan 18:00 dagen innan; Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "harstena": [
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harstena",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Harstena\" → Harstena | Valdemarsvik | Trakt, SWEREF 99 TM 617759/6458610 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/download/18.7cd05f241a1632e36852546/1793351407739/linje776-011126-130627b.pdf",
+      "org": "ostgotatrafiken.se",
+      "vad": "Från Fyrudden mot Harstena; Gäller från 1 november 2026 till 13 juni 2027.; Avgångar lördag: Inga avgångar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik",
+      "org": "ostgotatrafiken.se",
+      "vad": "Beställ senast klockan 18:00 dagen innan; Skärgårdstrafiken är öppen för alla, men i första hand för dig som bor på öarna.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/bryggor-som-baten-gar-till",
+      "org": "ostgotatrafiken.se",
+      "vad": "Harstena, postbryggan (Turistbrygga) 3; Harstena södra 68; Harstena, Hundhålet 109",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.valdemarsvik.se/visit/se-gora/upplev-skargarden/harstena/",
+      "org": "valdemarsvik.se",
+      "vad": "Harstena består av en arkipelag med ett 70-tal öar. Huvudön är drygt 150 hektar stor.; Harstena ligger nästan 13 km (7 M) nordost om Fyrudden. (publicerad 2022-01-20 )",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "kopparholmarna": [
+    {
+      "url": "https://lansstyrelsen.se/download/18.6ae610001636c9c68e5981/1526553838599/F%C3%B6reskrifter%20om%20bildande%20av%20naturreservatet%20Kopparholmarna%20i%20Norrk%C3%B6pings%20kommun%202012.11.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "C3 \"medföra okopplad hund eller annat lösgående husdjur\"; C6 \"göra upp eld annat än på anvisad plats\"; C2 \"tälta eller förtöja båt längre tid än två dygn i följd på samma plats\"",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kopparholmarnas%20naturreservat",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kopparholmarnas naturreservat\" → Norrköping | Naturvårdsområde, SWEREF 99 TM 613212/6482448 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.norrkoping.se/se-och-gora/friluftsomraden/naturreservat/kopparholmarna-naturreservat",
+      "org": "norrkoping.se",
+      "vad": "Ett drygt tiotal öar ingår i reservatet varav Kopparholmarna är de två största.; Från piren går sommartid turbåtar till Kopparholmarna.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser",
+      "org": "norrkoping.se",
+      "vad": "här tas inte badvattenprov då badplatsen är belägen på en ö vilket medför logistiska hinder",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "arkosund": [
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ark%C3%B6sund",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Arkösund\" → Arkösund | Norrköping | Bebyggelse, SWEREF 99 TM 613239/6485251 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://norrkoping.se/se-och-gora/fritid-och-aktiviteter/badplatser",
+      "org": "norrkoping.se",
+      "vad": "Tillgång till toaletter i servicebyggnad 400 meter från badet. Affär och restaurang inom gångavstånd.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.norrkoping.se/nyheter/nyheter/2026-07-02-har-ar-badplatser-du-nar-med-buss-eller-cykel",
+      "org": "norrkoping.se",
+      "vad": "Badholmarna ligger strax utanför Arkösund och består av fyra små öar som förbinds med broar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/download/18.1ed171de1a12f87018c1b99/1792069972364/Linje781-170826-130627.pdf",
+      "org": "ostgotatrafiken.se",
+      "vad": "Från Arkösund mot Birkö via Aspöja; Gäller från 17 augusti 2026 till 13 juni 2027.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.ostgotatrafiken.se/res-med-oss/bestallningstrafik/skargardstrafik/resa-med-skargardstrafik",
+      "org": "ostgotatrafiken.se",
+      "vad": "Beställ senast klockan 18:00 dagen innan",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "hartso": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/hartso.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "förtöja eller ankra upp båt mer än två dygn i följd vid samma plats, med följande undantag: Detta gäller inte dem som hyr övernattningsstugor inom reservatet och har sina båtar förankrade vid särskilt iordningsställd båtplats.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Harts%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hartsö\" → Hartsö | Nyköping | Trakt, SWEREF 99 TM 643882/6511396 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "ringso": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/ringso.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "På södra Ringsö finns sandstränder och möjlighet att bada från klippor.; Vid djupsundet ligger Österbodarna, gamla fiskebodar, som har restaurerats; Skyddsår: 1980 / Areal: 2044,5 hektar",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Rings%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Ringsö\" → Ringsö | Nyköping | Trakt, SWEREF 99 TM 641390/6512305 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "savo": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/savo.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "De före detta lotsbostäderna används idag som vandrarhem; Eftersom får och kor går fria på ön är det bäst att använda tältplatserna som ligger innanför staket.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=S%C3%A4v%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Sävö\" → Sävö | Nyköping | Trakt, SWEREF 99 TM 643223/6516933 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "stendorren": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/stendorren.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "Övernattning är förbjudet i området innanför den röda linjen på kartan, förutom i båt.; Nej, du får inte använda drönare i naturreservatet … Om du vill använda drönare behöver du söka dispens",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stend%C3%B6rren",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Stendörren\" → Stendörren | Nyköping | Bebyggelse, SWEREF 99 TM 638935/6513976 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "kramo": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/kramo.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "Kommun: Trosa; Trosa kommun har bildat och förvaltar naturreservatet.; På ön Grytan finns flera jättegrytor från senaste istiden.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kr%C3%A5m%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kråmö\" → Kråmö | Trosa | Natur- och terrängnamn, SWEREF 99 TM 652647/6525074 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kramoskargardsby.se/general-6",
+      "org": "kramoskargardsby.se",
+      "vad": "Skärgårdstrafik i Trosa 2026; 2026 trafikerar vi 11 juni till 2 augusti samt 6 - 9 augusti.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "fagelskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/fagelskar.html",
+      "org": "Länsstyrelsen Södermanland",
+      "vad": "Fågelskär är en ö som ligger cirka tre kilometer utanför Oxelösund.; en populär tältplats. Här finns soptunnor och utedass.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=F%C3%A5gelsk%C3%A4r",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Fågelskär\" → Fågelskär | Oxelösund | Natur- och terrängnamn, SWEREF 99 TM 627149/6504161 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "rago": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/rago.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "Norra Rågöslingan (blå) 1 km och Södra Rågöslingan (röd) 3 kilometer; Tillgänglighetsanpassad toalett finns i anslutning till Rågö by och torrdass finns vid gästhamnen i Alviken och vid tältplatsen.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%A5g%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Rågö\" → Rågö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 603056/6415211 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.kalmarlanstrafik.se/globalassets/skargardstrafik/till_fran_granso_fr17aug2026-13juni-2027.pdf",
+      "org": "kalmarlanstrafik.se",
+      "vad": "Bokningsbar Skärgårdstrafik till/från Gränsö kanal (gäller 17 augusti 2026 - 13 juni 2027); hållplats Rågö; resa måste bokas måndag-fredag mellan 9.00-16.00 på 0490-91019 senast vardag före avresa",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "granso": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/granso.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Gr%C3%A4ns%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Gränsö\" → Gränsö | Västervik | Natur- och terrängnamn, SWEREF 99 TM 600919/6402880 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.vastervik.se/Bygga-bo-och-miljo/Naturvard-parker/Naturomraden-naturreservat/granso-naturreservat/",
+      "org": "vastervik.se",
+      "vad": "Halvön skiljer sig från fastlandet genom den 700 meter långa Gränsö kanal.; ett naturreservat på 328 hektar cirka 5 kilometer från Västerviks stadskärna",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "runno": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/runno.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "färdas eller uppehålla sig på Lång- och Lövgrund samt på Runnö Rödskär eller komma närmare stranden av dessa öar än 100 m; omfattas av tillträdesförbud under tiden 1 april-10 juli",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Runn%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Runnö\" → Runnö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 593261/6336501 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "furon": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/furon.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "Furön ligger utslängd i havet, 1 mil rakt österut från Oskarshamn.; Furön hade tidigare en lotsplats. Den var i bruk fram till 1965",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Fur%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Furö\" → Furö | Oskarshamn | Natur- och terrängnamn, SWEREF 99 TM 597723/6350008 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "misterhult": [
+    {
+      "url": "https://www.lansstyrelsen.se/kalmar/besoksmal/naturreservat/misterhults-skargard.html",
+      "org": "Länsstyrelsen Kalmar län",
+      "vad": "Under tiden 1 april till 10 juli inom områden markerade med röd raster på bifogad beslutskarta ... uppehålla sig på eller färdas på närmare avstånd än 100 meter från öar och skär.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Misterhults%20sk%C3%A4rg%C3%A5rd",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Misterhults skärgård\" → Misterhults skärgårds naturreservat | Oskarshamn | Naturvårdsområde, SWEREF 99 TM 602350/6375385 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "limon": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/limon.html",
+      "org": "Länsstyrelsen",
+      "vad": "Limön är en ö i Gävlebukten som på sin högsta punkt reser sig drygt 20 meter över Bottenhavet.; Areal: 205,3 hektar; Skyddsår: 2020; Limöns naturreservat förvaltas av Gävle kommun.; Skyddsområde: naturreservat, Natura 2000",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lim%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Limön\" → Limön | Gävle | Natur- och terrängnamn, SWEREF 99 TM 628243/6733344 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.gavle.se/kultur-och-fritid/natur-och-friluftsliv/kusten-batar-och-oar/utflyktsmal-vid-gavlekusten/limon/",
+      "org": "gavle.se",
+      "vad": "Sjövägen, runt fyrar och genom farleder; Gävle Strand 5,5 Nm; Du lägger till din båt mot brygga. Hamnen är skyddad för alla vindar.; Djup 1,7 meter.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "agon": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/agon-krakon.html",
+      "org": "Länsstyrelsen",
+      "vad": "Agön och Kråkön är två stora skärgårdsöar med gamla fiskelägen och ligger 2 landmil sydost om Hudiksvall.; kapellen i Agö och Kråkö hamn, byggda 1660 respektive 1736",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22724/1732537537502/Ag%C3%B6n-Kr%C3%A5k%C3%B6n%20-%20Naturreservat%20i%20G%C3%A4vleborgs%20l%C3%A4n.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "I reservatet finns en av kustens största kolonier med gråsäl.; Delar av naturreservatet ingår i … Natura 2000.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/om-oss/om-lansstyrelsen-i-gavleborgs-lan/lanets-forfattningssamling/forfattningar-2024/forfattningssamling-2024/2024-03-08-21fs-20247.html",
+      "org": "Länsstyrelsen",
+      "vad": "elda, annat än på iordningställda eld- och grillplatser. Eldning får endast ske med utlagd ved; Dessa föreskrifter träder i kraft den 30 mars 2024",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ag%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Agön\" → Agön | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 628655/6826232 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "storjungfrun": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/storjungfrun.html",
+      "org": "Länsstyrelsen",
+      "vad": "Storjungfrun är den största av de 500 öarna i Söderhamns kommun.; Storjungfruns naturreservat ägs och förvaltas av Söderhamns kommun.; Areal: 1280 hektar; Skyddsår: 2014",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/kulturmiljoer/storjungfruns-fyrplats.html",
+      "org": "Länsstyrelsen",
+      "vad": "Storjungfruns fyr byggdes 1839; Den var den sista stenkolseldade fyren som byggdes i Sverige; Det putsade fyrtornet av sten, som fortfarande är i bruk, byggdes 1923.; Statligt byggnadsminne: 1935",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Storjungfrun",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Storjungfrun\" → Storjungfrun | Söderhamn | Natur- och terrängnamn, SWEREF 99 TM 624579/6782504 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.visitsoderhamn.se/sv/storjungfrun",
+      "org": "visitsoderhamn.se",
+      "vad": "Medtag mat och dryck — affär finns inte; Medtag dricksvatten! Vatten till matlagning, disk och städ finns att hämta vid gårdspump/brunn",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "kuggorarna": [
+    {
+      "url": "https://www.lansstyrelsen.se/gavleborg/besoksmal/naturreservat/kuggorarna.html",
+      "org": "Länsstyrelsen",
+      "vad": "ett kapell, uppfört åren 1776–1777; I den nordvästra delen finns en labyrint och på öns sydvästra del finns ett gravfält från sen järnålder.; Areal: 51 hektar; Skyddsår: 1996",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kugg%C3%B6rarna",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kuggörarna\" → Kuggörarna | Hudiksvall | Natur- och terrängnamn, SWEREF 99 TM 633051/6843473 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "kluntarna": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/kluntarna.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "Det är inte tillåtet att köra snöskoter på öarna; göra upp eld, men inte direkt på klipphällar. Kom ihåg att ta med egen ved!",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Kluntarna",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kluntarna\" → Kluntarna | Luleå | Natur- och terrängnamn, SWEREF 99 TM 852359/7280587 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/kluntarna.html",
+      "org": "lulea.se",
+      "vad": "fem stenlagda labyrinter som troligen härstammar från 1300- eller 1400-talet",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.; Högsäsong 19 juni — 16 augusti",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Gästplatser: 20 stycken; Turbåtsangöring",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "junkon": [
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Junk%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Junkön\" → Junkön | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842683/7278326 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/junkon.html",
+      "org": "lulea.se",
+      "vad": "På Junkön finns ett skärgårdsmuseum, ett mindre antal bofasta och ett levande yrkesfiske.; den över 200 år gamla hattkvarnen",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "smaskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/smaskarens-klippor.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "tio obebyggda öar och hällar söder och öster om ön Småskär; På vissa öar råder landstigningsförbud under period med öppet vatten. Det är även förbjudet att uppehålla sig inom 200 meter från öarna.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sm%C3%A5sk%C3%A4ren",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Småskären\" → Småskären | Luleå | Natur- och terrängnamn, SWEREF 99 TM 857223/7284103 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/smaskar.html",
+      "org": "lulea.se",
+      "vad": "Med hela 120 fritidshus är Småskär ön som stoltserar med högsta antalet fritidshus i hela Luleå ytterskärgård.; Småskär är ett kommunalt naturreservat",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "rodkallen": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/rodkallen-soraspen.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "I vissa delar av reservatet råder landstigningsförbud mellan 1 maj och 31 juli. Det är även förbjudet att uppehålla sig inom 200 meter från öarna. Läs mer i beslutet.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=R%C3%B6dkallen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Rödkallen\" → Rödkallen | Luleå | Natur- och terrängnamn, SWEREF 99 TM 842626/7263977 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/oar-i-lulea-skargard/rodkallen.html",
+      "org": "lulea.se",
+      "vad": "Den ståtliga fyren från 1872 … Med sin 21,4 meter höga stålkonstruktion",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/turbatstrafik-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Turbåtarna avgår från Södra hamnplan och angör Klubbviken havsbad på Sandön, Hindersön, Brändöskär, Småskär, Kluntarna och Junkön.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://www.lulea.se/uppleva--gora/lulea-skargard/gasthamnar-i-lulea-skargard.html",
+      "org": "lulea.se",
+      "vad": "Privata hamnar med gästplats … Rödkallen",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "sandskar": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/nationalparker/haparanda-skargard.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "Storlek: 6600 hektar (66 kvadratkilometer); Bildat år: 1995; På ön har man sett 251 olika fågelarter.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Sandsk%C3%A4r",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Sandskär\" → Sandskär | Haparanda | Natur- och terrängnamn, SWEREF 99 TM 903069/7300276 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken",
+      "org": "Sveriges Nationalparker",
+      "vad": "Under sommaren (juli–augusti) går det en turbåt några dagar i veckan till den största ön, Sandskär.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/haparanda-skargards-nationalpark/besok-parken/hitta-hit",
+      "org": "Sveriges Nationalparker",
+      "vad": "på öarna är det skoterförbud. Stugägare får dock köra närmaste väg till huset.",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "maloren": [
+    {
+      "url": "https://www.lansstyrelsen.se/norrbotten/besoksmal/naturreservat/maloren.html",
+      "org": "Länsstyrelsen Norrbotten",
+      "vad": "från 1800-talet fram till 1967 fanns det lots på ön. Fyren från 1850 ger tillsammans med kyrkan från 1770",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6ren",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Malören\" → Malören | Kalix | Natur- och terrängnamn, SWEREF 99 TM 894665/7293978 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "hallands-vadero": [
+    {
+      "url": "https://www.lansstyrelsen.se/download/18.1e9f682716e44cbf6f5cb7d/1618590550398/folder_Hallands%20V%C3%A4der%C3%B6_NR_BushLife_tgh.pdf",
+      "org": "Länsstyrelsen",
+      "vad": "Skären runt ön är den enda plats i Kattegatt där de tre alkorna sillgrissla, tobisgrissla och tordmule häckar.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/skane/besoksmal/naturreservat/bastad/hallands-vadero.html",
+      "org": "Länsstyrelsen Skåne",
+      "vad": "vara i sälskyddsområdet (gäller hela året); vara i fågelskyddsområdena mellan 1 april och 15 juli.; Det är tillåtet att ankra längs kusten, med undantag för Sandhamn och i områden som har tillträdesförbud",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Hallands%20V%C3%A4der%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hallands Väderö\" → Hallands Väderö | Båstad | Natur- och terrängnamn, SWEREF 99 TM 350297/6257682 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "nidingen": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "under tiden den 1 april till den 15 juli årligen landa med båt eller vistas på Nidingen eller inom det omgivande vattenområdet intill ett avstånd av 100 meter från stranden med undantag av öns sydvästra del och intilliggande vattenområde",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Nidingen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Nidingen\" → Nidingen | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 313373/6355451 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "vendelso": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "under tiden 1 april; 31 juli årligen färdas eller uppehålla sig i vattenområdet i Älmö sund och på stränderna kring Älmö sund samt landstiga på del av Knarrskär eller befara vattenområdet inom 100 meter från ön, enligt markeringar på beslutskartan",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Vendels%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Vendelsö\" → Vendelsö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 326187/6354678 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.fjordexpress.se/?lang=sv",
+      "org": "fjordexpress.se",
+      "vad": "Stenudden (Åsa) ⇄ Vendelsö; Gottskär ⇄ Vendelsö; Bua ⇄ Vendelsö",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "balgo": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "I Balgöfjorden finns ett bestånd av knubbsäl; Även gråsäl förekommer i området.; Hallands viktigaste lokal för strandpadda",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Balg%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Balgö\" → Balgö | Varberg | Natur- och terrängnamn, SWEREF 99 TM 328824/6339216 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "malon": [
+    {
+      "url": "https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html",
+      "org": "Länsstyrelsen Halland",
+      "vad": "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Mal%C3%B6n",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Malön\" → Malön | Kungsbacka | Natur- och terrängnamn, SWEREF 99 TM 317061/6359586 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "djuro-nationalpark": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/nationalparker/djuro-nationalpark.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "förtöja båt längre tid än två dygn i följd vid samma plats; tälta eller sätta upp vindskydd eller liknande anordning; inom det område på gräsmarken mitt på Djurö som har markerats på karta; i övrigt inom nationalparken fler än två nätter i följd på samma plats",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Djur%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Djurö\" → Djurö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 411864/6525690 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/",
+      "org": "Sveriges Nationalparker",
+      "vad": "Djurö skärgård ligger i Vänern och består av ett trettiotal öar och skär.; Ön var bebodd från 1600-talet ända fram till 1969 då den siste fyrvaktaren lämnade ön.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/djuro-nationalpark/besok-parken/hitta-hit",
+      "org": "Sveriges Nationalparker",
+      "vad": "Malbergs hamn är nationalparkens huvudentré; Nationalparken östra sidan är grund och är därför inte lämplig att lägga till vid.; Båtfärden till nationalparken är väldigt väderberoende.",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "brommo": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/brommo-skargard.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "Brommö ligger utanför Torsö, norr om Mariestad.; På norra ön finns härliga sandstränder.; Öarna har flera stigar och markerade leder som utgår från Brommös färjeläge.; Västra Brommö, grannöarna Hovden, Bockön, Lindökroken och Klypholmen bildar tillsammans Brommö skärgårds naturreservat.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Bromm%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Brommö\" → Brommö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 424077/6520497 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "luro": [
+    {
+      "url": "https://www.lansstyrelsen.se/varmland/besoksmal/naturreservat/luro-skargard.html",
+      "org": "Länsstyrelsen",
+      "vad": "tälta mer än två (2) dygn i sträck på samma plats; förtöja båt eller husbåt mer än två (2) dygn i sträck på samma plats; göra upp öppen eld annat än på av reservatsförvaltaren anvisad och särskilt iordningställd plats; Medhavda grillar och friluftskök får dock användas även på annan plats.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Lur%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Lurö\" → Lurön | Säffle | Natur- och terrängnamn, SWEREF 99 TM 398477/6518156 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://saffle.se/uppleva-och-gora/visit-saffle/inspiration/destinationsguide/ekenas-luro.html",
+      "org": "saffle.se",
+      "vad": "Resan till Lurö startar vid Ekenäs gästhamn, belägen på Värmlandsnäs.; Luröbåten lägger till på västra sidan av Husön vid gården Stenstaka; Därefter går båten vidare till Basteviken, Lurös huvudbrygga.; Luröbåten tar cirka 1 timme.; Tänk på att boka din resa i förväg!",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "kallandso": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/kallands-skargardar.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "Cirka 15 områden som är särskilt känsliga för störningar är avsatta som fågelskyddsområden.; färdas eller uppehålla sig inom det område som angivits på bifogad karta årligen under tiden 1 april; 31juli.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=K%C3%A5llands%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Kållandsö\" → Kållandsö | Lidköping | Natur- och terrängnamn, SWEREF 99 TM 393785/6503936 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://lidkoping.se/download/18.66fe5e7b19e975a9fd9751e/1781522932700/F%C3%96P%20k%C3%A5llands%C3%B6_HELA.pdf",
+      "org": "lidkoping.se",
+      "vad": "Området trafikeras av linje 132 som kör från Lidköping; med sluthållplatserna Spikens fiskeläge och Läckö slott",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "onso": [
+    {
+      "url": "https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/onso.html",
+      "org": "Länsstyrelsen Västra Götaland",
+      "vad": "med fina naturhamnar och platser för bad och avkoppling; På Onsöns södra del finns också fantastiskt vackra och vidsträckta hagmarker och öppna strandängar.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Ons%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Onsö\" → Onsö | Mariestad | Natur- och terrängnamn, SWEREF 99 TM 423731/6511151 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "utklippan": [
+    {
+      "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/utklippan.html",
+      "org": "Länsstyrelsen Blekinge",
+      "vad": "På Södraskär finns Utklippans fyr och de forna fyrvaktarbostäderna.; Fyren, fyrvaktarsamhället och miljön på Södraskär och Norraskär är statliga byggnadsminnen.; Numera används byggnaderna bland annat av Utklippans fågelstation och Svenska Kryssarklubben.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Utklippan",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Utklippan\" → Utklippan | Karlskrona | Trakt, SWEREF 99 TM 543816/6201041 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "tarno": [
+    {
+      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/karlshamn-skargard/",
+      "org": "blekingetrafiken.se",
+      "vad": "Vid gästhamnen i centrala Karlshamn hittar du skärgårdsterminalen.; Cirka 30 minuter från skärgårdsterminalen i Karlshamn ligger Tärnö.; Du köper din biljett när du går ombord; Det går bra att ta med djur ombord på våra båtar.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.blekingetrafiken.se/reseinformation/skargardstrafik/",
+      "org": "blekingetrafiken.se",
+      "vad": "Från maj till september reser du ut till öar som Tjärö, Tärnö och Kastellet.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/tarno-yttre-eko.html",
+      "org": "Länsstyrelsen Blekinge",
+      "vad": "cykla annat än på befintliga vägar och stigar, och då endast på sätt som inte ger förslitningsskador på markerna, verkar störande på naturen eller på övrigt friluftsliv i området",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=T%C3%A4rn%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Tärnö\" → Tärnö | Karlshamn | Natur- och terrängnamn, SWEREF 99 TM 497780/6219319 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "hastholmen-ytteron": [
+    {
+      "url": "https://www.lansstyrelsen.se/blekinge/besoksmal/naturreservat/hastholmen-ytteron.html",
+      "org": "Länsstyrelsen Blekinge",
+      "vad": "ankra, lägga till eller dra upp båt eller annan vattenfarkost annat än vid tillfällig vistelse (högst två dygn) i området; Förbudet gäller inte befintliga enskilda bryggor eller andra iordningställda båtplatser; ankra båt eller annan vattenfarkost inom områden med Ankringsförbud enligt beslutsbilaga 2a",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=H%C3%A4stholmen",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Hästholmen\" → Hästholmen | Karlskrona | Natur- och terrängnamn, SWEREF 99 TM 546627/6215417 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "stora-karlso": [
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "under tiden 15 mars; 31 augusti stiga iland på ön utan tillstånd av Länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet.; landstiga på annan plats än Norderhamn utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Stora%20Karls%C3%B6",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Stora Karlsö\" → Stora Karlsö | Gotland | Natur- och terrängnamn, SWEREF 99 TM 679283/6353065 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/",
+      "org": "storakarlso.se",
+      "vad": "Båten till Stora Karlsö avgår från Klintehamn; Turer kan ställas in vid dåligt väder.; Resenärer skall vara på kaj senast 30 minuter före avgång.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/",
+      "org": "storakarlso.se",
+      "vad": "Runt hela ön finns ett fågelskyddsområde där det råder tillträdesförbud mellan 15/3 och 15/8, undantaget stranden i Norderhamn och Hien. Fågelskyddsområdet är markerat med gula skyltar.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://storakarlso.se/ovriga-resor/egen-bat-till-on/",
+      "org": "storakarlso.se",
+      "vad": "Man får endast lägga till i Norderhamn på den västra sidan av bryggan eftersom den östra sidan används av Karlsöbåten.; Ta kontakt med tillsynsmannen, när du närmar dig eller kommit iland",
+      "last": "2026-11-17",
+      "myndighet": false
+    }
+  ],
+  "furilden": [
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/furilden.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "Furilden naturreservat ligger på den nordligaste delen av ön Furilden, cirka 8 km sydost om Rute kyrka.; Socken: Rute; Från fågeltornet har man god utsikt över de fågelrika strandängarna innanför Fitudden.",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "Den södra udden av Furilden ingår i reservatet; medföra hund som inte är kopplad eller annat lösgående sällskapsdjur under perioden 1 mars; 31 oktober",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Furilden",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Furilden\" → Furilden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 739469/6410632 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
+  "asunden": [
+    {
+      "url": "https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/slite-skargard.html",
+      "org": "Länsstyrelsen Gotland",
+      "vad": "borra, hacka, spränga, rista, gräva, måla eller på något sätt skada berg, block, raukar, jord, sten eller bottensediment; förflytta eller bortföra block, sten eller fossil exempelvis genom att bygga höga stentorn",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://minkarta.lantmateriet.se/api/searchservice/searchinput?&searchtext=Asunden",
+      "org": "minkarta.lantmateriet.se",
+      "vad": "Lantmäteriet Min Karta, sökning \"Asunden\" → Asunden | Gotland | Natur- och terrängnamn, SWEREF 99 TM 729251/6402619 omräknat till WGS 84",
+      "last": "2026-11-17",
+      "myndighet": true
+    }
+  ],
   "asko": [
     {
       "url": "https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html",
@@ -3754,18 +4904,32 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v845.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h845.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Västerhaninge station–Gålö, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026, Tidtabellen är anpassad till pendeltåg från Stockholm vid . Lördag, söndag: Västerhaninge station 09.18 → Skälåker 09.42 och 11.18 → 11.43; måndag–fredag når bara 18.05-turen Skälåker (18.31). Sommartabellen 19/6–16/8 fanns inte som PDF.",
-      "last": "2026-09-27",
+      "vad": "Västerhaninge station–Gålö, Skälåker 1), 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 18 mars–18 juni samt 17 augusti–12 december 2026 . Västerhaninge station → Skälåker 24 till 26 min; måndag till fredag når en tur Skälåker, lördag, söndag och helgdag två (MÄTT i tabellen).",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Handens station–Dalarö (–Smådalarö), Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026; måndag–fredag Handens station 09.14 → Gålövägen 09.32 (18 min) .  — Alla bussar till Dalarö stannar vid Gålö handel, strax utanför reservatet i norr.",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Gålövägen, Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Gålövägen 16 till 19 min (MÄTT i tabellen: måndag till fredag 18 till 19, lördag, söndag och helgdag 16 till 18)",
+      "last": "2026-11-17",
       "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/s839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Gålövägen, Giltig 19 juni–16 augusti 2026",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://galohavsbad.se/om-oss/oppettider-och-omradeskarta/",
+      "org": "galohavsbad.se",
+      "vad": "Endast 35 km söder om Stockholm",
+      "last": "2026-09-27",
+      "myndighet": false
     },
     {
       "url": "https://galohavsbad.se/",
@@ -3789,17 +4953,17 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://galohavsbad.se/om-oss/kontakta-oss/",
+      "org": "galohavsbad.se",
+      "vad": "Som dagsbesökare får man endast parkera på den stora parkeringen., Man kan betala sin parkering via parkster, mobill eller via smsparkering.",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
       "url": "https://galohavsbad.se/ata/",
       "org": "galohavsbad.se",
       "vad": "Välkomna till vår charmiga Bistro, matbit, fika, smarriga smörgåsar, Minilivs, Camping för dig och din familj",
       "last": "2026-10-01",
-      "myndighet": false
-    },
-    {
-      "url": "https://galohavsbad.se/om-oss/kontakta-oss/",
-      "org": "galohavsbad.se",
-      "vad": "Som dagsbesökare får man endast parkera på den stora parkeringen., Man kan betala sin parkering via parkster, mobill eller via smsparkering.",
-      "last": "2026-09-27",
       "myndighet": false
     },
     {
@@ -4028,6 +5192,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/sl/h632.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Norrtälje–Yxlan, Giltig 17 augusti–12 december 2026, Köpmanholm, Vagnsunda",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
       "url": "https://www.trafikverket.se/resa-och-trafik/farjetrafik/furusundsleden/",
       "org": "Trafikverket",
       "vad": "Furusundsleden går mellan Furusund och Yxlan i Stockholms skärgård. Färjeledens längd är 600 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Blidöleden går mellan Yxlan och Blidö i Stockholms skärgård. Färjeledens längd är 530 meter och överfartstiden är fyra minuter. Resan med vägfärjan är avgiftsfri. ;  — Parking on Yxlan can be tricky and even hazardous. You can not park in the small housing communities. ;  — Giltig 17 augusti–12 december 2026, Norrtälje busstation 09.14 14.36 16.43 18.44, Vagnsunda 10.29 16.00 18.00 19.59b, Fortsätter efter Köpmanholms skola endast om resenärer . Restid Norrtälje–Vagnsunda 1 h 15 min (09.14 → 10.29) till 1 h 24 min (14.36 → 16.00).  — Strömkajen (Stockholm) 08.45, Vagnsunda (Yxlan) 11.01, Kolsvik (Yxlan) 13.02, utan fast avgångstid, GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026",
@@ -4038,7 +5209,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/wa/h24.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, Strömkajen (Stockholm) 08.45, Vagnsunda (Yxlan) 11.01 11.21 11.01, Kolsvik (Yxlan) 13.02 13.45, utan fast avgångstid, Går under perioden 2 april - 18 juni. . Utåt (24A) har Vagnsunda fast tid och övriga Yxlanbryggor X; hemåt (24B) har Kolsvik fast tid och Vagnsunda X. Yxlö och Köpmanholm finns bara på söndagsturerna märkta I (2 april–18 juni). Strömkajen 08.45 → Vagnsunda 11.01 = 2 h 16 min.",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s24.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 24A STOCKHOLM — VAXHOLM — BLIDÖSUNDET, Stämmarsund (Blidö), Norrsund (Blidö)",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026, 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA, Furusund, Köpmanholm (Yxlan)",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -4061,6 +5246,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "vad": "offering a 24 km hike close to the sea, The lake Träsket, the lighthouse and Stortallen, an old pine tree are all worth a visit in their own right., it follows the local printed tourist map, Plan your hike based on when you can catch the bus back from the furthest southern point you reach.",
       "last": "2026-09-27",
       "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
+      "myndighet": false
     }
   ],
   "kymmendo": [
@@ -4072,10 +5264,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Handens station 06.14 07.14 07.44 08.14 09.14, Hotellbryggan 05.46 06.50 07.50 08.23 08.50 09.51, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Hotellbryggan, Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -4351,10 +5543,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
-      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "Handens station–Dalarö (–Smådalarö), 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Giltig 14 december 2025–18 juni 2026 samt 17 augusti–12 december 2026  — 14 ankomster till Smådalarö måndag–fredag och 9 lördag–söndag i tabellen.",
-      "last": "2026-09-27",
+      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Haninge centrum, 1) Endast vissa turer., Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 17 augusti–12 december 2026 ; 14 turer till Smådalarö måndag till fredag och 9 lördag, söndag och helgdag; Rudsjöterrassen → Smådalarö 45 till 54 min (MÄTT i tabellen)",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -4375,7 +5567,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/",
       "org": "smadalarogard.se",
       "vad": "Smådalarö Gård Hotell & Spa ligger idylliskt i Hemviken i Stockholms skärgård, Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city, som går från Haninge Centrum hela vägen till vår grind",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": false
     },
     {
@@ -4929,14 +6121,21 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 30 SEPTEMBER 2026; Furusund 07.50 10.05 10.05 10.05; Gräskö 08.15 10.30b 10.30b 10.30b; GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026 — Furusund 07.50/10.05, Gräskö 08.15/10.30 = 25 min; Gräskö finns även i höst-/vintertabellen 1 oktober–12 december",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h27.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026; Strömkajen (Stockholm) 08.45 08.45 08.45; Gräskö 12.05 12.20 12.05 — Strömkajen 08.45, Gräskö 12.05 resp. 12.20 = 3 h 20–35 min",
-      "last": "2026-09-27",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 27A STOCKHOLM — VAXHOLM — NORRSUND — ARHOLMA, Strömkajen (Stockholm), Gräskö; restiden Strömkajen till Gräskö, 3 h 00 till 3 h 35 min, är uppmätt i 27A",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/s27.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026, 27A STOCKHOLM — VAXHOLM — NORRSUND — ARHOLMA / NORRTÄLJE, Gräskö",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -4944,6 +6143,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "roslagen.se",
       "vad": "",
       "last": "2026-09-29",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -6518,15 +7724,22 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso",
       "org": "naturskyddsforeningengotland.se",
-      "vad": "Turlista Lilla Karlsö 2026, Avgång kl. 09.00 från, Återresa och ankomst till Djupvik senast kl. 13.30, Pris 890 kr / person (minst 4 betalande) - max 6 personer., Förbokning och betalning krävs minst 4 dagar i förväg, Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland",
+      "vad": "Turlista Lilla Karlsö 2026, Avgång kl. 09.00 från, Återresa och ankomst till Djupvik senast kl. 13.30, max 6 personer., Förbokning och betalning krävs minst 4 dagar i förväg, Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland",
       "last": "2026-09-27",
       "myndighet": false
     },
     {
       "url": "https://storakarlso.se/resa-till-stora-karlso/turlista-och-priser/",
       "org": "storakarlso.se",
-      "vad": "Båten till Stora Karlsö avgår från Klintehamn och båtresan tar ungefär 35 minuter, I priset ingår båtresa t/r samt guidad tur på ön",
-      "last": "2026-09-27",
+      "vad": "Båten till Stora Karlsö avgår från Klintehamn",
+      "last": "2026-11-17",
+      "myndighet": false
+    },
+    {
+      "url": "https://storakarlso.se/resa-till-stora-karlso/bra-att-veta/",
+      "org": "storakarlso.se",
+      "vad": "En guidad tur med våra kunniga guider erbjuds till alla våra besökare och ingår i priset för resan.",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -7402,24 +8615,24 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": true
     },
     {
+      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026, 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA, Strömkajen (Stockholm), Norrsund (Blidö), Svartlöga, Rödlöga; vid Svartlöga har 10 av 12 stopp i h26 anmärkning b",
+      "last": "2026-11-17",
+      "myndighet": true
+    },
+    {
       "url": "https://kund.printhuset-sthlm.se/wa/s26.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 19 JUNI 2026 — 16 AUGUSTI 2026; 26A STOCKHOLM — VAXHOLM — NORRSUND — RÖDLÖGA; Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00. — tur 2601 måndag–torsdag Strömkajen 09.00, Svartlöga 12.40b; tur 2602 Svartlöga 15.15, Strömkajen 19.00",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h28.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "GÄLLER 1 OKTOBER 2026 — 12 DECEMBER 2026; 28A FURUSUND — ÖSTERNÄS — SÖDERÖRA — RÖDLÖGA — onsdag tur 2819 Furusund 14.10, Svartlöga 14.55; fredag, lördag och söndag Furusund 10.05, Svartlöga 11.50; lördag retur tur 2852 Svartlöga 13.10, Furusund 15.00",
-      "last": "2026-09-27",
-      "myndighet": true
-    },
-    {
-      "url": "https://kund.printhuset-sthlm.se/wa/h26.pdf",
-      "org": "Waxholmsbolaget (tryckt tidtabell)",
-      "vad": "GÄLLER 2 APRIL 2026 — 18 JUNI 2026 OCH 17 AUGUSTI 2026 — 1 NOVEMBER 2026 — tur 2621 måndag–torsdag Strömkajen 08.45, Svartlöga 12.40b; lördag tur 2651 08.45–12.40b, retur tur 2652 Svartlöga 14.15, Strömkajen 18.15",
-      "last": "2026-09-27",
+      "last": "2026-11-17",
       "myndighet": true
     },
     {
@@ -7469,6 +8682,13 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "org": "stockholmslansmuseum.se",
       "vad": "Svartlöga var en av få skärgårdsöar som klarade sig från ryssarnas härjningar 1719. Grunden runt ön är förrädiska och enligt traditionen skrämde öns säljägare bort inkräktarna med sina bössor.",
       "last": "2026-09-27",
+      "myndighet": false
+    },
+    {
+      "url": "https://waxholmsbolaget.linjetidtabeller.se/",
+      "org": "waxholmsbolaget.linjetidtabeller.se",
+      "vad": "Beställ tryckta tidtabeller, Furusund - Östernäs - Söderöra - Bromskär / Rödlöga, Furusund - Högmarsö - Solö; listan har ingen tabell för linje 24 eller 26",
+      "last": "2026-11-17",
       "myndighet": false
     }
   ],
@@ -10876,4 +12096,4 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
 }
 
 /** Antal öar med minst en publicerbar källa. */
-export const OAR_MED_KALLOR = 101
+export const OAR_MED_KALLOR = 144

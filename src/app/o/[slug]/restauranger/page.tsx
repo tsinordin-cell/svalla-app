@@ -76,7 +76,7 @@ export default async function IslandRestaurantsPage({ params }: Props) {
       />
       <Vidareklick islandSlug={island.slug} standard="mat" />
 
-      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '24px auto 0', padding: '0 16px 60px' }}>
         {island.restaurants.length === 0 && dbPlaces.length === 0 ? (
           <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
             Inga registrerade restauranger på {island.name}. <Link href="/partner" style={{ color: 'var(--sea)' }}>Är du krögare här? Kontakta oss</Link> så lägger vi upp.

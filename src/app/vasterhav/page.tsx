@@ -34,43 +34,38 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: 'map',
- title: 'Öarna här',
- description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
- href: '/vasterhav#oar',
- meta: 'Gratis',
- },
- {
- icon: 'sailboat',
- title: 'Kustsegling & passager',
- description: 'Från Hallandskusten upp till norska gränsen: vindinfo, ströminformation och djupdata för varje etapp.',
- href: '/segelrutter',
- },
- {
- icon: '🦞',
- title: 'Hummerkrogar & fisk',
- description: 'Västkustens sjömat är känd i hela världen. Hitta de bästa krogarna i Lysekil, Fiskebäckskil och Hamburgsund.',
- href: '/krogar-och-mat',
- },
- {
- icon: '🏕️',
- title: 'Ankring & naturhamnar',
- description: 'Västerhavet bjuder på dramatiska klippformationer och skyddade vikar. Hitta dolda ankringsplatser på Svallas karta.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: 'map',
- title: 'Logga dina turer',
- description: 'Spåra din färd med GPS, dokumentera väder och vind, och dela turen med seglare som känner Västerhavet.',
- href: '/logga-in',
- },
- {
- icon: 'island',
- title: 'Orust & Tjörn',
- description: 'Två av Skandinaviens mest seglartäta öar: med service, varv och ett rikt seglarliv hela sommaren.',
- href: '/logga-in',
- },
+  {
+    icon: '⛵',
+    title: 'Segelrutter längs Bohuslän',
+    description: 'Distanser och regler för segling längs Bohuslän, samlade på en sida.',
+    href: '/segelrutter',
+  },
+  {
+    icon: '⚓',
+    title: 'Naturhamnar och allemansrätten',
+    description: 'Vad som gäller när du ankrar i en vik eller lånar en brygga, och var du inte får gå i land under häckningstiden.',
+    href: '/hamnar-och-bryggor#naturhamnar',
+  },
+  {
+    icon: '⚓',
+    title: 'Orust',
+    // KÄLLA: Orust kommun, Kommunfakta — västkustens största ö — https://www.orust.se/kommun-och-politik/kommunfakta (läst 2026-09-16)
+    description: 'Västkustens största ö.',
+    href: '/o/orust',
+  },
+  {
+    icon: '⛵',
+    title: 'Tjörn',
+    // KÄLLA: https://www.akvarellmuseet.org/om/historia — "16 juni invigdes Nordiska Akvarellmuseet" ; https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "idag kommer 40 procent av alla svenska sillkonserver från Klädesholmen" ; https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/pilane-gravfalt/ — "Det har ungefär 80 synliga gravar från järnåldern" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/natur-och-gronomraden/utsiktsplatser — "Den 15 juni 1960 invigdes Tjörnbroleden – en fast förbindelse mellan Stenungsund på fastlandet och Almön på Tjörn" (läst 2026-09-27)
+    description: 'Akvarellmuseum, sillhistoria och järnåldersgravar, broförbunden ö i Bohuslän.',
+    href: '/o/tjorn',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function VasterhavetPage() {
@@ -142,7 +137,7 @@ export default function VasterhavetPage() {
  deeperContent={
  <>
  {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
- <RegionOar rubrik="Öar längs Västerhavet" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård', 'Bohuslän', 'Halland']} />
+ <RegionOar rubrik="Öar längs Västerhavet" etiketter={['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård', 'Bohuslän', 'Halland', 'Hallands skärgård']} />
 
  <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
  Halland: sandstränder och moderna marinaer

@@ -982,8 +982,98 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC BY-SA 4.0",
     "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Stora_Dyr%C3%B6n_July_2023_04.jpg"
+  },
+  "graso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Gr%C3%A4s%C3%B61801.jpg/1280px-Gr%C3%A4s%C3%B61801.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2018,
+    "fotograf": "Ulkl",
+    "licens": "Public domain",
+    "licensUrl": null,
+    "kalla": "https://commons.wikimedia.org/wiki/File:Gr%C3%A4s%C3%B61801.jpg"
+  },
+  "orskar": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Uppland_%C3%96rsk%C3%A4r_Lighthouse_%2814164387552%29.jpg/1280px-Uppland_%C3%96rsk%C3%A4r_Lighthouse_%2814164387552%29.jpg",
+    "bredd": 1200,
+    "hojd": 1600,
+    "ar": 2014,
+    "fotograf": "Peyman Zehtab Fard",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Uppland_%C3%96rsk%C3%A4r_Lighthouse_(14164387552).jpg"
+  },
+  "harstena": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Harstena_-_KMB_-_16000300022260.jpg",
+    "bredd": 1200,
+    "hojd": 805,
+    "ar": 1991,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Harstena_-_KMB_-_16000300022260.jpg"
+  },
+  "ringso": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Rings%C3%B6_-_KMB_-_16000700011323.jpg",
+    "bredd": 1200,
+    "hojd": 780,
+    "ar": 1997,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Rings%C3%B6_-_KMB_-_16000700011323.jpg"
+  },
+  "stendorren": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Stend%C3%B6rrens_naturreservat_utsikt_%C3%B6ver_sk%C3%A4rg%C3%A5rden.jpg/1280px-Stend%C3%B6rrens_naturreservat_utsikt_%C3%B6ver_sk%C3%A4rg%C3%A5rden.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2021,
+    "fotograf": "Tulipasylvestris",
+    "licens": "CC0",
+    "licensUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Stend%C3%B6rrens_naturreservat_utsikt_%C3%B6ver_sk%C3%A4rg%C3%A5rden.jpg"
+  },
+  "granso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Gr%C3%A4ns%C3%B6_-_panoramio.jpg/1280px-Gr%C3%A4ns%C3%B6_-_panoramio.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2007,
+    "fotograf": "Jan Walldén",
+    "licens": "CC BY 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Gr%C3%A4ns%C3%B6_-_panoramio.jpg"
+  },
+  "smaskar": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Sm%C3%A5sk%C3%A4ren_-_KMB_-_16000300023835.jpg",
+    "bredd": 1200,
+    "hojd": 765,
+    "ar": 1994,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Sm%C3%A5sk%C3%A4ren_-_KMB_-_16000300023835.jpg"
+  },
+  "sandskar": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Sandsk%C3%A4r_-_KMB_-_16000300023797.jpg",
+    "bredd": 1200,
+    "hojd": 767,
+    "ar": 1994,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Sandsk%C3%A4r_-_KMB_-_16000300023797.jpg"
+  },
+  "maloren": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Mal%C3%B6ren_-_KMB_-_16000300023810.jpg",
+    "bredd": 1200,
+    "hojd": 759,
+    "ar": 1994,
+    "fotograf": "Jan Norrman",
+    "licens": "CC BY 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Mal%C3%B6ren_-_KMB_-_16000300023810.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 96
+export const OAR_MED_BILD = 105

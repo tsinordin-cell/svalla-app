@@ -10,11 +10,15 @@
  * Designval — skiljer sig från DepartureWidget:
  *  - Inline i chat-bubbla istället för fullbredd hero-section
  *  - Ljus bakgrund (chat-stil) istället för mörk gradient
- *  - Klick öppnar SL.se reseplaneraren förifylld
+ *  - Klick öppnar operatörens reseplanerare (getReseplanerare i transit-stops.ts).
+ *    P0 24 (2026-11-17): länken gick till https://sl.se/sv/reseplaneraren med förifylld
+ *    sökning, en adress som i dag visar "Sidan kunde inte hittas" (MÄTT i Chromium), och
+ *    till SL även för Västtrafiks öar. sl.se tar inte emot den förifyllda sökningen längre.
  *  - Klickbart "Spara som plan" via befintlig planera-flow lämnas till
  *    overlay-komponenten — det här kortet är read-only.
  */
 import type { TransitData } from '@/app/api/guide/route'
+import { getReseplanerare } from '@/lib/transit-stops'
 
 interface Props {
   data: TransitData
@@ -23,6 +27,7 @@ interface Props {
 export default function ThorkelRouteCard({ data }: Props) {
   const trips = data.trips.slice(0, 3)
   if (trips.length === 0) return null
+  const reseplanerare = getReseplanerare(data.islandSlug)
 
   return (
     <div
@@ -58,7 +63,7 @@ export default function ThorkelRouteCard({ data }: Props) {
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {trips.map((t, i) => (
-          <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} />
+          <TripRow key={i} trip={t} originName={data.originName} destName={data.destName} reseplanerareUrl={reseplanerare.url} />
         ))}
       </div>
 
@@ -70,21 +75,21 @@ export default function ThorkelRouteCard({ data }: Props) {
       }}>
         <span>Från {data.originName}</span>
         <a
-          href={`https://sl.se/sv/reseplaneraren#/sok-resa?Origin.Name=${encodeURIComponent(data.originName)}&Destination.Name=${encodeURIComponent(data.destName)}`}
+          href={reseplanerare.url}
           target="_blank" rel="noopener noreferrer"
           style={{ color: 'var(--sea, #1e5c82)', fontWeight: 700, textDecoration: 'none' }}
         >
-          Se alla avgångar →
+          Öppna {reseplanerare.namn} →
         </a>
       </div>
     </div>
   )
 }
 
-function TripRow({ trip, originName, destName }: { trip: TransitData['trips'][number]; originName: string; destName: string }) {
+function TripRow({ trip, originName, destName, reseplanerareUrl }: { trip: TransitData['trips'][number]; originName: string; destName: string; reseplanerareUrl: string }) {
   const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'
   const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))
-  const tripUrl = `https://sl.se/sv/reseplaneraren#/sok-resa?Origin.Name=${encodeURIComponent(originName)}&Destination.Name=${encodeURIComponent(destName)}&Date=${trip.startDate}&Time=${trip.startTime}`
+  const tripUrl = reseplanerareUrl
   const dur = formatDuration(trip.durationMin)
 
   return (

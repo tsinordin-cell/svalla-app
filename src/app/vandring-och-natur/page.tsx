@@ -20,43 +20,38 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://svalla.se/vandring-och-natur' },
 }
 
+// 2026-11-18: korten saknar länk. /platser?kategori=… omdirigerade tillbaka till den här sidan.
 const ITEMS: LandingItem[] = [
   {
     icon: 'walk',
     title: 'Roslagsleden',
     description: '19 etapper mellan Danderyd och Grisslehamn, skärgårdsnära hela vägen. Tält, vandrarhem, buss hem.',
-    href: '/platser?kategori=roslagsleden',
   },
   {
     icon: 'walk',
     title: 'Sörmlandsleden (skärgårdsdelar)',
     // KÄLLA: Länsstyrelsen Stockholm — Tyresta nationalpark bildad 1993, "ett par mil söder om Stockholms centrum" (läst 2026-09-14). "40 minuter" är ingen myndighetssiffra, borttagen.
     description: 'Tyresta nationalpark och kuststräckorna söderut, vildmark ett par mil från city.',
-    href: '/platser?kategori=sormlandsleden',
   },
   {
     icon: '🏞️',
     title: 'Naturreservat',
     description: 'Björnö, Finnhamn, Ängsö, Nåttarö, Huvudskär, öar där du får gå nästan var du vill.',
-    href: '/platser?kategori=naturreservat',
   },
   {
     icon: '🐦',
     title: 'Fågelskyddsområden',
     description: 'Platser med landstigningsförbud 1 apr till 15 jul, och hur du respekterar dem från vattnet.',
-    href: '/platser?kategori=fagelskydd',
   },
   {
     icon: 'tent',
     title: 'Tältning & vindskydd',
     description: 'Anvisade tältplatser och vindskydd på öarna, allemansrätt gäller men inte överallt.',
-    href: '/platser?kategori=taltning',
   },
   {
     icon: 'binoculars',
     title: 'Utsiktspunkter',
     description: 'Höjder, fyrar och klippor med bäst sikt: perfekt för soluppgång, solnedgång och vinddygd.',
-    href: '/platser?kategori=utsikt',
   },
 ]
 
@@ -103,7 +98,7 @@ export default function VandringOchNaturPage() {
         </>
       }
       related={[
-        { label: 'Alla öar', href: '/rutter?vy=oar' },
+        { label: 'Alla öar', href: '/oar' },
         { label: 'Aktiviteter', href: '/aktiviteter' },
         { label: 'Tips & artiklar', href: '/tips' },
         { label: 'Kartan', href: '/upptack' },

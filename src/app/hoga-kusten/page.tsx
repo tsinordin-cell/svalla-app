@@ -33,42 +33,33 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '🗺️',
-    title: 'Öarna här',
-    description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
-    href: '/hoga-kusten#oar',
-    meta: 'Gratis',
+    icon: '🦅',
+    title: 'Ulvön',
+    // KÄLLA: https://www.hogakusten.com/sv/stader-platser/ulvon — "Det var en gång i tiden Norrlands största fiskeläge" (läst 2026-09-27)
+    // KÄLLA: https://smakasverige.jordbruksverket.se/produkter/produktarkiv/surstromming.413.html — "Fyra faktorer anses ha gjort Ulvön och Ulvöhamn till surströmmingens centrum i Sverige" (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/stormyran-pa-ulvon.html — "Naturreservat, Natura 2000, Världsarv" (läst 2026-09-27)
+    description: 'Norrlands en gång största fiskeläge och surströmmingens centrum, i världsarvet Höga kusten.',
+    href: '/o/ulvon',
   },
   {
-    icon: '⛵',
-    title: 'Segelrutter längs kusten',
-    description: 'Klassiska leder från Härnösand norrut: etapper med vindinfo, djupdata och ankringstips.',
-    href: '/segelrutter',
-  },
-  {
-    icon: '🏕️',
-    title: 'Naturhamnar & ankring',
-    description: 'Höga Kustens granitklippor skapar unika ankringsplatser, från djupa fjordar till skyddade vikar med SUP-lugnt vatten.',
-    href: '/platser?kategori=naturhamn',
+    icon: '⚓',
+    title: 'Trysunda',
+    // KÄLLA: https://www.lansstyrelsen.se/vasternorrland/besoksmal/naturreservat/trysunda.html — "Vid hamnen ligger ett idylliskt fiskeläge som är det bäst bevarade längs hela Ångermanlandskusten"; https://www.lansstyrelsen.se/download/18.8cd5a1b19362fb4fc22cdc/1732538244407/Trysunda.pdf — "I fiskeläget finns också ett litet kapell, från 1654"; https://www.hogakusten.com/en/trysunda-vandrarhem-skargardscafe — "a peaceful, car-free environment" (läst 2026-09-27)
+    description: 'Ångermanlandskustens bäst bevarade fiskeläge, i ett naturreservat med kapell från 1654.',
+    href: '/o/trysunda',
   },
   {
     icon: '🌲',
-    // KÄLLA: sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
-    title: 'Skuleskogens nationalpark',
-    description: 'Världsarvet till havs, kombinera vandring i urskogen med ankring utanför klipporna. En upplevelse utanför det vanliga.',
-    href: '/vandring-och-natur',
+    title: 'Hemsön',
+    // KÄLLA: https://se.hemsofastning.se/naturupplevelse/ — "Hemsön ligger i världsarvet Höga kusten." (läst 2026-09-27); https://se.hemsofastning.se/guidade-turer/ — "går man sedan ner 40 meter ner i urberget" (läst 2026-09-27)
+    description: 'Ö i världsarvet Höga kusten, med en fästning 40 meter ner i berget.',
+    href: '/o/hemson',
   },
   {
     icon: '📍',
     title: 'Logga dina turer',
-    description: 'Spåra din färd längs Norrlandskusten med GPS, lägg till bilder och dela med vänner.',
-    href: '/logga-in',
-  },
-  {
-    icon: '🦅',
-    title: 'Ulvön: Höga Kustens pärla',
-    description: 'Ulvön är centrum för surströmmingstraditionen och en av Norrlandskustens vackraste öar. Logga din tur hit.',
-    href: '/logga-in',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
   },
 ]
 

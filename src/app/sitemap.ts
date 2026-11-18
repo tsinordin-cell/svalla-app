@@ -11,6 +11,8 @@ import { TEAMBUILDING_SUBS } from './teambuilding/teambuilding-data'
 import { HYRBAT_SUBS } from './hyra-bat/hyrbat-data'
 import { SEGELKURS_SUBS } from './segelkurs/segelkurs-data'
 import { verkligtDatum } from '@/lib/sidodatum'
+import { TRIPS } from './resetips/trips-data'
+import { SEASON_GUIDES } from './guide/stockholm/season-data'
 
 
 // Jämförelsesidor — speglar PAIRS i jamfor/[pair]/page.tsx
@@ -193,6 +195,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/aktiviteter`,            lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/boende`,                 lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/krogar-och-mat`,         lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
+    // Indexerbara sidor som saknades i sitemappen (2026-11-17): undersidor till Boende och
+    // Mat & dryck, dagsplanerna, alla öar, kajak, Thorkel, julkalendern och månadsguiderna.
+    // /ta-dig-till/[ö] skickas vidare till /o/[ö]/komma-dit och står därför inte här.
+    { url: `${base}/boende/hotell-vandrarhem`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/boende/stugor-stugbyar`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/boende/bb`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/boende/camping-talt`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/krogar-och-mat/vardshus-restauranger`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/krogar-och-mat/fisk-skaldjur`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/krogar-och-mat/fika-cafe`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/krogar-och-mat/take-away-kiosker`, lastModified: now, priority: 0.75, changeFrequency: 'weekly' as const },
+    { url: `${base}/oar`,                    lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    { url: `${base}/aktivitet/kajak`,        lastModified: now, priority: 0.75, changeFrequency: 'monthly' as const },
+    { url: `${base}/ai-guide`,               lastModified: now, priority: 0.7,  changeFrequency: 'monthly' as const },
+    { url: `${base}/julkalender`,            lastModified: now, priority: 0.7,  changeFrequency: 'weekly' as const },
+    { url: `${base}/resetips`,               lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },
+    ...TRIPS.map(t => ({ url: `${base}/resetips/${t.slug}`, lastModified: now, priority: 0.8, changeFrequency: 'monthly' as const })),
+    ...SEASON_GUIDES.map(g => ({ url: `${base}/guide/stockholm/${g.slug}`, lastModified: now, priority: 0.6, changeFrequency: 'monthly' as const })),
     { url: `${base}/bastu-och-bad`,          lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/hamnar-och-bryggor`,     lastModified: now, priority: 0.8,  changeFrequency: 'weekly' as const },
     { url: `${base}/naturhamnar`,            lastModified: now, priority: 0.85, changeFrequency: 'weekly' as const },

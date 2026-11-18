@@ -58,9 +58,11 @@ const antalOar = (items: Island[]) => items.filter(i => (i.slag ?? 'ö') === 'ö
 function ovrigt(items: Island[]): string {
   const orter = items.filter(i => i.slag === 'ort').length
   const parker = items.filter(i => i.slag === 'nationalpark').length
+  const reservat = items.filter(i => i.slag === 'naturreservat').length
   const delar = [
     orter ? `${orter} ${orter === 1 ? 'ort' : 'orter'}` : '',
     parker ? `${parker} nationalpark` : '',
+    reservat ? `${reservat} naturreservat` : '',
   ].filter(Boolean)
   return delar.length ? ` + ${delar.join(' + ')}` : ''
 }

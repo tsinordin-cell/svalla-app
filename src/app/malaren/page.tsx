@@ -36,43 +36,26 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: '🗺️',
- title: 'Öarna här',
- description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
- href: '/malaren#oar',
- meta: 'Gratis',
- },
- {
- icon: '⛵',
- title: 'Rutter på Mälaren',
- description: 'Klassiska leder från Stockholm västerut: Drottningholm, Birka, Mariefred och Västerås med etappinfo och djupdata.',
- href: '/segelrutter',
- },
- {
- icon: '☕',
- title: 'Kafébryggor & restauranger',
- description: 'Mälaren är känt för sina charmiga bryggkaféer. Hitta de bästa fikastoppen längs kusten med Svallas karta.',
- href: '/krogar-och-mat',
- },
- {
- icon: '🏛️',
- title: 'Historiska platser',
- description: 'Birka, Gripsholms slott, Strängnäs domkyrka, Mälaren är omgiven av svensk historia. Logga besöken i Svalla.',
- href: '/upptack',
- },
- {
- icon: '🌅',
- title: 'Solnedgångsankring',
- description: 'Mälarens lugna vatten och långa sommarkvällar gör det till en av Sveriges bästa sjöar för ankring och övernattning.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: '📍',
- title: 'Logga dina turer',
- description: 'Spåra din tur med GPS, dokumentera vindförhållanden och dela med Svallas community av Mälarsseglare.',
- href: '/logga-in',
- },
+  {
+    icon: '🏰',
+    title: 'Birka',
+    // KÄLLA: https://www.birkavikingastaden.se/om-birka/ — "Området blev upptaget på Unescos världsarvslista år 1993", "en plats som också brukar kallas Sveriges första stad" (läst 2026-09-27); https://www.birkavikingastaden.se/hitta-pa-birka/ — "Besök den rekonstruerade vikingabyn", "besök vårt museum" (läst 2026-09-27)
+    description: 'Vikingatidens Birka, världsarv i Mälaren med museum och vikingaby.',
+    href: '/o/birka',
+  },
+  {
+    icon: '⛪',
+    title: 'Adelsö',
+    // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "På Adelsö, på andra sidan fjärden, ligger Hovgården där kungen bodde." (läst 2026-09-27); https://www.raa.se/app/uploads/2023/06/Beslut-Adels%C3%B6-Bj%C3%B6rk%C3%B6-Birka-AB21-RA%C3%84-2021-1675.pdf — "Adelsö kyrka från 1100-talet och ruinen av Alsnö" (läst 2026-09-27)
+    description: 'Hovgården, där kungen bodde, och en kyrka från 1100-talet. Granne med Birka på andra sidan fjärden.',
+    href: '/o/adelsjo',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function MalarenPage() {

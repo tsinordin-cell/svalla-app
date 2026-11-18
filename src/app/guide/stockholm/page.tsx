@@ -72,7 +72,7 @@ export default function SasongsguiderIndex() {
                 href={`/guide/stockholm/${g.slug}`}
                 style={{
                   display: 'block', textDecoration: 'none',
-                  background: 'var(--card, #fff)', border: '1px solid var(--border, rgba(0,30,50,0.08))',
+                  background: 'var(--surface-1)', border: '1px solid var(--input-border)',
                   borderRadius: 16, padding: '16px 18px',
                 }}
               >

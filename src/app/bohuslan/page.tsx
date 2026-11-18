@@ -44,42 +44,41 @@ export const metadata: Metadata = {
  * Carlstens. Nu pekar korten på det som finns: 19 ö-sidor med hamnar.
  */
 const ITEMS: LandingItem[] = [
- {
- icon: 'map',
- title: 'Öarna: 19 sidor med hamnar',
- description: 'Marstrand, Smögen, Koster, Käringön, Gullholmen, Åstol … varje ö med gästhamn, service och källa. Listan finns längre ner på sidan.',
- href: '/bohuslan#oar',
- },
- {
- icon: '🦞',
- title: 'Hummerkrogar',
- description: 'Säsong i september till oktober. Smögen, Fjällbacka, Grebbestad och Kungshamn är klassiska stoppunkter.',
- href: '/krogar-och-mat',
- },
- {
- icon: 'sailboat',
- title: 'Segelrutter längs kusten',
- description: 'Från Göteborgs skärgård norrut. De klassiska lederna etapp för etapp.',
- href: '/segelrutter',
- },
+  {
+    icon: '🏰',
+    title: 'Marstrand',
+    // KÄLLA: Statens fastighetsverk, Carlstens fästning Marstrand — bekräftar Carlsten som statligt byggnadsminne på Marstrand — https://www.sfv.se/vara-fastigheter/sverige/vastra-gotalands-lan/carlstens-fastning-marstrand (läst 2026-09-16)
+    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Marstrand — bekräftar sillhandelns centrum på 1500-talet — https://www.vastsverige.com/en/kungalv/products/marstrand/ ; att Match Cup Sweden avgörs första veckan i juli — https://www.vastsverige.com/kungalv/marstrand/ (läst 2026-09-16)
+    description: 'Carlstens fästning, den gamla sillstaden och matchracing i juli.',
+    href: '/o/marstrand',
+  },
+  {
+    icon: '🦞',
+    title: 'Smögen',
+    // KÄLLA: https://www.vastsverige.com/sotenas/produkter/smogenbryggan/ — "Sveriges mest besökta brygga" (läst 2026-09-27)
+    // KÄLLA: https://www.vastsverige.com/sotenas/artiklar/smogen/ — "Landets näst största fiskauktion ligger på Smögen." (läst 2026-09-27)
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/halloarkipelagen.html — "Med en vit blixt var tolfte sekund gör sig Bohusläns äldsta fyr påmind." (läst 2026-09-27)
+    description: 'Sveriges mest besökta brygga, landets näst största fiskauktion och Bohusläns äldsta fyr på Hållö utanför.',
+    href: '/o/smogen',
+  },
+  {
+    icon: '⛵',
+    title: 'Segelrutter längs kusten',
+    description: 'Distanser och regler för segling längs Bohuslän, samlade på en sida.',
+    href: '/segelrutter',
+  },
  {
  icon: 'anchor',
  title: 'Naturhamnar och allemansrätten',
  description: 'Vad som gäller när du ankrar i en vik eller lånar en brygga, och var du inte får gå i land under häckningstiden.',
  href: '/hamnar-och-bryggor#naturhamnar',
  },
- {
- icon: 'map',
- title: 'Logga dina turer',
- description: 'Spara din färd längs kusten med bilder och dela med vänner som också seglar Bohuslän. Kräver gratis konto.',
- href: '/logga-in',
- },
- {
- icon: 'castle',
- title: 'Marstrand & Carlstens fästning',
- description: 'Sommarens seglarmötesplats: Sveriges största gästhamn enligt Turistrådet Västsverige, och fästningen från 1660 ovanför.',
- href: '/o/marstrand',
- },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function BohuslanPage() {

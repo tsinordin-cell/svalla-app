@@ -121,18 +121,24 @@ export default async function ActivityIslandPage({ params }: Props) {
           display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
           gap: 10, marginBottom: 24,
         }}>
+          {island.facts.travel_time && (
           <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 12, padding: '14px 16px' }}>
             <div style={{ fontSize: 11, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>Restid</div>
             <div style={{ fontSize: 13, color: 'var(--txt)', fontWeight: 600 }}>{island.facts.travel_time}</div>
           </div>
+          )}
+          {island.facts.season && (
           <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 12, padding: '14px 16px' }}>
             <div style={{ fontSize: 11, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>Säsong</div>
             <div style={{ fontSize: 13, color: 'var(--txt)', fontWeight: 600 }}>{island.facts.season}</div>
           </div>
+          )}
+          {island.facts.character && (
           <div style={{ background: 'var(--white)', border: '1px solid var(--surface-3)', borderRadius: 12, padding: '14px 16px' }}>
             <div style={{ fontSize: 11, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 4 }}>Karaktär</div>
             <div style={{ fontSize: 13, color: 'var(--txt)', fontWeight: 600 }}>{island.facts.character}</div>
           </div>
+          )}
         </div>
 
         {/* Aktivitetsspecifika kort */}

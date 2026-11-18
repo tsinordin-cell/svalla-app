@@ -32,41 +32,38 @@ export const metadata: Metadata = {
 
 const ITEMS: LandingItem[] = [
   {
-    icon: '🗺️',
-    title: 'Öarna här',
-    description: 'Ö-sidor med hamnar, aktiviteter och källor, listan finns längre ner på sidan.',
-    href: '/halland#oar',
-    meta: 'Gratis',
+    icon: '🗼',
+    title: 'Nidingen',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/nidingen.html — "Efter freden vid Brömsebro, år 1645, kom Nidingen under svensk administration och blev därmed Sveriges första fyrplats." (läst 2026-11-17)
+    description: 'Fyrön i Kungsbacka kommun som blev Sveriges första fyrplats efter freden vid Brömsebro 1645.',
+    href: '/o/nidingen',
   },
   {
-    icon: '🏰',
-    title: 'Varberg och fästningen',
-    description: 'Varbergs medeltida fästning är ett av Sveriges bäst bevarade fästningskomplex. Gästhamnen ligger i fästningens skugga, ett unikt läge.',
-    href: '/platser',
+    icon: '⚓',
+    title: 'Vendelsö',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/vendelsoarna.html — "I naturreservatet Vendelsöarna i Varbergs kommun ingår Vendelsö och sex mindre öar."; "klipplandskap med strandgrottor" (läst 2026-11-17)
+    description: 'Ö i Varbergs kommun med strandgrottor på södra delen och sex mindre öar med sandstränder runt omkring.',
+    href: '/o/vendelso',
   },
   {
-    icon: '🏖️',
-    title: 'Tylösand och Skrea strand',
-    description: 'Halland har Sveriges finaste sandstränder. Tylösand utanför Halmstad är ett ikoniskt resmål med surf, sol och strandbarer.',
-    href: '/platser',
+    icon: '🦭',
+    title: 'Balgö',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/balgo.html — "Hallands viktigaste lokal för strandpadda"; "Kommun: Varberg" (läst 2026-11-17)
+    description: 'Naturreservat i Varbergs kommun och Hallands viktigaste lokal för strandpadda.',
+    href: '/o/balgo',
   },
   {
-    icon: '⛵',
-    title: 'Segelrutter i Kattegatt',
-    description: 'Kattegatt erbjuder öppet hav-segling mellan Bohuslän och Öresund. Halland är en perfekt mellanstopp längs den klassiska sydkustturen.',
-    href: '/segelrutter',
+    icon: '🪨',
+    title: 'Malön',
+    // KÄLLA: https://www.lansstyrelsen.se/halland/besoksmal/naturreservat/malon.html — "Malön i Kungsbacka kommun är en karg, flack ö som består av gräshedar och stora klapperstensfält." (läst 2026-11-17)
+    description: 'Karg och flack ö i Kungsbacka kommun med gräshedar, klapperstensfält och ett röse från bronsåldern.',
+    href: '/o/malon',
   },
   {
     icon: '📍',
     title: 'Logga dina turer',
-    description: 'Spåra din färd längs Hallands kust med GPS, lägg till bilder och dela med vänner.',
-    href: '/logga-in',
-  },
-  {
-    icon: '🎾',
-    title: 'Båstad och tennisbyn',
-    description: 'Båstad är känt för tennis och en levande sommarscen. Gästhamnen är välbesökt under sommaren och restaurangerna håller hög klass.',
-    href: '/logga-in',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
   },
 ]
 
@@ -143,7 +140,7 @@ export default function HallandPage() {
         deeperContent={
           <>
  {/* Öarna i regionen — ur island-data. Ersätter kortet "Karta över …" som lovade "alla verifierade platser" (utforskaren: 0 platser i regionen, mätt 2026-09-20). */}
- <RegionOar rubrik="Öar och kust i Halland" etiketter={['Halland']} />
+ <RegionOar rubrik="Öar och kust i Halland" etiketter={['Halland', 'Hallands skärgård']} />
 
             <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>
               Varberg: fästningsstaden vid havet

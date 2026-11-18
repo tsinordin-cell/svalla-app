@@ -45,6 +45,10 @@ export async function GET(req: NextRequest) {
       { status: 200 },
     )
   }
+  // P0 24 (2026-11-17, Redaktören): avstängd brygga (stangd i transit-stops.ts) ger inga tider.
+  if (cfg.stangd) {
+    return NextResponse.json({ error: 'stangd', slug, stangd: cfg.stangd, outbound: null, return: null }, { status: 200 })
+  }
 
   // Parallella anrop — outbound och return är oberoende
   const [outbound, returnTrip] = await Promise.all([

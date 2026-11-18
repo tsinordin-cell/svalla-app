@@ -32,43 +32,48 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
- {
- icon: 'sailboat',
- title: 'Segla till Gotland',
- description: 'En av Östersjöns klassiska segelresor. Logga hela passagen med GPS: varje timme, varje vindskift, varje soluppgång.',
- href: '/logga-in',
- meta: 'Klassiker',
- },
- {
- icon: 'castle',
- title: 'Visby innerstad',
- description: 'Världsarv med medeltida ringmur, krogar och uteliv. Gästhamnen ligger direkt nedanför staden.',
- href: '/upptack',
- },
- {
- icon: 'utensils',
- title: 'Krogar & restauranger',
- description: 'Gotland har blommat ut matmässigt, från saffranspannkaka på krogen till mat gjord på gotländska råvaror.',
- href: '/krogar-och-mat',
- },
- {
- icon: '🏕️',
- title: 'Naturhamnar runt ön',
- description: 'Fårösund, Slite, Herrvik, Klintehamn, naturliga ankringsplatser runt hela Gotland med detaljinfo.',
- href: '/platser?kategori=naturhamn',
- },
- {
- icon: 'beach',
- title: 'Fårö',
- description: 'Ingmar Bergmans ö. Avsides natur, raukar och lugna vatten. Nå hit från Fårösund.',
- href: '/upptack',
- },
- {
- icon: '📱',
- title: 'Logga hela säsongen',
- description: 'Resan dit, veckorna på ön, resan hem. Se din totala Gotlandssäsong i ett flöde.',
- href: '/logga-in',
- },
+  {
+    icon: '⚓',
+    title: 'Gotland',
+    // KÄLLA: https://www.smhi.se/kunskapsbanken/klimat/klimatet-i-sveriges-landskap/gotlands-klimat — "Gotland - Sveriges största ö" (läst 2026-09-27)
+    // KÄLLA: https://gotland.com/hansestaden/ — "1995 utnämndes Visby till världsarv" (läst 2026-09-27)
+    // KÄLLA: https://gotland.com/besoka-uppleva/friluftsliv-natur/tio-raukomraden-pa-gotland/ — "De flesta som besöker Gotland vill se åtminstone en av öns kända raukar" (läst 2026-09-27)
+    description: 'Sveriges största ö, med världsarvsstaden Visby och raukar.',
+    href: '/o/gotland',
+  },
+  {
+    icon: '🌲',
+    title: 'Fårö',
+    // KÄLLA: https://gotland.com/companies/faro/ — "trots att det bara tar sex minuter att åka över sundet", "Här finns långa vackra sandstränder och ståtliga raukar längs västkusten." (läst 2026-09-27)
+    description: 'Raukar och långa sandstränder, sex minuter med färja över sundet.',
+    href: '/o/faro',
+  },
+  {
+    icon: '🐦',
+    title: 'Stora Karlsö',
+    // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/stora-karlso.html — "Stora Karlsö ligger 15 km sydväst om Klintehamn och 4,7 km från Lilla Karlsö."; "de stora kolonierna av sillgrissla och tordmule, som båda häckar med tusentals par på ön." (läst 2026-11-17)
+    description: 'Ön 15 kilometer sydväst om Klintehamn där tusentals par sillgrissla och tordmule häckar.',
+    href: '/o/stora-karlso',
+  },
+  {
+    icon: '🌲',
+    title: 'Gotska Sandön',
+    // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/gotska-sandon — "Gotska Sandöns nationalpark är Östersjöns ensligaste ö", "Större delen av ön är täckt av tallskog, med träd så gamla som 500 år", "I nationalparken kan du också få se sälar på nära håll" (läst 2026-09-27)
+    description: 'Östersjöns ensligaste ö: nationalpark med sanddyner, 500 år gamla tallar och sälar.',
+    href: '/o/gotska-sandon',
+  },
+  {
+    icon: '⛵',
+    title: 'Segla till Gotland',
+    description: 'Distanser till Gotland och banan för Gotland Runt.',
+    href: '/segelrutter',
+  },
+  {
+    icon: '📍',
+    title: 'Logga dina turer',
+    description: 'Skapa ett gratis konto och logga dina turer med GPS, bilder och anteckningar.',
+    href: '/kom-igang',
+  },
 ]
 
 export default function GotlandPage() {

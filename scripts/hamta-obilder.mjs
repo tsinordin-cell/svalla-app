@@ -209,6 +209,20 @@ const HANDPLOCKADE = {
   singo: 'NZ7 0575 (52270337265).jpg',
   smaadalaro: 'Smådalarö, 2016z.jpg',
   uto: 'Utö Rävstaviken September 2012 02.jpg',
+  // 2026-11-17: Gräsö och Örskär, nya ösidor. Bägge bilderna granskade med ögonen: inga människor.
+  graso: 'Gräsö1801.jpg',
+  orskar: 'Uppland Örskär Lighthouse (14164387552).jpg',
+  // 2026-11-17: Harstena, flygfoto 1991 från Riksantikvarieämbetet. Granskad med ögonen: inga människor.
+  harstena: 'Harstena - KMB - 16000300022260.jpg',
+  // 2026-11-17: Ringsö (flygfoto 1997, RAÄ) och Stendörren. Bägge granskade med ögonen: inga människor.
+  ringso: 'Ringsö - KMB - 16000700011323.jpg',
+  stendorren: 'Stendörrens naturreservat utsikt över skärgården.jpg',
+  // 2026-11-17: Gränsö (2007). Granskad med ögonen: inga människor.
+  granso: 'Gränsö - panoramio.jpg',
+  // 2026-11-17: flygfoton 1994 från Riksantikvarieämbetet. Granskade med ögonen: inga människor.
+  smaskar: 'Småskären - KMB - 16000300023835.jpg',
+  sandskar: 'Sandskär - KMB - 16000300023797.jpg',
+  maloren: 'Malören - KMB - 16000300023810.jpg',
 }
 
 /**

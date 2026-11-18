@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 }
 
 const ITEMS: LandingItem[] = [
-  { icon: '🎄', title: 'Julkryssning med Waxholmsbolaget', description: 'Adventskryssningar och julbord på Fjäderholmarna, en av Stockholms mest uppskattade decembertraditioner. Boka tidigt.', href: '/farjor', meta: 'Dec till Jan' },
+  // KÄLLA: stromma.com/sv-se/stockholm/julbord/julbordskryssningar-i-stockholms-skargard/ — "Från november 2026"; "Kryssningarna avgår från Nybrokajen/Strandvägen i centrala Stockholm." rokeriet-fjaderholmarna.se/julbord — "Julbordet hålls från 20 november till 20 december 2026" (båda lästa 2026-09-28, se guide-content.ts jul-skargarden)
+  { icon: '🎄', title: 'Julbord och julkryssningar', description: 'Strömma kör julbordskryssningar från Nybrokajen och Strandvägen, och Rökeriet på Fjäderholmarna dukar julbord 20 november till 20 december.', href: '/guider/jul-skargarden', meta: 'Nov till Dec' },
   { icon: '🔥', title: 'Bastu vid havet', description: 'Finnhamns havsbastu och Utös bastuhus håller öppet vintertid. Bada i isen och värm upp i bastu med havsutsikt.', href: '/bastu-och-bad', meta: 'Öppen vinter' },
   { icon: '❄️', title: 'Isvandring på fryst skärgård', description: 'Kalla vintrar fryser delar av innerskärgården, promenera på isen ut till öar som normalt bara nås med båt.', href: '/karta', meta: 'Jan till Feb' },
   { icon: '🍽️', title: 'Fjäderholmarna: öppet hela året', description: 'Fjäderholmarna är det enda stället i skärgården med helårsöppet, perfekt för en vinterdag med god mat och havsutsikt.', href: '/o/fjaderholmarna', meta: 'Helår' },
