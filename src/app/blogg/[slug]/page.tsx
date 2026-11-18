@@ -2536,16 +2536,6 @@ export default async function BloggPostPage({
  })()}
  </article>
 
- {/* Tags */}
- <div style={{ display: 'flex', gap: 8, marginTop: 24, flexWrap: 'wrap' }}>
- {post.tags.map(tag => (
- <span key={tag} style={{
- fontSize: 12, color: 'var(--sea)', background: 'rgba(30,92,130,0.08)',
- padding: '4px 12px', borderRadius: 20, fontWeight: 600,
- }}>#{tag}</span>
- ))}
- </div>
-
  {/* Relaterade artiklar — internal linking-graf för SEO */}
  <RelatedPosts posts={relatedPosts} heading="Läs mer i bloggen" />
 

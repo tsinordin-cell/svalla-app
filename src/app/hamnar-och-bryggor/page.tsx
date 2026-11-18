@@ -58,12 +58,6 @@ const ITEMS: LandingItem[] = [
     href: '/hamnar-och-bryggor#naturhamnar',
   },
   {
-    icon: 'fuel',
-    title: 'Sjömackar',
-    description: 'Bränsle och septiktömning i utforskaren. Öppettider varierar med säsong. Ring innan du räknar med dem.',
-    href: '/upptack?typ=bensin',
-  },
-  {
     icon: 'bird',
     title: 'Fågelskyddsområden',
     description: 'Öar och vikar med tillträdesförbud under häckningstid. Datumen står på skyltarna och i länsstyrelsens föreskrifter. De varierar mellan områden.',

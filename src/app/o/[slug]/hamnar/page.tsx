@@ -69,7 +69,7 @@ export default async function IslandHarborsPage({ params }: Props) {
       />
       <Vidareklick islandSlug={island.slug} standard="hamn" />
 
-      <div style={{ maxWidth: 900, margin: '-24px auto 0', padding: '0 16px 60px' }}>
+      <div style={{ maxWidth: 900, margin: '24px auto 0', padding: '0 16px 60px' }}>
         {island.harbors.length === 0 && dbHarbors.length === 0 ? (
           <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
             Vi har inga gästhamnar registrerade på {island.name}.
