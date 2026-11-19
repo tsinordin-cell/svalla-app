@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Öland: världsarvet, Trollskogen och Långe Jan',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'öland sevärdheter',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/oland'),
     title: 'Öland: världsarvet, Trollskogen och Långe Jan',
     description: 'Världsarvet på södra Öland, Trollskogen, Böda och Ottenby.',
     url: 'https://svalla.se/oland',

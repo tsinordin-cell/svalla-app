@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 import { listPublishedArticles } from '@/lib/articles'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Sthlmare tipsar',
   description: 'Redaktionella guider, tips och berättelser från Stockholms skärgård. Var du äter, bor, badar och lägger till.',
   keywords: ['skärgård guide', 'stockholms skärgård tips', 'sthlmare tipsar', 'skärgård artiklar'],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/tips'),
     title: 'Sthlmare tipsar | Svalla',
     description: 'Redaktionella guider, tips och berättelser från Stockholms skärgård.',
     url: 'https://svalla.se/tips',

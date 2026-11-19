@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { EXPERIENCES, PROVISION_AKTIV, getExperience } from '../experiences-data'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: exp.description,
     alternates: { canonical: `https://svalla.se/upplevelser/${slug}` },
     openGraph: {
-      images: OG_STANDARD,
+      images: ogSida(`https://svalla.se/upplevelser/${slug}`),
       title: `${exp.name} på ${exp.islandName} | Svalla`,
       description: exp.description,
       url: `https://svalla.se/upplevelser/${slug}`,

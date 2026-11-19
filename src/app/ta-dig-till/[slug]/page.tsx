@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     openGraph: {
-      images: OG_STANDARD,
+      images: ogSida(`https://svalla.se/ta-dig-till/${slug}`),
       title,
       description,
       url: `https://svalla.se/ta-dig-till/${slug}`,

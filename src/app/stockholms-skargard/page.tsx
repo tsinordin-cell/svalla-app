@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Stockholms skärgård: Guide till öar, hamnar och segling 2026',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
  'södra skärgården',
  ],
  openGraph: {
- images: OG_STANDARD,
+ images: ogSida('https://svalla.se/stockholms-skargard'),
  title: 'Stockholms skärgård: Logga turer, hitta platser',
  description: 'Logga dina båtturer och utforska Stockholms skärgård med Svalla.',
  url: 'https://svalla.se/stockholms-skargard',

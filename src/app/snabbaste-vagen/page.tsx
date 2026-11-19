@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Snabbaste vägen: rutter för motorbåt & RIB',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     'farled stockholm',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/snabbaste-vagen'),
     title: 'Snabbaste vägen | Svalla',
     description: 'Snabbaste rutter till skärgårdens populära destinationer.',
     url: 'https://svalla.se/snabbaste-vagen',
