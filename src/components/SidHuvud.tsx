@@ -106,7 +106,7 @@ export default function SidHuvud() {
         .sidhuvud-punkt:hover .sidhuvud-panel,.sidhuvud-punkt:focus-within .sidhuvud-panel{display:block}
         .sidhuvud-panel.hoger{left:auto;right:0}
         .sidhuvud-panel-inre{background:#fff;border-radius:14px;box-shadow:0 16px 40px rgba(13,36,64,.22);padding:12px;min-width:250px}
-        .sidhuvud-panel-inre.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(170px,1fr));gap:4px 18px}
+        .sidhuvud-panel-inre.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(160px,max-content));gap:4px 18px}
         .sidhuvud-panel-inre.flera .sidhuvud-oversikt{grid-column:1/-1;border-bottom:1px solid #e6eef1;padding-bottom:6px;margin-bottom:4px}
         .sidhuvud-oversikt a{font-weight:700!important}
         .sidhuvud-panel-rubrik{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7c85;padding:8px 10px 4px}
@@ -136,7 +136,7 @@ export default function SidHuvud() {
           .sidhuvud-rad{padding:0 16px;gap:10px}
           .sidhuvud-meny,.sidhuvud-sok{display:none}
           .sidhuvud-konto{margin-left:auto}
-          .sidhuvud-konto .sidhuvud-panel{display:none!important}
+          .sidhuvud-konto .sidhuvud-panel,.sidhuvud-knapp .pil{display:none!important}
           .sidhuvud-menyknapp{display:block;margin-left:0}
         }
       `}</style>

@@ -145,7 +145,7 @@ const STIL_STARTSIDA = `<li class="sv-meny-stil" aria-hidden="true" style="displ
 .lp-nav .nav-dd-panel{left:0;transform:translateY(-4px);padding-top:10px}
 .lp-nav .nav-dropdown:hover .nav-dd-panel,.lp-nav .nav-dropdown:focus-within .nav-dd-panel{transform:translateY(0)}
 .lp-nav .nav-dd-inner{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:0;border-radius:14px;box-shadow:0 16px 40px rgba(13,36,64,.22);padding:12px;min-width:250px;max-height:none;overflow:visible}
-.lp-nav .nav-dd-inner.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(170px,1fr));gap:4px 18px}
+.lp-nav .nav-dd-inner.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(160px,max-content));gap:4px 18px}
 .lp-nav .nav-dd-inner .sv-oversikt{grid-column:1/-1;border-bottom:1px solid #e6eef1;padding-bottom:6px;margin-bottom:4px}
 .lp-nav .nav-dd-inner .nav-dd-link{color:#192830;font-family:inherit;font-size:14px;font-weight:500;letter-spacing:0;padding:7px 10px}
 .lp-nav .nav-dd-inner .nav-dd-link:hover,.lp-nav .nav-dd-inner .nav-dd-link:focus{background:#f2f8fa;color:#1e5c82}
