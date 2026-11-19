@@ -27,7 +27,7 @@ export function kortFotograf(f: string): string {
   const t = f.replace(/\s+/g, ' ').trim()
   if (t.length <= 40) return t
   const m = t.match(/by (?:me, )?([A-ZÅÄÖ][\p{L}.'-]+(?: [A-ZÅÄÖ][\p{L}.'-]+){0,3})/u)
-  if (m) return m[1]
+  if (m?.[1]) return m[1]
   return t.slice(0, 38).trim() + '…'
 }
 
