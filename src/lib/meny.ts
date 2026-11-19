@@ -18,21 +18,23 @@ export const MENY: MenyPunkt[] = [
     aktivFor: ['/regioner', '/resmal', '/stockholms-skargard', '/bohuslan', '/gotland', '/aland', '/oland', '/blekinge-skargard', '/vasterhav', '/hoga-kusten', '/halland', '/goteborg-skargard', '/malaren', '/karta', '/oar', '/o/', '/jamfor'],
     grupper: [
       { lankar: [{ href: '/regioner', text: 'Alla regioner' }] },
-      { rubrik: 'Ostkusten', lankar: [
+      { rubrik: 'Östersjön', lankar: [
         { href: '/stockholms-skargard', text: 'Stockholms skärgård' },
         { href: '/aland', text: 'Åland' },
         { href: '/gotland', text: 'Gotland' },
         { href: '/oland', text: 'Öland' },
-        { href: '/malaren', text: 'Mälaren' },
-      ] },
-      { rubrik: 'Syd och väst', lankar: [
         { href: '/blekinge-skargard', text: 'Blekinge skärgård' },
+      ] },
+      { rubrik: 'Västkusten', lankar: [
         { href: '/halland', text: 'Halland' },
         { href: '/goteborg-skargard', text: 'Göteborgs skärgård' },
         { href: '/bohuslan', text: 'Bohuslän' },
         { href: '/vasterhav', text: 'Västerhavet' },
       ] },
-      { rubrik: 'Norr', lankar: [{ href: '/hoga-kusten', text: 'Höga Kusten' }] },
+      { rubrik: 'Norrland och insjöar', lankar: [
+        { href: '/hoga-kusten', text: 'Höga Kusten' },
+        { href: '/malaren', text: 'Mälaren' },
+      ] },
       { rubrik: 'Hitta', lankar: [
         { href: '/oar', text: 'Alla öar' },
         { href: '/jamfor', text: 'Jämför öar' },
@@ -45,7 +47,7 @@ export const MENY: MenyPunkt[] = [
     aktivFor: ['/aktiviteter', '/aktivitet', '/bastu-och-bad', '/vandring-och-natur', '/segelkurs', '/vinter'],
     grupper: [
       { lankar: [{ href: '/aktiviteter', text: 'Alla aktiviteter' }] },
-      { rubrik: 'Välj aktivitet, sedan område', lankar: [
+      { rubrik: 'Välj aktivitet', lankar: [
         { href: '/aktiviteter?typ=Bad', text: 'Bad' },
         { href: '/aktiviteter?typ=Bastu', text: 'Bastu' },
         { href: '/aktiviteter?typ=Vandring', text: 'Vandring' },
@@ -91,7 +93,7 @@ export const MENY: MenyPunkt[] = [
     aktivFor: ['/guider', '/blogg', '/tips'],
     grupper: [
       { lankar: [{ href: '/guider', text: 'Alla guider' }] },
-      { rubrik: 'Mest lästa just nu', lankar: [
+      { rubrik: 'Utvalda guider', lankar: [
         { href: '/guider/midsommar-skargarden', text: 'Midsommar i skärgården' },
         { href: '/guider/packlista-skargarden', text: 'Packlista för skärgården' },
         { href: '/guider/allemansratten-pa-sjon', text: 'Allemansrätten på sjön' },
@@ -129,12 +131,40 @@ export const MITT_SVALLA: MenyGrupp[] = [
 
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;')
 
+/** Översikten ("Alla …") är en egen rad överst bara när första gruppen är en enda länk utan rubrik. */
+export const harOversikt = (m: MenyPunkt) => !m.grupper[0]?.rubrik && m.grupper[0]?.lankar.length === 1
+/** Antal kolumner i rullgardinen: en per rubrikgrupp, högst fyra. */
+export const antalKolumner = (m: MenyPunkt) => Math.min(4, m.grupper.filter(g => g.rubrik).length)
+
+/**
+ * Samma utseende på startsidans rullgardiner som på undersidornas (SidHuvud.tsx):
+ * vit panel, rubriker i grått, en kolumn per rubrik. Stilen följer med menyn så att
+ * startsidan inte behöver egna regler.
+ */
+const STIL_STARTSIDA = `<li class="sv-meny-stil" aria-hidden="true" style="display:none"><style>
+.lp-nav .nav-dd-panel{left:0;transform:translateY(-4px);padding-top:10px}
+.lp-nav .nav-dropdown:hover .nav-dd-panel,.lp-nav .nav-dropdown:focus-within .nav-dd-panel{transform:translateY(0)}
+.lp-nav .nav-dd-inner{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:0;border-radius:14px;box-shadow:0 16px 40px rgba(13,36,64,.22);padding:12px;min-width:250px;max-height:none;overflow:visible}
+.lp-nav .nav-dd-inner.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(170px,1fr));gap:4px 18px}
+.lp-nav .nav-dd-inner .sv-oversikt{grid-column:1/-1;border-bottom:1px solid #e6eef1;padding-bottom:6px;margin-bottom:4px}
+.lp-nav .nav-dd-inner .nav-dd-link{color:#192830;font-family:inherit;font-size:14px;font-weight:500;letter-spacing:0;padding:7px 10px}
+.lp-nav .nav-dd-inner .nav-dd-link:hover,.lp-nav .nav-dd-inner .nav-dd-link:focus{background:#f2f8fa;color:#1e5c82}
+.lp-nav .nav-dd-inner .sv-oversikt .nav-dd-link{font-weight:700}
+.lp-nav .nav-dd-inner .nav-dd-section{color:#6b7c85;font-size:11px;letter-spacing:.06em;padding:8px 10px 4px}
+.lp-nav .nav-dd-inner .nav-dd-divider{background:#e6eef1;margin:6px 10px}
+</style></li>
+`
+
 /** Startsidans meny är en HTML-sträng; den byggs ur samma lista. */
 export function menyHtmlDator(): string {
-  return MENY.map(m => ` <li class="nav-dropdown">\n <a href="${m.href}">${esc(m.text)}</a>\n <div class="nav-dd-panel"><div class="nav-dd-inner">\n` +
-    m.grupper.map((g, i) => (i ? ' <div class="nav-dd-divider"></div>\n' : '') + (g.rubrik ? ` <div class="nav-dd-section">${esc(g.rubrik)}</div>\n` : '') +
-      g.lankar.map((l, j) => ` <a href="${l.href}" class="nav-dd-link"${i === 0 && j === 0 && !g.rubrik ? ' style="font-weight:700"' : ''}>${esc(l.text)}</a>\n`).join('')).join('') +
-    ' </div></div>\n </li>\n').join('')
+  return STIL_STARTSIDA + MENY.map(m => {
+    const kol = antalKolumner(m)
+    const ov = harOversikt(m)
+    return ` <li class="nav-dropdown">\n <a href="${m.href}">${esc(m.text)}</a>\n <div class="nav-dd-panel"><div class="nav-dd-inner${kol > 1 ? ' flera' : ''}"${kol > 1 ? ` style="--kol:${kol}"` : ''}>\n` +
+      m.grupper.map((g, i) => ` <div${i === 0 && ov ? ' class="sv-oversikt"' : ''}>\n` + (g.rubrik ? ` <div class="nav-dd-section">${esc(g.rubrik)}</div>\n` : '') +
+        g.lankar.map(l => ` <a href="${l.href}" class="nav-dd-link">${esc(l.text)}</a>\n`).join('') + ' </div>\n').join('') +
+      ' </div></div>\n </li>\n'
+  }).join('')
 }
 
 export function mittSvallaHtmlDator(): string {

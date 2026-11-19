@@ -16,22 +16,22 @@ export const metadata: Metadata = {
 }
 
 const GRUPPER: { rubrik: string; regioner: { namn: string; href: string; etiketter: string[]; bildSlug?: string }[] }[] = [
-  { rubrik: 'Ostkusten', regioner: [
+  { rubrik: 'Östersjön', regioner: [
     { namn: 'Stockholms skärgård', href: '/stockholms-skargard', etiketter: ['Innerskärgården', 'Norra skärgården', 'Norra ytterskärgården', 'Mellersta skärgården', 'Mellersta ytterskärgården', 'Södra skärgården', 'Södra ytterskärgården', 'Roslagen'] },
     { namn: 'Åland', href: '/aland', etiketter: [] },
     { namn: 'Gotland', href: '/gotland', etiketter: ['Gotland'] },
     { namn: 'Öland', href: '/oland', etiketter: ['Öland', 'Kalmarsund', 'Kalmar läns skärgård'] },
-    { namn: 'Mälaren', href: '/malaren', etiketter: ['Mälaren'] },
-  ] },
-  { rubrik: 'Syd och väst', regioner: [
     { namn: 'Blekinge skärgård', href: '/blekinge-skargard', etiketter: ['Blekinge'], bildSlug: 'hano' },
+  ] },
+  { rubrik: 'Västkusten', regioner: [
     { namn: 'Halland', href: '/halland', etiketter: ['Hallands skärgård'] },
     { namn: 'Göteborgs skärgård', href: '/goteborg-skargard', etiketter: ['Göteborgs norra skärgård', 'Göteborgs skärgård', 'Göteborgs södra skärgård'] },
     { namn: 'Bohuslän', href: '/bohuslan', etiketter: ['Bohuslän'], bildSlug: 'kladesholmen' },
     { namn: 'Västerhavet', href: '/vasterhav', etiketter: [] },
   ] },
-  { rubrik: 'Norr', regioner: [
+  { rubrik: 'Norrland och insjöar', regioner: [
     { namn: 'Höga Kusten', href: '/hoga-kusten', etiketter: ['Höga Kusten'] },
+    { namn: 'Mälaren', href: '/malaren', etiketter: ['Mälaren'] },
   ] },
 ]
 

@@ -7,9 +7,9 @@
  */
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
-import { MENY, MITT_SVALLA, type MenyPunkt } from '@/lib/meny'
+import { MENY, MITT_SVALLA, antalKolumner, harOversikt, type MenyPunkt } from '@/lib/meny'
 
 export default function SidHuvud() {
   const path = usePathname() ?? ''
@@ -38,9 +38,9 @@ export default function SidHuvud() {
                 {m.text}<span className="pil" aria-hidden>▾</span>
               </Link>
               <div className="sidhuvud-panel">
-                <div className={m.grupper.filter(g => g.rubrik).length > 1 ? 'sidhuvud-panel-inre flera' : 'sidhuvud-panel-inre'}>
+                <div className={antalKolumner(m) > 1 ? 'sidhuvud-panel-inre flera' : 'sidhuvud-panel-inre'} style={antalKolumner(m) > 1 ? ({ '--kol': antalKolumner(m) } as CSSProperties) : undefined}>
                   {m.grupper.map((g, i) => (
-                    <div key={i} className={!g.rubrik && i === 0 ? 'sidhuvud-oversikt' : undefined}>
+                    <div key={i} className={i === 0 && harOversikt(m) ? 'sidhuvud-oversikt' : undefined}>
                       {g.rubrik && <div className="sidhuvud-panel-rubrik">{g.rubrik}</div>}
                       {g.lankar.map(l => <Link key={l.href} href={l.href} aria-current={arSidan(l.href) ? 'page' : undefined}>{l.text}</Link>)}
                     </div>
@@ -54,7 +54,7 @@ export default function SidHuvud() {
           <input type="search" name="q" placeholder="Sök ö, hamn eller krog" aria-label="Sök på Svalla" />
         </form>
         <div className="sidhuvud-konto sidhuvud-punkt">
-          <Link href="/kom-igang" className="sidhuvud-knapp">Mitt Svalla</Link>
+          <Link href="/kom-igang" className="sidhuvud-knapp">Mitt Svalla<span className="pil" aria-hidden>▾</span></Link>
           <div className="sidhuvud-panel hoger">
             <div className="sidhuvud-panel-inre">
               {MITT_SVALLA.map(g => (
@@ -96,7 +96,7 @@ export default function SidHuvud() {
         .sidhuvud{background:linear-gradient(90deg,#0d2440 0%,#164a6b 100%);border-bottom:1px solid rgba(255,255,255,.08);position:relative;z-index:40}
         .sidhuvud-rad{display:flex;align-items:center;gap:16px;min-height:64px;padding:0 40px}
         .sidhuvud-logga{display:inline-flex;align-items:center;flex-shrink:0;text-decoration:none;margin-right:8px}
-        .sidhuvud-meny{display:flex;align-items:center;gap:2px;flex:1}
+        .sidhuvud-meny{display:flex;align-items:center;justify-content:center;gap:2px;flex:1}
         .sidhuvud-punkt{position:relative}
         .sidhuvud-punkt>a{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.88);text-decoration:none;font-size:14px;font-weight:600;padding:8px 13px;border-radius:999px;white-space:nowrap}
         .sidhuvud-punkt>a .pil{font-size:9px;opacity:.55}
@@ -106,17 +106,19 @@ export default function SidHuvud() {
         .sidhuvud-punkt:hover .sidhuvud-panel,.sidhuvud-punkt:focus-within .sidhuvud-panel{display:block}
         .sidhuvud-panel.hoger{left:auto;right:0}
         .sidhuvud-panel-inre{background:#fff;border-radius:14px;box-shadow:0 16px 40px rgba(13,36,64,.22);padding:12px;min-width:250px}
-        .sidhuvud-panel-inre.flera{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:4px 18px;min-width:620px}
+        .sidhuvud-panel-inre.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(170px,1fr));gap:4px 18px}
         .sidhuvud-panel-inre.flera .sidhuvud-oversikt{grid-column:1/-1;border-bottom:1px solid #e6eef1;padding-bottom:6px;margin-bottom:4px}
         .sidhuvud-oversikt a{font-weight:700!important}
         .sidhuvud-panel-rubrik{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7c85;padding:8px 10px 4px}
-        .sidhuvud-panel-inre a{display:block;color:#192830;text-decoration:none;font-size:14px;padding:7px 10px;border-radius:8px;white-space:nowrap}
+        .sidhuvud-panel-inre a{display:block;color:#192830;text-decoration:none;font-size:14px;font-weight:500;padding:7px 10px;border-radius:8px;white-space:nowrap}
         .sidhuvud-panel-inre a:hover,.sidhuvud-panel-inre a:focus{background:#f2f8fa;color:#1e5c82;outline:none}
         .sidhuvud-panel-inre a[aria-current="page"]{color:#1e5c82;font-weight:700}
         .sidhuvud-sok input{width:210px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font:inherit;font-size:13px;outline:none}
         .sidhuvud-sok input::placeholder{color:rgba(255,255,255,.7)}
         .sidhuvud-sok input:focus{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
         .sidhuvud-konto{display:flex;align-items:center;flex-shrink:0}
+        .sidhuvud-punkt>a.sidhuvud-knapp,.sidhuvud-punkt:focus-within>a.sidhuvud-knapp{color:#fff;background:#c96e2a}
+        .sidhuvud-punkt:hover>a.sidhuvud-knapp{color:#fff;background:#b25f22}
         .sidhuvud-knapp{background:#c96e2a;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:999px;white-space:nowrap}
         .sidhuvud-menyknapp{display:none;margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;border-radius:10px;cursor:pointer}
         .sidhuvud-mobil{position:fixed;inset:64px 0 0 0;background:#0d2440;overflow-y:auto;padding:12px 16px 40px;z-index:60}
