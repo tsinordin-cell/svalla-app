@@ -25,7 +25,7 @@ const KUSTER: Kust[] = [
   { kust: 'Ostkusten', regioner: [
     { namn: 'Stockholms skärgård', href: '/stockholms-skargard', etiketter: ['Innerskärgården', 'Norra skärgården', 'Norra ytterskärgården', 'Mellersta skärgården', 'Mellersta ytterskärgården', 'Södra skärgården', 'Södra ytterskärgården', 'Roslagen'] },
     // Foto: https://commons.wikimedia.org/wiki/File:LemlandReefs.jpg (Clem23, CC BY-SA 3.0), skär vid Lemland på Åland.
-    { namn: 'Åland', href: '/aland', etiketter: [], egenBild: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/LemlandReefs.jpg/640px-LemlandReefs.jpg', fotograf: 'Clem23', licens: 'CC BY-SA 3.0', kalla: 'https://commons.wikimedia.org/wiki/File:LemlandReefs.jpg', motiv: 'skär vid Lemland' } },
+    { namn: 'Åland', href: '/aland', etiketter: [], egenBild: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/LemlandReefs.jpg/500px-LemlandReefs.jpg', fotograf: 'Clem23', licens: 'CC BY-SA 3.0', kalla: 'https://commons.wikimedia.org/wiki/File:LemlandReefs.jpg', motiv: 'skär vid Lemland' } },
     { namn: 'Gotland', href: '/gotland', etiketter: ['Gotland'] },
     { namn: 'Öland', href: '/oland', etiketter: ['Öland', 'Kalmarsund', 'Kalmar läns skärgård'] },
     { namn: 'Mälaren', href: '/malaren', etiketter: ['Mälaren'] },
@@ -34,7 +34,7 @@ const KUSTER: Kust[] = [
     { namn: 'Bohuslän', href: '/bohuslan', etiketter: ['Bohuslän'], bildSlug: 'kladesholmen' },
     { namn: 'Göteborgs skärgård', href: '/goteborg-skargard', etiketter: ['Göteborgs norra skärgård', 'Göteborgs skärgård', 'Göteborgs södra skärgård'] },
     // Foto: https://commons.wikimedia.org/wiki/File:Nidingen_-_KMB_-_16000700003133.jpg (Jan Norrman, Riksantikvarieämbetet, CC BY 2.5), Nidingen i Kungsbacka kommun.
-    { namn: 'Halland', href: '/halland', etiketter: ['Hallands skärgård'], egenBild: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Nidingen_-_KMB_-_16000700003133.jpg/640px-Nidingen_-_KMB_-_16000700003133.jpg', fotograf: 'Jan Norrman', licens: 'CC BY 2.5', kalla: 'https://commons.wikimedia.org/wiki/File:Nidingen_-_KMB_-_16000700003133.jpg', motiv: 'Nidingen' } },
+    { namn: 'Halland', href: '/halland', etiketter: ['Hallands skärgård'], egenBild: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Nidingen_-_KMB_-_16000700003133.jpg/500px-Nidingen_-_KMB_-_16000700003133.jpg', fotograf: 'Jan Norrman', licens: 'CC BY 2.5', kalla: 'https://commons.wikimedia.org/wiki/File:Nidingen_-_KMB_-_16000700003133.jpg', motiv: 'Nidingen' } },
     { namn: 'Västerhavet', href: '/vasterhav', etiketter: [], bildEtiketter: ['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård', 'Bohuslän'] },
   ] },
   { kust: 'Sydkusten', regioner: [
