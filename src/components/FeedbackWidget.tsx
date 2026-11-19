@@ -26,7 +26,8 @@ const TYPE_PLACEHOLDERS: Record<FeedbackType, string> = {
  * Sett 2026-10-26 i 430 px. Formuläret går fortfarande att öppna via
  * händelsen svalla:openFeedback.
  */
-const UTAN_FLYTANDE_KNAPP = ['/logga/manuell', '/spara']
+// /kom-igang och /logga-in: knappen låg ovanpå lösenordsfältets öga och "Kasta loss" på telefon.
+const UTAN_FLYTANDE_KNAPP = ['/logga/manuell', '/spara', '/kom-igang', '/logga-in']
 
 export default function FeedbackWidget() {
   const [open, setOpen]       = useState(false)
@@ -119,7 +120,7 @@ export default function FeedbackWidget() {
         aria-label="Skicka feedback eller tips till Svalla"
         style={{
           position:   'fixed',
-          bottom:     'calc(var(--nav-h, 0px) + env(safe-area-inset-bottom, 0px) + 14px)',
+          bottom:     'calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 14px)',
           right:      16,
           zIndex:     800,
           background: 'var(--sea-knapp)',
