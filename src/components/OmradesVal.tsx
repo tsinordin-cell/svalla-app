@@ -5,7 +5,7 @@
  * Inget område är förvalt. Saknas data för ett område står det ärligt.
  */
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export type OmradeBild = { url: string; fotograf: string; licens: string; kalla: string; o: string }
 export type OmradeData = {
@@ -26,8 +26,10 @@ function Foto({ bild, hojd }: { bild: OmradeBild; hojd: number }) {
 export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rubrik: string; vad: string; omraden: OmradeData[]; standardBild?: OmradeBild }) {
   const [valt, setValt] = useState<string | null>(null)
   const [typ, setTyp] = useState<string | null>(null)
+  // Kom besökaren från menyn med ?typ=Bad visas den typen när området är valt.
+  useEffect(() => { const t = new URLSearchParams(window.location.search).get('typ'); if (t) setTyp(t) }, [])
   const omrade = omraden.find(o => o.namn === valt)
-  const typer = omrade ? [...new Set(omrade.platser.map(p => p.typ).filter(Boolean) as string[])].sort() : []
+  const typer = omrade ? [...new Set([...omrade.platser.map(p => p.typ).filter(Boolean) as string[], ...(typ ? [typ] : [])])].sort() : []
   const lista = omrade ? omrade.platser.filter(p => !typ || p.typ === typ) : []
   const bild = omrade?.bild ?? (omrade ? undefined : standardBild)
   return (
@@ -35,10 +37,10 @@ export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rub
       <div className="ov-band">
         <div className="ov-inre">
           <h2 id="ov-rubrik">{rubrik}</h2>
-          <p className="ov-ingress">Välj område först, så ser du {vad} där.</p>
+          <p className="ov-ingress">{typ ? <>Du har valt <b>{typ}</b>. Välj område, så ser du var.</> : <>Välj område först, så ser du {vad} där.</>}</p>
           <div className="ov-chips">
             {omraden.map(o => (
-              <button key={o.namn} type="button" className={valt === o.namn ? 'pa' : undefined} onClick={() => { setValt(o.namn); setTyp(null) }}>
+              <button key={o.namn} type="button" className={valt === o.namn ? 'pa' : undefined} onClick={() => setValt(o.namn)}>
                 {o.namn}<span>{o.platser.length}</span>
               </button>
             ))}
@@ -58,7 +60,7 @@ export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rub
               </div>
             )}
             {lista.length === 0 ? (
-              <p className="ov-tomt">Vi har inga {vad} i {omrade.namn} inlagda än. <a href="mailto:hej@svalla.se">Tipsa oss</a></p>
+              <p className="ov-tomt">Vi har inga {typ ? <>{vad} av typen {typ.toLowerCase()}</> : vad} i {omrade.namn} inlagda än. <a href="mailto:hej@svalla.se">Tipsa oss</a></p>
             ) : (
               <div className="ov-lista">
                 {lista.map(p => (

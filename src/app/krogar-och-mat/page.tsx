@@ -54,7 +54,7 @@ const ITEMS: LandingItem[] = [
 export default function KrogarOchMatPage() {
  return (
  <CategoryLanding
-  regionNav={<OmradesVal rubrik="Krogar, kaféer och bryggserveringar" vad="krogar, kaféer och bryggserveringar" omraden={byggOmraden('krogar')} standardBild={bildFor('kladesholmen', 'Klädesholmen')} />}
+  regionNav={<OmradesVal rubrik="Restauranger, caféer och bryggserveringar" vad="restauranger, caféer och bryggserveringar" omraden={byggOmraden('krogar')} standardBild={bildFor('kladesholmen', 'Klädesholmen')} />}
  heroGradient={['#c96e2a', '#d98246']}
  eyebrow="Mat & dryck"
  title="Restauranger och caféer i skärgården"
