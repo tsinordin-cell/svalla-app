@@ -4,12 +4,14 @@ import type { Metadata } from 'next'
 import Icon from '@/components/Icon'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Forum',
   description: 'Diskutera segling, fiske, motorbåt och skärgårdsliv med andra båtentusiaster.',
   alternates: { canonical: 'https://svalla.se/forum' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Svalla Forum: skärgårdsliv och båtliv',
     description: 'Diskutera segling, fiske, motorbåt och skärgårdsliv med andra båtentusiaster.',
     url: 'https://svalla.se/forum',

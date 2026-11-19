@@ -4,6 +4,7 @@ import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
 import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats } from '@/lib/ferries'
 import { ALL_ISLANDS } from '@/app/o/island-data'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 // SEO 2026-09-23 (Search Console 3 mån): 32 500 visningar, plats 8,1, 0,5 % klick.
 // Sökorden är mest "cinderella …" (egen sida finns: /cinderella-baaten) och
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
     'skärgårdslinjer stockholm',
   ],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Färjetider och båt till öarna i Stockholms skärgård',
     description: 'Waxholmsbolaget, Cinderellabåtarna och hur du tar dig till ett sextiotal öar.',
     url: 'https://svalla.se/farjor',

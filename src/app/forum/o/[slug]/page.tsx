@@ -4,6 +4,7 @@ import { getThreadsByIsland, formatForumDate } from '@/lib/forum'
 import { getIsland } from '@/app/o/island-data'
 import type { Metadata } from 'next'
 import Icon from '@/components/Icon'
+import { ogO } from '@/lib/og-standard'
 
 export const revalidate = 60
 
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     // aldrig tillbaka utan att kontrollera hela filen — se CLAUDE.md punkt 1.
     alternates: { canonical: canonicalUrl },
     openGraph: {
+      images: ogO(island.slug),
       title: `Forum om ${island.name} | Svalla`,
       description,
       url: canonicalUrl,

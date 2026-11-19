@@ -12,6 +12,7 @@ import { cookies } from 'next/headers'
 import type { Metadata } from 'next'
 import InviteRedeemClient from './InviteRedeemClient'
 import Icon from '@/components/Icon'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const dynamic = 'force-dynamic'
 
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
  description: 'Du har blivit inbjuden till Svalla | sociala loggboken för båtliv och skärgård.',
  robots: { index: false, follow: false },
  openGraph: {
+ images: OG_STANDARD,
  title: 'Inbjudan till Svalla',
  description: 'Du har blivit inbjuden till Svalla | sociala loggboken för båtliv och skärgård.',
  type: 'website',

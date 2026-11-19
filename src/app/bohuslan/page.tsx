@@ -4,6 +4,7 @@ import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import { BOHUSLAN_ISLANDS } from '@/app/o/bohuslan-data'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Bohuslän: Segla västkusten, logga turer',
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
  'bohuslän naturhamnar',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Bohuslän: Segla västkusten',
  description: 'Logga dina båtturer och hitta de bästa platserna längs Bohusläns kust.',
  url: 'https://svalla.se/bohuslan',

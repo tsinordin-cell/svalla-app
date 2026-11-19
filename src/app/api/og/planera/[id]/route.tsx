@@ -1,164 +1,67 @@
-import { ImageResponse } from 'next/og'
-import { createServerSupabaseClient as createClient } from '@/lib/supabase-server'
+import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { haversineKm } from '@/lib/planner'
+import type { Punkt } from '@/lib/dela-klistermarken'
+import { ritaOgKort, OgRutt, OgStartMal, type OgTal } from '../../_mall/kort'
 
 export const runtime = 'nodejs'
 export const revalidate = 3600
 
-const W = 1200, H = 630
-
-// Icon names compatible with Icon.tsx (no emojis per no-emoji-policy)
-const INTEREST_ICON_NAMES: Record<string, string> = {
- krog: 'utensils',
- bastu: 'building',
- bad: 'water',
- brygga: 'anchor',
- natur: 'leaf',
- bensin: 'fuel',
+const INTRESSEN: Record<string, string> = {
+  krog: 'Krog', bastu: 'Bastu', bad: 'Bad', brygga: 'Brygga', natur: 'Natur', bensin: 'Bränsle',
 }
 
-// Simple placeholder SVG icons for OG image rendering
-const SVG_ICONS: Record<string, string> = {
-  utensils: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h2v12H3zm8 0h2v12h-2zm8 0h2v12h-2z"/></svg>',
-  building: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="3" width="20" height="18"/><line x1="10" y1="3" x2="10" y2="21"/><line x1="14" y1="3" x2="14" y2="21"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="2" y1="15" x2="22" y2="15"/></svg>',
-  water: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-3 4-5 6-5 9 0 3 2 5 5 5s5-2 5-5c0-3-2-5-5-9z"/></svg>',
-  anchor: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2v8m0 0c-2 0-4 2-4 4s2 4 4 4 4-2 4-4-2-4-4-4m-4 4v5h8v-5"/></svg>',
-  leaf: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c0 0-8 6-8 14 0 4.4 3.6 8 8 8s8-3.6 8-8c0-8-8-14-8-14z"/></svg>',
-  fuel: '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="4" width="12" height="16" rx="2"/><path d="M8 12h4M8 16h4"/><line x1="18" y1="6" x2="18" y2="18"/></svg>',
-}
-
+/**
+ * Länkförhandsvisning för en planerad rutt (/planera/[id]). Gemensam mall
+ * (../../_mall/kort.tsx), 2026-11-19. Gav 500 i produktion före det (mätt
+ * 2026-11-19 på /api/og/planera/2ad6f0af…), så varje delad rutt saknade bild.
+ *
+ * Sjöleden (cached_path) ritas i högerpanelen och dess längd visas i NM. Finns
+ * ingen beräknad led: rak linje mellan start och mål och avståndet fågelvägen.
+ */
 export async function GET(
- _req: Request,
- { params }: { params: Promise<{ id: string }> }
+  _req: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
- const { id } = await params
- const supabase = await createClient()
+  const { id } = await params
+  const supabase = createPublicSupabaseClient()
 
- const { data: route } = await supabase
- .from('planned_routes')
- .select('start_name, end_name, start_lat, start_lng, end_lat, end_lng, interests, suggested_stops')
- .eq('id', id)
- .single()
+  const { data: route } = await supabase
+    .from('planned_routes')
+    .select('start_name, end_name, start_lat, start_lng, end_lat, end_lng, interests, suggested_stops, cached_path')
+    .eq('id', id)
+    .maybeSingle()
 
- const startName = route?.start_name ?? 'Start'
- const endName = route?.end_name ?? 'Mål'
- const km = route
- ? Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))
- : null
- const stopCount = Array.isArray(route?.suggested_stops) ? (route!.suggested_stops as unknown[]).length : 0
- const interests: string[] = Array.isArray(route?.interests) ? route!.interests : []
+  if (!route) {
+    return ritaOgKort({ etikett: 'Planerad rutt', rubrik: 'Planera en tur', adress: 'svalla.se/planera' }, { status: 404 })
+  }
 
- const title = `${startName} → ${endName}`
- const titleSize = title.length > 30 ? 52 : title.length > 20 ? 62 : 72
+  const led: Punkt[] = Array.isArray(route.cached_path)
+    ? (route.cached_path as unknown[])
+        .filter((p): p is [number, number] => Array.isArray(p) && typeof p[0] === 'number' && typeof p[1] === 'number')
+        .map(([lat, lng]) => ({ lat, lng }))
+    : []
 
- return new ImageResponse(
- (
- <div style={{
- width: W, height: H,
- display: 'flex', flexDirection: 'column',
- fontFamily: 'system-ui, -apple-system, sans-serif',
- background: 'linear-gradient(160deg, #060e18 0%, #0a2235 35%, #0c3d55 65%, #083048 100%)',
- position: 'relative', overflow: 'hidden',
- }}>
- {/* Ambient glow */}
- <div style={{
- position: 'absolute', inset: 0,
- background: 'radial-gradient(ellipse 70% 55% at 50% 40%, rgba(10,140,160,0.20) 0%, transparent 70%)',
- display: 'flex',
- }} />
+  const tal: OgTal[] = []
+  if (led.length >= 2) {
+    let km = 0
+    for (let i = 1; i < led.length; i++) km += haversineKm(led[i - 1]!.lat, led[i - 1]!.lng, led[i]!.lat, led[i]!.lng)
+    tal.push({ val: (km / 1.852).toFixed(1).replace('.', ','), enhet: 'NM', etikett: 'SJÖLEDEN' })
+  } else {
+    tal.push({ val: String(Math.round(haversineKm(route.start_lat, route.start_lng, route.end_lat, route.end_lng))), enhet: 'km', etikett: 'FÅGELVÄGEN' })
+  }
+  const stopp = Array.isArray(route.suggested_stops) ? (route.suggested_stops as unknown[]).length : 0
+  if (stopp > 0) tal.push({ val: String(stopp), etikett: 'STOPP' })
 
- {/* Top bar */}
- <div style={{
- display: 'flex', alignItems: 'center', justifyContent: 'space-between',
- padding: '52px 72px 0', position: 'relative', zIndex: 2,
- }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
- <svg viewBox="0 0 20 22" width={28} height={28} style={{ display: 'flex' }}>
- <line x1="9" y1="20" x2="9" y2="2" stroke="rgba(255,255,255,0.50)" strokeWidth="1.6" strokeLinecap="round"/>
- <path d="M9,3 L18,18 L9,18 Z" fill="rgba(255,255,255,0.50)"/>
- <path d="M9,7 L1,17 L9,17 Z" fill="rgba(255,255,255,0.28)"/>
- <path d="M1,20 Q5,17.5 9,20 Q13,17.5 17,20" stroke="rgba(255,255,255,0.38)" strokeWidth="1.4" fill="none" strokeLinecap="round"/>
- </svg>
- <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '5px', color: 'rgba(255,255,255,0.45)' }}>SVALLA</div>
- </div>
- <div style={{
- background: 'rgba(10,123,140,0.30)', borderRadius: 40,
- border: '1px solid rgba(10,200,220,0.25)',
- padding: '7px 18px', fontSize: 15, fontWeight: 700,
- color: 'rgba(150,230,245,0.90)',
- }}>
- Planerad rutt
- </div>
- </div>
+  const intressen = (Array.isArray(route.interests) ? route.interests as string[] : [])
+    .map(i => INTRESSEN[i]).filter(Boolean).slice(0, 4) as string[]
 
- {/* Route title */}
- <div style={{
- flex: 1, display: 'flex', flexDirection: 'column',
- justifyContent: 'center', padding: '0 72px',
- position: 'relative', zIndex: 2,
- }}>
- <div style={{
- fontSize: titleSize, fontWeight: 800, color: '#fff',
- letterSpacing: '-2px', lineHeight: 1.05,
- textShadow: '0 2px 24px rgba(0,0,0,0.6)',
- }}>
- {title}
- </div>
-
- {/* Stats row */}
- <div style={{ display: 'flex', gap: 16, marginTop: 28 }}>
- {km !== null && (
- <div style={{
- background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.10)',
- borderRadius: 18, padding: '14px 20px',
- display: 'flex', alignItems: 'baseline', gap: 5,
- }}>
- <span style={{ fontSize: 38, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-1px' }}>~{km}</span>
- <span style={{ fontSize: 17, fontWeight: 700, color: 'rgba(120,210,255,0.80)' }}>km</span>
- </div>
- )}
- {stopCount > 0 && (
- <div style={{
- background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.10)',
- borderRadius: 18, padding: '14px 20px',
- display: 'flex', alignItems: 'baseline', gap: 5,
- }}>
- <span style={{ fontSize: 38, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: '-1px' }}>{stopCount}</span>
- <span style={{ fontSize: 17, fontWeight: 700, color: 'rgba(120,210,255,0.80)' }}>stopp</span>
- </div>
- )}
- {interests.slice(0, 4).map(i => {
-   const iconName = INTEREST_ICON_NAMES[i] ?? 'pin'
-   const iconSvg = SVG_ICONS[iconName] ?? ''
-   return (
-     <div key={i} style={{
-       background: 'rgba(0,0,0,0.40)', border: '1px solid rgba(255,255,255,0.10)',
-       borderRadius: 18, padding: '14px 18px',
-       fontSize: 20,
-       display: 'flex', alignItems: 'center',
-     }}>
-       {iconSvg ? <svg viewBox="0 0 24 24" width={20} height={20} fill="rgba(255,255,255,0.90)" dangerouslySetInnerHTML={{ __html: iconSvg ?? '' }} /> : ''}
-     </div>
-   )
- })}
- </div>
- </div>
-
- {/* Footer */}
- <div style={{
- padding: '0 72px 48px',
- display: 'flex', alignItems: 'center', justifyContent: 'space-between',
- position: 'relative', zIndex: 2,
- }}>
- <div style={{ fontSize: 17, fontWeight: 600, color: 'rgba(255,255,255,0.40)' }}>
- Planera din skärgårdstur på Svalla
- </div>
- <div style={{ fontSize: 15, fontWeight: 700, color: 'rgba(180,220,255,0.45)', letterSpacing: '0.3px' }}>
- svalla.se/planera
- </div>
- </div>
- </div>
- ),
- { width: W, height: H }
- )
+  const rutt = led.length >= 2 ? <OgRutt pts={led} /> : null
+  return ritaOgKort({
+    etikett: 'Planerad rutt',
+    rubrik: `${route.start_name ?? 'Start'} → ${route.end_name ?? 'Mål'}`,
+    under: intressen,
+    tal,
+    hoger: rutt ?? <OgStartMal />,
+    adress: 'svalla.se/planera',
+  })
 }

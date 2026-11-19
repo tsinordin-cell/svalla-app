@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Blekinges skärgård: Hanö, Tjärö, Tärnö och Utklippan',
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
  'karlskrona unesco',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Blekinges skärgård på Svalla',
  description: 'Sju öar i Blekinges skärgård, med resvägar och regler.',
  url: 'https://svalla.se/blekinge-skargard',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Cinderellabåten: Tidtabell, hållplatser & biljetter 2026',
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
     'båt sandhamn tidtabell',
   ],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Cinderellabåten: Tidtabell, hållplatser & biljetter 2026',
     description: 'Komplett guide till Cinderellabåten: tidtabell 2026, alla hållplatser, priser och tips för resan till Sandhamn och Vaxholm.',
     url: 'https://svalla.se/cinderella-baaten',

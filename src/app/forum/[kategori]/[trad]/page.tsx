@@ -79,7 +79,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ld = thread.listing_data
   const canonicalUrl = `https://svalla.se/forum/${kategori}/${trad}`
   if (kategori === 'loppis' && ld) {
-    const hero = Array.isArray(ld.images) && ld.images.length > 0 ? ld.images[0] : null
     const priceStr = typeof ld.price === 'number' && Number.isFinite(ld.price)
       ? `${new Intl.NumberFormat('sv-SE').format(ld.price)} kr`
       : 'Pris på förfrågan'
@@ -121,12 +120,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         siteName: 'Svalla',
         type: 'article',
         url: canonicalUrl,
-        images: hero ? [{ url: hero, alt: thread.title }] : undefined,
+        // Samma mall som alla delade länkar (2026-11-19): annonsens bild, titel och pris.
+        images: [{ url: `/api/og/forum/${trad}`, width: 1200, height: 630, alt: thread.title }],
       },
       twitter: {
         card: 'summary_large_image',
         title, description,
-        images: hero ? [hero] : undefined,
+        images: [`/api/og/forum/${trad}`],
       },
     }
   }

@@ -10,6 +10,7 @@ import {
   islandActivitiesForType,
   type ActivityType,
 } from '../../activity-data'
+import { ogO } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ type: string; island: string }> }
 
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: [`${verb} ${island.name.toLowerCase()}`, `${island.name.toLowerCase()} ${verb}`, `${verb} skärgården`, (island.regionLabel ?? '').toLowerCase()],
     alternates: { canonical: `https://svalla.se/aktivitet/${activity.slug}/${island.slug}` },
     openGraph: {
+      images: ogO(island.slug),
       title: `${activity.name} på ${island.name}`,
       description: island.tagline,
       url: `https://svalla.se/aktivitet/${activity.slug}/${island.slug}`,

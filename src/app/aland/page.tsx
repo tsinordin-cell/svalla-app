@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Åland: Segla dit från Sverige, logga turen',
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
  'åland sommar',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Åland: Segla dit från Sverige',
  description: 'Logga din seglingstur till Åland och utforska skärgårdshavets 6 500 öar med Svalla.',
  url: 'https://svalla.se/aland',

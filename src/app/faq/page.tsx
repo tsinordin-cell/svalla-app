@@ -2,12 +2,14 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Vanliga frågor',
   description: 'Svar på de vanligaste frågorna om Svalla | guiden till svenska skärgården. Hitta krogar, planera turer och logga dina äventyr.',
   keywords: ['svalla faq', 'stockholms skärgård app', 'skärgårdskarta', 'hitta krogar skärgård', 'logga båttur'],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Vanliga frågor | Svalla',
     description: 'Allt du behöver veta om Svalla och svenska skärgården.',
     url: 'https://svalla.se/faq',

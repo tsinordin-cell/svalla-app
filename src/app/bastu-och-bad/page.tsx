@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Bastu & bad i Stockholms skärgård',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
  'havsbad skärgård',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Bastu & bad i Stockholms skärgård | Svalla',
  description: 'Publika bastur, badklippor och vinterbad i skärgården.',
  url: 'https://svalla.se/bastu-och-bad',
