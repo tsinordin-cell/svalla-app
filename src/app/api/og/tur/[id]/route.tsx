@@ -1,6 +1,7 @@
 import { decimal } from '@/lib/gps'
 import { ImageResponse } from 'next/og'
 import { createClient } from '@/lib/supabase'
+import { platsRubrik } from '@/lib/dela-klistermarken'
 
 export const runtime = 'nodejs'
 export const revalidate = 3600 // 1 h — OG-bilder cachas länge av sociala medier
@@ -45,9 +46,12 @@ function boatIconShapes(boatType: string | null | undefined) {
         <ellipse key="c" cx="16" cy="12" rx="3" ry="6" />,
       ]
     default:
+      // Segelbåt: skrov, mast och storsegel. Den gamla formen såg ut som ett hus (2026-11-19).
       return [
-        <path key="a" d="M12 2L18 10L18 20H6L6 10Z" />,
-        <path key="b" d="M12 10V18" />,
+        <path key="a" d="M3 17h18l-2 4H5z" />,
+        <path key="b" d="M12 3v14" />,
+        <path key="c" d="M12 4l7 11H12z" />,
+        <path key="d" d="M11 7L6 15h5z" />,
       ]
   }
 }
@@ -62,7 +66,7 @@ export async function GET(
  const [{ data: trip }, ] = await Promise.all([
  supabase
  .from('trips')
- .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating')
+ .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image')
  .eq('id', id)
  .single(),
  ])
@@ -76,9 +80,12 @@ export async function GET(
  const dur = trip && trip.duration > 0 ? fmtDur(trip.duration) : null
  const speed = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? decimal(trip.max_speed_knots ?? 0) : null
  const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? decimal(trip.average_speed_knots ?? 0) : null
- const locLabel = trip?.start_location && trip?.location_name
- ? `${trip.start_location} → ${trip.location_name}`
- : trip?.location_name ?? ''
+ // Korta platsnamn: "Sollenkroka → Möja", inte "Sollenkroka ö, Stockholms län, Sverige → …" (2026-11-19)
+ const locLabel = trip ? platsRubrik({ start_location: trip.start_location, location_name: trip.location_name, boat_type: trip.boat_type }) : ''
+ const datum = trip?.started_at ? new Date(trip.started_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
+ // Turens foto bakom texten när det finns. Satori hämtar bilden själv; en tur
+ // utan spår och utan siffror blev annars en tom mörk ruta med en ikon.
+ const foto = typeof trip?.image === 'string' && /^https?:\/\//.test(trip.image) ? trip.image : null
  const username = userRow?.username ?? 'Seglare'
  const boatShapes = boatIconShapes(trip?.boat_type)
  // "Annat" är förvalet när ingen båttyp valts; då säger "Tur" mer.
@@ -98,6 +105,8 @@ export async function GET(
  dur && { val: dur, unit: '', label: 'TID' },
  speed && { val: speed, unit: 'kn', label: 'TOPPFART' },
  avgSpd && !speed && { val: avgSpd, unit: 'kn', label: 'SNITTFART' },
+ // Utan siffror: datumet, så raden aldrig är tom.
+ !dist && !dur && datum && { val: datum, unit: '', label: 'DATUM' },
  ].filter(Boolean) as { val: string; unit: string; label: string }[]
 
  // ── Render ──────────────────────────────────────────────────────────────
@@ -113,6 +122,22 @@ export async function GET(
  position: 'relative',
  }}
  >
+ {foto && (
+ // eslint-disable-next-line @next/next/no-img-element -- satori renderar bara <img>
+ <img
+ src={foto}
+ alt=""
+ width={1200}
+ height={630}
+ style={{ position: 'absolute', inset: 0, width: 1200, height: 630, objectFit: 'cover', opacity: 0.55 }}
+ />
+ )}
+ {foto && (
+ <div style={{
+ position: 'absolute', inset: 0, display: 'flex',
+ background: 'linear-gradient(90deg, rgba(8,24,40,0.92) 0%, rgba(8,24,40,0.78) 55%, rgba(8,24,40,0.25) 100%)',
+ }} />
+ )}
  {/* ── Background texture — subtle wave lines ── */}
  <div style={{
  position: 'absolute', inset: 0,
@@ -202,7 +227,7 @@ export async function GET(
  }}
  >
  <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
- <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', lineHeight: 1, letterSpacing: '-1px' }}>
+ <div style={{ fontSize: label === 'DATUM' ? 22 : 32, fontWeight: 700, color: '#fff', lineHeight: 1, letterSpacing: '-1px' }}>
  {val}
  </div>
  {unit && (
@@ -275,9 +300,9 @@ export async function GET(
  cx={routePath.split(' ')[1]} cy={routePath.split(' ')[2]}
  r={7} fill="#0f9e64" />
  </svg>
- ) : (
- /* Fallback — show boat icon SVG instead of emoji */
- <svg width={80} height={80} viewBox="0 0 24 24" fill="rgba(255,255,255,0.15)" opacity={0.5}>{boatShapes}</svg>
+ ) : foto ? null : (
+ /* Fallback utan spår och utan foto: båtikonen */
+ <svg width={120} height={120} viewBox="0 0 24 24" fill="rgba(255,255,255,0.18)" opacity={0.6}>{boatShapes}</svg>
  )}
 
  {/* Right edge fade */}
