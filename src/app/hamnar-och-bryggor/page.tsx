@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 /*
  * Omskriven 2026-09-20 efter besökargenomgången "seglare med egen båt, naturhamn i
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     'allemansrätt ankring',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/hamnar-och-bryggor'),
     title: 'Svenska gästhamnar och naturhamnar | Svalla',
     description: 'Allemansrätten på vatten, VHF och kustradio, och fem gästhamnar med källa.',
     url: 'https://svalla.se/hamnar-och-bryggor',

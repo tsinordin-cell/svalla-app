@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Segelsällskap och båtklubbar',
   description: 'Hitta segelsällskap och båtklubbar i din skärgård. Gå med i en flotta, organisera utflykter och träffa andra båtentusiaster.',
   alternates: { canonical: 'https://svalla.se/klubbar' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/klubbar'),
     title: 'Segelsällskap och båtklubbar | Svalla',
     description: 'Hitta segelsällskap och båtklubbar i din skärgård.',
     url: 'https://svalla.se/klubbar',

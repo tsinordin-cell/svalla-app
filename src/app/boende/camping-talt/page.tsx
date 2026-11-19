@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Camping och tält i skärgården | Naturnära övernattning',
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: ['camping skärgård', 'tälta skärgård', 'tältplats skärgården', 'camping nära havet', 'tälta ö stockholm'],
   alternates: { canonical: 'https://svalla.se/boende/camping-talt' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/boende/camping-talt'),
     title: 'Camping och tält i skärgården',
     description: 'Hitta campingplatser och tältvänliga platser i skärgården nära bad, vandring, paddling och färjor.',
     url: 'https://svalla.se/boende/camping-talt',

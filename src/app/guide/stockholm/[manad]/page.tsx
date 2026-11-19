@@ -6,7 +6,7 @@ import { ALL_ISLANDS } from '@/app/o/island-data'
 import SvallaLogo from '@/components/SvallaLogo'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 interface Props {
   params: Promise<{ manad: string }>
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `öppna öar ${guide.month.toLowerCase()}`,
     ],
     openGraph: {
-      images: OG_STANDARD,
+      images: ogSida(`https://svalla.se/guide/stockholm/${manad}`),
       title,
       description,
       url: `https://svalla.se/guide/stockholm/${manad}`,

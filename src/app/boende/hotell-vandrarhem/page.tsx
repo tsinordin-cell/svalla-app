@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Hotell och vandrarhem i skärgården | Bo nära havet',
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   keywords: ['hotell skärgård', 'vandrarhem skärgård', 'värdshus skärgården', 'bo skärgård weekend', 'hotell sandhamn', 'hotell utö'],
   alternates: { canonical: 'https://svalla.se/boende/hotell-vandrarhem' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/boende/hotell-vandrarhem'),
     title: 'Hotell och vandrarhem i skärgården',
     description: 'Hitta hotell, värdshus och vandrarhem i skärgården för weekend, kortsemester och övernattning nära havet.',
     url: 'https://svalla.se/boende/hotell-vandrarhem',

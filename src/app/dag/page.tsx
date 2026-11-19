@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import IslandWeather from '@/components/IslandWeather'
 import { UPPLÄGG, WEATHER_TAG, tagColor } from './dag-data'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Dagsupplägg i skärgården, vad gör man idag?',
   description: 'Utvalda dagsupplägg för Stockholms skärgård: familj, par, seglare och nybörjare. Aktuellt väder och direktlänkar till öarna.',
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/dag'),
     title: 'Dagsupplägg i skärgården',
     description: 'Vad gör man idag i skärgården? Utvalda upplägg för alla typer av utflykter.',
     url: 'https://svalla.se/dag',

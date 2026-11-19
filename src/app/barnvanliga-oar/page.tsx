@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Barnvänliga öar i Stockholms skärgård: Guide för familjer',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
  'grunt vatten öar',
  ],
  openGraph: {
- images: OG_STANDARD,
+ images: ogSida('https://svalla.se/barnvanliga-oar'),
  title: 'Barnvänliga öar i Stockholms skärgård: Guide för familjer',
  description: 'De bästa barnvänliga öarna i Stockholms skärgård. Sandstränder, lugnt vatten, restauranger för familjer och enkla färjeförbindelser.',
  url: 'https://svalla.se/barnvanliga-oar',
