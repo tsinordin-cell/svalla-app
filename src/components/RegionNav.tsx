@@ -107,7 +107,7 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
       </div>
       <style>{`
         .rn{background:var(--bg,#f2f8fa)}
-        .rn-band{background:linear-gradient(160deg,#1e5c82 0%,#2d7d8a 100%);color:#fff}
+        .rn-band{background:var(--grad-sea-hero);color:#fff}
         .rn-inre{max-width:1040px;margin:0 auto;padding:26px 20px 24px}
         .rn h2{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;margin:0 0 4px;color:#fff}
         .rn-ingress{margin:0 0 14px;color:rgba(255,255,255,.75);font-size:14px}
@@ -116,7 +116,7 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
         .rn-flikar button span{margin-left:6px;opacity:.65}
         .rn-flikar button.pa{background:rgba(255,255,255,.92);color:var(--sea,#0a7b8c)}
         .rn-under{padding-top:22px}
-        .rn-foto{position:relative;margin:0 0 6px;border-radius:16px;overflow:hidden;height:240px;background:linear-gradient(135deg,#1e5c82,#2d7d8a)}
+        .rn-foto{position:relative;margin:0 0 6px;border-radius:14px;overflow:hidden;height:240px;background:var(--grad-sea)}
         .rn-foto img{width:100%;height:100%;object-fit:cover;display:block}
         .rn-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 14px 8px;font-size:11px;color:rgba(255,255,255,.9);background:linear-gradient(transparent,rgba(0,0,0,.55))}
         .rn-foto figcaption a{color:#fff}
@@ -124,16 +124,16 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
         .rn-sek h3{font-family:'Playfair Display',Georgia,serif;font-size:22px;margin:0 0 12px;color:var(--txt,#192830)}
         .rn-sek h3 span{font-family:inherit;font-size:13px;color:var(--txt3,#6b7c85);font-weight:500;margin-left:6px}
         .rn-kortgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-        .rn-kort{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;background:var(--card-bg,#fff);text-decoration:none;box-shadow:0 1px 8px rgba(0,0,0,.05);border:1px solid var(--surface-3,#e3ecef);transition:transform .15s,box-shadow .15s;overflow:hidden}
-        .rn-kort:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(13,36,64,.1)}
+        .rn-kort{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:14px;background:var(--white);text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.07);border:1px solid rgba(10,123,140,.06);transition:transform .15s,box-shadow .15s;overflow:hidden}
+        .rn-kort:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
         .rn-o{padding-top:0}
-        .rn-obild{height:130px;margin:0 -18px 10px;background:linear-gradient(135deg,#1e5c82,#2d7d8a) center/cover}
+        .rn-obild{height:130px;margin:0 -18px 10px;background:var(--grad-sea) center/cover}
         .rn-typ{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sea,#0a7b8c)}
         .rn-kort b{font-family:'Playfair Display',Georgia,serif;font-size:17px;color:var(--txt,#192830);line-height:1.25}
         .rn-kort small{font-size:13px;color:var(--txt2,#4a5c66);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
         .rn-kort em{font-style:normal;font-size:13px;font-weight:700;color:var(--sea,#0a7b8c);margin-top:auto;padding-top:6px}
         .rn-kredit{font-size:10px;color:var(--txt3,#8a989f)}
-        .rn-tomt{background:var(--card-bg,#fff);border:1.5px dashed var(--surface-3,#c6d8df);border-radius:14px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
+        .rn-tomt{background:var(--white);border:1.5px dashed rgba(10,123,140,.25);border-radius:14px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
         .rn-tomt a{color:var(--sea,#1e5c82);font-weight:700}
         .rn-mer{margin-top:10px;border:none;background:none;color:var(--sea,#1e5c82);font:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:0}
       `}</style>

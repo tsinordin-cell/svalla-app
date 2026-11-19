@@ -78,7 +78,7 @@ export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rub
       </div>
       <style>{`
         .ov{background:var(--bg,#f2f8fa)}
-        .ov-band{background:linear-gradient(160deg,#1e5c82 0%,#2d7d8a 100%);color:#fff}
+        .ov-band{background:var(--grad-sea-hero);color:#fff}
         .ov-inre{max-width:1040px;margin:0 auto;padding:26px 20px 24px}
         .ov h2{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;margin:0 0 4px;color:#fff}
         .ov-ingress{margin:0 0 14px;color:rgba(255,255,255,.75);font-size:14px}
@@ -87,7 +87,7 @@ export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rub
         .ov-chips button span{margin-left:6px;opacity:.65;font-weight:600}
         .ov-chips button.pa{background:rgba(255,255,255,.92);color:var(--sea,#0a7b8c)}
         .ov-under{padding-top:22px}
-        .ov-foto{position:relative;margin:0 0 18px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#1e5c82,#2d7d8a)}
+        .ov-foto{position:relative;margin:0 0 18px;border-radius:14px;overflow:hidden;background:var(--grad-sea)}
         .ov-foto img{width:100%;height:100%;object-fit:cover;display:block}
         .ov-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 14px 8px;font-size:11px;color:rgba(255,255,255,.9);background:linear-gradient(transparent,rgba(0,0,0,.55))}
         .ov-foto figcaption a{color:#fff}
@@ -95,16 +95,16 @@ export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rub
         .ov-res h3{font-family:'Playfair Display',Georgia,serif;font-size:22px;margin:0 0 10px;color:var(--txt,#192830)}
         .ov-res h3 span{font-family:inherit;font-size:13px;color:var(--txt3,#6b7c85);font-weight:500;margin-left:6px}
         .ov-typer{margin-bottom:14px}
-        .ov-typer button{font:inherit;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;border:1px solid var(--surface-3,#dbe7ec);background:var(--card-bg,#fff);color:var(--txt,#192830);cursor:pointer}
+        .ov-typer button{font:inherit;font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;border:1px solid var(--surface-3,#dbe7ec);background:var(--white);color:var(--txt);cursor:pointer}
         .ov-typer button.pa{background:var(--sea,#0a7b8c);border-color:var(--sea,#0a7b8c);color:#fff}
         .ov-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-        .ov-kort{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;background:var(--card-bg,#fff);text-decoration:none;box-shadow:0 1px 8px rgba(0,0,0,.05);border:1px solid var(--surface-3,#e3ecef);transition:transform .15s,box-shadow .15s}
-        .ov-kort:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(13,36,64,.1)}
+        .ov-kort{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:14px;background:var(--white);text-decoration:none;box-shadow:0 2px 12px rgba(0,0,0,.07);border:1px solid rgba(10,123,140,.06);transition:transform .15s,box-shadow .15s}
+        .ov-kort:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.12)}
         .ov-typ{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sea,#0a7b8c);min-height:14px}
         .ov-kort b{font-family:'Playfair Display',Georgia,serif;font-size:17px;color:var(--txt,#192830);line-height:1.25}
         .ov-kort small{font-size:13px;color:var(--txt3,#6b7c85)}
         .ov-kort em{font-style:normal;font-size:13px;font-weight:700;color:var(--sea,#0a7b8c);margin-top:6px}
-        .ov-tomt{background:var(--card-bg,#fff);border:1.5px dashed var(--surface-3,#c6d8df);border-radius:14px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
+        .ov-tomt{background:var(--white);border:1.5px dashed rgba(10,123,140,.25);border-radius:14px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
         .ov-tomt a{color:var(--sea,#1e5c82);font-weight:700}
       `}</style>
     </section>

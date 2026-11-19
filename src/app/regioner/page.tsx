@@ -39,7 +39,7 @@ export default function RegionerPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <SidHuvud />
-      <div style={{ background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)', padding: '40px 20px 32px' }}>
+      <div style={{ background: 'var(--grad-sea-hero)', padding: '40px 20px 32px' }}>
         <div style={{ maxWidth: 1040, margin: '0 auto' }}>
           <nav aria-label="Brödsmulor" style={{ fontSize: 12.5, marginBottom: 14, color: 'rgba(255,255,255,0.75)', display: 'flex', gap: 6 }}>
             <Link href="/" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>Hem</Link><span aria-hidden>›</span><span style={{ color: '#fff', fontWeight: 600 }}>Regioner</span>
@@ -60,8 +60,8 @@ export default function RegionerPage() {
                 const forsta = (r.bildSlug && oar.find(o => o.slug === r.bildSlug)) || oar.find(o => bildFor(o.slug, o.name))
                 const bild = forsta ? bildFor(forsta.slug, forsta.name) : undefined
                 return (
-                  <Link key={r.href} href={r.href} style={{ display: 'flex', flexDirection: 'column', background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', textDecoration: 'none', boxShadow: '0 1px 8px rgba(0,0,0,0.05)', border: '1px solid var(--surface-3, #e3ecef)' }}>
-                    <div style={{ height: 140, background: bild ? `url(${bild.url}) center/cover` : 'linear-gradient(135deg, #0d2440 0%, #1e5c82 60%, #2d7d8a 100%)', display: 'flex', alignItems: 'flex-end', padding: 16 }}>
+                  <Link key={r.href} href={r.href} style={{ display: 'flex', flexDirection: 'column', background: 'var(--white)', borderRadius: 14, overflow: 'hidden', textDecoration: 'none', boxShadow: '0 2px 12px rgba(0,0,0,0.07)', border: '1px solid rgba(10,123,140,0.06)' }}>
+                    <div style={{ height: 140, background: bild ? `url(${bild.url}) center/cover` : 'var(--grad-sea)', display: 'flex', alignItems: 'flex-end', padding: 16 }}>
                       {!bild && <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 30, fontWeight: 700, color: 'rgba(255,255,255,0.92)' }}>{r.namn}</span>}
                     </div>
                     <div style={{ padding: '14px 16px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
