@@ -19,19 +19,22 @@ export const MENY: MenyPunkt[] = [
     href: '/regioner', text: 'Regioner',
     aktivFor: ['/regioner', '/resmal', '/stockholms-skargard', '/bohuslan', '/gotland', '/aland', '/oland', '/blekinge-skargard', '/vasterhav', '/hoga-kusten', '/halland', '/goteborg-skargard', '/malaren', '/karta', '/oar', '/o/', '/jamfor'],
     grupper: [
-      { rubrik: 'Regioner', lankar: [
+      // Fyra kuster. Mälaren och Åland under Ostkusten, som hos Skippo (Ostkusten omfattar där Mälardalen).
+      { rubrik: 'Ostkusten', lankar: [
         { href: '/stockholms-skargard', text: 'Stockholms skärgård' },
-        { href: '/bohuslan', text: 'Bohuslän' },
-        { href: '/gotland', text: 'Gotland' },
         { href: '/aland', text: 'Åland' },
+        { href: '/gotland', text: 'Gotland' },
         { href: '/oland', text: 'Öland' },
-        { href: '/blekinge-skargard', text: 'Blekinge skärgård' },
-        { href: '/vasterhav', text: 'Västerhavet' },
-        { href: '/hoga-kusten', text: 'Höga Kusten' },
-        { href: '/halland', text: 'Halland' },
-        { href: '/goteborg-skargard', text: 'Göteborgs skärgård' },
         { href: '/malaren', text: 'Mälaren' },
       ] },
+      { rubrik: 'Västkusten', lankar: [
+        { href: '/bohuslan', text: 'Bohuslän' },
+        { href: '/goteborg-skargard', text: 'Göteborgs skärgård' },
+        { href: '/halland', text: 'Halland' },
+        { href: '/vasterhav', text: 'Västerhavet' },
+      ] },
+      { rubrik: 'Sydkusten', lankar: [{ href: '/blekinge-skargard', text: 'Blekinge skärgård' }] },
+      { rubrik: 'Norrlandskusten', lankar: [{ href: '/hoga-kusten', text: 'Höga Kusten' }] },
       { rubrik: 'Hitta', lankar: [
         { href: '/regioner', text: 'Alla regioner' },
         { href: '/oar', text: 'Alla öar' },

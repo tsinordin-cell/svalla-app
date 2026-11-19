@@ -3,12 +3,14 @@ import Link from 'next/link'
 import SidHuvud from '@/components/SidHuvud'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { bildFor } from '@/lib/omraden'
-import { RadKort, Fotokrediter, ListRubrik, KORT_CSS } from '@/components/SvallaKort'
+import { RadKort, Fotokrediter, ListRubrik, KORT_CSS, type KortBild } from '@/components/SvallaKort'
 
 /**
  * FÖRHANDSVISNING 2026-11-19: översikten bakom menypunkten Regioner.
- * Toppen har samma utseende som /oar, korten är sajtens radkort (SvallaKort).
- * Ordningen följer menyn. Antal öar och foton räknas ur island-data och obilder.generated.
+ * Regionerna är grupperade efter de fyra kusterna, samma indelning som menyn.
+ * Mälaren och Åland ligger under Ostkusten, som hos Skippo (Ostkusten omfattar där Mälardalen).
+ * Antal öar och foton räknas ur island-data och obilder.generated. Tre regioner saknar
+ * öfoto i obilder och har ett eget fritt foto från Wikimedia Commons (fotograf och licens visas).
  */
 export const metadata: Metadata = {
   title: 'Regioner: Sveriges skärgårdar och kuster',
@@ -16,52 +18,82 @@ export const metadata: Metadata = {
   robots: { index: false },
 }
 
-type Region = { namn: string; href: string; etiketter: string[]; bildSlug?: string }
-const REGIONER: Region[] = [
-  { namn: 'Stockholms skärgård', href: '/stockholms-skargard', etiketter: ['Innerskärgården', 'Norra skärgården', 'Norra ytterskärgården', 'Mellersta skärgården', 'Mellersta ytterskärgården', 'Södra skärgården', 'Södra ytterskärgården', 'Roslagen'] },
-  { namn: 'Bohuslän', href: '/bohuslan', etiketter: ['Bohuslän'], bildSlug: 'kladesholmen' },
-  { namn: 'Gotland', href: '/gotland', etiketter: ['Gotland'] },
-  { namn: 'Åland', href: '/aland', etiketter: [] },
-  { namn: 'Öland', href: '/oland', etiketter: ['Öland', 'Kalmarsund', 'Kalmar läns skärgård'] },
-  { namn: 'Blekinge skärgård', href: '/blekinge-skargard', etiketter: ['Blekinge'], bildSlug: 'hano' },
-  { namn: 'Västerhavet', href: '/vasterhav', etiketter: [] },
-  { namn: 'Höga Kusten', href: '/hoga-kusten', etiketter: ['Höga Kusten'] },
-  { namn: 'Halland', href: '/halland', etiketter: ['Hallands skärgård'] },
-  { namn: 'Göteborgs skärgård', href: '/goteborg-skargard', etiketter: ['Göteborgs norra skärgård', 'Göteborgs skärgård', 'Göteborgs södra skärgård'] },
-  { namn: 'Mälaren', href: '/malaren', etiketter: ['Mälaren'] },
+type Region = { namn: string; href: string; etiketter: string[]; bildSlug?: string; bildEtiketter?: string[]; egenBild?: KortBild & { motiv: string } }
+type Kust = { kust: string; regioner: Region[] }
+
+const KUSTER: Kust[] = [
+  { kust: 'Ostkusten', regioner: [
+    { namn: 'Stockholms skärgård', href: '/stockholms-skargard', etiketter: ['Innerskärgården', 'Norra skärgården', 'Norra ytterskärgården', 'Mellersta skärgården', 'Mellersta ytterskärgården', 'Södra skärgården', 'Södra ytterskärgården', 'Roslagen'] },
+    // Foto: https://commons.wikimedia.org/wiki/File:LemlandReefs.jpg (Clem23, CC BY-SA 3.0), skär vid Lemland på Åland.
+    { namn: 'Åland', href: '/aland', etiketter: [], egenBild: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/LemlandReefs.jpg/640px-LemlandReefs.jpg', fotograf: 'Clem23', licens: 'CC BY-SA 3.0', kalla: 'https://commons.wikimedia.org/wiki/File:LemlandReefs.jpg', motiv: 'skär vid Lemland' } },
+    { namn: 'Gotland', href: '/gotland', etiketter: ['Gotland'] },
+    { namn: 'Öland', href: '/oland', etiketter: ['Öland', 'Kalmarsund', 'Kalmar läns skärgård'] },
+    { namn: 'Mälaren', href: '/malaren', etiketter: ['Mälaren'] },
+  ] },
+  { kust: 'Västkusten', regioner: [
+    { namn: 'Bohuslän', href: '/bohuslan', etiketter: ['Bohuslän'], bildSlug: 'kladesholmen' },
+    { namn: 'Göteborgs skärgård', href: '/goteborg-skargard', etiketter: ['Göteborgs norra skärgård', 'Göteborgs skärgård', 'Göteborgs södra skärgård'] },
+    // Foto: https://commons.wikimedia.org/wiki/File:Nidingen_-_KMB_-_16000700003133.jpg (Jan Norrman, Riksantikvarieämbetet, CC BY 2.5), Nidingen i Kungsbacka kommun.
+    { namn: 'Halland', href: '/halland', etiketter: ['Hallands skärgård'], egenBild: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Nidingen_-_KMB_-_16000700003133.jpg/640px-Nidingen_-_KMB_-_16000700003133.jpg', fotograf: 'Jan Norrman', licens: 'CC BY 2.5', kalla: 'https://commons.wikimedia.org/wiki/File:Nidingen_-_KMB_-_16000700003133.jpg', motiv: 'Nidingen' } },
+    { namn: 'Västerhavet', href: '/vasterhav', etiketter: [], bildEtiketter: ['Göteborgs södra skärgård', 'Göteborgs norra skärgård', 'Göteborgs skärgård', 'Bohuslän'] },
+  ] },
+  { kust: 'Sydkusten', regioner: [
+    { namn: 'Blekinge skärgård', href: '/blekinge-skargard', etiketter: ['Blekinge'], bildSlug: 'hano' },
+  ] },
+  { kust: 'Norrlandskusten', regioner: [
+    { namn: 'Höga Kusten', href: '/hoga-kusten', etiketter: ['Höga Kusten'] },
+  ] },
 ]
 
 export default function RegionerPage() {
-  const rader = REGIONER.map(r => {
-    const oar = ALL_ISLANDS.filter(i => i.regionLabel && r.etiketter.includes(i.regionLabel))
-    const forsta = (r.bildSlug && oar.find(o => o.slug === r.bildSlug)) || oar.find(o => bildFor(o.slug, o.name))
-    return { ...r, antal: oar.length, bild: forsta ? bildFor(forsta.slug, forsta.name) : undefined }
-  })
+  const anvanda = new Set<string>()
+  const grupper = KUSTER.map(k => ({
+    kust: k.kust,
+    rader: k.regioner.map(r => {
+      const oar = ALL_ISLANDS.filter(i => i.regionLabel && r.etiketter.includes(i.regionLabel))
+      let bild: KortBild | undefined
+      let motiv = ''
+      if (r.egenBild) { bild = r.egenBild; motiv = r.egenBild.motiv }
+      else {
+        const kandidater = r.bildEtiketter ? ALL_ISLANDS.filter(i => i.regionLabel && r.bildEtiketter!.includes(i.regionLabel)) : oar
+        const forsta = (r.bildSlug && kandidater.find(o => o.slug === r.bildSlug))
+          || kandidater.find(o => { const b = bildFor(o.slug, o.name); return b && !anvanda.has(b.url) })
+        const b = forsta ? bildFor(forsta.slug, forsta.name) : undefined
+        if (b && forsta) { bild = b; motiv = forsta.name }
+      }
+      if (bild) anvanda.add(bild.url)
+      return { ...r, antal: oar.length, bild, motiv }
+    }),
+  }))
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <style>{KORT_CSS}</style>
       <SidHuvud />
-      <div style={{ background: 'linear-gradient(170deg, #0d2440 0%, #1e5c82 50%, #2d7d8a 100%)', padding: '56px 24px 72px', color: '#fff' }}>
+      <div style={{ background: 'var(--grad-sea-hero)', padding: '56px 24px 64px', color: '#fff' }}>
         <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-          <nav aria-label="Brödsmulor" style={{ fontSize: 13, marginBottom: 16, color: 'rgba(255,255,255,0.75)', display: 'flex', gap: 6 }}>
-            <Link href="/" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>Hem</Link><span aria-hidden>›</span><span style={{ color: '#fff', fontWeight: 600 }}>Regioner</span>
+          <nav aria-label="Brödsmulor" style={{ fontSize: 13, marginBottom: 16, color: 'rgba(255,255,255,0.8)', display: 'flex', gap: 6 }}>
+            <Link href="/" style={{ color: 'rgba(255,255,255,0.9)', textDecoration: 'none' }}>Hem</Link><span aria-hidden>›</span><span style={{ color: '#fff', fontWeight: 600 }}>Regioner</span>
           </nav>
           <h1 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 700, margin: '0 0 12px', lineHeight: 1.05, fontFamily: "'Playfair Display', Georgia, serif", letterSpacing: '-0.5px' }}>
             Sveriges skärgårdar <em style={{ color: '#f4b06a', fontStyle: 'italic' }}>på en sida</em>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.82)', fontSize: 16, margin: 0, maxWidth: 620, lineHeight: 1.55 }}>
-            Välj en region. Där finns öar, guider, gästhamnar, krogar och boende samlade.
+          <p style={{ color: 'rgba(255,255,255,0.88)', fontSize: 16, margin: 0, maxWidth: 620, lineHeight: 1.55 }}>
+            Fyra kuster. Välj en region, så finns öar, guider, gästhamnar, krogar och boende samlade där.
           </p>
         </div>
       </div>
       <main style={{ maxWidth: 1080, margin: '0 auto', padding: '40px 16px 64px' }}>
-        <ListRubrik titel="Regioner" antal={rader.length} enhet="regioner" />
-        <div className="sk-grid">
-          {rader.map(r => (
-            <RadKort key={r.href} href={r.href} titel={r.namn} text={r.antal > 0 ? `${r.antal} ${r.antal === 1 ? 'ösida' : 'ösidor'} på Svalla` : 'Regionsida'} bild={r.bild} />
-          ))}
-        </div>
-        <Fotokrediter poster={rader.map(r => ({ namn: r.namn, bild: r.bild }))} />
+        {grupper.map(g => (
+          <section key={g.kust} style={{ marginBottom: 36 }}>
+            <ListRubrik titel={g.kust} antal={g.rader.length} enhet={g.rader.length === 1 ? 'region' : 'regioner'} />
+            <div className="sk-grid">
+              {g.rader.map(r => (
+                <RadKort key={r.href} href={r.href} titel={r.namn} text={r.antal > 0 ? `${r.antal} ${r.antal === 1 ? 'ösida' : 'ösidor'} på Svalla` : 'Regionsida'} bild={r.bild} />
+              ))}
+            </div>
+            <Fotokrediter poster={g.rader.map(r => ({ namn: r.motiv && r.motiv !== r.namn ? `${r.namn} (${r.motiv})` : r.namn, bild: r.bild }))} />
+          </section>
+        ))}
       </main>
     </div>
   )

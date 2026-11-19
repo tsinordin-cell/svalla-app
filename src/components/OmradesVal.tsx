@@ -15,6 +15,11 @@ export type OmradeData = {
   bild?: OmradeBild
 }
 
+/** Områdena grupperas efter samma fyra kuster som menyn. Insjöarna visas för sig. */
+const KUSTER = ['Ostkusten', 'Västkusten', 'Sydkusten', 'Norrlandskusten', 'Insjöar', 'Fler områden'] as const
+const KUST_FOR: Record<string, string> = { 'Stockholms skärgård': 'Ostkusten', Roslagen: 'Ostkusten', Sörmland: 'Ostkusten', Östergötland: 'Ostkusten', 'Kalmar och Öland': 'Ostkusten', Gotland: 'Ostkusten', Åland: 'Ostkusten', Blekinge: 'Sydkusten', 'Skåne och Öresund': 'Sydkusten', Halland: 'Västkusten', 'Göteborgs skärgård': 'Västkusten', Bohuslän: 'Västkusten', Norrlandskusten: 'Norrlandskusten', Insjöar: 'Insjöar' }
+const kustFor = (n: string) => KUST_FOR[n] ?? 'Fler områden'
+
 const IKON_FOR: Record<string, KortIkon> = { restauranger: 'krog', 'krogar och caféer': 'krog', boenden: 'boende', boende: 'boende', hamnar: 'hamn', gästhamnar: 'hamn', aktiviteter: 'aktivitet' }
 
 export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rubrik: string; vad: string; omraden: OmradeData[]; standardBild?: OmradeBild }) {
@@ -35,13 +40,22 @@ export default function OmradesVal({ rubrik, vad, omraden, standardBild }: { rub
         <span className="sk-etikett">Välj område</span>
         <h2 id="ov-rubrik">{rubrik}</h2>
         <p className="ov-ingress">{typ ? <>Du har valt <b>{typ}</b>. Välj område, så ser du var.</> : <>Välj område först, så ser du {vad} där.</>}</p>
-        <div className="sk-val">
-          {omraden.map(o => (
-            <button key={o.namn} type="button" className={valt === o.namn ? 'pa' : undefined} onClick={() => setValt(o.namn)}>
-              {o.namn} · {o.platser.length}
-            </button>
-          ))}
-        </div>
+        {KUSTER.map(k => {
+          const iKusten = omraden.filter(o => kustFor(o.namn) === k)
+          if (iKusten.length === 0) return null
+          return (
+            <div key={k}>
+              <div className="sk-kust">{k}</div>
+              <div className="sk-val">
+                {iKusten.map(o => (
+                  <button key={o.namn} type="button" className={[valt === o.namn ? 'pa' : '', o.platser.length === 0 ? 'tom' : ''].join(' ').trim() || undefined} onClick={() => setValt(o.namn)}>
+                    {o.namn} · {o.platser.length}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )
+        })}
 
         {bild && (
           <figure className="sk-foto ov-foto">
