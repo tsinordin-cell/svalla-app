@@ -48,16 +48,8 @@ export const MENY: MenyPunkt[] = [
     href: '/aktiviteter', text: 'Se & göra',
     aktivFor: ['/aktiviteter', '/aktivitet', '/bastu-och-bad', '/vandring-och-natur', '/segelkurs', '/vinter', '/sommar', '/host', '/upplevelser'],
     grupper: [
-      { rubrik: 'Aktiviteter', lankar: [
-        { href: '/aktiviteter', text: 'Alla aktiviteter' },
-        { href: '/aktiviteter?typ=Bad', text: 'Bad' },
-        { href: '/aktiviteter?typ=Bastu', text: 'Bastu' },
-        { href: '/aktiviteter?typ=Vandring', text: 'Vandring' },
-        { href: '/aktiviteter?typ=Kajak%20och%20paddling', text: 'Kajak och paddling' },
-        { href: '/aktiviteter?typ=Segling', text: 'Segling' },
-        { href: '/aktiviteter?typ=Fiske', text: 'Fiske' },
-        { href: '/aktiviteter?typ=Cykling', text: 'Cykling' },
-      ] },
+      // Max 2026-11-19: "Alla aktiviteter" räcker. Typ och område väljs på sidan.
+      { rubrik: 'Aktiviteter', lankar: [{ href: '/aktiviteter', text: 'Alla aktiviteter' }] },
       { rubrik: 'Kurser och turer', lankar: [
         { href: '/segelkurs', text: 'Segelkurser' },
         { href: '/upplevelser?kategori=guidade', text: 'Guidade turer' },
