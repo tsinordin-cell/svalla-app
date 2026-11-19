@@ -274,12 +274,12 @@ export async function GET(
  display: 'flex', alignItems: 'center', justifyContent: 'center',
  position: 'relative', overflow: 'hidden',
  }}>
- {/* Radial glow */}
- <div style={{
+ {/* Radial glow (inte över foto: gav en synlig skarv mitt i bilden) */}
+ {!foto && <div style={{
  position: 'absolute', inset: 0,
  background: 'radial-gradient(circle at 50% 50%, rgba(30,100,180,0.22) 0%, transparent 70%)',
  display: 'flex',
- }} />
+ }} />}
 
  {routePath ? (
  /* Route SVG */
@@ -305,18 +305,17 @@ export async function GET(
  <svg width={120} height={120} viewBox="0 0 24 24" fill="rgba(255,255,255,0.18)" opacity={0.6}>{boatShapes}</svg>
  )}
 
- {/* Right edge fade */}
- <div style={{
+ {/* Kantfaderna hör till kartpanelen; över foto blir de en skarv */}
+ {!foto && <div style={{
  position: 'absolute', top: 0, right: 0, bottom: 0, width: 60,
  background: 'linear-gradient(to right, transparent, rgba(8,24,40,0.95))',
  display: 'flex',
- }} />
- {/* Left edge fade */}
- <div style={{
+ }} />}
+ {!foto && <div style={{
  position: 'absolute', top: 0, left: 0, bottom: 0, width: 40,
  background: 'linear-gradient(to left, transparent, rgba(8,24,40,0.7))',
  display: 'flex',
- }} />
+ }} />}
  </div>
  </div>
  ),
