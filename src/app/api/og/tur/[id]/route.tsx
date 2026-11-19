@@ -17,12 +17,14 @@ export const revalidate = 3600 // 1 h: sociala medier cachar OG-bilder länge ä
  * rutten i orange, svalla.se i sidfoten. Turens foto ligger som en panel till
  * höger (roterad enligt EXIF via hamtaFoto; satori struntar i EXIF), rutten
  * ritas där när foto saknas, och utan båda får panelen bara havsgradienten.
+ * Samma kväll: fotot fyller hela bilden med toning från vänster och nerifrån
+ * (Tom: "inte tillräckligt snyggt" med fotot som panel), loggan på platta över foto.
  */
 
 const W = 1200
 const H = 630
 const MARG = 56
-const FOTO_B = 520
+const FOTO_B = 520 // högerpanelens bredd för rutt och segel
 const FONT = 'Inter, system-ui, sans-serif'
 const SERIF = 'Playfair Display, Georgia, serif'
 const ORANGE = '#ff5c2e'
@@ -70,11 +72,11 @@ export async function GET(
   const fotoUrl = typeof trip?.image === 'string' ? trip.image : null
   const [fonts, foto] = await Promise.all([
     ogTypsnitt(),
-    fotoUrl ? hamtaFoto(fotoUrl, FOTO_B, H) : Promise.resolve(null),
+    fotoUrl ? hamtaFoto(fotoUrl, W, H) : Promise.resolve(null),
   ])
 
   // Rubrikstorlek efter längd; Playfair är bred.
-  const rubrikStorlek = plats.length > 30 ? 40 : plats.length > 20 ? 48 : 58
+  const rubrikStorlek = plats.length > 30 ? 46 : plats.length > 20 ? 56 : 68
   const under = [bat, datum].filter(Boolean) as string[]
 
   // Rutten i högerpanelen när foto saknas.
@@ -89,13 +91,13 @@ export async function GET(
         <div style={{ position: 'absolute', left: 0, top: 0, width: W, height: H, display: 'flex', background: 'linear-gradient(165deg, #091522 0%, #0d2038 45%, #0b2a3d 70%, #060e18 100%)' }} />
         <div style={{ position: 'absolute', left: 0, top: 0, width: W, height: H, display: 'flex', background: 'radial-gradient(ellipse 60% 70% at 78% 45%, rgba(30,110,150,0.26) 0%, rgba(30,110,150,0) 70%)' }} />
 
-        {/* Högerpanel: foto, annars rutt */}
+        {/* Fotot i hela bilden med mörk toning från vänster och nerifrån, som storykortet */}
         {foto ? (
-          <div style={{ position: 'absolute', left: W - FOTO_B, top: 0, width: FOTO_B, height: H, display: 'flex' }}>
+          <div style={{ position: 'absolute', left: 0, top: 0, width: W, height: H, display: 'flex' }}>
             {/* eslint-disable-next-line @next/next/no-img-element -- satori renderar bara <img> */}
-            <img src={foto} alt="" width={FOTO_B} height={H} style={{ width: FOTO_B, height: H, objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', left: 0, top: 0, width: 260, height: H, display: 'flex', background: `linear-gradient(to right, ${NATT} 0%, rgba(6,14,24,0.85) 30%, rgba(6,14,24,0) 100%)` }} />
-            <div style={{ position: 'absolute', left: 0, top: 0, width: FOTO_B, height: H, display: 'flex', background: 'linear-gradient(to bottom, rgba(6,14,24,0.35) 0%, rgba(6,14,24,0) 30%, rgba(6,14,24,0) 60%, rgba(6,14,24,0.55) 100%)' }} />
+            <img src={foto} alt="" width={W} height={H} style={{ width: W, height: H, objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', left: 0, top: 0, width: W, height: H, display: 'flex', background: 'linear-gradient(90deg, rgba(6,14,24,0.86) 0%, rgba(6,14,24,0.62) 34%, rgba(6,14,24,0.18) 64%, rgba(6,14,24,0.04) 100%)' }} />
+            <div style={{ position: 'absolute', left: 0, top: 0, width: W, height: H, display: 'flex', background: 'linear-gradient(to bottom, rgba(6,14,24,0.45) 0%, rgba(6,14,24,0) 28%, rgba(6,14,24,0) 48%, rgba(6,14,24,0.86) 100%)' }} />
           </div>
         ) : d ? (
           <svg width={RW} height={RH} viewBox={`0 0 ${RW} ${RH}`} style={{ position: 'absolute', left: W - FOTO_B + 40, top: 70 }}>
@@ -117,10 +119,10 @@ export async function GET(
 
         {/* Vänsterpanel */}
         <div style={{ position: 'absolute', left: MARG, top: 48, display: 'flex' }}>
-          <Logga storlek={26} />
+          <Logga storlek={26} pill={!!foto} />
         </div>
 
-        <div style={{ position: 'absolute', left: MARG, bottom: 52, width: foto ? W - FOTO_B - MARG + 60 : W - FOTO_B - MARG + 20, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+        <div style={{ position: 'absolute', left: MARG, bottom: 52, width: foto ? W - 2 * MARG : W - FOTO_B - MARG + 20, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <div style={{
             fontFamily: SERIF, fontSize: rubrikStorlek, fontWeight: 700, color: '#fff',
             lineHeight: 1.08, letterSpacing: -1, display: 'flex',
@@ -132,13 +134,13 @@ export async function GET(
               {under.map((u, i) => (
                 <div key={u} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   {i > 0 ? <div style={{ width: 4, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.45)', display: 'flex' }} /> : null}
-                  <div style={{ fontFamily: FONT, fontSize: 20, fontWeight: 500, color: 'rgba(255,255,255,0.74)', display: 'flex' }}>{u}</div>
+                  <div style={{ fontFamily: FONT, fontSize: 23, fontWeight: 500, color: 'rgba(255,255,255,0.80)', display: 'flex' }}>{u}</div>
                 </div>
               ))}
               {magisk ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                   {under.length > 0 ? <div style={{ width: 4, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.45)', display: 'flex' }} /> : null}
-                  <div style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: BARNSTEN, display: 'flex' }}>Magisk tur</div>
+                  <div style={{ fontFamily: FONT, fontSize: 23, fontWeight: 700, color: BARNSTEN, display: 'flex' }}>Magisk tur</div>
                 </div>
               ) : null}
             </div>
