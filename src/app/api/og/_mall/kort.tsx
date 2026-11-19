@@ -57,6 +57,11 @@ export type OgKort = {
   hoger?: ReactElement | null
   /** Adressen i sidfoten. */
   adress?: string
+  /**
+   * Fotografens namn och licens, t.ex. "Foto: Rosser1954 · CC BY-SA 3.0 · Wikimedia Commons".
+   * Krävs för Commons-bilder (licensvillkor, inte artighet). Visas nere till höger.
+   */
+  fotokredit?: string | null
 }
 
 /**
@@ -73,7 +78,8 @@ export async function ogFoto(url: string | null | undefined): Promise<string | n
   try {
     const ctrl = new AbortController()
     const t = setTimeout(() => ctrl.abort(), 6000)
-    const res = await fetch(u, { signal: ctrl.signal, cache: 'no-store' })
+    // Wikimedia vill ha ett eget User-Agent; övriga värdar bryr sig inte.
+    const res = await fetch(u, { signal: ctrl.signal, cache: 'no-store', headers: { 'User-Agent': 'Svalla/1.0 (+https://svalla.se)' } })
     clearTimeout(t)
     if (!res.ok || !(res.headers.get('content-type') ?? '').startsWith('image/')) return null
     const ab = await res.arrayBuffer()
@@ -270,6 +276,14 @@ export async function ritaOgKort(k: OgKort, init?: { status?: number; headers?: 
             <div style={{ fontFamily: FONT, fontSize: 18, fontWeight: 700, letterSpacing: 1, color: 'rgba(246,178,107,0.9)', display: 'flex' }}>{adress}</div>
           </div>
         </div>
+
+        {foto && k.fotokredit ? (
+          <div style={{
+            position: 'absolute', right: 20, bottom: 16, display: 'flex',
+            fontFamily: FONT, fontSize: 13, fontWeight: 500, color: 'rgba(255,255,255,0.78)',
+            background: 'rgba(6,14,24,0.55)', borderRadius: 6, paddingLeft: 8, paddingRight: 8, paddingTop: 3, paddingBottom: 3,
+          }}>{kapa(k.fotokredit, 90)}</div>
+        ) : null}
       </div>
     ),
     { ...OG_STORLEK, fonts, ...(init ?? {}) },
