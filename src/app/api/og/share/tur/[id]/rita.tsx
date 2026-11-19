@@ -177,7 +177,7 @@ export async function morkKarta(pts: Punkt[]): Promise<MorkKarta> {
 /** Värden för Svallas Supabase-lagring, ur miljön (samma som klienten använder). */
 const LAGRINGSVARD = (() => { try { return new URL(process.env.NEXT_PUBLIC_SUPABASE_URL ?? '').hostname } catch { return '' } })() || 'oiklttwylndesewauytj.supabase.co'
 
-export async function hamtaFoto(url: string): Promise<string | null> {
+export async function hamtaFoto(url: string, bredd = W, hojd = H): Promise<string | null> {
   // Bara bilder ur Svallas egen lagring. trips.image kan ägaren skriva fritt
   // (RLS trips_update_own), och servern ska inte hämta godtyckliga adresser
   // eller avkoda hur stora filer som helst (granskning 2026-10-29).
@@ -196,7 +196,7 @@ export async function hamtaFoto(url: string): Promise<string | null> {
     if (ab.byteLength > 15 * 1024 * 1024) return null
     const buf = await sharp(Buffer.from(ab), { limitInputPixels: 50_000_000 })
       .rotate()
-      .resize(W, H, { fit: 'cover', position: 'centre' })
+      .resize(bredd, hojd, { fit: 'cover', position: 'centre' })
       .jpeg({ quality: 86, mozjpeg: true })
       .toBuffer()
     return `data:image/jpeg;base64,${buf.toString('base64')}`
