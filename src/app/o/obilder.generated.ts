@@ -1072,8 +1072,248 @@ export const OBILDER: Record<string, Obild> = {
     "licens": "CC BY 2.5",
     "licensUrl": "https://creativecommons.org/licenses/by/2.5",
     "kalla": "https://commons.wikimedia.org/wiki/File:Mal%C3%B6ren_-_KMB_-_16000300023810.jpg"
+  },
+  "arkosund": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Ark%C3%B6sund.jpg/1280px-Ark%C3%B6sund.jpg",
+    "bredd": 1200,
+    "hojd": 850,
+    "ar": 2006,
+    "fotograf": "Gustavb",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Ark%C3%B6sund.jpg"
+  },
+  "furon": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f1/Furo_lotsstuga.jpg/1280px-Furo_lotsstuga.jpg",
+    "bredd": 1200,
+    "hojd": 758,
+    "ar": 2010,
+    "fotograf": "Anchor2009",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Furo_lotsstuga.jpg"
+  },
+  "misterhult": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Furon.JPG/1280px-Furon.JPG",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2010,
+    "fotograf": "Anchor2009",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Furon.JPG"
+  },
+  "runno": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Runn%C3%B6_1.jpg/1280px-Runn%C3%B6_1.jpg",
+    "bredd": 1200,
+    "hojd": 750,
+    "ar": 2013,
+    "fotograf": "Anchor2009",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Runn%C3%B6_1.jpg"
+  },
+  "limon": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Lim%C3%B6n23.JPG/1280px-Lim%C3%B6n23.JPG",
+    "bredd": 1200,
+    "hojd": 763,
+    "ar": 2012,
+    "fotograf": "Einarspetz",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Lim%C3%B6n23.JPG"
+  },
+  "agon": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Ag%C3%B6hamn21500001410679.jpg/1280px-Ag%C3%B6hamn21500001410679.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2005,
+    "fotograf": "Daniel Olsson, Länsmuseet Gävleborg",
+    "licens": "CC BY-SA 2.5",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Ag%C3%B6hamn21500001410679.jpg"
+  },
+  "kuggorarna": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5e/Kugg%C3%B6rarna.jpg/1280px-Kugg%C3%B6rarna.jpg",
+    "bredd": 1200,
+    "hojd": 575,
+    "ar": 2009,
+    "fotograf": "Iin208",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Kugg%C3%B6rarna.jpg"
+  },
+  "rodkallen": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/R%C3%B6dkallen.jpg/1280px-R%C3%B6dkallen.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2004,
+    "fotograf": "Marcusroos",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:R%C3%B6dkallen.jpg"
+  },
+  "hallands-vadero": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/0133Hallands_V%C3%A4der%C3%B6_naturreservat.jpg/1280px-0133Hallands_V%C3%A4der%C3%B6_naturreservat.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2019,
+    "fotograf": "L.G.foto",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:0133Hallands_V%C3%A4der%C3%B6_naturreservat.jpg"
+  },
+  "nidingen": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Nidingen.jpg/1280px-Nidingen.jpg",
+    "bredd": 1200,
+    "hojd": 806,
+    "ar": 2013,
+    "fotograf": "L.G.foto",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Nidingen.jpg"
+  },
+  "vendelso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/11/Vendels%C3%B6_2011_-_Fr%C3%A5n_havet.jpg/1280px-Vendels%C3%B6_2011_-_Fr%C3%A5n_havet.jpg",
+    "bredd": 1200,
+    "hojd": 614,
+    "ar": 2011,
+    "fotograf": "Green Yoshi",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Vendels%C3%B6_2011_-_Fr%C3%A5n_havet.jpg"
+  },
+  "djuro-nationalpark": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Utsikt_mot_Timmerholmarna_Djur%C3%B6.jpg/1280px-Utsikt_mot_Timmerholmarna_Djur%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2014,
+    "fotograf": "Torbjörn Einarsson from Stockholm, Sweden",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Utsikt_mot_Timmerholmarna_Djur%C3%B6.jpg"
+  },
+  "brommo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Bromm%C3%B6_fr%C3%A5n_Tors%C3%B6.JPG/1280px-Bromm%C3%B6_fr%C3%A5n_Tors%C3%B6.JPG",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2012,
+    "fotograf": "ChrisPsi",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Bromm%C3%B6_fr%C3%A5n_Tors%C3%B6.JPG"
+  },
+  "luro": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Skulptur_lur%C3%B6.jpg/1280px-Skulptur_lur%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 750,
+    "ar": 2009,
+    "fotograf": "Enricokamasa",
+    "licens": "Public domain",
+    "licensUrl": null,
+    "kalla": "https://commons.wikimedia.org/wiki/File:Skulptur_lur%C3%B6.jpg"
+  },
+  "kallandso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/L%C3%A4ck%C3%B6_slott%2C_den_13_juli_2006%2C_bild_1.JPG/1280px-L%C3%A4ck%C3%B6_slott%2C_den_13_juli_2006%2C_bild_1.JPG",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2006,
+    "fotograf": "Harri Blomberg",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "kalla": "https://commons.wikimedia.org/wiki/File:L%C3%A4ck%C3%B6_slott,_den_13_juli_2006,_bild_1.JPG"
+  },
+  "utklippan": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Kustbilder_f%C3%B6r_LST_Utklippan345.jpg/1280px-Kustbilder_f%C3%B6r_LST_Utklippan345.jpg",
+    "bredd": 1200,
+    "hojd": 798,
+    "ar": 2008,
+    "fotograf": "L.G.foto",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Kustbilder_f%C3%B6r_LST_Utklippan345.jpg"
+  },
+  "tarno": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Tarno2.JPG/1280px-Tarno2.JPG",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2004,
+    "fotograf": "Patrik Nylin",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Tarno2.JPG"
+  },
+  "hastholmen-ytteron": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Senoren_-_G%C3%A5sefj%C3%A4rden_-_Ytter%C3%B6n.JPG/1280px-Senoren_-_G%C3%A5sefj%C3%A4rden_-_Ytter%C3%B6n.JPG",
+    "bredd": 1200,
+    "hojd": 797,
+    "ar": 2010,
+    "fotograf": "Boatbuilder",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Senoren_-_G%C3%A5sefj%C3%A4rden_-_Ytter%C3%B6n.JPG"
+  },
+  "stora-karlso": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Excursion_to_Stora_Karls%C3%B6.jpg/1280px-Excursion_to_Stora_Karls%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 834,
+    "ar": 1996,
+    "fotograf": "N Stjerna",
+    "licens": "CC BY 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Excursion_to_Stora_Karls%C3%B6.jpg"
+  },
+  "furilden": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Abandoned_limestone_quarry_on_Furilden_Gotland_1.jpg/1280px-Abandoned_limestone_quarry_on_Furilden_Gotland_1.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2006,
+    "fotograf": "W.carter / Ann-Sophie Qvarnström",
+    "licens": "CC BY-SA 2.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Abandoned_limestone_quarry_on_Furilden_Gotland_1.jpg"
+  },
+  "asunden": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Asunden_02.jpg/1280px-Asunden_02.jpg",
+    "bredd": 1200,
+    "hojd": 900,
+    "ar": 2011,
+    "fotograf": "Jonaldos",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Asunden_02.jpg"
+  },
+  "langviksskaret": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Hummelsk%C3%A4r-S%C3%B6der%C3%B6.jpg/1280px-Hummelsk%C3%A4r-S%C3%B6der%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 750,
+    "ar": 2012,
+    "fotograf": "Esquilo",
+    "licens": "CC BY-SA 3.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Hummelsk%C3%A4r-S%C3%B6der%C3%B6.jpg"
+  },
+  "rago": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/0012R%C3%A5g%C3%B6.jpg/1280px-0012R%C3%A5g%C3%B6.jpg",
+    "bredd": 1200,
+    "hojd": 800,
+    "ar": 2020,
+    "fotograf": "L.G.foto",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:0012R%C3%A5g%C3%B6.jpg"
+  },
+  "sturko": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Sturk%C3%B6_kyrka_Exteri%C3%B6r_005.jpg/1280px-Sturk%C3%B6_kyrka_Exteri%C3%B6r_005.jpg",
+    "bredd": 1200,
+    "hojd": 998,
+    "ar": 2017,
+    "fotograf": "Bernt Fransson,Lindås",
+    "licens": "CC BY-SA 4.0",
+    "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "kalla": "https://commons.wikimedia.org/wiki/File:Sturk%C3%B6_kyrka_Exteri%C3%B6r_005.jpg"
   }
 }
 
 /** Öar med ett publicerbart foto. */
-export const OAR_MED_BILD = 105
+export const OAR_MED_BILD = 129
