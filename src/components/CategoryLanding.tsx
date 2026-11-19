@@ -1,4 +1,5 @@
 import SidHuvud from '@/components/SidHuvud'
+import Gardiner from '@/components/Gardiner'
 import Link from 'next/link'
 import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -283,7 +284,8 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  lineHeight: 1.7,
  }}
  >
- {deeperContent}
+ {/* FÖRHANDSVISNING 2026-11-19: varje H2-avsnitt blir en gardin, samma avstånd överallt (Max). */}
+ <Gardiner>{deeperContent}</Gardiner>
  </section>
  )}
 
