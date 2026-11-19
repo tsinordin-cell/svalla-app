@@ -1,5 +1,6 @@
 'use client'
 /**
+ * Rullgardinerna har exakt startsidans utseende (mörk panel, en kolumn, orange rubriker).
  * SidHuvud: samma blå sidhuvud på alla publika undersidor (Claes 2026-11-15).
  * FÖRHANDSVISNING 2026-11-19: menyn kommer från src/lib/meny.ts, samma lista som
  * startsidan använder. På dator: rullgardiner. I mobil: knappen Meny öppnar en
@@ -7,9 +8,9 @@
  */
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useState } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
-import { MENY, MITT_SVALLA, antalKolumner, harOversikt, type MenyPunkt } from '@/lib/meny'
+import { MENY, MITT_SVALLA, type MenyPunkt } from '@/lib/meny'
 
 export default function SidHuvud() {
   const path = usePathname() ?? ''
@@ -38,9 +39,10 @@ export default function SidHuvud() {
                 {m.text}<span className="pil" aria-hidden>▾</span>
               </Link>
               <div className="sidhuvud-panel">
-                <div className={antalKolumner(m) > 1 ? 'sidhuvud-panel-inre flera' : 'sidhuvud-panel-inre'} style={antalKolumner(m) > 1 ? ({ '--kol': antalKolumner(m) } as CSSProperties) : undefined}>
+                <div className="sidhuvud-panel-inre">
                   {m.grupper.map((g, i) => (
-                    <div key={i} className={i === 0 && harOversikt(m) ? 'sidhuvud-oversikt' : undefined}>
+                    <div key={i}>
+                      {i > 0 && <div className="sidhuvud-panel-linje" />}
                       {g.rubrik && <div className="sidhuvud-panel-rubrik">{g.rubrik}</div>}
                       {g.lankar.map(l => <Link key={l.href} href={l.href} aria-current={arSidan(l.href) ? 'page' : undefined}>{l.text}</Link>)}
                     </div>
@@ -57,8 +59,9 @@ export default function SidHuvud() {
           <Link href="/kom-igang" className="sidhuvud-knapp">Mitt Svalla<span className="pil" aria-hidden>▾</span></Link>
           <div className="sidhuvud-panel hoger">
             <div className="sidhuvud-panel-inre">
-              {MITT_SVALLA.map(g => (
+              {MITT_SVALLA.map((g, i) => (
                 <div key={g.rubrik}>
+                  {i > 0 && <div className="sidhuvud-panel-linje" />}
                   <div className="sidhuvud-panel-rubrik">{g.rubrik}</div>
                   {g.lankar.map(l => <Link key={l.href} href={l.href}>{l.text}</Link>)}
                 </div>
@@ -102,14 +105,11 @@ export default function SidHuvud() {
         .sidhuvud-punkt>a .pil{font-size:9px;opacity:.55}
         .sidhuvud-punkt>a:hover,.sidhuvud-punkt:focus-within>a{color:#fff;background:rgba(255,255,255,.08)}
         .sidhuvud-punkt>a.aktiv{color:#fff;background:rgba(255,255,255,.14)}
-        .sidhuvud-panel{position:absolute;top:100%;left:0;padding-top:8px;display:none;z-index:50}
-        .sidhuvud-punkt:hover .sidhuvud-panel,.sidhuvud-punkt:focus-within .sidhuvud-panel{display:block}
-        .sidhuvud-panel.hoger{left:auto;right:0}
-        .sidhuvud-panel-inre{background:rgba(10,28,40,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.45);padding:10px;min-width:240px}
-        .sidhuvud-panel-inre.flera{display:grid;grid-template-columns:repeat(var(--kol,3),max-content);column-gap:6px}
-        .sidhuvud-panel-inre:not(.flera)>div+div{border-top:1px solid rgba(255,255,255,.08);margin-top:6px}
-        .sidhuvud-panel-inre.flera .sidhuvud-oversikt{grid-column:1/-1;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:4px;margin-bottom:2px}
-        .sidhuvud-oversikt a{font-weight:700!important;color:#fff!important}
+        .sidhuvud-panel{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(-4px);padding-top:10px;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:50}
+        .sidhuvud-punkt:hover .sidhuvud-panel,.sidhuvud-punkt:focus-within .sidhuvud-panel{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+        .sidhuvud-panel.hoger,.sidhuvud-punkt:hover .sidhuvud-panel.hoger,.sidhuvud-punkt:focus-within .sidhuvud-panel.hoger{left:auto;right:0;transform:none}
+        .sidhuvud-panel-inre{background:rgba(10,28,40,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.45);padding:10px;min-width:240px;max-height:calc(100vh - 100px);overflow-y:auto;overscroll-behavior:contain}
+        .sidhuvud-panel-linje{height:1px;background:rgba(255,255,255,.08);margin:6px 8px}
         .sidhuvud-panel-rubrik{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e8924a;padding:10px 14px 4px;white-space:nowrap}
         .sidhuvud-panel-inre a{display:block;color:rgba(255,255,255,.82);text-decoration:none;font-size:13.5px;font-weight:500;letter-spacing:.01em;padding:9px 14px;border-radius:8px;white-space:nowrap;transition:background .14s,color .14s}
         .sidhuvud-panel-inre a:hover,.sidhuvud-panel-inre a:focus{background:rgba(255,255,255,.07);color:#fff;outline:none}

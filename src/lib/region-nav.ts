@@ -19,7 +19,8 @@ export function byggRegionNav(namn: string, oar: (string | Island)[], guideSlugs
   return {
     namn,
     bild: forsta ? bildFor(forsta.slug, forsta.name) : undefined,
-    oar: lista.map(o => ({ slug: o.slug, name: o.name, tagline: o.tagline, bild: bildFor(o.slug, o.name) })),
+    // Regionen själv (till exempel ösidan Gotland i regionen Gotland) visas inte bland sina egna öar.
+    oar: lista.filter(o => o.name !== namn && !namn.startsWith(o.name + ' ')).map(o => ({ slug: o.slug, name: o.name, tagline: o.tagline, bild: bildFor(o.slug, o.name) })),
     guider: guider.map(g => ({ slug: g.slug, title: g.title, excerpt: g.excerpt })),
     hamnar: lista.flatMap(o => (o.harbors ?? []).map(h => ({ name: h.name, o: o.name, oSlug: o.slug, href: `/o/${o.slug}/hamnar` }))),
     krogar: lista.flatMap(o => (o.restaurants ?? []).map(r => ({ name: r.name, typ: r.type, o: o.name, oSlug: o.slug, href: `/o/${o.slug}/restauranger` }))),
