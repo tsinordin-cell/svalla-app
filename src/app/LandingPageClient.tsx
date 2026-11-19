@@ -633,7 +633,17 @@ const LANDING_HTML = `
  <a href="/guider/midsommar-skargarden" class="nav-dd-link">Midsommar i skärgården</a>
  <a href="/guider/packlista-skargarden" class="nav-dd-link">Packlista för skärgården</a>
  <a href="/guider/allemansratten-pa-sjon" class="nav-dd-link">Allemansrätten på sjön</a>
- <a href="/forum" class="nav-dd-link">Forum: fråga andra</a>
+ </div></div>
+ </li>
+ <li class="nav-dropdown">
+ <a href="/forum">Forum</a>
+ <div class="nav-dd-panel"><div class="nav-dd-inner">
+ <a href="/forum" class="nav-dd-link">Alla diskussioner</a>
+ <a href="/forum/segling" class="nav-dd-link">Segling</a>
+ <a href="/forum/motorbat" class="nav-dd-link">Motorbåt</a>
+ <a href="/forum/nyborjare" class="nav-dd-link">Nybörjare</a>
+ <a href="/forum/hamnar-bryggor" class="nav-dd-link">Hamnar och bryggor</a>
+ <a href="/forum/loppis" class="nav-dd-link">Loppis</a>
  </div></div>
  </li>
  </ul>
@@ -642,8 +652,20 @@ const LANDING_HTML = `
  <button class="nav-hamburger" id="navHamburger" aria-label="Öppna meny">
  <span></span><span></span><span></span>
  </button>
- <a href="/logga-in" class="btn btn-ghost">Logga in</a>
- <a href="/kom-igang" class="btn btn-accent">Kom igång &rarr;</a>
+ <div class="nav-dropdown" style="position:relative;list-style:none">
+ <a href="/feed" class="btn btn-accent">Mitt Svalla</a>
+ <div class="nav-dd-panel" style="left:auto;right:0;transform:none"><div class="nav-dd-inner">
+ <div class="nav-dd-section">Kräver gratis konto</div>
+ <a href="/feed" class="nav-dd-link">Flöde</a>
+ <a href="/sparade" class="nav-dd-link">Sparade öar</a>
+ <a href="/logga" class="nav-dd-link">Logga en tur</a>
+ <a href="/profil" class="nav-dd-link">Profil och mina turer</a>
+ <div class="nav-dd-divider"></div>
+ <div class="nav-dd-section">Konto</div>
+ <a href="/logga-in" class="nav-dd-link">Logga in</a>
+ <a href="/kom-igang" class="nav-dd-link">Skapa gratis konto</a>
+ </div></div>
+ </div>
  </div>
 </nav>
 <div class="mob-drawer-overlay" id="mobOverlay"></div>

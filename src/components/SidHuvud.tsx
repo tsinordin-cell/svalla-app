@@ -216,8 +216,7 @@ const MENY: { href: string; text: string; aktivFor: string[]; grupper: [string, 
   "href": "/guider",
   "text": "Guider",
   "aktivFor": [
-   "/guider",
-   "/forum"
+   "/guider"
   ],
   "grupper": [
    [
@@ -238,10 +237,44 @@ const MENY: { href: string; text: string; aktivFor: string[]; grupper: [string, 
      [
       "/guider/allemansratten-pa-sjon",
       "Allemansrätten på sjön"
-     ],
+     ]
+    ]
+   ]
+  ]
+ },
+ {
+  "href": "/forum",
+  "text": "Forum",
+  "aktivFor": [
+   "/forum"
+  ],
+  "grupper": [
+   [
+    "",
+    [
      [
       "/forum",
-      "Forum: fråga andra"
+      "Alla diskussioner"
+     ],
+     [
+      "/forum/segling",
+      "Segling"
+     ],
+     [
+      "/forum/motorbat",
+      "Motorbåt"
+     ],
+     [
+      "/forum/nyborjare",
+      "Nybörjare"
+     ],
+     [
+      "/forum/hamnar-bryggor",
+      "Hamnar och bryggor"
+     ],
+     [
+      "/forum/loppis",
+      "Loppis"
      ]
     ]
    ]
@@ -278,9 +311,20 @@ export default function SidHuvud() {
         <form action="/sok" method="get" role="search" className="sidhuvud-sok">
           <input type="search" name="q" placeholder="Sök ö, hamn eller krog" aria-label="Sök på Svalla" />
         </form>
-        <div className="sidhuvud-konto">
-          <Link href="/logga-in" className="sidhuvud-logga-in">Logga in</Link>
-          <Link href="/kom-igang" className="sidhuvud-knapp">Kom igång →</Link>
+        <div className="sidhuvud-konto sidhuvud-punkt">
+          <Link href="/feed" className="sidhuvud-knapp">Mitt Svalla</Link>
+          <div className="sidhuvud-panel hoger">
+            <div className="sidhuvud-panel-inre">
+              <div className="sidhuvud-panel-rubrik">Kräver gratis konto</div>
+              <Link href="/feed">Flöde</Link>
+              <Link href="/sparade">Sparade öar</Link>
+              <Link href="/logga">Logga en tur</Link>
+              <Link href="/profil">Profil och mina turer</Link>
+              <div className="sidhuvud-panel-rubrik" style={{ marginTop: 6 }}>Konto</div>
+              <Link href="/logga-in">Logga in</Link>
+              <Link href="/kom-igang">Skapa gratis konto</Link>
+            </div>
+          </div>
         </div>
       </div>
       <style>{`
@@ -303,6 +347,7 @@ export default function SidHuvud() {
         .sidhuvud-sok input::placeholder{color:rgba(255,255,255,.7)}
         .sidhuvud-sok input:focus{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
         .sidhuvud-konto{display:flex;align-items:center;gap:6px;flex-shrink:0}
+        .sidhuvud-panel.hoger{left:auto;right:0}
         .sidhuvud-logga-in{color:rgba(255,255,255,.85);text-decoration:none;font-size:13px;font-weight:600;padding:8px 10px}
         .sidhuvud-knapp{background:#c96e2a;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:999px;white-space:nowrap}
         @media (max-width:1100px){
