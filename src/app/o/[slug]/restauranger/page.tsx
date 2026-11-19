@@ -6,6 +6,7 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Vidareklick from '@/components/Vidareklick'
 import IslandPlacesList from '@/components/IslandPlacesList'
 import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
+import { ogO } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -38,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: `Restauranger, krogar, barer och kaféer på ${island.name}, med beskrivning och länk till varje ställe.`,
     keywords: [`${island.name.toLowerCase()} restaurang`, `${island.name.toLowerCase()} krog`, `${island.name.toLowerCase()} café`, `mat på ${island.name.toLowerCase()}`],
     openGraph: {
+      images: ogO(island.slug),
       title: `Restauranger på ${island.name}`,
       description: `Restauranger, krogar och kaféer på ${island.name}.`,
       url: `https://svalla.se/o/${slug}/restauranger`,

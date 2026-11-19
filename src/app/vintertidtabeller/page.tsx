@@ -3,6 +3,7 @@ import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 /**
  * /vintertidtabeller: vinterns båttidtabeller samlade, och ett skäl att lämna
@@ -44,6 +45,7 @@ export const metadata: Metadata = {
     'Höstens tidtabeller för Waxholmsbolaget och Styrsöbolaget gäller till 12 december. Vinterns är inte publicerade än. Här är vad som gäller nu, och vi mejlar länkarna när de kommer.',
   alternates: { canonical: 'https://svalla.se/vintertidtabeller' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Vintertidtabeller 2026/27 för skärgårdsbåtarna',
     description: 'Vad som gäller nu, när höstens tabeller tar slut och hur du får vinterns så fort de publiceras.',
     url: 'https://svalla.se/vintertidtabeller',

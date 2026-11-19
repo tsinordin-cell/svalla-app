@@ -2,12 +2,14 @@ import type { Metadata } from 'next'
 import { preconnect, preload } from 'react-dom'
 import UpptackLoader from './UpptackLoader'
 import { PLATSDATA_URL } from './platsdata'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Utforska skärgården',
   description: 'Utforska bryggor, krogar, naturhamnar och populära seglarleder i skärgården.',
   alternates: { canonical: 'https://svalla.se/upptack' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Utforska skärgården | Svalla',
     description: 'Utforska bryggor, krogar, naturhamnar och populära seglarleder i skärgården.',
     url: 'https://svalla.se/upptack',

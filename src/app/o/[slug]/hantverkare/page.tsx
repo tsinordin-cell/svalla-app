@@ -6,6 +6,7 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Vidareklick from '@/components/Vidareklick'
 import HantverkarKort from '@/components/HantverkarKort'
 import Icon, { type IconName } from '@/components/Icon'
+import { ogO } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -60,6 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `sjötransport ${n.toLowerCase()}`,
     ],
     openGraph: {
+      images: ogO(island.slug),
       title: `Hantverkare och service på ${n}`,
       description: `Snickare, elektriker, rörmokare och sjötransport på ${n}.`,
       url: `https://svalla.se/o/${slug}/hantverkare`,

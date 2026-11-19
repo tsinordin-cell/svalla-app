@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { TEAMBUILDING_SUBS } from '../teambuilding-data'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -21,6 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: page.metaDescription,
     alternates: { canonical: `https://svalla.se/teambuilding/${slug}` },
     openGraph: {
+      images: OG_STANDARD,
       title: page.title,
       description: page.metaDescription,
       url: `https://svalla.se/teambuilding/${slug}`,

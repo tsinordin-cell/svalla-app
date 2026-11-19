@@ -6,12 +6,14 @@ import Link from 'next/link'
 import { SEASONS } from './sasong-data'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Skärgården året om: guider per säsong',
   description: 'Vad förändras i skärgården mellan vår, sommar, höst och vinter? Praktiska guider för varje säsong med tips, väder och öar att besöka.',
   alternates: { canonical: 'https://svalla.se/sasong' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Skärgården året om',
     description: 'Säsongsguider till svenska skärgården.',
     url: 'https://svalla.se/sasong',

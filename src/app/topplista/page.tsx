@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Metadata } from 'next'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 // ÄRLIGT DYNAMISK (2026-08-02): den här sidan deklarerade `revalidate` men
 // läser cookies/auth/searchParams, vilket tvingar dynamisk rendering — så
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
   title: 'Topplista',
   description: 'Veckans och alltidens bästa skärgårdsseglare. Se vem som seglat mest nautiska mil på Svalla.',
   openGraph: {
+    images: OG_STANDARD,
     title: 'Topplista | Svalla',
     description: 'Veckans bästa skärgårdsseglare',
     url: 'https://svalla.se/topplista',

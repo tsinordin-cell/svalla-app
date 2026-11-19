@@ -6,6 +6,7 @@ import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
 import { DAG_HUBS, dagIslands } from '@/lib/dagsplan'
 import UtflyktClient from './UtflyktClient'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 /**
  * /utflykt — "Din dag i skärgården" (2026-09-28).
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   description: 'Välj var du startar, vilken dag och vad du vill göra: bad, krog, barn, natur. Få öar som nås därifrån, restid från ösidan och båttider för dagen från Trafiklab, inklusive sista båten hem.',
   alternates: { canonical: 'https://svalla.se/utflykt' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Din dag i skärgården | Svalla',
     description: 'Välj start, dag och vad du vill göra. Få öar, restid och båttider för dagen.',
     url: 'https://svalla.se/utflykt',

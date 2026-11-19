@@ -10,6 +10,7 @@ import Link from 'next/link'
 import SvallaLogo from '@/components/SvallaLogo'
 import { KALLOR_PER_O } from '@/app/o/kallor.generated'
 import { OAR, ANTAL_OAR } from '@/app/o/island-data'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 /**
  * Källsiffrorna räknas fram ur kallor.generated.ts vid varje bygge, så de kan
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
   description: 'Svalla är en digital guide till svenska skärgården, byggd av skärgårdsälskare med stöd av Thorkel, vår AI-skeppare. Läs om hur vi samlar data, verifierar fakta och tänker kring innehållet.',
   alternates: { canonical: 'https://svalla.se/om' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Om Svalla',
     description: 'Byggt av skärgårdsälskare, för skärgårdsälskare. Med Thorkel som digital skeppare.',
     url: 'https://svalla.se/om',

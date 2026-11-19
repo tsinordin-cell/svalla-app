@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Skärgården på sommaren 2026: Guide & Tips',
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   keywords: ['skärgården sommar','sommarsemester skärgård','skärgård juli','skärgård juni','bästa tid skärgården','sommar stockholm skärgård','skärgård utan båt sommar','sandhamn sommar','utö sommar','grinda sommar'],
   alternates: { canonical: 'https://svalla.se/sommar' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Skärgården på sommaren 2026',
     description: 'Bästa öarna, krogar och badplatser. Planera din sommar i skärgården.',
     url: 'https://svalla.se/sommar',

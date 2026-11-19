@@ -114,7 +114,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  openGraph: {
  title: `${data.name} | Svalla`,
  description: desc,
- images: data.image_url ? [data.image_url] : [],
+ // Samma bild som platssidan /upptack (gemensam mall, 2026-11-19); tidigare råbilden eller ingen.
+ images: [{ url: `https://svalla.se/api/og/upptack/${encodeURIComponent(slug)}`, width: 1200, height: 630, alt: data.name }],
  },
  alternates: { canonical: `https://svalla.se/plats/${slug}` },
  }

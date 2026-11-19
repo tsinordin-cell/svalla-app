@@ -18,6 +18,7 @@ import { ALL_ISLANDS } from '../../o/island-data'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import EmailSignup from '@/components/EmailSignup'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -40,6 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     alternates: { canonical: `https://svalla.se/sasong/${slug}` },
     openGraph: {
+      images: OG_STANDARD,
       title: `Skärgården på ${season.name.toLowerCase()}en`,
       description: season.tagline,
       url: `https://svalla.se/sasong/${slug}`,

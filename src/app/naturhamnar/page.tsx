@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Naturhamnar i Stockholms skärgård: Ankringsguide',
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
     'allemansrätten segling',
   ],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Naturhamnar i Stockholms skärgård: Ankringsguide',
     description: 'Hitta de bästa naturhamnarna i Stockholms skärgård. Gratis ankring och skyddade vikar för seglare.',
     url: 'https://svalla.se/naturhamnar',

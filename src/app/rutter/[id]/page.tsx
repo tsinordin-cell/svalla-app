@@ -62,15 +62,14 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       url: `https://svalla.se/rutter/${id}`,
       type: 'website',
       locale: 'sv_SE',
-      images: data.cover_image
-        ? [{ url: data.cover_image, width: 1200, height: 630, alt: data.title }]
-        : [{ url: '/og-image.jpg', width: 1200, height: 630 }],
+      // Egen bild med rutten (2026-11-19): omslagen är stockbilder, inte platsen.
+      images: [{ url: `https://svalla.se/api/og/rutt/${id}`, width: 1200, height: 630, alt: data.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${data.title} | Svalla`,
       description: desc,
-      images: data.cover_image ? [data.cover_image] : ['/og-image.jpg'],
+      images: [`https://svalla.se/api/og/rutt/${id}`],
     },
   }
 }

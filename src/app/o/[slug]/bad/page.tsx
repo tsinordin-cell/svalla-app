@@ -6,6 +6,7 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon, { type IconName } from '@/components/Icon'
 import IslandPlacesList from '@/components/IslandPlacesList'
 import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
+import { ogO } from '@/lib/og-standard'
 
 // ISR: badplatserna ur platsdatabasen hämtas vid bygget och uppdateras varje timme.
 export const revalidate = 3600
@@ -45,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `${island.name.toLowerCase()} swim`,
     ],
     openGraph: {
+      images: ogO(island.slug),
       title: `Bada på ${island.name}, badplatser och stränder`,
       description: `Badplatser på och nära ${island.name}.`,
       url: `https://svalla.se/o/${slug}/bad`,
