@@ -49,7 +49,7 @@ const ITEMS: LandingItem[] = [
   {
     icon: 'ship',
     title: 'Fjäderholmarna',
-    description: 'Närmast Stockholm, cirka 25 min från Slussen med Fjäderholmslinjen. Flera restauranger och hantverksbutiker. Bra första skärgårdstur med små barn.',
+    description: 'Närmast Stockholm, cirka 25 min från Skeppsbron i Gamla stan med Fjäderholmslinjen. Flera restauranger och hantverksbutiker. Bra första skärgårdstur med små barn.',
     href: '/o/fjaderholmarna',
     meta: 'Närmast Stockholm',
   },
@@ -82,12 +82,12 @@ export default function BarnvanligaOarPage() {
  {
  '@type': 'Question',
  name: 'Vilken ö passar yngre barn (1 till 5 år) i skärgården?',
- acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är bra start för små barn, cirka 25 min från Strömkajen/Slussen. Vill du något längre bort är Grinda klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Fjäderholmarna är bra start för små barn, cirka 25 min med Fjäderholmslinjen från Skeppsbron i Gamla stan. Vill du något längre bort är Grinda klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus.' },
  },
  {
  '@type': 'Question',
  name: 'Hur reser man med barn till skärgården?',
- acceptedAnswer: { '@type': 'Answer', text: 'Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn och fler öar. Restider: cirka 25 min till Fjäderholmarna (Fjäderholmslinjen från Slussen), 1h 45 min till Grinda, 2,5 till 3 tim till Sandhamn. Åk när barnen är pigga.' },
+ acceptedAnswer: { '@type': 'Answer', text: 'Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn och fler öar. Restider: cirka 25 min till Fjäderholmarna (Fjäderholmslinjen från Skeppsbron i Gamla stan), 1h 45 min till Grinda, 2,5 till 3 tim till Sandhamn. Åk när barnen är pigga.' },
  },
  {
  '@type': 'Question',
@@ -128,9 +128,9 @@ export default function BarnvanligaOarPage() {
  <p>
  Det viktigaste när man väljer ö för familjer är <strong>grunt vatten för baning</strong>, <strong>sandstränder för leksaker och lekar</strong>, och <strong>nära färjeförbindelser</strong> för att undvika långa båtturer med rastlösa barn. Många öar erbjuder också restauranger där barnmenyer finns, ett stort plus när energinivåerna börjar sjunka. Säsongen för familjäventyr löper från maj till september, med juli som högsäsong.
  </p>
- {/* KÄLLA: Fjäderholmsguiden 2026, Kungliga Djurgårdsförvaltningen — "Ta båten från Slussen ... Under den 25 minuter långa båtresan" (läst 2026-11-18) */}
+ {/* KÄLLA: fjaderholmslinjen.se — "Resan tar ca 25 minuter. Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18) */}
  <p>
- Oavsett om ditt barn är två eller tolv år gammal, Stockholms skärgård erbjuder något speciellt för alla. Några öar passar för första gången på sjön, som Fjäderholmarna, cirka 25 minuter från Slussen. Andra, som Möja och Finnhamn, passar perfekt för äldre barn som vill kombinera utforskning med äventyr. Och öar som Grinda och Sandhamn är klassiker som hela familjen älskar.
+ Oavsett om ditt barn är två eller tolv år gammal, Stockholms skärgård erbjuder något speciellt för alla. Några öar passar för första gången på sjön, som Fjäderholmarna, cirka 25 minuter från Skeppsbron i Gamla stan. Andra, som Möja och Finnhamn, passar perfekt för äldre barn som vill kombinera utforskning med äventyr. Och öar som Grinda och Sandhamn är klassiker som hela familjen älskar.
  </p>
  </>
  }
@@ -153,17 +153,17 @@ export default function BarnvanligaOarPage() {
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Vilken ö passar yngre barn (1 till 5 år)?
  </h3>
- {/* KÄLLA: Fjäderholmsguiden 2026, Kungliga Djurgårdsförvaltningen — "Ta båten från Slussen ... Under den 25 minuter långa båtresan" (läst 2026-11-18) */}
+ {/* KÄLLA: fjaderholmslinjen.se — "Resan tar ca 25 minuter. Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18) */}
  <p>
- <strong>Fjäderholmarna</strong> är bra start för små barn: cirka 25 minuter från Slussen med Fjäderholmslinjen, restauranger och hantverk samlat på liten yta. Vill du längre ut är <strong>Grinda</strong> klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus. <strong>Finnhamn</strong> är också barnvänligt med STF-vandrarhem och vacker natur.
+ <strong>Fjäderholmarna</strong> är bra start för små barn: cirka 25 minuter från Skeppsbron i Gamla stan med Fjäderholmslinjen, restauranger och hantverk samlat på liten yta. Vill du längre ut är <strong>Grinda</strong> klassikern: cirka 1h 45 min med Waxholmsbåten, lugnt vatten och barnvänligt värdshus. <strong>Finnhamn</strong> är också barnvänligt med STF-vandrarhem och vacker natur.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
  Hur reser man med barn till skärgården?
  </h3>
- {/* KÄLLA: Fjäderholmsguiden 2026, Kungliga Djurgårdsförvaltningen — "Ta båten från Slussen ... Under den 25 minuter långa båtresan" (läst 2026-11-18) */}
+ {/* KÄLLA: fjaderholmslinjen.se — "Resan tar ca 25 minuter. Fjäderholmslinjens båtar avgår från Skeppsbron i Gamla stan och stannar vid Kajen utanför Restaurang J i Nacka Strand" (läst 2026-11-18) */}
  <p>
- Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn med flera öar. Restider: cirka 25 min till Fjäderholmarna (Fjäderholmslinjen från Slussen), drygt 1 tim till Vaxholm, 1h 45 min till Grinda och 2,5 till 3 tim till Sandhamn (snabbåt från Stavsnäs är betydligt snabbare). Många familjer hyr också mindre båt för flexibilitet. Planera resan så att ni åker när barnen är pigga.
+ Från Stockholm går Waxholmsbåtarna från Strömkajen direkt till Grinda, Möja, Sandhamn med flera öar. Restider: cirka 25 min till Fjäderholmarna (Fjäderholmslinjen från Skeppsbron i Gamla stan), drygt 1 tim till Vaxholm, 1h 45 min till Grinda och 2,5 till 3 tim till Sandhamn (snabbåt från Stavsnäs är betydligt snabbare). Många familjer hyr också mindre båt för flexibilitet. Planera resan så att ni åker när barnen är pigga.
  </p>
 
  <h3 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '20px 0 8px' }}>
