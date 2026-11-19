@@ -1219,7 +1219,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     harbors: [
       // KÄLLA: https://www.skarhamnsgasthamn.se/service/ — "I hamnavgiften ingår bland annat wifi, toalett, dusch, familjedusch, tvättmaskin, torktumlare", "Septitanksugen är gratis", "Skärhamns gästhamn drivs av Skärhamns Båtförening" ; https://www.vastsverige.com/en/tjorn/products/skarhamn-guest-marina/ — "located in the middle of Skärhamn on western Tjörn", "proximity to shops, restaurants, food stores", "During the first weekend of June each year, Skärhamn harbour is home to the wooden boat festival Träbåtsfestivalen" (läst 2026-09-27)
       { name: 'Skärhamns Gästhamn', desc: 'Gästhamn mitt i Skärhamn nära butiker och restauranger, driven av Skärhamns Båtförening. Första helgen i juni fylls hamnen av träbåtar under Träbåtsfestivalen.', fuel: false, service: ['Wifi', 'Toalett', 'Dusch', 'Tvättmaskin', 'Torktumlare', 'Septitanksugning'] },
-      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/kladesholmens-gasthamn/ — "belägen på västsidan av den omtalade sillön", "Gästhamnen har formen av en gryta vilket gör att vinden inte stör", "fasta linor" ; https://kladesholmenvh.se/gasthamn/ — "Djupet i gästhamnen är 3-4 meter", "El 6 Ampere ingår i alla priser", "Förhandsbokning endast Dockspot – 5 platser" (läst 2026-09-27)
+      // KÄLLA: https://www.vastsverige.com/tjorn/produkter/kladesholmens-gasthamn/ — "belägen på västsidan av den omtalade sillön", "Gästhamnen har formen av en gryta vilket gör att vinden inte stör", "fasta linor" (läst 2026-09-27)
+      // KÄLLA: https://kladesholmenvh.se/ — "Hamndjup 3–4 meter", "El 6 ampere ingår", "30 drop-in · 5 förbokningsbara" (läst 2026-11-19)
       { name: 'Klädesholmens Gästhamn', desc: 'Gästhamn på Klädesholmens västsida. Hamnen är grytformad så att vinden inte stör, har fasta linor och 3 till 4 meters djup; el ingår i hamnavgiften. Fem platser kan förbokas via Dockspot.' },
     ],
     restaurants: [
@@ -1791,7 +1792,8 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       car_parking: 'Parkering finns före och efter bron till Klädesholmen',
     },
     harbors: [
-      // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "Djupet i gästhamnen är 3-4 meter", "El 6 Ampere ingår i alla priser", "Ja, el och färskvatten finns tillgängligt vid bryggorna.", "Ja, dusch och toalett finns för gästande båtar.", "Förhandsbokning endast Dockspot – 5 platser.", "Högsäsong Vecka 25-33", "8.Grillplats" (läst 2026-09-27)
+      // KÄLLA: https://kladesholmenvh.se/ — "Hamndjup 3–4 meter", "El 6 ampere ingår", "El 6 A Färskvatten Dusch & toalett", "30 drop-in · 5 förbokningsbara" (läst 2026-11-19)
+      // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "Högsäsong Vecka 25-33", "8.Grillplats" (läst 2026-09-27)
       // KÄLLA: https://www.vastsverige.com/tjorn/produkter/kladesholmens-gasthamn/ — "Platser: 35", "Gästhamnen har formen av en gryta vilket gör att vinden inte stör.", "Båtkran, dusch, el, livsmedel, mastkran, restaurang, toalett och båtramp. Sugtömning av latrin. Miljöstation. Nära till mataffär." (läst 2026-09-27)
       { name: 'Klädesholmens Gästhamn', desc: 'Gästhamn på öns västsida, 35 platser och 3 till 4 meters djup. Hamnen är formad som en gryta, vilket ger lä. El (6 A ingår), färskvatten, dusch och toalett, grillplats, sugtömning och miljöstation. Fem platser kan förbokas via Dockspot; högsäsong vecka 25 till 33. Nära till restauranger och livsmedelsbutik.', spots: 35, fuel: false, service: ['Vatten', 'El', 'Dusch', 'Toalett'] },
     ],

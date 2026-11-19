@@ -11057,10 +11057,10 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
-      "url": "https://kladesholmenvh.se/gasthamn/",
+      "url": "https://kladesholmenvh.se/",
       "org": "kladesholmenvh.se",
-      "vad": "Djupet i gästhamnen är 3-4 meter, El 6 Ampere ingår i alla priser, Förhandsbokning endast Dockspot — 5 platser",
-      "last": "2026-09-27",
+      "vad": "Hamndjup 3–4 meter, El 6 ampere ingår, 30 drop-in · 5 förbokningsbara",
+      "last": "2026-11-19",
       "myndighet": false
     },
     {
@@ -11669,9 +11669,16 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     },
     {
+      "url": "https://kladesholmenvh.se/",
+      "org": "kladesholmenvh.se",
+      "vad": "Hamndjup 3–4 meter, El 6 ampere ingår, El 6 A Färskvatten Dusch & toalett, 30 drop-in · 5 förbokningsbara",
+      "last": "2026-11-19",
+      "myndighet": false
+    },
+    {
       "url": "https://kladesholmenvh.se/gasthamn/",
       "org": "kladesholmenvh.se",
-      "vad": "Djupet i gästhamnen är 3-4 meter, El 6 Ampere ingår i alla priser, Ja, el och färskvatten finns tillgängligt vid bryggorna., Ja, dusch och toalett finns för gästande båtar., Förhandsbokning endast Dockspot — 5 platser., Högsäsong Vecka 25-33, 8.Grillplats",
+      "vad": "– Restaurang och hotell öppet året runt",
       "last": "2026-09-27",
       "myndighet": false
     },
