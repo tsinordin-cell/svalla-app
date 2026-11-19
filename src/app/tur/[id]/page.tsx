@@ -3,6 +3,7 @@ import { getCachedPublicTripBundle, loadTripBundle, type TripBundle } from '@/li
 import Icon from '@/components/Icon'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import { platsRubrik } from '@/lib/dela-klistermarken'
 import Link from 'next/link'
 import { cache, type ReactNode } from 'react'
 import TripDetailMap from '@/components/TripDetailMapClient'
@@ -42,11 +43,16 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
  const metaUser = bundle!.userRow
 
+ // Delningstext (2026-11-19). Förut: "Möja, Stockholms län, Sverige" som
+ // rubrik och "matte loggade en annat till …" som beskrivning: geokodarens
+ // suffix följde med och båttypen Annat blev ett ord i meningen.
  const distStr = trip.distance != null && trip.distance >= 0.1 ? `${trip.distance.toFixed(1).replace('.', ',')} NM` : null
- const title = trip.location_name
- ? `${trip.location_name}${distStr ? `: ${distStr}` : ''}`
- : distStr ? `Tur: ${distStr}` : 'Tur'
- const desc = `${metaUser?.username ?? 'En seglare'} loggade en ${trip.boat_type?.toLowerCase() ?? 'tur'}${distStr ? ` på ${distStr}` : ''}${trip.location_name ? ` till ${trip.location_name}` : ''}.`
+ const rubrik = platsRubrik({ start_location: trip.start_location ?? null, location_name: trip.location_name ?? null, boat_type: trip.boat_type ?? null })
+ const title = distStr ? `${rubrik}: ${distStr}` : rubrik
+ const kortMal = (trip.location_name ?? '').split(',')[0]!.trim()
+ const bat = trip.boat_type && trip.boat_type !== 'Annat' ? ` med ${trip.boat_type.toLowerCase()}` : ''
+ const datum = trip.started_at ? new Date(trip.started_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
+ const desc = `${metaUser?.username ?? 'En seglare'} loggade en tur${bat}${distStr ? ` på ${distStr}` : ''}${kortMal ? ` till ${kortMal}` : ''}${datum ? ` ${datum}` : ''}.`
 
  // Dynamisk OG-bild — alltid genererad, oavsett om turen har foto eller inte
  const ogImageUrl = `https://svalla.se/api/og/tur/${id}`
