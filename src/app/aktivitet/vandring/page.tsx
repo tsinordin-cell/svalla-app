@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import React from 'react'
 import Link from 'next/link'
 import Script from 'next/script'
-import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import { REGIONS, hikesForRegion, type Hike } from './hike-data'
 import Icon, { type IconName } from '@/components/Icon'
@@ -304,22 +304,7 @@ export default function VandringPage() {
       <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
         {/* ── Nav ── */}
-        <nav style={{
-          background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-          padding: '18px 24px 16px',
-        }}>
-          <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', justifyContent: 'space-between' }}>
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <SvallaLogo height={24} color="#ffffff" />
-            </Link>
-            <Link
-              href="/aktivitet"
-              style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none' }}
-            >
-              ← Alla aktiviteter
-            </Link>
-          </div>
-        </nav>
+        <SidHuvud />
 
         {/* ── Hero ── */}
         <header style={{

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
-import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 
 /**
@@ -91,11 +91,9 @@ const REDERIER: Rederi[] = [
 export default function VintertidtabellerPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
+      <SidHuvud />
       <div style={{ background: 'var(--grad-sea-hero)', padding: '52px 20px 40px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto' }}>
-          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
-            <SvallaLogo height={26} color="#ffffff" />
-          </Link>
           <h1 style={{ fontSize: 30, fontWeight: 700, color: '#fff', margin: '0 0 8px', letterSpacing: -0.3 }}>
             Vintertidtabeller 2026/27
           </h1>

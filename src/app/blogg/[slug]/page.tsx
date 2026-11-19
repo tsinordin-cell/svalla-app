@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import SvallaLogo from '@/components/SvallaLogo'
 import RelatedPosts from '@/components/RelatedPosts'
 import { getRelatedPosts } from '@/lib/postRelated'
 import Icon from '@/components/Icon'
@@ -2448,15 +2448,13 @@ export default async function BloggPostPage({
  }) }}
  />
  {/* Header */}
+ <SidHuvud />
  <div style={{
  background: 'var(--grad-sea-hero)',
  padding: '60px 20px 40px',
  }}>
  <div style={{ maxWidth: 720, margin: '0 auto' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
- <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
- <SvallaLogo height={24} color="#ffffff" />
- </Link>
  <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
    <Link href="/blogg" style={{ color: 'rgba(255,255,255,0.65)', fontSize: 12, textDecoration: 'none' }}>
      ← Bloggen

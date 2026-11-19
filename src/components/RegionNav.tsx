@@ -1,15 +1,18 @@
 'use client'
 /**
- * FÖRHANDSVISNING 2026-11-18: "Allt om regionen" med filter per typ.
+ * FÖRHANDSVISNING 2026-11-18/19: "Allt om regionen" med flikar per typ.
+ * Utseendet följer /guider: blått band med vita flikar, vita kort under.
  * Tomt visas ärligt, besökaren skickas aldrig till en annan region.
  */
 import Link from 'next/link'
 import { useState } from 'react'
+import type { OmradeBild } from './OmradesVal'
 
-type Plats = { name: string; o: string; oSlug: string; typ?: string }
+type Plats = { name: string; o: string; oSlug: string; typ?: string; href: string }
 export type RegionNavData = {
   namn: string
-  oar: { slug: string; name: string; tagline: string }[]
+  bild?: OmradeBild
+  oar: { slug: string; name: string; tagline: string; bild?: OmradeBild }[]
   guider: { slug: string; title: string; excerpt: string }[]
   hamnar: Plats[]
   krogar: Plats[]
@@ -27,21 +30,17 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
   }
   const visa = (f: Flik) => flik === 'Allt' || flik === f
   const max = (n: number) => (flik === 'Allt' ? n : 999)
-
-  const tomt = (vad: string) => (
-    <p className="rn-tomt">Vi har inga {vad} i {data.namn} inlagda än. <a href="mailto:hej@svalla.se">Tipsa oss</a></p>
-  )
+  const tomt = (vad: string) => <p className="rn-tomt">Vi har inga {vad} i {data.namn} inlagda än. <a href="mailto:hej@svalla.se">Tipsa oss</a></p>
   const mer = (f: Flik, n: number) => flik === 'Allt' && n > 6
     ? <button type="button" className="rn-mer" onClick={() => setFlik(f)}>Visa alla {n} →</button> : null
-
   const platser = (lista: Plats[], f: Flik, vad: string) => (
     <section className="rn-sek">
       <h3>{f} <span>{lista.length}</span></h3>
       {lista.length === 0 ? tomt(vad) : (
-        <div className="rn-lista">
+        <div className="rn-kortgrid">
           {lista.slice(0, max(6)).map(p => (
-            <Link key={p.oSlug + p.name} href={`/o/${p.oSlug}`} className="rn-rad">
-              <b>{p.name}</b><small>{p.typ ? p.typ + ' · ' : ''}{p.o}</small>
+            <Link key={p.oSlug + p.name} href={p.href} className="rn-kort">
+              <span className="rn-typ">{p.typ ?? f}</span><b>{p.name}</b><small>{p.o}</small><em>Läs mer →</em>
             </Link>
           ))}
         </div>
@@ -52,38 +51,49 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
 
   return (
     <section className="rn" aria-labelledby="rn-rubrik">
-      <div className="rn-inre">
-        <h2 id="rn-rubrik">Allt om {data.namn}</h2>
-        <p className="rn-ingress">Allt Svalla har om regionen på ett ställe. Välj vad du letar efter.</p>
-        <div className="rn-flikar" role="tablist">
-          {FLIKAR.map(f => (
-            <button key={f} type="button" role="tab" aria-selected={flik === f} className={flik === f ? 'pa' : undefined} onClick={() => setFlik(f)}>
-              {f}<span>{antal[f]}</span>
-            </button>
-          ))}
+      <div className="rn-band">
+        <div className="rn-inre">
+          <h2 id="rn-rubrik">Allt om {data.namn}</h2>
+          <p className="rn-ingress">Allt Svalla har om regionen på ett ställe. Välj vad du letar efter.</p>
+          <div className="rn-flikar" role="tablist">
+            {FLIKAR.filter(f => f !== 'Guider' || data.guider.length > 0).map(f => (
+              <button key={f} type="button" role="tab" aria-selected={flik === f} className={flik === f ? 'pa' : undefined} onClick={() => setFlik(f)}>
+                {f}<span>{antal[f]}</span>
+              </button>
+            ))}
+          </div>
         </div>
-
+      </div>
+      <div className="rn-inre rn-under">
+        {data.bild && flik === 'Allt' && (
+          <figure className="rn-foto">
+            <img src={data.bild.url} alt={data.bild.o} loading="lazy" />
+            <figcaption>{data.bild.o}. Foto: {data.bild.fotograf}, {data.bild.licens}, <a href={data.bild.kalla} target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></figcaption>
+          </figure>
+        )}
         {visa('Öar') && (
           <section className="rn-sek">
             <h3>Öar <span>{data.oar.length}</span></h3>
-            <div className="rn-kort">
+            <div className="rn-kortgrid">
               {data.oar.slice(0, max(6)).map(o => (
-                <Link key={o.slug} href={`/o/${o.slug}`} className="rn-o">
+                <Link key={o.slug} href={`/o/${o.slug}`} className="rn-kort rn-o">
+                  <div className="rn-obild" style={o.bild ? { backgroundImage: `url(${o.bild.url})` } : undefined} />
                   <b>{o.name}</b><small>{o.tagline}</small><em>Allt om {o.name} →</em>
+                  {o.bild && <span className="rn-kredit">Foto: {o.bild.fotograf}, {o.bild.licens}</span>}
                 </Link>
               ))}
             </div>
             {mer('Öar', data.oar.length)}
           </section>
         )}
-        {visa('Guider') && (
+        {visa('Guider') && data.guider.length > 0 && (
           <section className="rn-sek">
             <h3>Guider <span>{data.guider.length}</span></h3>
             {data.guider.length === 0 ? tomt('guider') : (
-              <div className="rn-kort">
+              <div className="rn-kortgrid">
                 {data.guider.slice(0, max(6)).map(g => (
-                  <Link key={g.slug} href={`/guider/${g.slug}`} className="rn-g">
-                    <b>{g.title}</b><small>{g.excerpt}</small>
+                  <Link key={g.slug} href={`/guider/${g.slug}`} className="rn-kort">
+                    <span className="rn-typ">Guide</span><b>{g.title}</b><small>{g.excerpt}</small><em>Läs guiden →</em>
                   </Link>
                 ))}
               </div>
@@ -96,28 +106,34 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
         {visa('Boende') && platser(data.boende, 'Boende', 'boenden')}
       </div>
       <style>{`
-        .rn{background:var(--white,#fff);border-bottom:1px solid var(--surface-3,#e3ecef)}
-        .rn-inre{max-width:1040px;margin:0 auto;padding:28px 20px 30px}
-        .rn h2{font-family:'Playfair Display',Georgia,serif;font-size:28px;margin:0 0 4px;color:var(--txt,#192830)}
-        .rn-ingress{margin:0 0 16px;color:var(--txt2,#4a5c66);font-size:15px}
-        .rn-flikar{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;background:var(--white,#fff);padding:6px 0 10px;z-index:5}
-        .rn-flikar button{border:1.5px solid var(--surface-3,#dbe7ec);background:var(--white,#fff);border-radius:999px;padding:8px 15px;font:inherit;font-size:14px;font-weight:600;color:var(--txt,#192830);cursor:pointer}
-        .rn-flikar button span{margin-left:6px;opacity:.55;font-weight:500}
-        .rn-flikar button.pa{background:#0d2440;border-color:#0d2440;color:#fff}
+        .rn{background:var(--bg,#f2f8fa)}
+        .rn-band{background:linear-gradient(160deg,#1e5c82 0%,#2d7d8a 100%);color:#fff}
+        .rn-inre{max-width:1040px;margin:0 auto;padding:26px 20px 24px}
+        .rn h2{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;margin:0 0 4px;color:#fff}
+        .rn-ingress{margin:0 0 14px;color:rgba(255,255,255,.75);font-size:14px}
+        .rn-flikar{display:flex;gap:8px;flex-wrap:wrap}
+        .rn-flikar button{font:inherit;font-size:12px;font-weight:700;padding:6px 14px;border-radius:20px;border:none;cursor:pointer;background:rgba(255,255,255,.12);color:#fff}
+        .rn-flikar button span{margin-left:6px;opacity:.65}
+        .rn-flikar button.pa{background:rgba(255,255,255,.92);color:var(--sea,#0a7b8c)}
+        .rn-under{padding-top:22px}
+        .rn-foto{position:relative;margin:0 0 6px;border-radius:16px;overflow:hidden;height:240px;background:linear-gradient(135deg,#1e5c82,#2d7d8a)}
+        .rn-foto img{width:100%;height:100%;object-fit:cover;display:block}
+        .rn-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 14px 8px;font-size:11px;color:rgba(255,255,255,.9);background:linear-gradient(transparent,rgba(0,0,0,.55))}
+        .rn-foto figcaption a{color:#fff}
         .rn-sek{margin-top:22px}
-        .rn-sek h3{font-size:18px;margin:0 0 10px;color:var(--txt,#192830)}
-        .rn-sek h3 span{font-size:13px;color:var(--txt3,#6b7c85);font-weight:500;margin-left:6px}
-        .rn-kort{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
-        .rn-o,.rn-g{display:flex;flex-direction:column;gap:5px;padding:14px 16px;border-radius:14px;background:var(--bg,#f2f8fa);text-decoration:none;color:inherit;border:1px solid transparent}
-        .rn-o:hover,.rn-g:hover{border-color:#b9d3dd}
-        .rn-o b,.rn-g b{font-size:15.5px;color:var(--txt,#192830)}
-        .rn-o small,.rn-g small{font-size:13px;color:var(--txt2,#4a5c66);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-        .rn-o em{font-style:normal;font-size:13px;font-weight:700;color:var(--sea,#1e5c82);margin-top:auto}
-        .rn-g{border-left:4px solid #2d7d8a}
-        .rn-lista{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
-        .rn-rad{display:flex;flex-direction:column;padding:11px 14px;border-radius:12px;background:var(--bg,#f2f8fa);text-decoration:none}
-        .rn-rad b{font-size:14.5px;color:var(--txt,#192830)}.rn-rad small{font-size:12.5px;color:var(--txt3,#6b7c85)}
-        .rn-tomt{background:var(--bg,#f2f8fa);border:1.5px dashed #c6d8df;border-radius:12px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
+        .rn-sek h3{font-family:'Playfair Display',Georgia,serif;font-size:22px;margin:0 0 12px;color:var(--txt,#192830)}
+        .rn-sek h3 span{font-family:inherit;font-size:13px;color:var(--txt3,#6b7c85);font-weight:500;margin-left:6px}
+        .rn-kortgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+        .rn-kort{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;background:#fff;text-decoration:none;box-shadow:0 1px 8px rgba(0,0,0,.05);border:1px solid var(--surface-3,#e3ecef);transition:transform .15s,box-shadow .15s;overflow:hidden}
+        .rn-kort:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(13,36,64,.1)}
+        .rn-o{padding-top:0}
+        .rn-obild{height:130px;margin:0 -18px 10px;background:linear-gradient(135deg,#1e5c82,#2d7d8a) center/cover}
+        .rn-typ{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--sea,#0a7b8c)}
+        .rn-kort b{font-family:'Playfair Display',Georgia,serif;font-size:17px;color:var(--txt,#192830);line-height:1.25}
+        .rn-kort small{font-size:13px;color:var(--txt2,#4a5c66);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .rn-kort em{font-style:normal;font-size:13px;font-weight:700;color:var(--sea,#0a7b8c);margin-top:auto;padding-top:6px}
+        .rn-kredit{font-size:10px;color:var(--txt3,#8a989f)}
+        .rn-tomt{background:#fff;border:1.5px dashed #c6d8df;border-radius:14px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
         .rn-tomt a{color:var(--sea,#1e5c82);font-weight:700}
         .rn-mer{margin-top:10px;border:none;background:none;color:var(--sea,#1e5c82);font:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:0}
       `}</style>

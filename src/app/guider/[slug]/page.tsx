@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { GUIDES } from '../guides-data'
@@ -174,6 +175,7 @@ export default async function GuidePage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
+      <SidHuvud />
       {/* Header */}
       <div style={{
         background: 'linear-gradient(160deg, #1a4a6b 0%, #0d6e6e 100%)',

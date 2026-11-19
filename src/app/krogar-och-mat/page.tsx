@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import OmradesVal from '@/components/OmradesVal'
-import { byggOmraden } from '@/lib/omraden'
+import { byggOmraden, bildFor } from '@/lib/omraden'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
@@ -54,7 +54,7 @@ const ITEMS: LandingItem[] = [
 export default function KrogarOchMatPage() {
  return (
  <CategoryLanding
-  regionNav={<OmradesVal rubrik="Krogar, kaféer och bryggserveringar" vad="krogar, kaféer och bryggserveringar" omraden={byggOmraden('krogar')} />}
+  regionNav={<OmradesVal rubrik="Krogar, kaféer och bryggserveringar" vad="krogar, kaféer och bryggserveringar" omraden={byggOmraden('krogar')} standardBild={bildFor('kladesholmen', 'Klädesholmen')} />}
  heroGradient={['#c96e2a', '#d98246']}
  eyebrow="Mat & dryck"
  title="Restauranger och caféer i skärgården"

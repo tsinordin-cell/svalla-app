@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import RegionNav from '@/components/RegionNav'
+import { byggRegionNavEtiketter } from '@/lib/region-nav'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
 export const metadata: Metadata = {
@@ -117,6 +119,7 @@ export default function GotlandPage() {
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
  <CategoryLanding
+  regionNav={<RegionNav data={byggRegionNavEtiketter("Gotland", ["Gotland"], 'gotland')} />}
  heroGradient={['#8b5e3c', '#b07d52']}
  eyebrow="Gotland"
  title="Östersjöns pärla"

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import GuiderClient from './GuiderClient'
 import { PUBLICERADE_GUIDER } from './guides-data'
 
@@ -32,6 +33,7 @@ export default function GuiderPage() {
 
   return (
     <>
+      <SidHuvud />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}

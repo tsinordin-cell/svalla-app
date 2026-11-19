@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import React from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import { ACTIVITY_LIST, getActivity, islandsForActivity, type ActivityType } from '../activity-data'
 import type { Island } from '../../o/island-data'
@@ -107,19 +107,7 @@ export default async function ActivityTypePage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPage) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
       {itemList && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />}
-      <nav style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-        padding: '18px 24px 16px',
-      }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', justifyContent: 'space-between' }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <SvallaLogo height={24} color="#ffffff" />
-          </Link>
-          <Link href="/aktivitet" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none' }}>
-            ← Alla aktiviteter
-          </Link>
-        </div>
-      </nav>
+      <SidHuvud />
 
       <header style={{
         background: 'linear-gradient(170deg, #1e5c82 0%, #2d7d8a 100%)',

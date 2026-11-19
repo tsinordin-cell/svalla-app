@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import OmradesVal from '@/components/OmradesVal'
-import { byggOmraden } from '@/lib/omraden'
+import { byggOmraden, bildFor } from '@/lib/omraden'
 import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 
@@ -108,7 +108,7 @@ export default function HamnarOchBryggorPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <CategoryLanding
-       regionNav={<OmradesVal rubrik="Gästhamnar" vad="gästhamnar" omraden={byggOmraden('hamnar')} />}
+       regionNav={<OmradesVal rubrik="Gästhamnar" vad="gästhamnar" omraden={byggOmraden('hamnar')} standardBild={bildFor('aspo-blekinge', 'Aspö')} />}
       heroGradient={['#1e5c82', '#2d7d8a']}
       eyebrow="Hamnar & bryggor"
       title="Hitta rätt förtöjningsplats i Sverige"

@@ -1,8 +1,8 @@
 import Icon from '@/components/Icon'
+import SidHuvud from '@/components/SidHuvud'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { POSTS_META } from './posts-data'
-import SvallaLogo from '@/components/SvallaLogo'
 import { emojiToIcon } from '@/lib/iconMap'
 
 export const metadata: Metadata = {
@@ -22,6 +22,7 @@ export default function BloggPage() {
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
 
       {/* Header */}
+      <SidHuvud />
       <div style={{
         background: 'var(--grad-sea-hero)',
         padding: '0 20px 44px',
@@ -48,9 +49,6 @@ export default function BloggPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
               Tillbaka
-            </Link>
-            <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', opacity: 0.9 }}>
-              <SvallaLogo height={22} color="#ffffff" />
             </Link>
           </div>
 

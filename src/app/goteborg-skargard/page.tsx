@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import RegionNav from '@/components/RegionNav'
+import { byggRegionNavEtiketter } from '@/lib/region-nav'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
 
@@ -121,6 +123,7 @@ export default function GoteborgSkargardPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <CategoryLanding
+       regionNav={<RegionNav data={byggRegionNavEtiketter("Göteborgs skärgård", ["Göteborgs norra skärgård","Göteborgs skärgård","Göteborgs södra skärgård"], 'goteborg')} />}
         heroGradient={['#1a3a5c', '#2e6b8a']}
         eyebrow="Göteborgs skärgård"
         title="Västkustens pärla"
