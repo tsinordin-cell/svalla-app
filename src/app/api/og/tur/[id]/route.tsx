@@ -1,327 +1,183 @@
-import { decimal } from '@/lib/gps'
 import { ImageResponse } from 'next/og'
 import { createClient } from '@/lib/supabase'
-import { platsRubrik } from '@/lib/dela-klistermarken'
+import { platsRubrik, datumLang, formatTid, ruttPath, ruttStartSlut, ruttArAnvandbar, type Punkt } from '@/lib/dela-klistermarken'
+import { ogTypsnitt } from '../../_typsnitt/typsnitt'
+import { hamtaFoto } from '../../share/tur/[id]/rita'
+import { Logga } from '../../share/tur/[id]/klistermarken'
 
 export const runtime = 'nodejs'
-export const revalidate = 3600 // 1 h — OG-bilder cachas länge av sociala medier
+export const revalidate = 3600 // 1 h: sociala medier cachar OG-bilder länge ändå
 
-function fmtDur(mins: number): string {
- if (mins <= 0) return ''
- const h = Math.floor(mins / 60)
- const m = mins % 60
- return h > 0 ? `${h}h ${m > 0 ? `${m}m` : ''}`.trim() : `${m}m`
-}
+/**
+ * Länkförhandsvisningen för en tur (1200×630, WhatsApp, iMessage, Facebook, X).
+ *
+ * Gjord om 2026-11-19 (Tom: "Ser inte alls ut som något som tillhör Svalla").
+ * Samma formspråk som storykorten i /api/og/share: Svallas logga med seglet,
+ * platsen i Playfair Display, talen i en panel med bärnstensfärgade enheter,
+ * rutten i orange, svalla.se i sidfoten. Turens foto ligger som en panel till
+ * höger (roterad enligt EXIF via hamtaFoto; satori struntar i EXIF), rutten
+ * ritas där när foto saknas, och utan båda får panelen bara havsgradienten.
+ */
 
-function buildRoutePath(pts: { lat: number; lng: number }[], W: number, H: number): string {
- if (pts.length < 2) return ''
- const lats = pts.map(p => p.lat)
- const lngs = pts.map(p => p.lng)
- const minLat = Math.min(...lats), maxLat = Math.max(...lats)
- const minLng = Math.min(...lngs), maxLng = Math.max(...lngs)
- const ranLat = maxLat - minLat || 0.001
- const ranLng = maxLng - minLng || 0.001
- const pad = 0.12
- return pts.map((p, i) => {
- const x = (((p.lng - minLng) / ranLng) * (1 - pad * 2) + pad) * W
- const y = H - (((p.lat - minLat) / ranLat) * (1 - pad * 2) + pad) * H
- return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)} ${y.toFixed(1)}`
- }).join(' ')
-}
+const W = 1200
+const H = 630
+const MARG = 56
+const FOTO_B = 520
+const FONT = 'Inter, system-ui, sans-serif'
+const SERIF = 'Playfair Display, Georgia, serif'
+const ORANGE = '#ff5c2e'
+const BARNSTEN = '#f6b26b'
+const NATT = '#060e18'
 
-// Båtikoner som JSX-barn. Satori (next/og) stöder inte dangerouslySetInnerHTML,
-// så ikonerna måste vara riktiga element — annars kraschar hela OG-bilden.
-function boatIconShapes(boatType: string | null | undefined) {
-  switch (boatType) {
-    case 'Motorbåt':
-      return [
-        <ellipse key="a" cx="12" cy="8" rx="6" ry="4" />,
-        <path key="b" d="M6 8V18H18V8" />,
-        <rect key="c" x="10" y="4" width="4" height="4" />,
-      ]
-    case 'Kajak':
-      return [
-        <ellipse key="a" cx="8" cy="12" rx="3" ry="6" />,
-        <rect key="b" x="5" y="12" width="14" height="2" />,
-        <ellipse key="c" cx="16" cy="12" rx="3" ry="6" />,
-      ]
-    default:
-      // Segelbåt: skrov, mast och storsegel. Den gamla formen såg ut som ett hus (2026-11-19).
-      return [
-        <path key="a" d="M3 17h18l-2 4H5z" />,
-        <path key="b" d="M12 3v14" />,
-        <path key="c" d="M12 4l7 11H12z" />,
-        <path key="d" d="M11 7L6 15h5z" />,
-      ]
-  }
-}
+type Tal = { val: string; enhet: string; etikett: string }
 
 export async function GET(
- _req: Request,
- { params }: { params: Promise<{ id: string }> }
+  _req: Request,
+  { params }: { params: Promise<{ id: string }> }
 ) {
- const { id } = await params
- const supabase = createClient()
+  const { id } = await params
+  const supabase = createClient()
 
- const [{ data: trip }, ] = await Promise.all([
- supabase
- .from('trips')
- .select('user_id, location_name, start_location, distance, duration, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image')
- .eq('id', id)
- .single(),
- ])
+  const { data: trip } = await supabase
+    .from('trips')
+    .select('user_id, location_name, start_location, distance, duration, duration_seconds, max_speed_knots, average_speed_knots, boat_type, route_points, started_at, pinnar_rating, image')
+    .eq('id', id)
+    .single()
 
- const { data: userRow } = trip
- ? await supabase.from('users').select('username').eq('id', trip.user_id).single()
- : { data: null }
+  const { data: userRow } = trip
+    ? await supabase.from('users').select('username').eq('id', trip.user_id).single()
+    : { data: null }
+  const username = userRow?.username ?? 'Seglare'
 
- // ── Stats ──────────────────────────────────────────────────────────────
- const dist = trip && trip.distance >= 0.1 ? decimal(trip.distance) : null
- const dur = trip && trip.duration > 0 ? fmtDur(trip.duration) : null
- const speed = trip && (trip.max_speed_knots ?? 0) >= 0.1 ? decimal(trip.max_speed_knots ?? 0) : null
- const avgSpd = trip && (trip.average_speed_knots ?? 0) >= 0.1 ? decimal(trip.average_speed_knots ?? 0) : null
- // Korta platsnamn: "Sollenkroka → Möja", inte "Sollenkroka ö, Stockholms län, Sverige → …" (2026-11-19)
- const locLabel = trip ? platsRubrik({ start_location: trip.start_location, location_name: trip.location_name, boat_type: trip.boat_type }) : ''
- const datum = trip?.started_at ? new Date(trip.started_at).toLocaleDateString('sv-SE', { day: 'numeric', month: 'long', year: 'numeric' }) : ''
- // Turens foto bakom texten när det finns. Satori hämtar bilden själv; en tur
- // utan spår och utan siffror blev annars en tom mörk ruta med en ikon.
- const foto = typeof trip?.image === 'string' && /^https?:\/\//.test(trip.image) ? trip.image : null
- const username = userRow?.username ?? 'Seglare'
- const boatShapes = boatIconShapes(trip?.boat_type)
- // "Annat" är förvalet när ingen båttyp valts; då säger "Tur" mer.
- const boatLabel = trip?.boat_type && trip.boat_type !== 'Annat' ? trip.boat_type : 'Tur'
- const magisk = trip?.pinnar_rating === 3
+  // Korta platsnamn: "Sollenkroka → Möja", inte "Sollenkroka ö, Stockholms län, Sverige → …"
+  const plats = trip
+    ? platsRubrik({ start_location: trip.start_location, location_name: trip.location_name, boat_type: trip.boat_type })
+    : 'Svalla'
+  const datum = datumLang(trip?.started_at)
+  // "Annat" är förvalet när ingen båttyp valts och ser ut som ett formulärsvar.
+  const bat = trip?.boat_type && trip.boat_type !== 'Annat' ? trip.boat_type : null
+  const magisk = trip?.pinnar_rating === 3
 
- // ── Route SVG path ──────────────────────────────────────────────────────
- const routePts = trip && Array.isArray(trip.route_points) && trip.route_points.length >= 2
- ? (trip.route_points as { lat: number; lng: number }[])
- : null
- const RW = 420, RH = 440
- const routePath = routePts ? buildRoutePath(routePts, RW, RH) : ''
+  const sek = trip ? (trip.duration_seconds ?? (trip.duration > 0 ? trip.duration * 60 : null)) : null
+  const tal: Tal[] = []
+  if (trip && trip.distance >= 0.1) tal.push({ val: trip.distance.toFixed(1).replace('.', ','), enhet: 'NM', etikett: 'DISTANS' })
+  if (sek !== null && sek >= 60) tal.push({ val: formatTid(sek), enhet: '', etikett: 'TID' })
+  if ((trip?.average_speed_knots ?? 0) >= 0.1) tal.push({ val: (trip!.average_speed_knots ?? 0).toFixed(1).replace('.', ','), enhet: 'kn', etikett: 'SNITTFART' })
+  if ((trip?.max_speed_knots ?? 0) >= 0.1) tal.push({ val: (trip!.max_speed_knots ?? 0).toFixed(1).replace('.', ','), enhet: 'kn', etikett: 'TOPPFART' })
+  const talVisade = tal.slice(0, 3)
 
- // ── Stat boxes ─────────────────────────────────────────────────────────
- const statBoxes = [
- dist && { val: dist, unit: 'NM', label: 'DISTANS' },
- dur && { val: dur, unit: '', label: 'TID' },
- speed && { val: speed, unit: 'kn', label: 'TOPPFART' },
- avgSpd && !speed && { val: avgSpd, unit: 'kn', label: 'SNITTFART' },
- // Utan siffror: datumet, så raden aldrig är tom.
- !dist && !dur && datum && { val: datum, unit: '', label: 'DATUM' },
- ].filter(Boolean) as { val: string; unit: string; label: string }[]
+  const rutt = trip && ruttArAnvandbar(trip.route_points as Punkt[] | null) ? (trip.route_points as Punkt[]) : null
+  const fotoUrl = typeof trip?.image === 'string' ? trip.image : null
+  const [fonts, foto] = await Promise.all([
+    ogTypsnitt(),
+    fotoUrl ? hamtaFoto(fotoUrl, FOTO_B, H) : Promise.resolve(null),
+  ])
 
- // ── Render ──────────────────────────────────────────────────────────────
- return new ImageResponse(
- (
- <div
- style={{
- width: 1200, height: 630,
- display: 'flex', flexDirection: 'row',
- fontFamily: 'system-ui, -apple-system, sans-serif',
- background: 'linear-gradient(145deg, #081828 0%, #0d2a40 45%, #0e3550 100%)',
- overflow: 'hidden',
- position: 'relative',
- }}
- >
- {foto && (
- // eslint-disable-next-line @next/next/no-img-element -- satori renderar bara <img>
- <img
- src={foto}
- alt=""
- width={1200}
- height={630}
- style={{ position: 'absolute', inset: 0, width: 1200, height: 630, objectFit: 'cover', opacity: 0.55 }}
- />
- )}
- {foto && (
- <div style={{
- position: 'absolute', inset: 0, display: 'flex',
- background: 'linear-gradient(90deg, rgba(8,24,40,0.92) 0%, rgba(8,24,40,0.78) 55%, rgba(8,24,40,0.25) 100%)',
- }} />
- )}
- {/* ── Background texture — subtle wave lines ── */}
- <div style={{
- position: 'absolute', inset: 0,
- background: 'radial-gradient(ellipse 80% 60% at 70% 50%, rgba(30,100,160,0.18) 0%, transparent 70%)',
- display: 'flex',
- }} />
+  // Rubrikstorlek efter längd; Playfair är bred.
+  const rubrikStorlek = plats.length > 30 ? 40 : plats.length > 20 ? 48 : 58
+  const under = [bat, datum].filter(Boolean) as string[]
 
- {/* ── Left — content ──────────────────────────────────────────── */}
- <div style={{
- flex: 1, display: 'flex', flexDirection: 'column',
- padding: '52px 44px 44px',
- justifyContent: 'space-between',
- zIndex: 1,
- minWidth: 0,
- }}>
+  // Rutten i högerpanelen när foto saknas.
+  const RW = FOTO_B - 2 * 40, RH = H - 2 * 70
+  const d = !foto && rutt ? ruttPath(rutt, RW, RH, 0.1) : ''
+  const ss = !foto && rutt ? ruttStartSlut(rutt, RW, RH, 0.1) : null
 
- {/* Top: logo + boat type */}
- <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
- <div style={{
- fontSize: 13, fontWeight: 600, letterSpacing: '3px',
- color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase',
- }}>
- SVALLA.SE
- </div>
- </div>
- <div style={{
- display: 'flex', alignItems: 'center', gap: 8,
- background: 'rgba(255,255,255,0.08)',
- borderRadius: 20, padding: '6px 14px',
- }}>
- <svg width={16} height={16} viewBox="0 0 24 24" fill="rgba(255,255,255,0.90)">{boatShapes}</svg>
- <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.70)' }}>{boatLabel}</div>
- </div>
- </div>
+  return new ImageResponse(
+    (
+      <div style={{ width: W, height: H, display: 'flex', position: 'relative', background: NATT, fontFamily: FONT, overflow: 'hidden' }}>
+        {/* Havsgradienten, samma som storykortet utan foto */}
+        <div style={{ position: 'absolute', left: 0, top: 0, width: W, height: H, display: 'flex', background: 'linear-gradient(165deg, #091522 0%, #0d2038 45%, #0b2a3d 70%, #060e18 100%)' }} />
+        <div style={{ position: 'absolute', left: 0, top: 0, width: W, height: H, display: 'flex', background: 'radial-gradient(ellipse 60% 70% at 78% 45%, rgba(30,110,150,0.26) 0%, rgba(30,110,150,0) 70%)' }} />
 
- {/* Location name — big headline */}
- <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
- {locLabel ? (
- <div style={{
- fontSize: locLabel.length > 32 ? 28 : 34,
- fontWeight: 700, color: '#fff',
- lineHeight: 1.15, letterSpacing: '-0.5px',
- }}>
- {locLabel}
- </div>
- ) : (
- <div style={{ fontSize: 30, fontWeight: 700, color: '#fff', display: 'flex' }}>
- Svalla-tur
- </div>
- )}
- {magisk && (
- <div style={{
- display: 'flex', alignItems: 'center', gap: 6,
- background: 'rgba(201,110,42,0.20)',
- border: '1px solid rgba(201,110,42,0.40)',
- borderRadius: 20, padding: '5px 14px',
- // satori kan inte 'fit-content' (Vercel: "Invalid value fit-content for setWidth",
- // länkförhandsvisningen för varje "Magisk tur" gav 500 t.o.m. 2026-10-29). alignSelf
- // ger samma resultat i en flex-kolumn.
- alignSelf: 'flex-start',
- }}>
- <div style={{
- width: 14, height: 14, borderRadius: '50%',
- background: 'rgba(224,120,40,0.80)',
- }}>
- </div>
- <div style={{ fontSize: 12, fontWeight: 600, color: '#e07828', letterSpacing: '0.5px' }}>
- MAGISK TUR
- </div>
- </div>
- )}
- </div>
+        {/* Högerpanel: foto, annars rutt */}
+        {foto ? (
+          <div style={{ position: 'absolute', left: W - FOTO_B, top: 0, width: FOTO_B, height: H, display: 'flex' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- satori renderar bara <img> */}
+            <img src={foto} alt="" width={FOTO_B} height={H} style={{ width: FOTO_B, height: H, objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', left: 0, top: 0, width: 260, height: H, display: 'flex', background: `linear-gradient(to right, ${NATT} 0%, rgba(6,14,24,0.85) 30%, rgba(6,14,24,0) 100%)` }} />
+            <div style={{ position: 'absolute', left: 0, top: 0, width: FOTO_B, height: H, display: 'flex', background: 'linear-gradient(to bottom, rgba(6,14,24,0.35) 0%, rgba(6,14,24,0) 30%, rgba(6,14,24,0) 60%, rgba(6,14,24,0.55) 100%)' }} />
+          </div>
+        ) : d ? (
+          <svg width={RW} height={RH} viewBox={`0 0 ${RW} ${RH}`} style={{ position: 'absolute', left: W - FOTO_B + 40, top: 70 }}>
+            <path d={d} stroke="rgba(0,0,0,0.30)" strokeWidth={26} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <path d={d} stroke="rgba(255,92,46,0.35)" strokeWidth={18} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            <path d={d} stroke={ORANGE} strokeWidth={7} fill="none" strokeLinecap="round" strokeLinejoin="round" />
+            {ss ? <circle cx={ss.start[0]} cy={ss.start[1]} r={9} fill="#fff" stroke="rgba(6,14,24,0.7)" strokeWidth={4} /> : null}
+            {ss ? <circle cx={ss.slut[0]} cy={ss.slut[1]} r={11} fill={ORANGE} stroke="#fff" strokeWidth={4} /> : null}
+          </svg>
+        ) : (
+          /* Varken foto eller rutt: seglet ur loggan, stort och svagt */
+          <svg viewBox="0 0 20 22" width={360} height={360} style={{ position: 'absolute', left: W - FOTO_B + 90, top: 150, opacity: 0.1 }}>
+            <line x1="9" y1="20" x2="9" y2="3" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" />
+            <path d="M9,4 L18,18 L9,18 Z" fill="#fff" opacity="0.95" />
+            <path d="M9,8 L1,17 L9,17 Z" fill="#fff" opacity="0.55" />
+            <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#fff" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.8" />
+          </svg>
+        )}
 
- {/* Stats row */}
- {statBoxes.length > 0 && (
- <div style={{ display: 'flex', gap: 12 }}>
- {statBoxes.map(({ val, unit, label }) => (
- <div
- key={label}
- style={{
- background: 'rgba(255,255,255,0.07)',
- border: '1px solid rgba(100,180,230,0.15)',
- borderRadius: 16, padding: '18px 22px',
- display: 'flex', flexDirection: 'column', gap: 4,
- minWidth: 100,
- }}
- >
- <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
- <div style={{ fontSize: label === 'DATUM' ? 22 : 32, fontWeight: 700, color: '#fff', lineHeight: 1, letterSpacing: '-1px' }}>
- {val}
- </div>
- {unit && (
- <div style={{ fontSize: 14, fontWeight: 700, color: 'rgba(100,200,240,0.80)' }}>
- {unit}
- </div>
- )}
- </div>
- <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,0.35)', letterSpacing: '1.5px' }}>
- {label}
- </div>
- </div>
- ))}
- </div>
- )}
+        {/* Vänsterpanel */}
+        <div style={{ position: 'absolute', left: MARG, top: 48, display: 'flex' }}>
+          <Logga storlek={26} />
+        </div>
 
- {/* Bottom: username + branding */}
- <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
- <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
- <div style={{
- width: 38, height: 38, borderRadius: '50%',
- background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- fontSize: 16, fontWeight: 700, color: '#fff',
- }}>
- {username[0]?.toUpperCase()}
- </div>
- <div style={{ fontSize: 16, fontWeight: 600, color: 'rgba(255,255,255,0.85)' }}>
- {`@${username}`}
- </div>
- </div>
- <div style={{
- fontSize: 12, fontWeight: 700,
- color: 'rgba(100,180,230,0.50)',
- letterSpacing: '0.5px',
- }}>
- Loggat med Svalla </div>
- </div>
- </div>
+        <div style={{ position: 'absolute', left: MARG, bottom: 52, width: foto ? W - FOTO_B - MARG + 60 : W - FOTO_B - MARG + 20, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{
+            fontFamily: SERIF, fontSize: rubrikStorlek, fontWeight: 700, color: '#fff',
+            lineHeight: 1.08, letterSpacing: -1, display: 'flex',
+            textShadow: '0 2px 20px rgba(0,0,0,0.5)',
+          }}>{plats}</div>
 
- {/* ── Right — route map ─────────────────────────────────────────── */}
- <div style={{
- width: 380, flexShrink: 0,
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- position: 'relative', overflow: 'hidden',
- }}>
- {/* Radial glow (inte över foto: gav en synlig skarv mitt i bilden) */}
- {!foto && <div style={{
- position: 'absolute', inset: 0,
- background: 'radial-gradient(circle at 50% 50%, rgba(30,100,180,0.22) 0%, transparent 70%)',
- display: 'flex',
- }} />}
+          {(under.length > 0 || magisk) ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 12 }}>
+              {under.map((u, i) => (
+                <div key={u} style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  {i > 0 ? <div style={{ width: 4, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.45)', display: 'flex' }} /> : null}
+                  <div style={{ fontFamily: FONT, fontSize: 20, fontWeight: 500, color: 'rgba(255,255,255,0.74)', display: 'flex' }}>{u}</div>
+                </div>
+              ))}
+              {magisk ? (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  {under.length > 0 ? <div style={{ width: 4, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.45)', display: 'flex' }} /> : null}
+                  <div style={{ fontFamily: FONT, fontSize: 20, fontWeight: 700, color: BARNSTEN, display: 'flex' }}>Magisk tur</div>
+                </div>
+              ) : null}
+            </div>
+          ) : null}
 
- {routePath ? (
- /* Route SVG */
- <svg
- width={RW * 0.78}
- height={RH * 0.78}
- viewBox={`0 0 ${RW} ${RH}`}
- style={{ position: 'relative', zIndex: 1 }}
- >
- {/* Glow pass */}
- <path d={routePath} stroke="rgba(80,170,230,0.25)" strokeWidth={12}
- fill="none" strokeLinecap="round" strokeLinejoin="round" />
- {/* Main route */}
- <path d={routePath} stroke="rgba(110,200,255,0.85)" strokeWidth={4}
- fill="none" strokeLinecap="round" strokeLinejoin="round" />
- {/* Start dot */}
- <circle
- cx={routePath.split(' ')[1]} cy={routePath.split(' ')[2]}
- r={7} fill="#0f9e64" />
- </svg>
- ) : foto ? null : (
- /* Fallback utan spår och utan foto: båtikonen */
- <svg width={120} height={120} viewBox="0 0 24 24" fill="rgba(255,255,255,0.18)" opacity={0.6}>{boatShapes}</svg>
- )}
+          {talVisade.length > 0 ? (
+            <div style={{
+              display: 'flex', marginTop: 26,
+              background: 'rgba(6,14,24,0.58)', border: '1px solid rgba(255,255,255,0.14)', borderRadius: 20,
+              paddingTop: 18, paddingBottom: 16,
+            }}>
+              {talVisade.map((t, i) => (
+                <div key={t.etikett} style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                  paddingLeft: 26, paddingRight: 26,
+                  borderLeft: i > 0 ? '1px solid rgba(255,255,255,0.12)' : '1px solid rgba(255,255,255,0)',
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: 4 }}>
+                    <div style={{ fontFamily: FONT, fontSize: 36, fontWeight: 800, color: '#fff', lineHeight: 1, letterSpacing: -1, display: 'flex' }}>{t.val}</div>
+                    {t.enhet ? <div style={{ fontFamily: FONT, fontSize: 15, fontWeight: 700, color: BARNSTEN, display: 'flex' }}>{t.enhet}</div> : null}
+                  </div>
+                  <div style={{ fontFamily: FONT, fontSize: 11, fontWeight: 700, letterSpacing: 2, color: 'rgba(255,255,255,0.58)', display: 'flex' }}>{t.etikett}</div>
+                </div>
+              ))}
+            </div>
+          ) : null}
 
- {/* Kantfaderna hör till kartpanelen; över foto blir de en skarv */}
- {!foto && <div style={{
- position: 'absolute', top: 0, right: 0, bottom: 0, width: 60,
- background: 'linear-gradient(to right, transparent, rgba(8,24,40,0.95))',
- display: 'flex',
- }} />}
- {!foto && <div style={{
- position: 'absolute', top: 0, left: 0, bottom: 0, width: 40,
- background: 'linear-gradient(to left, transparent, rgba(8,24,40,0.7))',
- display: 'flex',
- }} />}
- </div>
- </div>
- ),
- {
- width: 1200,
- height: 630,
- }
- )
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 26 }}>
+            <div style={{
+              width: 30, height: 30, borderRadius: 15, background: 'rgba(255,255,255,0.14)', border: '1px solid rgba(255,255,255,0.25)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontSize: 14, fontWeight: 800, color: '#fff',
+            }}>{(username[0] ?? 'S').toUpperCase()}</div>
+            <div style={{ fontFamily: FONT, fontSize: 19, fontWeight: 600, color: 'rgba(255,255,255,0.78)', display: 'flex' }}>{`@${username}`}</div>
+            <div style={{ width: 4, height: 4, borderRadius: 2, background: 'rgba(255,255,255,0.35)', display: 'flex', marginLeft: 4 }} />
+            <div style={{ fontFamily: FONT, fontSize: 18, fontWeight: 700, letterSpacing: 1, color: 'rgba(246,178,107,0.9)', display: 'flex', marginLeft: 4 }}>svalla.se</div>
+          </div>
+        </div>
+      </div>
+    ),
+    { width: W, height: H, fonts },
+  )
 }
