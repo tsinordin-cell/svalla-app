@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Vandring & natur i Stockholms skärgård',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     'sörmlandsleden',
   ],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Vandring & natur i Stockholms skärgård | Svalla',
     description: 'Naturreservat och vandringsleder i skärgården.',
     url: 'https://svalla.se/vandring-och-natur',

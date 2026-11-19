@@ -6,6 +6,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import Icon, { type IconName } from '@/components/Icon'
 import { ANTAL_OAR } from '@/app/o/island-data'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 /**
  * /partner: för krogar, hamnar, boenden och upplevelser på öarna.
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
   description: 'Driver du en krog, gästhamn, ett boende eller en upplevelse i skärgården? Det kostar ingenting att finnas på Svalla, och ni bestämmer vad som står om er.',
   keywords: ['skärgård restaurang synas', 'gästhamn synas online', 'svalla partner', 'skärgård verksamhet'],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Er verksamhet på Svalla, utan kostnad',
     description: 'Det kostar ingenting att finnas på Svalla, och ni bestämmer vad som står om er.',
     url: 'https://svalla.se/partner',

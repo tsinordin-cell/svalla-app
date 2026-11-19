@@ -6,6 +6,7 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon, { type IconName } from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
+import { ogO } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -45,6 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `dagstur med barn ${island.name.toLowerCase()}`,
     ],
     openGraph: {
+      images: ogO(island.slug),
       title: `${island.name} med barn: bad, mat och resväg`,
       description: `Badplatser, restauranger och resväg för besök på ${island.name} med barn.`,
       url: `https://svalla.se/o/${slug}/med-barn`,

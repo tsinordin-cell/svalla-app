@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { HYRBAT_SUBS } from '../hyrbat-data'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: page.metaDescription,
     alternates: { canonical: `https://svalla.se/hyra-bat/${slug}` },
     openGraph: {
+      images: OG_STANDARD,
       title: page.title,
       description: page.metaDescription,
       url: `https://svalla.se/hyra-bat/${slug}`,

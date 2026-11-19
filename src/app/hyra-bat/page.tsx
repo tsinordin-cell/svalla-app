@@ -5,6 +5,7 @@ import { GUIDES } from '@/app/guider/guides-data'
 import { HYRBAT_SUBS } from './hyrbat-data'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const revalidate = 86400
 
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/hyra-bat' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Hyra båt i Sverige 2026: komplett guide',
     description: 'Priser, licenskrav och de bästa hyrbåtsbolagen i Stockholms skärgård, Göteborg, Gotland och Bohuslän.',
     url: 'https://svalla.se/hyra-bat',

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Börja segla: Nybörjarguide',
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
  'segling utan erfarenhet',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Börja segla: Nybörjarguide',
  description: 'Allt du behöver veta för att börja segla. Kurser, båtval, revir, säkerhet och checklista.',
  url: 'https://svalla.se/nyborjare-segling',

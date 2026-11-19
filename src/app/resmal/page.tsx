@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import { ANTAL_OAR } from '@/app/o/island-data'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Alla resmål i Stockholms skärgård',
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
  'skärgårdstips stockholm',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Alla resmål i Stockholms skärgård | Svalla',
  description: 'Upptäck öar, krogar, hamnar och smultronställen i Stockholms skärgård.',
  url: 'https://svalla.se/resmal',

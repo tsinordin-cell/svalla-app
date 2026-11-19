@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 // Gamla ?typ=-URLer redirectas i next.config.ts (redirects med has: query),
 // inte här (revision 2026-10-02). searchParams gjorde hela /boende dynamisk:
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     'boende utö',
   ],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Boende i Stockholms skärgård | Svalla',
     description: 'Hotell, vandrarhem, stugor och pensionat i Stockholms skärgård.',
     url: 'https://svalla.se/boende',

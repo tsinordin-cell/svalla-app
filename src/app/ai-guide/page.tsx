@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Thorkel: AI-planeraren för skärgården',
@@ -19,6 +20,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/ai-guide' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Thorkel: AI-planeraren för skärgården',
     description: 'Berätta vad du är sugen på. Thorkel fixar färjor, mat, bad och dolda pärlor. Klar plan på sekunder.',
     url: 'https://svalla.se/ai-guide',

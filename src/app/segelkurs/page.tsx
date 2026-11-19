@@ -5,6 +5,7 @@ import { GUIDES } from '@/app/guider/guides-data'
 import { SEGELKURS_SUBS } from './segelkurs-data'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const revalidate = 86400
 
@@ -25,6 +26,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/segelkurs' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Segelkurs Sverige 2026: hitta rätt kurs',
     description: 'Nybörjarkurser, kustskepparintyget och seglarskola för barn. Hitta rätt segelkurs för din nivå.',
     url: 'https://svalla.se/segelkurs',

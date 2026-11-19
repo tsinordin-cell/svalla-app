@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { ISLANDS } from '@/app/o/island-data'
 import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, type FerryRoute } from '@/lib/ferries'
 import RutterVyer from './RutterVyer'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 // ── Öar-sektioner (matchar /oar) ──────────────────────────────────────────
 const ISLAND_SECTIONS = [
@@ -58,6 +59,7 @@ export const metadata: Metadata = {
   description: 'Utforska utvalda skärgårdsrutter för motorbåt, segelbåt, kajak och mer. Hitta rätt rutt för din tur.',
   alternates: { canonical: 'https://svalla.se/rutter' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Rutter | Svalla',
     description: 'Utvalda skärgårdsrutter med restauranger, tips och svårighetsgrad.',
     url: 'https://svalla.se/rutter',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import RegionCategoryPage, { CATEGORIES, REGIONS, getPlacesForRegionCategory } from '@/components/RegionCategoryPage'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 interface Props { params: Promise<{ kategori: string }> }
 
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ...(tom ? { robots: { index: false, follow: true } } : {}),
     title, description,
     alternates: { canonical: `https://svalla.se/aland/${kategori}` },
-    openGraph: { title: `${title} | Svalla`, description, url: `https://svalla.se/aland/${kategori}`, type: 'website' },
+    openGraph: { images: OG_STANDARD, title: `${title} | Svalla`, description, url: `https://svalla.se/aland/${kategori}`, type: 'website' },
   }
 }
 

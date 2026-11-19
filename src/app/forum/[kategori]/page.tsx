@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import Icon, { type IconName } from '@/components/Icon'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 import LoppisGrid, { type ThreadWithListing } from './LoppisGrid'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 function CategoryIcon({ iconName }: { iconName: IconName }) {
  return <Icon name={iconName} size={18} stroke={1.85} />
@@ -51,6 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   description: cat.description ?? undefined,
   alternates: { canonical: canonicalUrl },
   openGraph: {
+   images: OG_STANDARD,
    title: `${cat.name} | Svalla Forum`,
    description: cat.description ?? undefined,
    url: canonicalUrl,

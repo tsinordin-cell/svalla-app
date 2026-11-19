@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Gotland: Segla dit, logga turen',
@@ -24,6 +25,7 @@ export const metadata: Metadata = {
  'gotland segelrutt',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Gotland: Segla dit, logga turen',
  description: 'Planera din seglingstur till Gotland och logga varje etapp med Svalla.',
  url: 'https://svalla.se/gotland',

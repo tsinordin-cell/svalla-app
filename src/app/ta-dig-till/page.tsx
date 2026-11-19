@@ -9,12 +9,14 @@ import { ALL_ISLANDS } from '../o/island-data'
 import { getIslandTransit } from '@/lib/transit-stops'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Hur tar man sig till skärgården? Transport till alla öar',
   description: 'Komplett guide till hur du tar dig till skärgårdens öar. Färja, snabbåt, buss och egen båt: med restider, linjer och praktiska tips.',
   alternates: { canonical: 'https://svalla.se/ta-dig-till' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Transport till skärgårdens öar',
     description: 'Restider, linjer och tips för alla skärgårdsöar.',
     url: 'https://svalla.se/ta-dig-till',

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
 import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 /**
  * /skargardsdatum: skärgårdens återkommande datum på ett ställe
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
     'När är hummerpremiären, kräftpremiären och surströmmingspremiären 2027, och när byter båtarna tidtabell? Varje datum med regel och källa.',
   alternates: { canonical: 'https://svalla.se/skargardsdatum' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Skärgårdens datum 2026 och 2027',
     description: 'Premiärer, fiskesäsonger och tidtabellsbyten i skärgården, med regel och källa.',
     url: 'https://svalla.se/skargardsdatum',

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { TRIPS, getTrip, type TripDifficulty } from '../trips-data'
 import Icon, { type IconName } from '@/components/Icon'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: trip.tagline,
     alternates: { canonical: `https://svalla.se/resetips/${slug}` },
     openGraph: {
+      images: OG_STANDARD,
       title: `${trip.title} | Svalla`,
       description: trip.tagline,
       url: `https://svalla.se/resetips/${slug}`,

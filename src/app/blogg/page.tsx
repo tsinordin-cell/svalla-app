@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { POSTS_META } from './posts-data'
 import SvallaLogo from '@/components/SvallaLogo'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Skärgårdsbloggen',
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   keywords: ['stockholms skärgård guide', 'skärgård restaurang tips', 'bästa öarna stockholm', 'skärgård kajak', 'segla stockholms skärgård'],
   alternates: { canonical: 'https://svalla.se/blogg' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Skärgårdsbloggen',
     description: 'Tips, guider och inspiration för Stockholms skärgård.',
     url: 'https://svalla.se/blogg',

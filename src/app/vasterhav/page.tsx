@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Västerhavet: Segla Kattegatt & Skagerrak',
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
  'tidvatten segling',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Västerhavet: Segla Kattegatt & Skagerrak',
  description: 'Logga dina båtturer längs svenska västkusten med Svalla.',
  url: 'https://svalla.se/vasterhav',

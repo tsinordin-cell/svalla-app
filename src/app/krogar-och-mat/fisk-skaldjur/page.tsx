@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Fisk och skaldjur i skärgården',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     'vaxholm räkor',
   ],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Fisk och skaldjur i skärgården',
     description: 'Rökt strömming, färska räkor och havskräftor, direkt från havet i Stockholms skärgård.',
     url: 'https://svalla.se/krogar-och-mat/fisk-skaldjur',

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import JsonLd from '@/components/JsonLd'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Hyr stuga i skärgården | Stugor och stugbyar nära havet',
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   keywords: ['hyra stuga skärgården', 'stugby skärgård', 'stuga nära havet', 'sommarstuga skärgård', 'stuga med brygga'],
   alternates: { canonical: 'https://svalla.se/boende/stugor-stugbyar' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Hyr stuga i skärgården',
     description: 'Hitta stugor och stugbyar i skärgården nära bad, bryggor, färjor och sommarkrogar.',
     url: 'https://svalla.se/boende/stugor-stugbyar',

@@ -13,6 +13,7 @@ import { commonsThumb } from '@/lib/commonsBild'
 import Bildkallor from '@/components/Bildkallor'
 import OarSnabbfilter from './OarSnabbfilter'
 import { sokNyckel } from './oar-sok'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Alla öar: Stockholms skärgård, Bohuslän, Gotland & mer',
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/oar' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Alla öar: Stockholms skärgård, Bohuslän, Gotland & mer',
     description: 'Stockholms skärgård, Bohuslän, Gotland, Höga Kusten. Komplett guide.',
     url: 'https://svalla.se/oar',

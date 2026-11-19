@@ -5,12 +5,14 @@ import ShareButton from '@/components/ShareButton'
 import PublicFooter from '@/components/PublicFooter'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Bästa öarna i Stockholms skärgård 2026: listor per tema',
   description: 'Utvalda ö-listor för barnfamiljer, dagsturister, seglare och romantiska par. Hitta rätt ö i Stockholms skärgård, 2026.',
   alternates: { canonical: 'https://svalla.se/ostlistan' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Bästa öarna i Stockholms skärgård: listor per tema',
     description: 'Barnfamiljer, dagsturister, seglare, romantik och hundvänliga öar. Hitta rätt ö i Stockholms skärgård 2026.',
     url: 'https://svalla.se/ostlistan',

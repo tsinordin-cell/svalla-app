@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Takeaway, kiosker och lanthandlar i skärgården',
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
     'hamburgare skärgård',
   ],
   openGraph: {
+    images: OG_STANDARD,
     title: 'Takeaway, kiosker och lanthandlar i skärgården',
     description: 'Glass, räksmörgåsar och lanthandlar, enkla stopp utan bokning längs skärgårdsrutten.',
     url: 'https://svalla.se/krogar-och-mat/take-away-kiosker',

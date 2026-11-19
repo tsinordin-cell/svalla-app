@@ -5,6 +5,7 @@ import { getIsland, type Island } from '@/app/o/island-data'
 import SvallaLogo from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ pair: string }> }
 
@@ -127,6 +128,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: `Sandhamn eller Grinda? Vi jämför ${a.name} och ${b.name} sida vid sida: restider, restauranger, bästa-för, fakta. Hjälper dig välja rätt skärgårdsdestination.`.replace('Sandhamn eller Grinda? ', ''),
     keywords: [`${a.name.toLowerCase()} eller ${b.name.toLowerCase()}`, `${a.name.toLowerCase()} vs ${b.name.toLowerCase()}`, 'jämför skärgårdsöar'],
     openGraph: {
+      images: OG_STANDARD,
       title: `${a.name} vs ${b.name}, vilken passar dig?`,
       description: `Jämför ${a.name} och ${b.name} sida vid sida.`,
       url: `https://svalla.se/jamfor/${pair}`,

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { SEASON_GUIDES } from './season-data'
 import SvallaLogo from '@/components/SvallaLogo'
 import PublicFooter from '@/components/PublicFooter'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 /**
  * /guide/stockholm: listan över månadsguiderna.
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
     'Så är Stockholms skärgård i juni, juli, augusti, september, oktober och november: vilka öar som har öppet, vad man gör och vad man undviker.',
   alternates: { canonical: 'https://svalla.se/guide/stockholm' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Stockholms skärgård månad för månad',
     description: 'Säsongsguider för juni till november: öppna öar, aktiviteter och tips.',
     url: 'https://svalla.se/guide/stockholm',

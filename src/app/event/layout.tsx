@@ -6,6 +6,7 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   description: 'Kommande båt- och skärgårdsevents nära dig. Hitta och anmäl dig till träffar, segeltävlingar och gemensamma utflykter.',
   alternates: { canonical: 'https://svalla.se/event' },
   openGraph: {
+    images: OG_STANDARD,
     title: 'Events i skärgården | Svalla',
     description: 'Kommande båt- och skärgårdsevents nära dig.',
     url: 'https://svalla.se/event',

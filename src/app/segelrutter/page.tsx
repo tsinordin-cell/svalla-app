@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 // OMSKRIVEN 2026-09-21 (topp-30 i GSC). Den gamla sidan länkade till sju ruttsidor
 // under /segelrutter/… som inte finns (404, mätt i produktion 2026-09-21), lovade
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
  'kappsegling sandhamn',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Segelrutter: skärgården, Gotland och Bohuslän',
  description: 'Distanser, Gotland Runt-banan och vad som gäller för förarintyg och sjöräddning.',
  url: 'https://svalla.se/segelrutter',

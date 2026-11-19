@@ -7,11 +7,13 @@ import MyRoutesList from './MyRoutesList'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import Icon from '@/components/Icon'
 import WeatherPillServer from '@/components/WeatherPillServer'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt',
   description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastun, bryggor och naturupplevelser.',
   openGraph: {
+    images: OG_STANDARD,
     title: 'Planera din skärgårdsrutt | Svalla',
     description: 'Smart ruttplanerare för Stockholms skärgård.',
     url: 'https://svalla.se/planera',

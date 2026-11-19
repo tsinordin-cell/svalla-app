@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 // KÄLLOR för restider och priser på den här sidan (alla lästa 2026-09-21 om inget annat anges):
 // - Strömma, Båt till Fjäderholmarna, https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — 30 min från Strandvägen kajplats 13 / Nacka Strand, 170 kr enkel, 205 kr t/r, "ÅTER MAJ 2027"
@@ -32,6 +33,7 @@ export const metadata: Metadata = {
  'dagsturer stockholms skärgård',
  ],
  openGraph: {
+ images: OG_STANDARD,
  title: 'Dagstur i Stockholms skärgård: sex öar med båt',
  description: 'Fjäderholmarna, Vaxholm, Grinda, Sandhamn, Utö och Finnhamn: restid, båt och biljett för en dagstur från Stockholm.',
  url: 'https://svalla.se/dagsturer',

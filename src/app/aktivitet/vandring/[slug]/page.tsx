@@ -6,6 +6,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import { HIKES, REGIONS, type Hike } from '../hike-data'
 import { HIKE_DESCRIPTIONS } from '../hike-descriptions'
 import Icon, { type IconName } from '@/components/Icon'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -29,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ],
     alternates: { canonical: `https://svalla.se/aktivitet/vandring/${hike.slug}` },
     openGraph: {
+      images: OG_STANDARD,
       title: `Vandra ${hike.name}`,
       description: hike.tagline,
       url: `https://svalla.se/aktivitet/vandring/${hike.slug}`,

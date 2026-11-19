@@ -9,6 +9,7 @@ import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
 import { commonsThumb } from '@/lib/commonsBild'
 import Bildkallor from '@/components/Bildkallor'
+import { OG_STANDARD } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ kategori: string }> }
 
@@ -27,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: cat.searchTerms,
     alternates: { canonical: `https://svalla.se/oar/${cat.slug}` },
     openGraph: {
+      images: OG_STANDARD,
       title: cat.title,
       description: cat.hero,
       url: `https://svalla.se/oar/${cat.slug}`,

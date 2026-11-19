@@ -6,6 +6,7 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import { kommaDitTitel } from '@/lib/kommaDitTitlar'
+import { ogO } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -62,6 +63,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       `how to get to ${island.name.toLowerCase()} sweden`,
     ],
     openGraph: {
+      images: ogO(island.slug),
       title: kommaDitTitel(slug, island.name),
       // Tidigare lovade delningstexten "avgångstider, priser" och buss för alla
       // öar. Sidorna har inga priser. Nu samma text som metabeskrivningen.
