@@ -5,6 +5,7 @@
  * Schema: achievement_events (user_id, achievement_key, awarded_at) UNIQUE(user, key)
  */
 import type { SupabaseClient } from '@supabase/supabase-js'
+import type { IconName } from '@/components/Icon'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak, type TripForAch } from './achievements'
 
 export type AchievementEvent = {
@@ -16,7 +17,7 @@ export type AchievementEvent = {
   username?: string
   avatar?: string | null
   // härledd
-  emoji?: string
+  icon?: IconName
   label?: string
   desc?: string
 }
@@ -91,7 +92,7 @@ export async function listRecentAchievementEvents(
       ...(r as AchievementEvent),
       username: umap[r.user_id as string]?.username,
       avatar: umap[r.user_id as string]?.avatar ?? null,
-      emoji: a?.emoji,
+      icon: a?.icon,
       label: a?.label,
       desc: a?.desc,
     }
@@ -114,7 +115,7 @@ export async function listMyAchievementEvents(
     const a = ach[r.achievement_key as string]
     return {
       ...(r as AchievementEvent),
-      emoji: a?.emoji,
+      icon: a?.icon,
       label: a?.label,
       desc: a?.desc,
     }

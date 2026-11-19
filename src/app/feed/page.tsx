@@ -14,6 +14,7 @@ import FeedClientBoundary from '@/components/FeedClientBoundary'
 import SeasonToolBanner from '@/components/SeasonToolBanner'
 import JulkalenderFlodeKort from '@/components/JulkalenderFlodeKort'
 import VinterIFlodet from '@/components/VinterIFlodet'
+import Icon from '@/components/Icon'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
@@ -302,8 +303,9 @@ export default async function FeedPage(
  {/* ── Nya märken från nätverket ── */}
  {recentAchievements.length > 0 && (
  <div style={{ marginBottom: 16 }}>
- <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
- 🏆 Nya märken i nätverket
+ <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, fontWeight: 600, color: 'var(--acc)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
+ <Icon name="trophy" size={12} stroke={2} />
+ Nya märken i nätverket
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {recentAchievements.map(ev => (

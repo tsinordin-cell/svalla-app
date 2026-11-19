@@ -407,7 +407,7 @@ export default async function PublicProfilePage({
  {/* ── Achievements grid ── */}
  <div style={{ background: 'var(--white)', borderRadius: 18, padding: '14px', marginBottom: 16, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
- <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>🏅 Märken</div>
+ <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', display: 'flex', alignItems: 'center', gap: 5 }}><Icon name="award" size={11} stroke={2} /> Märken</div>
  <span style={{ fontSize: 12, fontWeight: 600, color: unlockedAch.length > 0 ? 'var(--sea)' : 'var(--txt3)' }}>
  {unlockedAch.length}/{ACHIEVEMENTS.length} upplåsta
  </span>

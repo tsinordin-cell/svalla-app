@@ -1,9 +1,12 @@
-// ── Achievements — delad definition ───────────────────────────────────────────
-// Importeras av profil/page.tsx, u/[username]/page.tsx och spara/page.tsx
+// ── Achievements, delad definition ────────────────────────────────────────────
+// Importeras av profil/page.tsx, u/[username]/page.tsx och spara/page.tsx.
+// Ikonen är ett namn i Icon.tsx (streckad SVG). Märken ritas aldrig med emoji.
+
+import type { IconName } from '@/components/Icon'
 
 export interface Achievement {
   id: string
-  emoji: string
+  icon: IconName
   label: string
   desc: string
   check: (trips: TripForAch[], totalDist: number, streak: number) => boolean
@@ -22,34 +25,34 @@ export interface TripForAch {
 }
 
 export const ACHIEVEMENTS: Achievement[] = [
-  { id: 'first',       emoji: '🏁', label: 'Första kastet',      desc: 'Loggade sin första tur',                        check: (t) => t.length >= 1 },
-  { id: 'five',        emoji: '🧭', label: 'Äventyraren',        desc: '5 loggade turer',                               check: (t) => t.length >= 5 },
-  { id: 'ten',         emoji: '🌊', label: 'Saltvattenblod',     desc: '10 loggade turer',                              check: (t) => t.length >= 10 },
-  { id: 'dist50',      emoji: '⚓', label: '50 NM',              desc: '50 nautiska mil totalt',                        check: (_, d) => d >= 50 },
-  { id: 'dist100',     emoji: '⛵', label: '100 NM Segrare',     desc: '100 nautiska mil totalt',                       check: (_, d) => d >= 100 },
-  { id: 'magic',       emoji: '✨', label: 'Magisk tur',         desc: 'Loggade en ⚓⚓⚓-upplevelse',                   check: (t) => t.some(x => x.pinnar_rating === 3) },
-  { id: 'explorer',    emoji: '🗺️', label: 'Kartläggaren',      desc: 'Besökt 5 unika platser',                        check: (t) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 5 },
-  { id: 'boats',       emoji: '🚤', label: 'Multifarare',        desc: 'Loggat 3 olika båttyper',                       check: (t) => new Set(t.map(x => x.boat_type).filter(Boolean)).size >= 3 },
-  { id: 'streak3',     emoji: '🔥', label: 'Veckostrejk',        desc: '3 veckor i rad med minst en tur',               check: (_t, _d, s) => s >= 3 },
-  { id: 'twenty',      emoji: '🏆', label: 'Havets Herre',       desc: '20 loggade turer',                              check: (t) => t.length >= 20 },
-  { id: 'dist250',     emoji: '🌍', label: 'Oceansegrare',       desc: '250 nautiska mil totalt',                       check: (_, d) => d >= 250 },
-  { id: 'dist500',     emoji: '🚀', label: 'Atlantfararen',      desc: '500 nautiska mil totalt',                       check: (_, d) => d >= 500 },
-  { id: 'locs10',      emoji: '📍', label: 'Skärgårdsvandraren', desc: 'Besökt 10 unika platser',                       check: (t) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 10 },
-  { id: 'locs25',      emoji: '🗾', label: 'Arkipelagos',        desc: 'Besökt 25 unika platser',                       check: (t) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 25 },
-  { id: 'magic3',      emoji: '🌟', label: 'Magikern',           desc: '3 magiska ⚓⚓⚓-upplevelser',                   check: (t) => t.filter(x => x.pinnar_rating === 3).length >= 3 },
-  { id: 'streak8',     emoji: '⚡', label: 'Veckokrigaren',      desc: '8 veckor i rad med minst en tur',               check: (_t, _d, s) => s >= 8 },
-  // PRODUKTREGEL: vårt eget villkor för utmärkelsen — vi är källan.
-  { id: 'earlybird',   emoji: '🌅', label: 'Gryningsseglaren',   desc: 'Logga en tur som startar före kl 07:00',        check: (t) => t.some(x => x.started_at && new Date(x.started_at).getUTCHours() < 7) },
-  // PRODUKTREGEL: vårt eget villkor för utmärkelsen — vi är källan.
-  { id: 'nightsail',   emoji: '🌙', label: 'Nattseglaren',       desc: 'Logga en tur som slutar efter kl 22:00',        check: (t) => t.some(x => x.ended_at && new Date(x.ended_at).getUTCHours() >= 22) },
-  { id: 'speed15',     emoji: '💨', label: 'Vindridaren',        desc: 'Uppnå en toppfart på 15 knop',                  check: (t) => t.some(x => (x.max_speed_knots ?? 0) >= 15) },
-  { id: 'fifty_trips', emoji: '👑', label: 'Skärgårdskungen',    desc: '50 loggade turer',                              check: (t) => t.length >= 50 },
+  { id: 'first',       icon: 'flag',      label: 'Första kastet',      desc: 'Loggade sin första tur',                        check: (t) => t.length >= 1 },
+  { id: 'five',        icon: 'compass',   label: 'Äventyraren',        desc: '5 loggade turer',                               check: (t) => t.length >= 5 },
+  { id: 'ten',         icon: 'waves',     label: 'Saltvattenblod',     desc: '10 loggade turer',                              check: (t) => t.length >= 10 },
+  { id: 'dist50',      icon: 'anchor',    label: '50 NM',              desc: '50 nautiska mil totalt',                        check: (_, d) => d >= 50 },
+  { id: 'dist100',     icon: 'sailboat',  label: '100 NM Segrare',     desc: '100 nautiska mil totalt',                       check: (_, d) => d >= 100 },
+  { id: 'magic',       icon: 'sparkles',  label: 'Magisk tur',         desc: 'Loggade en ⚓⚓⚓-upplevelse',                   check: (t) => t.some(x => x.pinnar_rating === 3) },
+  { id: 'explorer',    icon: 'map',       label: 'Kartläggaren',      desc: 'Besökt 5 unika platser',                        check: (t) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 5 },
+  { id: 'boats',       icon: 'ship',      label: 'Multifarare',        desc: 'Loggat 3 olika båttyper',                       check: (t) => new Set(t.map(x => x.boat_type).filter(Boolean)).size >= 3 },
+  { id: 'streak3',     icon: 'fire',      label: 'Veckostrejk',        desc: '3 veckor i rad med minst en tur',               check: (_t, _d, s) => s >= 3 },
+  { id: 'twenty',      icon: 'trophy',    label: 'Havets Herre',       desc: '20 loggade turer',                              check: (t) => t.length >= 20 },
+  { id: 'dist250',     icon: 'globe',     label: 'Oceansegrare',       desc: '250 nautiska mil totalt',                       check: (_, d) => d >= 250 },
+  { id: 'dist500',     icon: 'rocket',    label: 'Atlantfararen',      desc: '500 nautiska mil totalt',                       check: (_, d) => d >= 500 },
+  { id: 'locs10',      icon: 'pin',       label: 'Skärgårdsvandraren', desc: 'Besökt 10 unika platser',                       check: (t) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 10 },
+  { id: 'locs25',      icon: 'map',       label: 'Arkipelagos',        desc: 'Besökt 25 unika platser',                       check: (t) => new Set(t.map(x => x.location_name).filter(Boolean)).size >= 25 },
+  { id: 'magic3',      icon: 'sparkles',  label: 'Magikern',           desc: '3 magiska ⚓⚓⚓-upplevelser',                   check: (t) => t.filter(x => x.pinnar_rating === 3).length >= 3 },
+  { id: 'streak8',     icon: 'zap',       label: 'Veckokrigaren',      desc: '8 veckor i rad med minst en tur',               check: (_t, _d, s) => s >= 8 },
+  // PRODUKTREGEL: vårt eget villkor för utmärkelsen. Vi är källan.
+  { id: 'earlybird',   icon: 'sunrise',   label: 'Gryningsseglaren',   desc: 'Logga en tur som startar före kl 07:00',        check: (t) => t.some(x => x.started_at && new Date(x.started_at).getUTCHours() < 7) },
+  // PRODUKTREGEL: vårt eget villkor för utmärkelsen. Vi är källan.
+  { id: 'nightsail',   icon: 'moon',      label: 'Nattseglaren',       desc: 'Logga en tur som slutar efter kl 22:00',        check: (t) => t.some(x => x.ended_at && new Date(x.ended_at).getUTCHours() >= 22) },
+  { id: 'speed15',     icon: 'wind',      label: 'Vindridaren',        desc: 'Uppnå en toppfart på 15 knop',                  check: (t) => t.some(x => (x.max_speed_knots ?? 0) >= 15) },
+  { id: 'fifty_trips', icon: 'crown',     label: 'Skärgårdskungen',    desc: '50 loggade turer',                              check: (t) => t.length >= 50 },
 
-  // ── Sommar 2026 — säsongsmärken (maj–aug 2026) ────────────────────────────
-  { id: 's26_first',   emoji: '☀️', label: 'Sommarstart 2026',   desc: 'Loggade en tur maj till aug 2026',                   check: (t) => t.some(x => isSummer2026(x.created_at)) },
-  { id: 's26_ten',     emoji: '🏖️', label: 'Sommarseglaren',     desc: '10 turer maj till aug 2026',                         check: (t) => t.filter(x => isSummer2026(x.created_at)).length >= 10 },
-  { id: 's26_magic',   emoji: '🌞', label: 'Sommarmagi',          desc: 'En ⚓⚓⚓-tur maj till aug 2026',                    check: (t) => t.some(x => isSummer2026(x.created_at) && x.pinnar_rating === 3) },
-  { id: 's26_champ',   emoji: '🏅', label: 'Sommaräventyraren',   desc: '25 turer maj till aug 2026',                         check: (t) => t.filter(x => isSummer2026(x.created_at)).length >= 25 },
+  // Sommar 2026, säsongsmärken (maj till aug 2026)
+  { id: 's26_first',   icon: 'sun',       label: 'Sommarstart 2026',   desc: 'Loggade en tur maj till aug 2026',                   check: (t) => t.some(x => isSummer2026(x.created_at)) },
+  { id: 's26_ten',     icon: 'beach',     label: 'Sommarseglaren',     desc: '10 turer maj till aug 2026',                         check: (t) => t.filter(x => isSummer2026(x.created_at)).length >= 10 },
+  { id: 's26_magic',   icon: 'sun',       label: 'Sommarmagi',          desc: 'En ⚓⚓⚓-tur maj till aug 2026',                    check: (t) => t.some(x => isSummer2026(x.created_at) && x.pinnar_rating === 3) },
+  { id: 's26_champ',   icon: 'award',     label: 'Sommaräventyraren',   desc: '25 turer maj till aug 2026',                         check: (t) => t.filter(x => isSummer2026(x.created_at)).length >= 25 },
 ]
 
 // Hjälpare: avgör om ett trip-datum ligger i sommaren 2026 (maj 1 → aug 31)
