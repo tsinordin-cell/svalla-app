@@ -137,21 +137,18 @@ export const harOversikt = (m: MenyPunkt) => !m.grupper[0]?.rubrik && m.grupper[
 export const antalKolumner = (m: MenyPunkt) => Math.min(4, m.grupper.filter(g => g.rubrik).length)
 
 /**
- * Samma utseende på startsidans rullgardiner som på undersidornas (SidHuvud.tsx):
- * vit panel, rubriker i grått, en kolumn per rubrik. Stilen följer med menyn så att
+ * Startsidans mörka rullgardiner, med en kolumn per rubrik när de är flera
+ * (samma utseende i SidHuvud.tsx). Stilen följer med menyn så att
  * startsidan inte behöver egna regler.
  */
 const STIL_STARTSIDA = `<li class="sv-meny-stil" aria-hidden="true" style="display:none"><style>
-.lp-nav .nav-dd-panel{left:0;transform:translateY(-4px);padding-top:10px}
-.lp-nav .nav-dropdown:hover .nav-dd-panel,.lp-nav .nav-dropdown:focus-within .nav-dd-panel{transform:translateY(0)}
-.lp-nav .nav-dd-inner{background:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;border:0;border-radius:14px;box-shadow:0 16px 40px rgba(13,36,64,.22);padding:12px;min-width:250px;max-height:none;overflow:visible}
-.lp-nav .nav-dd-inner.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(160px,max-content));gap:4px 18px}
-.lp-nav .nav-dd-inner .sv-oversikt{grid-column:1/-1;border-bottom:1px solid #e6eef1;padding-bottom:6px;margin-bottom:4px}
-.lp-nav .nav-dd-inner .nav-dd-link{color:#192830;font-family:inherit;font-size:14px;font-weight:500;letter-spacing:0;padding:7px 10px}
-.lp-nav .nav-dd-inner .nav-dd-link:hover,.lp-nav .nav-dd-inner .nav-dd-link:focus{background:#f2f8fa;color:#1e5c82}
-.lp-nav .nav-dd-inner .sv-oversikt .nav-dd-link{font-weight:700}
-.lp-nav .nav-dd-inner .nav-dd-section{color:#6b7c85;font-size:11px;letter-spacing:.06em;padding:8px 10px 4px}
-.lp-nav .nav-dd-inner .nav-dd-divider{background:#e6eef1;margin:6px 10px}
+.lp-nav .nav-dd-panel:has(.flera){left:0;transform:translateY(-4px)}
+.lp-nav .nav-dropdown:hover .nav-dd-panel:has(.flera),.lp-nav .nav-dropdown:focus-within .nav-dd-panel:has(.flera){transform:translateY(0)}
+.lp-nav .nav-dd-inner.flera{display:grid;grid-template-columns:repeat(var(--kol,3),max-content);column-gap:6px;max-height:none;overflow:visible}
+.lp-nav .nav-dd-inner .sv-oversikt{grid-column:1/-1;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:4px;margin-bottom:2px}
+.lp-nav .nav-dd-inner .sv-oversikt .nav-dd-link{font-weight:700;color:#fff}
+.lp-nav .nav-dd-inner .nav-dd-section{white-space:nowrap}
+.lp-nav .nav-dd-inner:not(.flera)>div+div{border-top:1px solid rgba(255,255,255,.08);margin-top:6px}
 </style></li>
 `
 

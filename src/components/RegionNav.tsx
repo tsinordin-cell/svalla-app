@@ -124,7 +124,7 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
         .rn-sek h3{font-family:'Playfair Display',Georgia,serif;font-size:22px;margin:0 0 12px;color:var(--txt,#192830)}
         .rn-sek h3 span{font-family:inherit;font-size:13px;color:var(--txt3,#6b7c85);font-weight:500;margin-left:6px}
         .rn-kortgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-        .rn-kort{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;background:#fff;text-decoration:none;box-shadow:0 1px 8px rgba(0,0,0,.05);border:1px solid var(--surface-3,#e3ecef);transition:transform .15s,box-shadow .15s;overflow:hidden}
+        .rn-kort{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;background:var(--card-bg,#fff);text-decoration:none;box-shadow:0 1px 8px rgba(0,0,0,.05);border:1px solid var(--surface-3,#e3ecef);transition:transform .15s,box-shadow .15s;overflow:hidden}
         .rn-kort:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(13,36,64,.1)}
         .rn-o{padding-top:0}
         .rn-obild{height:130px;margin:0 -18px 10px;background:linear-gradient(135deg,#1e5c82,#2d7d8a) center/cover}
@@ -133,7 +133,7 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
         .rn-kort small{font-size:13px;color:var(--txt2,#4a5c66);line-height:1.45;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
         .rn-kort em{font-style:normal;font-size:13px;font-weight:700;color:var(--sea,#0a7b8c);margin-top:auto;padding-top:6px}
         .rn-kredit{font-size:10px;color:var(--txt3,#8a989f)}
-        .rn-tomt{background:#fff;border:1.5px dashed #c6d8df;border-radius:14px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
+        .rn-tomt{background:var(--card-bg,#fff);border:1.5px dashed var(--surface-3,#c6d8df);border-radius:14px;padding:14px 16px;color:var(--txt2,#4a5c66);font-size:14px;margin:0}
         .rn-tomt a{color:var(--sea,#1e5c82);font-weight:700}
         .rn-mer{margin-top:10px;border:none;background:none;color:var(--sea,#1e5c82);font:inherit;font-weight:700;font-size:14px;cursor:pointer;padding:0}
       `}</style>

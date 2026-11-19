@@ -60,8 +60,10 @@ export default function RegionerPage() {
                 const forsta = (r.bildSlug && oar.find(o => o.slug === r.bildSlug)) || oar.find(o => bildFor(o.slug, o.name))
                 const bild = forsta ? bildFor(forsta.slug, forsta.name) : undefined
                 return (
-                  <Link key={r.href} href={r.href} style={{ display: 'flex', flexDirection: 'column', background: 'var(--white, #fff)', borderRadius: 16, overflow: 'hidden', textDecoration: 'none', boxShadow: '0 1px 8px rgba(0,0,0,0.05)', border: '1px solid var(--surface-3, #e3ecef)' }}>
-                    <div style={{ height: 140, background: bild ? `url(${bild.url}) center/cover` : 'linear-gradient(135deg, #1e5c82, #2d7d8a)' }} />
+                  <Link key={r.href} href={r.href} style={{ display: 'flex', flexDirection: 'column', background: 'var(--card-bg, #fff)', borderRadius: 16, overflow: 'hidden', textDecoration: 'none', boxShadow: '0 1px 8px rgba(0,0,0,0.05)', border: '1px solid var(--surface-3, #e3ecef)' }}>
+                    <div style={{ height: 140, background: bild ? `url(${bild.url}) center/cover` : 'linear-gradient(135deg, #0d2440 0%, #1e5c82 60%, #2d7d8a 100%)', display: 'flex', alignItems: 'flex-end', padding: 16 }}>
+                      {!bild && <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 30, fontWeight: 700, color: 'rgba(255,255,255,0.92)' }}>{r.namn}</span>}
+                    </div>
                     <div style={{ padding: '14px 16px 16px', display: 'flex', flexDirection: 'column', gap: 4 }}>
                       <b style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, color: 'var(--txt)' }}>{r.namn}</b>
                       <small style={{ fontSize: 13, color: 'var(--txt3)' }}>{oar.length > 0 ? `${oar.length} ${oar.length === 1 ? 'ösida' : 'ösidor'}` : 'Regionsida'}</small>

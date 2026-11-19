@@ -105,14 +105,15 @@ export default function SidHuvud() {
         .sidhuvud-panel{position:absolute;top:100%;left:0;padding-top:8px;display:none;z-index:50}
         .sidhuvud-punkt:hover .sidhuvud-panel,.sidhuvud-punkt:focus-within .sidhuvud-panel{display:block}
         .sidhuvud-panel.hoger{left:auto;right:0}
-        .sidhuvud-panel-inre{background:#fff;border-radius:14px;box-shadow:0 16px 40px rgba(13,36,64,.22);padding:12px;min-width:250px}
-        .sidhuvud-panel-inre.flera{display:grid;grid-template-columns:repeat(var(--kol,3),minmax(160px,max-content));gap:4px 18px}
-        .sidhuvud-panel-inre.flera .sidhuvud-oversikt{grid-column:1/-1;border-bottom:1px solid #e6eef1;padding-bottom:6px;margin-bottom:4px}
-        .sidhuvud-oversikt a{font-weight:700!important}
-        .sidhuvud-panel-rubrik{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b7c85;padding:8px 10px 4px}
-        .sidhuvud-panel-inre a{display:block;color:#192830;text-decoration:none;font-size:14px;font-weight:500;padding:7px 10px;border-radius:8px;white-space:nowrap}
-        .sidhuvud-panel-inre a:hover,.sidhuvud-panel-inre a:focus{background:#f2f8fa;color:#1e5c82;outline:none}
-        .sidhuvud-panel-inre a[aria-current="page"]{color:#1e5c82;font-weight:700}
+        .sidhuvud-panel-inre{background:rgba(10,28,40,.97);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.08);border-radius:14px;box-shadow:0 18px 50px rgba(0,0,0,.45);padding:10px;min-width:240px}
+        .sidhuvud-panel-inre.flera{display:grid;grid-template-columns:repeat(var(--kol,3),max-content);column-gap:6px}
+        .sidhuvud-panel-inre:not(.flera)>div+div{border-top:1px solid rgba(255,255,255,.08);margin-top:6px}
+        .sidhuvud-panel-inre.flera .sidhuvud-oversikt{grid-column:1/-1;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:4px;margin-bottom:2px}
+        .sidhuvud-oversikt a{font-weight:700!important;color:#fff!important}
+        .sidhuvud-panel-rubrik{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e8924a;padding:10px 14px 4px;white-space:nowrap}
+        .sidhuvud-panel-inre a{display:block;color:rgba(255,255,255,.82);text-decoration:none;font-size:13.5px;font-weight:500;letter-spacing:.01em;padding:9px 14px;border-radius:8px;white-space:nowrap;transition:background .14s,color .14s}
+        .sidhuvud-panel-inre a:hover,.sidhuvud-panel-inre a:focus{background:rgba(255,255,255,.07);color:#fff;outline:none}
+        .sidhuvud-panel-inre a[aria-current="page"]{color:#fff;font-weight:700}
         .sidhuvud-sok input{width:210px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);color:#fff;font:inherit;font-size:13px;outline:none}
         .sidhuvud-sok input::placeholder{color:rgba(255,255,255,.7)}
         .sidhuvud-sok input:focus{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
