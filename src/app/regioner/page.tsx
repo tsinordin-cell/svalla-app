@@ -10,7 +10,7 @@ import { bildFor } from '@/lib/omraden'
  * Antal öar och foton räknas ur island-data och obilder.generated.
  */
 export const metadata: Metadata = {
-  title: 'Regioner: Sveriges skärgårdar och kuster | Svalla',
+  title: 'Regioner: Sveriges skärgårdar och kuster',
   description: 'Alla regioner på Svalla, från Höga Kusten till Bohuslän och Blekinge, med öar, guider, krogar, boende och gästhamnar per region.',
   robots: { index: false },
 }

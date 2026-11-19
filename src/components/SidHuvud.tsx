@@ -110,7 +110,7 @@ export default function SidHuvud() {
         .sidhuvud-panel-inre:not(.flera)>div+div{border-top:1px solid rgba(255,255,255,.08);margin-top:6px}
         .sidhuvud-panel-inre.flera .sidhuvud-oversikt{grid-column:1/-1;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:4px;margin-bottom:2px}
         .sidhuvud-oversikt a{font-weight:700!important;color:#fff!important}
-        .sidhuvud-panel-rubrik{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:10px 14px 4px;white-space:nowrap}
+        .sidhuvud-panel-rubrik{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e8924a;padding:10px 14px 4px;white-space:nowrap}
         .sidhuvud-panel-inre a{display:block;color:rgba(255,255,255,.82);text-decoration:none;font-size:13.5px;font-weight:500;letter-spacing:.01em;padding:9px 14px;border-radius:8px;white-space:nowrap;transition:background .14s,color .14s}
         .sidhuvud-panel-inre a:hover,.sidhuvud-panel-inre a:focus{background:rgba(255,255,255,.07);color:#fff;outline:none}
         .sidhuvud-panel-inre a[aria-current="page"]{color:#fff;font-weight:700}
@@ -118,9 +118,9 @@ export default function SidHuvud() {
         .sidhuvud-sok input::placeholder{color:rgba(255,255,255,.7)}
         .sidhuvud-sok input:focus{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5)}
         .sidhuvud-konto{display:flex;align-items:center;flex-shrink:0}
-        .sidhuvud-punkt>a.sidhuvud-knapp,.sidhuvud-punkt:focus-within>a.sidhuvud-knapp{color:#fff;background:var(--accent-strong)}
-        .sidhuvud-punkt:hover>a.sidhuvud-knapp{color:#fff;background:var(--accent-strong);filter:brightness(1.08)}
-        .sidhuvud-knapp{background:var(--accent-strong);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:999px;white-space:nowrap}
+        .sidhuvud-punkt>a.sidhuvud-knapp,.sidhuvud-punkt:focus-within>a.sidhuvud-knapp{color:#fff;background:var(--acc-knapp,#b5591a)}
+        .sidhuvud-punkt:hover>a.sidhuvud-knapp{color:#fff;background:var(--acc-knapp,#b5591a);filter:brightness(1.08)}
+        .sidhuvud-knapp{background:var(--acc-knapp,#b5591a);color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 16px;border-radius:999px;white-space:nowrap}
         .sidhuvud-menyknapp{display:none;margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;font:inherit;font-size:13px;font-weight:700;padding:8px 12px;border-radius:10px;cursor:pointer}
         .sidhuvud-mobil{position:fixed;inset:64px 0 0 0;background:#0d2440;overflow-y:auto;padding:12px 16px 40px;z-index:60}
         .sidhuvud-mobil-sok input{width:100%;padding:11px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;font:inherit;font-size:15px;margin-bottom:8px}
@@ -131,7 +131,7 @@ export default function SidHuvud() {
         .sidhuvud-mobil summary::after{content:'›';opacity:.5;transition:transform .2s}
         .sidhuvud-mobil details[open] summary::after{transform:rotate(90deg)}
         .sidhuvud-mobil-lankar{padding:0 4px 12px}
-        .sidhuvud-mobil-lankar .sidhuvud-panel-rubrik{color:var(--accent);padding:10px 0 4px}
+        .sidhuvud-mobil-lankar .sidhuvud-panel-rubrik{color:#e8924a;padding:10px 0 4px}
         .sidhuvud-mobil-lankar a{display:block;color:rgba(255,255,255,.9);text-decoration:none;font-size:15px;padding:9px 0}
         @media (max-width:1100px){
           .sidhuvud-rad{padding:0 16px;gap:10px}
