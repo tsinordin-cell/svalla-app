@@ -26,6 +26,7 @@ export default function TripSignupCta({
 }) {
   const supabase = useRef(createClient()).current
   const [visa, setVisa] = useState(false)
+  const bandRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     let avbruten = false
@@ -35,18 +36,35 @@ export default function TripSignupCta({
     return () => { avbruten = true }
   }, [supabase])
 
+  // Bandets höjd läggs i --cta-h så länge det syns. "Tipsa oss" och cookierutan
+  // räknar med den och lägger sig ovanför bandet i stället för ovanpå knappen.
+  useEffect(() => {
+    if (!visa) return
+    const el = bandRef.current
+    if (!el) return
+    const satt = () => document.documentElement.style.setProperty('--cta-h', `${el.offsetHeight}px`)
+    satt()
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(satt) : null
+    ro?.observe(el)
+    return () => {
+      ro?.disconnect()
+      document.documentElement.style.removeProperty('--cta-h')
+    }
+  }, [visa])
+
   if (!visa) return null
 
   return (
     <>
       {/* Spacer i flödet så den fixed bannern inte täcker sidans innehåll */}
-      <div style={{ height: 100 }} aria-hidden="true" />
-      <div style={{
-        position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 200,
+      <div style={{ height: 124 }} aria-hidden="true" />
+      <div ref={bandRef} style={{
+        /* Ovanför bottenmenyn. Bandet låg tidigare på bottom 0 och hamnade under
+           menyn på telefon: 13 av knappens 45 px gick att träffa (mätt 19 nov). */
+        position: 'fixed', bottom: 'calc(var(--nav-h, 0px) + env(safe-area-inset-bottom, 0px))', left: 0, right: 0, zIndex: 200,
         background: 'linear-gradient(135deg, #0d2240, #1a4a5e)',
         borderTop: '1px solid rgba(255,255,255,0.08)',
         padding: '16px 20px',
-        paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))',
         display: 'flex', alignItems: 'center', gap: 16,
         boxShadow: '0 -8px 32px rgba(0,20,40,0.35)',
       }}>

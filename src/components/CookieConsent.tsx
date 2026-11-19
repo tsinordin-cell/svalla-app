@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const STORAGE_KEY = 'svalla_cookie_consent'
 
@@ -24,6 +25,10 @@ export function hasAnalyticsConsent(): boolean {
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false)
+  const pathname = usePathname()
+  // På registrering och inloggning låg remsan ovanpå "Fortsätt med Google" på
+  // telefon (mätt 19 nov). Där ligger den i överkant i stället.
+  const overst = pathname === '/kom-igang' || pathname === '/logga-in'
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY)
@@ -53,7 +58,9 @@ export default function CookieConsent() {
            låg ovanpå öns viktigaste uppgifter och knappar. Samma två val som förut,
            samma vikt på båda knapparna. Texten är kortad; allt står i policyn. */
         position: 'fixed',
-        bottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 8px)',
+        ...(overst
+          ? { top: 'calc(env(safe-area-inset-top, 0px) + 8px)' }
+          : { bottom: 'calc(var(--nav-h, 64px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 8px)' }),
         left: 8,
         right: 8,
         maxWidth: 640,

@@ -29,6 +29,7 @@ interface Suggestion {
   avatar: string | null
   vessel_model: string | null
   home_port: string | null
+  boat_type?: string | null
 }
 
 interface Props {
@@ -584,7 +585,11 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
     if (!boatType) return
     setSaving(true); setError('')
     try {
-      const { error: e } = await supabase.from('users').update({ boat_type: boatType, vessel_model: boatType }).eq('id', userId)
+      // Profilens fält "Båttyp" läser vessel_type, så valet skrivs dit. Tidigare
+      // hamnade det i vessel_model och visades som båtmodell: "Charter" för den
+      // som valt "Utan egen båt". Den som saknar båt får ingen båttyp alls.
+      const vesselType = boatType === 'Charter' ? null : boatType
+      const { error: e } = await supabase.from('users').update({ boat_type: boatType, vessel_type: vesselType }).eq('id', userId)
       if (e) throw new Error('Kunde inte spara. Försök igen.')
       setSaving(false)
       goNext()
@@ -1013,9 +1018,9 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
                     }
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ fontSize: 13.5, fontWeight: 700, color: '#fff' }}>@{s.username}</div>
-                      {(s.vessel_model || s.home_port) && (
+                      {(s.boat_type || s.vessel_model || s.home_port) && (
                         <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.48)', marginTop: 1 }}>
-                          {s.vessel_model}{s.vessel_model && s.home_port ? ' · ' : ''}{s.home_port}
+                          {[(s.boat_type ?? s.vessel_model) === 'Charter' ? 'Utan egen båt' : (s.boat_type || s.vessel_model), s.home_port].filter(Boolean).join(' · ')}
                         </div>
                       )}
                     </div>
@@ -1074,8 +1079,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
 
         <h2 style={{ ...HEADING, fontSize: 32 }}>Klar för avgång</h2>
         <p style={SUBTITLE}>
-          Du är ombord. Lägg från kaj och börja logga din första tur, eller börja
-          med att utforska vad andra gör.
+          Du är ombord. Planera din första tur, eller börja med att se dig omkring.
         </p>
 
         {error && (
@@ -1088,11 +1092,14 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         )}
 
         {/* Primär CTA */}
-        <button onClick={() => finish('/logga')} disabled={saving} style={{
+        {/* Planering i stället för "logga första turen": av 97 nya konton hade 14
+            planerat en rutt och 1 sparat en tur (mätt 19 nov 2026). Den som valt
+            "Utan egen båt" får dagsplaneraren, som utgår från färjor. */}
+        <button onClick={() => finish(boatType === 'Charter' ? '/utflykt' : '/planera/ny')} disabled={saving} style={{
           ...PRIMARY_BTN(saving), width: '100%',
           padding: '17px 20px', fontSize: 16, marginBottom: 16,
         }}>
-          {saving ? 'Sparar…' : <>Lägg från kaj: logga första turen <ArrowRightIcon size={18}/></>}
+          {saving ? 'Sparar…' : <>{boatType === 'Charter' ? 'Planera en dag i skärgården' : 'Planera din första tur'} <ArrowRightIcon size={18}/></>}
         </button>
 
         {/* Nav-genvägar */}
@@ -1106,7 +1113,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
             { label: 'Flödet', path: '/feed', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
             { label: 'Utforska', path: '/upptack', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
             { label: 'Forum', path: '/forum', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
-            { label: 'Planera', path: '/planera', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> },
+            { label: 'Logga tur', path: '/logga', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> },
             { label: 'Profil', path: '/profil', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
           ].map(({ label, path, icon }) => (
             <button key={path} onClick={() => finish(path)} disabled={saving} style={{
