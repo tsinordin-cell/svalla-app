@@ -635,7 +635,7 @@ __MOB_NAV__ </nav>
  .hero-knapp-2:hover{box-shadow:0 16px 36px rgba(5,20,40,.4)}
  .hero-knapp-2 .hero-knapp-ikon{background:#1e5c82;color:#fff}
  .hero-knapp-2 .hero-knapp-text span{color:#3d5865;opacity:1}
- @media (max-width:640px){.hero-knapp{min-width:0;width:100%;max-width:420px}}
+ @media (max-width:640px){.hero-val{flex-wrap:nowrap;gap:8px;padding:0 14px}.hero-knapp{min-width:0;flex:1 1 0;padding:5px 12px 5px 5px;gap:8px}.hero-knapp-ikon{width:28px;height:28px}.hero-knapp-ikon svg{width:14px;height:14px}.hero-knapp-text strong{font-size:12.5px;white-space:nowrap}.hero-knapp-text span,.hero-knapp-pil{display:none}}
  </style>
  <div class="hero-val">
   <a class="hero-knapp hero-knapp-1" href="/utflykt"><span class="hero-knapp-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><span class="hero-knapp-text"><strong>Planera din tur</strong><span>Öar, restid och båttider för dagen</span></span><span class="hero-knapp-pil" aria-hidden="true">&rarr;</span></a>
