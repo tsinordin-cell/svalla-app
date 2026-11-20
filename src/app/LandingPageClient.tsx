@@ -1,6 +1,5 @@
 'use client'
-import { useEffect, useState, Suspense } from 'react'
-import { createPortal } from 'react-dom'
+import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
@@ -1026,17 +1025,6 @@ function bildkallorHtml(k: Bildkalla[]): string {
 
 export default function LandingPageClient({ photoMap, bildkallor = [], antalOar }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[]; antalOar: number }) {
  const router = useRouter()
- // FÖRHANDSVISNING 2026-11-20: Sverigekartan (RegionKarta) renderas in i platsen #sv-regionkarta i LANDING_HTML.
- const [kartMal, setKartMal] = useState<HTMLElement | null>(null)
- // Startsidans HTML kan bytas ut efter att sidan laddats (då försvinner platsen kartan ritats i).
- // Därför bevakas sidan och kartan flyttas till den nya platsen när den dyker upp.
- useEffect(() => {
-   const hitta = () => { const el = document.getElementById('sv-regionkarta'); setKartMal(prev => (prev === el ? prev : el)) }
-   hitta()
-   const mo = new MutationObserver(hitta)
-   mo.observe(document.body, { childList: true, subtree: true })
-   return () => mo.disconnect()
- }, [])
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
  // och navigera tillbaka till appen därifrån.
@@ -1243,8 +1231,15 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  }
  }, [router, photoMap])
 
- // Startsidans HTML.
+ // Startsidans HTML. Avsnittet med regionerna (#resmål) klipps ut och renderas av React
+ // (RegionKarta, förhandsvisning 2026-11-20), så att kartan inte försvinner när HTML-strängen byts ut.
  const landingHtml = LANDING_HTML.split('__ANTAL_OAR__').join(String(antalOar)).split('__NAV_LINKS__').join(menyHtmlDator()).split('__MITT_SVALLA__').join(mittSvallaHtmlDator()).split('__MOB_NAV__').join(menyHtmlMobil()).replace('<footer>', bildkallorHtml(bildkallor) + '<footer>')
+
+ const SEKTION = '<section class="destinations-section" id="resmål">'
+ const iSektion = landingHtml.indexOf(SEKTION)
+ const iSlut = iSektion >= 0 ? landingHtml.indexOf('</section>', iSektion) + '</section>'.length : -1
+ const forstaHtml = iSektion >= 0 ? landingHtml.slice(0, iSektion) : landingHtml
+ const andraHtml = iSektion >= 0 ? landingHtml.slice(iSlut) : null
 
  return (
  <>
@@ -1277,8 +1272,20 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: landingHtml }} />
- {kartMal && createPortal(<RegionKarta />, kartMal)}
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: forstaHtml }} />
+ {andraHtml !== null && (
+ <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1 }}>
+ <div className="section-inner">
+ <div className="section-header">
+ <div className="section-label">Utforska skärgården</div>
+ <h2 className="section-title">Välj din del av skärgården</h2>
+ <p className="section-sub">Fyra kuster och de stora sjöarna. Välj en del, så ser du regionerna där.</p>
+ </div>
+ <RegionKarta />
+ </div>
+ </section>
+ )}
+ {andraHtml !== null && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: andraHtml }} />}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />
  </div>
