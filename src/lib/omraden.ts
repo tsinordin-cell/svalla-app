@@ -7,7 +7,7 @@ import { ALL_ISLANDS } from '@/app/o/island-data'
 import { OBILDER } from '@/app/o/obilder.generated'
 import type { OmradeData, OmradeBild } from '@/components/OmradesVal'
 
-const OMRADEN: { namn: string; etiketter: string[] }[] = [
+export const OMRADEN: { namn: string; etiketter: string[] }[] = [
   { namn: 'Stockholms skärgård', etiketter: ['Innerskärgården', 'Norra skärgården', 'Norra ytterskärgården', 'Mellersta skärgården', 'Mellersta ytterskärgården', 'Södra skärgården', 'Södra ytterskärgården'] },
   { namn: 'Roslagen', etiketter: ['Roslagen'] },
   { namn: 'Sörmland', etiketter: ['Sörmlands skärgård'] },
