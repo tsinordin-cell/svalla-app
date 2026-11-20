@@ -16,8 +16,10 @@ const html = readFileSync(fileURLToPath(new URL('../app/LandingPageClient.tsx', 
 const nycklar = [...new Set([...html.matchAll(/data-lp-photo="([^"]+)"/g)].map(m => m[1] ?? ''))].filter(Boolean)
 
 describe('startsidans bilder', () => {
+  // 2026-11-20 (förhandsvisning): de fyra regionkorten på startsidan ersattes av Sverigekartan
+  // (RegionKarta), så färre bildytor finns kvar. Testet kontrollerar att mönstret hittar ytor.
   it('hittar bildytorna i startsidans HTML', () => {
-    expect(nycklar.length).toBeGreaterThan(5)
+    expect(nycklar.length).toBeGreaterThan(0)
   })
 
   it.each(nycklar)('%s har en bild utan Google', nyckel => {
