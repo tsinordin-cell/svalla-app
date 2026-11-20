@@ -619,14 +619,15 @@ __MOB_NAV__ </nav>
  </form>
  <div style="text-align:center;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;gap:10px">
  <style>
- .hero-val{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;padding:0 16px;margin-bottom:4px}
- .hero-knapp{display:flex;align-items:center;gap:14px;min-width:300px;padding:10px 22px 10px 10px;border-radius:999px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+ .hero-val{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;padding:0 16px;margin-bottom:4px}
+ .hero-knapp{display:flex;align-items:center;gap:10px;min-width:240px;padding:7px 16px 7px 7px;border-radius:999px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
  .hero-knapp:hover{transform:translateY(-2px)}
- .hero-knapp-ikon{flex-shrink:0;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+ .hero-knapp-ikon svg{width:18px;height:18px}
+ .hero-knapp-ikon{flex-shrink:0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center}
  .hero-knapp-text{display:flex;flex-direction:column;text-align:left;line-height:1.25}
- .hero-knapp-text strong{font-size:16.5px;font-weight:700}
- .hero-knapp-text span{font-size:12.5px;font-weight:500;opacity:.82;margin-top:2px}
- .hero-knapp-pil{margin-left:auto;padding-left:10px;font-size:20px;transition:transform .2s ease}
+ .hero-knapp-text strong{font-size:14.5px;font-weight:700}
+ .hero-knapp-text span{font-size:11.5px;font-weight:500;opacity:.82;margin-top:2px}
+ .hero-knapp-pil{margin-left:auto;padding-left:8px;font-size:16px;transition:transform .2s ease}
  .hero-knapp:hover .hero-knapp-pil{transform:translateX(4px)}
  .hero-knapp-1{background:linear-gradient(135deg,#ec9a52 0%,#c96e2a 100%);color:#fff;box-shadow:0 12px 30px rgba(201,110,42,.45),inset 0 1px 0 rgba(255,255,255,.25)}
  .hero-knapp-1:hover{box-shadow:0 16px 36px rgba(201,110,42,.55),inset 0 1px 0 rgba(255,255,255,.25)}

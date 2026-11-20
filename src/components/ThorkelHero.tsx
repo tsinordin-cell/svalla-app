@@ -92,7 +92,7 @@ export default function ThorkelHero() {
       <style>{TH_CSS}</style>
       <div className={oppen ? 'th' : 'th th-stangd'}>
         <button type="button" className="th-avatar" onClick={() => setOppen(true)} aria-label="Visa Thorkel" tabIndex={oppen ? -1 : 0}>
-          <ThorkelAvatar size={52} talking={steg === 'skriver'} priority />
+          <ThorkelAvatar size={44} talking={steg === 'skriver'} priority />
         </button>
         {oppen && (
           <div className="th-bubbla" role="region" aria-label="Thorkel, Svallas skärgårdsguide">
@@ -155,16 +155,16 @@ export default function ThorkelHero() {
 
 const TH_CSS = `
 .th-ankare{position:relative;z-index:4;height:0}
-.th{position:absolute;left:28px;bottom:32px;display:flex;align-items:flex-end;gap:10px;width:350px;animation:th-in .6s ease-out both}
+.th{position:absolute;left:28px;bottom:32px;display:flex;align-items:flex-end;gap:8px;width:300px;animation:th-in .6s ease-out both}
 @keyframes th-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 .th-avatar{flex-shrink:0;border:none;background:none;padding:0;cursor:pointer;border-radius:50%;box-shadow:0 0 0 3px #fffdf8,0 8px 20px rgba(5,20,40,.4);animation:th-gung 4s ease-in-out infinite}
 @keyframes th-gung{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-3px) rotate(-1.5deg)}}
-.th-bubbla{position:relative;flex:1;min-width:0;background:#fffdf8;color:#14202a;border-radius:16px 16px 16px 5px;padding:11px 13px 12px;box-shadow:0 12px 30px rgba(5,20,40,.32)}
+.th-bubbla{position:relative;flex:1;min-width:0;background:#fffdf8;color:#14202a;border-radius:14px 14px 14px 5px;padding:9px 11px 10px;box-shadow:0 12px 30px rgba(5,20,40,.32)}
 .th-bubbla::before{content:'';position:absolute;left:-6px;bottom:12px;width:12px;height:12px;background:#fffdf8;transform:rotate(45deg);border-radius:2px}
 .th-stang{position:absolute;top:4px;right:6px;border:none;background:none;font-size:17px;line-height:1;color:#93a1a7;cursor:pointer;padding:4px}
-.th-namn{font-size:11px;font-weight:800;color:#1e5c82;margin-bottom:2px}
+.th-namn{font-size:10.5px;font-weight:800;color:#1e5c82;margin-bottom:2px}
 .th-namn span{font-weight:600;color:#93a1a7;margin-left:5px}
-.th-text{margin:0;padding-right:14px;font-size:14.5px;font-weight:700;line-height:1.35;min-height:20px}
+.th-text{margin:0;padding-right:14px;font-size:13.5px;font-weight:700;line-height:1.35;min-height:20px}
 .th-markor{display:inline-block;width:2px;height:1em;background:#c96e2a;margin-left:2px;vertical-align:-2px;animation:th-blink .8s steps(1) infinite}
 @keyframes th-blink{50%{opacity:0}}
 .th-tanker{display:inline-flex;gap:4px;align-items:center;height:20px}
@@ -173,19 +173,19 @@ const TH_CSS = `
 @keyframes th-dot{0%,80%,100%{opacity:.25;transform:none}40%{opacity:.95;transform:translateY(-2px)}}
 .th-mer{max-height:0;overflow:hidden;opacity:0;transition:max-height .45s ease,opacity .35s ease}
 .th-mer.th-syns{max-height:260px;opacity:1}
-.th-fraga-rad{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:9px 0 7px}
-.th-fraga{font-size:13px;font-weight:600;color:#3d5865}
+.th-fraga-rad{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:7px 0 6px}
+.th-fraga{font-size:12px;font-weight:600;color:#3d5865}
 .th-prickar{display:inline-flex;gap:4px;flex-shrink:0}
 .th-prickar i{width:6px;height:6px;border-radius:50%;background:#d9cfbf}
 .th-prickar i.pa{background:#c96e2a}
 .th-val{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.th-val button{background:#fff;border:1px solid rgba(150,110,60,.25);border-radius:10px;padding:7px 6px;font:inherit;font-size:12.5px;font-weight:600;color:#14202a;cursor:pointer;line-height:1.25}
+.th-val button{background:#fff;border:1px solid rgba(150,110,60,.25);border-radius:9px;padding:5px 6px;font:inherit;font-size:12px;font-weight:600;color:#14202a;cursor:pointer;line-height:1.25}
 .th-val button:hover,.th-val button:focus-visible{border-color:#1e5c82;color:#1e5c82}
 .th-tips{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:9px;padding-top:8px;border-top:1px solid rgba(150,110,60,.15);font-size:12px}
 .th-tips span{color:#93a1a7;font-weight:600}
 .th-tips a{font-weight:700;color:#1e5c82;text-decoration:none}
 .th-tips a:hover{text-decoration:underline}
-.th-konto{display:block;margin-top:10px;text-align:center;background:linear-gradient(135deg,#ec9a52,#c96e2a);color:#fff;border-radius:999px;padding:9px 12px;font-size:13.5px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(201,110,42,.35)}
+.th-konto{display:block;margin-top:10px;text-align:center;background:linear-gradient(135deg,#ec9a52,#c96e2a);color:#fff;border-radius:999px;padding:8px 10px;font-size:12.5px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(201,110,42,.35)}
 .th-not{font-size:11px;color:#93a1a7;margin-top:5px;text-align:center}
 .th-form{display:flex;gap:6px;margin-top:9px}
 .th-form input{flex:1;min-width:0;border:1px solid rgba(150,110,60,.25)!important;border-radius:999px;padding:8px 12px;font:inherit;font-size:13.5px;background:#fff!important;color:#14202a;outline:none;box-shadow:none!important}
@@ -197,7 +197,7 @@ const TH_CSS = `
   .th-ankare{height:auto;background:var(--bg,#f7f1e7);padding:14px 14px 2px}
   .th{position:static;width:auto;max-width:460px;margin:0 auto;animation:none;gap:8px}
   .th-avatar{box-shadow:0 0 0 2px #fffdf8,0 4px 12px rgba(60,40,15,.22)}
-  .th-avatar img,.th-avatar>span{width:42px!important;height:42px!important}
+  .th-avatar img,.th-avatar>span{width:38px!important;height:38px!important}
   .th-bubbla{box-shadow:0 6px 18px rgba(60,40,15,.1);border:1px solid rgba(150,110,60,.16)}
   .th-ankare-stangd{display:none}
 }
