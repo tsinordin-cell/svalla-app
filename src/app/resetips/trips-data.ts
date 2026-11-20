@@ -48,7 +48,7 @@ export const TRIPS: Trip[] = [
     season: 'Maj till September',
     difficulty: 'lätt',
     featured: true,
-    description: 'En perfekt skärgårdsdag som kombinerar det bästa av land och vatten. Du kör ut mot Djurö, besöker Vindö Bilgalleri i Djurhamn, hämtar glass vid Sollenkroka brygga och kliver ombord på båten till Grinda för lunch på wärdshuset.',
+    description: 'En perfekt skärgårdsdag som kombinerar det bästa av land och vatten. Du kör ut mot Djurö, besöker Vindö Bilgalleri i Djurhamn, äter glass på Glassvillan intill och kliver ombord på båten från Sollenkroka till Grinda för lunch på wärdshuset.',
     stops: [
       {
         // Rättat 2026-11-20 (Max): heter Vindö Bilgalleri och ligger inte i en lada. Uppgifter från
@@ -61,10 +61,13 @@ export const TRIPS: Trip[] = [
         bookingUrl: 'https://vindobilgalleri.se/',
       },
       {
-        name: 'Glassbaren vid Sollenkroka brygga',
+        // Rättat 2026-11-20 (Max): glassen finns vid bilgalleriet, inte vid Sollenkroka brygga.
+        // Glassvillan, Bredviksvägen 1b, granne med Vindö Bilgalleri (Bredviksvägen 1). Samma
+        // öppettider som bilgalleriet sommartid enligt vindobilgalleri.se.
+        name: 'Glassvillan vid Vindö Bilgalleri',
         type: 'mat',
-        desc: 'Klassisk skärgårdsglass med utsikt mot båttrafiken.',
-        tip: 'Köp glassen och sätt dig på bryggan. Det är halva upplevelsen.',
+        desc: 'Glasscafé med hantverksglass, granne med bilgalleriet på Bredviksvägen i Djurhamn.',
+        tip: 'Samma öppettider som bilgalleriet sommartid. Ta glassen här innan du kör vidare till Sollenkroka brygga.',
       },
       {
         name: 'Båten från Sollenkroka till Grinda',
