@@ -3,6 +3,7 @@ import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
 import ThorkelHero from '@/components/ThorkelHero'
+import MegaMeny from '@/components/MegaMeny'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import { useRouter } from 'next/navigation'
@@ -1255,6 +1256,10 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
   const iTrust = forstaHtml.indexOf('<div class="trust-bar">')
   const heroHtml = iTrust >= 0 ? forstaHtml.slice(0, iTrust) : forstaHtml
   const efterHeroHtml = iTrust >= 0 ? forstaHtml.slice(iTrust) : ''
+  // MEGAMENY-GRENEN: startsidans HTML-meny och mobilens låda byts mot MegaMeny (React).
+  const iNav = heroHtml.indexOf('<nav class="lp-nav"')
+  const iHeroSek = heroHtml.indexOf('<section class="hero"')
+  const heroUtanMeny = iNav >= 0 && iHeroSek > iNav ? heroHtml.slice(0, iNav) + heroHtml.slice(iHeroSek) : heroHtml
  const andraHtml = iSektion >= 0 ? landingHtml.slice(iSlut) : null
 
  return (
@@ -1288,7 +1293,8 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroHtml }} />
+ <MegaMeny overStart />
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroUtanMeny }} />
  <ThorkelHero />
  {efterHeroHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterHeroHtml }} />}
  {andraHtml !== null && (
