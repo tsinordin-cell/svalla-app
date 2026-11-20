@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import { SEASON_GUIDES } from './season-data'
-import SvallaLogo from '@/components/SvallaLogo'
 import PublicFooter from '@/components/PublicFooter'
 import { ogSida } from '@/lib/og-standard'
 
@@ -43,16 +43,7 @@ export default function SasongsguiderIndex() {
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
 
-      <nav style={{ background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)', padding: '18px 24px 16px' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <SvallaLogo height={24} color="#ffffff" />
-          </Link>
-          <Link href="/guider" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none' }}>
-            Alla guider →
-          </Link>
-        </div>
-      </nav>
+      <SidHuvud />
 
       <header style={{ background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)', padding: '24px 24px 40px' }}>
         <div style={{ maxWidth: 800, margin: '0 auto' }}>

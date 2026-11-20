@@ -22,9 +22,9 @@ export const useTheme = () => useContext(Ctx)
 function resolvedTheme(t: Theme): 'light' | 'dark' {
   if (t === 'light') return 'light'
   if (t === 'dark')  return 'dark'
-  // auto: 20:00–05:59 = mörkt
-  const h = new Date().getHours()
-  return (h >= 20 || h < 6) ? 'dark' : 'light'
+  // auto: ljust hela dygnet (förhandsvisning 2026-11-19, Max: varmt och ljust alltid).
+  // Tidigare blev det mörkt automatiskt 20:00–05:59.
+  return 'light'
 }
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {

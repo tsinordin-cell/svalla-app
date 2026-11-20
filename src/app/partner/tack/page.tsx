@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import SvallaLogo from '@/components/SvallaLogo'
+import SidHuvud from '@/components/SidHuvud'
 
 export const metadata: Metadata = {
   title: 'Tack: du är nu partner',
@@ -11,16 +11,7 @@ export const metadata: Metadata = {
 export default function PartnerTackPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <nav style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-        padding: '18px 24px 16px',
-      }}>
-        <div style={{ maxWidth: 700, margin: '0 auto', display: 'flex', justifyContent: 'space-between' }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <SvallaLogo height={24} color="#ffffff" />
-          </Link>
-        </div>
-      </nav>
+      <SidHuvud />
 
       <div style={{ maxWidth: 700, margin: '0 auto', padding: '60px 24px' }}>
         <div style={{

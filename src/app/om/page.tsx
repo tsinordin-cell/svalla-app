@@ -7,7 +7,7 @@
  */
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import SvallaLogo from '@/components/SvallaLogo'
+import SidHuvud from '@/components/SidHuvud'
 import { KALLOR_PER_O } from '@/app/o/kallor.generated'
 import { OAR, ANTAL_OAR } from '@/app/o/island-data'
 import { ogSida } from '@/lib/og-standard'
@@ -81,6 +81,7 @@ const BREADCRUMB_SCHEMA = {
 export default function OmPage() {
   return (
     <>
+      <SidHuvud />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(THORKEL_SCHEMA) }}
@@ -107,9 +108,6 @@ export default function OmPage() {
           }} />
 
           <div style={{ maxWidth: 720, margin: '0 auto', padding: '0 20px', position: 'relative' }}>
-            <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
-              <SvallaLogo height={26} color="#ffffff" />
-            </Link>
             <h1 style={{
               fontFamily: 'var(--font-display, "Playfair Display", Georgia, serif)',
               fontSize: 'clamp(28px, 4.5vw, 44px)',

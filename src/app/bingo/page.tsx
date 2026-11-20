@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
-import SvallaLogo from '@/components/SvallaLogo'
+import SidHuvud from '@/components/SidHuvud'
+import TillbakaRad from '@/components/TillbakaRad'
 import PublicFooter from '@/components/PublicFooter'
 import BingoClient from './BingoClient'
 import { BINGO_ITEMS } from './bingo-data'
@@ -22,19 +22,8 @@ export const metadata: Metadata = {
 export default function BingoPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <nav style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-        padding: '18px 24px 16px',
-      }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', justifyContent: 'space-between' }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <SvallaLogo height={24} color="#ffffff" />
-          </Link>
-          <Link href="/" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none' }}>
-            ← Hem
-          </Link>
-        </div>
-      </nav>
+      <SidHuvud />
+      <TillbakaRad />
 
       <header style={{
         background: 'linear-gradient(170deg, #1e5c82 0%, #2d7d8a 100%)',

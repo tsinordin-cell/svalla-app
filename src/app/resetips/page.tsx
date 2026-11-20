@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
-import ResetipsClient from './ResetipsClient'
+import SidHuvud from '@/components/SidHuvud'
+import GuideHero from '@/components/GuideHero'
+import GuideVal from '@/components/GuideVal'
+import { allaGuidePoster } from '@/lib/guideposter'
 import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
@@ -14,6 +17,18 @@ export const metadata: Metadata = {
   },
 }
 
+// FÖRHANDSVISNING 2026-11-20: samma sida som /guider (GuideVal), med Dagsplaner förvalt.
+// Rubrik, titel, beskrivning och canonical är desamma som förut.
 export default function ResetipsPage() {
-  return <ResetipsClient />
+  return (
+    <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
+      <SidHuvud />
+      <GuideHero
+        etikett="Resetips"
+        titel="Utvalda skärgårdsrutter"
+        text="Kompletta dagsrutter med stopp, tips och praktisk info, planerade av folk som faktiskt gjort dem. Välj område, och byt till Guider om du vill läsa mer."
+      />
+      <GuideVal poster={allaGuidePoster()} forval="Dagsplan" />
+    </div>
+  )
 }

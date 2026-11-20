@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { TRIPS, getTrip, type TripDifficulty } from '../trips-data'
@@ -75,6 +76,7 @@ export default async function ResetipsDetailPage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg, #f8f7f4)', paddingBottom: 80 }}>
+      <SidHuvud />
       {/* Back */}
       <div style={{ maxWidth: 760, margin: '0 auto', padding: '28px 24px 0' }}>
         <Link href="/resetips" style={{ fontSize: 14, color: 'var(--sea, #0a7b8c)', textDecoration: 'none' }}>
