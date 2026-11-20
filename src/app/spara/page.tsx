@@ -25,6 +25,7 @@ import { klassaOarPaTuren } from '@/lib/islandCoords'
 import { computeUnlocked, type TripForAch } from '@/lib/achievements'
 import { addTripTag } from '@/lib/tripTags'
 import { buildTripFields } from '@/lib/tripFields'
+import { turbildNamn } from '@/lib/turbildNamn'
 import * as Sentry from '@sentry/nextjs'
 import { analytics } from '@/lib/analytics'
 import { track } from '@/lib/analytics-events'
@@ -795,8 +796,7 @@ export default function SparaPage() {
     const uploadedUrls: string[] = []
     for (let i = 0; i < mediaFiles.length; i++) {
       const f   = mediaFiles[i]!
-      const ext = f.name.split('.').pop() ?? 'jpg'
-      const filename = `${user.id}-${Date.now()}-${i}.${ext}`
+      const filename = turbildNamn(user.id, f.name)
       const { data: upload, error: upErr } = await supabase.storage
         .from('trips').upload(filename, f, { upsert: false })
       if (upErr || !upload) {
@@ -984,11 +984,16 @@ export default function SparaPage() {
         setNewAchievements(justUnlocked.map(a => ({ icon: a.icon, label: a.label })))
         setShowCelebration(true)
         achievementUnlocked = true
-        // Persistera achievement-events för feed + notiser
-        try {
-          const rows = justUnlocked.map(a => ({ user_id: user.id, achievement_key: a.id }))
-          await supabase.from('achievement_events').insert(rows)
-        } catch { /* dup-key tyst */ }
+        // Persistera achievement-events för feed + notiser.
+        // Inte för en privat tur (2026-11-19): händelsen visas i följarnas
+        // flöde ("låste upp ett märke") och skulle avslöja att turen finns.
+        // Firandet ovan visas ändå, det ser bara användaren själv.
+        if (!isPrivate) {
+          try {
+            const rows = justUnlocked.map(a => ({ user_id: user.id, achievement_key: a.id }))
+            await supabase.from('achievement_events').insert(rows)
+          } catch { /* dup-key tyst */ }
+        }
       }
     } catch { /* tyst */ }
 

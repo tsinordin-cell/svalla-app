@@ -9,6 +9,8 @@ import { deriveUsername } from '@/lib/username'
 import TagInput from '@/components/TagInput'
 import LocationSearch from '@/components/LocationSearch'
 import DatumTidFalt from '@/components/DatumTidFalt'
+import SynlighetVaxel from '@/components/SynlighetVaxel'
+import { turbildNamn } from '@/lib/turbildNamn'
 import { oarForPlats, kortPlats } from '@/lib/loggade-oar'
 
 type TaggedUser = { id: string; username: string; avatar: string | null }
@@ -56,6 +58,9 @@ function ManuellForm() {
   const [err, setErr]                       = useState('')
   const [posted, setPosted]                 = useState(false)
   const [tagged, setTagged]                 = useState<TaggedUser[]>([])
+  // Synlighet (2026-11-19): snabb-loggen saknade valet, så turen blev alltid
+  // publik och gick bara att göra privat i efterhand. Standard som på /spara.
+  const [isPrivate, setIsPrivate]           = useState(false)
   const [routeId, setRouteId]               = useState<string | null>(null)
   const [routes, setRoutes]                 = useState<{ id: string; name: string }[]>([])
   const [startedAtLocal, setStartedAtLocal] = useState(nowLocalDatetime)
@@ -277,8 +282,7 @@ function ManuellForm() {
         email:    user.email ?? '',
       }, { onConflict: 'id', ignoreDuplicates: true })
 
-      const ext  = file.name.split('.').pop() ?? 'jpg'
-      const path = `${user.id}-${Date.now()}.${ext}`
+      const path = turbildNamn(user.id, file.name)
 
       const { data: upload, error: upErr } = await supabase.storage
         .from('trips')
@@ -292,8 +296,7 @@ function ManuellForm() {
       if (extraFiles.length > 0) {
         const uploads = await Promise.all(
           extraFiles.map(async (ef) => {
-            const eExt  = ef.name.split('.').pop() ?? 'jpg'
-            const ePath = `${user.id}-${Date.now()}-${Math.random().toString(36).slice(2)}.${eExt}`
+            const ePath = turbildNamn(user.id, ef.name)
             const { data: eUp } = await supabase.storage.from('trips').upload(ePath, ef, { upsert: false })
             if (!eUp) return null
             return supabase.storage.from('trips').getPublicUrl(eUp.path).data.publicUrl
@@ -319,6 +322,7 @@ function ManuellForm() {
         planned_route_id: plannedRouteId,
         started_at:     new Date(startedAtLocal).toISOString(),
         ended_at:       new Date(endedAtLocal).toISOString(),
+        visibility:     isPrivate ? 'private' : 'public',
       }).select('id').single()
 
       if (insErr || !trip) {
@@ -826,6 +830,9 @@ function ManuellForm() {
             </span>
             <TagInput tagged={tagged} onChange={setTagged} />
           </div>
+
+          {/* ── Synlighet ── */}
+          <SynlighetVaxel privat={isPrivate} onChange={setIsPrivate} />
 
           {/* ── Mer info (collapsible) ── */}
           <button
