@@ -6,6 +6,8 @@
  * Sverige i fem delar: fyra kuster och de stora sjöarna, samma indelning som menyn
  * och /regioner. Kartan: src/lib/sverigekarta.ts (Natural Earth, public domain).
  * Texterna beskriver bara det som står på regionsidorna; inga siffror utan källa.
+ * 2026-11-20 (Max): text och karta börjar i överkant (inte centrerat), så att flikarna ligger direkt
+ * under rubriken och kartan högre upp; kartan lite lägre.
  */
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -116,7 +118,8 @@ export default function RegionKarta() {
 }
 
 const RK_CSS = `
-.rk{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,360px);gap:40px;align-items:center;margin-top:28px}
+.rk{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,340px);gap:40px;align-items:start;margin-top:22px}
+.rk-text{padding-top:8px}
 .rk-flikar{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
 .rk-flikar button{font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;border:1px solid rgba(150,110,60,.22);background:var(--white,#fffdf8);color:var(--txt,#192830);cursor:pointer}
 .rk-flikar button.pa{background:var(--acc-knapp,#b5591a);border-color:var(--acc-knapp,#b5591a);color:#fff}
@@ -130,7 +133,7 @@ const RK_CSS = `
 .rk-regioner a{font-size:14px;font-weight:600;color:var(--sea,#1e5c82);text-decoration:none;border-bottom:1px solid rgba(30,92,130,.3)}
 .rk-regioner a:hover{border-bottom-color:var(--sea,#1e5c82)}
 .rk-knapp{display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:999px;background:var(--sea,#1e5c82);color:#fff;font-size:14px;font-weight:700;text-decoration:none}
-.rk-karta{width:100%;height:auto;max-height:620px;overflow:visible}
+.rk-karta{width:100%;height:auto;max-height:520px;overflow:visible}
 .rk-lan{stroke:#fffdf8;stroke-width:.8;transition:fill .25s ease}
 .rk-inland{fill:#ece3d2}
 .rk-kust{fill:#ddd0b8;cursor:pointer}
