@@ -17,7 +17,8 @@ const VANLIG_INLOGGNING = new Set(['password', 'oauth', 'sso/saml', 'anonymous',
 
 type Amr = { method?: string; timestamp?: number }
 
-function nyttolast(bevis: string): { amr?: Amr[] } | null {
+/** Innehållet i ett åtkomstbevis. Läser bara, kontrollerar inte signaturen. */
+export function bevisNyttolast(bevis: string): { amr?: Amr[] } | null {
   const del = bevis.split('.')[1]
   if (!del) return null
   try {
@@ -32,7 +33,7 @@ function nyttolast(bevis: string): { amr?: Amr[] } | null {
 
 export function sessionKommerFranLank(bevis: string | null | undefined, nu: Date = new Date()): boolean {
   if (!bevis) return false
-  const amr = nyttolast(bevis)?.amr
+  const amr = bevisNyttolast(bevis)?.amr
   if (!Array.isArray(amr) || amr.length === 0) return false
   // Senaste inloggningssättet avgör.
   const senaste = [...amr].sort((a, b) => (b.timestamp ?? 0) - (a.timestamp ?? 0))[0]!

@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import DeleteAccountForm from './DeleteAccountForm'
+import { harLosenord, farskInloggning } from '@/lib/kontoBekraftelse'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -15,6 +16,11 @@ export default async function RaderaKontoPage() {
   if (!user) {
     redirect('/logga-in?returnTo=/profil/installningar/radera')
   }
+
+  // Konton utan lösenord (Google) bekräftar med en färsk inloggning i stället.
+  const medLosenord = harLosenord(user.identities, user.app_metadata?.providers as string[] | undefined)
+  const { data: { session } } = await supabase.auth.getSession()
+  const nyssInloggad = farskInloggning(session?.access_token)
 
   return (
     <div style={{
@@ -97,7 +103,7 @@ export default async function RaderaKontoPage() {
           </p>
         </div>
 
-        <DeleteAccountForm />
+        <DeleteAccountForm medLosenord={medLosenord} nyssInloggad={nyssInloggad} epost={user.email ?? null} />
       </div>
     </div>
   )

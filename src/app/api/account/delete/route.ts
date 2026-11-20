@@ -9,16 +9,19 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
 import { logger } from '@/lib/logger'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { harLosenord, farskInloggning } from '@/lib/kontoBekraftelse'
 // TODO: wrap handlers with withSentrySimple(handler, 'account/delete') — se src/lib/api-handler.ts
 
 /**
  * POST /api/account/delete
- * Body: { confirm: "RADERA", password: string }
+ * Body: { confirm: "RADERA", password?: string }
  *
  * GDPR-flöde för permanent kontoradering. Kräver:
  *  - Inloggad session
  *  - Bekräftelse-text "RADERA" (för att förhindra UI-misstag)
- *  - Lösenord-verifiering (för att förhindra session-hijack)
+ *  - Lösenord-verifiering (för att förhindra session-hijack). Konton utan
+ *    lösenord (Google) bekräftar i stället med en inloggning som är högst tio
+ *    minuter gammal, se lib/kontoBekraftelse.ts.
  *
  * Steg (i ordning):
  *  1. Cancel Stripe-subscription om aktiv
@@ -51,18 +54,32 @@ export async function POST(req: NextRequest) {
   if (body.confirm !== 'RADERA') {
     return NextResponse.json({ error: 'Bekräftelse-text matchar inte' }, { status: 400 })
   }
-  if (typeof body.password !== 'string' || body.password.length < 6) {
-    return NextResponse.json({ error: 'Lösenord krävs' }, { status: 400 })
-  }
+  const medLosenord = harLosenord(user.identities, user.app_metadata?.providers as string[] | undefined)
 
-  // Verifiera lösenord genom att försöka logga in (bypass session-hijack)
-  if (user.email) {
-    const { error: signInError } = await supabase.auth.signInWithPassword({
-      email: user.email,
-      password: body.password,
-    })
-    if (signInError) {
-      return NextResponse.json({ error: 'Fel lösenord' }, { status: 401 })
+  if (medLosenord) {
+    if (typeof body.password !== 'string' || body.password.length < 6) {
+      return NextResponse.json({ error: 'Lösenord krävs' }, { status: 400 })
+    }
+    // Verifiera lösenord genom att försöka logga in (bypass session-hijack)
+    if (user.email) {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: user.email,
+        password: body.password,
+      })
+      if (signInError) {
+        return NextResponse.json({ error: 'Fel lösenord' }, { status: 401 })
+      }
+    }
+  } else {
+    // Konto utan lösenord (Google): inloggningen ska vara färsk. getUser()
+    // ovan har redan låtit Supabase kontrollera beviset, så tiden i det går
+    // att lita på.
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!farskInloggning(session?.access_token)) {
+      return NextResponse.json(
+        { error: 'Logga in igen för att bekräfta. Bekräftelsen gäller i tio minuter.', kravNyInloggning: true },
+        { status: 401 },
+      )
     }
   }
 
