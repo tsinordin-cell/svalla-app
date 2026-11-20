@@ -48,14 +48,17 @@ export const TRIPS: Trip[] = [
     season: 'Maj till September',
     difficulty: 'lätt',
     featured: true,
-    description: 'En perfekt skärgårdsdag som kombinerar det bästa av land och vatten. Du kör till Djurö, utforskar bilmuseet, hämtar glass vid Sollenkroka brygga och kliver ombord på båten till Grinda för lunch på wärdshuset.',
+    description: 'En perfekt skärgårdsdag som kombinerar det bästa av land och vatten. Du kör ut mot Djurö, besöker Vindö Bilgalleri i Djurhamn, hämtar glass vid Sollenkroka brygga och kliver ombord på båten till Grinda för lunch på wärdshuset.',
     stops: [
       {
-        name: 'Djurö bilmuseum',
+        // Rättat 2026-11-20 (Max): heter Vindö Bilgalleri och ligger inte i en lada. Uppgifter från
+        // vindobilgalleri.se via sökning: Bredviksvägen 1, Djurhamn, över 100 bilar, öppet 11 till 16
+        // under säsong, entré från 7 år.
+        name: 'Vindö Bilgalleri',
         type: 'kultur',
-        desc: 'Över 60 veteranbilar i en gammal lada mitt i skärgårdslandskapet. Oväntat bra och barnvänligt.',
-        tip: 'Öppnar kl 11. Kom inte för tidigt. Beräkna 1 till 1,5 timme.',
-        bookingUrl: 'https://www.djurobil.se',
+        desc: 'Bilmuseum i Djurhamn med över 100 bilar, med tonvikt på sportbilar och moderna klassiker.',
+        tip: 'Öppet sommartid kl 11 till 16, entré från 7 år. Kolla öppettiderna på hemsidan innan du åker.',
+        bookingUrl: 'https://vindobilgalleri.se/',
       },
       {
         name: 'Glassbaren vid Sollenkroka brygga',
