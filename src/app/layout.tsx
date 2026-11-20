@@ -13,6 +13,7 @@ const playfair = Playfair_Display({
   variable: '--font-display',
 })
 import Nav from '@/components/Nav'
+import Sidtopp from '@/components/Sidtopp'
 import InstallPrompt from '@/components/InstallPrompt'
 import PushPrompt from '@/components/PushPrompt'
 import ServiceWorkerRegister from '@/components/ServiceWorkerRegister'
@@ -182,6 +183,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider>
             <PostHogPageView />
             <main id="innehall" style={{ minHeight: '100dvh' }}>
+              <Sidtopp />
               {children}
             </main>
             <Suspense fallback={null}><Nav /></Suspense>

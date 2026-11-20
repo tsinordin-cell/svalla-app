@@ -12,7 +12,7 @@ import BackButtonInline from '@/components/BackButtonInline'
 // stämmer: vad brevet handlar om, inga annonser, avregistrering när man vill.
 
 export const metadata: Metadata = {
-  title: 'Svallanyheter: nyhetsbrevet om skärgården',
+  title: 'Skärgårdsnyheter: nyhetsbrevet om skärgården',
   description: 'Nya guider, säsongsstarter och ändringar som påverkar turen ut, när det händer något. Gratis, inga annonser.',
   alternates: { canonical: 'https://svalla.se/nyhetsbrev' },
 }
@@ -39,7 +39,7 @@ export default function NyhetsbrevPage() {
         </div>
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 16 }}>
-            Svallanyheter
+            Skärgårdsnyheter
           </div>
           <h1 style={{ fontSize: 'clamp(28px, 5vw, 42px)', fontWeight: 800, color: '#fff', margin: '0 0 16px', lineHeight: 1.2, textWrap: 'balance' }}>
             Skärgården i inkorgen: när det händer något
@@ -67,7 +67,7 @@ export default function NyhetsbrevPage() {
           ))}
         </div>
         <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.75, margin: '24px 0 0' }}>
-          Svallanyheter är nytt. Vi skickar när vi har något som är värt din tid, inte för att fylla ett schema.
+          Skärgårdsnyheter är nytt. Vi skickar när vi har något som är värt din tid, inte för att fylla ett schema.
         </p>
       </div>
 
@@ -75,7 +75,7 @@ export default function NyhetsbrevPage() {
         <EmailSignup
           variant="card"
           source="nyhetsbrev-page-bottom"
-          title="Prenumerera på Svallanyheter"
+          title="Prenumerera på Skärgårdsnyheter"
           description="Gratis, inga annonser. Avregistrera när du vill."
           buttonLabel="Prenumerera"
         />
