@@ -145,11 +145,7 @@ const PUNKTER: Punkt[] = [
     allt: { text: 'Alla guider och dagsplaner', href: '/guider' },
     aktivFor: ['/guider', '/resetips', '/blogg', '/tips'],
     grupper: [
-      { rubrik: 'Guider och dagsplaner', lankar: [
-        { text: 'Alla guider och dagsplaner', href: '/guider' },
-        { text: 'Bara dagsplaner', href: '/resetips' },
-      ] },
-      { rubrik: 'Utvalda', lankar: [
+      { rubrik: 'Utvalda guider och dagsplaner', lankar: [
         { text: 'Midsommar i skärgården', href: '/guider/midsommar-skargarden' },
         { text: 'Packlista för skärgården', href: '/guider/packlista-skargarden' },
         { text: 'Allemansrätten på sjön', href: '/guider/allemansratten-pa-sjon' },
