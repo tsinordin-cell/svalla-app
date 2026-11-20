@@ -582,7 +582,7 @@ const CSS = `
 .fm-pin.med span,.fm-pin.vald span{opacity:1}
 .fm-pin.vald{outline:3px solid rgba(13,36,64,.35)}
 .fm-karta-panel{background:#fffdf8;border-radius:22px;padding:20px;display:flex;flex-direction:column;gap:10px;align-self:start}
-.fm-karta-panel small{font-family:'Playfair Display',Georgia,serif;font-size:24px;color:#0d2440}
+.fm-karta-panel>small{font-family:'Playfair Display',Georgia,serif;font-size:24px;color:#0d2440}
 .fm-karta-panel p{margin:0;font-size:14px;color:#52717f}
 
 /* 8 */
@@ -685,6 +685,8 @@ const CSS = `
 .fm-slut a{color:#1e5c82;font-weight:700}
 
 @media (max-width:860px){
+.fm-rad{display:grid;grid-template-columns:32px minmax(0,1fr);row-gap:6px}
+.fm-rad>.fm-et{grid-column:2;justify-self:start}
   .fm-del{margin-top:40px}
   .fm-skylt,.fm-yta,.fm-salj{padding:0 14px}
   .fm-tre{grid-template-columns:minmax(0,1fr)}
