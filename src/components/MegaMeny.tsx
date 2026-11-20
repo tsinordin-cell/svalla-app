@@ -89,7 +89,7 @@ const PUNKTER: Punkt[] = [
     ],
     utvalt: {
       titel: 'Kajak i Stockholms skärgård', text: 'Öar att paddla till, säkerhet och var du hyr kajak.', href: '/aktivitet/kajak',
-      bild: { url: COMMONS + '4/4d/Finnhamn_July_2015_02.jpg/960px-Finnhamn_July_2015_02.jpg', plats: 'Finnhamn', fotograf: 'Arild Vågen', licens: 'CC BY-SA 4.0', kalla: 'https://commons.wikimedia.org/wiki/File:Finnhamn_July_2015_02.jpg' },
+      bild: { url: COMMONS + '1/1a/Ut%C3%B6_R%C3%A4vstaviken_September_2012_02.jpg/960px-Ut%C3%B6_R%C3%A4vstaviken_September_2012_02.jpg', plats: 'Rävstaviken på Utö', fotograf: 'Arild Vågen', licens: 'CC BY-SA 3.0', kalla: 'https://commons.wikimedia.org/wiki/File:Ut%C3%B6_R%C3%A4vstaviken_September_2012_02.jpg' },
     },
   },
   {
@@ -268,7 +268,7 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
                 <Link href={punkt.allt.href} className="mm-allt" onClick={stang}>{punkt.allt.text} <span aria-hidden="true">→</span></Link>
               </div>
 
-              <div className={punkt.grupper.length > 3 ? 'mm-kol mm-grupper fyra' : 'mm-kol mm-grupper'}>
+              <div className="mm-kol mm-grupper">
                 {punkt.grupper.map(g => (
                   <div key={g.rubrik} className="mm-grupp">
                     <div className="mm-grupp-rubrik" onMouseEnter={() => g.zon && setZon(g.zon)}>{g.rubrik}</div>
@@ -414,8 +414,7 @@ const MM_CSS = `
 .mm-intro p{margin:14px 0 22px;font-size:15px;line-height:1.6;color:#3d5865}
 .mm-allt{font-size:14px;font-weight:700;color:#1e5c82;text-decoration:none;border-bottom:1px solid rgba(30,92,130,.3);padding-bottom:2px}
 .mm-allt:hover{border-bottom-color:#1e5c82}
-.mm-grupper{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 32px;align-content:start}
-.mm-grupper.fyra{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mm-grupper{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 40px;align-content:start}
 .mm-grupp-rubrik{font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#c96e2a;margin:0 0 10px}
 .mm-lank{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;font-size:16.5px;font-weight:500;color:#14202a;text-decoration:none;border-bottom:1px solid transparent}
 .mm-lank i{font-style:normal;color:#c96e2a;opacity:0;transform:translateX(-4px);transition:opacity .18s ease,transform .18s ease}
