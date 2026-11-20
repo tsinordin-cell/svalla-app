@@ -16,6 +16,26 @@ import {
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
 
+/**
+ * Foto till "Redaktionens val", per guide. Tidigare en hårdkodad bild på
+ * 480 px oavsett vilken guide som var vald; på telefon beskars den till en
+ * smal, hög spalt och förstorades ca 2,5 gånger (Tom 2026-11-20: "Bilden har
+ * för dålig upplösning"). Den saknade också fotograf och licens, som CC BY-SA
+ * kräver. Nu: Commons-miniatyrer i tre storlekar, bilden överst på telefon
+ * (hela bredden, 16:10) och fotografen i bilden. Guide utan post här: inget foto.
+ * Uppgifter från Commons API (extmetadata), hämtade 2026-11-20.
+ */
+const FEATURED_BILD: Record<string, { fil: string; alt: string; fotograf: string; licens: string }> = {
+  'midsommar-skargarden': {
+    fil: '9/9f/Midsommar_Pole_-_Maypole_in_Sweden.jpg',
+    alt: 'Midsommarstång i Solna, midsommarafton 2019',
+    fotograf: '01tonythomas',
+    licens: 'CC BY-SA 4.0',
+  },
+}
+const commonsBild = (fil: string, bredd: number) =>
+  `https://upload.wikimedia.org/wikipedia/commons/thumb/${fil}/${bredd}px-${fil.split('/').pop()}`
+
 const ALL_CATEGORIES: GuideCategory[] = ['Praktisk', 'Transport', 'Aktivitet', 'Mat', 'Säsong', 'Region']
 
 const TRANSACTIONAL_LINKS = [
@@ -74,6 +94,7 @@ export default function GuiderClient() {
   const [searchQuery, setSearchQuery] = useState('')
 
   const featured = PUBLICERADE_GUIDER.find(g => g.featured)
+  const featuredBild = featured ? FEATURED_BILD[featured.slug] : undefined
 
   const q = searchQuery.trim().toLowerCase()
   const isSearching = q.length > 0
@@ -207,30 +228,48 @@ export default function GuiderClient() {
         {!isSearching && showGeo ? (
           <>
             {/* Featured card */}
+            <style>{`
+              .featured-kort{display:grid;grid-template-columns:1fr}
+              .featured-kort .featured-bild{display:none}
+              .featured-kort.med-bild .featured-bild{display:block;aspect-ratio:16/10}
+              @media (min-width:641px){
+                .featured-kort.med-bild{grid-template-columns:320px 1fr}
+                .featured-kort.med-bild .featured-bild{aspect-ratio:auto;min-height:240px}
+              }
+            `}</style>
             {featured && (
               <Link href={`/guider/${featured.slug}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 32 }}>
-                <article style={{
+                <article className={`featured-kort${featuredBild ? ' med-bild' : ''}`} style={{
                   background: 'var(--white)',
                   borderRadius: 18,
                   overflow: 'hidden',
                   boxShadow: '0 4px 24px rgba(0,0,0,0.10)',
-                  display: 'grid',
-                  gridTemplateColumns: 'minmax(160px, 240px) 1fr',
                   border: '2px solid rgba(232,146,74,0.25)',
                 }}>
-                  <div style={{ position: 'relative', minWidth: 220, overflow: 'hidden', flexShrink: 0 }}>
+                  <div className="featured-bild" style={{ position: 'relative', overflow: 'hidden' }}>
                     <span style={{
                       position: 'absolute', top: 12, left: 12, zIndex: 2,
                       background: 'var(--acc-knapp)', color: '#fff',
                       fontSize: 10, fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.07em',
                       padding: '3px 10px', borderRadius: 20,
                     }}>Redaktionens val</span>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="https://commons.wikimedia.org/wiki/Special:FilePath/Midsommar_Pole_-_Maypole_in_Sweden.jpg?width=480"
-                      alt="Midsommar i skärgården"
-                      style={{ width: '100%', height: '100%', minHeight: 200, objectFit: 'cover', display: 'block' }}
-                    />
+                    {featuredBild ? (
+                      <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={commonsBild(featuredBild.fil, 960)}
+                          srcSet={[500, 960, 1280].map(b => `${commonsBild(featuredBild.fil, b)} ${b}w`).join(', ')}
+                          sizes="(max-width: 640px) 100vw, 320px"
+                          alt={featuredBild.alt}
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        />
+                        <span style={{
+                          position: 'absolute', right: 8, bottom: 8, zIndex: 2,
+                          background: 'rgba(6,14,24,0.6)', color: 'rgba(255,255,255,0.85)',
+                          fontSize: 10, padding: '2px 7px', borderRadius: 6,
+                        }}>Foto: {featuredBild.fotograf}, {featuredBild.licens}, Wikimedia Commons</span>
+                      </>
+                    ) : null}
                   </div>
                   <div style={{ padding: '24px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                     <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--sea)', marginBottom: 8, display: 'block' }}>
