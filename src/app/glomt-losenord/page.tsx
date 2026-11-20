@@ -34,7 +34,7 @@ export default function GlomtLosenordPage() {
           Glömt lösenordet?
         </h1>
         <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0 }}>
-          Vi skickar en återställningslänk till din e-post
+          Skriv din e-postadress, så skickar vi en länk där du väljer ett nytt
         </p>
       </div>
 
@@ -77,15 +77,14 @@ export default function GlomtLosenordPage() {
             </div>
           ) : (
             <form onSubmit={handle} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>
-                Återställ lösenord
-              </h2>
-              <p style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
-                Ange din e-postadress så skickar vi en länk direkt.
-              </p>
-
+              {/* Rubriken och ingressen står redan överst på sidan; här räcker en etikett. */}
+              <label htmlFor="glomt-epost" style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt2)' }}>
+                E-postadress
+              </label>
               <input
+                id="glomt-epost"
                 type="email"
+                autoComplete="email"
                 placeholder="din@epost.se"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
@@ -117,7 +116,7 @@ export default function GlomtLosenordPage() {
                   transition: 'opacity 0.2s',
                 }}
               >
-                {loading ? 'Skickar…' : 'Skicka återställningslänk →'}
+                {loading ? 'Skickar…' : 'Skicka länk'}
               </button>
             </form>
           )}
