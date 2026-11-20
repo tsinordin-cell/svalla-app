@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
+import SnabbSok from '@/components/SnabbSok'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import { useRouter } from 'next/navigation'
@@ -1281,6 +1282,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  <h2 className="section-title">Välj din del av skärgården</h2>
  <p className="section-sub">Fyra kuster och de stora sjöarna. Välj en del, så ser du regionerna där.</p>
  </div>
+ <SnabbSok />
  <RegionKarta />
  </div>
  </section>
