@@ -67,8 +67,8 @@ export const KORT_CSS = `
 .sk-rubrik{display:flex;align-items:baseline;gap:12px;margin:0 0 14px}
 .sk-rubrik h3{font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:700;color:var(--sea);margin:0}
 .sk-rubrik span{font-size:11px;padding:3px 10px;border-radius:999px;background:rgba(201,110,42,.12);color:var(--acc-text,#a8501a);font-weight:700}
-.sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.sk-kort{background:var(--white);border:1px solid rgba(150,110,60,.16);border-radius:14px;padding:12px 14px;text-decoration:none;color:inherit;display:flex;gap:14px;align-items:center;min-height:84px;box-shadow:0 1px 4px rgba(90,60,20,.05);transition:transform .12s ease,box-shadow .12s ease}
+.sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:12px}
+.sk-kort{min-width:0;background:var(--white);border:1px solid rgba(150,110,60,.16);border-radius:14px;padding:12px 14px;text-decoration:none;color:inherit;display:flex;gap:14px;align-items:center;min-height:84px;box-shadow:0 1px 4px rgba(90,60,20,.05);transition:transform .12s ease,box-shadow .12s ease}
 .sk-kort:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(90,60,20,.10)}
 .sk-bild{width:76px;height:58px;flex-shrink:0;border-radius:10px;background-color:#e9dcc6;background-size:cover;background-position:center}
 .sk-tecknad{background-image:${TECKNAD}}
@@ -91,5 +91,5 @@ export const KORT_CSS = `
 .sk-foto img{width:100%;height:100%;object-fit:cover;display:block}
 .sk-foto figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 14px 8px;font-size:11px;color:rgba(255,255,255,.95);background:linear-gradient(transparent,rgba(0,0,0,.5));white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sk-foto figcaption a{color:#fff}
-@media (max-width:640px){.sk-grid{grid-template-columns:1fr}.sk-foto{height:170px}}
+@media (max-width:640px){.sk-grid{grid-template-columns:minmax(0,1fr)}.sk-foto{height:170px}}
 `
