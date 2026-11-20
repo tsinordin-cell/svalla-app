@@ -1,0 +1,245 @@
+[
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',",
+  "rader": [
+   "p27-k001",
+   "p27-s001"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Någon tur stannar vid Södra Grinda bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 13 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'Någon tur stannar vid Södra Grinda bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 13 i god tid innan du åker.',",
+  "rader": [
+   "p27-k002",
+   "p27-s002"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'I Waxholmsbolagets tabell 21, som gäller till 12 december 2026, har en del turer till Gruvbryggan på Utö anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 21 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'I Waxholmsbolagets tabell 21, som gäller till 12 december 2026, har en del turer till Gruvbryggan på Utö anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 21 i god tid innan du åker.',",
+  "rader": [
+   "p27-k003",
+   "p27-s003"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En stor del av turerna till och från Finnhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan avgång\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En stor del av turerna till och från Finnhamn går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',",
+  "rader": [
+   "p27-k004",
+   "p27-s004"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan avgång\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',",
+  "rader": [
+   "p27-k005",
+   "p27-s005"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"minst 2 timmar innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',",
+  "rader": [
+   "p27-k006",
+   "p27-s006"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Norra Ingmarsö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Norra Ingmarsö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',",
+  "rader": [
+   "p27-k007",
+   "p27-s007"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Dalarö går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"minst 2 timmar innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h20.pdf — \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Dalarö går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',",
+  "rader": [
+   "p27-k008",
+   "p27-s008"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Några turer till och från Arholma går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 30 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'Några turer till och från Arholma går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 30 i god tid innan du åker.',",
+  "rader": [
+   "p27-k009",
+   "p27-s009"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Fejan går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Fejan går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',",
+  "rader": [
+   "p27-k010",
+   "p27-s010"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Furusund går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 25 eller 28 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Furusund går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 25 eller 28 i god tid innan du åker.',",
+  "rader": [
+   "p27-k011",
+   "p27-s011"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Norröra går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Norröra går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',",
+  "rader": [
+   "p27-k012",
+   "p27-s012"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'I Waxholmsbolagets tabell 28 för 2 november till 12 december 2026 har alla turer från Rödlöga anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'I Waxholmsbolagets tabell 28 för 2 november till 12 december 2026 har alla turer från Rödlöga anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',",
+  "rader": [
+   "p27-k013",
+   "p27-s013"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Gällnö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 14 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan avgång\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Gällnö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 14 i god tid innan du åker.',",
+  "rader": [
+   "p27-k014",
+   "p27-s014"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Några turer till och från Åsättra brygga går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'Några turer till och från Åsättra brygga går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 i god tid innan du åker.',",
+  "rader": [
+   "p27-k015",
+   "p27-s015"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Några turer till och från Långvik på Runmarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 eller 23 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h23.pdf — \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'Några turer till och från Långvik på Runmarö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 eller 23 i god tid innan du åker.',",
+  "rader": [
+   "p27-k016",
+   "p27-s016"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En stor del av turerna till och från Norra Svartsö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'En stor del av turerna till och från Norra Svartsö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',",
+  "rader": [
+   "p27-k017",
+   "p27-s017"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 5 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 5 i god tid innan du åker.',",
+  "rader": [
+   "p27-k018",
+   "p27-s018"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Några turer till och från Landsort går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 29 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\" (anmärkning B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'Några turer till och från Landsort går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 29 i god tid innan du åker.',",
+  "rader": [
+   "p27-k019",
+   "p27-s019"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Många turer till och från Ornö kyrka går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan avgång\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'Många turer till och från Ornö kyrka går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',",
+  "rader": [
+   "p27-k020",
+   "p27-s020"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan avgång\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',",
+  "rader": [
+   "p27-k021",
+   "p27-s021"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Östanvik på Nämdö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 17 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h17.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Östanvik på Nämdö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 17 i god tid innan du åker.',",
+  "rader": [
+   "p27-k022",
+   "p27-s022"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Många turer till och från Lidö går eller stannar där bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'Många turer till och från Lidö går eller stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',",
+  "rader": [
+   "p27-k023",
+   "p27-s023"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning. Beställ minst en eller två timmar före avgång, beroende på tur, och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan avgång\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning. Beställ minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',",
+  "rader": [
+   "p27-k024",
+   "p27-s024"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Eknö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Eknö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',",
+  "rader": [
+   "p27-k025",
+   "p27-s025"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Flera turer till och från Tynningö går eller stannar vid bryggorna bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)\n    bestallning: 'Flera turer till och från Tynningö går eller stannar vid bryggorna bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',",
+  "rader": [
+   "p27-k026",
+   "p27-s026"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Gräskö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',",
+  "ny": "    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; \"senast på eftermiddagen\" lät en beställning kl. 17.30 se giltig ut.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\", \"minst 2 timmar innan\", \"avgång från aktuell brygga, dock senast kl.\", \"17.00.\", \"senast kl. 19.00 dag före\", \"resdag.\" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)\n    bestallning: 'En del turer till och från Gräskö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',",
+  "rader": [
+   "p27-k027",
+   "p27-s027"
+  ]
+ }
+]
