@@ -40,7 +40,7 @@ export default function StickyNewsletterBar() {
   return (
     <div
       role="complementary"
-      aria-label="Prenumerera på Svallanyheter"
+      aria-label="Prenumerera på Skärgårdsnyheter"
       style={{
         position: 'fixed',
         bottom: 72, // above bottom nav
