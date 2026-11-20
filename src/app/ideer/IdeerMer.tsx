@@ -90,8 +90,23 @@ export default function IdeerMer({ turer, rutt, kanslor, oar, mosaik, siffror }:
     const [a, b, c, d] = [Math.min(...lat), Math.max(...lat), Math.min(...lng), Math.max(...lng)]
     return oar.map(o => ({ ...o, x: 6 + 88 * (o.lng - c) / (d - c || 1), y: 5 + 90 * (b - o.lat) / (b - a || 1) }))
   }, [oar])
-  const led = useMemo(() => [...karta].sort((p, q) => p.y - q.y), [karta])
-  const ledD = led.map((p, i) => `${i ? 'L' : 'M'}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
+  // Leden går från den nordligaste ön till närmaste nästa ö, så att strecket följer skärgården i stället för att korsa den.
+  const led = useMemo(() => {
+    const kvar = [...karta].sort((p, q) => p.y - q.y)
+    const ut = kvar.splice(0, 1)
+    while (kvar.length) {
+      const s = ut[ut.length - 1]!
+      let b = 0, bd = Infinity
+      kvar.forEach((p, i) => { const d = ((p.x - s.x) * 2.1) ** 2 + (p.y - s.y) ** 2; if (d < bd) { bd = d; b = i } })
+      ut.push(kvar.splice(b, 1)[0]!)
+    }
+    return ut
+  }, [karta])
+  // Mjuk linje: öarna är styrpunkter, mittpunkterna mellan dem är fästpunkter.
+  const ledD = led.length < 3 ? '' : `M${led[0]!.x.toFixed(1)} ${led[0]!.y.toFixed(1)} ` + led.slice(1, -1).map((p, i) => {
+    const n = led[i + 2]!
+    return `Q${p.x.toFixed(1)} ${p.y.toFixed(1)} ${((p.x + n.x) / 2).toFixed(1)} ${((p.y + n.y) / 2).toFixed(1)}`
+  }).join(' ') + ` L${led[led.length - 1]!.x.toFixed(1)} ${led[led.length - 1]!.y.toFixed(1)}`
   /* M: rita leden när ytan syns */
   const ritRef = useRef<HTMLDivElement>(null)
   const [ritad, setRitad] = useState(false)
@@ -247,6 +262,7 @@ export default function IdeerMer({ turer, rutt, kanslor, oar, mosaik, siffror }:
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <path d={ledD} pathLength={1} className="m-led" />
           </svg>
+          {karta.map(p => <i key={p.slug} className="m-prick" style={{ left: `${p.x}%`, top: `${p.y}%` }} />)}
           {led.filter((_, i) => i % 6 === 0).map((p, i) => (
             <span key={p.slug} className="m-namn" style={{ left: `${p.x}%`, top: `${p.y}%`, transitionDelay: `${0.4 + i * 0.25}s` }}>{p.namn}</span>
           ))}
@@ -460,7 +476,7 @@ const CSS = `
 .k-ruta b{font-size:24px}
 
 /* L */
-.l-yta{max-width:1200px;margin:0 auto;background:#fbf6ec;border-radius:28px;padding:40px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:32px;border:1px solid rgba(150,110,60,.16)}
+.l-yta{max-width:1200px;margin:0 auto;background:#fbf6ec;border-radius:28px;padding:40px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:32px;border:1px solid rgba(150,110,60,.16);overflow:hidden}
 .l-lista ul{list-style:none;margin:0;padding:0;columns:2;column-gap:18px}
 .l-lista a{display:block;font-family:'Playfair Display',Georgia,serif;font-size:14.5px;color:#3d5865;text-decoration:none;padding:3px 0}
 .l-lista a.pa,.l-lista a:hover{color:#b5591a}
@@ -474,8 +490,9 @@ const CSS = `
 /* M */
 .m-yta{position:relative;max-width:1200px;margin:0 auto;height:560px;background:#fbf4e6;border-radius:28px;overflow:hidden;border:1px solid rgba(150,110,60,.16)}
 .m-yta svg{position:absolute;inset:0;width:100%;height:100%}
-.m-led{fill:none;stroke:#c98a4f;stroke-width:.35;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;stroke-width:1.6px;transition:stroke-dashoffset 3.6s ease}
+.m-led{fill:none;stroke:#c98a4f;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;vector-effect:non-scaling-stroke;stroke-width:1.6px;transition:stroke-dashoffset 5s ease}
 .m-yta.ritad .m-led{stroke-dashoffset:0}
+.m-prick{position:absolute;width:7px;height:7px;margin:-3px 0 0 -3px;border-radius:50%;background:#0d2440;opacity:.55}
 .m-namn{position:absolute;font-family:'Bradley Hand','Segoe Script','Snell Roundhand',cursive;font-size:17px;color:#b5591a;transform:translate(10px,-50%) rotate(-6deg);white-space:nowrap;opacity:0;transition:opacity .8s ease}
 .m-yta.ritad .m-namn{opacity:.9}
 .m-mitt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center;padding:0 20px;pointer-events:none}
@@ -543,7 +560,7 @@ const CSS = `
 /* S */
 .s-yta{max-width:1200px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:210px;gap:14px}
 .s-0{grid-column:span 2;grid-row:span 2}
-.s-3{grid-column:span 2}
+.s-3,.s-4,.s-5{grid-column:span 2}
 .s-ruta{transition:transform .3s ease}
 .s-ruta:hover{transform:scale(1.015)}
 .s-0 b{font-size:30px}
