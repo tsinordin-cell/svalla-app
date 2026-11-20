@@ -21,7 +21,7 @@ import { isProEnabled } from '@/lib/pro'
 import { formatForumDate } from '@/lib/forum'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const revalidate = 60
 
@@ -87,7 +87,7 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
  return {
  title: `${username}`,
  description: `Se ${username}s seglarturer på Svalla.`,
- openGraph: { images: OG_STANDARD, title: `${username} på Svalla`, url: `https://svalla.se/u/${encodeURIComponent(username)}` },
+ openGraph: { images: ogSida(`https://svalla.se/u/${encodeURIComponent(username)}`), title: `${username} på Svalla`, url: `https://svalla.se/u/${encodeURIComponent(username)}` },
  alternates: { canonical: `https://svalla.se/u/${encodeURIComponent(username)}` },
  // MEDVETET noindex (2026-08-01). Sidan hade index:true samtidigt som
  // robots.txt hade 'Disallow: /u/' — en motsägelse som gav det sämsta

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Halland: Västkustens sandstränder och fästningsstäder',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     'halland sommar',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/halland'),
     title: 'Halland: Västkustens sandstränder och fästningsstäder',
     description: 'Logga dina båtturer och hitta de bästa platserna längs Hallands kust.',
     url: 'https://svalla.se/halland',

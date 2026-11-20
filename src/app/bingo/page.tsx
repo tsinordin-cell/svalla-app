@@ -4,7 +4,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import PublicFooter from '@/components/PublicFooter'
 import BingoClient from './BingoClient'
 import { BINGO_ITEMS } from './bingo-data'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Skärgårdsbingo 2026 till 25 utmaningar för en perfekt sommar',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   keywords: ['skärgårdsbingo', 'sommarutmaning skärgård', 'svalla bingo', 'bucket list skärgård', 'sommar 2026 stockholm'],
   alternates: { canonical: 'https://svalla.se/bingo' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/bingo'),
     title: 'Skärgårdsbingo 2026 till 25 utmaningar',
     description: 'Hur många kan du bocka av i sommar?',
     url: 'https://svalla.se/bingo',

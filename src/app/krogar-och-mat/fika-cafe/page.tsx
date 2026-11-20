@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Fika och caféer i skärgården',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     'kaffe skärgård',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/krogar-och-mat/fika-cafe'),
     title: 'Fika och caféer i skärgården',
     description: 'Kanelbullar, kaffe och havsutsikt. De bästa fikaställena i Stockholms skärgård.',
     url: 'https://svalla.se/krogar-och-mat/fika-cafe',

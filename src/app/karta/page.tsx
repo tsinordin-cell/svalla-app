@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import { ANTAL_OAR } from '@/app/o/island-data'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Karta över Stockholms skärgård',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
  'skärgårdsöar karta',
  ],
  openGraph: {
- images: OG_STANDARD,
+ images: ogSida('https://svalla.se/karta'),
  title: { absolute: 'Karta över Stockholms skärgård | Svalla' },
  description: 'Interaktiv karta med krogar, bryggor, bastun och badplatser i hela Stockholms skärgård.',
  url: 'https://svalla.se/karta',

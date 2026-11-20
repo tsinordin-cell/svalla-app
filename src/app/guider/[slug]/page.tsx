@@ -17,7 +17,7 @@ import ShareButton from '@/components/ShareButton'
 import StickyNewsletterBar from '@/components/StickyNewsletterBar'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       keywords: meta.keywords,
       alternates: { canonical: `https://svalla.se/guider/${slug}` },
       openGraph: {
-        images: OG_STANDARD,
+        images: ogSida(`https://svalla.se/guider/${slug}`),
         title: `${meta.title} | Svalla`,
         description: meta.description,
         url: `https://svalla.se/guider/${slug}`,

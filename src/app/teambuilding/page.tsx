@@ -4,7 +4,7 @@ import { GUIDES } from '@/app/guider/guides-data'
 import { TEAMBUILDING_SUBS } from './teambuilding-data'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const revalidate = 86400
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/teambuilding' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/teambuilding'),
     title: 'Teambuilding i skärgården: aktiviteter, regatta och konferens',
     description: 'Segelregatta, kajak, konferens och AW på öarna. Hitta det bästa teambuildingeventet för ditt team.',
     url: 'https://svalla.se/teambuilding',

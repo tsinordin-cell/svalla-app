@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
  title: 'Mälaren: Segla Sveriges tredje största sjö',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
  'gripsholm mariefred',
  ],
  openGraph: {
- images: OG_STANDARD,
+ images: ogSida('https://svalla.se/malaren'),
  title: 'Mälaren: Segla Sveriges tredje största sjö',
  description: 'Logga dina båtturer på Mälaren med Svalla | 8 000+ öar, historiska hamnar och kafébryggor.',
  url: 'https://svalla.se/malaren',
