@@ -29,8 +29,7 @@ export default function GlomtLosenordPage() {
       background: 'linear-gradient(180deg, #0e3d52 0%, #1e5c82 50%, #f7fbfc 100%)',
     }}>
       {/* Branding top */}
-      <div style={{ flex: '0 0 auto', padding: '60px 24px 40px', textAlign: 'center' }}>
-        <div style={{marginBottom: 8}} aria-hidden><Icon name="bookmark" size={44} /></div>
+      <div style={{ flex: '0 0 auto', padding: '48px 24px 36px', textAlign: 'center' }}>
         <h1 style={{ fontSize: 32, fontWeight: 700, color: '#fff', margin: '0 0 6px', letterSpacing: '-0.5px' }}>
           Glömt lösenordet?
         </h1>
@@ -48,20 +47,30 @@ export default function GlomtLosenordPage() {
       }}>
         <div style={{ maxWidth: 400, margin: '0 auto' }}>
           {sent ? (
-            <div style={{ textAlign: 'center', paddingTop: 20 }}>
-              <div style={{marginBottom: 16}} aria-hidden><Icon name="mail" size={56} /></div>
-              <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 8 }}>
-                Kolla din inkorg!
+            // Stilren kvittens (2026-11-20): ikonen centrerad i en rund platta, en
+            // knapp i stället för två likadana länkar, och ett råd om skräpposten.
+            <div role="status" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', paddingTop: 8 }}>
+              <div aria-hidden style={{
+                width: 64, height: 64, borderRadius: '50%', marginBottom: 18,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                background: 'rgba(10,123,140,0.10)', color: 'var(--sea)',
+              }}>
+                <Icon name="mail" size={28} />
+              </div>
+              <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 10px' }}>
+                Kolla din inkorg
               </h2>
-              <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.6, marginBottom: 28 }}>
-                Vi har skickat en återställningslänk till <strong>{email}</strong>.
-                Klicka på länken i mejlet för att välja ett nytt lösenord.
+              <p style={{ fontSize: 15, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 8px' }}>
+                Vi har skickat en länk till <strong style={{ color: 'var(--txt)', wordBreak: 'break-all' }}>{email}</strong>. Tryck på den för att välja ett nytt lösenord.
               </p>
-              <Link href="/logga-in" style={{
-                display: 'inline-block', padding: '13px 32px', borderRadius: 16,
+              <p style={{ fontSize: 13, color: 'var(--txt3)', lineHeight: 1.6, margin: '0 0 26px' }}>
+                Kommer det inget inom ett par minuter? Titta i skräpposten.
+              </p>
+              <Link href="/logga-in" className="press-feedback" style={{
+                display: 'block', width: '100%', boxSizing: 'border-box', padding: '15px 0', borderRadius: 16,
                 background: 'var(--grad-sea)',
-                color: '#fff', fontWeight: 600, fontSize: 15, textDecoration: 'none',
-                boxShadow: '0 4px 16px rgba(30,92,130,0.3)',
+                color: '#fff', fontWeight: 600, fontSize: 16, textDecoration: 'none',
+                boxShadow: '0 4px 20px rgba(30,92,130,0.35)',
               }}>
                 Tillbaka till inloggning
               </Link>
@@ -113,12 +122,14 @@ export default function GlomtLosenordPage() {
             </form>
           )}
 
-          <Link href="/logga-in" style={{
-            display: 'block', textAlign: 'center', marginTop: 20,
-            fontSize: 14, color: 'var(--txt3)', textDecoration: 'none', fontWeight: 500,
-          }}>
-            ← Tillbaka till inloggning
-          </Link>
+          {!sent && (
+            <Link href="/logga-in" style={{
+              display: 'block', textAlign: 'center', marginTop: 20,
+              fontSize: 14, color: 'var(--txt3)', textDecoration: 'none', fontWeight: 500,
+            }}>
+              ← Tillbaka till inloggning
+            </Link>
+          )}
         </div>
       </div>
     </div>
