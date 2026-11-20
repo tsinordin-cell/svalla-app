@@ -223,6 +223,34 @@ const HANDPLOCKADE = {
   smaskar: 'Småskären - KMB - 16000300023835.jpg',
   sandskar: 'Sandskär - KMB - 16000300023797.jpg',
   maloren: 'Malören - KMB - 16000300023810.jpg',
+  // 2026-11-19: 24 öar som saknade bild. Valda ur sv.wikipedias artikelbilder, Commons-kategorin
+  // och Commons-sökning, och granskade med ögonen i kontaktark: bilden visar ön (eller, för
+  // Misterhults skärgård, Furön i reservatet; för Hästholmen och Ytterön, utsikten mot Ytterön),
+  // inga personer i bild, fri licens. Rågö kontrollerad mot koordinaterna (57.86 N, 16.73 E, Tjust).
+  arkosund: 'Arkösund.jpg',
+  furon: 'Furo lotsstuga.jpg',
+  misterhult: 'Furon.JPG',
+  runno: 'Runnö 1.jpg',
+  limon: 'Limön23.JPG',
+  agon: 'Agöhamn21500001410679.jpg',
+  kuggorarna: 'Kuggörarna.jpg',
+  rodkallen: 'Rödkallen.jpg',
+  'hallands-vadero': '0133Hallands Väderö naturreservat.jpg',
+  nidingen: 'Nidingen.jpg',
+  vendelso: 'Vendelsö 2011 - Från havet.jpg',
+  'djuro-nationalpark': 'Utsikt mot Timmerholmarna Djurö.jpg',
+  brommo: 'Brommö från Torsö.JPG',
+  luro: 'Skulptur lurö.jpg',
+  kallandso: 'Läckö slott, den 13 juli 2006, bild 1.JPG',
+  utklippan: 'Kustbilder för LST Utklippan345.jpg',
+  tarno: 'Tarno2.JPG',
+  'hastholmen-ytteron': 'Senoren - Gåsefjärden - Ytterön.JPG',
+  'stora-karlso': 'Excursion to Stora Karlsö.jpg',
+  furilden: 'Abandoned limestone quarry on Furilden Gotland 1.jpg',
+  asunden: 'Asunden 02.jpg',
+  langviksskaret: 'Hummelskär-Söderö.jpg',
+  rago: '0012Rågö.jpg',
+  sturko: 'Sturkö kyrka Exteriör 005.jpg',
 }
 
 /**
