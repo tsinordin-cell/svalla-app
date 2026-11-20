@@ -37,15 +37,27 @@ async function handle(req: Request) {
 
   // Senaste 25 timmars besök
   const since = new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString()
-  const { data: visits, error: visitsError } = await svc
+  const { data: allaBesok, error: visitsError } = await svc
     .from('visited_islands')
-    .select('id, user_id, island_slug, visited_at')
+    .select('id, user_id, island_slug, visited_at, fran_tur, trip_id')
     .gte('visited_at', since)
     .limit(1000)
 
   if (visitsError) {
     return NextResponse.json({ error: visitsError.message }, { status: 500 })
   }
+
+  // INTEGRITET (2026-11-20): routen läser med service-nyckeln, som går förbi
+  // RLS. Ett besök som kom från en privat eller raderad tur skickades därför
+  // som "{namn} besökte {ö}" till alla följare. Nu bara besök som andra ändå
+  // får se: markerade för hand, eller från en publik, klar, ej raderad tur
+  // (samma villkor som RLS-policyn visited_islands_select_all och trips_select_visible).
+  const turIds = [...new Set((allaBesok ?? []).filter(v => v.fran_tur && v.trip_id).map(v => v.trip_id as string))]
+  const { data: synligaTurer } = turIds.length > 0
+    ? await svc.from('trips').select('id').in('id', turIds).eq('visibility', 'public').eq('status', 'done').is('deleted_at', null)
+    : { data: [] as { id: string }[] }
+  const synliga = new Set((synligaTurer ?? []).map(t => t.id as string))
+  const visits = (allaBesok ?? []).filter(v => !v.fran_tur || (v.trip_id !== null && synliga.has(v.trip_id as string)))
 
   if (!visits || visits.length === 0) {
     return NextResponse.json({ ok: true, processed: 0, notified: 0 })
