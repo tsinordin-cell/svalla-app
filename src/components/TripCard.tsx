@@ -15,7 +15,7 @@ import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
 import TripActions from './TripActions'
 import { formatDurationMin } from '@/lib/gps'
-import { timeAgo, absoluteDate } from '@/lib/utils'
+import { timeAgoKompakt, absoluteDate } from '@/lib/utils'
 import { renderMentions } from './Comments'
 import { fontSize, fontWeight } from '@/lib/tokens'
 
@@ -322,7 +322,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               display: 'flex', alignItems: 'center', gap: 5,
               overflow: 'hidden', whiteSpace: 'nowrap',
             }}>
-              <span suppressHydrationWarning title={absoluteDate(trip.created_at)} style={{ flexShrink: 0, cursor: 'help' }}>{timeAgo(trip.created_at)}</span>
+              <span suppressHydrationWarning title={absoluteDate(trip.created_at)} style={{ flexShrink: 0, cursor: 'help' }}>{timeAgoKompakt(trip.created_at)}</span>
               {trip.boat_type && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
@@ -335,11 +335,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               {trip.location_name && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
-                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                  {/* minWidth 0 + en egen textspann: annars klipps namnet tvärt utan
+                      tre punkter (text-overflow verkar inte på en flex-behållare). */}
+                  <span style={{ minWidth: 0, display: 'inline-flex', alignItems: 'center', gap: 3 }}>
                     <svg width={11} height={11} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
                       <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0Z" /><circle cx="12" cy="10" r="3" />
                     </svg>
-                    {trip.location_name}
+                    <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>{trip.location_name}</span>
                   </span>
                 </>
               )}
