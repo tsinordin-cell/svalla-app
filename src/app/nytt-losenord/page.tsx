@@ -59,14 +59,19 @@ export default function NyttLosenordPage() {
       const typ = url.searchParams.get('type')
       const kod = url.searchParams.get('code')
       try {
+        // Båda anropen nedan kan kasta ett fel EFTER att inloggningen lyckats:
+        // biblioteket meddelar alla lyssnare (menyn m.fl.), och kastar vidare om
+        // någon av dem går fel. Mätt 2026-11-20: växlingen svarade 200, men
+        // sidan visade ändå "Länken gick inte att använda". Felen fångas därför
+        // här, och det som avgör är om det finns en giltig session efteråt.
         if (tokenHash && typ === 'recovery') {
-          await supabase.auth.verifyOtp({ type: 'recovery', token_hash: tokenHash })
+          try { await supabase.auth.verifyOtp({ type: 'recovery', token_hash: tokenHash }) } catch (e) { console.error('[nytt-losenord] verifyOtp', e) }
         }
         // Klienten växlar ?code själv när den startar (detectSessionInUrl).
         // getSession väntar in det; finns ingen session efteråt provar vi själva.
         let { data: { session } } = await supabase.auth.getSession()
         if (!session && kod) {
-          await supabase.auth.exchangeCodeForSession(kod)
+          try { await supabase.auth.exchangeCodeForSession(kod) } catch (e) { console.error('[nytt-losenord] exchangeCodeForSession', e) }
           ;({ data: { session } } = await supabase.auth.getSession())
         }
         // RÄTTAT 2026-11-20 (mätt i loggarna): länken begärdes på datorn och
