@@ -14,6 +14,23 @@ export function timeAgo(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })
 }
 
+/**
+ * Kort form för turkortets rad under namnet (2026-11-20): "12 min", "5 h",
+ * "Igår", "3 d", sedan datum. Raden delas med båttyp och plats, och
+ * "3 dagar sedan" tog så mycket bredd att platsnamnet klipptes på telefon.
+ */
+export function timeAgoKompakt(dateStr: string, nu: number = Date.now()): string {
+  const m = Math.floor((nu - new Date(dateStr).getTime()) / 60000)
+  if (m < 1) return 'Just nu'
+  if (m < 60) return `${m} min`
+  const h = Math.floor(m / 60)
+  if (h < 24) return `${h} h`
+  const d = Math.floor(h / 24)
+  if (d === 1) return 'Igår'
+  if (d < 7) return `${d} d`
+  return new Date(dateStr).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })
+}
+
 /** Short version used in notification bell and comments (m / h / d) */
 export function timeAgoShort(dateStr: string): string {
   const m = Math.floor((Date.now() - new Date(dateStr).getTime()) / 60000)
