@@ -7,8 +7,23 @@ describe('forbyggUrval', () => {
   it('förbygger allt i produktion', () => {
     expect(forbyggUrval(alla, 'production')).toEqual(alla)
   })
-  it('förbygger allt lokalt, där miljön saknas', () => {
-    expect(forbyggUrval(alla, undefined)).toEqual(alla)
+  it('förbygger allt lokalt', () => {
+    // Inte undefined här: då läser funktionen byggets egen miljö, och testet
+    // körs även i Vercels förhandsvisningsbygge.
+    expect(forbyggUrval(alla, 'development')).toEqual(alla)
+    expect(forbyggUrval(alla, '')).toEqual(alla)
+  })
+  it('läser VERCEL_ENV när ingen miljö anges', () => {
+    const fore = process.env.VERCEL_ENV
+    try {
+      process.env.VERCEL_ENV = 'preview'
+      expect(forbyggUrval(alla)).toHaveLength(FORBYGG_I_FORHANDSVISNING)
+      delete process.env.VERCEL_ENV
+      expect(forbyggUrval(alla)).toHaveLength(alla.length)
+    } finally {
+      if (fore === undefined) delete process.env.VERCEL_ENV
+      else process.env.VERCEL_ENV = fore
+    }
   })
   it('förbygger bara de första få i en förhandsvisning', () => {
     expect(forbyggUrval(alla, 'preview')).toEqual(alla.slice(0, FORBYGG_I_FORHANDSVISNING))
