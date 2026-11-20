@@ -1,0 +1,347 @@
+/*
+ * FÖRHANDSVISNING (2026-11-20): startsidans stil. Varje regel börjar med .hp så att inget
+ * påverkar andra sidor, även om stilmallen ligger kvar efter en klientnavigering.
+ *
+ * System:
+ * - Avstånd i steg om 4 px. Sektioner: 56 px upp/ned i mobil, 96 px på dator. Sidmarginal 20 px.
+ * - Typsnitt: Playfair Display (rubriker, normal vikt), systemets sans för brödtext.
+ * - Färger: sand, papper, natt (marin), ett accentorange för det viktigaste valet, teal för länkar.
+ * - Ytor skiljs åt med bakgrund och tunna linjer, inte med kort och skuggor.
+ */
+
+.hp {
+  --hp-sand: #f3ece0;
+  --hp-papper: #fbf7ef;
+  --hp-natt: #0d2440;
+  --hp-blck: #0d2440;
+  --hp-text: #22343c;
+  --hp-dov: #4d6069;       /* 5,6:1 på sand */
+  --hp-acc: #b5591a;       /* vit text på: 4,8:1 */
+  --hp-acc-text: #a14d17;  /* orange text på sand: 5,0:1 */
+  --hp-acc-ljus: #f2a25c;  /* orange text på natt */
+  --hp-lank: #1e5c82;      /* 6,6:1 på sand */
+  --hp-linje: rgba(13, 36, 64, .12);
+  --hp-linje-ljus: rgba(255, 255, 255, .14);
+  --hp-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, Helvetica, Arial, sans-serif;
+  --hp-serif: var(--font-display), 'Playfair Display', Georgia, serif;
+  --hp-sido: 20px;
+  --hp-sek: 48px;
+  position: relative;
+  background: var(--hp-sand);
+  color: var(--hp-text);
+  font-family: var(--hp-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+.hp *, .hp *::before, .hp *::after { box-sizing: border-box; }
+.hp svg { flex-shrink: 0; }
+.hp :focus-visible { outline: 2px solid var(--hp-lank); outline-offset: 3px; border-radius: 6px; }
+.hp .hp-natt :focus-visible, .hp .hp-hero :focus-visible { outline-color: #fff; }
+
+/* ── Gemensamt ── */
+.hp .hp-inre { max-width: 1160px; margin: 0 auto; padding: 0 var(--hp-sido); }
+.hp .hp-smal { max-width: 760px; }
+.hp .hp-sek { position: relative; z-index: 1; padding: var(--hp-sek) 0; }
+.hp .hp-sand { background: var(--hp-sand); }
+.hp .hp-papper { background: var(--hp-papper); }
+.hp .hp-natt { background: var(--hp-natt); color: #fff; }
+
+.hp .hp-rubrik { margin: 0 0 24px; }
+.hp .hp-liten { margin: 0 0 10px; font: 700 11px/1 var(--hp-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--hp-acc-text); }
+.hp .hp-h2 { margin: 0; font-family: var(--hp-serif); font-weight: 400; font-size: clamp(27px, 7.6vw, 44px); line-height: 1.12; letter-spacing: -.01em; color: var(--hp-blck); text-wrap: balance; }
+.hp .hp-rubrik-ljus .hp-liten { color: var(--hp-acc-ljus); }
+.hp .hp-rubrik-ljus .hp-h2 { color: #fff; }
+.hp .hp-ingress { margin: -8px 0 24px; max-width: 560px; font-size: 16px; line-height: 1.6; color: var(--hp-dov); text-wrap: pretty; }
+
+.hp .hp-knapp { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 24px; border-radius: 999px; background: var(--hp-lank); color: #fff; font-size: 15px; font-weight: 650; text-decoration: none; transition: background .2s ease, transform .15s ease; }
+.hp .hp-knapp:hover { background: #174a6a; }
+.hp .hp-knapp:active { transform: scale(.98); }
+.hp .hp-knapp-acc { background: var(--hp-acc); }
+.hp .hp-knapp-acc:hover { background: #9e4c14; }
+
+.hp .hp-lankrad { display: flex; flex-wrap: wrap; gap: 8px 24px; margin: 20px 0 0; }
+.hp .hp-lankrad a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 650; color: var(--hp-lank); text-decoration: none; }
+.hp .hp-lankrad a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.hp .hp-bara-stor { display: none; }
+
+/* ── 1. Hjälten ── */
+.hp .hp-hero {
+  position: relative; z-index: 1; overflow: hidden;
+  height: 100svh; min-height: 620px; max-height: 940px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  /* Nederkant: valen slutar ovanför den flytande Tipsa oss-knappen (FeedbackWidget, samma formel som dess
+     bottom + 37 px hög knapp + 12 px luft), så att knappen inte ligger över "Hitta på kartan". */
+  padding: 104px var(--hp-sido) calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 63px);
+  color: #fff; text-align: center;
+  /* Samma platshållare som startsidan tills canvasen målat. */
+  background: linear-gradient(to bottom, #3d94d4 0%, #60aee0 20%, #92c8f0 44%, #b0dcf2 58%, #2488c0 58%, #186aa8 72%, #104e84 86%, #0a2e5a 100%);
+}
+.hp .hp-hero-scen { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+/* Mjuk skugga bakom rubriken. Vinterhimlen är ljus, och vit text låg där på 1,6:1. */
+.hp .hp-hero-slojan { position: absolute; inset: 0 0 auto; height: 62%; z-index: 0; pointer-events: none;
+  background: radial-gradient(120% 70% at 50% 18%, rgba(9, 28, 48, .52) 0%, rgba(9, 28, 48, .30) 45%, rgba(9, 28, 48, 0) 78%); }
+.hp .hp-hero-topp, .hp .hp-hero-botten { position: relative; z-index: 2; }
+.hp .hp-hero-topp { display: flex; flex-direction: column; align-items: center; }
+
+.hp .hp-julrad { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 18px; padding: 7px 12px 7px 10px; border-radius: 999px; background: rgba(255, 255, 255, .94); color: #0f2f40; font-size: 12.5px; font-weight: 600; line-height: 1; text-decoration: none; box-shadow: 0 4px 14px rgba(9, 28, 48, .18); }
+.hp .hp-julrad svg:last-child { color: var(--hp-acc); width: 14px; height: 14px; }
+
+.hp .hp-h1 { margin: 0; font-family: var(--hp-serif); font-weight: 500; font-size: clamp(32px, 10vw, 46px); line-height: 1.04; letter-spacing: -.015em; color: #fff; text-shadow: 0 2px 18px rgba(5, 18, 34, .45); }
+.hp .hp-h1 em { display: block; font-style: italic; font-weight: 500; color: #ffcf98; }
+.hp .hp-hero-ingress { margin: 14px auto 0; max-width: 300px; font-size: 16px; line-height: 1.5; font-weight: 450; color: #fff; text-shadow: 0 1px 10px rgba(5, 18, 34, .55); text-wrap: balance; }
+
+.hp .hp-hero-botten { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 520px; margin: 0 auto; }
+.hp .hp-sok { display: flex; align-items: center; height: 54px; padding: 5px 5px 5px 20px; background: #fff; border-radius: 999px; box-shadow: 0 10px 30px rgba(4, 16, 32, .35); }
+.hp .hp-sok:focus-within { box-shadow: 0 10px 30px rgba(4, 16, 32, .35), 0 0 0 3px rgba(255, 255, 255, .55); }
+.hp .hp-sok input { flex: 1; min-width: 0; height: 100%; border: 0 !important; outline: 0; padding: 0; background: transparent !important; box-shadow: none !important; font: 400 16px var(--hp-sans); color: #14202a !important; -webkit-text-fill-color: #14202a; -webkit-appearance: none; appearance: none; }
+.hp .hp-sok input::placeholder { color: #55666e !important; -webkit-text-fill-color: #55666e; opacity: 1; }
+.hp .hp-sok input::-webkit-search-cancel-button { display: none; }
+.hp .hp-sok button { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--hp-natt); color: #fff; cursor: pointer; }
+.hp .hp-sok button span { display: none; }
+
+.hp .hp-hero-val { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.hp .hp-val { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 12px; border-radius: 999px; font-size: 14.5px; font-weight: 650; text-decoration: none; white-space: nowrap; transition: transform .15s ease, background .2s ease; }
+.hp .hp-val:active { transform: scale(.98); }
+.hp .hp-val-text small, .hp .hp-val-pil { display: none; }
+.hp .hp-val-ikon { display: inline-flex; }
+.hp .hp-val-ikon svg { width: 17px; height: 17px; }
+.hp .hp-val-1 { background: var(--hp-acc); color: #fff; box-shadow: 0 8px 22px rgba(120, 50, 10, .35); }
+.hp .hp-val-2 { background: rgba(8, 26, 46, .38); color: #fff; border: 1px solid rgba(255, 255, 255, .5); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+@media (max-width: 359px) {
+  .hp { --hp-sido: 16px; }
+  .hp .hp-val { font-size: 13.5px; gap: 6px; padding: 0 8px; }
+  .hp .hp-val-ikon svg { width: 15px; height: 15px; }
+}
+@media (max-height: 700px) and (max-width: 900px) {
+  .hp .hp-hero { padding-top: 88px; }
+  .hp .hp-julrad { margin-bottom: 12px; }
+}
+
+/* ── 2. Tre sätt ── */
+.hp .hp-satt { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hp-linje); }
+.hp .hp-satt li { border-bottom: 1px solid var(--hp-linje); }
+.hp .hp-satt a { display: grid; grid-template-columns: 36px 1fr; gap: 12px; padding: 20px 0; text-decoration: none; color: var(--hp-text); }
+.hp .hp-satt-nr { font-family: var(--hp-serif); font-size: 28px; line-height: 1; color: var(--hp-acc-text); padding-top: 2px; }
+.hp .hp-satt-text { display: flex; flex-direction: column; gap: 6px; }
+.hp .hp-satt-text b { font-family: var(--hp-serif); font-weight: 500; font-size: 20px; line-height: 1.2; color: var(--hp-blck); }
+.hp .hp-satt-text > span { font-size: 15px; line-height: 1.55; color: var(--hp-dov); }
+.hp .hp-satt-text i { display: inline-flex; align-items: center; gap: 6px; margin-top: 2px; font-style: normal; font-size: 14.5px; font-weight: 650; color: var(--hp-lank); }
+
+/* ── 3. Just nu ── */
+.hp .hp-nu-datum { font-size: clamp(24px, 6.6vw, 34px); }
+.hp .hp-nu-datum .hp-nu-sep, .hp .hp-nu-datum .hp-nu-klocka { color: var(--hp-dov); }
+.hp .hp-nu-lista { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hp-linje); }
+.hp .hp-nu-lista li { border-bottom: 1px solid var(--hp-linje); }
+.hp .hp-nu-lista li:nth-child(n+4) { display: none; } /* mobil: tre datum räcker, resten finns under Alla datum */
+.hp .hp-nu-lista a { display: flex; align-items: center; gap: 14px; padding: 14px 0; text-decoration: none; color: var(--hp-text); }
+.hp .hp-nu-bricka { flex-shrink: 0; width: 48px; height: 52px; border-radius: 10px; background: var(--hp-natt); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.hp .hp-nu-bricka b { font-family: var(--hp-serif); font-size: 21px; font-weight: 500; line-height: 1; letter-spacing: 0; margin-bottom: 2px; }
+.hp .hp-nu-text { font-size: 15px; line-height: 1.4; font-weight: 550; min-width: 0; }
+.hp .hp-nu-text small { display: block; margin-bottom: 3px; font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--hp-acc-text); }
+
+/* ── 4. Vad vill du känna? ── */
+.hp .hp-kansla .hp-rubrik { margin-bottom: 20px; }
+.hp .hp-kansla-rad {
+  display: grid; grid-auto-flow: column; grid-auto-columns: min(64vw, 248px); gap: 12px;
+  overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+  padding: 0 var(--hp-sido) 4px; scroll-padding: 0 var(--hp-sido); scrollbar-width: none;
+}
+.hp .hp-kansla-rad::-webkit-scrollbar { display: none; }
+.hp .hp-kansla-ruta { position: relative; scroll-snap-align: start; aspect-ratio: 4 / 5; border-radius: 14px; overflow: hidden; display: flex; align-items: flex-end; color: #fff; text-decoration: none; background: linear-gradient(160deg, #1e5c82, #0d2440); background-size: cover; background-position: center; }
+.hp .hp-kansla-ruta::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8, 24, 38, 0) 40%, rgba(8, 24, 38, .82) 100%); }
+.hp .hp-kansla-ruta span { position: relative; display: flex; flex-direction: column; gap: 4px; padding: 18px; }
+.hp .hp-kansla-ruta b { font-family: var(--hp-serif); font-weight: 500; font-size: 25px; line-height: 1.1; }
+.hp .hp-kansla-ruta small { font-size: 13px; font-weight: 550; color: rgba(255, 255, 255, .9); }
+
+.hp .hp-mer { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 36px; }
+.hp .hp-mer h3 { margin: 0 0 4px; font: 700 11px/1 var(--hp-sans); letter-spacing: .16em; text-transform: uppercase; color: var(--hp-blck); }
+.hp .hp-mer ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 16px; }
+.hp .hp-mer li { border-bottom: 1px solid var(--hp-linje); }
+.hp .hp-mer li a { display: flex; align-items: center; min-height: 48px; padding: 8px 0; font-size: 15px; line-height: 1.3; font-weight: 550; color: var(--hp-lank); text-decoration: none; }
+.hp .hp-mer-alla { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; margin-top: 4px; font-size: 15px; font-weight: 650; color: var(--hp-lank); text-decoration: none; }
+
+/* ── 5. Regionerna: RegionKarta (produktion), anpassad här ── */
+.hp .hp-regioner .rk { margin-top: 0; }
+@media (max-width: 820px) {
+  .hp .hp-regioner .rk { gap: 8px; }
+  .hp .hp-regioner .rk-karta { max-height: 330px; }
+  .hp .hp-regioner .rk-text { padding-top: 0; min-width: 0; }
+  /* Flikarna på en rad som går att dra, i stället för två rader */
+  .hp .hp-regioner .rk-flikar { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 calc(-1 * var(--hp-sido)) 22px; padding: 0 var(--hp-sido); }
+  .hp .hp-regioner .rk-flikar::-webkit-scrollbar { display: none; }
+  .hp .hp-regioner .rk-flikar button { flex-shrink: 0; height: 40px; padding: 0 16px; font-size: 14px; background: transparent; border-color: rgba(13, 36, 64, .2); }
+  .hp .hp-regioner .rk-flikar button.pa { background: var(--hp-natt); border-color: var(--hp-natt); color: #fff; }
+  /* Pilarna tog 100 px av en redan smal textspalt. Flikarna och kartan räcker för att byta del. */
+  .hp .hp-regioner .rk-pil { display: none; }
+  .hp .hp-regioner .rk-rad { display: block; }
+  .hp .hp-regioner .rk-innehall h3 { font-weight: 500; font-size: 30px; margin-bottom: 8px; }
+  .hp .hp-regioner .rk-innehall p { font-size: 15.5px; }
+  .hp .hp-regioner .rk-regioner { gap: 4px 16px; }
+  .hp .hp-regioner .rk-regioner a { font-size: 15px; line-height: 2; }
+  .hp .hp-regioner .rk-knapp { height: 50px; padding: 0 24px; font-size: 15px; }
+}
+.hp .hp-regioner .rk-etikett { stroke: var(--hp-papper); }
+
+/* ── 6. Kartan: StartKarta (produktion), anpassad här ── */
+@media (max-width: 900px) {
+  .hp .hp-karta .skn-ram { height: min(68svh, 520px); border-radius: 14px; box-shadow: none; }
+}
+
+/* ── 7. Thorkel ── */
+.hp .hp-thorkel-inre { display: grid; grid-template-columns: 1fr; gap: 20px; }
+.hp .hp-thorkel-bild { width: 64px; height: 64px; border-radius: 50%; background: var(--hp-sand); border: 2px solid rgba(255, 255, 255, .25); }
+.hp .hp-thorkel-text { min-width: 0; }
+.hp .hp-thorkel-falt { display: flex; align-items: center; gap: 8px; height: 56px; padding: 5px 5px 5px 20px; border-radius: 999px; background: #fff; }
+.hp .hp-thorkel-falt input { flex: 1; min-width: 0; border: 0 !important; outline: 0 !important; padding: 0; background: transparent !important; box-shadow: none !important; font: 400 16px var(--hp-sans); color: #14202a !important; -webkit-text-fill-color: #14202a; }
+.hp .hp-thorkel-falt input::placeholder { color: #55666e !important; -webkit-text-fill-color: #55666e; opacity: 1; }
+.hp .hp-thorkel-falt button { flex-shrink: 0; width: 46px; height: 46px; border: 0; border-radius: 50%; background: var(--hp-acc); color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.hp .hp-thorkel-falt button svg { width: 18px; height: 18px; }
+.hp .hp-thorkel-forslag { list-style: none; margin: 16px 0 0; padding: 0; border-top: 1px solid var(--hp-linje-ljus); }
+.hp .hp-thorkel-forslag li { border-bottom: 1px solid var(--hp-linje-ljus); }
+.hp .hp-thorkel-forslag a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 10px 0; font-size: 15px; line-height: 1.35; color: rgba(255, 255, 255, .92); text-decoration: none; }
+.hp .hp-thorkel-forslag a svg { color: var(--hp-acc-ljus); }
+.hp .hp-thorkel-forslag a:hover { color: #fff; }
+.hp .hp-thorkel-not { margin: 18px 0 0; font-size: 14px; line-height: 1.5; color: rgba(255, 255, 255, .72); }
+.hp .hp-thorkel-not a { color: #fff; font-weight: 600; text-decoration: none; }
+
+/* ── 8. Vanliga frågor ── */
+.hp .hp-faq-lista { border-top: 1px solid var(--hp-linje); }
+.hp .hp-faq-lista details { border-bottom: 1px solid var(--hp-linje); }
+.hp .hp-faq-lista summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; padding: 14px 0; cursor: pointer; font-size: 16px; line-height: 1.4; font-weight: 600; color: var(--hp-blck); }
+.hp .hp-faq-lista summary::-webkit-details-marker { display: none; }
+.hp .hp-faq-lista summary i { position: relative; flex-shrink: 0; width: 14px; height: 14px; }
+.hp .hp-faq-lista summary i::before, .hp .hp-faq-lista summary i::after { content: ''; position: absolute; left: 0; top: 6px; width: 14px; height: 2px; border-radius: 1px; background: var(--hp-acc); transition: transform .2s ease; }
+.hp .hp-faq-lista summary i::after { transform: rotate(90deg); }
+.hp .hp-faq-lista details[open] summary i::after { transform: rotate(0deg); }
+.hp .hp-faq-svar { padding: 0 0 20px; font-size: 15.5px; line-height: 1.65; color: var(--hp-dov); }
+.hp .hp-faq-svar a { color: var(--hp-lank); font-weight: 600; }
+
+/* ── 9. Utforskaren och krogägaren ── */
+.hp .hp-guide-lista { list-style: none; margin: 0 0 28px; padding: 0; border-top: 1px solid var(--hp-linje); }
+.hp .hp-guide-lista li { padding: 14px 0; border-bottom: 1px solid var(--hp-linje); font-size: 15px; line-height: 1.5; color: var(--hp-dov); }
+.hp .hp-guide-lista b { display: block; margin-bottom: 2px; font-size: 16px; font-weight: 650; color: var(--hp-blck); }
+.hp .hp-telefon { display: none; }
+.hp .hp-krog-inre > div > p:not(.hp-liten) { margin: 0 0 24px; max-width: 600px; font-size: 16px; line-height: 1.6; color: rgba(255, 255, 255, .82); }
+.hp .hp-krog .hp-rubrik { margin-bottom: 16px; }
+
+/* ── 10. Bildkällor och sidfot ── */
+/* Sidfoten en nyans mörkare än krogdelen ovanför, så att de inte flyter ihop. */
+.hp .hp-sidfot { position: relative; z-index: 1; background: #081a2f; }
+.hp .hp-bildkallor { max-width: 1160px; margin: 0 auto; padding: 18px var(--hp-sido); border-bottom: 1px solid var(--hp-linje-ljus); color: rgba(255, 255, 255, .6); font-size: 12.5px; line-height: 1.7; }
+.hp .hp-bildkallor summary { cursor: pointer; display: flex; align-items: center; gap: 8px; min-height: 32px; font-weight: 600; color: rgba(255, 255, 255, .82); }
+.hp .hp-bildkallor summary span { font-weight: 400; color: rgba(255, 255, 255, .55); }
+.hp .hp-bildkallor p { margin: 8px 0 4px; }
+.hp .hp-bildkallor a { color: rgba(255, 255, 255, .78); }
+
+.hp footer { background: #081a2f; color: rgba(255, 255, 255, .6); padding: 44px var(--hp-sido) calc(28px + env(safe-area-inset-bottom)); }
+.hp footer .footer-inner { max-width: 1160px; margin: 0 auto; }
+.hp footer .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px 20px; margin-bottom: 36px; }
+.hp footer .footer-brand { grid-column: 1 / -1; }
+.hp footer .footer-brand .logo { margin-bottom: 12px; }
+.hp footer .footer-brand p { margin: 0; max-width: 340px; font-size: 14px; line-height: 1.6; }
+.hp footer h5 { margin: 0 0 10px; font: 700 11px/1 var(--hp-sans); letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
+.hp footer ul { list-style: none; margin: 0; padding: 0; }
+.hp footer li a { display: block; padding: 6px 0; font-size: 14.5px; line-height: 1.35; color: rgba(255, 255, 255, .62); text-decoration: none; }
+.hp footer li a:hover { color: #fff; }
+.hp footer .footer-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding-top: 20px; border-top: 1px solid var(--hp-linje-ljus); font-size: 12.5px; }
+.hp footer .footer-flags, .hp footer .footer-social { display: flex; gap: 14px; align-items: center; }
+.hp footer .footer-social a { color: rgba(255, 255, 255, .55); }
+
+/* ════════ Surfplatta och dator ════════
+ * Datorns uttryck ska ligga så nära dagens startsida som möjligt. */
+@media (min-width: 640px) {
+  .hp { --hp-sido: 32px; --hp-sek: 72px; }
+  .hp .hp-nu-lista li:nth-child(n+4) { display: block; }
+  .hp .hp-nu-lista { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; }
+  .hp .hp-kansla-rad { grid-auto-columns: 260px; }
+  .hp .hp-mer { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .hp .hp-mer ul { grid-template-columns: 1fr; }
+  .hp footer .footer-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 901px) {
+  .hp { --hp-sido: 40px; --hp-sek: 64px; }
+  .hp .hp-bara-stor { display: block; }
+  .hp .hp-julrad { display: none; }
+
+  /* Hjälten som i dag: rubriken högt upp i himlen, de två valen vid vattenlinjen */
+  .hp .hp-hero { height: 100vh; max-height: none; min-height: 640px; padding: 0 24px; justify-content: flex-start; }
+  .hp .hp-hero-slojan { background: radial-gradient(60% 45% at 50% 22%, rgba(9, 28, 48, .30) 0%, rgba(9, 28, 48, 0) 75%); }
+  .hp .hp-hero-topp { padding-top: 86px; }
+  .hp .hp-h1 { font-weight: 800; font-size: clamp(44px, 5.4vw, 76px); line-height: 1.02; }
+  .hp .hp-h1 em { font-weight: 700; color: #f6a35c; }
+  .hp .hp-hero-ingress { max-width: 600px; font-size: 17px; font-weight: 400; color: rgba(255, 255, 255, .9); }
+  .hp .hp-hero-botten { position: absolute; left: 0; right: 0; top: 61vh; max-width: none; align-items: center; }
+  .hp .hp-sok { display: none; } /* på dator ligger sökrutan i menyraden */
+  .hp .hp-hero-val { display: flex; gap: 12px; justify-content: center; }
+  .hp .hp-val { height: auto; min-width: 280px; justify-content: flex-start; gap: 12px; padding: 8px 18px 8px 8px; }
+  .hp .hp-val:hover { transform: translateY(-2px); }
+  .hp .hp-val-ikon { width: 36px; height: 36px; border-radius: 50%; align-items: center; justify-content: center; }
+  .hp .hp-val-text { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
+  .hp .hp-val-text strong { font-size: 15px; }
+  .hp .hp-val-text small { display: block; margin-top: 2px; font-size: 12px; font-weight: 500; opacity: .85; }
+  .hp .hp-val-pil { display: inline-flex; margin-left: auto; }
+  .hp .hp-val-1 { background: linear-gradient(135deg, #ec9a52 0%, #c96e2a 100%); }
+  .hp .hp-val-1 .hp-val-ikon { background: rgba(255, 255, 255, .22); }
+  .hp .hp-val-2 { background: rgba(255, 253, 248, .95); color: #14202a; border: 0; box-shadow: 0 12px 30px rgba(5, 20, 40, .32); }
+  .hp .hp-val-2 .hp-val-ikon { background: var(--hp-lank); color: #fff; }
+
+  /* Tre sätt: tre spalter, som i dag */
+  .hp .hp-satt { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(150, 110, 60, .16); border-radius: 22px; background: #fffdf8; overflow: hidden; }
+  .hp .hp-satt li { border-bottom: 0; border-right: 1px solid rgba(150, 110, 60, .16); }
+  .hp .hp-satt li:last-child { border-right: 0; }
+  .hp .hp-satt a { grid-template-columns: 1fr; padding: 32px; height: 100%; transition: background .2s ease; }
+  .hp .hp-satt a:hover { background: #f6f0e4; }
+  .hp .hp-satt-nr { font-size: 40px; }
+
+  /* Just nu: fyra datum på en rad */
+  .hp .hp-nu { --hp-sek: 40px; }
+  .hp .hp-nu .hp-inre { display: grid; grid-template-columns: 240px 1fr; column-gap: 32px; align-items: center; }
+  .hp .hp-nu-topp { grid-row: 1 / span 2; margin: 0; }
+  .hp .hp-nu-datum { font-size: 24px; }
+  .hp .hp-nu-datum { white-space: nowrap; }
+  .hp .hp-nu-sep { display: none; }
+  .hp .hp-nu-klocka { display: block; margin-top: 4px; font-size: 18px; }
+  .hp .hp-nu-lista { grid-template-columns: 1fr 1fr; border-top: 0; column-gap: 24px; }
+  .hp .hp-nu-lista li { border-bottom: 0; }
+  .hp .hp-nu-lista a { padding: 8px 0; }
+  .hp .hp-nu-text { font-size: 14px; }
+  .hp .hp-lankrad { grid-column: 2; margin-top: 4px; }
+
+  /* Känslorna: fyra i bredd, inget svep */
+  .hp .hp-kansla-rad { grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); grid-auto-columns: auto; overflow: visible; max-width: 1160px; margin: 0 auto; padding: 0 var(--hp-sido); gap: 16px; }
+  .hp .hp-kansla-ruta { aspect-ratio: 1 / 1; border-radius: 18px; transition: transform .3s ease; }
+  .hp .hp-kansla-ruta:hover { transform: translateY(-4px); }
+
+  /* Dagsplaner och guider: en rad var, som i dag */
+  .hp .hp-mer { grid-template-columns: 1fr; gap: 10px; margin-top: 24px; }
+  .hp .hp-mer nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; }
+  .hp .hp-mer h3 { margin: 0 6px 0 0; }
+  .hp .hp-mer ul { display: contents; }
+  .hp .hp-mer li { border: 0; }
+  .hp .hp-mer li a, .hp .hp-mer-alla { min-height: 32px; margin: 0; padding: 0; font-size: 14.5px; font-weight: 600; }
+
+  /* Thorkel: bild till vänster */
+  .hp .hp-thorkel-inre { max-width: 980px; grid-template-columns: 150px 1fr; gap: 40px; align-items: center; }
+  .hp .hp-thorkel-bild { width: 150px; height: 150px; border-width: 4px; }
+
+  /* Guiden: telefonen med /upptack till höger, som i dag */
+  .hp .hp-guide { padding-bottom: 0; }
+  .hp .hp-guide-inre { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 64px; align-items: end; }
+  .hp .hp-guide-text { padding-bottom: var(--hp-sek); }
+  .hp .hp-telefon { display: block; width: 300px; height: 520px; border-radius: 38px 38px 0 0; border: 10px solid #14202a; border-bottom: 0; background: #fff; overflow: hidden; box-shadow: 0 20px 50px rgba(13, 36, 64, .25); }
+  .hp .hp-telefon iframe { width: 390px; height: 728px; border: 0; transform: scale(.718); transform-origin: 0 0; pointer-events: none; background: #fff; }
+  .hp .hp-krog { --hp-sek: 56px; }
+  .hp .hp-krog-inre { display: flex; align-items: center; justify-content: space-between; gap: 40px; }
+  .hp .hp-krog-inre > div > p:not(.hp-liten) { margin: 0; }
+
+  .hp footer { padding-top: 64px; }
+  .hp footer .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 56px; }
+  .hp footer .footer-brand { grid-column: auto; }
+}
+
+@media (min-width: 1101px) {
+  .hp .hp-nu-lista { grid-template-columns: repeat(4, 1fr); }
+}
