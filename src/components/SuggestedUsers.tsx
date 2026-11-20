@@ -60,7 +60,7 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
     const [{ data: recentTrips }, { data: allTrips }, { data: profiles }, { data: jag }] = await Promise.all([
       supabase.from('trips').select('user_id').gte('created_at', thirtyDaysAgo).is('deleted_at', null).limit(500),
       supabase.from('trips').select('user_id').is('deleted_at', null).limit(2000),
-      supabase.from('users').select('id, username, avatar, home_port, created_at').not('username', 'is', null).limit(1000),
+      supabase.from('users').select('id, username, avatar, home_port, public_fields, created_at').not('username', 'is', null).limit(1000),
       supabase.from('users').select('home_port').eq('id', user.id).maybeSingle(),
     ])
 
@@ -71,14 +71,17 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
 
     const minHamn = (jag?.home_port ?? '').trim().toLowerCase()
     const nyGrans = Date.now() - 30 * 24 * 60 * 60 * 1000
-    type Profil = { id: string; username: string; avatar: string | null; home_port: string | null; created_at: string | null }
+    type Profil = { id: string; username: string; avatar: string | null; home_port: string | null; public_fields: string[] | null; created_at: string | null }
 
     const scored = ((profiles ?? []) as Profil[])
       .filter(p => p.username && !alreadyFollowed.has(p.id))
       .map(p => {
         const recent = recentMap[p.id] ?? 0
         const total = totalMap[p.id] ?? 0
-        const hamn = (p.home_port ?? '').trim()
+        // Integritet (2026-11-20): hemmahamnen visades ("Hemmahamn X") och användes
+        // för matchning även när personen valt att inte visa den. Nu bara om
+        // 'home_port' finns i public_fields, samma regel som profilsidan.
+        const hamn = (p.public_fields ?? []).includes('home_port') ? (p.home_port ?? '').trim() : ''
         const sammaHamn = !!minHamn && hamn.toLowerCase() === minHamn
         const ny = !!p.created_at && new Date(p.created_at).getTime() > nyGrans
         const score = recent * 3 + total + (sammaHamn ? 3 : 0) + (ny ? 2 : 0) + (p.avatar ? 1 : 0) + (hamn ? 1 : 0)
