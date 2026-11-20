@@ -60,6 +60,13 @@ function SettingsSection() {
           {langs.map(l => <button key={l.val} onClick={() => setLang(l.val)} style={pill(lang === l.val)}>{l.flag} {l.label}</button>)}
         </div>
       </div>
+      {/* Radera konto: sidan fanns men saknade länk (granskningen 2026-11-19). */}
+      <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(10,123,140,0.10)' }}>
+        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>Konto</p>
+        <Link href="/profil/installningar/radera" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 44, fontSize: 13, color: 'var(--txt2)', textDecoration: 'underline' }}>
+          Radera mitt konto
+        </Link>
+      </div>
     </div>
   )
 }
