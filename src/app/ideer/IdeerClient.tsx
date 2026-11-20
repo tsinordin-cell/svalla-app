@@ -104,6 +104,26 @@ export default function IdeerClient({ turer, antalKrogar }: { turer: Tur[]; anta
   const rad = useRef<HTMLDivElement>(null)
   const CHIPS = ['Alla', 'Lätt', 'Medel', 'Krävande', 'Båt', 'Buss', 'Tåg', 'Bil', 'Cykel']
   const visade = turer.filter(t => filter === 'Alla' || t.niva === filter.toLowerCase() || t.taggar.includes(filter.toLowerCase()))
+  /* F: telefonen visar /upptack. Rutor som hör till ett första besök (cookies, Thorkel, tips) döljs i ramen. */
+  const telefon = useRef<HTMLIFrameElement>(null)
+  useEffect(() => {
+    let n = 0
+    const t = setInterval(() => {
+      n++
+      try {
+        const d = telefon.current?.contentDocument
+        if (d?.head && !d.getElementById('id-tyst')) {
+          const s = d.createElement('style')
+          s.id = 'id-tyst'
+          s.textContent = '[role=dialog],.fb-ruta,.fb-flytande,.skip-link{display:none!important}'
+          d.head.appendChild(s)
+        }
+      } catch { /* ramen är inte läsbar än */ }
+      if (n > 40) clearInterval(t)
+    }, 500)
+    return () => clearInterval(t)
+  }, [])
+
   const bladdra = (r: number) => rad.current?.scrollBy({ left: r * 320, behavior: 'smooth' })
 
   return (
@@ -259,7 +279,7 @@ export default function IdeerClient({ turer, antalKrogar }: { turer: Tur[]; anta
             <Link href="/kom-igang" className="id-knapp">Kom igång →</Link>
           </div>
           <div className="f-telefon" aria-hidden="true">
-            <iframe src="/upptack" title="Svalla i mobilen" loading="lazy" tabIndex={-1} />
+            <iframe ref={telefon} src="/upptack" title="Svalla i mobilen" loading="lazy" tabIndex={-1} />
           </div>
         </div>
         <div className="f-krog">
@@ -348,7 +368,7 @@ const CSS = `
 .b-nu{flex:0 0 190px;padding-right:16px;border-right:1px solid rgba(150,110,60,.2)}
 .b-klocka{font-family:'Playfair Display',Georgia,serif;font-size:30px;font-weight:700;color:#0d2440;font-variant-numeric:tabular-nums;line-height:1.1;margin-bottom:6px}
 .b-nu a,.b-alla{font-size:13px;font-weight:700;color:#1e5c82;text-decoration:none}
-.b-kort{flex:0 0 250px;display:flex;gap:12px;align-items:center;text-decoration:none;color:#192830;padding:6px 8px;border-radius:14px}
+.b-kort{flex:1 0 200px;display:flex;gap:12px;align-items:center;text-decoration:none;color:#192830;padding:6px 8px;border-radius:14px}
 .b-kort:hover{background:rgba(30,92,130,.06)}
 .b-bricka{flex-shrink:0;width:58px;height:62px;border-radius:12px;background:#0d2440;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .b-bricka b{font-family:'Playfair Display',Georgia,serif;font-size:24px;line-height:1;letter-spacing:0}
