@@ -1,10 +1,15 @@
 import { createBrowserClient } from '@supabase/ssr'
+import { delaGetUser } from '@/lib/delatAnrop'
 
 export function createClient() {
-  return createBrowserClient(
+  const client = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL ?? 'https://placeholder.supabase.co',
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? 'placeholder-anon-key',
   )
+  // I webbläsaren är klienten en och samma för hela fliken. Alla komponenters
+  // "vem är inloggad"-frågor delar då ett nätverksanrop, se lib/delatAnrop.ts.
+  if (typeof window !== 'undefined') delaGetUser(client.auth)
+  return client
 }
 
 type BrowserClient = ReturnType<typeof createClient>
