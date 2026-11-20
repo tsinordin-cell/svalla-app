@@ -1,4 +1,5 @@
 import { kastaVidDatabasfel } from '@/lib/databasfel'
+import { forbyggUrval } from '@/lib/forbygge'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Restaurant } from '@/lib/supabase'
 import Image from 'next/image'
@@ -49,9 +50,10 @@ export async function generateStaticParams() {
       .select('id, slug')
       .order('id')
     // Föredra slug (snyggare URL och det sitemapen pekar på), fallback till id.
-    return (data ?? []).map((r: { id: string; slug: string | null }) => ({
+    // Förhandsvisningar förbygger bara ett fåtal, se lib/forbygge.ts.
+    return forbyggUrval((data ?? []).map((r: { id: string; slug: string | null }) => ({
       id: r.slug || r.id,
-    }))
+    })))
   } catch {
     // Hellre on-demand-rendering än ett trasigt bygge.
     return []

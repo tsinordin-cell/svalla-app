@@ -1,4 +1,5 @@
 import { kastaVidDatabasfel } from '@/lib/databasfel'
+import { forbyggUrval } from '@/lib/forbygge'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
@@ -30,7 +31,8 @@ export async function generateStaticParams() {
   try {
     const supabase = createPublicSupabaseClient()
     const { data } = await supabase.from('tours').select('id').limit(500)
-    return (data ?? []).map((t: { id: string }) => ({ id: t.id }))
+    // Förhandsvisningar förbygger bara ett fåtal, se lib/forbygge.ts.
+    return forbyggUrval((data ?? []).map((t: { id: string }) => ({ id: t.id })))
   } catch {
     // Hellre on-demand-rendering än ett trasigt bygge (lokal maskin utan env).
     return []
