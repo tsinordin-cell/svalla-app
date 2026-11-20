@@ -2,7 +2,7 @@
 /**
  * FÖRHANDSVISNING 2026-11-20 (Max: guider och dagsplaner slås ihop och man väljer område
  * som på krog-, boende- och aktivitetssidorna, OmradesVal).
- * Steg 1: var vill du vara? Steg 2: dagsplaner, guider eller allt. Används på /guider och
+ * Steg 1: vad vill du läsa (dagsplaner, guider eller allt)? Steg 2: var vill du vara? (Max: läsa före vara.) Används på /guider och
  * /resetips (där Dagsplaner är förvalt).
  *
  * Alla poster finns i sidans HTML från början, även de som är dolda bakom "Visa alla",
@@ -48,8 +48,8 @@ export default function GuideVal({ poster, forval = null }: { poster: GuidePost[
 
   const vidare = (ref: React.RefObject<HTMLDivElement | null>) =>
     setTimeout(() => ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60)
-  const valjOmrade = (n: string | null) => { setOmrade(n); vidare(steg2) }
-  const valjTyp = (t: GuideTyp | null) => { setTyp(t); vidare(traffar) }
+  const valjOmrade = (n: string | null) => { setOmrade(n); vidare(traffar) }
+  const valjTyp = (t: GuideTyp | null) => { setTyp(t); vidare(steg2) }
 
   const rubrik = `${typ ? TYP_NAMN[typ] : 'Guider och dagsplaner'}${omrade ? (omrade === 'Hela landet' ? ' för hela landet' : ` i ${omrade}`) : ''}`
 
@@ -58,7 +58,19 @@ export default function GuideVal({ poster, forval = null }: { poster: GuidePost[
       <style>{KORT_CSS + GV_CSS}</style>
       <div className="ov-inre">
         <div className="ov-steg">
-          <div className="ov-steg-rubrik"><span>1</span>Var vill du vara?</div>
+          <div className="ov-steg-rubrik"><span>1</span>Vad vill du läsa?</div>
+          <div className="sk-val">
+            <button type="button" aria-pressed={!typ} className={!typ ? 'pa' : undefined} onClick={() => valjTyp(null)}>Allt · {iOmradet.length}</button>
+            {(['Dagsplan', 'Guide'] as GuideTyp[]).map(t => (
+              <button key={t} type="button" aria-pressed={typ === t}
+                className={[typ === t ? 'pa' : '', antalTyp(t) === 0 ? 'tom' : ''].join(' ').trim() || undefined}
+                onClick={() => valjTyp(t)}>{TYP_NAMN[t]} · {antalTyp(t)}</button>
+            ))}
+          </div>
+        </div>
+
+        <div ref={steg2} className="ov-steg">
+          <div className="ov-steg-rubrik"><span>2</span>Var vill du vara?</div>
           <div className="sk-val gv-alla">
             <button type="button" aria-pressed={!omrade} className={!omrade ? 'pa' : undefined} onClick={() => valjOmrade(null)}>Alla områden · {avTyp.length}</button>
           </div>
@@ -80,18 +92,6 @@ export default function GuideVal({ poster, forval = null }: { poster: GuidePost[
               </div>
             )
           })}
-        </div>
-
-        <div ref={steg2} className="ov-steg">
-          <div className="ov-steg-rubrik"><span>2</span>Vad vill du läsa?</div>
-          <div className="sk-val">
-            <button type="button" aria-pressed={!typ} className={!typ ? 'pa' : undefined} onClick={() => valjTyp(null)}>Allt · {iOmradet.length}</button>
-            {(['Dagsplan', 'Guide'] as GuideTyp[]).map(t => (
-              <button key={t} type="button" aria-pressed={typ === t}
-                className={[typ === t ? 'pa' : '', antalTyp(t) === 0 ? 'tom' : ''].join(' ').trim() || undefined}
-                onClick={() => valjTyp(t)}>{TYP_NAMN[t]} · {antalTyp(t)}</button>
-            ))}
-          </div>
         </div>
 
         <div ref={traffar} className="ov-res">
