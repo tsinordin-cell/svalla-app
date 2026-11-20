@@ -267,6 +267,17 @@ const CSS = `
 .sd-krog h2{font-size:clamp(24px,3vw,32px);margin:0 0 8px;color:#fff;font-weight:400}
 .sd-krog p{margin:0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.82);max-width:600px}
 
+.sd-faq-gardin{position:relative;z-index:1;background:#f3ece0;padding:24px}
+.sd-faq-gardin summary{list-style:none;cursor:pointer;max-width:800px;margin:0 auto;background:#fffdf8;border:1px solid rgba(150,110,60,.16);border-radius:18px;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 6px 20px rgba(60,40,15,.06)}
+.sd-faq-gardin summary::-webkit-details-marker{display:none}
+.sd-faq-gardin summary small{display:block;font:700 11.5px Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a8501a;margin-bottom:4px}
+.sd-faq-gardin summary h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(20px,2.4vw,26px);font-weight:400;line-height:1.15;color:#0d2440;margin:0}
+.sd-faq-gardin summary i{font-style:normal;font-size:26px;line-height:1;color:#b5591a;transition:transform .2s ease}
+.sd-faq-gardin[open] summary i{transform:rotate(45deg)}
+.sd-faq-gardin .faq-section{padding:14px 0 0!important;background:transparent!important}
+.sd-faq-gardin .section-header{display:none}
+.sd-faq-gardin .reveal{opacity:1!important;transform:none!important}
+
 @media (max-width:1100px){
   .sd-nu-kort{flex-wrap:wrap}
   .sd-nu-lista{flex:1 1 100%;order:3;grid-template-columns:repeat(2,minmax(0,1fr))}
@@ -294,6 +305,8 @@ const CSS = `
   .sd-kansla-ruta small{font-size:11.5px}
   .sd-mer a{white-space:normal;display:inline-block;margin-right:14px}
   .sd-mer b{display:block}
+  .sd-faq-gardin{padding:16px 12px}
+  .sd-faq-gardin summary{padding:14px 18px}
   .sd-thorkel{padding:40px 0}
   .sd-thorkel-inre{padding:0 20px;flex-direction:column;align-items:flex-start;gap:16px}
   .sd-thorkel-bild{width:76px;height:76px;border-width:3px}
