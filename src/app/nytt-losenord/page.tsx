@@ -21,6 +21,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import { sessionKommerFranLank } from '@/lib/aterstallningsSession'
 
 type Lage = 'kontrollerar' | 'formular' | 'ogiltig' | 'klar'
 
@@ -68,6 +69,17 @@ export default function NyttLosenordPage() {
           await supabase.auth.exchangeCodeForSession(kod)
           ;({ data: { session } } = await supabase.auth.getSession())
         }
+        // RÄTTAT 2026-11-20 (mätt i loggarna): länken begärdes på datorn och
+        // öppnades på telefonen. Koden gick inte att växla där, men telefonen
+        // hade en gammal, redan utloggad session sparad. Sidan nöjde sig med
+        // den, visade formuläret, och sparandet föll med "Länken har gått ut".
+        // Nu krävs att sessionen kommer från länken (lib/aterstallningsSession)
+        // och att servern känner igen den.
+        if (session && !sessionKommerFranLank(session.access_token)) session = null
+        if (session) {
+          const { data: { user }, error } = await supabase.auth.getUser()
+          if (error || !user) session = null
+        }
         if (avbruten) return
         if (session) {
           // Ta bort koden ur adressen så att en omladdning inte försöker växla den igen.
@@ -75,7 +87,7 @@ export default function NyttLosenordPage() {
           setLage('formular')
         } else {
           setOrsak(kod
-            ? 'Länken gick inte att använda. Öppna den i samma webbläsare som du begärde den i, eller begär en ny.'
+            ? 'Länken måste öppnas i samma webbläsare och på samma enhet som du begärde den i. Begär en ny länk här, så fungerar den.'
             : 'Den här sidan öppnas via länken i återställningsmejlet.')
           setLage('ogiltig')
         }
