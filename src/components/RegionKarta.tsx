@@ -7,7 +7,8 @@
  * och /regioner. Kartan: src/lib/sverigekarta.ts (Natural Earth, public domain).
  * Texterna beskriver bara det som står på regionsidorna; inga siffror utan källa.
  * 2026-11-20 (Max): text och karta börjar i överkant (inte centrerat), så att flikarna ligger direkt
- * under rubriken och kartan högre upp; kartan lite lägre.
+ * under rubriken och kartan högre upp; kartan lite lägre. På bred skärm ligger kartan bredvid
+ * rubriken (negativ marginal), så att startsidan blir kortare.
  */
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
@@ -133,7 +134,9 @@ const RK_CSS = `
 .rk-regioner a{font-size:14px;font-weight:600;color:var(--sea,#1e5c82);text-decoration:none;border-bottom:1px solid rgba(30,92,130,.3)}
 .rk-regioner a:hover{border-bottom-color:var(--sea,#1e5c82)}
 .rk-knapp{display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:999px;background:var(--sea,#1e5c82);color:#fff;font-size:14px;font-weight:700;text-decoration:none}
-.rk-karta{width:100%;height:auto;max-height:520px;overflow:visible}
+.rk-karta{width:100%;height:auto;max-height:480px;overflow:visible}
+/* Bred skärm: kartan lyfts upp bredvid rubriken, så att delen blir kortare (Max 2026-11-20). */
+@media (min-width:1180px){.rk-karta{margin-top:-190px}}
 .rk-lan{stroke:#fffdf8;stroke-width:.8;transition:fill .25s ease}
 .rk-inland{fill:#ece3d2}
 .rk-kust{fill:#ddd0b8;cursor:pointer}
