@@ -225,7 +225,6 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
 
   const arAktiv = (p: Punkt) => p.aktivFor.some(a => a.endsWith('/') ? path.startsWith(a) : path === a || path.startsWith(a + '/'))
   const punkt = PUNKTER.find(p => p.id === aktiv)
-  const mobPunkt = PUNKTER.find(p => p.id === niva2)
   const solid = !overStart || scrollad || !!aktiv
 
   return (
@@ -260,8 +259,9 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
 
         {/* Panelen (dator) */}
         <div id="mm-panel" className={punkt ? 'mm-panel oppen' : 'mm-panel'} aria-hidden={!punkt}>
-          {punkt && (
-            <div key={punkt.id} className="mm-inre">
+          {/* Alla paneler finns i sidans HTML (dolda tills de öppnas), så att sökmotorer ser menyns länkar. */}
+          {PUNKTER.map(punkt => (
+            <div key={punkt.id} className="mm-inre" hidden={punkt.id !== aktiv}>
               <div className="mm-kol mm-intro">
                 <Link href={punkt.href} className="mm-titel" onClick={stang}>{punkt.text}<span aria-hidden="true">→</span></Link>
                 <p>{punkt.ingress}</p>
@@ -300,7 +300,7 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
                 {punkt.utvalt && <UtvaltKort u={punkt.utvalt} onKlick={stang} />}
               </div>
             </div>
-          )}
+          ))}
         </div>
       </header>
 
@@ -330,10 +330,10 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
             </div>
           </div>
           <div className="mm-mob-niva">
-            {mobPunkt && (
-              <>
+            {PUNKTER.map(mobPunkt => (
+              <div key={mobPunkt.id} hidden={mobPunkt.id !== niva2}>
                 <button type="button" className="mm-mob-tillbaka" onClick={() => setNiva2(null)}>← Meny</button>
-                <h2 className="mm-mob-titel">{mobPunkt.text}</h2>
+                <div className="mm-mob-titel">{mobPunkt.text}</div>
                 <p className="mm-mob-ingress">{mobPunkt.ingress}</p>
                 {mobPunkt.grupper.map(g => (
                   <div key={g.rubrik} className="mm-mob-grupp">
@@ -343,8 +343,8 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
                 ))}
                 <Link href={mobPunkt.allt.href} className="mm-mob-allt" onClick={() => setMobil(false)}>{mobPunkt.allt.text} →</Link>
                 {mobPunkt.utvalt && <UtvaltKort u={mobPunkt.utvalt} onKlick={() => setMobil(false)} />}
-              </>
-            )}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -405,6 +405,7 @@ const MM_CSS = `
 .mm-panel{position:absolute;left:0;right:0;top:100%;background:#f7f1e7;color:#14202a;border-top:1px solid rgba(150,110,60,.18);box-shadow:0 24px 50px rgba(13,36,64,.22);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .22s ease,transform .22s ease,visibility 0s linear .22s}
 .mm-panel.oppen{opacity:1;visibility:visible;transform:none;transition:opacity .22s ease,transform .22s ease,visibility 0s}
 .mm-inre{display:grid;grid-template-columns:minmax(220px,300px) 1fr minmax(240px,300px);gap:48px;max-width:1240px;margin:0 auto;padding:40px 40px 44px}
+.mm-inre[hidden]{display:none}
 .mm-kol{animation:mm-in .32s ease both}
 .mm-grupper{animation-delay:.04s}.mm-sida{animation-delay:.08s}
 @keyframes mm-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}

@@ -14,6 +14,7 @@ import { RadKort, Fotokrediter, ListRubrik, KORT_CSS, type KortBild } from '@/co
  */
 export const metadata: Metadata = {
   title: 'Regioner: Sveriges skärgårdar och kuster',
+  alternates: { canonical: 'https://svalla.se/regioner' },
   description: 'Alla regioner på Svalla, från Höga Kusten till Bohuslän och Blekinge, med öar, guider, krogar, boende och gästhamnar per region.',
 }
 

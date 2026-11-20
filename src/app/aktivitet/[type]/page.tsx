@@ -11,7 +11,9 @@ import { ogSida } from '@/lib/og-standard'
 type Props = { params: Promise<{ type: string }> }
 
 export async function generateStaticParams() {
-  return ACTIVITY_LIST.map(a => ({ type: a.slug }))
+  // Vandring har en egen mapp (aktivitet/vandring). Genereras sidan här också krockar de två om
+  // samma adress vid bygget, och vilken som vinner varierar mellan byggen (2026-11-20).
+  return ACTIVITY_LIST.filter(a => a.slug !== 'vandring').map(a => ({ type: a.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

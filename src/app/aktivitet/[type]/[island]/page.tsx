@@ -18,6 +18,9 @@ export async function generateStaticParams() {
   // Bara giltiga (typ, ö)-kombinationer som matchar (annars genererar vi 84×5 = 420 sidor varav många tomma)
   const params: { type: string; island: string }[] = []
   for (const activity of ACTIVITY_LIST) {
+    // Vandring har egna sidor (aktivitet/vandring/[slug]). Genereras de här också krockar de om samma
+    // adress vid bygget, och vilken som vinner varierar mellan byggen (2026-11-20: /aktivitet/vandring/moja).
+    if (activity.slug === 'vandring') continue
     const islands = islandsForActivity(activity.slug)
     for (const island of islands) {
       params.push({ type: activity.slug, island: island.slug })

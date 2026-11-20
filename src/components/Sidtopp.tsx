@@ -11,7 +11,7 @@
  * och logga, så att man inte leds bort mitt i ett flöde.
  *
  * Sidor som själva visar SidHuvud ska inte stå här (då blir det två menyer): /guider, /guider/…,
- * /resetips/…, /dag/… och /aktivitet/… har SidHuvud.
+ * /resetips/…, /dag/… och /aktivitet/[typ] har SidHuvud. /aktivitet/kajak är en egen sida utan.
  *
  * Inte här, medvetet: app-sidorna (Nav.tsx APP_PATHS: /forum, /upptack, /sok, /topplista, /rutter,
  * /planera …). De har appens flikrad i botten. /guide (Thorkel) har eget sidhuvud med tillbaka.
@@ -28,7 +28,7 @@ import MegaMeny from '@/components/MegaMeny'
 const MENY = [
   '/ai-guide', '/dag', '/helgturer', '/hyra-bat', '/oppet-nu', '/sasong', '/statistik', '/ta-dig-till',
   '/teambuilding', '/upplevelser', '/goteborg', '/goteborg/', '/bohuslan/',
-  '/aland/aventyr', '/gotland/aventyr', '/oland/aventyr', '/insikter', '/jamfor', '/ostlistan',
+  '/aktivitet/kajak', '/aland/aventyr', '/gotland/aventyr', '/oland/aventyr', '/insikter', '/jamfor', '/ostlistan',
   '/sasong/', '/segelkurs/', '/hyra-bat/', '/teambuilding/',
 ]
 const KONTO = ['/glomt-losenord', '/nytt-losenord', '/goodbye']
