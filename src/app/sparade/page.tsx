@@ -1,8 +1,14 @@
 /**
  * /sparade — användarens lista över sparade platser.
  *
- * Server-renderad, querar place_saves via RLS (auth.uid() = user_id).
+ * Server-renderad, läser via RLS (auth.uid() = user_id).
  * Tomma listor och ej-inloggad-tillstånd hanteras explicit.
+ *
+ * TVÅ TABELLER (2026-11-20, bugg från granskningen 19 nov): spara-knappen på
+ * platssidan /upptack/[id] och ruttsidan /rutter/[id] (BookmarkButton) skriver
+ * till `bookmarks`, men sidan läste bara `place_saves`, som bara skrivs av
+ * /plats/[slug]. En sparad plats syntes därför aldrig här. Nu läses båda;
+ * sparade rutter (bookmarks.route_id → tours) visas i en egen lista.
  */
 
 import type { Metadata } from 'next'
@@ -30,6 +36,20 @@ type Save = {
   island: string | null
   notes: string | null
   created_at: string
+}
+
+type Bokmarke = {
+  id: string
+  created_at: string
+  restaurant: { name: string; slug: string | null; type: string | null; island: string | null; image_url: string | null } | null
+  tour: { id: string; title: string; start_location: string | null; destination: string | null } | null
+}
+
+/** restaurants.type → nycklarna i TYPE_LABELS/TYPE_COLORS. */
+const PLATSTYP: Record<string, string> = {
+  restaurant: 'krog', cafe: 'krog', bar: 'krog',
+  marina: 'brygga', harbor: 'brygga', anchorage: 'naturhamn', nature_harbor: 'naturhamn',
+  sauna: 'bastu', fuel: 'bensin', fuel_station: 'bensin',
 }
 
 const TYPE_LABELS: Record<string, string> = {
@@ -69,7 +89,35 @@ export default async function SparadePage() {
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })
 
-  const saves: Save[] = (data ?? []) as Save[]
+  const { data: bokData, error: bokFel } = await supabase
+    .from('bookmarks')
+    .select('id, created_at, restaurant:restaurants(name, slug, type, island, image_url), tour:tours(id, title, start_location, destination)')
+    .eq('user_id', user.id)
+    .order('created_at', { ascending: false })
+  const bokmarken = (bokData ?? []) as unknown as Bokmarke[]
+
+  // Platser från bokmärken i samma form som place_saves, så att listan nedan
+  // kan rita båda. Stockbilder visas inte (samma regel som platssidan).
+  const franBokmarken: (Save & { href: string })[] = bokmarken
+    .filter(b => b.restaurant)
+    .map(b => ({
+      id: `b-${b.id}`,
+      place_slug: b.restaurant!.slug,
+      place_name: b.restaurant!.name,
+      place_type: PLATSTYP[b.restaurant!.type ?? ''] ?? b.restaurant!.type,
+      lat: 0, lng: 0,
+      image_url: b.restaurant!.image_url && !b.restaurant!.image_url.includes('images.unsplash.com') ? b.restaurant!.image_url : null,
+      island: b.restaurant!.island,
+      notes: null,
+      created_at: b.created_at,
+      href: b.restaurant!.slug ? `/upptack/${b.restaurant!.slug}` : '/upptack',
+    }))
+  const saves: (Save & { href: string })[] = [
+    ...franBokmarken,
+    ...((data ?? []) as Save[]).map(s => ({ ...s, href: s.place_slug ? `/plats/${s.place_slug}` : '/upptack' })),
+  ].sort((a, b) => b.created_at.localeCompare(a.created_at))
+  const rutter = bokmarken.filter(b => b.tour)
+  const fel = error || bokFel
 
   return (
     <div style={{
@@ -98,7 +146,7 @@ export default async function SparadePage() {
       </header>
 
       {/* Empty state */}
-      {saves.length === 0 && !error && (
+      {saves.length === 0 && rutter.length === 0 && !fel && (
         <div style={{
           textAlign: 'center', padding: '40px 20px',
           background: 'var(--white)', borderRadius: 18,
@@ -132,7 +180,7 @@ export default async function SparadePage() {
       )}
 
       {/* Error */}
-      {error && (
+      {fel && (
         <div style={{
           padding: 20, background: 'rgba(220,53,69,0.08)',
           border: '1px solid rgba(220,53,69,0.22)',
@@ -152,7 +200,7 @@ export default async function SparadePage() {
             return (
               <Link
                 key={s.id}
-                href={s.place_slug ? `/plats/${s.place_slug}` : `/upptack`}
+                href={s.href}
                 style={{
                   display: 'flex', gap: 14,
                   background: 'var(--white)',
@@ -209,6 +257,31 @@ export default async function SparadePage() {
             )
           })}
         </div>
+      )}
+
+      {/* Sparade rutter (bokmärket på /rutter/[id]) */}
+      {rutter.length > 0 && (
+        <section style={{ marginTop: 32 }}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>Sparade rutter</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {rutter.map(r => (
+              <Link key={r.id} href={`/rutter/${r.tour!.id}`} style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                background: 'var(--white)', borderRadius: 14, padding: '12px 14px',
+                border: '1px solid rgba(10,123,140,0.10)', textDecoration: 'none', color: 'inherit',
+              }}>
+                <span style={{ color: 'var(--sea)', flexShrink: 0 }} aria-hidden><Icon name="navigation" size={20} stroke={1.9} /></span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)' }}>{r.tour!.title}</div>
+                  {r.tour!.start_location && r.tour!.destination ? (
+                    <div style={{ fontSize: 13, color: 'var(--txt3)' }}>{`${r.tour!.start_location} → ${r.tour!.destination}`}</div>
+                  ) : null}
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--txt3)', flexShrink: 0 }}>Sparad {fmtTime(r.created_at)}</div>
+              </Link>
+            ))}
+          </div>
+        </section>
       )}
     </div>
   )
