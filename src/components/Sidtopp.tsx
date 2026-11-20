@@ -1,21 +1,20 @@
 'use client'
 /**
- * Sidtopp: tillbaka och Svalla-loggan överst på publika sidor som saknade både
- * meny och logga (Tom 2026-11-20: "Denna sida behöver en svalla logga och en
- * tillbaka knapp", sedan "Lös detta!" för alla sådana sidor).
+ * Sidtopp: sidhuvud överst på publika sidor som saknar eget (Tom 2026-11-20: "Denna sida behöver
+ * en svalla logga och en tillbaka knapp", sedan "Lös detta!" för alla sådana sidor).
  *
- * MÄTT 2026-11-20: Playwright i 390 px, utloggad, en sida per sidtyp i
- * sitemap plus alla toppnivåsidor (314 st). 74 sidor saknade logga i övre
- * delen. Listorna nedan är de publika av dem.
+ * MÄTT 2026-11-20: Playwright i 390 px, utloggad, en sida per sidtyp i sitemap plus alla
+ * toppnivåsidor (314 st). 74 sidor saknade logga i övre delen. Listorna nedan är de publika av dem.
  *
- * - HELA: varken logga eller tillbakaknapp → tillbaka + logga.
- * - BARA_LOGGA: sidan har redan en egen tillbakalänk till sin föräldrasida
- *   ("‹ Alla guider", "← Alla resetips") → bara loggan, så det inte blir två pilar.
+ * 2026-11-20 (Max: samma meny överallt): innehållssidorna får Svallas meny (MegaMeny), samma som
+ * startsidan och SidHuvud. Kontosidorna (lösenord, avslut) behåller den enkla raden med tillbaka
+ * och logga, så att man inte leds bort mitt i ett flöde. Under menyn ligger en rad med Tillbaka (TillbakaRad).
  *
- * Inte här, medvetet: app-sidorna (Nav.tsx APP_PATHS: /forum, /upptack, /sok,
- * /topplista, /rutter, /planera …). De har appens flikrad i botten och egna
- * tillbakaknappar på undersidorna; en extra rad överst tar plats från kartan
- * och sökfältet. /guide (Thorkel) har eget sidhuvud med tillbaka.
+ * Sidor som själva visar SidHuvud ska inte stå här (då blir det två menyer): /guider, /guider/…,
+ * /resetips/…, /dag/… och /aktivitet/[typ] har SidHuvud. /aktivitet/kajak är en egen sida utan.
+ *
+ * Inte här, medvetet: app-sidorna (Nav.tsx APP_PATHS: /forum, /upptack, /sok, /topplista, /rutter,
+ * /planera …). De har appens flikrad i botten. /guide (Thorkel) har eget sidhuvud med tillbaka.
  *
  * Matchning på segmentgräns som i Nav.tsx: poster som slutar på `/` är prefix.
  * Ny publik sida utan eget sidhuvud: lägg till den här.
@@ -24,16 +23,18 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import BackButtonInline from '@/components/BackButtonInline'
+import MegaMeny from '@/components/MegaMeny'
+import TillbakaRad from '@/components/TillbakaRad'
 
-const HELA = [
-  '/ai-guide', '/dag', '/glomt-losenord', '/nytt-losenord', '/goodbye', '/helgturer', '/hyra-bat', '/oppet-nu',
-  '/sasong', '/statistik', '/ta-dig-till', '/teambuilding', '/upplevelser', '/goteborg',
-  '/goteborg/', '/bohuslan/',
+const MENY = [
+  '/ai-guide', '/dag', '/helgturer', '/hyra-bat', '/oppet-nu', '/sasong', '/statistik', '/ta-dig-till',
+  '/teambuilding', '/upplevelser', '/goteborg', '/goteborg/', '/bohuslan/',
+  '/aktivitet/kajak', '/aland/aventyr', '/gotland/aventyr', '/oland/aventyr', '/insikter', '/jamfor', '/ostlistan',
+  '/sasong/', '/segelkurs/', '/hyra-bat/', '/teambuilding/',
 ]
-const BARA_LOGGA = [
-  '/aland/aventyr', '/gotland/aventyr', '/oland/aventyr', '/aktivitet/kajak', '/guider', '/guider/',
-  '/insikter', '/jamfor', '/ostlistan', '/resetips/', '/sasong/', '/segelkurs/', '/hyra-bat/', '/teambuilding/',
-]
+// Sidor som redan har en egen tillbakalänk högst upp (t.ex. "← Aktiviteter"): ingen extra rad där.
+const EGEN_TILLBAKA = ['/aktivitet/kajak', '/jamfor', '/teambuilding/', '/segelkurs/']
+const KONTO = ['/glomt-losenord', '/nytt-losenord', '/goodbye']
 
 // Exakt sökväg, eller prefix när posten slutar på '/'.
 const traff = (lista: string[], path: string) =>
@@ -41,9 +42,8 @@ const traff = (lista: string[], path: string) =>
 
 export default function Sidtopp() {
   const path = usePathname() ?? ''
-  const logga = traff(BARA_LOGGA, path)
-  const hela = !logga && traff(HELA, path)
-  if (!hela && !logga) return null
+  if (traff(MENY, path)) return <><MegaMeny />{!traff(EGEN_TILLBAKA, path) && <TillbakaRad />}</>
+  if (!traff(KONTO, path)) return null
   return (
     <div
       className="mork-yta"
@@ -55,7 +55,7 @@ export default function Sidtopp() {
       }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', minHeight: 36 }}>
-        {hela ? <BackButtonInline fallback="/" ljus /> : <div style={{ width: 36 }} aria-hidden />}
+        <BackButtonInline fallback="/" ljus />
         <Link href="/" aria-label="Svalla, till startsidan" style={{ display: 'inline-flex' }}>
           <SvallaLogo height={24} color="#ffffff" />
         </Link>

@@ -10,7 +10,7 @@
  * - aldrig för inloggade, aldrig på inloggnings- och appsidor, aldrig samtidigt som cookiebannern
  *
  * Svaren sparas bara i den här webbläsaren (localStorage) och används direkt: Thorkel ger
- * tips utifrån dem, och startsidan visar "Utvalt för dig" under sökrutan.
+ * tips utifrån dem.
  */
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
@@ -18,12 +18,12 @@ import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
 
 const PROFIL = 'svalla_profil'
-const KONTO_KLICK = 'svalla_forsta_besok'          // 'konto' = har gått vidare till kontoskapande
-const VISAD_SESSION = 'svalla_thorkel_visad'
+export const KONTO_KLICK = 'svalla_forsta_besok'          // 'konto' = har gått vidare till kontoskapande
+export const VISAD_SESSION = 'svalla_thorkel_visad'
 const SIDVISNINGAR = 'svalla_sidvisningar'
 const INTE_HAR = ['/logga-in', '/kom-igang', '/registrera', '/onboarding', '/admin', '/team', '/feed', '/profil', '/spara', '/sparade', '/logga', '/notiser', '/planera', '/meddelanden', '/min-skargard', '/glomt-losenord', '/auth', '/julkalender']
 
-const FRAGOR = [
+export const FRAGOR = [
   { id: 'hur_ofta', text: 'Hur ofta besöker du skärgården?', svar: ['Varje sommar', 'Några gånger om året', 'Sällan, men jag vill mer', 'Aldrig, än'] },
   { id: 'bat', text: 'Hur tar du dig oftast ut?', svar: ['Med egen båt', 'Med skärgårdsbåt eller färja', 'Med vänners båt', 'Paddlar'] },
   { id: 'gora', text: 'Vad gör du helst i skärgården?', svar: ['Naturen och bad', 'Äter gott på krogar', 'Bor över flera dagar', 'Seglar och upptäcker'] },
@@ -48,25 +48,13 @@ export function tipsFor(p: Profil): Tips[] {
   return ut.slice(0, 3)
 }
 
-function lasProfil(): Profil | null {
+export function lasProfil(): Profil | null {
   try { const p = JSON.parse(localStorage.getItem(PROFIL) || 'null') as Profil | null; return p && Object.keys(p).length >= 2 ? p : null } catch { return null }
 }
 
-/** Startsidan: "Utvalt för dig" under sökrutan för den som har svarat. */
-function visaUtvaltPaStartsidan(p: Profil) {
-  const hint = document.querySelector('.hero-search-hint')
-  if (!hint || document.getElementById('utvalt-for-dig')) return
-  const rad = document.createElement('div')
-  rad.id = 'utvalt-for-dig'
-  rad.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:10px 0 0;font-size:13px;color:rgba(255,255,255,.85)'
-  const rubrik = document.createElement('span'); rubrik.textContent = 'Utvalt för dig:'; rubrik.style.fontWeight = '700'
-  rad.appendChild(rubrik)
-  for (const t of tipsFor(p)) {
-    const a = document.createElement('a'); a.href = t.href; a.textContent = t.text
-    a.style.cssText = 'color:#fff;text-decoration:none;font-weight:600;padding:6px 12px;border-radius:20px;background:rgba(201,110,42,.85)'
-    rad.appendChild(a)
-  }
-  hint.insertAdjacentElement('afterend', rad)
+/** Sparar svaren i webbläsaren (används även av ThorkelHero på startsidan). */
+export function sparaProfil(p: Profil) {
+  try { localStorage.setItem(PROFIL, JSON.stringify(p)) } catch { /* privat läge */ }
 }
 
 type Lage = 'dold' | 'halsning' | 'tillbaka' | 'fraga' | 'klar'
@@ -77,14 +65,6 @@ export default function ForstaBesok() {
   const [steg, setSteg] = useState(0)
   const [svar, setSvar] = useState<Profil>({})
 
-  // Startsidan visar tips för den som redan svarat (även inloggade som svarade innan de skapade konto)
-  useEffect(() => {
-    if (path !== '/') return
-    const p = lasProfil(); if (!p) return
-    const t = setTimeout(() => visaUtvaltPaStartsidan(p), 300)
-    return () => clearTimeout(t)
-  }, [path])
-
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
     let avbruten = false
@@ -92,6 +72,9 @@ export default function ForstaBesok() {
       if (localStorage.getItem(KONTO_KLICK) === 'konto') return
       if (sessionStorage.getItem(VISAD_SESSION)) return
       if (INTE_HAR.some(p => path === p || path.startsWith(p + '/'))) return
+      // FÖRHANDSVISNING 2026-11-20: på startsidan ställer Thorkel i heron (ThorkelHero) samma
+      // tre frågor i sin egen pratbubbla, så här visas ingen egen ruta (en Thorkel, inte två).
+      if (path === '/') return
       const visningar = Number(sessionStorage.getItem(SIDVISNINGAR) || '0') + 1
       sessionStorage.setItem(SIDVISNINGAR, String(visningar))
       createClient().auth.getSession().then(({ data }) => {
@@ -118,7 +101,7 @@ export default function ForstaBesok() {
     track('forsta_besok', { steg: 'ja', fraga: id, svar: val })
     try { localStorage.setItem(PROFIL, JSON.stringify(nya)) } catch {}
     if (steg + 1 < FRAGOR.length) setSteg(steg + 1)
-    else { setLage('klar'); if (path === '/') visaUtvaltPaStartsidan(nya) }
+    else setLage('klar')
   }
   const tillKonto = () => { try { localStorage.setItem(KONTO_KLICK, 'konto') } catch {}; track('forsta_besok', { steg: 'konto' }) }
   const kontoLank = `/logga-in?mode=ny&returnTo=${encodeURIComponent(path || '/')}`

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { UPPLÄGG, WEATHER_TAG, tagColor } from '../dag-data'
@@ -147,21 +148,7 @@ export default async function DagSlugPage({ params }: Props) {
       />
 
       {/* ── NAV ──────────────────────────────────────────────────────── */}
-      <nav style={{
-        background: 'linear-gradient(160deg, #1a3a5c 0%, #2d7d8a 100%)',
-        padding: '18px 24px 16px',
-        position: 'sticky', top: 0, zIndex: 100,
-        boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
-      }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block' }}>
-            <SvallaLogo height={24} color="#ffffff" />
-          </Link>
-          <Link href="/dag" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500 }}>
-            ← Alla dagsupplägg
-          </Link>
-        </div>
-      </nav>
+      <SidHuvud />
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
       <div style={{

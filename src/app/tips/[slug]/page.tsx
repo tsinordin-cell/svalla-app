@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import SvallaLogo from '@/components/SvallaLogo'
 import { getArticleBySlug, listPublishedArticles, renderMarkdown } from '@/lib/articles'
 import EmailSignup from '@/components/EmailSignup'
 
@@ -63,6 +63,7 @@ export default async function TipsArticlePage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 96 }}>
+      <SidHuvud />
       {/* HERO */}
       <div style={{
         background: a.cover_image
@@ -83,11 +84,6 @@ export default async function TipsArticlePage({ params }: Props) {
             ← Sthlmare tipsar
           </Link>
 
-          <div style={{ marginBottom: 18 }}>
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <SvallaLogo height={22} color="#ffffff" />
-            </Link>
-          </div>
 
           <div style={{ display: 'flex', gap: 10, marginBottom: 14, alignItems: 'center', flexWrap: 'wrap' }}>
             {a.category && (

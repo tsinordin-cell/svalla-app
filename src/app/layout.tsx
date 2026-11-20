@@ -108,12 +108,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             (t.ex. /team) hann sidan visas LJUS i flera sekunder innan mörkt
             läge slog till. Rapporterat av Tom 2026-08-11 med skärmdump.
             Logiken MÅSTE spegla resolvedTheme() i ThemeProvider.tsx: läs
-            'svalla-theme' ur localStorage; 'auto' = mörkt 20:00–05:59.
+            'svalla-theme' ur localStorage; 'auto' = ljust hela dygnet (förhandsvisning 2026-11-19, Max: varmt och ljust alltid).
             Blockerande med flit — ett async-script hade inte hindrat blixten. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
-              "try{var t=localStorage.getItem('svalla-theme')||'auto';var h=new Date().getHours();var d=t==='dark'||(t==='auto'&&(h>=20||h<6));document.documentElement.setAttribute('data-theme',d?'dark':'light')}catch(e){}",
+              "try{var t=localStorage.getItem('svalla-theme')||'auto';var d=t==='dark';document.documentElement.setAttribute('data-theme',d?'dark':'light')}catch(e){}",
           }}
         />
         {/* Preconnect to Supabase — reduces connection latency for API + image CDN */}

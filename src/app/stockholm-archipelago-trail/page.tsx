@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import React from 'react'
 import Link from 'next/link'
+import SidHuvud from '@/components/SidHuvud'
 import Script from 'next/script'
-import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_SUM_KM, SAT_ISLANDS, SAT_URL, type SatDifficulty } from './sat-data'
@@ -140,22 +140,7 @@ export default function StockholmArchipelagoTrailPage() {
       <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
         {/* ── Nav ── */}
-        <nav style={{
-          background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-          padding: '18px 24px 16px',
-        }}>
-          <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', justifyContent: 'space-between' }}>
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <SvallaLogo height={24} color="#ffffff" />
-            </Link>
-            <Link
-              href="/aktivitet/vandring"
-              style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none' }}
-            >
-              ← All vandring
-            </Link>
-          </div>
-        </nav>
+        <SidHuvud />
 
         {/* ── Hero ── */}
         <header style={{
