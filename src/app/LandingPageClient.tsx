@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
-import SnabbSok from '@/components/SnabbSok'
+import StartKarta from '@/components/StartKarta'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import { useRouter } from 'next/navigation'
@@ -1282,11 +1282,20 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  <h2 className="section-title">Välj din del av skärgården</h2>
  <p className="section-sub">Fyra kuster och de stora sjöarna. Välj en del, så ser du regionerna där.</p>
  </div>
- <SnabbSok />
  <RegionKarta />
  </div>
  </section>
  )}
+ <section className="destinations-section" id="karta-start" style={{ position: 'relative', zIndex: 1 }}>
+ <div className="section-inner">
+ <div className="section-header">
+ <div className="section-label">Allt på en karta</div>
+ <h2 className="section-title">Hitta ditt nästa stopp</h2>
+ <p className="section-sub">Öar, krogar, gästhamnar, boenden och bad. Välj vad du vill se, eller sök direkt i rutan på kartan.</p>
+ </div>
+ <StartKarta />
+ </div>
+ </section>
  {andraHtml !== null && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: andraHtml }} />}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />

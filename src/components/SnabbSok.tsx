@@ -10,7 +10,18 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
-type Post = { t: string; k: string; h: string; u?: string }
+/** t = namn, k = typ, h = adress, u = ö eller region. Öar har även la/lo (position) och b (foto). */
+export type Post = { t: string; k: string; h: string; u?: string; la?: number; lo?: number; b?: string }
+
+let sokindex: Promise<Post[]> | null = null
+/** Hämtar sökregistret en gång per sidvisning; kartan på startsidan delar på samma svar. */
+export function hamtaSokindex(): Promise<Post[]> {
+  if (!sokindex) {
+    sokindex = fetch('/api/sokindex').then(r => { if (!r.ok) throw new Error(String(r.status)); return r.json() as Promise<Post[]> })
+    sokindex.catch(() => { sokindex = null })
+  }
+  return sokindex
+}
 
 const ORDNING: Record<string, number> = { 'Ö': 0, Region: 0, Ort: 0, Nationalpark: 0, Krog: 1, Hamn: 1, Boende: 1, Guide: 2 }
 const norm = (s: string) => s.toLocaleLowerCase('sv').normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -34,7 +45,7 @@ function traffar(index: Post[], q: string): Post[] {
   return med.map(m => m.p).filter(p => { const k = p.k + p.t + p.h; if (sedda.has(k)) return false; sedda.add(k); return true }).slice(0, 8)
 }
 
-export default function SnabbSok() {
+export default function SnabbSok({ lage }: { lage?: 'karta' } = {}) {
   const router = useRouter()
   const [q, setQ] = useState('')
   const [index, setIndex] = useState<Post[] | null>(null)
@@ -46,7 +57,7 @@ export default function SnabbSok() {
   const ladda = () => {
     if (index || laddar.current) return
     laddar.current = true
-    fetch('/api/sokindex').then(r => r.json()).then((d: Post[]) => setIndex(d)).catch(() => { laddar.current = false })
+    hamtaSokindex().then(d => setIndex(d)).catch(() => { laddar.current = false })
   }
   useEffect(() => {
     const stang = (e: MouseEvent) => { if (rot.current && !rot.current.contains(e.target as Node)) setOppen(false) }
@@ -61,7 +72,7 @@ export default function SnabbSok() {
   }
 
   return (
-    <div className="ss" ref={rot}>
+    <div className={lage === 'karta' ? 'ss ss-karta' : 'ss'} ref={rot}>
       <style>{SS_CSS}</style>
       <form className="ss-rad" role="search" onSubmit={e => { e.preventDefault(); ga(lista[aktiv]) }}>
         <svg className="ss-lupp" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
@@ -95,11 +106,11 @@ export default function SnabbSok() {
         </ul>
       )}
 
-      <div className="ss-exempel" aria-label="Exempel">
+      {lage !== 'karta' && <div className="ss-exempel" aria-label="Exempel">
         {EXEMPEL.map(x => (
           <button key={x} type="button" onClick={() => { ladda(); setQ(x); setOppen(true); setAktiv(0) }}>{x}</button>
         ))}
-      </div>
+      </div>}
     </div>
   )
 }
@@ -126,5 +137,8 @@ const SS_CSS = `
 .ss-exempel{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .ss-exempel button{font:inherit;font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px;border:none;background:#1f2a30;color:#fff;cursor:pointer}
 .ss-exempel button:hover{background:var(--sea,#1e5c82)}
+.ss-karta{margin:0;max-width:none}
+.ss-karta .ss-rad{box-shadow:0 10px 30px rgba(0,0,0,.28);border-color:transparent}
+.ss-karta .ss-lista{top:auto;bottom:70px;max-height:min(420px,60vh);overflow-y:auto}
 @media (max-width:640px){.ss-rad{padding:6px 6px 6px 14px}.ss-rad input{font-size:16px}.ss-knapp{height:42px;padding:0 18px}.ss-under{display:none}}
 `
