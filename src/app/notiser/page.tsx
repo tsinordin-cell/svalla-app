@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import EmptyState from '@/components/EmptyState'
 import Icon, { type IconName } from '@/components/Icon'
 import { radius, fontSize, fontWeight, shadow } from '@/lib/tokens'
-import { getIsland } from '@/app/o/island-data'
+import { oNamn } from '@/lib/oNamn'
 
 type Notif = {
  id: string
@@ -290,7 +290,7 @@ export default function NotiserPage() {
    const iconName = TYPE_ICON[n.type] ?? 'bell'
    const badgeColor = TYPE_BADGE[n.type] ?? 'var(--sea)'
    const labelText = n.type === 'friend_visit' && n.related_island_slug
-     ? `besökte ${getIsland(n.related_island_slug)?.name ?? n.related_island_slug}`
+     ? `besökte ${oNamn(n.related_island_slug)}`
      : (TYPE_LABEL[n.type] ?? 'gjorde något')
    const href =
      (n.type === 'forum_reply' || n.type === 'forum_like' || n.type === 'forum_mention' || n.type === 'forum_best_answer') && n.reference_id

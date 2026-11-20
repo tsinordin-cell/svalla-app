@@ -4,7 +4,7 @@ import { createClient, getViewer } from '@/lib/supabase'
 import Link from 'next/link'
 import { timeAgoShort } from '@/lib/utils'
 import Icon, { type IconName } from '@/components/Icon'
-import { getIsland } from '@/app/o/island-data'
+import { oNamn } from '@/lib/oNamn'
 
 type Notif = {
  id: string
@@ -334,7 +334,7 @@ export default function NotificationBell() {
  </div>
  <div style={{ flex: 1, minWidth: 0 }}>
  <span style={{ fontSize: 13, color: 'var(--txt)', lineHeight: 1.4 }}>
- <strong>{n.actor_username}</strong> {n.type === 'friend_visit' && n.related_island_slug ? `besökte ${getIsland(n.related_island_slug)?.name ?? n.related_island_slug}, en ö du varit på` : (TYPE_LABEL[n.type] ?? 'gjorde något')}
+ <strong>{n.actor_username}</strong> {n.type === 'friend_visit' && n.related_island_slug ? `besökte ${oNamn(n.related_island_slug)}, en ö du varit på` : (TYPE_LABEL[n.type] ?? 'gjorde något')}
  </span>
  <div style={{ fontSize: 11, color: 'var(--txt3)', marginTop: 2 }}>{timeAgoShort(n.created_at)}</div>
  </div>

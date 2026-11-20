@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 
@@ -37,64 +38,94 @@ function haversineKm(lat1: number, lng1: number, lat2: number, lng2: number): nu
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
 }
 
-export async function getIslandPlaces(
+type Platsrad = {
+  slug: string | null
+  name: string | null
+  type: string | null
+  description: string | null
+  island: string | null
+  latitude: number | null
+  longitude: number | null
+}
+
+/**
+ * Alla synliga platser, hämtade EN gång och delade mellan alla ösidor
+ * (2026-11-20).
+ *
+ * Före: varje undersida ställde en egen fråga per ö, cirka 870 frågor per
+ * bygge. Med 126 byggen på ett dygn drev det Supabase över kvoten. Listan är
+ * liten (cirka 560 rader, 190 kB), så den hämtas hel och filtreras här.
+ *
+ * Svaret sparas en timme, samma takt som ösidorna byggs om i. Ett fel kastas
+ * i stället för att ge en tom lista, annars hade "inga platser" legat kvar i
+ * en timme för alla öar.
+ */
+const hamtaAllaPlatser = unstable_cache(
+  async (): Promise<Platsrad[]> => {
+    const supabase = createPublicSupabaseClient()
+    const { data, error } = await supabase
+      .from('restaurants')
+      .select('slug, name, type, description, island, latitude, longitude')
+      .is('hidden_at', null)
+      .order('slug', { ascending: true })
+      .limit(5000)
+    if (error) throw new Error(`islandPlaces: ${error.message}`)
+    if (!data || data.length === 0) throw new Error('islandPlaces: tom platslista')
+    return data as Platsrad[]
+  },
+  ['island-places-alla-v1'],
+  { revalidate: 3600 },
+)
+
+/**
+ * Väljer ut en ös platser ur hela listan. Ren funktion, testad för sig.
+ * Samma regel som den gamla databasfrågan plus efterfiltret: rätt typ, och
+ * antingen bär platsen öns namn eller ligger inom räckvidden (öns radie plus
+ * extraKm) från öns mittpunkt.
+ */
+export function platserForO(
+  alla: readonly Platsrad[],
   island: IslandLike,
-  types: string[],
+  types: readonly string[],
   { extraKm = 2, limit = 12 }: { extraKm?: number; limit?: number } = {},
-): Promise<IslandPlace[]> {
+): IslandPlace[] {
   const coord = ISLAND_COORD_MAP[island.slug]
   const lat = island.lat ?? coord?.lat
   const lng = island.lng ?? coord?.lng
   const radius = coord?.radiusKm ?? 3
   const reach = radius + extraKm
+  const typer = new Set(types)
+  const oNamn = island.name.toLowerCase()
 
+  const places: IslandPlace[] = []
+  for (const p of alla) {
+    if (!p.slug || !p.name || !p.type || !typer.has(p.type)) continue
+    const km = lat != null && lng != null && p.latitude != null && p.longitude != null
+      ? haversineKm(lat, lng, p.latitude, p.longitude)
+      : null
+    const nameMatch = (p.island ?? '').trim().toLowerCase() === oNamn
+    const onIsland = nameMatch || (km != null && km <= radius)
+    if (!onIsland && !(km != null && km <= reach)) continue
+    places.push({ slug: p.slug, name: p.name, type: p.type, description: p.description ?? null, km, onIsland })
+  }
+
+  places.sort((a, b) => {
+    if (a.onIsland !== b.onIsland) return a.onIsland ? -1 : 1
+    return (a.km ?? 0) - (b.km ?? 0)
+  })
+  return places.slice(0, limit)
+}
+
+export async function getIslandPlaces(
+  island: IslandLike,
+  types: string[],
+  opts: { extraKm?: number; limit?: number } = {},
+): Promise<IslandPlace[]> {
   try {
-    const supabase = createPublicSupabaseClient()
-    let query = supabase
-      .from('restaurants')
-      .select('slug, name, type, description, island, latitude, longitude')
-      .is('hidden_at', null)
-      .in('type', types)
-      .limit(200)
-
-    const nameFilter = `island.ilike."${island.name.replace(/"/g, "")}"`
-    if (lat != null && lng != null) {
-      const dLat = reach / 111
-      const dLng = reach / (111 * Math.cos(lat * Math.PI / 180))
-      query = query.or(
-        `${nameFilter},and(latitude.gte.${(lat - dLat).toFixed(5)},latitude.lte.${(lat + dLat).toFixed(5)},longitude.gte.${(lng - dLng).toFixed(5)},longitude.lte.${(lng + dLng).toFixed(5)})`,
-      )
-    } else {
-      query = query.ilike('island', island.name)
-    }
-
     const timeout = new Promise<null>(resolve => setTimeout(() => resolve(null), 3_000))
-    const result = await Promise.race([query, timeout])
-    if (!result || result.error || !result.data) return []
-
-    const places: IslandPlace[] = result.data
-      .filter(p => p.slug && p.name)
-      .map(p => {
-        const km = lat != null && lng != null && p.latitude != null && p.longitude != null
-          ? haversineKm(lat, lng, p.latitude, p.longitude)
-          : null
-        const nameMatch = (p.island ?? '').trim().toLowerCase() === island.name.toLowerCase()
-        return {
-          slug: p.slug as string,
-          name: p.name as string,
-          type: p.type as string,
-          description: (p.description as string | null) ?? null,
-          km,
-          onIsland: nameMatch || (km != null && km <= radius),
-        }
-      })
-      .filter(p => p.onIsland || (p.km != null && p.km <= reach))
-
-    places.sort((a, b) => {
-      if (a.onIsland !== b.onIsland) return a.onIsland ? -1 : 1
-      return (a.km ?? 0) - (b.km ?? 0)
-    })
-    return places.slice(0, limit)
+    const alla = await Promise.race([hamtaAllaPlatser(), timeout])
+    if (!alla) return []
+    return platserForO(alla, island, types, opts)
   } catch {
     return []
   }
