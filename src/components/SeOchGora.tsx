@@ -18,23 +18,20 @@ type Aktivitet = { titel: string; text: string; taggar: string[]; href: string; 
 const C = 'https://thumb.wikimedia.org/wikipedia/commons/thumb/'
 const F = 'https://commons.wikimedia.org/wiki/File:'
 
-const BAND: Bild = {
-  url: C + '5/54/Landsort_2012d.jpg/1280px-Landsort_2012d.jpg',
-  plats: 'Landsort', fotograf: 'Arild Vågen', licens: 'CC BY-SA 3.0', kalla: F + 'Landsort_2012d.jpg',
-}
+const BAND: Bild = { url: C + 'e/e9/%C3%96stra_N%C3%A5ttar%C3%B6_juli_2009.png/1280px-%C3%96stra_N%C3%A5ttar%C3%B6_juli_2009.png', plats: 'Östra Nåttarö', fotograf: 'M0aslu1001', licens: 'CC BY-SA 3.0', kalla: F + '%C3%96stra_N%C3%A5ttar%C3%B6_juli_2009.png' }
 
 const AKTIVITETER: Aktivitet[] = [
   {
     titel: 'Kajak & Paddling', href: '/blogg/kajak-stockholms-skargard-nyborjare',
     text: 'Stockholms skärgård är ett fint landskap att paddla i. Paddla ut till öar utan fast förbindelse och hitta platser som ingen annan ser.',
     taggar: ['Nybörjarvänligt', 'Uthyrning', 'Guideturer'],
-    bild: { url: C + 'e/e9/%C3%96stra_N%C3%A5ttar%C3%B6_juli_2009.png/1280px-%C3%96stra_N%C3%A5ttar%C3%B6_juli_2009.png', plats: 'Östra Nåttarö', fotograf: 'M0aslu1001', licens: 'CC BY-SA 3.0', kalla: F + '%C3%96stra_N%C3%A5ttar%C3%B6_juli_2009.png' },
+    bild: { url: C + '6/69/1076_Arholma_August_2014_-_panoramio.jpg/1280px-1076_Arholma_August_2014_-_panoramio.jpg', plats: 'Arholma', fotograf: 'Bengt Nyman', licens: 'CC BY 3.0', kalla: F + '1076_Arholma_August_2014_-_panoramio.jpg' },
   },
   {
     titel: 'Segling & Båtliv', href: '/blogg/segling-nyborjare-guide',
     text: 'Segla längs klassiska leder mot Sandhamn eller ankra i stilla naturhamnar. Svalla visar gästhamnar, bränsle och övernattningsplatser längs vägen.',
     taggar: ['Gästhamnar', 'Bränsle'],
-    bild: { url: C + '6/69/1076_Arholma_August_2014_-_panoramio.jpg/1280px-1076_Arholma_August_2014_-_panoramio.jpg', plats: 'Arholma', fotograf: 'Bengt Nyman', licens: 'CC BY 3.0', kalla: F + '1076_Arholma_August_2014_-_panoramio.jpg' },
+    bild: { url: C + 'd/dc/Hamnen_vid_L%C3%B6ka_p%C3%A5_M%C3%B6ja.jpg/1280px-Hamnen_vid_L%C3%B6ka_p%C3%A5_M%C3%B6ja.jpg', plats: 'Möja, hamnen vid Löka', fotograf: 'Dick Rochester', licens: 'CC BY-SA 2.0', kalla: F + 'Hamnen_vid_L%C3%B6ka_p%C3%A5_M%C3%B6ja.jpg' },
   },
   {
     titel: 'Bad & Klippor', href: '/blogg/basta-badplatserna',
@@ -46,7 +43,7 @@ const AKTIVITETER: Aktivitet[] = [
     titel: 'Vandring & Natur', href: '/blogg/vandring-orno-uto',
     text: 'Utö, Möja och Ornö har markerade vandringsleder genom urbergslandskap och gammal skog, korta dagsturer och flerdagarsäventyr.',
     taggar: ['Markerade leder', 'Naturreservat', 'Fågelskådning'],
-    bild: { url: C + 'b/be/G%C3%A4lln%C3%B6_July_2017_05.jpg/1280px-G%C3%A4lln%C3%B6_July_2017_05.jpg', plats: 'Gällnö', fotograf: 'Arild Vågen', licens: 'CC BY-SA 4.0', kalla: F + 'G%C3%A4lln%C3%B6_July_2017_05.jpg' },
+    bild: { url: C + '5/54/Landsort_2012d.jpg/1280px-Landsort_2012d.jpg', plats: 'Landsort', fotograf: 'Arild Vågen', licens: 'CC BY-SA 3.0', kalla: F + 'Landsort_2012d.jpg' },
   },
   {
     titel: 'Fiske', href: '/blogg/fiske-skargard-guide',
@@ -58,7 +55,7 @@ const AKTIVITETER: Aktivitet[] = [
     titel: 'Cykling', href: '/blogg/cykling-moja-gallno',
     text: 'Bilfria öar som Möja och Gällnö är perfekta för cykling. Hyr en cykel vid bryggan och utforska hela ön på ett par timmar.',
     taggar: ['Bilfria öar', 'Uthyrning', 'Familjefärd'],
-    bild: { url: C + 'd/dc/Hamnen_vid_L%C3%B6ka_p%C3%A5_M%C3%B6ja.jpg/1280px-Hamnen_vid_L%C3%B6ka_p%C3%A5_M%C3%B6ja.jpg', plats: 'Möja, hamnen vid Löka', fotograf: 'Dick Rochester', licens: 'CC BY-SA 2.0', kalla: F + 'Hamnen_vid_L%C3%B6ka_p%C3%A5_M%C3%B6ja.jpg' },
+    bild: { url: C + 'b/be/G%C3%A4lln%C3%B6_July_2017_05.jpg/1280px-G%C3%A4lln%C3%B6_July_2017_05.jpg', plats: 'Gällnö', fotograf: 'Arild Vågen', licens: 'CC BY-SA 4.0', kalla: F + 'G%C3%A4lln%C3%B6_July_2017_05.jpg' },
   },
 ]
 
@@ -118,7 +115,7 @@ export default function SeOchGora() {
 
 const SG_CSS = `
 .sg{position:relative;z-index:1;background:var(--white,#fffdf8);padding-bottom:56px}
-.sg-band{position:relative;background-size:cover;background-position:center 60%;color:#fff;padding:72px 0 150px}
+.sg-band{position:relative;background-size:cover;background-position:center 55%;color:#fff;padding:72px 0 150px}
 .sg-inre{max-width:1200px;margin:0 auto;padding:0 32px}
 .sg-etikett{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin:0 0 12px}
 .sg-band h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(32px,4.4vw,52px);font-weight:700;line-height:1.08;margin:0 0 14px;color:#fff;max-width:640px}
