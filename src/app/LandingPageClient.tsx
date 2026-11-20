@@ -640,14 +640,6 @@ __MOB_NAV__ </nav>
   <a class="hero-knapp hero-knapp-1" href="/utflykt"><span class="hero-knapp-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><span class="hero-knapp-text"><strong>Planera din tur</strong><span>Öar, restid och båttider för dagen</span></span><span class="hero-knapp-pil" aria-hidden="true">&rarr;</span></a>
   <a class="hero-knapp hero-knapp-2" href="#karta-start"><span class="hero-knapp-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="hero-knapp-text"><strong>Hitta på kartan</strong><span>Öar, krogar, hamnar och boenden</span></span><span class="hero-knapp-pil" aria-hidden="true">&rarr;</span></a>
  </div>
- <div style="font-size:12.5px;color:rgba(255,255,255,.8)">Gratis konto: spara öar, planera turer och logga dina besök. <a href="/kom-igang" style="color:#fff;font-weight:700">Kom igång &rarr;</a></div>
- </div>
- <div class="hero-search-hint">
- Populärt just nu:
- <span onclick="location.href='/o/gallno'">Gällnö</span>
- <span onclick="location.href='/o/ulvon'">Ulvön</span>
- <span onclick="location.href='/o/marstrand'">Marstrand</span>
- <span onclick="location.href='/o/sandhamn'">Sandhamn</span>
  </div>
  <div class="hero-scroll">
  <div class="hero-scroll-line"></div>
