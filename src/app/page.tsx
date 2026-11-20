@@ -18,7 +18,15 @@ import { getLandingPhotos } from '@/lib/landingPhotos'
 import { OBILDER } from '@/app/o/obilder.generated'
 import LandingPageClient, { type Bildkalla } from './LandingPageClient'
 import { COMMONS_FOR_KORT, HANDPLOCKADE } from '@/lib/startsidaBilder'
-import { ANTAL_OAR } from '@/app/o/island-data'
+import { ANTAL_OAR, ALL_ISLANDS } from '@/app/o/island-data'
+import { OAR_CATEGORIES, islandsForCategory } from '@/app/oar/oar-categories'
+import type { StartKansla } from '@/components/StartDelar'
+
+// Känslan är vår rubrik. Listan bakom är den ökategori som redan finns på /oar.
+const KANSLOR: [string, string][] = [
+  ['avskild', 'Lugn och ro'], ['romantiska', 'Romantik'], ['barnvanliga', 'Skratt och bad'], ['krogar', 'God mat'],
+  ['havsbastu', 'Värme i bastun'], ['cykling', 'Vind i håret'], ['segling', 'Segel och frihet'], ['utan-bil', 'Enkelt utan bil'],
+]
 
 export const revalidate = 3600
 
@@ -47,5 +55,18 @@ export default async function Page() {
   // Antalet öar räknas här på servern så att ödatan inte hamnar i klientbundlen.
   // Samma lista som /api/stats (alla öar med egen guidesida, /o/[slug]) —
   // tidigare visades 83 och sedan 102 när /api/stats svarat.
-  return <LandingPageClient photoMap={photoMap} bildkallor={bildkallor} antalOar={ANTAL_OAR} />
+  // Vad vill du känna: åtta ökategorier med var sitt öfoto (olika foton, fotograf och licens visas i rutan).
+  const anvanda = new Set<string>()
+  const kanslor: StartKansla[] = KANSLOR.flatMap(([slug, kansla]) => {
+    const kat = OAR_CATEGORIES.find(k => k.slug === slug)
+    const oar = kat ? islandsForCategory(slug) : []
+    if (!kat || oar.length === 0) return []
+    const o = oar.find(x => OBILDER[x.slug] && !anvanda.has(x.slug)) ?? oar.find(x => OBILDER[x.slug])
+    if (o) anvanda.add(o.slug)
+    const b = o ? OBILDER[o.slug] : undefined
+    return [{ href: `/oar/${slug}`, kansla, rubrik: kat.kort, antal: oar.length, bild: b ? { url: b.url.replace('/1280px-', '/960px-'), fotograf: b.fotograf, licens: b.licens } : null }]
+  })
+  const antalKrogar = ALL_ISLANDS.reduce((n, o) => n + (o.restaurants?.length ?? 0), 0)
+
+  return <LandingPageClient photoMap={photoMap} bildkallor={bildkallor} antalOar={ANTAL_OAR} kanslor={kanslor} antalKrogar={antalKrogar} />
 }

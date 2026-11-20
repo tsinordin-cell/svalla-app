@@ -74,7 +74,8 @@ export default function ForstaBesok() {
       if (INTE_HAR.some(p => path === p || path.startsWith(p + '/'))) return
       // FÖRHANDSVISNING 2026-11-20: på startsidan ställer Thorkel i heron (ThorkelHero) samma
       // tre frågor i sin egen pratbubbla, så här visas ingen egen ruta (en Thorkel, inte två).
-      if (path === '/') return
+      // I mobil och på smal skärm visas ThorkelHero inte, där är det den här rutan som gäller (Max 2026-11-20).
+      if (path === '/' && window.matchMedia('(min-width:1181px)').matches) return
       const visningar = Number(sessionStorage.getItem(SIDVISNINGAR) || '0') + 1
       sessionStorage.setItem(SIDVISNINGAR, String(visningar))
       createClient().auth.getSession().then(({ data }) => {

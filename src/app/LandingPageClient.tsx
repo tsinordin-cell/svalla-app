@@ -3,6 +3,7 @@ import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
 import ThorkelHero from '@/components/ThorkelHero'
+import { TreSatt, JustNu, VadVillDuKanna, FragaThorkel, GuidePaVattnet, type StartKansla } from '@/components/StartDelar'
 import MegaMeny from '@/components/MegaMeny'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
@@ -635,7 +636,7 @@ __MOB_NAV__ </nav>
  .hero-knapp-2:hover{box-shadow:0 16px 36px rgba(5,20,40,.4)}
  .hero-knapp-2 .hero-knapp-ikon{background:#1e5c82;color:#fff}
  .hero-knapp-2 .hero-knapp-text span{color:#3d5865;opacity:1}
- @media (max-width:640px){.hero-knapp{min-width:0;width:100%;max-width:420px}}
+ @media (max-width:640px){.hero-val{flex-wrap:nowrap;gap:8px;padding:0 14px}.hero-knapp{min-width:0;flex:1 1 0;padding:5px 12px 5px 5px;gap:8px}.hero-knapp-ikon{width:28px;height:28px}.hero-knapp-ikon svg{width:14px;height:14px}.hero-knapp-text strong{font-size:12.5px;white-space:nowrap}.hero-knapp-text span,.hero-knapp-pil{display:none}}
  </style>
  <div class="hero-val">
   <a class="hero-knapp hero-knapp-1" href="/utflykt"><span class="hero-knapp-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><span class="hero-knapp-text"><strong>Planera din tur</strong><span>Öar, restid och båttider för dagen</span></span><span class="hero-knapp-pil" aria-hidden="true">&rarr;</span></a>
@@ -1041,7 +1042,7 @@ function bildkallorHtml(k: Bildkalla[]): string {
   return `<section aria-label="Bildkällor" style="max-width:1160px;margin:0 auto;padding:28px 24px 36px;font-size:12px;line-height:1.7;color:var(--txt3)"><strong style="font-weight:600">Bildkällor</strong> (Wikimedia Commons): ${rader}</section>`
 }
 
-export default function LandingPageClient({ photoMap, bildkallor = [], antalOar }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[]; antalOar: number }) {
+export default function LandingPageClient({ photoMap, bildkallor = [], antalOar, kanslor = [], antalKrogar = 0 }: { kanslor?: StartKansla[]; antalKrogar?: number; photoMap?: Record<string, string>; bildkallor?: Bildkalla[]; antalOar: number }) {
  const router = useRouter()
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
@@ -1260,12 +1261,22 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
   // Thorkel (ThorkelHero) läggs mellan heron och trust-baren, så att varje HTML-del är hel.
   const iTrust = forstaHtml.indexOf('<div class="trust-bar">')
   const heroHtml = iTrust >= 0 ? forstaHtml.slice(0, iTrust) : forstaHtml
-  const efterHeroHtml = iTrust >= 0 ? forstaHtml.slice(iTrust) : ''
   // MEGAMENY-GRENEN: startsidans HTML-meny och mobilens låda byts mot MegaMeny (React).
   const iNav = heroHtml.indexOf('<nav class="lp-nav"')
   const iHeroSek = heroHtml.indexOf('<section class="hero"')
   const heroUtanMeny = iNav >= 0 && iHeroSek > iNav ? heroHtml.slice(0, iNav) + heroHtml.slice(iHeroSek) : heroHtml
  const andraHtml = iSektion >= 0 ? landingHtml.slice(iSlut) : null
+  // Max 2026-11-20: förtroenderaden, Utvalda turer, Skärgårdslivet, gamla Thorkel-delen och Din guide / Sätt er krog
+  // är utbytta mot React-delarna i StartDelar. Vanliga frågor, FAQ-schemat och sidfoten ligger kvar som HTML.
+  const klipp = (h: string, start: string, slut: string) => { const a = h.indexOf(start); if (a < 0) return h; const b = h.indexOf(slut, a); return b < 0 ? h : h.slice(0, a) + h.slice(b + slut.length) }
+  let rest = andraHtml ?? ''
+  rest = klipp(rest, '<section class="activities-section"', '</section>')
+  rest = klipp(rest, '<section class="thorkel-section"', '</section>')
+  const iSplit = rest.indexOf('<div class="split-section">')
+  const iSplitSlut = iSplit >= 0 ? rest.indexOf('<script type="application/ld+json">', iSplit) : -1
+  const delad = iSplit >= 0 && iSplitSlut > iSplit
+  const fragorHtml = delad ? rest.slice(0, iSplit) : rest
+  const slutHtml = delad ? rest.slice(iSplitSlut) : ''
 
  return (
  <>
@@ -1301,7 +1312,9 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  <MegaMeny overStart />
  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroUtanMeny }} />
  <ThorkelHero />
- {efterHeroHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterHeroHtml }} />}
+ <TreSatt />
+ <JustNu />
+ <VadVillDuKanna kanslor={kanslor} />
  {andraHtml !== null && (
  <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1 }}>
  <div className="section-inner">
@@ -1324,7 +1337,10 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  <StartKarta />
  </div>
  </section>
- {andraHtml !== null && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: andraHtml }} />}
+ <FragaThorkel />
+ {andraHtml !== null && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: fragorHtml }} />}
+ <GuidePaVattnet antalKrogar={antalKrogar} />
+ {slutHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: slutHtml }} />}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />
  </div>
