@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
+import SeOchGora from '@/components/SeOchGora'
 import StartKarta from '@/components/StartKarta'
 import ThorkelHero from '@/components/ThorkelHero'
 import MegaMeny from '@/components/MegaMeny'
@@ -1261,6 +1262,13 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
   const iTrust = forstaHtml.indexOf('<div class="trust-bar">')
   const heroHtml = iTrust >= 0 ? forstaHtml.slice(0, iTrust) : forstaHtml
   const efterHeroHtml = iTrust >= 0 ? forstaHtml.slice(iTrust) : ''
+  // Se & Göra (#aktiviteter) klipps ut och renderas av React (SeOchGora, Max 2026-11-20:
+  // foto och kort som bläddras, efter nyctourism.com). Texter och länkar är desamma.
+  const AKT = '<section class="activities-section" id="aktiviteter">'
+  const iAkt = efterHeroHtml.indexOf(AKT)
+  const iAktSlut = iAkt >= 0 ? efterHeroHtml.indexOf('</section>', iAkt) + '</section>'.length : -1
+  const foreAkt = iAkt >= 0 ? efterHeroHtml.slice(0, iAkt) : efterHeroHtml
+  const efterAkt = iAkt >= 0 ? efterHeroHtml.slice(iAktSlut) : ''
   // MEGAMENY-GRENEN: startsidans HTML-meny och mobilens låda byts mot MegaMeny (React).
   const iNav = heroHtml.indexOf('<nav class="lp-nav"')
   const iHeroSek = heroHtml.indexOf('<section class="hero"')
@@ -1301,7 +1309,9 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  <MegaMeny overStart />
  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroUtanMeny }} />
  <ThorkelHero />
- {efterHeroHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterHeroHtml }} />}
+ {foreAkt && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: foreAkt }} />}
+ {iAkt >= 0 && <SeOchGora />}
+ {efterAkt && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterAkt }} />}
  {andraHtml !== null && (
  <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1 }}>
  <div className="section-inner">
