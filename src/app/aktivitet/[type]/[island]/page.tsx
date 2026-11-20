@@ -11,18 +11,22 @@ import {
   type ActivityType,
 } from '../../activity-data'
 import { ogO } from '@/lib/og-standard'
+import { HIKES } from '../../vandring/hike-data'
 
 type Props = { params: Promise<{ type: string; island: string }> }
+
+const VANDRINGSSIDOR = new Set(HIKES.map(h => h.slug))
 
 export async function generateStaticParams() {
   // Bara giltiga (typ, ö)-kombinationer som matchar (annars genererar vi 84×5 = 420 sidor varav många tomma)
   const params: { type: string; island: string }[] = []
   for (const activity of ACTIVITY_LIST) {
-    // Vandring har egna sidor (aktivitet/vandring/[slug]). Genereras de här också krockar de om samma
-    // adress vid bygget, och vilken som vinner varierar mellan byggen (2026-11-20: /aktivitet/vandring/moja).
-    if (activity.slug === 'vandring') continue
     const islands = islandsForActivity(activity.slug)
     for (const island of islands) {
+      // Öar med en egen vandringssida (aktivitet/vandring/[slug], listan HIKES) genereras bara där.
+      // Annars krockar två sidor om samma adress vid bygget och vilken som vinner varierar
+      // (2026-11-20: /aktivitet/vandring/moja). Övriga vandringsöar ligger kvar här som förut.
+      if (activity.slug === 'vandring' && VANDRINGSSIDOR.has(island.slug)) continue
       params.push({ type: activity.slug, island: island.slug })
     }
   }
