@@ -147,7 +147,7 @@ export default function IdeerClient({ turer, antalKrogar }: { turer: Tur[]; anta
         <div className="b-rad">
           <div className="b-nu">
             <div className="id-liten">Just nu i skärgården</div>
-            <div className="b-klocka">{klocka || '00:00:00'}</div>
+            <div className="b-klocka">{klocka || '\u00a0'}</div>
             {manadNu && <Link href="/oppet-nu">Vad är öppet i {manadNu}? →</Link>}
           </div>
           {kommande.map(d => {
@@ -283,7 +283,7 @@ export default function IdeerClient({ turer, antalKrogar }: { turer: Tur[]; anta
             </div>
             <div className="g-nu">
               <div className="id-liten g-ljus">Skärgården just nu</div>
-              <div className="g-klocka">{klocka || '00:00:00'}</div>
+              <div className="g-klocka">{klocka || '\u00a0'}</div>
               {manadNu && <Link href="/oppet-nu">Öppet i {manadNu} →</Link>}
             </div>
           </div>
