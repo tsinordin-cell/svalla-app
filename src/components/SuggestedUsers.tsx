@@ -60,8 +60,8 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
     const [{ data: recentTrips }, { data: allTrips }, { data: profiles }, { data: jag }] = await Promise.all([
       supabase.from('trips').select('user_id').gte('created_at', thirtyDaysAgo).is('deleted_at', null).limit(500),
       supabase.from('trips').select('user_id').is('deleted_at', null).limit(2000),
-      supabase.from('users').select('id, username, avatar, home_port, public_fields, created_at').not('username', 'is', null).limit(1000),
-      supabase.from('users').select('home_port').eq('id', user.id).maybeSingle(),
+      supabase.from('users_publik').select('id, username, avatar, home_port, public_fields, created_at').not('username', 'is', null).limit(1000),
+      supabase.rpc('min_profil').maybeSingle<{ home_port: string | null }>(),
     ])
 
     const recentMap: Record<string, number> = {}

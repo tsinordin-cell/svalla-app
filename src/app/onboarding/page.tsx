@@ -20,11 +20,10 @@ export default async function OnboardingPage() {
   }
 
   // Hämta nuvarande user-rad — redirecta om redan onboardad
+  // Egen rad via min_profil() (integritet 2026-11-20).
   const { data: profile } = await supabase
-    .from('users')
-    .select('id, username, onboarded_at, vessel_model, home_port')
-    .eq('id', user.id)
-    .maybeSingle()
+    .rpc('min_profil')
+    .maybeSingle<{ id: string; username: string | null; onboarded_at: string | null; vessel_model: string | null; home_port: string | null }>()
 
   if (profile?.onboarded_at) {
     redirect('/feed')
@@ -33,7 +32,9 @@ export default async function OnboardingPage() {
   // Förslag i "Följ några seglare": konton som har minst en publik tur, senaste
   // turen först. Tidigare föreslogs de senast skapade kontona, och inget av dem
   // hade en tur att visa i flödet (mätt 19 nov 2026).
-  const FALT = 'id, username, avatar, vessel_model, home_port, boat_type'
+  // users_publik: bara fält personen valt att visa (integritet 2026-11-20).
+  // boat_type finns inte i vyn; vessel_type är samma val och visas om det är publikt.
+  const FALT = 'id, username, avatar, vessel_model, home_port, boat_type:vessel_type'
   type Forslag = {
     id: string
     username: string | null
@@ -61,7 +62,7 @@ export default async function OnboardingPage() {
 
   let medTurer: Forslag[] = []
   if (ids.length > 0) {
-    const { data } = await supabase.from('users').select(FALT).in('id', ids).not('username', 'is', null)
+    const { data } = await supabase.from('users_publik').select(FALT).in('id', ids).not('username', 'is', null)
     medTurer = ((data ?? []) as Forslag[]).sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id))
   }
 
@@ -74,7 +75,7 @@ export default async function OnboardingPage() {
   } catch { /* trasig kaka: ingen vän */ }
   let van: Forslag | null = null
   if (/^[A-Za-z0-9_.-]{1,40}$/.test(vanNamn)) {
-    const { data } = await supabase.from('users').select(FALT).eq('username', vanNamn).neq('id', user.id).maybeSingle()
+    const { data } = await supabase.from('users_publik').select(FALT).eq('username', vanNamn).neq('id', user.id).maybeSingle()
     van = (data as Forslag | null) ?? null
   }
 

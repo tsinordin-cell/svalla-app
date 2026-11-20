@@ -201,7 +201,8 @@ function SokPageInner() {
  const usersPromise = isHashtagQuery
  ? empty<UserRow>()
  : (supabase
- .from('users')
+ // users_publik: sökningen träffar bara fält som personen valt att visa (2026-11-20).
+ .from('users_publik')
  .select('id, username, avatar, home_port, sailing_region, nationality, vessel_model, vessel_name, vessel_type')
  .or(
  `username.ilike.${pattern},vessel_model.ilike.${pattern},vessel_name.ilike.${pattern},vessel_type.ilike.${pattern},home_port.ilike.${pattern}`,

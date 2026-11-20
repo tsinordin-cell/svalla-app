@@ -27,7 +27,8 @@ export async function getProfileTeaser(
   lookup: { username?: string; userId?: string },
   currentUserId: string | null,
 ): Promise<ProfileTeaser | null> {
-  let q = supabase.from('users')
+  // users_publik: bara fält som personen valt att visa (integritet 2026-11-20).
+  let q = supabase.from('users_publik')
     .select('id, username, avatar, bio, nationality, vessel_name, vessel_type, vessel_model, home_port')
   if (lookup.userId) q = q.eq('id', lookup.userId)
   else if (lookup.username) q = q.eq('username', lookup.username)

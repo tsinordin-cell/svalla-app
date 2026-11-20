@@ -25,7 +25,7 @@ export default async function Image({
 
   const supabase = createClient()
   const { data: userRow } = await supabase
-    .from('users')
+    .from('users_publik')
     .select('id, username, vessel_name, home_port')
     .eq('username', username)
     .maybeSingle()

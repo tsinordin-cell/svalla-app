@@ -82,7 +82,7 @@ export default async function WrappedPage({ params }: Props) {
  const supabase = await createServerSupabaseClient()
 
  const { data: userRow } = await supabase
- .from('users')
+ .from('users_publik')
  .select('id, username, avatar, home_port, vessel_name, vessel_type')
  .eq('username', username)
  .single()
