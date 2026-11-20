@@ -5,6 +5,7 @@ import { TRIPS } from '@/app/resetips/trips-data'
 import { OBILDER } from '@/app/o/obilder.generated'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from '@/app/oar/oar-categories'
+import { ISLAND_COORDS } from '@/lib/islandCoords'
 
 /**
  * FÖRHANDSVISNING 2026-11-20 (Max): idéer för startsidans övriga delar, efter en genomgång av
@@ -78,18 +79,18 @@ export default function IdeerPage() {
     stopp: forst.stops.map(s => ({ namn: s.name, typ: s.type, text: s.desc, tips: s.tip ?? null })),
   } : null
 
+  const anvanda = new Set<string>()
   const kanslor: Kansla[] = KANSLOR.flatMap(([slug, kansla]) => {
     const kat = OAR_CATEGORIES.find(k => k.slug === slug)
     if (!kat) return []
     const oar = islandsForCategory(slug)
     if (oar.length === 0) return []
-    return [{ href: `/oar/${slug}`, kansla, rubrik: kat.kort, antal: oar.length, bild: bildFor(oar.find(o => OBILDER[o.slug])?.slug) }]
+    return [{ href: `/oar/${slug}`, kansla, rubrik: kat.kort, antal: oar.length, bild: (() => { const o = oar.find(x => OBILDER[x.slug] && !anvanda.has(x.slug)) ?? oar.find(x => OBILDER[x.slug]); if (o) anvanda.add(o.slug); return bildFor(o?.slug) })() }]
   })
 
-  const stockholm = new Set(['norra', 'mellersta', 'södra'])
-  const oar: OPunkt[] = ALL_ISLANDS
-    .filter(o => stockholm.has(o.region) && typeof o.lat === 'number' && typeof o.lng === 'number')
-    .map(o => ({ slug: o.slug, namn: o.name, lat: o.lat as number, lng: o.lng as number }))
+  // Koordinaterna kommer ur lib/islandCoords (kontrollerade mot två källor). Bara öar som har en ösida tas med.
+  const harSida = new Set(ALL_ISLANDS.map(o => o.slug))
+  const oar: OPunkt[] = ISLAND_COORDS.filter(o => harSida.has(o.slug)).map(o => ({ slug: o.slug, namn: o.name, lat: o.lat, lng: o.lng }))
 
   const mosaik: Mosaik[] = MOSAIK_ORDNING.flatMap(slug => {
     const o = ALL_ISLANDS.find(x => x.slug === slug)

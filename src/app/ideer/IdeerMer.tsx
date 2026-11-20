@@ -142,7 +142,7 @@ export default function IdeerMer({ turer, rutt, kanslor, oar, mosaik, siffror }:
               <article key={e.var} className="h-kupong">
                 <div className="h-vanster">
                   <small>{e.typ}</small>
-                  <b>{e.rabatt}</b>
+                  <b className={e.rabatt.length > 4 ? 'lang' : undefined}>{e.rabatt}</b>
                   <span>{e.vad}</span>
                 </div>
                 <div className="h-hoger">
@@ -235,7 +235,7 @@ export default function IdeerMer({ turer, rutt, kanslor, oar, mosaik, siffror }:
               <Link key={o.slug} href={`/o/${o.slug}`} className={tand === o.slug ? 'l-prick pa' : 'l-prick'} style={{ left: `${o.x}%`, top: `${o.y}%` }}
                 onMouseEnter={() => setTand(o.slug)} onMouseLeave={() => setTand(null)} aria-label={o.namn}><span>{o.namn}</span></Link>
             ))}
-            <em>{karta.length} öar i Stockholms skärgård som har koordinater i Svallas data</em>
+            <em>{karta.length} öar i Stockholms skärgård, på sina riktiga koordinater</em>
           </div>
         </div>
       </Alt>
@@ -247,7 +247,7 @@ export default function IdeerMer({ turer, rutt, kanslor, oar, mosaik, siffror }:
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             <path d={ledD} pathLength={1} className="m-led" />
           </svg>
-          {led.filter((_, i) => i % 3 === 0).map((p, i) => (
+          {led.filter((_, i) => i % 6 === 0).map((p, i) => (
             <span key={p.slug} className="m-namn" style={{ left: `${p.x}%`, top: `${p.y}%`, transitionDelay: `${0.4 + i * 0.25}s` }}>{p.namn}</span>
           ))}
           <div className="m-mitt">
@@ -414,6 +414,7 @@ const CSS = `
 .h-vanster::after{content:'';position:absolute;right:-7px;top:0;bottom:0;width:14px;background:radial-gradient(circle,#fffdf8 5px,transparent 5.5px) 0 0/14px 16px}
 .h-vanster small{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f2a25c}
 .h-vanster b{font-family:'Playfair Display',Georgia,serif;font-size:clamp(34px,3.6vw,48px);line-height:1;margin:8px 0 6px}
+.h-vanster b.lang{font-size:clamp(24px,2.5vw,32px)}
 .h-vanster span{font-size:13.5px;line-height:1.35;color:rgba(255,255,255,.88)}
 .h-hoger{padding:20px 18px 18px 24px;display:flex;flex-direction:column;gap:6px;justify-content:center}
 .h-hoger strong{font-family:'Playfair Display',Georgia,serif;font-size:19px;line-height:1.2;color:#0d2440}
@@ -459,12 +460,12 @@ const CSS = `
 .k-ruta b{font-size:24px}
 
 /* L */
-.l-yta{max-width:1200px;margin:0 auto;background:#fbf6ec;border-radius:28px;padding:40px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px;border:1px solid rgba(150,110,60,.16)}
+.l-yta{max-width:1200px;margin:0 auto;background:#fbf6ec;border-radius:28px;padding:40px;display:grid;grid-template-columns:330px minmax(0,1fr);gap:32px;border:1px solid rgba(150,110,60,.16)}
 .l-lista ul{list-style:none;margin:0;padding:0;columns:2;column-gap:18px}
-.l-lista a{display:block;font-family:'Playfair Display',Georgia,serif;font-size:15.5px;color:#3d5865;text-decoration:none;padding:3px 0}
+.l-lista a{display:block;font-family:'Playfair Display',Georgia,serif;font-size:14.5px;color:#3d5865;text-decoration:none;padding:3px 0}
 .l-lista a.pa,.l-lista a:hover{color:#b5591a}
-.l-karta{position:relative;min-height:520px}
-.l-prick{position:absolute;width:13px;height:13px;margin:-6px 0 0 -6px;border-radius:50%;background:#0d2440;transition:transform .2s ease,background .2s ease}
+.l-karta{position:relative;min-height:640px}
+.l-prick{position:absolute;width:11px;height:11px;margin:-5px 0 0 -5px;border-radius:50%;background:#0d2440;transition:transform .2s ease,background .2s ease}
 .l-prick span{position:absolute;left:18px;top:-5px;white-space:nowrap;font-size:12.5px;font-weight:700;color:#0d2440;background:#fffdf8;border-radius:8px;padding:3px 8px;opacity:0;pointer-events:none;transition:opacity .2s ease;box-shadow:0 4px 14px rgba(0,0,0,.12)}
 .l-prick.pa,.l-prick:hover{background:#b5591a;transform:scale(1.7);z-index:2}
 .l-prick.pa span,.l-prick:hover span{opacity:1;transform:scale(.6);transform-origin:left center}
