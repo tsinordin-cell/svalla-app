@@ -36,8 +36,9 @@ function dela(noder: ReactNode[], tagg: string) {
   const fore: ReactNode[] = []
   const grupper: { rubrik: MedBarn; innehall: ReactNode[] }[] = []
   for (const n of noder) {
+    const sista = grupper[grupper.length - 1]
     if (arTagg(n, tagg)) grupper.push({ rubrik: n, innehall: [] })
-    else if (grupper.length) grupper[grupper.length - 1].innehall.push(n)
+    else if (sista) sista.innehall.push(n)
     else fore.push(n)
   }
   return { fore, grupper }
