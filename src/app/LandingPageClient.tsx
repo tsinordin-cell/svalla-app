@@ -1028,8 +1028,15 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  const router = useRouter()
  // FÖRHANDSVISNING 2026-11-20: Sverigekartan (RegionKarta) renderas in i platsen #sv-regionkarta i LANDING_HTML.
  const [kartMal, setKartMal] = useState<HTMLElement | null>(null)
- // Körs efter varje rendering: byts startsidans HTML ut finns en ny plats att rendera kartan i.
- useEffect(() => { const el = document.getElementById('sv-regionkarta'); setKartMal(prev => (prev === el ? prev : el)) })
+ // Startsidans HTML kan bytas ut efter att sidan laddats (då försvinner platsen kartan ritats i).
+ // Därför bevakas sidan och kartan flyttas till den nya platsen när den dyker upp.
+ useEffect(() => {
+   const hitta = () => { const el = document.getElementById('sv-regionkarta'); setKartMal(prev => (prev === el ? prev : el)) }
+   hitta()
+   const mo = new MutationObserver(hitta)
+   mo.observe(document.body, { childList: true, subtree: true })
+   return () => mo.disconnect()
+ }, [])
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
  // och navigera tillbaka till appen därifrån.
