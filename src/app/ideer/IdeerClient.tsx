@@ -89,6 +89,12 @@ export default function IdeerClient({ turer, antalKrogar }: { turer: Tur[]; anta
   const [manad, setManad] = useState<number | null>(null)
   useEffect(() => { const m = new Date().getMonth(); setManad(m); setLjus(MANADER[m]!.v) }, [])
   const valdManad = manad === null ? null : MANADER[manad]!
+  const manadsRad = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const r = manadsRad.current
+    const b = r?.querySelector<HTMLButtonElement>('button.pa')
+    if (r && b) r.scrollLeft = b.offsetLeft - r.clientWidth / 2 + b.offsetWidth / 2
+  }, [manad])
 
   /* B + G: klocka i svensk tid */
   const [nu, setNu] = useState<Date | null>(null)
@@ -145,7 +151,7 @@ export default function IdeerClient({ turer, antalKrogar }: { turer: Tur[]; anta
             <p>Sökrutan, knapparna och Thorkel ligger kvar här, precis som idag.</p>
           </div>
           <div className="a-list">
-            <div className="a-rad">
+            <div className="a-rad" ref={manadsRad}>
               {MANADER.map((m, i) => (
                 <button key={m.kort} type="button" className={manad === i ? 'pa' : undefined} onClick={() => { setManad(i); setLjus(m.v) }}>{m.kort}</button>
               ))}
