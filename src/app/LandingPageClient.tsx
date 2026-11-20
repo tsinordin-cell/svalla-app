@@ -960,6 +960,11 @@ function toggleFaq(btn){
  <li><a href="/rutter">Rutter</a></li>
  <li><a href="/feed">Community-feed</a></li>
  <li><a href="/spara">Sparade</a></li>
+ <li><a href="/upplevelser">Guidade turer och upplevelser</a></li>
+ <li><a href="/erbjudanden">Erbjudanden</a></li>
+ <li><a href="/oar/avskild">Avskilda öar</a></li>
+ <li><a href="/skargardsdatum">Skärgårdens datum</a></li>
+ <li><a href="/topplista">Topplistor</a></li>
  </ul>
  </div>
  <div class="footer-col">
