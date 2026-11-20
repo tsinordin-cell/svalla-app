@@ -1028,7 +1028,8 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  const router = useRouter()
  // FÖRHANDSVISNING 2026-11-20: Sverigekartan (RegionKarta) renderas in i platsen #sv-regionkarta i LANDING_HTML.
  const [kartMal, setKartMal] = useState<HTMLElement | null>(null)
- useEffect(() => { setKartMal(document.getElementById('sv-regionkarta')) }, [])
+ // Körs efter varje rendering: byts startsidans HTML ut finns en ny plats att rendera kartan i.
+ useEffect(() => { const el = document.getElementById('sv-regionkarta'); setKartMal(prev => (prev === el ? prev : el)) })
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
  // och navigera tillbaka till appen därifrån.
@@ -1235,6 +1236,9 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  }
  }, [router, photoMap])
 
+ // Startsidans HTML.
+ const landingHtml = LANDING_HTML.split('__ANTAL_OAR__').join(String(antalOar)).split('__NAV_LINKS__').join(menyHtmlDator()).split('__MITT_SVALLA__').join(mittSvallaHtmlDator()).split('__MOB_NAV__').join(menyHtmlMobil()).replace('<footer>', bildkallorHtml(bildkallor) + '<footer>')
+
  return (
  <>
  {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${JSON.stringify(photoMap)}` }} />}
@@ -1266,7 +1270,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML.split('__ANTAL_OAR__').join(String(antalOar)).split('__NAV_LINKS__').join(menyHtmlDator()).split('__MITT_SVALLA__').join(mittSvallaHtmlDator()).split('__MOB_NAV__').join(menyHtmlMobil()).replace('<footer>', bildkallorHtml(bildkallor) + '<footer>') }} />
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: landingHtml }} />
  {kartMal && createPortal(<RegionKarta />, kartMal)}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />

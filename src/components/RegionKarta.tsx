@@ -8,7 +8,7 @@
  * Texterna beskriver bara det som står på regionsidorna; inga siffror utan källa.
  */
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { KARTA_VIEWBOX, SVERIGE_LAN, SVERIGE_SJOAR, type KartZon } from '@/lib/sverigekarta'
 
 type Del = {
@@ -66,13 +66,14 @@ const DELAR: Del[] = [
 export default function RegionKarta() {
   const [i, setI] = useState(0)
   // Startsidans reservlista (för sökmotorer och utan JavaScript) döljs när kartan finns.
-  useEffect(() => { document.getElementById('sv-regionkarta')?.classList.add('klar') }, [])
+  const rot = useRef<HTMLDivElement>(null)
+  useEffect(() => { rot.current?.parentElement?.classList.add('klar') }, [])
   const del = DELAR[i]!
   const steg = (d: number) => setI(n => (n + d + DELAR.length) % DELAR.length)
   const valj = (z: KartZon | '') => { const j = DELAR.findIndex(x => x.id === z); if (j >= 0) setI(j) }
 
   return (
-    <div className="rk">
+    <div className="rk" ref={rot}>
       <style>{RK_CSS}</style>
       <div className="rk-text">
         <div className="rk-flikar" role="tablist" aria-label="Delar av Sverige">
