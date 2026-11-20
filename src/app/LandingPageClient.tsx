@@ -2,6 +2,7 @@
 import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
+import ThorkelHero from '@/components/ThorkelHero'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import { useRouter } from 'next/navigation'
@@ -616,10 +617,28 @@ __MOB_NAV__ </nav>
  <button type="submit">Sök</button>
  </form>
  <div style="text-align:center;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;gap:10px">
- <a href="/utflykt" style="color:rgba(255,255,255,.88);font-size:13px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:7px;padding:8px 18px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:24px;backdrop-filter:blur(8px);transition:.2s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg> Planera din tur &rarr;</a>
- <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
-  <a href="/farjor" style="color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;padding:6px 14px;border-radius:20px;background:rgba(13,36,64,.35);border:1px solid rgba(255,255,255,.18)">Utan egen båt: färjor och dagsturer</a>
-  <a href="/hamnar-och-bryggor" style="color:#fff;font-size:12.5px;font-weight:600;text-decoration:none;padding:6px 14px;border-radius:20px;background:rgba(13,36,64,.35);border:1px solid rgba(255,255,255,.18)">Med egen båt: hamnar och rutter</a>
+ <style>
+ .hero-val{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;padding:0 16px;margin-bottom:4px}
+ .hero-knapp{display:flex;align-items:center;gap:14px;min-width:300px;padding:10px 22px 10px 10px;border-radius:999px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease}
+ .hero-knapp:hover{transform:translateY(-2px)}
+ .hero-knapp-ikon{flex-shrink:0;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+ .hero-knapp-text{display:flex;flex-direction:column;text-align:left;line-height:1.25}
+ .hero-knapp-text strong{font-size:16.5px;font-weight:700}
+ .hero-knapp-text span{font-size:12.5px;font-weight:500;opacity:.82;margin-top:2px}
+ .hero-knapp-pil{margin-left:auto;padding-left:10px;font-size:20px;transition:transform .2s ease}
+ .hero-knapp:hover .hero-knapp-pil{transform:translateX(4px)}
+ .hero-knapp-1{background:linear-gradient(135deg,#ec9a52 0%,#c96e2a 100%);color:#fff;box-shadow:0 12px 30px rgba(201,110,42,.45),inset 0 1px 0 rgba(255,255,255,.25)}
+ .hero-knapp-1:hover{box-shadow:0 16px 36px rgba(201,110,42,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+ .hero-knapp-1 .hero-knapp-ikon{background:rgba(255,255,255,.22)}
+ .hero-knapp-2{background:rgba(255,253,248,.95);color:#14202a;box-shadow:0 12px 30px rgba(5,20,40,.32)}
+ .hero-knapp-2:hover{box-shadow:0 16px 36px rgba(5,20,40,.4)}
+ .hero-knapp-2 .hero-knapp-ikon{background:#1e5c82;color:#fff}
+ .hero-knapp-2 .hero-knapp-text span{color:#3d5865;opacity:1}
+ @media (max-width:640px){.hero-knapp{min-width:0;width:100%;max-width:420px}}
+ </style>
+ <div class="hero-val">
+  <a class="hero-knapp hero-knapp-1" href="/utflykt"><span class="hero-knapp-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></span><span class="hero-knapp-text"><strong>Planera din tur</strong><span>Öar, restid och båttider för dagen</span></span><span class="hero-knapp-pil" aria-hidden="true">&rarr;</span></a>
+  <a class="hero-knapp hero-knapp-2" href="#karta-start"><span class="hero-knapp-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span class="hero-knapp-text"><strong>Hitta på kartan</strong><span>Öar, krogar, hamnar och boenden</span></span><span class="hero-knapp-pil" aria-hidden="true">&rarr;</span></a>
  </div>
  <div style="font-size:12.5px;color:rgba(255,255,255,.8)">Gratis konto: spara öar, planera turer och logga dina besök. <a href="/kom-igang" style="color:#fff;font-weight:700">Kom igång &rarr;</a></div>
  </div>
@@ -1240,6 +1259,10 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  const iSektion = landingHtml.indexOf(SEKTION)
  const iSlut = iSektion >= 0 ? landingHtml.indexOf('</section>', iSektion) + '</section>'.length : -1
  const forstaHtml = iSektion >= 0 ? landingHtml.slice(0, iSektion) : landingHtml
+  // Thorkel (ThorkelHero) läggs mellan heron och trust-baren, så att varje HTML-del är hel.
+  const iTrust = forstaHtml.indexOf('<div class="trust-bar">')
+  const heroHtml = iTrust >= 0 ? forstaHtml.slice(0, iTrust) : forstaHtml
+  const efterHeroHtml = iTrust >= 0 ? forstaHtml.slice(iTrust) : ''
  const andraHtml = iSektion >= 0 ? landingHtml.slice(iSlut) : null
 
  return (
@@ -1273,7 +1296,9 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: forstaHtml }} />
+ <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroHtml }} />
+ <ThorkelHero />
+ {efterHeroHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterHeroHtml }} />}
  {andraHtml !== null && (
  <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1 }}>
  <div className="section-inner">
