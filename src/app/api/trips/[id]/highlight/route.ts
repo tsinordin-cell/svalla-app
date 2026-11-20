@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { turArPublik } from '@/lib/besokSynlighet'
 import webpush from 'web-push'
 
 /**
@@ -53,7 +54,7 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   // Verifiera ägarskap (RLS skulle ändå blockera men ger bättre felmeddelande)
   const { data: trip } = await supabase
     .from('trips')
-    .select('id, user_id')
+    .select('id, user_id, visibility, status, deleted_at')
     .eq('id', tripId)
     .single()
   if (!trip) return NextResponse.json({ error: 'Tur hittades inte' }, { status: 404 })
@@ -85,10 +86,14 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
 
   // ── Push-trigger: notifiera följare som sparat platsen ─────────────────────
   // Bästa-effort, fail-silent — användarens spara-flöde får inte blockeras.
-  try {
-    await notifyPlaceSavers(body.place_slug, body.place_name, user.id)
-  } catch {
-    /* tyst */
+  // Bara för en publik tur (2026-11-19): pushen säger "X just nu på <plats>"
+  // och gick tidigare ut även när turen var privat.
+  if (turArPublik(trip)) {
+    try {
+      await notifyPlaceSavers(body.place_slug, body.place_name, user.id)
+    } catch {
+      /* tyst */
+    }
   }
 
   return NextResponse.json({ id: hl.id })

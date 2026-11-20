@@ -7,6 +7,7 @@ import { parseGpx, gpxStats, simplifyPoints } from '@/lib/gpx'
 import type { GpxPoint } from '@/lib/gpx'
 import { toast } from '@/components/Toast'
 import Icon from '@/components/Icon'
+import SynlighetVaxel from '@/components/SynlighetVaxel'
 
 const MAX_FILES = 50
 
@@ -51,6 +52,9 @@ export default function ImporteraPage() {
  const [userId, setUserId] = useState<string | null>(null)
  const [files, setFiles] = useState<ImportFile[]>([])
  const [dragging, setDragging] = useState(false)
+ // Synlighet (2026-11-19): importen saknade valet, så varje importerad tur
+ // blev publik. Valet gäller alla turer som sparas härifrån.
+ const [privat, setPrivat] = useState(false)
  const inputRef = useRef<HTMLInputElement>(null)
 
  useEffect(() => {
@@ -150,6 +154,7 @@ export default function ImporteraPage() {
  caption: entry.caption || null,
  started_at: entry.startTime,
  route_points: routePoints,
+ visibility: privat ? 'private' : 'public',
  })
  .select('id')
  .single()
@@ -250,6 +255,12 @@ export default function ImporteraPage() {
  onChange={e => processFiles(Array.from(e.target.files ?? []))}
  />
  </div>
+
+ {files.length > 0 && (
+ <div style={{ marginBottom: 12 }}>
+ <SynlighetVaxel privat={privat} onChange={setPrivat} flera />
+ </div>
+ )}
 
  {savedCount > 0 && (
  <div style={{
