@@ -6,9 +6,9 @@
  * Därför, för den som inte är inloggad:
  * - Första frågan står direkt i bubblan. Inget "får jag fråga?"-steg, ett tryck och man är igång.
  * - Prickar visar hur långt man kommit (1 av 3).
- * - Efter tredje svaret: tre tips direkt (värdet kommer först), sedan EN tydlig knapp till
- *   ett gratis konto. Kontot ger något konkret: tipsen sparas och man kan fråga Thorkel vad
- *   man vill (chatten kräver konto). Efter kontot skickas man till Thorkel (/guide).
+ * - Erbjudandet står i hälsningen (Max): svara på tre frågor, så kan du fråga Thorkel vad du vill.
+ * - Efter tredje svaret: EN tydlig knapp till ett gratis konto (chatten kräver konto), och
+ *   tipsen utifrån svaren som små länkar under. Efter kontot skickas man till Thorkel (/guide).
  * För inloggade: "Fråga mig något om din nästa skärgårdsresa." och en frågeruta till /guide.
  *
  * En Thorkel, inte två: ForstaBesok visar inte sin egen ruta på startsidan, och efter att man
@@ -25,7 +25,7 @@ import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
 import { FRAGOR, tipsFor, lasProfil, sparaProfil, VISAD_SESSION, KONTO_KLICK } from '@/components/ForstaBesok'
 
-const HALSNING_GAST = 'Tre snabba frågor, så tipsar jag om din nästa skärgårdsresa.'
+const HALSNING_GAST = 'Får jag ställa dig tre frågor, så kan du fråga mig om vilka tips som helst om skärgården?'
 const HALSNING_MEDLEM = 'Fråga mig något om din nästa skärgårdsresa.'
 const KONTO_LANK = '/logga-in?mode=ny&returnTo=%2Fguide'
 
@@ -41,7 +41,7 @@ export default function ThorkelHero() {
   const [tillbaka, setTillbaka] = useState(false)
   const [q, setQ] = useState('')
 
-  const halsning = inloggad ? HALSNING_MEDLEM : tillbaka ? 'Välkommen tillbaka! Här är dina tips.' : HALSNING_GAST
+  const halsning = inloggad ? HALSNING_MEDLEM : tillbaka ? 'Välkommen tillbaka! Skapa ett gratis konto, så kan du fråga mig vad du vill.' : HALSNING_GAST
 
   useEffect(() => {
     try { sessionStorage.setItem(VISAD_SESSION, '1') } catch { /* privat läge */ }
@@ -101,7 +101,7 @@ export default function ThorkelHero() {
 
             {/* Hälsningen, eller tackraden när frågorna är besvarade */}
             {visaTips && !tillbaka ? (
-              <p className="th-text">Tack! Tre tips åt dig:</p>
+              <p className="th-text">Tack! Skapa ett gratis konto, så kan du fråga mig vad du vill.</p>
             ) : (
               <p className="th-text" aria-live="polite">
                 {inloggad === null || steg === 'vantar' || steg === 'tanker'
@@ -129,11 +129,12 @@ export default function ThorkelHero() {
               {/* Gäst: tips först, sedan en knapp till konto */}
               {gast && visaTips && (
                 <>
+                  <a className="th-konto" href={KONTO_LANK} onClick={tillKonto}>Skapa gratis konto och fråga Thorkel</a>
+                  <div className="th-not">Bara din mejladress. Dina svar sparas.</div>
                   <div className="th-tips">
+                    <span>Tips utifrån dina svar:</span>
                     {tipsFor(svar).map(t => <a key={t.href} href={t.href} onClick={() => track('forsta_besok', { steg: 'klar' })}>{t.text}</a>)}
                   </div>
-                  <a className="th-konto" href={KONTO_LANK} onClick={tillKonto}>Spara tipsen och fråga mig vad du vill</a>
-                  <div className="th-not">Gratis konto, bara din mejladress.</div>
                 </>
               )}
 
@@ -180,9 +181,11 @@ const TH_CSS = `
 .th-val{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .th-val button{background:#fff;border:1px solid rgba(150,110,60,.25);border-radius:10px;padding:7px 6px;font:inherit;font-size:12.5px;font-weight:600;color:#14202a;cursor:pointer;line-height:1.25}
 .th-val button:hover,.th-val button:focus-visible{border-color:#1e5c82;color:#1e5c82}
-.th-tips{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 9px}
-.th-tips a{font-size:12.5px;font-weight:700;color:#1e5c82;text-decoration:none;background:#fff;border:1px solid rgba(30,92,130,.22);border-radius:999px;padding:5px 10px}
-.th-konto{display:block;text-align:center;background:linear-gradient(135deg,#ec9a52,#c96e2a);color:#fff;border-radius:999px;padding:9px 12px;font-size:13.5px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(201,110,42,.35)}
+.th-tips{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin-top:9px;padding-top:8px;border-top:1px solid rgba(150,110,60,.15);font-size:12px}
+.th-tips span{color:#93a1a7;font-weight:600}
+.th-tips a{font-weight:700;color:#1e5c82;text-decoration:none}
+.th-tips a:hover{text-decoration:underline}
+.th-konto{display:block;margin-top:10px;text-align:center;background:linear-gradient(135deg,#ec9a52,#c96e2a);color:#fff;border-radius:999px;padding:9px 12px;font-size:13.5px;font-weight:700;text-decoration:none;box-shadow:0 6px 16px rgba(201,110,42,.35)}
 .th-not{font-size:11px;color:#93a1a7;margin-top:5px;text-align:center}
 .th-form{display:flex;gap:6px;margin-top:9px}
 .th-form input{flex:1;min-width:0;border:1px solid rgba(150,110,60,.25)!important;border-radius:999px;padding:8px 12px;font:inherit;font-size:13.5px;background:#fff!important;color:#14202a;outline:none;box-shadow:none!important}
