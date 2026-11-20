@@ -1316,7 +1316,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  <JustNu />
  <VadVillDuKanna kanslor={kanslor} />
  {andraHtml !== null && (
- <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1 }}>
+ <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1, paddingTop: 28, paddingBottom: 28 }}>
  <div className="section-inner">
  <div className="section-header">
  <div className="section-label">Utforska skärgården</div>
@@ -1327,7 +1327,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  </div>
  </section>
  )}
- <section className="destinations-section" id="karta-start" style={{ position: 'relative', zIndex: 1 }}>
+ <section className="destinations-section" id="karta-start" style={{ position: 'relative', zIndex: 1, paddingTop: 28, paddingBottom: 28 }}>
  <div className="section-inner">
  <div className="section-header">
  <div className="section-label">Allt på en karta</div>
@@ -1338,7 +1338,13 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  </div>
  </section>
  <FragaThorkel />
- {andraHtml !== null && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: fragorHtml }} />}
+ {/* Max 2026-11-20: vanliga frågor ligger i en rullgardin. Frågor och svar finns kvar i HTML:en. */}
+ {andraHtml !== null && (
+ <details className="sd-faq-gardin">
+  <summary><span><small>Vanliga frågor</small><h2>Allt du undrar om skärgården</h2></span><i aria-hidden="true">+</i></summary>
+  <div dangerouslySetInnerHTML={{ __html: fragorHtml }} />
+ </details>
+ )}
  <GuidePaVattnet antalKrogar={antalKrogar} />
  {slutHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: slutHtml }} />}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}

@@ -44,7 +44,7 @@ export default function ThorkelHero() {
   const [tillbaka, setTillbaka] = useState(false)
   const [q, setQ] = useState('')
 
-  const halsning = inloggad ? HALSNING_MEDLEM : tillbaka ? 'Välkommen tillbaka! Skapa ett gratis konto, så kan du fråga mig vad du vill.' : HALSNING_GAST
+  const halsning = inloggad ? (tillbaka ? HALSNING_MEDLEM : HALSNING_GAST) : tillbaka ? 'Välkommen tillbaka! Skapa ett gratis konto, så kan du fråga mig vad du vill.' : HALSNING_GAST
 
   useEffect(() => {
     try { if (window.matchMedia('(min-width:1181px)').matches) sessionStorage.setItem(VISAD_SESSION, '1') } catch { /* privat läge */ }
@@ -105,7 +105,7 @@ export default function ThorkelHero() {
 
             {/* Hälsningen, eller tackraden när frågorna är besvarade */}
             {visaTips && !tillbaka ? (
-              <p className="th-text">Tack! Skapa ett gratis konto, så kan du fråga mig vad du vill.</p>
+              <p className="th-text">{inloggad ? 'Tack! Nu kan du fråga mig vad du vill.' : 'Tack! Skapa ett gratis konto, så kan du fråga mig vad du vill.'}</p>
             ) : (
               <p className="th-text" aria-live="polite">
                 {inloggad === null || steg === 'vantar' || steg === 'tanker'
@@ -115,8 +115,8 @@ export default function ThorkelHero() {
             )}
 
             <div className={klar ? 'th-mer th-syns' : 'th-mer'}>
-              {/* Gäst: frågorna direkt, ett tryck per fråga */}
-              {gast && !visaTips && fraga && (
+              {/* Frågorna direkt, ett tryck per fråga. Max 2026-11-20: även för inloggade som inte svarat än. */}
+              {inloggad !== null && !visaTips && fraga && (
                 <>
                   <div className="th-fraga-rad">
                     <span className="th-fraga">{fraga.text}</span>
@@ -143,7 +143,7 @@ export default function ThorkelHero() {
               )}
 
               {/* Inloggad: fråga Thorkel direkt */}
-              {inloggad && (
+              {inloggad && visaTips && (
                 <form className="th-form" onSubmit={skicka}>
                   <input value={q} onChange={e => setQ(e.target.value)} placeholder="Vilken ö passar för en dagstur?" aria-label="Din fråga till Thorkel" />
                   <button type="submit" aria-label="Skicka frågan">→</button>
