@@ -135,8 +135,8 @@ export default function IdeerMer({ turer, rutt, kanslor, oar, mosaik, siffror }:
     <div className="id im">
       <style>{CSS}</style>
       <header className="im-topp">
-        <p className="id-etikett">Runda 2</p>
-        <h2>Fjorton idéer till</h2>
+        <p className="id-etikett">Fler idéer</p>
+        <h2>Runda 2</h2>
         <p>Hämtade ur länkarna från Max och ur ChatGPT-biblioteket. Erbjudandena är exempel för att visa formen, inga avtal finns än. Allt annat är Svallas riktiga innehåll.</p>
       </header>
 

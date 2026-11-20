@@ -15,18 +15,19 @@ import { ISLAND_COORDS } from '@/lib/islandCoords'
  */
 export const metadata: Metadata = {
   title: 'Idéer för startsidan (förhandsvisning)',
-  description: 'Tjugoen idéer för Svallas startsida, med förebild och motivering vid varje. Förhandsvisning, inte live.',
+  description: 'Sexton idéer för Svallas startsida som inte är med än, med förebild och motivering vid varje. Förhandsvisning.',
   robots: { index: false, follow: false },
   openGraph: {
-    title: 'Svalla: tjugoen idéer för startsidan',
+    title: 'Svalla: sexton idéer vi inte har tagit med än',
     description: 'Förhandsvisning med förebild och motivering vid varje idé. Inte live.',
   },
 }
 
 const INDEX: [string, string][] = [
-  ['A', 'Hero'], ['B', 'Just nu'], ['C', 'Turer'], ['D', 'Thorkel'], ['E', 'Frågor'], ['F', 'Appen'], ['G', 'Sidfot'],
-  ['H', 'Erbjudanden'], ['I', 'Veckans'], ['J', 'Tid'], ['K', 'Känsla'], ['L', 'Ölista'], ['M', 'Sjökort'], ['N', 'Berättelse'],
-  ['O', 'Visste du'], ['P', 'Ta dig ut'], ['Q', 'Stämplar'], ['R', 'Siffror'], ['S', 'Mosaik'], ['T', 'Årstider'], ['U', 'Brevet'],
+  // 2026-11-20: B, D, F, K och P är live på startsidan och visas inte här längre.
+  ['A', 'Hero'], ['C', 'Turer'], ['E', 'Frågor'], ['G', 'Sidfot'],
+  ['H', 'Erbjudanden'], ['I', 'Veckans'], ['J', 'Tid'], ['L', 'Ölista'], ['M', 'Sjökort'], ['N', 'Berättelse'],
+  ['O', 'Visste du'], ['Q', 'Stämplar'], ['R', 'Siffror'], ['S', 'Mosaik'], ['T', 'Årstider'], ['U', 'Brevet'],
 ]
 
 // Känslan är vår rubrik. Listan bakom är den ökategori som redan finns på /oar.
@@ -109,7 +110,7 @@ export default function IdeerPage() {
 
   return (
     <>
-      <style>{`.id-nav{position:sticky;top:0;z-index:50;background:rgba(243,236,224,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(150,110,60,.2);display:flex;gap:6px;overflow-x:auto;padding:8px 12px;scrollbar-width:none}.id-nav::-webkit-scrollbar{display:none}.id-nav a{flex-shrink:0;font:600 12.5px Inter,system-ui,sans-serif;color:#0d2440;text-decoration:none;padding:6px 10px;border-radius:999px;background:#fffdf8;border:1px solid rgba(150,110,60,.2)}.id-nav a b{color:#b5591a;margin-right:5px}.id-alt{scroll-margin-top:60px}`}</style>
+      <style>{`.id-nav{position:sticky;top:0;z-index:50;background:rgba(243,236,224,.94);backdrop-filter:blur(8px);border-bottom:1px solid rgba(150,110,60,.2);display:flex;gap:6px;overflow-x:auto;padding:8px 12px;scrollbar-width:none}.id-nav::-webkit-scrollbar{display:none}.id-nav a{flex-shrink:0;font:600 12.5px Inter,system-ui,sans-serif;color:#0d2440;text-decoration:none;padding:6px 10px;border-radius:999px;background:#fffdf8;border:1px solid rgba(150,110,60,.2)}.id-nav a b{color:#b5591a;margin-right:5px}.id-alt{scroll-margin-top:60px}#alt-B,#alt-D,#alt-F,#alt-K,#alt-P{display:none}`}</style>
       <nav className="id-nav" aria-label="Idéerna">
         {INDEX.map(([b, n]) => <a key={b} href={`#alt-${b}`}><b>{b}</b>{n}</a>)}
       </nav>

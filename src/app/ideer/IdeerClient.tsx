@@ -137,8 +137,8 @@ export default function IdeerClient({ turer, antalKrogar }: { turer: Tur[]; anta
       <style>{CSS}</style>
       <header className="id-topp">
         <p className="id-etikett">Förhandsvisning, inte live</p>
-        <h1>Sju idéer för startsidan</h1>
-        <p>Ett alternativ per del av startsidan. Allt innehåll är Svallas eget. Megamenyn, sökrutan, Thorkel i heron, kartorna och Se &amp; Göra är inte med här, de rörs inte.</p>
+        <h1>Idéer vi inte har tagit med än</h1>
+        <p>Sexton idéer för startsidan som inte är live. Fem är redan med på svalla.se och visas inte här: Tre sätt att ta sig ut, Just nu i skärgården, Vad vill du känna?, Fråga Thorkel och telefonen med Sätt er krog på kartan. Bokstäverna är kvar från första rundan, därför saknas några.</p>
       </header>
 
       {/* ───────── A ───────── */}
