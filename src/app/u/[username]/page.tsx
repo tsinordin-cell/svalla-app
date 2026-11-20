@@ -121,7 +121,8 @@ export default async function PublicProfilePage({
  const supabase = createPublicSupabaseClient()
 
  const { data: userRow, error: userErr } = await supabase
- .from('users')
+ // users_publik lämnar bara ut fält som användaren valt att visa (integritet 2026-11-20).
+ .from('users_publik')
  .select('id, username, avatar, bio, website, nationality, experience_years, vessel_type, vessel_model, vessel_name, home_port, sailing_region, public_fields')
  .eq('username', username)
  .single()
