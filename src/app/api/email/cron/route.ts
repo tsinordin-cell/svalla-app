@@ -7,6 +7,8 @@
  *   - Säsongsslut-mail (1 oktober) till users med trips i år
  *   - Vädermail (torsdagar maj–sept) till alla bekräftade prenumeranter + members
  *
+ * Måndagar körs också städningen av övergivna turbilder (src/lib/turbildStadning.ts).
+ *
  * Trigger: Vercel cron eller GitHub Actions (en gång om dagen, 09:00 UTC)
  *
  * Authorization: Bearer ${CRON_SECRET}
@@ -18,6 +20,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
 import { korAvstangdaFloden } from './floden'
 import { hamtaEngagemang } from './engagemang'
+import { stadaTurbilder, type Stadresultat } from '@/lib/turbildStadning'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -511,5 +514,18 @@ async function handle(req: Request) {
   const eng = await hamtaEngagemang(service)
   results.engagemang = { sent: eng.uppdaterade, errors: eng.errors, details: eng.skipped ? { skipped: eng.skipped } : undefined }
 
-  return NextResponse.json({ ok: true, today: today.toISOString().slice(0, 10), results })
+  // ── Städning av övergivna turbilder (måndagar) ───────────────────────────
+  // Ligger här för att slippa ett tredje schemalagt jobb. Har inget med mejlen
+  // att göra och får aldrig fälla dem: fel fångas och rapporteras i svaret.
+  // Se src/lib/turbildStadning.ts.
+  let turbilder: Stadresultat | { avbrutet: string } | null = null
+  if (today.getUTCDay() === 1) {
+    try {
+      turbilder = await stadaTurbilder(service)
+    } catch (e) {
+      turbilder = { avbrutet: String(e) }
+    }
+  }
+
+  return NextResponse.json({ ok: true, today: today.toISOString().slice(0, 10), results, turbilder })
 }
