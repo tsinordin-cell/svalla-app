@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { adminRad } from '@/lib/adminRad'
 
 const VALID_STATUSES = ['new', 'contacted', 'closed', 'lost'] as const
 type Status = typeof VALID_STATUSES[number]
@@ -11,11 +12,7 @@ export async function POST(req: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
+  const { data: userRow } = await adminRad(supabase)
   if (!userRow?.is_admin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   // Parse + validate

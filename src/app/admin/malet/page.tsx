@@ -7,6 +7,7 @@ import { TRAFFIC_OVERRIDE, REVENUE_YEARLY_SEK } from './config'
 import MaletClient from './MaletClient'
 import { baraManniskor } from '@/lib/analytics-filter'
 import { getStripeIntakt } from '@/lib/stripe-intakt'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 
@@ -15,7 +16,7 @@ export default async function MaletPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/malet')
 
-  const { data: userRow } = await supabase.from('users').select('is_admin').eq('id', user.id).single()
+  const { data: userRow } = await adminRad(supabase)
   if (!userRow?.is_admin) redirect('/feed')
 
   const service = getAdminClient()

@@ -95,12 +95,12 @@ function ManuellForm() {
   // Förifyll start/slut från planerad rutt
   useEffect(() => {
     if (!plannedRouteId) return
+    // Genom funktionen planerad_rutt (2026-11-20): tabellen går bara att läsa för ägaren.
     supabase
-      .from('planned_routes')
-      .select('start_name, end_name')
-      .eq('id', plannedRouteId)
+      .rpc('planerad_rutt', { p_id: plannedRouteId })
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data: rad }) => {
+        const data = rad as { start_name: string | null; end_name: string | null } | null
         if (!data) return
         if (data.start_name) setStartLocation(data.start_name)
         if (data.end_name)   setLocation(data.end_name)

@@ -4,6 +4,7 @@ import { getModerationQueue } from '@/lib/moderation'
 import { REASON_LABELS, TARGET_TYPE_LABELS, STATUS_LABELS } from '@/lib/moderation'
 import type { ReportStatus } from '@/lib/moderation'
 import ModerationActions from './ModerationActions'
+import { adminRad } from '@/lib/adminRad'
 
 export const revalidate = 0
 export const dynamic = 'force-dynamic'
@@ -28,11 +29,7 @@ export default async function ModerationPage({
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/moderation')
 
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
+  const { data: userRow } = await adminRad(supabase)
 
   if (!userRow?.is_admin) redirect('/feed')
 

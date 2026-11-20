@@ -18,6 +18,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { ALL_ISLANDS } from '@/app/o/island-data'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -28,7 +29,7 @@ export default async function OarTrafikPage() {
   const sb = await createServerSupabaseClient()
   const { data: { user } } = await sb.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/oar-trafik')
-  const { data: userRow } = await sb.from('users').select('is_admin').eq('id', user.id).single()
+  const { data: userRow } = await adminRad(sb)
   if (!userRow?.is_admin) redirect('/feed')
 
   const since = new Date(Date.now() - DAGAR * 24 * 3600 * 1000).toISOString()

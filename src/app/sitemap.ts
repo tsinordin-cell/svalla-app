@@ -396,7 +396,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let platsPages: MetadataRoute.Sitemap = []
   let rutterPages: MetadataRoute.Sitemap = []
   let tipsPages: MetadataRoute.Sitemap = []
-  let planeraPages: MetadataRoute.Sitemap = []
+  // Användares planerade rutter (/planera/<id>) ligger inte i sitemapen sedan
+  // 2026-11-20: de är någons egna planer och går bara att läsa för den som har länken.
   let forumCatPages: MetadataRoute.Sitemap = []
   let forumThreadPages: MetadataRoute.Sitemap = []
   const regionKategoriPages: MetadataRoute.Sitemap = []
@@ -413,21 +414,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       { data: restaurants, error: restaurantsErr },
       { data: tours, error: toursErr },
       { data: articles, error: articlesErr },
-      { data: plannedRoutes, error: plannedRoutesErr },
       { data: forumCats, error: forumCatsErr },
       { data: forumThreads, error: forumThreadsErr },
     ] = await Promise.all([
       supabase.from('restaurants').select('id, slug, updated_at, archipelago_region, type').order('id'),
       supabase.from('tours').select('id, created_at').order('id'),
       supabase.from('articles').select('slug, updated_at, published').eq('published', true),
-      supabase.from('planned_routes').select('id, updated_at').eq('status', 'published'),
       supabase.from('forum_categories').select('id'),
       supabase.from('forum_threads').select('id, category_id, last_reply_at').eq('in_spam_queue', false).order('last_reply_at', { ascending: false }).limit(500),
     ])
 
     for (const [namn, err] of [
       ['restaurants', restaurantsErr], ['tours', toursErr], ['articles', articlesErr],
-      ['planned_routes', plannedRoutesErr], ['forum_categories', forumCatsErr],
+['forum_categories', forumCatsErr],
       ['forum_threads', forumThreadsErr],
     ] as const) {
       if (err) console.error(`[sitemap] frågan mot ${namn} misslyckades: de sidorna utelämnas:`, err)
@@ -472,13 +471,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: a.updated_at ? new Date(a.updated_at) : now,
       changeFrequency: 'monthly' as const,
       priority: 0.75,
-    }))
-
-    planeraPages = (plannedRoutes ?? []).map((r: { id: string; updated_at?: string }) => ({
-      url: `${base}/planera/${r.id}`,
-      lastModified: r.updated_at ? new Date(r.updated_at) : now,
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
     }))
 
     forumCatPages = (forumCats ?? []).map((c: { id: string }) => ({
@@ -526,7 +518,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...platsPages,
     ...rutterPages,
     ...tipsPages,
-    ...planeraPages,
     ...forumCatPages,
     ...forumThreadPages,
     ...regionKategoriPages,

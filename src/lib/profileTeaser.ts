@@ -39,7 +39,11 @@ export async function getProfileTeaser(
 
   const [tripsRes, followersRes, followingRes] = await Promise.all([
     supabase.from('trips').select('distance', { count: 'exact' }).eq('user_id', u.id),
-    supabase.from('follows').select('follower_id', { count: 'exact', head: true }).eq('following_id', u.id),
+    // Antalet genom funktionen profiltal: listan över följare går bara att läsa inloggad (2026-11-20).
+    supabase.rpc('profiltal', { p_user: u.id }).then(({ data }) => {
+      const rad = (Array.isArray(data) ? data[0] : data) as { foljare?: number } | null
+      return { count: Number(rad?.foljare ?? 0) }
+    }),
     currentUserId
       ? supabase.from('follows').select('follower_id', { count: 'exact', head: true })
           .eq('follower_id', currentUserId).eq('following_id', u.id)

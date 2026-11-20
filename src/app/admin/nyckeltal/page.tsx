@@ -26,6 +26,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { baraManniskor } from '@/lib/analytics-filter'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 
@@ -155,7 +156,7 @@ export default async function NyckeltalPage({ searchParams }: { searchParams: Pr
   const sb = await createServerSupabaseClient()
   const { data: { user } } = await sb.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/nyckeltal')
-  const { data: userRow } = await sb.from('users').select('is_admin').eq('id', user.id).single()
+  const { data: userRow } = await adminRad(sb)
   if (!userRow?.is_admin) redirect('/feed')
 
   const sp = await searchParams

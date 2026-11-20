@@ -17,6 +17,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { baraManniskor } from '@/lib/analytics-filter'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -45,7 +46,7 @@ export default async function InsikterPage({ searchParams }: PageProps) {
   const sb = await createServerSupabaseClient()
   const { data: { user } } = await sb.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/insikter')
-  const { data: userRow } = await sb.from('users').select('is_admin').eq('id', user.id).single()
+  const { data: userRow } = await adminRad(sb)
   if (!userRow?.is_admin) redirect('/feed')
 
   // ── Range från query (?range=24h|7d|30d) ──────────────────────────────

@@ -10,6 +10,7 @@ import { getGsc, summarize } from '@/lib/gsc'
 import { getStripeIntakt } from '@/lib/stripe-intakt'
 import type { KpiValues } from './roadmap-config'
 import type { Milestone, RoadmapMerits, RoadmapTraffic } from './RoadmapView'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 
@@ -47,13 +48,12 @@ export default async function TeamPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/team')
 
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('id, username, is_admin')
-    .eq('id', user.id)
-    .single()
+  const [{ data: adm }, { data: userRow }] = await Promise.all([
+    adminRad(supabase),
+    supabase.from('users').select('id, username').eq('id', user.id).single(),
+  ])
 
-  if (!userRow?.is_admin) redirect('/feed')
+  if (!adm?.is_admin || !userRow) redirect('/feed')
 
   // Service-role för snabb, samlad initial-hämtning (RLS gäller ändå
   // för alla efterföljande skriv/läs som klienten gör direkt mot Supabase).

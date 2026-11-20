@@ -38,6 +38,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import sharp from 'sharp'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -60,7 +61,7 @@ async function arAdminSession(): Promise<boolean> {
     )
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return false
-    const { data } = await supabase.from('users').select('is_admin').eq('id', user.id).single()
+    const { data } = await adminRad(supabase)
     return !!data?.is_admin
   } catch {
     return false

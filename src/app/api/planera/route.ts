@@ -31,14 +31,15 @@ export async function POST(req: NextRequest) {
     const supabase = await createClient()
 
     // Hämta endast publicerade rutter (matchar beteendet på /planera/[id])
-    const { data: route, error: routeErr } = await supabase
-      .from('planned_routes')
-      .select('id, start_lat, start_lng, end_lat, end_lng, interests, suggested_stops')
-      .eq('id', routeId)
-      .eq('status', 'published')
-      .maybeSingle()
+    // Genom funktionen planerad_rutt (2026-11-20): tabellen går bara att läsa för ägaren.
+    const { data: ruttRad, error: routeErr } = await supabase.rpc('planerad_rutt', { p_id: routeId }).maybeSingle()
+    const route = ruttRad as {
+      id: string; status: string
+      start_lat: number; start_lng: number; end_lat: number; end_lng: number
+      interests: string[] | null; suggested_stops: unknown
+    } | null
 
-    if (routeErr || !route) {
+    if (routeErr || !route || route.status !== 'published') {
       return NextResponse.json({ error: 'Rutten hittades inte' }, { status: 404 })
     }
 
