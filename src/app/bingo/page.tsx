@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
+import TillbakaRad from '@/components/TillbakaRad'
 import PublicFooter from '@/components/PublicFooter'
 import BingoClient from './BingoClient'
 import { BINGO_ITEMS } from './bingo-data'
@@ -22,6 +23,7 @@ export default function BingoPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <SidHuvud />
+      <TillbakaRad />
 
       <header style={{
         background: 'linear-gradient(170deg, #1e5c82 0%, #2d7d8a 100%)',

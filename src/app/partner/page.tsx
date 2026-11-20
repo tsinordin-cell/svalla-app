@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import SidHuvud from '@/components/SidHuvud'
+import TillbakaRad from '@/components/TillbakaRad'
 import PartnerForm from './PartnerForm'
 import Icon, { type IconName } from '@/components/Icon'
 import { ANTAL_OAR } from '@/app/o/island-data'
@@ -91,6 +92,7 @@ export default async function PartnerPage() {
     <div style={{ minHeight: '100vh', background: 'var(--bg)', color: 'var(--txt)' }}>
       {/* NAV */}
       <SidHuvud />
+      <TillbakaRad />
 
       {/* HERO */}
       <section style={{

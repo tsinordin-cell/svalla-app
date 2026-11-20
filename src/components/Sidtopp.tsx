@@ -8,7 +8,7 @@
  *
  * 2026-11-20 (Max: samma meny överallt): innehållssidorna får Svallas meny (MegaMeny), samma som
  * startsidan och SidHuvud. Kontosidorna (lösenord, avslut) behåller den enkla raden med tillbaka
- * och logga, så att man inte leds bort mitt i ett flöde.
+ * och logga, så att man inte leds bort mitt i ett flöde. Under menyn ligger en rad med Tillbaka (TillbakaRad).
  *
  * Sidor som själva visar SidHuvud ska inte stå här (då blir det två menyer): /guider, /guider/…,
  * /resetips/…, /dag/… och /aktivitet/[typ] har SidHuvud. /aktivitet/kajak är en egen sida utan.
@@ -24,6 +24,7 @@ import { usePathname } from 'next/navigation'
 import SvallaLogo from '@/components/SvallaLogo'
 import BackButtonInline from '@/components/BackButtonInline'
 import MegaMeny from '@/components/MegaMeny'
+import TillbakaRad from '@/components/TillbakaRad'
 
 const MENY = [
   '/ai-guide', '/dag', '/helgturer', '/hyra-bat', '/oppet-nu', '/sasong', '/statistik', '/ta-dig-till',
@@ -31,6 +32,8 @@ const MENY = [
   '/aktivitet/kajak', '/aland/aventyr', '/gotland/aventyr', '/oland/aventyr', '/insikter', '/jamfor', '/ostlistan',
   '/sasong/', '/segelkurs/', '/hyra-bat/', '/teambuilding/',
 ]
+// Sidor som redan har en egen tillbakalänk högst upp (t.ex. "← Aktiviteter"): ingen extra rad där.
+const EGEN_TILLBAKA = ['/aktivitet/kajak', '/jamfor', '/teambuilding/', '/segelkurs/']
 const KONTO = ['/glomt-losenord', '/nytt-losenord', '/goodbye']
 
 // Exakt sökväg, eller prefix när posten slutar på '/'.
@@ -39,7 +42,7 @@ const traff = (lista: string[], path: string) =>
 
 export default function Sidtopp() {
   const path = usePathname() ?? ''
-  if (traff(MENY, path)) return <MegaMeny />
+  if (traff(MENY, path)) return <><MegaMeny />{!traff(EGEN_TILLBAKA, path) && <TillbakaRad />}</>
   if (!traff(KONTO, path)) return null
   return (
     <div
