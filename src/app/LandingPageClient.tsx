@@ -1262,18 +1262,18 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
   const iTrust = forstaHtml.indexOf('<div class="trust-bar">')
   const heroHtml = iTrust >= 0 ? forstaHtml.slice(0, iTrust) : forstaHtml
   const efterHeroHtml = iTrust >= 0 ? forstaHtml.slice(iTrust) : ''
-  // Se & Göra (#aktiviteter) klipps ut och renderas av React (SeOchGora, Max 2026-11-20:
-  // foto och kort som bläddras, efter nyctourism.com). Texter och länkar är desamma.
-  const AKT = '<section class="activities-section" id="aktiviteter">'
-  const iAkt = efterHeroHtml.indexOf(AKT)
-  const iAktSlut = iAkt >= 0 ? efterHeroHtml.indexOf('</section>', iAkt) + '</section>'.length : -1
-  const foreAkt = iAkt >= 0 ? efterHeroHtml.slice(0, iAkt) : efterHeroHtml
-  const efterAkt = iAkt >= 0 ? efterHeroHtml.slice(iAktSlut) : ''
   // MEGAMENY-GRENEN: startsidans HTML-meny och mobilens låda byts mot MegaMeny (React).
   const iNav = heroHtml.indexOf('<nav class="lp-nav"')
   const iHeroSek = heroHtml.indexOf('<section class="hero"')
   const heroUtanMeny = iNav >= 0 && iHeroSek > iNav ? heroHtml.slice(0, iNav) + heroHtml.slice(iHeroSek) : heroHtml
  const andraHtml = iSektion >= 0 ? landingHtml.slice(iSlut) : null
+  // Se & Göra (#aktiviteter) klipps ut ur delen efter #resmål och renderas av React (SeOchGora,
+  // Max 2026-11-20: foto och kort som bläddras, efter nyctourism.com). Texter och länkar är desamma.
+  const AKT = '<section class="activities-section" id="aktiviteter">'
+  const iAkt = andraHtml ? andraHtml.indexOf(AKT) : -1
+  const iAktSlut = iAkt >= 0 && andraHtml ? andraHtml.indexOf('</section>', iAkt) + '</section>'.length : -1
+  const foreAkt = andraHtml !== null ? (iAkt >= 0 ? andraHtml.slice(0, iAkt) : andraHtml) : null
+  const efterAkt = andraHtml !== null && iAkt >= 0 ? andraHtml.slice(iAktSlut) : ''
 
  return (
  <>
@@ -1309,9 +1309,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  <MegaMeny overStart />
  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroUtanMeny }} />
  <ThorkelHero />
- {foreAkt && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: foreAkt }} />}
- {iAkt >= 0 && <SeOchGora />}
- {efterAkt && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterAkt }} />}
+ {efterHeroHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterHeroHtml }} />}
  {andraHtml !== null && (
  <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1 }}>
  <div className="section-inner">
@@ -1334,7 +1332,9 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  <StartKarta />
  </div>
  </section>
- {andraHtml !== null && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: andraHtml }} />}
+ {foreAkt && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: foreAkt }} />}
+ {iAkt >= 0 && <SeOchGora />}
+ {efterAkt && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: efterAkt }} />}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />
  </div>
