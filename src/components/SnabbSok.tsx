@@ -77,7 +77,7 @@ export default function SnabbSok({ lage }: { lage?: 'karta' } = {}) {
       <form className="ss-rad" role="search" onSubmit={e => { e.preventDefault(); ga(lista[aktiv]) }}>
         <svg className="ss-lupp" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
         <input
-          type="search" value={q} placeholder="Sök ö, krog, hamn, boende eller guide"
+          type="search" value={q} placeholder={lage === 'karta' ? 'Sök ö, krog, hamn eller boende' : 'Sök ö, krog, hamn, boende eller guide'}
           aria-label="Sök på Svalla" aria-autocomplete="list" aria-expanded={oppen && lista.length > 0} aria-controls="ss-lista"
           onFocus={() => { ladda(); setOppen(true) }}
           onChange={e => { ladda(); setQ(e.target.value); setOppen(true); setAktiv(0) }}
@@ -140,5 +140,5 @@ const SS_CSS = `
 .ss-karta{margin:0;max-width:none}
 .ss-karta .ss-rad{box-shadow:0 10px 30px rgba(0,0,0,.28);border-color:transparent}
 .ss-karta .ss-lista{top:auto;bottom:70px;max-height:min(420px,60vh);overflow-y:auto}
-@media (max-width:640px){.ss-rad{padding:6px 6px 6px 14px}.ss-rad input{font-size:16px}.ss-knapp{height:42px;padding:0 18px}.ss-under{display:none}}
+@media (max-width:640px){.ss-rad{padding:6px 6px 6px 14px}.ss-rad input{font-size:16px}.ss-knapp{height:42px;padding:0 18px}.ss-under{display:none}.ss-karta .ss-lupp{display:none}.ss-karta .ss-rad input{font-size:15px}.ss-karta .ss-knapp{padding:0 16px}}
 `

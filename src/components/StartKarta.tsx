@@ -251,7 +251,8 @@ const SKN_CSS = `
 .skn-pin span{position:absolute;left:7px;top:7px;width:20px;height:20px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .skn-kluster{display:flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:#14202a;font:800 14px Inter,system-ui,sans-serif;border:4px solid #1e5c82;box-shadow:0 0 0 3px rgba(255,255,255,.75),0 4px 12px rgba(0,0,0,.28);box-sizing:border-box}
 .skn .leaflet-popup-content-wrapper{border-radius:14px;padding:0;overflow:hidden}
-.skn .leaflet-popup-content{margin:0;width:auto!important}
+.skn .leaflet-popup-content{margin:0;width:240px!important}
+.skn .leaflet-tile-pane{filter:saturate(.8) sepia(.1) brightness(1.02)}
 .skn-pop img{display:block;width:100%;height:120px;object-fit:cover}
 .skn-pop-t{display:flex;flex-direction:column;gap:3px;padding:10px 13px 12px;font-family:Inter,system-ui,sans-serif}
 .skn-pop-t strong{font-size:14px;color:#14202a}
@@ -265,8 +266,8 @@ const SKN_CSS = `
   .skn-lista::-webkit-scrollbar{display:none}
   .skn-lista-rubrik,.skn-linje{display:none}
   .skn-lista button{flex-shrink:0;width:auto;border-radius:999px;padding:6px 11px 6px 6px;font-size:12.5px;white-space:nowrap}
-  .skn-karta .leaflet-control-zoom{margin-top:66px}
-  .skn-aterstall{top:150px;right:10px}
+  .skn-karta .leaflet-control-zoom{display:none}
+  .skn-aterstall{top:64px;right:10px}
   .skn-sok{bottom:14px}
 }
 `
