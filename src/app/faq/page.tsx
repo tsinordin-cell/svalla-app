@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
-import SvallaLogo from '@/components/SvallaLogo'
 import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
@@ -68,14 +68,12 @@ const FAQS = [
 export default function FaqPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
+      <SidHuvud />
       <div style={{
         background: 'var(--grad-sea-hero)',
         padding: '60px 20px 32px',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
-            <SvallaLogo height={26} color="#ffffff" />
-          </Link>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Vanliga frågor</h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Allt du behöver veta om Svalla och skärgården</p>
         </div>

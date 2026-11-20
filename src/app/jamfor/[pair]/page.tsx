@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getIsland, type Island } from '@/app/o/island-data'
-import SvallaLogo from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import { ogSida } from '@/lib/og-standard'
@@ -274,19 +274,7 @@ export default async function ComparisonPage({ params }: Props) {
         }}
       />
 
-      <nav style={{
-        background: 'linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%)',
-        padding: '18px 24px 16px',
-      }}>
-        <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            <SvallaLogo height={24} color="#ffffff" />
-          </Link>
-          <Link href="/jamfor" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none' }}>
-            ← Alla jämförelser
-          </Link>
-        </div>
-      </nav>
+      <SidHuvud />
 
       <header style={{
         background: 'linear-gradient(170deg, #1e5c82 0%, #2d7d8a 100%)',

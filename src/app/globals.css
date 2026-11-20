@@ -42,8 +42,8 @@
   --txt:   #192830;
   --txt2:  #3d5865;
   --txt3:  #52717f;   /* var #5a7a8a: 4,3:1 mot --bg, kravet 4,5 (revision P2-4) */
-  --bg:    #f2f8fa;
-  --white: #fafeff;
+  --bg:    #f7f1e7;   /* förhandsvisning 2026-11-19: varm sand i stället för kall ljusblå (#f2f8fa) */
+  --white: #fffdf8;   /* förhandsvisning 2026-11-19: varmvitt (var #fafeff) */
   --green: #22c55e;
   --red:   #ef4444;
   --nav-h: 64px;
@@ -59,7 +59,7 @@
      doldes helt av knappen (108x34 px överlapp, mätt live). */
   --fb-top: calc(var(--nav-h, 0px) + env(safe-area-inset-bottom, 0px) + 51px);
   /* ── Surface system ── */
-  --surface-1:  rgba(250,254,255,1);
+  --surface-1:  #fffdf8;
   --surface-2:  rgba(10,123,140,0.06);
   --surface-3:  rgba(10,123,140,0.10);
   /* ── Input / form ── */
@@ -82,7 +82,7 @@
   --grad-sea-hero: linear-gradient(160deg, #1e5c82 0%, #2d7d8a 100%);
   --grad-acc:      linear-gradient(135deg, #c96e2a, #e07828);
   /* ── Design uplift tokens ── */
-  --surface:         #ffffff;
+  --surface:         #fffdf8;
   --ink:             #162d3a;
   --ink-muted:       #54737f;   /* var #6a8a96: 3,4–3,6:1 mot ljus bakgrund (revision P2-4) */
   --ink-soft:        #8ea7b1;

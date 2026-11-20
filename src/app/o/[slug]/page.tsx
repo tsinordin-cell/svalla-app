@@ -1,4 +1,6 @@
 import type { Metadata } from 'next'
+import SidHuvud from '@/components/SidHuvud'
+import { regionForIsland } from '@/lib/region-lank'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ALL_ISLANDS, getIsland } from '../island-data'
@@ -7,7 +9,6 @@ import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { ISLAND_COORD_MAP } from '@/lib/islandCoords'
 import IslandWeatherClient from '@/components/IslandWeatherClient'
 import SaveIslandButton from '@/components/SaveIslandButton'
-import IslandNavAuth from '@/components/IslandNavAuth'
 import MarkVisitedButton from '@/components/MarkVisitedButton'
 import FAQSection from '@/components/FAQSection'
 import { getFaqsForIsland } from '@/lib/islandFaqs'
@@ -280,30 +281,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* ── NAV ─────────────────────────────────────────────────── */}
  {/* revision 2026-10-02: mork-yta = vit fokusring (globals.css), --sea syntes inte här. */}
- <nav className="mork-yta" style={{
- background: `linear-gradient(160deg, ${regionColor} 0%, #2d7d8a 100%)`,
- padding: '18px 24px 16px',
- position: 'sticky',
- top: 0,
- zIndex: 100,
- boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
- }}>
- <div style={{ maxWidth: 900, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
- {/* revision 2026-10-02: padding + lika stor negativ marginal ger 44 px hög
-     träffyta (var 24 resp. 18 px) utan att något flyttas visuellt. */}
- <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', padding: '10px 0', margin: '-10px 0' }}>
- <SvallaLogo height={24} color="#ffffff" />
- </Link>
- <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-   <Link href="/rutter?vy=oar" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 12, textDecoration: 'none', fontWeight: 500, padding: '13px 0', margin: '-13px 0' }}>
-     ← Alla öar
-   </Link>
-   {/* 2026-09-28: "Logga in" + "Kom igång" (utloggad) eller "Min skärgård" (inloggad),
-       som på startsidan. Nyhetsbrevsknappen som låg här finns kvar under "Mer om …". */}
-   <IslandNavAuth islandSlug={island.slug} />
- </div>
- </div>
- </nav>
+ <SidHuvud />
 
  {/* ── HERO ────────────────────────────────────────────────── */}
  <div className="mork-yta" style={{
@@ -312,6 +290,11 @@ export default async function IslandPage({ params }: Props) {
  color: '#fff',
  }}>
  <div style={{ maxWidth: 900, margin: '0 auto' }}>
+ <nav aria-label="Brödsmulor" style={{ fontSize: 12.5, marginBottom: 14, color: 'rgba(255,255,255,0.75)', display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+ <Link href="/" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>Hem</Link><span aria-hidden>›</span>
+ <Link href={regionForIsland(island.regionLabel).href} style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>{regionForIsland(island.regionLabel).namn}</Link><span aria-hidden>›</span>
+ <span style={{ color: '#fff', fontWeight: 600 }}>{island.name}</span>
+ </nav>
  {/* flexWrap 2026-09-28: raden gjorde sidan 412 px bred på 320 px-skärmar (sidled-skroll). */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16, flexWrap: 'wrap' }}>
  <span style={{

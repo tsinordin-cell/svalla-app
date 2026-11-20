@@ -1,4 +1,5 @@
 import SidHuvud from '@/components/SidHuvud'
+import Gardiner from '@/components/Gardiner'
 import Link from 'next/link'
 import type { ReactNode, CSSProperties } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
@@ -75,6 +76,8 @@ export type CategoryLandingProps = {
  related?: RelatedLink[]
  /** Knapp direkt under rubriken, för sidor där besökaren oftast vill vidare direkt (t.ex. kartan). */
  heroCta?: { label: string; href: string }
+ /** FÖRHANDSVISNING 2026-11-18: "Allt om regionen" direkt under rubriken. */
+ regionNav?: ReactNode
 }
 
 export default function CategoryLanding(props: CategoryLandingProps) {
@@ -93,6 +96,7 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  cta = { label: 'Öppna kartan', href: '/upptack' },
  related,
  heroCta,
+ regionNav,
  } = props
  void _egenFarg
  const heroGradient: [string, string] = ['#1e5c82', '#2d7d8a']
@@ -200,6 +204,8 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  </div>
  </header>
 
+ {regionNav}
+
  {/* INTRO */}
  <section
  style={{
@@ -278,7 +284,8 @@ export default function CategoryLanding(props: CategoryLandingProps) {
  lineHeight: 1.7,
  }}
  >
- {deeperContent}
+ {/* FÖRHANDSVISNING 2026-11-19: varje H2-avsnitt blir en gardin, samma avstånd överallt (Max). */}
+ <Gardiner>{deeperContent}</Gardiner>
  </section>
  )}
 
