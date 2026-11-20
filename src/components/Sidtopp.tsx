@@ -26,7 +26,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import BackButtonInline from '@/components/BackButtonInline'
 
 const HELA = [
-  '/ai-guide', '/dag', '/glomt-losenord', '/goodbye', '/helgturer', '/hyra-bat', '/oppet-nu',
+  '/ai-guide', '/dag', '/glomt-losenord', '/nytt-losenord', '/goodbye', '/helgturer', '/hyra-bat', '/oppet-nu',
   '/sasong', '/statistik', '/ta-dig-till', '/teambuilding', '/upplevelser', '/goteborg',
   '/goteborg/', '/bohuslan/',
 ]
