@@ -161,7 +161,7 @@ const PUNKTER: Punkt[] = [
 
 const ZON_NAMN: Record<Zon, string> = { ost: 'Ostkusten', vast: 'Västkusten', syd: 'Sydkusten', norr: 'Norrlandskusten', sjo: 'Insjöarna' }
 
-type Karta = { viewBox: string; lan: { n: string; z: Zon | ''; d: string }[]; sjoar: { n: string; d: string }[] }
+type Karta = { viewBox: string; lan: { n: string; z: Zon | ''; d: string }[]; sjoar: { n: string; d: string }[]; kust: string; klipp: string }
 
 export default function MegaMeny({ overStart = false }: { overStart?: boolean }) {
   const path = usePathname() ?? ''
@@ -203,7 +203,7 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
   // Kustkartan laddas först när Skärgården öppnas första gången.
   useEffect(() => {
     if (aktiv !== 'skargarden' || karta) return
-    import('@/lib/sverigekarta').then(m => setKarta({ viewBox: m.KARTA_VIEWBOX, lan: m.SVERIGE_LAN as Karta['lan'], sjoar: m.SVERIGE_SJOAR })).catch(() => {})
+    import('@/lib/sverigekarta').then(m => setKarta({ viewBox: m.KARTA_VIEWBOX, lan: m.SVERIGE_LAN as Karta['lan'], sjoar: m.SVERIGE_SJOAR, kust: m.NORRLANDSKUST, klipp: m.NORRLANDSKUST_KLIPP })).catch(() => {})
   }, [aktiv, karta])
 
   const hoverIn = (id: string) => {
@@ -286,6 +286,9 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
                     {karta ? (
                       <svg viewBox={karta.viewBox} role="img" aria-label={zon ? `Karta där ${ZON_NAMN[zon]} är markerad` : 'Karta över Sveriges kuster'}>
                         {karta.lan.map(l => <path key={l.n} d={l.d} className={l.z ? (l.z === zon ? 'k-vald' : 'k-kust') : 'k-inland'} />)}
+                        {/* Norrlandskusten: remsa längs vattnet, inte hela länen (Max 2026-11-20). */}
+                        <defs><clipPath id="mm-norrklipp"><path d={karta.klipp} /></clipPath></defs>
+                        <path d={karta.kust} clipPath="url(#mm-norrklipp)" className={zon === 'norr' ? 'k-band k-band-vald' : 'k-band'} />
                         {karta.sjoar.map(s => <path key={s.n} d={s.d} className={zon === 'sjo' ? 'k-sjo k-vald' : 'k-sjo'} />)}
                       </svg>
                     ) : <div className="mm-karta-tom" />}
@@ -424,6 +427,8 @@ const MM_CSS = `
 .mm-karta-tom{height:320px}
 .mm-karta path{stroke:#f7f1e7;stroke-width:.8;transition:fill .3s ease}
 .k-inland{fill:#ece3d2}.k-kust{fill:#dccdb1}.k-sjo{fill:#c9dde3}
+.mm-karta path.k-band{fill:none;stroke:#dccdb1;stroke-width:12;stroke-linejoin:round;stroke-linecap:round}
+.mm-karta path.k-band-vald{stroke:#1e5c82}
 .mm-karta path.k-vald{fill:#1e5c82}
 .mm-karta-text{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:12px}
 .mm-karta-text span{font-family:'Playfair Display',Georgia,serif;font-size:19px;font-weight:700;min-height:24px}

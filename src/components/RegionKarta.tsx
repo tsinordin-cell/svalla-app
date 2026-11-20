@@ -9,7 +9,7 @@
  */
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { KARTA_VIEWBOX, SVERIGE_LAN, SVERIGE_SJOAR, type KartZon } from '@/lib/sverigekarta'
+import { KARTA_VIEWBOX, SVERIGE_LAN, SVERIGE_SJOAR, NORRLANDSKUST, NORRLANDSKUST_KLIPP, type KartZon } from '@/lib/sverigekarta'
 
 type Del = {
   id: KartZon
@@ -100,6 +100,9 @@ export default function RegionKarta() {
             className={l.z ? (l.z === del.id ? 'rk-lan rk-vald' : 'rk-lan rk-kust') : 'rk-lan rk-inland'}
             onClick={() => valj(l.z)} />
         ))}
+        {/* Norrlandskusten är en remsa längs vattnet, inte hela länen (Max 2026-11-20). */}
+        <defs><clipPath id="rk-norrklipp"><path d={NORRLANDSKUST_KLIPP} /></clipPath></defs>
+        <path d={NORRLANDSKUST} clipPath="url(#rk-norrklipp)" className={del.id === 'norr' ? 'rk-band rk-band-vald' : 'rk-band'} onClick={() => valj('norr')} />
         {SVERIGE_SJOAR.map(s => (
           <path key={s.n} d={s.d} className={del.id === 'sjo' ? 'rk-sjo rk-vald' : 'rk-sjo'} onClick={() => valj('sjo')} />
         ))}
@@ -134,6 +137,9 @@ const RK_CSS = `
 .rk-kust:hover{fill:#cbbb9c}
 .rk-sjo{fill:#c9dde3;stroke:#fffdf8;stroke-width:.6;cursor:pointer;transition:fill .25s ease}
 .rk-vald{fill:var(--sea,#1e5c82)}
+.rk-band{fill:none;stroke:#ddd0b8;stroke-width:12;stroke-linejoin:round;stroke-linecap:round;cursor:pointer;transition:stroke .25s ease}
+.rk-band:hover{stroke:#cbbb9c}
+.rk-band.rk-band-vald{stroke:var(--sea,#1e5c82)}
 .rk-etikett{font-family:Inter,system-ui,sans-serif;font-size:11px;font-weight:700;fill:#5b6b72;cursor:pointer;paint-order:stroke;stroke:#f7f1e7;stroke-width:3px}
 .rk-etikett-vald{fill:var(--sea,#1e5c82);font-size:12.5px}
 @media (max-width:820px){.rk{grid-template-columns:1fr;gap:20px}.rk-karta{max-height:420px;order:-1}.rk-pil{width:38px;height:38px}}
