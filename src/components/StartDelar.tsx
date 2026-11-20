@@ -238,7 +238,7 @@ const CSS = `
 .sd-mer a{color:#1e5c82;font-weight:600;text-decoration:none;margin-right:16px;white-space:nowrap}
 .sd-mer a:hover{text-decoration:underline}
 
-.sd-thorkel{background:#0d2440;color:#fff;padding:48px 0;margin:28px 0}
+.sd-thorkel{background:#0d2440;color:#fff;padding:48px 0}
 .sd-thorkel-inre{max-width:980px;margin:0 auto;padding:0 24px;display:flex;gap:36px;align-items:center}
 .sd-thorkel-bild{width:150px;height:150px;border-radius:50%;background:#f3ece0;flex-shrink:0;border:4px solid rgba(255,255,255,.2)}
 .sd-thorkel-text{flex:1;min-width:0}
