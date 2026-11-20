@@ -193,7 +193,7 @@ export function GuidePaVattnet({ antalKrogar }: { antalKrogar: number }) {
 }
 
 const CSS = `
-.sd{position:relative;z-index:1;background:#f3ece0;color:#192830;font-family:Inter,system-ui,sans-serif;padding:56px 0}
+.sd{position:relative;z-index:1;background:#f3ece0;color:#192830;font-family:Inter,system-ui,sans-serif;padding:28px 0}
 .sd h2{font-family:'Playfair Display',Georgia,serif}
 .sd-inre{max-width:1200px;margin:0 auto;padding:0 24px}
 .sd-liten{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a8501a;margin:0 0 8px}
@@ -202,7 +202,6 @@ const CSS = `
 .sd-knapp{display:inline-flex;align-items:center;height:48px;padding:0 24px;border-radius:999px;background:#1e5c82;color:#fff;font-weight:700;font-size:15px;text-decoration:none}
 .sd-knapp-acc{background:#b5591a;flex-shrink:0}
 
-.sd-satt{padding-bottom:20px}
 .sd-satt-rad{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:#fffdf8;border-radius:24px;overflow:hidden;border:1px solid rgba(150,110,60,.16)}
 .sd-satt-spalt{padding:28px;text-decoration:none;color:#192830;border-right:1px solid rgba(150,110,60,.16);display:flex;flex-direction:column;gap:8px;transition:background .2s ease}
 .sd-satt-spalt:last-child{border-right:none}
@@ -212,7 +211,6 @@ const CSS = `
 .sd-satt-spalt p{margin:0;font-size:14.5px;line-height:1.6;color:#3d5865;flex:1}
 .sd-satt-spalt i{font-style:normal;font-size:14px;font-weight:700;color:#1e5c82}
 
-.sd-nu{padding:20px 0 28px}
 .sd-nu-kort{display:flex;gap:20px;align-items:center;background:#fffdf8;border-radius:20px;padding:18px 24px;box-shadow:0 8px 30px rgba(60,40,15,.08)}
 .sd-nu-klocka{flex:0 0 200px;padding-right:20px;border-right:1px solid rgba(150,110,60,.2)}
 .sd-nu-tid{font-family:'Playfair Display',Georgia,serif;font-size:30px;font-weight:700;color:#0d2440;font-variant-numeric:tabular-nums;line-height:1.15;margin-bottom:6px;min-height:35px}
@@ -226,7 +224,6 @@ const CSS = `
 .sd-nu-text small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#a8501a;margin-bottom:2px}
 .sd-nu-alla{flex-shrink:0}
 
-.sd-kansla{padding-bottom:20px}
 .sd-kansla-rutnat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .sd-kansla-ruta{position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1e5c82,#0d2440);background-size:cover;background-position:center;color:#fff;text-decoration:none;display:flex;align-items:flex-end;transition:transform .3s ease}
 .sd-kansla-ruta::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,.05) 25%,rgba(8,24,38,.88) 100%)}
@@ -241,7 +238,7 @@ const CSS = `
 .sd-mer a{color:#1e5c82;font-weight:600;text-decoration:none;margin-right:16px;white-space:nowrap}
 .sd-mer a:hover{text-decoration:underline}
 
-.sd-thorkel{background:#0d2440;color:#fff;padding:64px 0}
+.sd-thorkel{background:#0d2440;color:#fff;padding:48px 0;margin:28px 0}
 .sd-thorkel-inre{max-width:980px;margin:0 auto;padding:0 24px;display:flex;gap:36px;align-items:center}
 .sd-thorkel-bild{width:150px;height:150px;border-radius:50%;background:#f3ece0;flex-shrink:0;border:4px solid rgba(255,255,255,.2)}
 .sd-thorkel-text{flex:1;min-width:0}
@@ -255,7 +252,7 @@ const CSS = `
 .sd-thorkel-not{font-size:13px;color:rgba(255,255,255,.72);margin:16px 0 0}
 .sd-thorkel-not a{color:#fff}
 
-.sd-guide{padding:56px 24px}
+.sd-guide{padding:28px 24px}
 .sd-guide-yta{max-width:1100px;margin:0 auto;padding:48px 48px 0;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:56px;align-items:center;background:#dfe9ea;border-radius:28px 28px 0 0;overflow:hidden;min-height:420px}
 .sd-guide-text{padding-bottom:48px}
 .sd-guide-text p{font-size:16px;line-height:1.6;color:#3d5865;margin:0 0 18px}
@@ -268,7 +265,7 @@ const CSS = `
 .sd-krog h2{font-size:clamp(24px,3vw,32px);margin:0 0 8px;color:#fff;font-weight:400}
 .sd-krog p{margin:0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.82);max-width:600px}
 
-.sd-faq-gardin{position:relative;z-index:1;background:#f3ece0;padding:24px}
+.sd-faq-gardin{position:relative;z-index:1;background:#f3ece0;padding:28px 24px}
 .sd-faq-gardin summary{list-style:none;cursor:pointer;max-width:800px;margin:0 auto;background:#fffdf8;border:1px solid rgba(150,110,60,.16);border-radius:18px;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:16px;box-shadow:0 6px 20px rgba(60,40,15,.06)}
 .sd-faq-gardin summary::-webkit-details-marker{display:none}
 .sd-faq-gardin summary small{display:block;font:700 11.5px Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#a8501a;margin-bottom:4px}
@@ -285,15 +282,12 @@ const CSS = `
   .sd-nu-klocka{flex:1;border-right:none;padding-right:0}
 }
 @media (max-width:900px){
-  .sd{padding:40px 0}
   .sd-inre{padding:0 16px}
-  .sd-satt{padding-bottom:12px}
   .sd-satt-rad{grid-template-columns:1fr;border-radius:20px}
   .sd-satt-spalt{padding:18px 20px;border-right:none;border-bottom:1px solid rgba(150,110,60,.16);display:grid;grid-template-columns:38px 1fr;column-gap:12px;row-gap:4px;align-items:start}
   .sd-satt-spalt:last-child{border-bottom:none}
   .sd-satt-nr{font-size:32px;grid-row:1 / span 3}
   .sd-satt-spalt b{font-size:19px}
-  .sd-nu{padding:12px 0 20px}
   .sd-nu-kort{padding:16px;gap:12px;border-radius:18px}
   .sd-nu-tid{font-size:26px}
   .sd-nu-lista{grid-template-columns:1fr;gap:4px}
@@ -306,15 +300,15 @@ const CSS = `
   .sd-kansla-ruta small{font-size:11.5px}
   .sd-mer a{white-space:normal;display:inline-block;margin-right:14px}
   .sd-mer b{display:block}
-  .sd-faq-gardin{padding:16px 12px}
+  .sd-faq-gardin{padding:28px 12px}
   .sd-faq-gardin summary{padding:14px 18px}
-  .sd-thorkel{padding:40px 0}
+  .sd-thorkel{padding:36px 0}
   .sd-thorkel-inre{padding:0 20px;flex-direction:column;align-items:flex-start;gap:16px}
   .sd-thorkel-bild{width:76px;height:76px;border-width:3px}
   .sd-thorkel-text{width:100%}
   .sd-thorkel-falt{padding-left:16px}
   .sd-thorkel-chips a{font-size:12.5px;padding:8px 12px}
-  .sd-guide{padding:40px 12px}
+  .sd-guide{padding:28px 12px}
   .sd-guide-yta{padding:28px 22px 0;grid-template-columns:1fr;gap:0;min-height:0;border-radius:22px 22px 0 0}
   .sd-guide-text{padding-bottom:28px}
   .sd-krog{padding:26px 22px;flex-direction:column;align-items:flex-start;gap:18px;border-radius:0 0 22px 22px}
