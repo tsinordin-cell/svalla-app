@@ -1417,3 +1417,12 @@ img {
 /* Dekorativa stora siffror (äventyrssidorna): texten ligger i ::before så att den varken
    läses upp eller räknas som text i kontrastkontroller. Innehållet kommer från data-nr. */
 .dekor-nr::before { content: attr(data-nr); }
+
+/* "Tipsa oss" på telefon: en rund ikon i stället för en bred knapp. Den breda
+   knappen låg över märkesraden på profilen, forumets räknare och knapparna på
+   korten (skärmbilder från telefon 19 nov 2026). Höjden är oförändrad, 37 px,
+   så --fb-top gäller som förut. */
+@media (max-width: 640px) {
+  .fb-flytande { padding: 0 !important; width: 37px; height: 37px; justify-content: center; }
+  .fb-flytande .fb-flytande-text { display: none; }
+}

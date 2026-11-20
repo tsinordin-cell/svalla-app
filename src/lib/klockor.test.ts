@@ -8,8 +8,9 @@ describe('visaGlobalaKlockor', () => {
     expect(visaGlobalaKlockor('/oar', false)).toBe(false)
   })
 
-  it('visas på /planera och /planera/ny men inte på en planerad rutt', () => {
-    expect(visaGlobalaKlockor('/planera', true)).toBe(true)
+  it('visas på /planera/ny men inte på /planera (flikraden) eller en planerad rutt', () => {
+    expect(visaGlobalaKlockor('/planera', true)).toBe(false)
+    expect(visaGlobalaKlockor('/planera/', true)).toBe(false)
     expect(visaGlobalaKlockor('/planera/ny', true)).toBe(true)
     expect(visaGlobalaKlockor('/planera/ny/', true)).toBe(true)
     expect(visaGlobalaKlockor('/planera/3f2a-1234', true)).toBe(false)

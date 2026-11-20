@@ -27,7 +27,8 @@ const TYPE_PLACEHOLDERS: Record<FeedbackType, string> = {
  * händelsen svalla:openFeedback.
  */
 // /kom-igang och /logga-in: knappen låg ovanpå lösenordsfältets öga och "Kasta loss" på telefon.
-const UTAN_FLYTANDE_KNAPP = ['/logga/manuell', '/spara', '/kom-igang', '/logga-in']
+// /guide: knappen täckte 84 % av Thorkels skicka-knapp (mätt 19 nov 2026).
+const UTAN_FLYTANDE_KNAPP = ['/logga/manuell', '/spara', '/kom-igang', '/logga-in', '/guide']
 
 export default function FeedbackWidget() {
   const [open, setOpen]       = useState(false)
@@ -118,6 +119,7 @@ export default function FeedbackWidget() {
       {!UTAN_FLYTANDE_KNAPP.some(p => pathname === p || pathname?.startsWith(p + '/')) && <button
         onClick={() => setOpen(true)}
         aria-label="Skicka feedback eller tips till Svalla"
+        className="fb-flytande"
         style={{
           position:   'fixed',
           bottom:     'calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 14px)',
@@ -152,7 +154,7 @@ export default function FeedbackWidget() {
         }}
       >
         <Icon name="quote" size={15} stroke={2} />
-        Tipsa oss
+        <span className="fb-flytande-text">Tipsa oss</span>
       </button>}
 
       {/* ── Backdrop + modal ── */}

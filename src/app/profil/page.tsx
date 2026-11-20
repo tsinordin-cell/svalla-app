@@ -213,7 +213,7 @@ function EditSheet({ user, onClose, onSaved }: { user: User; onClose: () => void
               {avatarPreview
                 // eslint-disable-next-line @next/next/no-img-element
                 ? <img loading="lazy" decoding="async" src={avatarPreview} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                : user.username[0]?.toUpperCase()}
+                : null /* ingen initial här: kameraikonen ligger mitt i ringen och hamnade ovanpå bokstaven */}
               <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '50%' }}>
                 <Camera size={18} color="#fff" />
               </div>

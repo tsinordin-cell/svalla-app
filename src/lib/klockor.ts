@@ -33,6 +33,9 @@ export function visaGlobalaKlockor(path: string, inloggad: boolean): boolean {
   if (SIDOR_MED_EGNA_KLOCKOR.some(p => matchar(path, p))) return false
   if (/^\/meddelanden/.test(path)) return false
   if (arPlaneradRutt(path)) return false
+  // 2026-11-19: /planera har flikraden Planera, Rutter, Öar, Färjor överst, och
+  // ikonerna låg ovanpå fliken Färjor på telefon. /planera/ny har ingen flikrad.
+  if (path === '/planera' || path === '/planera/') return false
   if (arTursida(path)) return false
   return true
 }

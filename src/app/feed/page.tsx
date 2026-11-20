@@ -169,7 +169,9 @@ export default async function FeedPage(
  (async () => {
  if (!user) return [] as Awaited<ReturnType<typeof listRecentAchievementEvents>>
  try {
- const networkIds = [user.id, ...followsResult.map((f: { following_id: string }) => f.following_id)]
+ // Bara de man följer. Tidigare var man själv med, så det egna märket visades
+ // som nyhet "i nätverket", också när turen bakom det var raderad.
+ const networkIds = followsResult.map((f: { following_id: string }) => f.following_id)
  const since = new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
  return await listRecentAchievementEvents(supabase, networkIds, { since, limit: 6 })
  } catch (err) {
