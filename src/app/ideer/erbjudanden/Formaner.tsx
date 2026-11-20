@@ -571,6 +571,7 @@ const CSS = `
 
 /* 7 */
 .fm-karta{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px}
+.fm-karta>*,.fm-sida>*,.fm-dag>*,.fm-min>*,.fm-skylt-yta>*,.fm-salj-hero>*{min-width:0}
 .fm-karta-yta{position:relative;min-height:440px;border-radius:22px;background:radial-gradient(ellipse at 30% 40%,#cfe3ea,#a8cbd8);overflow:hidden;border:1px solid rgba(13,36,64,.12)}
 .fm-lager{position:absolute;left:14px;top:14px;z-index:3;font:inherit;font-size:13px;font-weight:700;padding:8px 14px;border-radius:999px;border:1px solid rgba(13,36,64,.2);background:#fff;color:#0d2440;cursor:pointer}
 .fm-lager.pa{background:#b5591a;color:#fff;border-color:#b5591a}
@@ -686,15 +687,15 @@ const CSS = `
 @media (max-width:860px){
   .fm-del{margin-top:40px}
   .fm-skylt,.fm-yta,.fm-salj{padding:0 14px}
-  .fm-tre{grid-template-columns:1fr}
-  .fm-tva-kol{grid-template-columns:1fr}
-  .fm-sida{grid-template-columns:1fr}
+  .fm-tre{grid-template-columns:minmax(0,1fr)}
+  .fm-tva-kol{grid-template-columns:minmax(0,1fr)}
+  .fm-sida{grid-template-columns:minmax(0,1fr)}
   .fm-sida-bild{min-height:220px}
   .fm-sida-text{padding:22px 18px}
   .fm-dag{grid-template-columns:1fr;gap:14px}
   .fm-dag-topp{position:static;min-height:300px;padding:22px}
-  .fm-plats-info{grid-template-columns:1fr}
-  .fm-karta{grid-template-columns:1fr}
+  .fm-plats-info{grid-template-columns:minmax(0,1fr)}
+  .fm-karta{grid-template-columns:minmax(0,1fr)}
   .fm-karta-yta{min-height:380px}
   .fm-nu{grid-template-columns:1fr;padding:16px}
   .fm-min{grid-template-columns:1fr;padding:20px}
@@ -704,9 +705,9 @@ const CSS = `
   .fm-salj-hero{grid-template-columns:1fr;padding:28px 22px 0;gap:8px;border-radius:22px}
   .fm-salj-text{padding-bottom:16px}
   .fm-telefon{justify-self:center;width:260px;height:340px}
-  .fm-salj-siffror{grid-template-columns:1fr 1fr}
+  .fm-salj-siffror{grid-template-columns:repeat(2,minmax(0,1fr))}
   .fm-rapport{padding:20px}
-  .fm-rapport-fot{grid-template-columns:1fr}
+  .fm-rapport-fot{grid-template-columns:minmax(0,1fr)}
   .fm-kupong{grid-template-columns:46% 1fr}
   .fm-kv b{font-size:18px}
 }
