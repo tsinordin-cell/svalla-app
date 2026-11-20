@@ -18,6 +18,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
+import { createClient } from '@/lib/supabase'
 
 type Zon = 'ost' | 'vast' | 'syd' | 'norr' | 'sjo'
 type Lank = { text: string; href: string; zon?: Zon }
@@ -169,6 +170,15 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
   const [zon, setZon] = useState<Zon | null>(null)
   const [scrollad, setScrollad] = useState(false)
   const [mobil, setMobil] = useState(false)
+  // Inloggad: kontoknappen leder in i appen (flödet), som i den gamla menyn. Utloggad: som förut.
+  const [inloggad, setInloggad] = useState(false)
+  useEffect(() => {
+    let lever = true
+    try {
+      createClient().auth.getSession().then(({ data: { session } }) => { if (lever) setInloggad(!!session) }).catch(() => {})
+    } catch { /* ingen klient, visa menyn som utloggad */ }
+    return () => { lever = false }
+  }, [path])
   const [niva2, setNiva2] = useState<string | null>(null)
   const [karta, setKarta] = useState<Karta | null>(null)
   const aktivRef = useRef<string | null>(null)
@@ -249,7 +259,7 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
               <input type="search" name="q" placeholder="Sök ö, krog eller hamn" aria-label="Sök på Svalla" />
             </form>
             <Link href="/forum" className="mm-liten">Forum</Link>
-            <Link href="/kom-igang" className="mm-konto">Mitt Svalla</Link>
+            <Link href={inloggad ? '/feed' : '/kom-igang'} className="mm-konto">{inloggad ? 'Till appen →' : 'Mitt Svalla'}</Link>
             <Link href="/sok" className="mm-mob-sok" aria-label="Sök"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg></Link>
             <button type="button" className="mm-mob-knapp" aria-expanded={mobil} aria-controls="mm-mobil" onClick={() => { setMobil(true); setNiva2(null) }}>Meny</button>
           </div>
@@ -325,9 +335,9 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
               </button>
             ))}
             <div className="mm-mob-fot">
-              <Link href="/kom-igang" onClick={() => setMobil(false)} className="mm-mob-konto">Mitt Svalla</Link>
+              <Link href={inloggad ? '/feed' : '/kom-igang'} onClick={() => setMobil(false)} className="mm-mob-konto">{inloggad ? 'Till appen →' : 'Mitt Svalla'}</Link>
               <Link href="/forum" onClick={() => setMobil(false)}>Forum</Link>
-              <Link href="/logga-in" onClick={() => setMobil(false)}>Logga in</Link>
+              {!inloggad && <Link href="/logga-in" onClick={() => setMobil(false)}>Logga in</Link>}
             </div>
           </div>
           <div className="mm-mob-niva">
