@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import OnboardingFlow from './OnboardingFlow'
 import type { Metadata } from 'next'
@@ -29,17 +30,55 @@ export default async function OnboardingPage() {
     redirect('/feed')
   }
 
-  // Hitta toppanvändare som suggestions för "följ 3"
-  const { data: suggestions } = await supabase
-    .from('users')
-    .select('id, username, avatar, vessel_model, home_port')
-    .neq('id', user.id)
-    .not('username', 'is', null)
-    // users har ingen updated_at-kolumn (bara created_at) — se kommentar i
-    // src/app/api/forum/mention-search/route.ts. Felet svalde hela
-    // suggestions-listan, så nya användare fick noll förslag i "följ 3".
-    .order('created_at', { ascending: false, nullsFirst: false })
-    .limit(8)
+  // Förslag i "Följ några seglare": konton som har minst en publik tur, senaste
+  // turen först. Tidigare föreslogs de senast skapade kontona, och inget av dem
+  // hade en tur att visa i flödet (mätt 19 nov 2026).
+  const FALT = 'id, username, avatar, vessel_model, home_port, boat_type'
+  type Forslag = {
+    id: string
+    username: string | null
+    avatar: string | null
+    vessel_model: string | null
+    home_port: string | null
+    boat_type: string | null
+  }
+
+  const { data: turer } = await supabase
+    .from('trips')
+    .select('user_id')
+    .eq('visibility', 'public')
+    .eq('status', 'done')
+    .is('deleted_at', null)
+    .neq('user_id', user.id)
+    .order('started_at', { ascending: false })
+    .limit(60)
+  const ordning: string[] = []
+  for (const t of turer ?? []) {
+    const id = t.user_id as string | null
+    if (id && !ordning.includes(id)) ordning.push(id)
+  }
+  const ids = ordning.slice(0, 8)
+
+  let medTurer: Forslag[] = []
+  if (ids.length > 0) {
+    const { data } = await supabase.from('users').select(FALT).in('id', ids).not('username', 'is', null)
+    medTurer = ((data ?? []) as Forslag[]).sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id))
+  }
+
+  // Vännen som delade länken står först. Namnet kommer från kakan som
+  // /kom-igang sätter när adressen hade ?from=.
+  const kakor = await cookies()
+  let vanNamn = ''
+  try {
+    vanNamn = decodeURIComponent(kakor.get('svalla_van')?.value ?? '')
+  } catch { /* trasig kaka: ingen vän */ }
+  let van: Forslag | null = null
+  if (/^[A-Za-z0-9_.-]{1,40}$/.test(vanNamn)) {
+    const { data } = await supabase.from('users').select(FALT).eq('username', vanNamn).neq('id', user.id).maybeSingle()
+    van = (data as Forslag | null) ?? null
+  }
+
+  const suggestions: Forslag[] = [...(van ? [van] : []), ...medTurer.filter(s => s.id !== van?.id)]
 
   return (
     <div style={{
@@ -71,12 +110,13 @@ export default async function OnboardingPage() {
         <OnboardingFlow
           userId={user.id}
           initialUsername={profile?.username ?? ''}
-          suggestions={(suggestions ?? []).map(s => ({
+          suggestions={suggestions.map(s => ({
             id: s.id,
             username: s.username ?? '',
             avatar: s.avatar ?? null,
             vessel_model: s.vessel_model ?? null,
             home_port: s.home_port ?? null,
+            boat_type: s.boat_type ?? null,
           }))}
         />
       </div>

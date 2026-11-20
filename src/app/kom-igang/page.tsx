@@ -90,6 +90,14 @@ function KomIgangInner() {
  // Tur-sidans CTA skickar ?ref=tur&from=username för att kunna personifiera onboarding.
  const fromUser = searchParams?.get('from') ?? null
 
+ // Vännens namn sparas en timme i en kaka, så att onboardingen kan föreslå just
+ // den personen först. Kakan överlever även omvägen via Google, där ?from= tappas.
+ useEffect(() => {
+ if (fromUser && /^[A-Za-z0-9_.-]{1,40}$/.test(fromUser)) {
+ document.cookie = `svalla_van=${encodeURIComponent(fromUser)}; path=/; max-age=3600; SameSite=Lax`
+ }
+ }, [fromUser])
+
  const [step, setStep] = useState<Step>(0)
  const [name, setName] = useState('')
  const [username, setUsername] = useState('')

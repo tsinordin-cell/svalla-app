@@ -7,14 +7,14 @@ import { JULKALENDER_CSS, LANDSKAP_SVG, tonFor, ikonFor } from './julkalender-st
 import JulkalenderLucka from './JulkalenderLucka'
 import JulkalenderFramsteg from './JulkalenderFramsteg'
 import { JulkalenderVisad, JulkalenderLoggaIn } from './JulkalenderMatning'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 const metadata: Metadata = {
   title: `Svallas julkalender ${AR}: 24 luckor om skärgården`,
   description: 'En lucka om dagen 1 till 24 december med tips om skärgården i vinter. Skapa ett gratis konto och öppna dagens lucka.',
   alternates: { canonical: 'https://svalla.se/julkalender' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/julkalender'),
     title: `Svallas julkalender ${AR}`,
     description: 'En lucka om dagen 1 till 24 december med tips om skärgården i vinter.',
     url: 'https://svalla.se/julkalender',

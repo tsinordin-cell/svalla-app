@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
 import { notFound } from 'next/navigation'
 import { isProEnabled } from '@/lib/pro'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: { absolute: 'Svalla Pro: obegränsat loggande och avancerade funktioner' },
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   // Pro ligger i bakgrunden tills det slås på (Max 2026-10-01): inte i sök.
   robots: isProEnabled() ? undefined : { index: false, follow: true },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/pro'),
     title: 'Svalla Pro',
     description: 'Avancerad statistik, obegränsad turdagbok och exklusiva skärgårdskartor.',
     url: 'https://svalla.se/pro',

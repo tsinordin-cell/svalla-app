@@ -19,3 +19,15 @@ export const OG_STANDARD = [
 export function ogO(slug: string) {
   return [{ url: `https://svalla.se/api/og/island/${encodeURIComponent(slug)}`, width: 1200, height: 630 }]
 }
+
+/**
+ * Sidans egen delningsbild: standardmallen med sidans rubrik och beskrivning
+ * (2026-11-19, så att två delade länkar inte ser likadana ut). Tar sidans
+ * kanoniska adress (samma som openGraph.url). Routen /api/og/sida läser
+ * rubriken ur sidans egna metataggar, så bara svalla.se:s egna sidor kan ritas.
+ */
+export function ogSida(url: string) {
+  let sokvag = url
+  try { sokvag = new URL(url, 'https://svalla.se').pathname } catch { /* behåll som den är */ }
+  return [{ url: `https://svalla.se/api/og/sida?p=${encodeURIComponent(sokvag)}`, width: 1200, height: 630 }]
+}

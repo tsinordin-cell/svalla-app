@@ -13,7 +13,7 @@ import { OAR } from '../o/island-data'
 import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { todayStockholm } from '@/lib/transitDate'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 // ISR en gång i timmen i stället för force-dynamic (revision 2026-10-02).
 // Sidan läser inga cookies, headers eller searchParams, bara statisk ödata och
@@ -79,7 +79,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: `Se vilka skärgårdsöar som är öppna i ${monthName} ${year}: med restauranger, gästhamnar och service. Sidan visar alltid aktuell månad.`,
     alternates: { canonical: 'https://svalla.se/oppet-nu' },
     openGraph: {
-      images: OG_STANDARD,
+      images: ogSida('https://svalla.se/oppet-nu'),
       title: `Vad är öppet i skärgården i ${monthName}?`,
       description: `Uppdaterad guide till öppna öar i skärgården: högsäsong, fullt öppet och begränsad service i ${monthName}.`,
       url: 'https://svalla.se/oppet-nu',

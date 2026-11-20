@@ -7,7 +7,7 @@ import JulkalenderLucka from '../JulkalenderLucka'
 import { JulkalenderVisad, JulkalenderLoggaIn } from '../JulkalenderMatning'
 import SvallaLogo from '@/components/SvallaLogo'
 import { JULKALENDER_CSS, LANDSKAP_SVG, tonFor, ikonFor } from '../julkalender-stil'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const dynamic = 'force-dynamic'
 
@@ -35,7 +35,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     title: titel,
     description: beskrivning,
     alternates: { canonical: `https://svalla.se/julkalender/${lucka.dag}` },
-    openGraph: { images: OG_STANDARD, title: titel, description: beskrivning, url: `https://svalla.se/julkalender/${lucka.dag}` },
+    openGraph: { images: ogSida(`https://svalla.se/julkalender/${lucka.dag}`), title: titel, description: beskrivning, url: `https://svalla.se/julkalender/${lucka.dag}` },
     ...(sp.forhand ? { robots: { index: false, follow: false } } : {}),
   }
 }

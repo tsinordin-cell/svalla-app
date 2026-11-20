@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 // KÄLLA: Länsstyrelsen Västernorrland — Höga Kusten världsarv (UNESCO) sedan 2000, utvidgat 2006 med Kvarken; sverigesnationalparker.se — Skuleskogens nationalpark bildad 1984 (läst 2026-09-14)
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     'höga kusten vandring',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/hoga-kusten'),
     title: 'Höga Kusten: Norrlands dramatiska klippkust',
     description: 'Logga dina båtturer och hitta de bästa platserna längs Höga Kusten.',
     url: 'https://svalla.se/hoga-kusten',

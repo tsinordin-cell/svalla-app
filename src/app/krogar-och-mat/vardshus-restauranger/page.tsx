@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Värdshus och restauranger i skärgården',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     'skärgårdskrog boka',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/krogar-och-mat/vardshus-restauranger'),
     title: 'Värdshus och restauranger i skärgården',
     description: 'Klassiska skärgårdsvärdshus med sjöutsikt, sommarstämning och svensk husmanskost.',
     url: 'https://svalla.se/krogar-och-mat/vardshus-restauranger',

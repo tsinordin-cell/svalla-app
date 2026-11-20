@@ -6,7 +6,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import { ACTIVITY_LIST, getActivity, islandsForActivity, type ActivityType } from '../activity-data'
 import type { Island } from '../../o/island-data'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ type: string }> }
 
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: [`${activity.name.toLowerCase()} skärgården`, `${activity.name.toLowerCase()} stockholm`, `${activity.name.toLowerCase()} bohuslän`, 'skärgården'],
     alternates: { canonical: `https://svalla.se/aktivitet/${activity.slug}` },
     openGraph: {
-      images: OG_STANDARD,
+      images: ogSida(`https://svalla.se/aktivitet/${activity.slug}`),
       title: `${activity.name} i skärgården`,
       description: activity.hero,
       url: `https://svalla.se/aktivitet/${activity.slug}`,

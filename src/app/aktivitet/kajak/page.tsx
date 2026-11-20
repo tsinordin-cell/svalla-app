@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import Icon from '@/components/Icon'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Kajak i Stockholms skärgård: guide för nybörjare och erfarna',
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/aktivitet/kajak' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/aktivitet/kajak'),
     title: 'Kajak i Stockholms skärgård: guide för nybörjare och erfarna',
     description: 'Hitta de bästa öarna för kajakpaddling, var du hyr kajak och vad du behöver veta om säkerhet i skärgårdens vatten.',
     url: 'https://svalla.se/aktivitet/kajak',

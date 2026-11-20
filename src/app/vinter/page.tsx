@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Skärgården på vintern: Julkryssning & Vinterguide',
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   keywords: ['skärgården vinter','julkryssning skärgård','skärgård december','vinter stockholm skärgård','påskkryssning skärgård','isvandring skärgård','vinter fjäderholmarna'],
   alternates: { canonical: 'https://svalla.se/vinter' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/vinter'),
     title: 'Skärgården på vintern',
     description: 'Julkryssningar, isvandring och skärgårdsmat framför öppen spis.',
     url: 'https://svalla.se/vinter',

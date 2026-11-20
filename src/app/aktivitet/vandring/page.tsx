@@ -6,7 +6,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import { REGIONS, hikesForRegion, type Hike } from './hike-data'
 import Icon, { type IconName } from '@/components/Icon'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Vandring i skärgården: kustleder, öar och tips',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/aktivitet/vandring' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/aktivitet/vandring'),
     title: 'Vandring i skärgården och längs Sveriges kust',
     description: 'Kuststigar, naturreservat, öleder och klippor med havet som sällskap. Hitta rätt vandring för en timme, en dag eller en hel helg.',
     url: 'https://svalla.se/aktivitet/vandring',

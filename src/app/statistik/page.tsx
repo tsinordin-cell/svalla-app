@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Statistik om Stockholms skärgård: fakta, siffror och data',
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/statistik' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/statistik'),
     title: 'Statistik om Stockholms skärgård',
     description: 'Fakta och statistik om Stockholms skärgård: antal öar, besökare, trafik och natur.',
     url: 'https://svalla.se/statistik',

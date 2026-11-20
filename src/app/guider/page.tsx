@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
 import GuiderClient from './GuiderClient'
 import { PUBLICERADE_GUIDER } from './guides-data'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Praktiska guider till skärgården',
   description: 'Guider om allemansrätten, packlistan, Waxholmsbolaget, midsommar i skärgården och hur du tar dig ut utan båt.',
   alternates: { canonical: 'https://svalla.se/guider' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/guider'),
     title: 'Praktiska guider till skärgården | Svalla',
     description: 'Guider om allemansrätten, packlistan, Waxholmsbolaget, midsommar i skärgården och hur du tar dig ut utan båt.',
     url: 'https://svalla.se/guider',

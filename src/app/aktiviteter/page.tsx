@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Vattenaktiviteter i Sverige: Segling, kajak, fiske och bad',
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'fjällaktiviteter och fritid',
   ],
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/aktiviteter'),
     title: 'Vattenaktiviteter i Sverige: Segling, kajak, fiske och bad',
     description: 'Din guide till segling, paddling, fiske, bad och friluftsliv längs hela Svenska kusten.',
     url: 'https://svalla.se/aktiviteter',

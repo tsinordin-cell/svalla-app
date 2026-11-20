@@ -4,14 +4,14 @@ import SvallaLogo from '@/components/SvallaLogo'
 import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
 import { ACTIVITY_LIST, islandsForActivity } from './activity-data'
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Aktiviteter i skärgården: segling, cykling, bad, vandring, mat',
   description: 'Hitta segling, cykling, bad, vandring och bra mat i Stockholms skärgård och Bohuslän. Vägledning per aktivitet och ö: vad du ska packa, bästa säsong och vilka öar som passar.',
   alternates: { canonical: 'https://svalla.se/aktivitet' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/aktivitet'),
     title: 'Aktiviteter i skärgården',
     description: 'Segling, cykling, bad, vandring och mat, guide per aktivitet och ö.',
     url: 'https://svalla.se/aktivitet',

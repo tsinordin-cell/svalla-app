@@ -7,7 +7,7 @@ import EmailSignup from '@/components/EmailSignup'
 import Icon from '@/components/Icon'
 import { SAT_SECTIONS, SAT_TOTAL_KM, SAT_SUM_KM, SAT_ISLANDS, SAT_URL, type SatDifficulty } from './sat-data'
 import { prefetchFor } from '@/lib/inloggningsrutter' // revision 2026-10-02: ingen prefetch av /planera
-import { OG_STANDARD } from '@/lib/og-standard'
+import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Stockholm Archipelago Trail: alla 22 etapper, längd och svårighet',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: 'https://svalla.se/stockholm-archipelago-trail' },
   openGraph: {
-    images: OG_STANDARD,
+    images: ogSida('https://svalla.se/stockholm-archipelago-trail'),
     title: 'Stockholm Archipelago Trail: alla 22 etapper',
     description:
       '270 km över 20 öar, från Arholma i norr till Landsort i söder. Varje etapp nås med reguljär skärgårdstrafik.',
