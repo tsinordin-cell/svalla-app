@@ -2,7 +2,8 @@
 import { useRouter } from 'next/navigation'
 import { IconChevronLeft } from '@/components/ui/icons'
 
-export default function BackButtonInline({ fallback = '/feed' }: { fallback?: string }) {
+/** `ljus`: vit pil på genomskinlig platta, för mörka sidhuvuden (t.ex. /nyhetsbrev). */
+export default function BackButtonInline({ fallback = '/feed', ljus = false }: { fallback?: string; ljus?: boolean }) {
   const router = useRouter()
 
   function goBack() {
@@ -20,13 +21,13 @@ export default function BackButtonInline({ fallback = '/feed' }: { fallback?: st
       className="press-feedback"
       style={{
         width: 36, height: 36, borderRadius: '50%',
-        background: 'rgba(10,123,140,0.08)',
+        background: ljus ? 'rgba(255,255,255,0.14)' : 'rgba(10,123,140,0.08)',
         border: 'none', cursor: 'pointer', flexShrink: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         WebkitTapHighlightColor: 'transparent',
       }}
     >
-      <IconChevronLeft size={18} stroke={2.5} color="var(--sea)" />
+      <IconChevronLeft size={18} stroke={2.5} color={ljus ? '#ffffff' : 'var(--sea)'} />
     </button>
   )
 }

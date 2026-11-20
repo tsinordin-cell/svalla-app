@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import EmailSignup from '@/components/EmailSignup'
+import SvallaLogo from '@/components/SvallaLogo'
+import BackButtonInline from '@/components/BackButtonInline'
 
 // OMSKRIVEN 2026-09-21. Sidan lovade "varannan tisdag" och visade ett "utdrag ur
 // utgåva #1 — skickas 12 aug 2026" samt "Nästa brev skickas Tisdag 12 aug 2026".
@@ -25,7 +27,16 @@ export default function NyhetsbrevPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
 
-      <div style={{ background: 'linear-gradient(160deg, #0d3f5a 0%, #1e5c82 50%, #2d7d8a 100%)', padding: '72px 20px 56px', textAlign: 'center' }}>
+      <div style={{ background: 'linear-gradient(160deg, #0d3f5a 0%, #1e5c82 50%, #2d7d8a 100%)', padding: 'calc(14px + env(safe-area-inset-top, 0px)) 20px 56px', textAlign: 'center' }}>
+        {/* Tillbaka och logga (Tom 2026-11-20: sidan saknade båda). Tillbaka går till
+            föregående sida, annars startsidan; loggan leder alltid till startsidan. */}
+        <div style={{ maxWidth: 960, margin: '0 auto 44px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <BackButtonInline fallback="/" ljus />
+          <Link href="/" aria-label="Svalla, till startsidan" style={{ display: 'inline-flex' }}>
+            <SvallaLogo height={26} color="#ffffff" />
+          </Link>
+          <div style={{ width: 36 }} aria-hidden />
+        </div>
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: 16 }}>
             Svallanyheter
