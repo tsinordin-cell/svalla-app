@@ -226,6 +226,7 @@ const CSS = `
 .sd-nu-text small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#a8501a;margin-bottom:2px}
 .sd-nu-alla{flex-shrink:0}
 
+.sd-kansla{padding-bottom:20px}
 .sd-kansla-rutnat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .sd-kansla-ruta{position:relative;aspect-ratio:1/1;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1e5c82,#0d2440);background-size:cover;background-position:center;color:#fff;text-decoration:none;display:flex;align-items:flex-end;transition:transform .3s ease}
 .sd-kansla-ruta::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,.05) 25%,rgba(8,24,38,.88) 100%)}

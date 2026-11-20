@@ -1316,7 +1316,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  <JustNu />
  <VadVillDuKanna kanslor={kanslor} />
  {andraHtml !== null && (
- <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1, paddingBottom: 20 }}>
+ <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1, paddingTop: 28, paddingBottom: 20 }}>
  <div className="section-inner">
  <div className="section-header">
  <div className="section-label">Utforska skärgården</div>
