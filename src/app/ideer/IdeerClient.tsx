@@ -70,7 +70,7 @@ function Alt({ bokstav, ersatter, forebild, lank, varfor, children }: {
   bokstav: string; ersatter: string; forebild: string; lank: string; varfor: string; children: React.ReactNode
 }) {
   return (
-    <section className="id-alt">
+    <section className="id-alt" id={`alt-${bokstav}`}>
       <div className="id-skylt">
         <span className="id-bokstav">{bokstav}</span>
         <div>
