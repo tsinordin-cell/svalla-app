@@ -1,0 +1,36 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-20)
+sb05-k001	lag3b-N022	OK	OK
+sb05-k002	lag3a-0014,lag3a-N020	FEL	RÄTTAS i runda 11: buss 434 angör Stavsnäs vinterhamn bara på vissa turer (samma som sr02-k009).
+sb05-k003	lag3b-N006	OK	OK
+sb05-k004	lag3b-N028	OK	OK
+sb05-k005	lag3b-N025	OK	OK
+sb05-k006	lag3b-N013,lag3b-N014	FEL	RÄTTAS i runda 11: läget står i presens fast källan är gammal; ange källans år eller belägg läget i dag.
+sb05-k007	lag3b-N018	OK	OK
+sb05-k008	lag3a-0015	FEL	RÄTTAS i runda 11: Birka (före publicering): båten från Hovgården ska stå med förbehållen att den kräver förbokning och bara stannar där på helg- och dagligenturerna, och säsongen med uppehållen enligt Strömmas tabell för 2027.
+sb05-k009	lag3b-N029	OK	OK
+sb05-k010	lag3a-0016,lag3a-0017	FEL	RÄTTAS i runda 11: som k008.
+sb05-k011	lag3b-N023	OK	OK
+sb05-k012	lag3b-N015,lag3b-N016	OK	OK
+sb05-k013	lag3a-N016	OK	OK
+sb05-k014	lag3a-N017	FEL	RÄTTAS i runda 11: Långskär (före publicering, regel): ta med fågelskyddsområdet 1 februari till 15 augusti, 7 knop och eldningsförbudet, som i källans lista (samma som sr04-k010).
+sb05-k015	lag3b-N003	OK	OK
+sb05-k016	lag3b-N026,lag3b-N027	OK	OK
+sb05-k017	lag3b-N024	OK	OK
+sb05-k018	lag3b-N020	OK	OK
+sb05-k019	lag3b-N021	OK	OK
+sb05-k020	lag3b-N029	OK	OK
+sb05-k021	lag3b-N010,lag3b-N011	OK	OK
+sb05-k022	lag3b-N007,lag3b-N008,lag3b-N009	FEL	RÄTTAS i runda 11: läget står i presens fast källan är gammal; ange källans år eller belägg läget i dag.
+sb05-k023	lag3b-N001	SAKNAS	RÄTTAS i runda 11: Brännö "sydvästra sidan": goteborg.com ger 404. Belägg läget med kommunen eller Länsstyrelsen, annars skriv utan väderstreck.
+sb05-k024	lag3b-N005	OK	OK. RÄTTAS i runda 11: "stadens södra kant" står inte i källan; skriv utan väderstreck eller belägg.
+sb05-k025	lag3b-N030,lag3b-N031	FEL	RÄTTAS i runda 11: läget står i presens fast källan är gammal; ange källans år eller belägg läget i dag.
+sb05-k026	lag3a-N021	OK	OK
+sb05-k027	lag3b-N025	OK	OK
+sb05-k028	lag3b-N004	OK	OK
+sb05-k029	lag3b-N002	OK	OK
+sb05-k030	lag3b-N019	OK	OK
+sb05-k031	lag3b-N012	FEL	RÄTTAS i runda 11: Hjälvik (före publicering, regel): ta med eldningsförbudet som i källan (samma som sr04-k019).
+sb05-k032	lag3b-N001	FEL	Registret inaktuellt: klockslagen är strukna i slutkoden. Ingen ändring.
+sb05-k033	lag3b-N017	OK	OK
+sb05-k034	lag3a-N019	FEL	RÄTTAS i runda 11: läget står i presens fast källan är gammal; ange källans år eller belägg läget i dag. "men inte till Yttre Gården" står inte hos kommunen; stryk tillskrivningen.
+sb05-k035	lag3a-N018	OK	OK
