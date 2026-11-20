@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { adminRad } from '@/lib/adminRad'
 
 export async function POST(request: NextRequest) {
   // 1. Verifiera att inloggad användare är admin
@@ -10,11 +11,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Ej inloggad' }, { status: 401 })
   }
 
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
+  const { data: userRow } = await adminRad(supabase)
 
   if (!userRow?.is_admin) {
     return NextResponse.json({ error: 'Ej admin' }, { status: 403 })

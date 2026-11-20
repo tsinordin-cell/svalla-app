@@ -158,10 +158,12 @@ export async function computeInsights(
   const unique_boat_types = new Set(trips.map(t => t.boat_type).filter(Boolean)).size
 
   // Followers + achievements (parallellt)
-  const [{ count: fCount }, { count: aCount }] = await Promise.all([
-    supabase.from('follows').select('follower_id', { count: 'exact', head: true }).eq('following_id', userId),
-    supabase.from('achievement_events').select('id', { count: 'exact', head: true }).eq('user_id', userId),
-  ])
+  // Genom funktionen profiltal: följare och märken går bara att läsa inloggad
+  // (2026-11-20), och årssammanfattningen visas även för utloggade.
+  const { data: talData } = await supabase.rpc('profiltal', { p_user: userId })
+  const tal = (Array.isArray(talData) ? talData[0] : talData) as { foljare?: number; marken?: number } | null
+  const fCount = Number(tal?.foljare ?? 0)
+  const aCount = Number(tal?.marken ?? 0)
 
   return {
     scope,

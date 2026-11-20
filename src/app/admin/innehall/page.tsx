@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { CONTENT_POSTS, type Channel } from './content-data'
 import ContentPostCard from './ContentPostCard'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 
@@ -24,11 +25,7 @@ export default async function AdminContentPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/innehall')
 
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
+  const { data: userRow } = await adminRad(supabase)
 
   if (!userRow?.is_admin) redirect('/feed')
 

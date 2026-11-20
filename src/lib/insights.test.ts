@@ -20,6 +20,11 @@ function makeChain(result: unknown) {
 
 function mockSupa(trips: InsightTrip[], followers = 0, achievements = 0): SupabaseClient {
   return {
+    // Följare och märken hämtas genom funktionen profiltal sedan 2026-11-20.
+    rpc(fn: string) {
+      if (fn !== 'profiltal') throw new Error(`oväntad rpc: ${fn}`)
+      return Promise.resolve({ data: [{ foljare: followers, foljer: 0, marken: achievements }], error: null })
+    },
     from(table: string) {
       if (table === 'trips')              return makeChain({ data: trips, error: null })
       if (table === 'follows')            return makeChain({ count: followers,    error: null })

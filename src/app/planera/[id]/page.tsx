@@ -81,12 +81,12 @@ const REASON_BG: Record<string, string> = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const { id } = await params
  const supabase = await createClient()
- const { data } = await supabase
- .from('planned_routes')
- .select('start_name, end_name')
- .eq('id', id)
- .eq('status', 'published')
- .single()
+ // Genom funktionen planerad_rutt: rutter går inte längre att lista i
+ // tabellen för andra än ägaren (2026-11-20), men den som har länken ser rutten.
+ const { data: rad } = await supabase.rpc('planerad_rutt', { p_id: id }).maybeSingle()
+ const data = rad && (rad as { status: string }).status === 'published'
+ ? (rad as { start_name: string; end_name: string })
+ : null
 
  if (!data) return { title: { absolute: 'Rutt | Svalla' } }
  const desc = `Planerad skärgårdsrutt från ${data.start_name} till ${data.end_name} med stopp längs vägen.`
@@ -113,22 +113,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // ── Page ───────────────────────────────────────────────────────────────────
 
+type PlaneradRutt = {
+ id: string
+ start_name: string
+ end_name: string
+ start_lat: number
+ start_lng: number
+ end_lat: number
+ end_lng: number
+ interests: string[] | null
+ // eslint-disable-next-line @typescript-eslint/no-explicit-any
+ suggested_stops: any
+ status: string
+ created_at: string
+ trip_id: string | null
+ ar_min: boolean
+ har_agare: boolean
+}
+
 export default async function PlaneraIdPage({ params }: Props) {
  const { id } = await params
  const supabase = await createClient()
 
- const { data: route } = await supabase
- .from('planned_routes')
- .select('id, start_name, end_name, start_lat, start_lng, end_lat, end_lng, interests, suggested_stops, status, created_at, user_id, trip_id')
- .eq('id', id)
- .single()
+ // planerad_rutt lämnar inte ut ägarens id, bara ar_min och har_agare.
+ const { data: ruttRad } = await supabase.rpc('planerad_rutt', { p_id: id }).maybeSingle()
+ const route = ruttRad as PlaneradRutt | null
 
  if (!route || route.status === 'draft') notFound()
 
  const { data: { session } } = await supabase.auth.getSession()
  const isLoggedIn = !!session
- const hasOwner = !!route.user_id
- const ownsRoute = !!session && route.user_id === session.user.id
+ const hasOwner = route.har_agare
+ const ownsRoute = !!session && route.ar_min
 
  // Har den som tittar gjort turen? trips.planned_route_id sätts av både GPS-
  // och manuell loggning (2026-11-16); planned_routes.trip_id bara när rutten

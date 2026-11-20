@@ -2,6 +2,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 
@@ -245,11 +246,7 @@ export default async function AdminPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin')
 
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
+  const { data: userRow } = await adminRad(supabase)
 
   if (!userRow?.is_admin) redirect('/feed')
 

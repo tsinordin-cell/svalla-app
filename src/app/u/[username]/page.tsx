@@ -158,8 +158,7 @@ export default async function PublicProfilePage({
 
  const [
  { data: rawTrips },
- { count: followersCount },
- { count: followingCount },
+ { data: talRader },
  { data: visitedIslandsData },
  { data: subRow },
  { data: taggedTripIds },
@@ -172,8 +171,9 @@ export default async function PublicProfilePage({
  .eq('user_id', userRow.id)
  .is('deleted_at', null)
  .order('created_at', { ascending: false }),
- supabase.from('follows').select('*', { count: 'exact', head: true }).eq('following_id', userRow.id),
- supabase.from('follows').select('*', { count: 'exact', head: true }).eq('follower_id', userRow.id),
+ // Antalen genom funktionen profiltal: listorna över följare går bara att
+ // läsa inloggad (2026-11-20), och den här sidan renderas alltid utloggad.
+ supabase.rpc('profiltal', { p_user: userRow.id }),
  supabase.from('visited_islands').select('island_slug').eq('user_id', userRow.id),
  isProEnabled()
  ? supabase.from('subscriptions').select('status,current_period_end').eq('user_id', userRow.id).in('status', ['active','trialing']).maybeSingle()
@@ -201,6 +201,9 @@ export default async function PublicProfilePage({
  .order('created_at', { ascending: false })
  .limit(20),
  ])
+ const tal = (Array.isArray(talRader) ? talRader[0] : talRader) as { foljare?: number; foljer?: number } | null
+ const followersCount = Number(tal?.foljare ?? 0)
+ const followingCount = Number(tal?.foljer ?? 0)
 
  // Fetch the actual trip data for tagged trips
  const taggedIds = (taggedTripIds ?? []).map((r: { trip_id: string }) => r.trip_id)

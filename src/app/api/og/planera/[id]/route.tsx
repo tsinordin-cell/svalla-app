@@ -25,11 +25,14 @@ export async function GET(
   const { id } = await params
   const supabase = createPublicSupabaseClient()
 
-  const { data: route } = await supabase
-    .from('planned_routes')
-    .select('start_name, end_name, start_lat, start_lng, end_lat, end_lng, interests, suggested_stops, cached_path')
-    .eq('id', id)
-    .maybeSingle()
+  // Genom funktionen planerad_rutt (2026-11-20): tabellen går bara att läsa för ägaren.
+  const { data: ruttRad } = await supabase.rpc('planerad_rutt', { p_id: id }).maybeSingle()
+  const route = ruttRad as {
+    start_name: string; end_name: string
+    start_lat: number; start_lng: number; end_lat: number; end_lng: number
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    interests: string[] | null; suggested_stops: any; cached_path: unknown
+  } | null
 
   if (!route) {
     return ritaOgKort({ etikett: 'Planerad rutt', rubrik: 'Planera en tur', adress: 'svalla.se/planera' }, { status: 404 })

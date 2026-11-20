@@ -37,9 +37,14 @@ export async function POST(req: NextRequest) {
     const supabase = await createClient()
     const { data: { session } } = await supabase.auth.getSession()
 
-    const { data, error: dbError } = await supabase
+    // Id:t skapas här i stället för att läsas tillbaka ur databasen: en
+    // utloggad får inte läsa raden efteråt (rutter listas bara av ägaren,
+    // 2026-11-20), så insert med .select() skulle nekas.
+    const nyttId = crypto.randomUUID()
+    const { error: dbError } = await supabase
       .from('planned_routes')
       .insert({
+        id:         nyttId,
         user_id:    session?.user.id ?? null,
         start_name: startName,
         end_name:   endName,
@@ -50,8 +55,7 @@ export async function POST(req: NextRequest) {
         interests,
         status:     'published',
       })
-      .select('id')
-      .single()
+    const data = dbError ? null : { id: nyttId }
 
     if (dbError || !data) {
       logger.error('planera-create', 'insert failed', {

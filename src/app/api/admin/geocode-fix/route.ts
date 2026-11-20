@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { adminRad } from '@/lib/adminRad'
 
 export const maxDuration = 300 // 5 min — Vercel Pro/Hobby max
 
@@ -135,7 +136,7 @@ export async function POST(_req: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Ej inloggad' }, { status: 401 })
 
-  const { data: userRow } = await supabase.from('users').select('is_admin').eq('id', user.id).maybeSingle()
+  const { data: userRow } = await adminRad(supabase)
   if (!userRow?.is_admin) return NextResponse.json({ error: 'Ej admin' }, { status: 403 })
 
   // ── Service role client för writes ───────────────────────────

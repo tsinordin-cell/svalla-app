@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
+import { adminRad } from '@/lib/adminRad'
 
 /**
  * PATCH /api/admin/site-feedback/[id]
@@ -41,11 +42,7 @@ export async function PATCH(
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
+  const { data: userRow } = await adminRad(supabase)
 
   if (!userRow?.is_admin) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })

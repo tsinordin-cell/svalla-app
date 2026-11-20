@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { renderEmail, type EmailTemplate } from '@/lib/email'
 import { flodePa, MAILFLODEN, type Mailflode } from '@/lib/mailfloden'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 
@@ -72,8 +73,7 @@ export default async function AdminMailPage() {
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/mail')
 
-  const { data: userRow } = await supabase
-    .from('users').select('is_admin').eq('id', user.id).single()
+  const { data: userRow } = await adminRad(supabase)
   if (!userRow?.is_admin) redirect('/feed')
 
   const mail = ORDNING.map(t => ({

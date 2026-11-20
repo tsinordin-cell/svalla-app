@@ -52,7 +52,9 @@ export async function POST(req: NextRequest) {
   }
 
   // Hämta rutten — om user_id != null kan den inte claim:as
-  const { data: route, error: fetchError } = await supabase
+  // Tjänsteklienten: en rutt utan ägare går inte att läsa med användarens
+  // klient sedan rutter bara listas av ägaren (2026-11-20).
+  const { data: route, error: fetchError } = await getAdminClient()
     .from('planned_routes')
     .select('id, user_id')
     .eq('id', routeId)

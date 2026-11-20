@@ -1,6 +1,6 @@
 'use client'
 import { useState, useRef, type ReactNode, type MouseEvent } from 'react'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
 import Link from 'next/link'
 import Image from 'next/image'
 
@@ -62,6 +62,8 @@ export default function FollowListButton({
   const [open,    setOpen]    = useState(false)
   const [users,   setUsers]   = useState<ListUser[]>([])
   const [loading, setLoading] = useState(false)
+  // Listorna över följare går bara att läsa inloggad (2026-11-20). Antalet syns för alla.
+  const [utloggad, setUtloggad] = useState(false)
   const fetched = useRef(false)
 
   async function openSheet() {
@@ -70,6 +72,12 @@ export default function FollowListButton({
     fetched.current = true
     setLoading(true)
     const supabase = createClient()
+    const { data: { user: jag } } = await getViewer(supabase)
+    if (!jag) {
+      setUtloggad(true)
+      setLoading(false)
+      return
+    }
 
     if (mode === 'followers') {
       // Who follows this user
@@ -132,6 +140,10 @@ export default function FollowListButton({
               <div style={{ display: 'flex', justifyContent: 'center', padding: '24px 0' }}>
                 <div style={{ width: 24, height: 24, borderRadius: '50%', border: '2.5px solid var(--sea)', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
               </div>
+            ) : utloggad ? (
+              <p style={{ textAlign: 'center', padding: '24px 16px', fontSize: 14, color: 'var(--txt2)' }}>
+                <Link href="/logga-in" style={{ color: 'var(--sea)', fontWeight: 600 }}>Logga in</Link> för att se listan.
+              </p>
             ) : users.length === 0 ? (
               <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt3)', padding: '24px 0' }}>
                 {mode === 'followers' ? 'Inga följare ännu' : 'Följer ingen ännu'}

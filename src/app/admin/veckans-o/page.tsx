@@ -19,6 +19,7 @@ import { flodePa } from '@/lib/mailfloden'
 import { kommandeUtskick, veckansOFor, veckansNyckel, hamtaGodkannande } from '@/lib/veckans-o'
 import { oVariabler } from '@/app/api/email/cron/floden'
 import { KALLOR_PER_O } from '@/app/o/kallor.generated'
+import { adminRad } from '@/lib/adminRad'
 
 export const dynamic = 'force-dynamic'
 
@@ -26,9 +27,12 @@ async function kravAdmin(): Promise<{ id: string; namn: string }> {
   const sb = await createServerSupabaseClient()
   const { data: { user } } = await sb.auth.getUser()
   if (!user) redirect('/logga-in?next=/admin/veckans-o')
-  const { data: row } = await sb.from('users').select('is_admin, username').eq('id', user.id).single()
-  if (!row?.is_admin) redirect('/feed')
-  return { id: user.id, namn: (row.username as string) || user.email || user.id }
+  const [{ data: adm }, { data: row }] = await Promise.all([
+    adminRad(sb),
+    sb.from('users').select('username').eq('id', user.id).single(),
+  ])
+  if (!adm?.is_admin) redirect('/feed')
+  return { id: user.id, namn: (row?.username as string) || user.email || user.id }
 }
 
 async function godkann(formData: FormData) {

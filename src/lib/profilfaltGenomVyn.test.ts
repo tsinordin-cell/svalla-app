@@ -29,6 +29,9 @@ export const STANGDA_KOLUMNER = [
   'bio', 'website', 'nationality', 'experience_years',
   'vessel_name', 'vessel_type', 'vessel_model', 'boat_type',
   'home_port', 'home_port_lat', 'home_port_lng', 'sailing_region',
+  // 2026-11-20: vilka konton som är admin ska inte gå att lista. Fråga
+  // is_admin_user() genom lib/adminRad.ts i stället.
+  'is_admin',
 ] as const
 
 /**
@@ -37,6 +40,7 @@ export const STANGDA_KOLUMNER = [
  */
 const UNDANTAG = new Set([
   'app/admin/users/page.tsx', // adminlistan över konton, getAdminClient()
+  'app/team/page.tsx', // listan över adminkonton hämtas med tjänsteklienten (service)
 ])
 
 const LASMETODER = new Set([

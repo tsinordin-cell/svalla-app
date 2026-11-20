@@ -4,6 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import { adminUpdateReport } from '@/lib/moderation'
+import { adminRad } from '@/lib/adminRad'
 
 export async function PATCH(req: Request) {
   const cookieStore = await cookies()
@@ -23,11 +24,7 @@ export async function PATCH(req: Request) {
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
   // Admin-kontroll
-  const { data: userRow } = await supabase
-    .from('users')
-    .select('is_admin')
-    .eq('id', user.id)
-    .single()
+  const { data: userRow } = await adminRad(supabase)
 
   if (!userRow?.is_admin) {
     return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
