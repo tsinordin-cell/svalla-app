@@ -464,7 +464,8 @@ const CSS = `
 .j-rad::-webkit-scrollbar{display:none}
 .j-kort,.k-ruta,.s-ruta{position:relative;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,#1e5c82,#0d2440);background-size:cover;background-position:center;color:#fff;text-decoration:none;display:flex;align-items:flex-end}
 .j-kort{flex:0 0 clamp(230px,24vw,290px);aspect-ratio:4/5;scroll-snap-align:start}
-.j-kort span,.k-ruta span,.s-ruta span{padding:16px;display:flex;flex-direction:column;gap:5px}
+.j-kort::before,.k-ruta::before,.s-ruta::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,.08),rgba(8,24,38,.5))}
+.j-kort span,.k-ruta span,.s-ruta span{position:relative;padding:16px;display:flex;flex-direction:column;gap:5px}
 .j-kort b,.k-ruta b,.s-ruta b{font-family:'Playfair Display',Georgia,serif;font-size:20px;line-height:1.15}
 .j-kort small,.k-ruta small,.s-ruta small{font-size:12.5px;font-weight:600;color:rgba(255,255,255,.9)}
 
@@ -585,7 +586,10 @@ const CSS = `
   .i-inne{padding:26px 22px 34px}
   .j-val{grid-template-columns:1fr}
   .k-rutnat{grid-template-columns:1fr 1fr}
+  .k-ruta{aspect-ratio:3/4}
   .k-ruta b{font-size:19px}
+  .k-ruta span{padding:12px}
+  .k-ruta small{font-size:11.5px}
   .l-yta{margin:0 12px;padding:24px 20px;grid-template-columns:1fr}
   .l-karta{min-height:420px;order:-1}
   .m-yta{margin:0 12px;height:480px}
