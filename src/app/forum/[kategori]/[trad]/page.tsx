@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation'
+import { forbyggUrval } from '@/lib/forbygge'
 import Link from 'next/link'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
@@ -47,10 +48,11 @@ export async function generateStaticParams() {
       .eq('in_spam_queue', false)
       .order('last_reply_at', { ascending: false })
       .limit(300)
-    return (data ?? []).map((t: { id: string; category_id: string }) => ({
+    // Förhandsvisningar förbygger bara ett fåtal, se lib/forbygge.ts.
+    return forbyggUrval((data ?? []).map((t: { id: string; category_id: string }) => ({
       kategori: t.category_id,
       trad: t.id,
-    }))
+    })))
   } catch {
     // Hellre on-demand-rendering än ett trasigt bygge (lokal maskin utan env).
     return []
