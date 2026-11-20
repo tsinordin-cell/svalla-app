@@ -51,7 +51,7 @@ const ORTER: [RegExp, string][] = [
   [/Sörmland/i, 'Sörmland'],
   [/Höga Kusten/i, 'Norrlandskusten'],
   [/Göteborg/i, 'Göteborgs skärgård'],
-  [/Stockholms skärgård|Gustavsberg|Värmdö/i, 'Stockholms skärgård'],
+  [/Stockholms skärgård|Stockholm(?![a-zåäö])|Gustavsberg|Värmdö|Nacka/i, 'Stockholms skärgård'],
   [/Båstad|Hovs hallar/i, 'Skåne och Öresund'],
   [/Mälaren/i, 'Insjöar'],
   [/Åland/i, 'Åland'],
