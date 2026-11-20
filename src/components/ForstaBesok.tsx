@@ -10,7 +10,7 @@
  * - aldrig för inloggade, aldrig på inloggnings- och appsidor, aldrig samtidigt som cookiebannern
  *
  * Svaren sparas bara i den här webbläsaren (localStorage) och används direkt: Thorkel ger
- * tips utifrån dem, och startsidan visar "Utvalt för dig" under sökrutan.
+ * tips utifrån dem.
  */
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
@@ -57,23 +57,6 @@ export function sparaProfil(p: Profil) {
   try { localStorage.setItem(PROFIL, JSON.stringify(p)) } catch { /* privat läge */ }
 }
 
-/** Startsidan: "Utvalt för dig" under knapparna i heron för den som har svarat. */
-export function visaUtvaltPaStartsidan(p: Profil) {
-  const hint = document.querySelector('.hero-val') ?? document.querySelector('.hero-search-hint')
-  if (!hint || document.getElementById('utvalt-for-dig')) return
-  const rad = document.createElement('div')
-  rad.id = 'utvalt-for-dig'
-  rad.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;margin:10px 0 0;font-size:13px;color:rgba(255,255,255,.85)'
-  const rubrik = document.createElement('span'); rubrik.textContent = 'Utvalt för dig:'; rubrik.style.fontWeight = '700'
-  rad.appendChild(rubrik)
-  for (const t of tipsFor(p)) {
-    const a = document.createElement('a'); a.href = t.href; a.textContent = t.text
-    a.style.cssText = 'color:#fff;text-decoration:none;font-weight:600;padding:6px 12px;border-radius:20px;background:rgba(201,110,42,.85)'
-    rad.appendChild(a)
-  }
-  hint.insertAdjacentElement('afterend', rad)
-}
-
 type Lage = 'dold' | 'halsning' | 'tillbaka' | 'fraga' | 'klar'
 
 export default function ForstaBesok() {
@@ -81,14 +64,6 @@ export default function ForstaBesok() {
   const [lage, setLage] = useState<Lage>('dold')
   const [steg, setSteg] = useState(0)
   const [svar, setSvar] = useState<Profil>({})
-
-  // Startsidan visar tips för den som redan svarat (även inloggade som svarade innan de skapade konto)
-  useEffect(() => {
-    if (path !== '/') return
-    const p = lasProfil(); if (!p) return
-    const t = setTimeout(() => visaUtvaltPaStartsidan(p), 300)
-    return () => clearTimeout(t)
-  }, [path])
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
@@ -126,7 +101,7 @@ export default function ForstaBesok() {
     track('forsta_besok', { steg: 'ja', fraga: id, svar: val })
     try { localStorage.setItem(PROFIL, JSON.stringify(nya)) } catch {}
     if (steg + 1 < FRAGOR.length) setSteg(steg + 1)
-    else { setLage('klar'); if (path === '/') visaUtvaltPaStartsidan(nya) }
+    else setLage('klar')
   }
   const tillKonto = () => { try { localStorage.setItem(KONTO_KLICK, 'konto') } catch {}; track('forsta_besok', { steg: 'konto' }) }
   const kontoLank = `/logga-in?mode=ny&returnTo=${encodeURIComponent(path || '/')}`
