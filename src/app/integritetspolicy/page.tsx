@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
+import SidHuvud from '@/components/SidHuvud'
 import PublicFooter from '@/components/PublicFooter'
-import SvallaLogo from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Integritetspolicy',
@@ -12,14 +11,12 @@ export const metadata: Metadata = {
 export default function IntegritetspolicyPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
+      <SidHuvud />
       <div style={{
         background: 'var(--grad-sea-hero)',
         padding: '60px 20px 32px',
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
-          <Link href="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: 16 }}>
-            <SvallaLogo height={26} color="#ffffff" />
-          </Link>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Integritetspolicy</h1>
           <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Senast uppdaterad: september 2026</p>
         </div>
