@@ -123,7 +123,7 @@ const PUNKTER: Punkt[] = [
     ingress: 'Hur du tar dig ut, och vad du hinner på en dag.',
     undertext: 'Ta dig dit, dagsplaner, Thorkel',
     allt: { text: 'Planera din tur', href: '/utflykt' },
-    aktivFor: ['/utflykt', '/resetips', '/planera', '/dag', '/farjor', '/guide'],
+    aktivFor: ['/utflykt', '/planera', '/dag', '/farjor', '/guide'],
     grupper: [
       { rubrik: 'Ta dig ut', lankar: [
         { text: 'Planera din tur', href: '/utflykt' },
@@ -139,18 +139,20 @@ const PUNKTER: Punkt[] = [
   },
   {
     id: 'guider', text: 'Guider', href: '/guider',
-    ingress: 'Dagsplaner, säsongstips och praktiska guider.',
-    undertext: 'Dagsplaner och guider',
-    allt: { text: 'Alla guider', href: '/guider' },
-    aktivFor: ['/guider', '/blogg', '/tips'],
+    // 2026-11-20 (Max): guider och dagsplaner är ihopslagna på /guider, med områdesval.
+    ingress: 'Guider och dagsplaner för hela kusten. Välj område och se allt som finns där.',
+    undertext: 'Guider och dagsplaner',
+    allt: { text: 'Alla guider och dagsplaner', href: '/guider' },
+    aktivFor: ['/guider', '/resetips', '/blogg', '/tips'],
     grupper: [
-      { rubrik: 'Utvalda guider', lankar: [
+      { rubrik: 'Guider och dagsplaner', lankar: [
+        { text: 'Alla guider och dagsplaner', href: '/guider' },
+        { text: 'Bara dagsplaner', href: '/resetips' },
+      ] },
+      { rubrik: 'Utvalda', lankar: [
         { text: 'Midsommar i skärgården', href: '/guider/midsommar-skargarden' },
         { text: 'Packlista för skärgården', href: '/guider/packlista-skargarden' },
         { text: 'Allemansrätten på sjön', href: '/guider/allemansratten-pa-sjon' },
-      ] },
-      { rubrik: 'Dagsplaner', lankar: [
-        { text: 'Alla dagsplaner', href: '/resetips' },
         { text: 'Djurö till Grinda', href: '/resetips/djuro-grinda-dagstur' },
       ] },
     ],
