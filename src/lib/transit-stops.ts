@@ -85,7 +85,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 2026-11-03 (Kontrollanten, sandhamn-k025/k107/k163): avgångsrutan visade
     // turer med anmärkning B och b i tabell 16 som vanliga avgångar.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "16B HAGEDE – SANDHAMN – STAVSNÄS", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna B, b och C: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före resdagen) (läst 2026-10-29)
-    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Sandhamn går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
     // P0 24 (2026-11-17): "Sista båten från Sandhamn idag" visade på torsdagar tur 1612, som har
     // anmärkning B i 16B, fast sista turen utan beställning den dagen är 1630.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "16B HAGEDE – SANDHAMN – STAVSNÄS", "ANMÄRKNING TUR", "Beställ resan i SL-appen, på" (läst 2026-11-17)
@@ -99,7 +101,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1477 (b) i 11A och 1475 (b) i 13B; inga vid Norra Grinda.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA", "Södra Grinda", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Södra Grinda: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "13B HUSARÖ – SÖDRA INGMARSÖ – BODA – VAXHOLM – STOCKHOLM", "Södra Grinda", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Södra Grinda: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'Någon tur stannar vid Södra Grinda bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 13 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'Någon tur stannar vid Södra Grinda bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 13 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 11 eller 13',
   },
   vaxholm: {
@@ -127,7 +132,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 18 av 28 turer i 21A har b vid Gruvbryggan, inga i 21B. Tur 1936 (B) i tabell 19 går bara 17 augusti till 13 september och står därför inte med (rättat efter Kontrollanten, k047, k048).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ", "Gruvbryggan (Utö)", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Gruvbryggan (Utö): b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'I Waxholmsbolagets tabell 21, som gäller till 12 december 2026, har en del turer till Gruvbryggan på Utö anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 21 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'I Waxholmsbolagets tabell 21, som gäller till 12 december 2026, har en del turer till Gruvbryggan på Utö anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 21 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 21',
   },
   finnhamn: {
@@ -138,7 +145,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Finnhamn", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Finnhamn: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Finnhamn", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Finnhamn: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "13B HUSARÖ – SÖDRA INGMARSÖ – BODA – VAXHOLM – STOCKHOLM", "Finnhamn", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Finnhamn: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), c (bryggan, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En stor del av turerna till och från Finnhamn går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan avgång", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En stor del av turerna till och från Finnhamn går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 13',
   },
   fjaderholmarna: {
@@ -161,7 +172,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
     // P0 2026-10-29: kortet "Sista båten från Möja" visade en beställningstur utan att säga att den måste beställas.
-    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan avgång", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och 12.',
     // P0 24 (2026-11-17, Kontrollanten): avgångsrutan visade en resa med tur 1441, som angör
     // Möjaström med Xb (ingen fast tid, bara efter beställning). Rutan visar Möjaström, som bara
     // tabell 14 trafikerar.
@@ -181,7 +196,11 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningarna b, B och C; för C-turerna gäller dagen före) (läst 2026-10-29)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (läst 2026-10-29)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst" (anmärkningen C: dagen före) (läst 2026-10-29)
-    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "minst 2 timmar innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på" (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Beställ resan i SL-appen, på" (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Beställ resan i SL-appen, på" (läst 2026-11-17)
@@ -194,7 +213,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 16 av 18 turer i 10A, 4 av 19 i 10B och 5 av 15 i 12A; inga i 12B.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Norra Ingmarsö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Norra Ingmarsö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Norra Ingmarsö", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Norra Ingmarsö: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Norra Ingmarsö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Norra Ingmarsö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',
   },
   dalaro: {
@@ -206,7 +228,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2006, 2022, 2014, 2094 (B) i 20B, 1904, 1926, 1936 (B) i 19B; C på några turer. Tabellerna kallar bryggan Dalarö.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Dalarö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "resdag." (vid Dalarö: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h20.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "20A DALARÖ – ORNÖ (VÄSTRA SIDAN)", "Dalarö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "resdag." (vid Dalarö: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Dalarö går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "minst 2 timmar innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h20.pdf — "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Dalarö går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 19 eller 20',
   },
 
@@ -218,7 +243,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 3014 och 3078 (B) i 30B, 3013 och 3077 (B) i 30A, 3001 och 3002 (C).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "30A SIMPNÄS – ARHOLMA", "Arholma", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "resdag." (vid Arholma: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'Några turer till och från Arholma går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 30 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'Några turer till och från Arholma går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 30 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 30',
   },
   blido: {
@@ -240,7 +267,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 3108 och 3110 (B) i 31B; 2 av 10 turer i 31A och 8 av 12 i 31B har B, b, C eller c.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "31A RÄFSNÄS – TJOCKÖ – FEJAN", "Fejan", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Fejan: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före), c (bryggan, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Fejan går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen; c senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Fejan går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 31',
   },
   furusund: {
@@ -251,7 +280,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2868, 2820 och 2882 (B) i 28B, 2501 och 2502 (B) i tabell 25; tabell 28 är avsnittet 1 oktober till 12 december i h28.pdf.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "25A FURUSUND – HÖGMARSÖ – SOLÖ", "Furusund", "Beställ resan i SL-appen, på", "minst 2 timmar innan" (vid Furusund: B (turen går bara efter beställning)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Furusund", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "resdag." (vid Furusund: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Furusund går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 25 eller 28 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Furusund går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 25 eller 28 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 25 eller 28',
   },
   norrora: {
@@ -261,7 +293,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2868 och 2820 (B) i 28B; B, b eller C på 11 av 14 turer i 28A och 6 av 17 i 28B (avsnittet 1 oktober till 12 december).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Norröra", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Norröra: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Norröra går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Norröra går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 28',
   },
   rodloga: {
@@ -271,7 +305,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): i 28B har 2822, 2852 och 2892 (Y, från 2 november) b; 2872 (S, till 1 november) saknar b; inga turer dit har b (rättat efter Kontrollanten, k080).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Rödlöga", "Beställ resan i SL-appen, på", "Går under perioden 1 oktober - 1 november.", "Går under perioden 2 november - 12", "minst 1 timme innan avgång" (vid Rödlöga: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'I Waxholmsbolagets tabell 28 för 2 november till 12 december 2026 har alla turer från Rödlöga anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'I Waxholmsbolagets tabell 28 för 2 november till 12 december 2026 har alla turer från Rödlöga anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 28',
   },
   yxlan: {
@@ -288,7 +324,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 12 av 35 turer i 11A, 3 av 33 i 11B, 1 av 6 i 14A.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA", "Gällnö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Gällnö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA", "Gällnö", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Gällnö: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Gällnö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 14 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan avgång", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Gällnö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 14 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 11 eller 14',
   },
   ljustero: {
@@ -298,7 +337,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1011 (B), 1001, 1021, 1002, 1042, 1020 (C).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Åsättra brygga", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "resdag." (vid Åsättra brygga: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'Några turer till och från Åsättra brygga går bara om resan har beställts i förväg. Beroende på tur ska den beställas minst två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'Några turer till och från Åsättra brygga går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 10',
   },
   runmaro: {
@@ -309,7 +350,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1612 (B) i 16B och 23B, 1613 och 1665 (b) i 16A.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "16A STAVSNÄS – SANDHAMN – HAGEDE", "Långvik (Runmarö)", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång" (vid Långvik (Runmarö): B (turen går bara efter beställning), b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h23.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "23B RUNMARÖ – STAVSNÄS", "Långvik (Runmarö)", "Beställ resan i SL-appen, på", "minst 2 timmar innan" (vid Långvik (Runmarö): B (turen går bara efter beställning)) (läst 2026-11-17)
-    bestallning: 'Några turer till och från Långvik på Runmarö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 eller 23 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h23.pdf — "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'Några turer till och från Långvik på Runmarö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 eller 23 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 16 eller 23',
   },
   svartso: {
@@ -320,7 +364,10 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 19 turer i 10B, 14 av 18 i 10A (1073 och 1075 utan anmärkning) och 4 av 14 i 12A; inga i 12B och 13B (rättat efter Kontrollanten, k059).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Norra Svartsö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Norra Svartsö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Norra Svartsö", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Norra Svartsö: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'En stor del av turerna till och från Norra Svartsö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'En stor del av turerna till och från Norra Svartsö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',
   },
   resaro: {
@@ -330,7 +377,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 27 turer i 5A och 13 av 34 i 5B har b.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG", "Ytterby (Resarö)", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Ytterby (Resarö): b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 5 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 5 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 5',
   },
 
@@ -346,7 +395,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 2908 (B) i 29B; 2907, 2957, 2977 (B) i 29A.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "29A ANKARUDDEN – LANDSORT", "Landsort", "Beställ resan i SL-appen, på", "minst 2 timmar innan" (vid Landsort: B (turen går bara efter beställning)) (läst 2026-11-17)
-    bestallning: 'Några turer till och från Landsort går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 29 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00." (anmärkning B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'Några turer till och från Landsort går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 29 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 29',
   },
   nattaro: {
@@ -363,7 +414,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 7 av 9 turer i 19A och 9 av 13 i 19B har b eller B.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Ornö Kyrka", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång" (vid Ornö Kyrka: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
-    bestallning: 'Många turer till och från Ornö kyrka går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan avgång" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'Många turer till och från Ornö kyrka går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 19',
   },
   kymmendo: {
@@ -373,7 +426,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 2026-10-29: noten sa "från Dalarö eller Nynäshamn" utan säsong. Från Nynäshamn går båten bara sommartid.
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni till 16 augusti).',
-    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan avgång", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Kymmendö", "Beställ resan i SL-appen, på" (läst 2026-11-17)
     bestallningTabell: 'Waxholmsbolagets tabell 19',
   },
@@ -399,7 +454,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1708 (B) i 17B; C på 1711, 1713, 1731, 1712, 1714, 1732; b på 1707, 1727, 1766.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h17.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "17A STAVSNÄS – NÄMDÖ – SALTSJÖBADEN – STOCKHOLM", "Östanvik (Nämdö)", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Östanvik (Nämdö): B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Östanvik på Nämdö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 17 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h17.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Östanvik på Nämdö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 17 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 17',
   },
   singo: {
@@ -416,7 +473,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): alla 7 turer med tid vid Lidö i 31A har b; i 31B tur 3110 (B), 3150 och 3170 (C), 3106 och 3112 (b), men 3152 och 3182 stannar utan anmärkning (rättat efter Kontrollanten, k044).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "31A RÄFSNÄS – TJOCKÖ – FEJAN", "Lidö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Lidö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'Många turer till och från Lidö går eller stannar där bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'Många turer till och från Lidö går eller stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 31',
   },
   graddo: {
@@ -445,7 +504,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 2026-10-29: noten sa "Direkt Waxholmsbåt från Nynäshamn" utan säsong. Den båten går bara sommartid.
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen. Sommartid går också Nordsydlinjen från Nynäshamn (2026: 22 juni till 16 augusti).',
-    bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning. Beställ minst en eller två timmar före avgång, beroende på tur, och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan avgång" (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning. Beställ minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ", "Fjärdlång", "Beställ resan i SL-appen, på" (läst 2026-11-17)
     bestallningTabell: 'Waxholmsbolagets tabell 19',
   },
@@ -493,7 +554,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1612 (B) i 16B; 8 av 23 turer i 16A har b eller C.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "16A STAVSNÄS – SANDHAMN – HAGEDE", "Eknö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Eknö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Eknö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Eknö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 16',
   },
 
@@ -557,7 +620,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // Norehill, som i tabell 4 är märkt Xb (ingen fast tid, bara efter beställning).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — "Norehill (Tynningö)", "Xb", "Orrlunda (Tynningö)", "Norra Tynningö", "Bryggorna trafikeras utan fast avgångstid.", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång", "minst 2 timmar innan", "dock senast kl." (anmärkningarna b och B) (läst 2026-11-07)
     // Kontrollanten (sb2-k002): sista turen från Norra Tynningö är en B-tur (minst två timmar).
-    bestallning: 'Flera turer till och från Tynningö går eller stannar vid bryggorna bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00) (läst 2026-11-19)
+    bestallning: 'Flera turer till och från Tynningö går eller stannar vid bryggorna bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "4A STOCKHOLM – VAXHOLM – RAMSÖSUND – ÅLSTÄKET", "Orrlunda (Tynningö)", "Beställ resan i SL-appen, på" (läst 2026-11-17)
     bestallningTabell: 'Waxholmsbolagets tabell 4',
     tidsObs: 'Waxholmsbolaget angör Norehill på Tynningö på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',
@@ -579,7 +644,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2868 och 2820 (B) i 28B; B, b eller C på 11 av 13 turer i 28A och 5 av 14 i 28B (avsnittet 1 oktober till 12 december).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Gräskö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Gräskö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
-    bestallning: 'En del turer till och från Gräskö går eller stannar bara om resan har beställts i förväg. Beroende på tur ska den beställas minst en eller två timmar före avgång och senast på eftermiddagen samma dag, eller senast tidigt på kvällen dagen före. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',
+    // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
+    bestallning: 'En del turer till och från Gräskö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 28',
   },
   'aspo-blekinge': {
