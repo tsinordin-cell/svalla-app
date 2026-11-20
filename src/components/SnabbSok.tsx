@@ -109,7 +109,7 @@ const SS_CSS = `
 .ss-rad{display:flex;align-items:center;gap:10px;background:var(--white,#fffdf8);border:1px solid rgba(150,110,60,.2);border-radius:999px;padding:8px 8px 8px 20px;box-shadow:0 8px 26px rgba(90,60,20,.10)}
 .ss-rad:focus-within{border-color:var(--sea,#1e5c82);box-shadow:0 8px 26px rgba(30,92,130,.18)}
 .ss-lupp{color:var(--sea,#1e5c82);flex-shrink:0}
-.ss-rad input{flex:1;min-width:0;border:none;outline:none;background:transparent;font:inherit;font-size:17px;color:var(--txt,#192830);padding:10px 0}
+.ss-rad input{flex:1;min-width:0;border:none!important;outline:none!important;box-shadow:none!important;background:transparent!important;-webkit-appearance:none;appearance:none;font:inherit;font-size:17px;color:var(--txt,#192830);padding:10px 0}
 .ss-rad input::placeholder{color:#7b8a90}
 .ss-rad input::-webkit-search-cancel-button{display:none}
 .ss-knapp{flex-shrink:0;height:46px;padding:0 26px;border:none;border-radius:999px;background:var(--sea,#1e5c82);color:#fff;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
@@ -117,7 +117,7 @@ const SS_CSS = `
 .ss-lista{position:absolute;left:0;right:0;top:72px;z-index:30;list-style:none;margin:0;padding:8px;background:var(--white,#fffdf8);border:1px solid rgba(150,110,60,.18);border-radius:18px;box-shadow:0 18px 40px rgba(60,40,15,.16)}
 .ss-post{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:none;background:none;padding:10px 12px;border-radius:12px;cursor:pointer;font:inherit}
 .ss-aktiv{background:rgba(30,92,130,.07)}
-.ss-typ{flex-shrink:0;min-width:58px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:rgba(30,92,130,.1);color:var(--sea,#1e5c82)}
+.ss-typ{flex-shrink:0;width:96px;box-sizing:border-box;text-align:center;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:4px 6px;border-radius:999px;background:rgba(30,92,130,.1);color:var(--sea,#1e5c82)}
 .ss-typ-krog,.ss-typ-boende{background:rgba(201,110,42,.12);color:var(--acc-text,#a8501a)}
 .ss-typ-guide{background:rgba(82,113,127,.12);color:#3d5865}
 .ss-titel{font-size:15px;font-weight:600;color:var(--txt,#192830);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
