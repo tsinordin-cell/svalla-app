@@ -378,6 +378,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             ownerId={trip.user_id}
             username={trip.users?.username ?? null}
             locationName={trip.location_name}
+            utanCirkel
           />
         </div>
 

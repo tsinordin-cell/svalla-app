@@ -45,6 +45,7 @@ export default function TripActions({
   ownerId,
   username = null,
   locationName = null,
+  utanCirkel = false,
 }: {
   tripId: string
   ownerId: string
@@ -52,6 +53,12 @@ export default function TripActions({
   username?: string | null
   /** Platsnamn, används i delningstexten. */
   locationName?: string | null
+  /**
+   * Bara de tre prickarna, utan rund platta (2026-11-20). För turkortet i flödet,
+   * där cirkeln tog plats från platsnamnet. Tursidan har knappen ovanpå en bild
+   * och behåller plattan. Tryckytan är fortfarande 44 px hög.
+   */
+  utanCirkel?: boolean
 }) {
   const [userId,    setUserId]    = useState<string | null>(null)
   const [ready,     setReady]     = useState(false)
@@ -215,7 +222,14 @@ export default function TripActions({
         aria-haspopup="dialog"
         aria-expanded={menu}
         aria-controls={menu ? 'tur-meny' : undefined}
-        style={{
+        style={utanCirkel ? {
+          width: 32, height: 44, marginRight: -8,
+          background: 'none', border: 'none', padding: 0,
+          cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          WebkitTapHighlightColor: 'transparent',
+          flexShrink: 0,
+        } : {
           width: 44, height: 44, borderRadius: '50%',
           background: 'var(--glass-88)',
           backdropFilter: 'blur(8px)',
@@ -228,7 +242,7 @@ export default function TripActions({
           flexShrink: 0,
         }}
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden style={{ width: 18, height: 18, color: 'var(--sea)' }}>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden style={{ width: 18, height: 18, color: utanCirkel ? 'var(--txt3)' : 'var(--sea)' }}>
           <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
         </svg>
       </button>
