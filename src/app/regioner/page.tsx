@@ -8,7 +8,7 @@ import { RadKort, Fotokrediter, ListRubrik, KORT_CSS, type KortBild } from '@/co
 /**
  * FÖRHANDSVISNING 2026-11-19: översikten bakom menypunkten Regioner.
  * Regionerna är grupperade efter de fyra kusterna, samma indelning som menyn.
- * Mälaren och Åland ligger under Ostkusten, som hos Skippo (Ostkusten omfattar där Mälardalen).
+ * Fem delar, samma som kartan på startsidan: fyra kuster och de stora sjöarna. Åland under Ostkusten.
  * Antal öar och foton räknas ur island-data och obilder.generated. Tre regioner saknar
  * öfoto i obilder och har ett eget fritt foto från Wikimedia Commons (fotograf och licens visas).
  */
@@ -28,7 +28,6 @@ const KUSTER: Kust[] = [
     { namn: 'Åland', href: '/aland', etiketter: [], egenBild: { url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/LemlandReefs.jpg/500px-LemlandReefs.jpg', fotograf: 'Clem23', licens: 'CC BY-SA 3.0', kalla: 'https://commons.wikimedia.org/wiki/File:LemlandReefs.jpg', motiv: 'skär vid Lemland' } },
     { namn: 'Gotland', href: '/gotland', etiketter: ['Gotland'] },
     { namn: 'Öland', href: '/oland', etiketter: ['Öland', 'Kalmarsund', 'Kalmar läns skärgård'] },
-    { namn: 'Mälaren', href: '/malaren', etiketter: ['Mälaren'] },
   ] },
   { kust: 'Västkusten', regioner: [
     { namn: 'Bohuslän', href: '/bohuslan', etiketter: ['Bohuslän'], bildSlug: 'kladesholmen' },
@@ -43,7 +42,13 @@ const KUSTER: Kust[] = [
   { kust: 'Norrlandskusten', regioner: [
     { namn: 'Höga Kusten', href: '/hoga-kusten', etiketter: ['Höga Kusten'] },
   ] },
+  { kust: 'Insjöarna', regioner: [
+    { namn: 'Mälaren', href: '/malaren', etiketter: ['Mälaren'] },
+  ] },
 ]
+
+/** Ankare som kartan på startsidan länkar till, t.ex. /regioner#vastkusten. */
+const ANKARE: Record<string, string> = { Ostkusten: 'ostkusten', Västkusten: 'vastkusten', Sydkusten: 'sydkusten', Norrlandskusten: 'norrlandskusten', Insjöarna: 'insjoarna' }
 
 export default function RegionerPage() {
   const anvanda = new Set<string>()
@@ -78,13 +83,13 @@ export default function RegionerPage() {
             Sveriges skärgårdar <em style={{ color: '#f4b06a', fontStyle: 'italic' }}>på en sida</em>
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.88)', fontSize: 16, margin: 0, maxWidth: 620, lineHeight: 1.55 }}>
-            Fyra kuster. Välj en region, så finns öar, guider, gästhamnar, krogar och boende samlade där.
+            Fyra kuster och de stora sjöarna. Välj en region, så finns öar, guider, gästhamnar, krogar och boende samlade där.
           </p>
         </div>
       </div>
       <main style={{ maxWidth: 1080, margin: '0 auto', padding: '40px 16px 64px' }}>
         {grupper.map(g => (
-          <section key={g.kust} style={{ marginBottom: 36 }}>
+          <section key={g.kust} id={ANKARE[g.kust]} style={{ marginBottom: 36, scrollMarginTop: 90 }}>
             <ListRubrik titel={g.kust} antal={g.rader.length} enhet={g.rader.length === 1 ? 'region' : 'regioner'} />
             <div className="sk-grid">
               {g.rader.map(r => (

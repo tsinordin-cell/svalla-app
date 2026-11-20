@@ -19,13 +19,12 @@ export const MENY: MenyPunkt[] = [
     href: '/regioner', text: 'Regioner',
     aktivFor: ['/regioner', '/resmal', '/stockholms-skargard', '/bohuslan', '/gotland', '/aland', '/oland', '/blekinge-skargard', '/vasterhav', '/hoga-kusten', '/halland', '/goteborg-skargard', '/malaren', '/karta', '/oar', '/o/', '/jamfor'],
     grupper: [
-      // Fyra kuster. Mälaren och Åland under Ostkusten, som hos Skippo (Ostkusten omfattar där Mälardalen).
+      // Fyra kuster och de stora sjöarna, samma fem delar som kartan på startsidan. Åland under Ostkusten.
       { rubrik: 'Ostkusten', lankar: [
         { href: '/stockholms-skargard', text: 'Stockholms skärgård' },
         { href: '/aland', text: 'Åland' },
         { href: '/gotland', text: 'Gotland' },
         { href: '/oland', text: 'Öland' },
-        { href: '/malaren', text: 'Mälaren' },
       ] },
       { rubrik: 'Västkusten', lankar: [
         { href: '/bohuslan', text: 'Bohuslän' },
@@ -35,6 +34,7 @@ export const MENY: MenyPunkt[] = [
       ] },
       { rubrik: 'Sydkusten', lankar: [{ href: '/blekinge-skargard', text: 'Blekinge skärgård' }] },
       { rubrik: 'Norrlandskusten', lankar: [{ href: '/hoga-kusten', text: 'Höga Kusten' }] },
+      { rubrik: 'Insjöarna', lankar: [{ href: '/malaren', text: 'Mälaren' }] },
       { rubrik: 'Hitta', lankar: [
         { href: '/regioner', text: 'Alla regioner' },
         { href: '/oar', text: 'Alla öar' },

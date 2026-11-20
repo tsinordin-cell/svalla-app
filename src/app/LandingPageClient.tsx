@@ -1,5 +1,7 @@
 'use client'
-import { useEffect, Suspense } from 'react'
+import { useEffect, useState, Suspense } from 'react'
+import { createPortal } from 'react-dom'
+import RegionKarta from '@/components/RegionKarta'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import { useRouter } from 'next/navigation'
@@ -735,62 +737,9 @@ __MOB_NAV__ </nav>
  <div class="section-header reveal">
  <div class="section-label">Utforska skärgården</div>
  <h2 class="section-title">Välj din del av skärgården</h2>
- <p class="section-sub">Från Stockholms skärgård till Blekinges kust och Västerhavet, varje region har sin karaktär och sina gömda skatter.</p>
+ <p class="section-sub">Fyra kuster och de stora sjöarna. Välj en del, så ser du regionerna där.</p>
  </div>
- <div class="destinations-grid">
- <a href="/o/vaxholm" class="dest-card reveal reveal-delay-1">
- <div class="dest-card-bg" data-lp-photo="innerskargard" style="background:linear-gradient(160deg,#0a1e2e,#1a4a5e,#2272a0)">
- <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <path d="M0,278 Q60,258 130,268 Q200,278 300,262 L300,320 L0,320 Z" fill="#040c15" opacity="0.9"/>
- </svg>
- </div>
- <div class="dest-card-overlay"></div>
- <div class="dest-card-content">
- <div class="dest-card-region"> Innerskärgården</div>
- <div class="dest-card-name">Fjäder&shy;holmarna · Vaxholm · Grinda</div>
- <div class="dest-card-islands"><span class="dest-island">Fjäderholmarna</span><span class="dest-island">Vaxholm</span><span class="dest-island">Grinda</span><span class="dest-island">Finnhamn</span><span class="dest-island">Resarö</span></div>
- </div>
- </a>
- <a href="/o/sandhamn" class="dest-card reveal reveal-delay-2">
- <div class="dest-card-bg" data-lp-photo="mellersta" style="background:linear-gradient(160deg,#0c2218,#1a5032,#228048)">
- <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <path d="M0,280 Q90,260 195,270 Q258,276 300,263 L300,320 L0,320 Z" fill="#030a06" opacity="0.9"/>
- </svg>
- </div>
- <div class="dest-card-overlay"></div>
- <div class="dest-card-content">
- <div class="dest-card-region"> Mellersta skärgården</div>
- <div class="dest-card-name">Sandhamn · Möja · Ljusterö</div>
- <div class="dest-card-islands"><span class="dest-island">Sandhamn</span><span class="dest-island">Möja</span><span class="dest-island">Ljusterö</span><span class="dest-island">Gällnö</span><span class="dest-island">Runmarö</span></div>
- </div>
- </a>
- <a href="/o/uto" class="dest-card reveal reveal-delay-3">
- <div class="dest-card-bg" data-lp-photo="sodra" style="background:linear-gradient(160deg,#261408,#4a2c14,#7a4a22)">
- <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <path d="M0,282 Q75,266 162,275 Q232,282 300,268 L300,320 L0,320 Z" fill="#0c0604" opacity="0.9"/>
- </svg>
- </div>
- <div class="dest-card-overlay"></div>
- <div class="dest-card-content">
- <div class="dest-card-region">Södra skärgården</div>
- <div class="dest-card-name">Utö · Nåttarö · Landsort</div>
- <div class="dest-card-islands"><span class="dest-island">Utö</span><span class="dest-island">Nåttarö</span><span class="dest-island">Ornö</span><span class="dest-island">Dalarö</span><span class="dest-island">Landsort</span></div>
- </div>
- </a>
- <a href="/o/furusund" class="dest-card reveal reveal-delay-4">
- <div class="dest-card-bg" data-lp-photo="norra" style="background:linear-gradient(160deg,#1e1038,#2e1a55,#40286e)">
- <svg width="100%" height="100%" viewBox="0 0 300 320" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
- <path d="M0,280 Q85,262 182,273 Q248,280 300,266 L300,320 L0,320 Z" fill="#08050f" opacity="0.9"/>
- </svg>
- </div>
- <div class="dest-card-overlay"></div>
- <div class="dest-card-content">
- <div class="dest-card-region">Norra skärgården</div>
- <div class="dest-card-name">Furusund · Blidö · Norrtälje</div>
- <div class="dest-card-islands"><span class="dest-island">Furusund</span><span class="dest-island">Blidö</span><span class="dest-island">Arholma</span><span class="dest-island">Gräddö</span><span class="dest-island">Norrtälje</span></div>
- </div>
- </a>
- </div>
+ <div id="sv-regionkarta" class="sv-regionkarta-mal"><style>.sv-karta-reserv{display:flex;flex-wrap:wrap;gap:8px 18px;list-style:none;padding:0;margin:24px 0 0}.sv-karta-reserv a{color:var(--sea);font-weight:600}.sv-regionkarta-mal.klar .sv-karta-reserv{display:none}</style><ul class="sv-karta-reserv"><li><a href="/stockholms-skargard">Stockholms skärgård</a></li><li><a href="/gotland">Gotland</a></li><li><a href="/oland">Öland</a></li><li><a href="/aland">Åland</a></li><li><a href="/bohuslan">Bohuslän</a></li><li><a href="/goteborg-skargard">Göteborgs skärgård</a></li><li><a href="/halland">Halland</a></li><li><a href="/vasterhav">Västerhavet</a></li><li><a href="/blekinge-skargard">Blekinge skärgård</a></li><li><a href="/hoga-kusten">Höga Kusten</a></li><li><a href="/malaren">Mälaren</a></li><li><a href="/regioner">Alla regioner</a></li></ul></div>
  </div>
 </section>
 
@@ -1077,6 +1026,9 @@ function bildkallorHtml(k: Bildkalla[]): string {
 
 export default function LandingPageClient({ photoMap, bildkallor = [], antalOar }: { photoMap?: Record<string, string>; bildkallor?: Bildkalla[]; antalOar: number }) {
  const router = useRouter()
+ // FÖRHANDSVISNING 2026-11-20: Sverigekartan (RegionKarta) renderas in i platsen #sv-regionkarta i LANDING_HTML.
+ const [kartMal, setKartMal] = useState<HTMLElement | null>(null)
+ useEffect(() => { setKartMal(document.getElementById('sv-regionkarta')) }, [])
  useEffect(() => {
  // Auto-redirect till feed borttagen — inloggade användare ska kunna besöka startsidan
  // och navigera tillbaka till appen därifrån.
@@ -1315,6 +1267,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar 
  .hero { position: relative; z-index: 1; background: transparent !important; }
  `}</style>
  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: LANDING_HTML.split('__ANTAL_OAR__').join(String(antalOar)).split('__NAV_LINKS__').join(menyHtmlDator()).split('__MITT_SVALLA__').join(mittSvallaHtmlDator()).split('__MOB_NAV__').join(menyHtmlMobil()).replace('<footer>', bildkallorHtml(bildkallor) + '<footer>') }} />
+ {kartMal && createPortal(<RegionKarta />, kartMal)}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />
  </div>
