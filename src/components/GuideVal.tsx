@@ -31,11 +31,15 @@ export default function GuideVal({ poster, forval = null }: { poster: GuidePost[
   const steg2 = useRef<HTMLDivElement>(null)
   const traffar = useRef<HTMLDivElement>(null)
 
-  const antal = useMemo(() => {
+  // Antal per område räknas för den typ som är vald i steg 2, så att siffrorna stämmer med listan.
+  const raknaPer = (lista: GuidePost[]) => {
     const m = new Map<string, number>()
-    for (const p of poster) for (const o of p.omraden) m.set(o, (m.get(o) ?? 0) + 1)
+    for (const p of lista) for (const o of p.omraden) m.set(o, (m.get(o) ?? 0) + 1)
     return m
-  }, [poster])
+  }
+  const finns = useMemo(() => raknaPer(poster), [poster])
+  const avTyp = typ ? poster.filter(p => p.typ === typ) : poster
+  const antal = raknaPer(avTyp)
 
   const iOmradet = omrade ? poster.filter(p => p.omraden.includes(omrade)) : poster
   const lista = typ ? iOmradet.filter(p => p.typ === typ) : iOmradet
@@ -56,18 +60,20 @@ export default function GuideVal({ poster, forval = null }: { poster: GuidePost[
         <div className="ov-steg">
           <div className="ov-steg-rubrik"><span>1</span>Var vill du vara?</div>
           <div className="sk-val gv-alla">
-            <button type="button" aria-pressed={!omrade} className={!omrade ? 'pa' : undefined} onClick={() => valjOmrade(null)}>Alla områden · {poster.length}</button>
+            <button type="button" aria-pressed={!omrade} className={!omrade ? 'pa' : undefined} onClick={() => valjOmrade(null)}>Alla områden · {avTyp.length}</button>
           </div>
           {KUSTER.map(k => {
-            const med = k.omraden.filter(o => antal.get(o))
+            const med = k.omraden.filter(o => finns.get(o))
             if (med.length === 0) return null
             return (
               <div key={k.namn}>
                 <div className="sk-kust">{k.namn}</div>
                 <div className="sk-val">
                   {med.map(o => (
-                    <button key={o} type="button" aria-pressed={omrade === o} className={omrade === o ? 'pa' : undefined} onClick={() => valjOmrade(o)}>
-                      {o} · {antal.get(o)}
+                    <button key={o} type="button" aria-pressed={omrade === o}
+                      className={[omrade === o ? 'pa' : '', !antal.get(o) ? 'tom' : ''].join(' ').trim() || undefined}
+                      onClick={() => valjOmrade(o)}>
+                      {o} · {antal.get(o) ?? 0}
                     </button>
                   ))}
                 </div>
