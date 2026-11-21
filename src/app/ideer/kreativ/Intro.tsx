@@ -58,6 +58,10 @@ function provForm(W: number, H: number, n: number, rita: (c: CanvasRenderingCont
    Lagt till: ett lågt skrov och två personer, en på var sida om seglen. Rutan är 26 × 25 enheter. */
 const BAT_B = 26, BAT_H = 25, BAT_DX = 4, BAT_DY = -1
 // Den vinkande armen: överarm från axel till armbåge (still), underarm och öppen hand vinkar kring armbågen
+/* Målad båt som bildlager (beslut Max 2026-11-21, skiss 2: blått bläck med orange accent). Bilden är 1080 × 900 punkter
+   och täcker båtens ruta plus två enheter marginal i sidled, alltså 30 × 25 enheter med 36 punkter per enhet.
+   Underarmen är ett eget lager som vinkar kring armbågen. Saknas bilderna ritas den gamla bläckbåten. */
+const MALAD = { bat: '/kreativ/intro-bat.webp', arm: '/kreativ/intro-arm.webp', pe: 36, armRuta: [250, 395, 74, 153] as const, armbage: [268.24, 530.28] as const }
 const ARM = { axel: [-0.39, 16.16] as const, armbage: [1.11, 14.73] as const, hand: [1.24, 12.85] as const, r: 0.375 }
 /* En sittande person i Svallas tvåfärgade bläckstil: randig tröja med polokrage, ljust ansikte med öga, näsa och leende.
    Den ena har stickad mössa med tofs, den andra sjömansmössa och hästsvans. Vitt görs genom att skära hål i det blå. */
@@ -165,7 +169,7 @@ const FS_BILD = `#version 300 es
 precision highp float;
 uniform sampler2D den; uniform sampler2D vel; uniform sampler2D korn; uniform sampler2D txt; uniform sampler2D form;
 uniform vec2 res; uniform float t; uniform float hav; uniform float vag; uniform float txtA; uniform vec3 bla; uniform vec3 drops[7];
-uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform float bxo; uniform vec4 arm; uniform vec4 armU; uniform float armR;
+uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform float bxo; uniform sampler2D batT; uniform sampler2D armT; uniform vec4 batR; uniform vec4 armQ; uniform vec2 armE; uniform float armV; uniform float malad; uniform vec4 arm; uniform vec4 armU; uniform float armR;
 in vec2 uv; out vec4 o;
 vec4 mjuk(vec2 p){ vec2 e = 1.1 / vec2(textureSize(form, 0));
   return texture(form, p) * .4 + (texture(form, p + e) + texture(form, p - e) + texture(form, p + vec2(e.x, -e.y)) + texture(form, p - vec2(e.x, -e.y))) * .15; }
@@ -193,7 +197,16 @@ void main(){
   vec2 qq = sp - vec2(bxo, by) - piv; float cs = cos(ang), sn = sin(ang);
   vec2 lp = piv + vec2(qq.x * cs + qq.y * sn, -qq.x * sn + qq.y * cs);
   float m2 = 0.;
-  if (batS > 0.) { m2 = mjuk(lp / stage).g; float u1 = armR / .3; float ad = min(min(seg(lp, armU.xy, armU.zw), seg(lp, arm.xy, arm.zw) + armR * .1), length(lp - arm.zw) - armR * .2);
+  // Målad båt: samma läge som masken men nästan utan vätskefältets krusning, så att ansiktena håller formen
+  vec2 sp2 = vec2(uv.x + disp.x * .12, 1. - uv.y - disp.y * .12) * stage;
+  vec2 q2 = sp2 - vec2(bxo, by) - piv; vec2 lp2 = piv + vec2(q2.x * cs + q2.y * sn, -q2.x * sn + q2.y * cs);
+  vec2 bu = (lp2 - batR.xy) / batR.zw;
+  vec4 bc = texture(batT, bu) * step(0., bu.x) * step(bu.x, 1.) * step(0., bu.y) * step(bu.y, 1.);
+  vec2 ar = lp2 - armE; float ca = cos(armV), sa = sin(armV);
+  vec2 au = (armE + vec2(ar.x * ca + ar.y * sa, -ar.x * sa + ar.y * ca) - armQ.xy) / armQ.zw;
+  vec4 ac = texture(armT, au) * step(0., au.x) * step(au.x, 1.) * step(0., au.y) * step(au.y, 1.);
+  bc = (ac + bc * (1. - ac.a)) * malad * batS;
+  if (batS > 0. && malad < .5) { m2 = mjuk(lp / stage).g; float u1 = armR / .3; float ad = min(min(seg(lp, armU.xy, armU.zw), seg(lp, arm.xy, arm.zw) + armR * .1), length(lp - arm.zw) - armR * .2);
     vec2 fd = normalize(arm.zw - arm.xy);
     for (int i = 0; i < 4; i++) { float fa = (float(i) - 1.5) * .42; vec2 dd = vec2(fd.x * cos(fa) - fd.y * sin(fa), fd.x * sin(fa) + fd.y * cos(fa)); ad = min(ad, seg(lp, arm.zw + dd * u1 * .3, arm.zw + dd * u1 * .85) + armR * .63); }
     m2 = max(m2, clamp((armR - ad) / 1.6 + .5, 0., 1.));
@@ -202,7 +215,7 @@ void main(){
     float md = min(min(seg(lp, armU.zw + u1 * vec2(-.5, -3.2), armU.zw + u1 * vec2(-.62, -3.65)), seg(lp, armU.zw + u1 * vec2(.2, -3.35), armU.zw + u1 * vec2(.24, -3.85))), seg(lp, armU.zw + u1 * vec2(.85, -3.1), armU.zw + u1 * vec2(1.1, -3.5)));
     m2 = max(m2, clamp((mr - md) / 1.6 + .5, 0., 1.)); }
   float fr = mix(d.r, m1, sveS);
-  float fb = mix(d.g, m2, batS);
+  float fb = mix(d.g, m2 * (1. - malad), batS);
   float a = kant(fr + havF, th);
   float b = kant(fb, th);
   float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * .3).a;
@@ -213,7 +226,11 @@ void main(){
   float fld = 0.;
   for (int i = 0; i < 7; i++) { vec2 dq = gl_FragCoord.xy - drops[i].xy; fld += drops[i].z * drops[i].z / (dot(dq, dq) + 1.); }
   ink = mix(ink, 1. - ink, smoothstep(.8, 1.25, fld));
-  o = vec4(mix(vec3(1.), bla, ink), 1.);
+  vec3 farg = mix(vec3(1.), bla, ink);
+  // Båten ligger över pappret och bläcket men bakom havet, så att skrovet sjunker ner i vattnet
+  float synlig = 1. - kant(havF, th);
+  farg = farg * (1. - bc.a * synlig) + bc.rgb * synlig;
+  o = vec4(farg, 1.);
 }`
 
 type GL = WebGL2RenderingContext
@@ -343,6 +360,27 @@ export default function Intro({ efter }: { efter?: () => void }) {
     let fran: Record<'prick' | 'sve' | 'bat' | 'dyn' | 'hav', Float32Array> = { prick: new Float32Array(0), sve: new Float32Array(0), bat: new Float32Array(0), dyn: new Float32Array(0), hav: new Float32Array(0) }
     let attr = { droppT: new Float32Array(0), r: new Float32Array(0), size: new Float32Array(0), size0: new Float32Array(0), vikt: new Float32Array(0) }
     const formTex = gl.createTexture()!
+    // Målade bildlager. Tills de är laddade är de en genomskinlig punkt.
+    let maladKlar = 0
+    const laddaBild = (src: string) => {
+      const tex = gl.createTexture()!
+      gl.bindTexture(gl.TEXTURE_2D, tex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4))
+      const im = new Image()
+      im.onload = () => {
+        if (gl.isContextLost()) return
+        gl.bindTexture(gl.TEXTURE_2D, tex)
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false); gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true)
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, im)
+        gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false)
+        gl.generateMipmap(gl.TEXTURE_2D)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+        maladKlar++
+      }
+      im.src = src
+      return tex
+    }
+    const batTex = laddaBild(MALAD.bat), armTex = laddaBild(MALAD.arm)
     let batRuta = { bw: 0, bh: 0 }
 
     const bygg = () => {
@@ -578,6 +616,14 @@ export default function Intro({ efter }: { efter?: () => void }) {
         gl.uniform4f(u(pBild, 'arm'), sx, sy, sx + dxa * Math.cos(va) - dya * Math.sin(va), sy + dxa * Math.sin(va) + dya * Math.cos(va))
         gl.uniform4f(u(pBild, 'armU'), ax, ay, sx, sy)
         gl.uniform1f(u(pBild, 'armR'), ARM.r * kk)
+        // Målad båt: rutan, underarmens ruta, armbågen och vinkningen
+        const pk = kk / MALAD.pe, vx = bx - 2 * kk
+        bind('batT', 5, batTex); bind('armT', 6, armTex)
+        gl.uniform4f(u(pBild, 'batR'), vx, byy, 30 * kk, 25 * kk)
+        gl.uniform4f(u(pBild, 'armQ'), vx + MALAD.armRuta[0] * pk, byy + MALAD.armRuta[1] * pk, MALAD.armRuta[2] * pk, MALAD.armRuta[3] * pk)
+        gl.uniform2f(u(pBild, 'armE'), vx + MALAD.armbage[0] * pk, byy + MALAD.armbage[1] * pk)
+        gl.uniform1f(u(pBild, 'armV'), minskad ? 0 : 0.06 + Math.sin(sek * 5.2) * 0.3)
+        gl.uniform1f(u(pBild, 'malad'), maladKlar >= 2 ? 1 : 0)
       }
       // Tidslinjen som flytande droppar: en aktiv droppe med släpande svans
       const mal = Math.min(SCENER.length - 1, sc + klamp((T - SCENER[sc]!.fran) / ((SCENER[sc + 1]?.fran ?? SLUT) - SCENER[sc]!.fran)))
