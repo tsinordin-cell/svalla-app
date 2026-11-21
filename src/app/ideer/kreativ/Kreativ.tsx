@@ -31,7 +31,7 @@ function useReducedMotion() {
 }
 
 /* Segelbåten, samma form som loggan B (två segel och mast), med skrov och två personer ombord. */
-function Segelbat({ farg = NAVY, vinka = true }: { farg?: string; vinka?: boolean }) {
+function Segelbat({ farg = NAVY, skrov, vinka = true }: { farg?: string; skrov?: string; vinka?: boolean }) {
   return (
     <svg viewBox="0 0 120 110" aria-hidden="true">
       <g fill={farg}>
@@ -43,7 +43,7 @@ function Segelbat({ farg = NAVY, vinka = true }: { farg?: string; vinka?: boolea
         <circle cx="76" cy="69" r="4.2" />
         <rect x="73" y="73" width="6" height="11" rx="2.5" />
         <rect className={vinka ? 'kr-vinka' : ''} x="78" y="62" width="2.6" height="11" rx="1.3" style={{ transformOrigin: '79px 73px' }} />
-        <path d="M8 82 Q60 92 112 82 L100 100 Q60 106 20 100 Z" />
+        <path d="M8 82 Q60 92 112 82 L100 100 Q60 106 20 100 Z" fill={skrov ?? farg} />
       </g>
     </svg>
   )
@@ -75,7 +75,8 @@ const KAPITEL = [
 ]
 const SLUT = 10500
 
-function Intro() {
+function Intro({ onamn }: { onamn: string[] }) {
+  const [inne, setInne] = useState(false)
   const canvas = useRef<HTMLCanvasElement>(null)
   const start = useRef(0)
   const [t, setT] = useState(0)
@@ -84,7 +85,7 @@ function Intro() {
 
   const prickar = useMemo(() => {
     const r = rnd(7)
-    return Array.from({ length: 30 }, (_, i) => ({ x: 0.08 + r() * 0.84, y: 0.1 + r() * 0.6, r: 0.025 + r() * 0.035, d: 120 + i * 75 + r() * 60, vx: (r() - 0.5) * 0.02 }))
+    return Array.from({ length: 42 }, (_, i) => ({ x: 0.06 + r() * 0.88, y: 0.08 + r() * 0.62, r: 0.012 + r() * 0.022, d: 120 + i * 55 + r() * 50, vx: (r() - 0.5) * 0.02 }))
   }, [])
 
   useEffect(() => { if (reducerad) { setT(SLUT); setKor(false) } }, [reducerad])
@@ -108,7 +109,7 @@ function Intro() {
   useEffect(() => {
     const c = canvas.current
     if (!c) return
-    const W = 240, H = Math.max(120, Math.round(240 * (c.clientHeight || 150) / (c.clientWidth || 240)))
+    const W = 400, H = Math.max(200, Math.round(400 * (c.clientHeight || 225) / (c.clientWidth || 400)))
     if (c.width !== W) c.width = W
     if (c.height !== H) c.height = H
     const ctx = c.getContext('2d')
@@ -119,8 +120,8 @@ function Intro() {
     const drift = ease((t - 2600) / 2400)
     const blobs = prickar.map(p => {
       const g = ease((t - p.d) / 450)
-      const vax = g * (1 + 0.18 * Math.sin((t - p.d) / 140) * (1 - ease((t - p.d - 450) / 600)))
-      return { x: (p.x + p.vx * drift) * W, y: (p.y + drift * (havNiva - p.y) * 0.9) * H, rr: Math.pow(p.r * W * vax, 2) }
+      const vax = g * (1 + 0.18 * Math.sin((t - p.d) / 140) * (1 - ease((t - p.d - 450) / 600))) * (1 - 0.75 * drift)
+      return { x: (p.x + p.vx * drift) * W, y: (p.y + drift * (havNiva + 0.06 - p.y)) * H, rr: Math.pow(p.r * W * vax, 2) }
     }).filter(b => b.rr > 0.01)
     const fas = t / 600
     for (let y = 0; y < H; y++) {
@@ -129,11 +130,13 @@ function Intro() {
         for (let i = 0; i < blobs.length; i++) {
           const b = blobs[i]!
           const dx = x - b.x, dy = y - b.y
-          f += b.rr / (dx * dx + dy * dy + 1)
+          const d2 = dx * dx + dy * dy
+          if (d2 > b.rr * 30) continue
+          f += b.rr / (d2 + 1)
         }
-        const yta = havNiva * H + Math.sin(x * 0.05 + fas) * 2.2 + Math.sin(x * 0.11 - fas * 1.3) * 1.2
-        f += Math.max(0, (y - yta) / 6 + 1) * (y > yta - 6 ? 1 : 0)
-        const a = f < 0.85 ? 0 : f > 1.05 ? 1 : (f - 0.85) / 0.2
+        const yta = havNiva * H + Math.sin(x * 0.03 + fas) * 3.5 + Math.sin(x * 0.07 - fas * 1.3) * 2
+        f += Math.max(0, (y - yta) / 8 + 1) * (y > yta - 8 ? 1 : 0)
+        const a = f < 0.93 ? 0 : f > 1.0 ? 1 : (f - 0.93) / 0.07
         const o = (y * W + x) * 4
         const djup = y / H
         d[o] = 31 - djup * 12; d[o + 1] = 95 - djup * 30; d[o + 2] = 153 - djup * 30; d[o + 3] = a * 255
@@ -155,7 +158,7 @@ function Intro() {
       <canvas ref={canvas} className="kr-goo" aria-hidden="true" />
       {visaBat && (
         <div className="kr-bat" style={{ left: `${batX}%`, bottom: `${100 - havTopp}%` }}>
-          <div className="kr-bat-inne"><Segelbat /></div>
+          <div className="kr-bat-inne"><Segelbat skrov={ORANGE} /></div>
         </div>
       )}
       <div className={visaText ? 'kr-intro-text syns' : 'kr-intro-text'}>
@@ -164,8 +167,14 @@ function Intro() {
       </div>
       {visaIn && (
         <div className="kr-intro-in">
-          <button type="button" className="kr-pensel" onClick={() => hoppa(0)}>Gå in på Svalla <i>→</i></button>
-          <small>I förhandsvisningen spelar knappen upp introt igen. På riktigt leder den till startsidan.</small>
+          <button type="button" className="kr-pensel" onClick={() => setInne(true)}>Gå in på Svalla <i>→</i></button>
+          <small>Knappen leder vidare till startsidan, här med bandet från del 3.</small>
+        </div>
+      )}
+      {inne && (
+        <div className="kr-intro-over">
+          <Bandet onamn={onamn} />
+          <button type="button" className="kr-spela kr-igen" onClick={() => { setInne(false); hoppa(0) }}>Spela introt igen</button>
         </div>
       )}
       <div className="kr-tidslinje">
@@ -507,7 +516,7 @@ function Karta({ oar }: { oar: KO[] }) {
         const d = Math.hypot(bat.x - o.x, bat.y - o.y) - o.r
         if (d < nd) { nd = d; narmast = o }
       }
-      ctx.save(); ctx.translate(bat.x, bat.y); ctx.rotate(bat.a + Math.PI / 2)
+      ctx.save(); ctx.translate(bat.x, bat.y); ctx.rotate(bat.a + Math.PI / 2); ctx.scale(1.7, 1.7)
       ctx.fillStyle = NAVY; ctx.beginPath(); ctx.moveTo(0, -14); ctx.quadraticCurveTo(8, -2, 6, 12); ctx.lineTo(-6, 12); ctx.quadraticCurveTo(-8, -2, 0, -14); ctx.fill()
       ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(0, -10); ctx.lineTo(9, 6); ctx.lineTo(0, 6); ctx.closePath(); ctx.fill()
       ctx.restore(); ctx.restore()
@@ -575,8 +584,8 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
         <nav className="kr-index" aria-label="Innehåll">{DELAR.map(([id, n], i) => <a key={id} href={`#${id}`}><span>{i + 1}</span>{n}</a>)}</nav>
       </section>
 
-      <Del nr="1" id="intro" rubrik="Introt: prickarna blir ett hav" forebild={<><a href="https://plastichuman.org/" target="_blank" rel="noopener noreferrer">plastichuman.org</a> och tidslinjen hos <a href="https://www.hoverstat.es/features/xk-studio/" target="_blank" rel="noopener noreferrer">XK Studio</a></>} varfor="Vit skärm, blå målarprickar som flyter ihop till ett hav, och Svallas segelbåt kommer seglande med två personer ombord. Tidslinjen visar att det är kort, och man kan alltid hoppa över.">
-        <Intro />
+      <Del nr="1" id="intro" rubrik="Introt: prickarna blir ett hav" forebild={<><a href="https://plastichuman.org/" target="_blank" rel="noopener noreferrer">plastichuman.org</a> och tidslinjen hos <a href="https://www.hoverstat.es/features/xk-studio/" target="_blank" rel="noopener noreferrer">XK Studio</a></>} varfor="Vit skärm, blå målarprickar som flyter ihop till ett hav, och Svallas segelbåt kommer seglande med två personer ombord. Gå in leder vidare till startsidan med bandet. Tidslinjen visar att det är kort, och man kan alltid hoppa över.">
+        <Intro onamn={onamn} />
       </Del>
       <Del nr="2" id="fragan" rubrik="Frågan vid dörren" forebild={<>välkomstskärmen på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En lekfull fråga med två svar innan man kommer in. Frågan byts varje gång och båda svaren leder vidare. Kan visas efter introt eller i stället för det.">
         <Fragan />
@@ -634,6 +643,10 @@ const CSS = `
 .kr-spela{position:absolute;right:16px;bottom:16px;z-index:5;border:1px solid rgba(255,255,255,.5);background:rgba(13,36,64,.55);color:#fff;font:inherit;font-size:13px;font-weight:600;border-radius:999px;padding:8px 14px;cursor:pointer;backdrop-filter:blur(6px)}
 .kr-spela.mork{position:static;background:${NAVY};border:none}
 .kr-goo{position:absolute;inset:0;width:100%;height:100%}
+.kr-intro-over{position:absolute;inset:0;z-index:8}
+.kr-intro-over .kr-scen{position:absolute;inset:0;aspect-ratio:auto;min-height:0;border-radius:0;box-shadow:none}
+.kr-intro-over .kr-band>.kr-spela{display:none}
+.kr-igen{z-index:9}
 .kr-bat{position:absolute;width:15%;min-width:84px;transform:translate(-50%,14%)}
 .kr-bat-inne{animation:krGung2 2.6s ease-in-out infinite}
 .kr-vinka{animation:krVinka .9s ease-in-out infinite alternate}

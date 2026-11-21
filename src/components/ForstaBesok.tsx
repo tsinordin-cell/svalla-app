@@ -21,7 +21,7 @@ const PROFIL = 'svalla_profil'
 export const KONTO_KLICK = 'svalla_forsta_besok'          // 'konto' = har gått vidare till kontoskapande
 export const VISAD_SESSION = 'svalla_thorkel_visad'
 const SIDVISNINGAR = 'svalla_sidvisningar'
-const INTE_HAR = ['/logga-in', '/kom-igang', '/registrera', '/onboarding', '/admin', '/team', '/feed', '/profil', '/spara', '/sparade', '/logga', '/notiser', '/planera', '/meddelanden', '/min-skargard', '/glomt-losenord', '/auth', '/julkalender', '/samarbete']
+const INTE_HAR = ['/logga-in', '/kom-igang', '/registrera', '/onboarding', '/admin', '/team', '/feed', '/profil', '/spara', '/sparade', '/logga', '/notiser', '/planera', '/meddelanden', '/min-skargard', '/glomt-losenord', '/auth', '/julkalender', '/samarbete', '/ideer']
 
 export const FRAGOR = [
   { id: 'hur_ofta', text: 'Hur ofta besöker du skärgården?', svar: ['Varje sommar', 'Några gånger om året', 'Sällan, men jag vill mer', 'Aldrig, än'] },
