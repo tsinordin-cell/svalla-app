@@ -8,6 +8,7 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
+import IntroV2 from './Intro'
 
 export type KO = { slug: string; namn: string; lat: number; lng: number; omrade: 'stockholm' | 'vast' }
 export type KBild = { url: string; fotograf: string; licens: string } | null
@@ -189,6 +190,18 @@ function Intro({ onamn }: { onamn: string[] }) {
         })}
         <button type="button" className="kr-hoppa" onClick={() => hoppa(SLUT)}>Hoppa över</button>
       </div>
+    </div>
+  )
+}
+
+/* Introt version 2 (WebGL2, egen fil) och vidare in till bandet. */
+function IntroDel({ onamn }: { onamn: string[] }) {
+  const [inne, setInne] = useState(false)
+  if (!inne) return <IntroV2 efter={() => setInne(true)} />
+  return (
+    <div className="kr-intro-v2">
+      <Bandet onamn={onamn} />
+      <button type="button" className="kr-spela kr-igen2" onClick={() => setInne(false)}>Spela introt igen</button>
     </div>
   )
 }
@@ -584,8 +597,8 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
         <nav className="kr-index" aria-label="Innehåll">{DELAR.map(([id, n], i) => <a key={id} href={`#${id}`}><span>{i + 1}</span>{n}</a>)}</nav>
       </section>
 
-      <Del nr="1" id="intro" rubrik="Introt: prickarna blir ett hav" forebild={<><a href="https://plastichuman.org/" target="_blank" rel="noopener noreferrer">plastichuman.org</a> och tidslinjen hos <a href="https://www.hoverstat.es/features/xk-studio/" target="_blank" rel="noopener noreferrer">XK Studio</a></>} varfor="Vit skärm, blå målarprickar som flyter ihop till ett hav, och Svallas segelbåt kommer seglande med två personer ombord. Gå in leder vidare till startsidan med bandet. Tidslinjen visar att det är kort, och man kan alltid hoppa över.">
-        <Intro onamn={onamn} />
+      <Del nr="1" id="intro" rubrik="Introt: prickarna blir ett hav" forebild={<><a href="https://plastichuman.org/" target="_blank" rel="noopener noreferrer">plastichuman.org</a> och tidslinjen hos <a href="https://www.hoverstat.es/features/xk-studio/" target="_blank" rel="noopener noreferrer">XK Studio</a></>} varfor="Version 2, byggd i WebGL2 i full skärpa. Tusentals partiklar blir bläck som formar Sverige, sedan Svallas segelbåt med två personer ombord, och flyter ut till ett hav. Ett vätskefält under ytan krusar kanten, och musen rör om i det. Båten och texten inverterar havet där de korsar det. Ljud finns men är av tills man slår på det. Gå in leder till bandet.">
+        <IntroDel onamn={onamn} />
       </Del>
       <Del nr="2" id="fragan" rubrik="Frågan vid dörren" forebild={<>välkomstskärmen på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En lekfull fråga med två svar innan man kommer in. Frågan byts varje gång och båda svaren leder vidare. Kan visas efter introt eller i stället för det.">
         <Fragan />
@@ -643,6 +656,8 @@ const CSS = `
 .kr-spela{position:absolute;right:16px;bottom:16px;z-index:5;border:1px solid rgba(255,255,255,.5);background:rgba(13,36,64,.55);color:#fff;font:inherit;font-size:13px;font-weight:600;border-radius:999px;padding:8px 14px;cursor:pointer;backdrop-filter:blur(6px)}
 .kr-spela.mork{position:static;background:${NAVY};border:none}
 .kr-goo{position:absolute;inset:0;width:100%;height:100%}
+.kr-intro-v2{position:relative}
+.kr-igen2{bottom:16px;right:16px}
 .kr-intro-over{position:absolute;inset:0;z-index:8}
 .kr-intro-over .kr-scen{position:absolute;inset:0;aspect-ratio:auto;min-height:0;border-radius:0;box-shadow:none}
 .kr-intro-over .kr-band>.kr-spela{display:none}
