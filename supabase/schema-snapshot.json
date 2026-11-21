@@ -57,6 +57,7 @@
   "trip_tags": "trip_id,tagged_user_id,tagged_by_user_id,confirmed,created_at",
   "trips": "id,user_id,boat_type,distance,duration,average_speed_knots,max_speed_knots,image,route_id,started_at,ended_at,created_at,caption,location_name,pinnar_rating,start_location,ai_summary,route_points,images,planned_route_id,deleted_at,visibility,status,gps_quality,duration_seconds",
   "user_presence": "user_id,current_chat_id,updated_at",
+  "julkalender_paminnelser": "user_id,created_at",
   "users": "id,username,email,avatar,created_at,bio,nationality,experience_years,vessel_type,vessel_model,vessel_name,home_port,sailing_region,public_fields,is_admin,boat_type,website,onboarded_at,home_port_lat,home_port_lng",
   "users_publik": "id,username,avatar,created_at,public_fields,bio,website,nationality,experience_years,vessel_type,vessel_model,vessel_name,home_port,sailing_region",
   "visited_islands": "id,user_id,island_slug,trip_id,visited_at,fran_tur",

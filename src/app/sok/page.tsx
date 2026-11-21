@@ -8,7 +8,7 @@ import { analytics } from '@/lib/analytics'
 import { track } from '@/lib/analytics-events'
 import Link from 'next/link'
 import Image from 'next/image'
-import { ALL_ISLANDS } from '../o/island-data'
+import { O_SOK } from '@/lib/oSok'
 import { OBILDER } from '../o/obilder.generated'
 import { commonsThumb } from '@/lib/commonsBild'
 import { ACTIVITY_LIST } from '../aktivitet/activity-data'
@@ -246,7 +246,7 @@ function SokPageInner() {
 
  // Lokal sökning över öar + aktiviteter (statiskt data, ingen DB-fråga).
  // foldSok gör att "gallno" träffar Gällnö. Exakt namn sorteras först.
- const islandResults: Result[] = isHashtagQuery ? [] : valjOar(ALL_ISLANDS, safe)
+ const islandResults: Result[] = isHashtagQuery ? [] : valjOar(O_SOK, safe)
  .map(i => ({
  type: 'o' as const,
  id: i.slug,

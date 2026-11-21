@@ -6,8 +6,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         // '/planera/' (med slash) är längre än Disallow '/planera' och vinner
-        // därför enligt longest-match: publicerade, delbara rutter blir
-        // indexerbara medan själva planeringsverktyget /planera förblir blockerat.
+        // därför enligt longest-match. Ruttsidorna /planera/<id> har sedan
+        // 2026-11-20 noindex (användares egna planer), och Googlebot måste få
+        // crawla dem för att se det och ta bort dem ur indexet. Blockera inte.
         //
         // '/api/og/' är tillåten med flit. Sidorna under den svarar med
         // X-Robots-Tag: noindex (se next.config), och Googlebot måste få

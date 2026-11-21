@@ -1,3 +1,7 @@
+/**
+ * SVALLAS LOGGA (B). Beslut Max 2026-11-21: två segel, mast och våg under.
+ * Samma form ska finnas i favicon, appikoner och delningsbilder. Byt inte form utan att Max ber om det.
+ */
 export default function SvallaLogo({ height = 26, color = '#ffffff' }: { height?: number; color?: string }) {
   return (
     <svg viewBox="0 0 120 28" height={height} xmlns="http://www.w3.org/2000/svg" aria-label="Svalla" style={{ display: 'block' }}>
