@@ -4,9 +4,10 @@ import React from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import EmailSignup from '@/components/EmailSignup'
-import { ACTIVITY_LIST, getActivity, islandsForActivity, type ActivityType } from '../activity-data'
+import { ACTIVITY_LIST, getActivity, type ActivityType } from '../activity-data'
 import type { Island } from '../../o/island-data'
 import { ogSida } from '@/lib/og-standard'
+import { islandsForActivity } from '@/app/aktivitet/activity-islands'
 
 type Props = { params: Promise<{ type: string }> }
 

@@ -37,6 +37,8 @@ const MALLAR = {
   day90: '12_day90.md',
   saved_island: '13_saved_island.md',
   weekly_island: '14_weekly_island.md',
+  // Julkalenderns påminnelse 2026-11-21: bara till konton med rad i julkalender_paminnelser.
+  julkalender: '15_julkalender.md',
 }
 
 const saknade = []

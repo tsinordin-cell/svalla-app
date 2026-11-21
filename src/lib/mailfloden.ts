@@ -15,7 +15,7 @@
  * skickar). Testet i mailfloden.test.ts spärrar att standardläget är av.
  */
 
-export const MAILFLODEN = ['manadsbrev', 'day60', 'day90', 'saved_island', 'weekly_island'] as const
+export const MAILFLODEN = ['manadsbrev', 'day60', 'day90', 'saved_island', 'weekly_island', 'julkalender'] as const
 export type Mailflode = (typeof MAILFLODEN)[number]
 
 /** true bara om flödet uttryckligen står i EMAIL_AUTOMATIK. */

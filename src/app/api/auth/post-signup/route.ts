@@ -26,10 +26,13 @@ export async function POST(_req: NextRequest) {
     return NextResponse.json({ error: 'Inte inloggad' }, { status: 401 })
   }
 
-  // Verifiera "nyligen skapad" — 5 minuter tillbaks från nu
-  const createdAt = new Date(user.created_at).getTime()
-  const ageMin = (Date.now() - createdAt) / 60_000
-  if (ageMin > 5) {
+  // Verifiera "nyligen skapad" — 5 minuter tillbaks från nu. Sedan e-post-
+  // bekräftelsen slogs på (2026-11-21) går välkomstmejlet när adressen
+  // bekräftas, vilket kan vara långt efter att kontot skapades: då räknas
+  // tiden från bekräftelsen.
+  const nyligen = (iso: string | null | undefined) =>
+    !!iso && (Date.now() - new Date(iso).getTime()) / 60_000 <= 5
+  if (!nyligen(user.created_at) && !nyligen(user.email_confirmed_at)) {
     return NextResponse.json({ error: 'Konto är inte nyskapat' }, { status: 403 })
   }
 

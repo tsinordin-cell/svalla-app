@@ -6,12 +6,12 @@ import { getIsland } from '../../../o/island-data'
 import {
   ACTIVITY_LIST,
   getActivity,
-  islandsForActivity,
   islandActivitiesForType,
   type ActivityType,
 } from '../../activity-data'
 import { ogO } from '@/lib/og-standard'
 import { HIKES } from '../../vandring/hike-data'
+import { islandsForActivity } from '@/app/aktivitet/activity-islands'
 
 type Props = { params: Promise<{ type: string; island: string }> }
 

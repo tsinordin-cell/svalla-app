@@ -6,6 +6,8 @@ import SvallaLogo from '@/components/SvallaLogo'
 import HeroAnimation from '@/components/HeroAnimation'
 import Icon from '@/components/Icon'
 import { validateUsername, deriveUsername } from '@/lib/username'
+import { bekraftelseMal } from '@/lib/epostbekraftelse'
+import KollaInkorgen from '@/components/BekraftaEpost'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  /kom-igang — Premium onboarding flow
@@ -89,6 +91,8 @@ function KomIgangInner() {
  // Referral-kontext: kommer användaren hit via en delad tur?
  // Tur-sidans CTA skickar ?ref=tur&from=username för att kunna personifiera onboarding.
  const fromUser = searchParams?.get('from') ?? null
+ // Dit länken i bekräftelsemejlet leder (2026-11-21): profilen man kom från, annars flödet.
+ const efterBekraftelse = fromUser ? `/u/${encodeURIComponent(fromUser)}` : '/feed'
 
  // Vännens namn sparas en timme i en kaka, så att onboardingen kan föreslå just
  // den personen först. Kakan överlever även omvägen via Google, där ?from= tappas.
@@ -199,7 +203,8 @@ function KomIgangInner() {
  const { data, error } = await supabase.auth.signUp({
  email: email.trim(),
  password,
- options: { data: { username: derivedUsername, full_name: name.trim() } },
+ // Länken i bekräftelsemejlet leder hit efteråt, se lib/epostbekraftelse.ts
+ options: { data: { username: derivedUsername, full_name: name.trim() }, emailRedirectTo: bekraftelseMal(efterBekraftelse) },
  })
 
  if (error) { setErr(swErr(error.message)); setLoading(false); return }
@@ -793,6 +798,16 @@ function KomIgangInner() {
  input:focus { border-color: rgba(30,92,130,0.45) !important; box-shadow: 0 0 0 3px rgba(30,92,130,0.08); }
  `}</style>
  </>
+ )
+
+ /* Steg 2 utan session: adressen måste bekräftas först (Confirm email är på,
+ 2026-11-21). "Välkommen ombord" och knapparna till flödet visas först när
+ användaren är inloggad, annars ledde de rakt till inloggningssidan. */
+ if (step === 2 && !hasSession) return shell(
+ <div style={{ maxWidth: 400, width: '100%', margin: '0 auto', padding: '88px 24px 48px', boxSizing: 'border-box' }}>
+ <KollaInkorgen epost={email.trim()} mal={bekraftelseMal(efterBekraftelse)} />
+ </div>,
+ true,
  )
 
  /* ═══════════════════════════════════════════════════════════════════════════

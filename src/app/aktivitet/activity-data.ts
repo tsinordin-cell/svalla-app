@@ -1,4 +1,6 @@
-import { ALL_ISLANDS, type Island } from '../o/island-data'
+// Bara typen: hela ö-listan importeras i activity-islands.ts, så att /sok
+// (klientsida) kan läsa ACTIVITY_LIST utan att dra in 865 kB ö-data (2026-11-21).
+import type { Island } from '../o/island-data'
 
 export type ActivityType = 'segling' | 'cykla' | 'bada' | 'vandring' | 'mat' | 'fiske'
 
@@ -101,21 +103,6 @@ export const ACTIVITIES: Record<ActivityType, ActivityMeta> = {
 }
 
 export const ACTIVITY_LIST: ActivityMeta[] = Object.values(ACTIVITIES)
-
-/** Returnerar öar som matchar en aktivitet baserat på tags + activities.name + accommodation.type */
-export function islandsForActivity(type: ActivityType): Island[] {
-  const meta = ACTIVITIES[type]
-  const matchers = meta.matchers
-  return ALL_ISLANDS.filter(island => {
-    const haystack = [
-      ...island.tags,
-      ...island.activities.map(a => a.name.toLowerCase()),
-      ...island.activities.map(a => a.desc.toLowerCase()),
-      ...island.restaurants.map(r => r.type.toLowerCase()),
-    ].join(' ').toLowerCase()
-    return matchers.some(m => haystack.includes(m))
-  })
-}
 
 /** Hämtar de aktivitets-cards från ön som faktiskt matchar typen */
 export function islandActivitiesForType(island: Island, type: ActivityType): typeof island.activities {
