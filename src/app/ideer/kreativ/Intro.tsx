@@ -2,9 +2,9 @@
 /**
  * INTROT, version 2 (2026-11-21). Rent WebGL2, inga bibliotek.
  * Partiklar ritas som mjuka fläckar till en täthetsbild, suddas, och tröskelvärdet ger en bläckkant.
- * Under bläcket ligger ett vätskefält (128 punkter brett) som krusar kanten; musen och fingret rör om.
+ * Under bläcket ligger ett vätskefält (128 punkter brett) som krusar kanten av sig självt. Musen påverkar inte bilden.
  * Kornet i kanten kommer från en förberäknad brustextur i två skalor. Strikt två färger.
- * Båten och texten ligger i egna kanaler och inverterar havet där de korsar det.
+ * Båten och texten ligger i egna kanaler. Texten inverterar havet, båten smälter ihop med det.
  * Sveriges kontur: Natural Earth 1:50m (allmän egendom), avrundad till två decimaler.
  */
 import { useEffect, useRef, useState } from 'react'
@@ -57,7 +57,21 @@ function provForm(W: number, H: number, n: number, rita: (c: CanvasRenderingCont
 /* Svallas båt. Seglen, masten och vågen har loggan B:s mått (src/components/SvallaLogo.tsx, enheter 0 till 18).
    Lagt till: ett lågt skrov och två personer, en på var sida om seglen. Rutan är 26 × 25 enheter. */
 const BAT_B = 26, BAT_H = 25, BAT_DX = 4, BAT_DY = -1
-const ARM = { axel: [-0.6, 17.6] as const, hand: [0.5, 14.7] as const, r: 0.42 }
+// Den vinkande armen: överarm från axel till armbåge (still), underarm och hand vinkar kring armbågen
+const ARM = { axel: [-0.05, 17.0] as const, armbage: [0.75, 16.0] as const, hand: [0.85, 14.55] as const, r: 0.3 }
+/* En sittande person i siluett: huvud, hals, axlar och bål ner under relingen. */
+function ritaPerson(c: CanvasRenderingContext2D, cx: number, keps: boolean) {
+  c.beginPath(); c.ellipse(cx, 15.15, 0.5, 0.62, 0, 0, Math.PI * 2); c.fill()
+  c.fillRect(cx - 0.22, 15.55, 0.44, 1.2)
+  c.beginPath()
+  c.moveTo(cx - 1.2, 19.6); c.lineTo(cx - 1.15, 17.35)
+  c.quadraticCurveTo(cx - 1.12, 16.72, cx - 0.42, 16.62); c.lineTo(cx + 0.42, 16.62)
+  c.quadraticCurveTo(cx + 1.12, 16.72, cx + 1.15, 17.35); c.lineTo(cx + 1.2, 19.6); c.closePath(); c.fill()
+  if (keps) {
+    c.beginPath(); c.ellipse(cx, 14.72, 0.56, 0.36, 0, Math.PI, Math.PI * 2); c.fill()
+    c.fillRect(cx - 0.15, 14.6, 1.0, 0.17)
+  }
+}
 function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number, medArm = true) {
   const k = bw / BAT_B
   c.save(); c.translate(x, y); c.scale(k, k); c.translate(BAT_DX, BAT_DY)
@@ -70,9 +84,12 @@ function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number, 
   // Skrov med svängd reling (för och akter högre än mitten)
   c.beginPath(); c.moveTo(-3, 18.5); c.quadraticCurveTo(9, 20.3, 21, 18.5); c.quadraticCurveTo(20.1, 21.8, 17.4, 22.1); c.lineTo(0.6, 22.1); c.quadraticCurveTo(-2.1, 21.8, -3, 18.5); c.closePath(); c.fill()
   // Två personer som sitter i båten, huvud och axlar över relingen
-  c.beginPath(); c.arc(-1.3, 15.75, 1.0, 0, Math.PI * 2); c.fill(); c.fillRect(-2.2, 17.15, 1.8, 2.6)
-  c.beginPath(); c.arc(19.7, 15.75, 1.0, 0, Math.PI * 2); c.fill(); c.fillRect(18.8, 17.15, 1.8, 2.6)
-  if (medArm) { c.beginPath(); c.moveTo(ARM.axel[0], ARM.axel[1]); c.lineTo(ARM.hand[0], ARM.hand[1]); c.lineWidth = ARM.r * 2; c.stroke() }
+  ritaPerson(c, -1.2, false)
+  ritaPerson(c, 19.6, true)
+  if (medArm) {
+    c.beginPath(); c.moveTo(ARM.axel[0], ARM.axel[1]); c.lineTo(ARM.armbage[0], ARM.armbage[1]); c.lineTo(ARM.hand[0], ARM.hand[1]); c.lineWidth = ARM.r * 2; c.stroke()
+    c.beginPath(); c.arc(ARM.hand[0], ARM.hand[1], ARM.r * 1.25, 0, Math.PI * 2); c.fill()
+  }
   // Vågen (loggan: M2,20 Q6,17.5 9,20 Q12,17.5 17,20), här under skrovet
   c.beginPath(); c.moveTo(-0.5, 24.3); c.quadraticCurveTo(4.25, 21.9, 9, 24.3); c.quadraticCurveTo(13.75, 21.9, 18.5, 24.3); c.lineWidth = 1.2; c.stroke()
   c.restore()
@@ -125,7 +142,7 @@ const FS_BILD = `#version 300 es
 precision highp float;
 uniform sampler2D den; uniform sampler2D vel; uniform sampler2D korn; uniform sampler2D txt; uniform sampler2D form;
 uniform vec2 res; uniform float t; uniform float hav; uniform float vag; uniform float txtA; uniform vec3 bla; uniform vec3 drops[7];
-uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform vec4 arm; uniform float armR;
+uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform vec4 arm; uniform vec4 armU; uniform float armR;
 in vec2 uv; out vec4 o;
 vec4 mjuk(vec2 p){ vec2 e = 1.1 / vec2(textureSize(form, 0));
   return texture(form, p) * .4 + (texture(form, p + e) + texture(form, p - e) + texture(form, p + vec2(e.x, -e.y)) + texture(form, p - vec2(e.x, -e.y))) * .15; }
@@ -153,7 +170,7 @@ void main(){
   vec2 qq = sp - vec2(0., by) - piv; float cs = cos(ang), sn = sin(ang);
   vec2 lp = piv + vec2(qq.x * cs + qq.y * sn, -qq.x * sn + qq.y * cs);
   float m2 = 0.;
-  if (batS > 0.) { m2 = mjuk(lp / stage).g; m2 = max(m2, clamp((armR - seg(lp, arm.xy, arm.zw)) / 1.6 + .5, 0., 1.)); }
+  if (batS > 0.) { m2 = mjuk(lp / stage).g; float ad = min(min(seg(lp, armU.xy, armU.zw), seg(lp, arm.xy, arm.zw) + armR * .1), length(lp - arm.zw) - armR * .3); m2 = max(m2, clamp((armR - ad) / 1.6 + .5, 0., 1.)); }
   float fr = mix(d.r, m1, sveS);
   float fb = mix(d.g, m2, batS);
   float a = kant(fr + havF, th);
@@ -161,7 +178,7 @@ void main(){
   float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * .3).a;
   tx = smoothstep(.45, .55, tx + (kf - .5) * .1) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
   float ink = a;
-  ink = mix(ink, 1. - ink, b);
+  ink = max(ink, b); // båten smälter ihop med havet, inget vitt under den
   ink = mix(ink, 1. - ink, tx);
   float fld = 0.;
   for (int i = 0; i < 7; i++) { vec2 dq = gl_FragCoord.xy - drops[i].xy; fld += drops[i].z * drops[i].z / (dot(dq, dq) + 1.); }
@@ -207,35 +224,43 @@ function kornTextur(gl: GL) {
   return tex
 }
 
-/* Ljud: av tills man slår på det. Ett ljust ackord i kvinter, en luftig andning som stiger och en vattendroppe per scen. */
+/* Ljud: av tills man slår på det. Bara en lugn havsbris och stilla vågor, gjort av filtrerat brus (inga ljudfiler). */
 function skapaLjud() {
   const AC = (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)
   const ac = new AC()
   const ut = ac.createGain(); ut.gain.value = 0; ut.connect(ac.destination)
-  const toner = [587.33, 880, 1318.5].map((f, i) => {
-    const o = ac.createOscillator(); o.type = 'sine'; o.frequency.value = f
-    const g = ac.createGain(); g.gain.value = 0.028 / (i + 1)
-    const lfo = ac.createOscillator(); lfo.frequency.value = 0.07 + i * 0.03
-    const lg = ac.createGain(); lg.gain.value = 0.012 / (i + 1); lfo.connect(lg); lg.connect(g.gain)
-    o.connect(g); g.connect(ut); o.start(); lfo.start(); return o
-  })
-  const buf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate)
-  const ch = buf.getChannelData(0); for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1
-  const brus = ac.createBufferSource(); brus.buffer = buf; brus.loop = true
-  const bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 900; bp.Q.value = 0.7
-  const andning = ac.createGain(); andning.gain.value = 0
-  brus.connect(bp); bp.connect(andning); andning.connect(ut); brus.start()
-  ut.gain.setTargetAtTime(0.9, ac.currentTime, 0.8)
+  // Brunt brus: mjukt och mörkt, låter som vind och hav på avstånd
+  const brunt = (sek: number) => {
+    const b = ac.createBuffer(1, Math.round(ac.sampleRate * sek), ac.sampleRate)
+    const d = b.getChannelData(0); let s = 0
+    for (let i = 0; i < d.length; i++) { s = (s + 0.02 * (Math.random() * 2 - 1)) / 1.02; d[i] = s * 3.5 }
+    return b
+  }
+  const kalla = (sek: number) => { const k = ac.createBufferSource(); k.buffer = brunt(sek); k.loop = true; return k }
+  // Brisen: lågpassat brus som andas långsamt
+  const vind = kalla(7), vf = ac.createBiquadFilter(); vf.type = 'lowpass'; vf.frequency.value = 420; vf.Q.value = 0.4
+  const vg = ac.createGain(); vg.gain.value = 0.16
+  const l1 = ac.createOscillator(); l1.frequency.value = 0.06; const l1g = ac.createGain(); l1g.gain.value = 0.06; l1.connect(l1g); l1g.connect(vg.gain)
+  const l2 = ac.createOscillator(); l2.frequency.value = 0.045; const l2g = ac.createGain(); l2g.gain.value = 140; l2.connect(l2g); l2g.connect(vf.frequency)
+  vind.connect(vf); vf.connect(vg); vg.connect(ut)
+  // Vågorna: en lugn dyning som sköljer in var sjunde till tionde sekund
+  const hav = kalla(9), hf = ac.createBiquadFilter(); hf.type = 'lowpass'; hf.frequency.value = 650; hf.Q.value = 0.3
+  const hg = ac.createGain(); hg.gain.value = 0.02
+  hav.connect(hf); hf.connect(hg); hg.connect(ut)
+  vind.start(); hav.start(); l1.start(); l2.start()
+  ut.gain.setTargetAtTime(0.9, ac.currentTime, 1.2)
+  let nasta = ac.currentTime + 1.5
+  const vag = () => {
+    while (nasta < ac.currentTime + 2) {
+      const n = nasta, top = 0.16 + Math.random() * 0.06
+      hg.gain.setTargetAtTime(top, n, 1.1); hg.gain.setTargetAtTime(0.02, n + 2.6, 1.6)
+      hf.frequency.setTargetAtTime(900, n, 1.1); hf.frequency.setTargetAtTime(520, n + 2.6, 1.6)
+      nasta = n + 7 + Math.random() * 3
+    }
+  }
+  vag(); const tick = setInterval(vag, 1000)
   return {
-    droppe() {
-      const o = ac.createOscillator(); o.type = 'sine'
-      const g = ac.createGain(); const n = ac.currentTime
-      o.frequency.setValueAtTime(1500, n); o.frequency.exponentialRampToValueAtTime(420, n + 0.14)
-      g.gain.setValueAtTime(0.0001, n); g.gain.exponentialRampToValueAtTime(0.09, n + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, n + 0.32)
-      o.connect(g); g.connect(ut); o.start(n); o.stop(n + 0.35)
-    },
-    andas(p: number) { andning.gain.setTargetAtTime(0.004 + p * 0.016, ac.currentTime, 0.3); bp.frequency.setTargetAtTime(700 + p * 900, ac.currentTime, 0.4) },
-    stang() { ut.gain.setTargetAtTime(0, ac.currentTime, 0.2); setTimeout(() => { toner.forEach(o => o.stop()); brus.stop(); ac.close() }, 600) },
+    stang() { clearInterval(tick); ut.gain.setTargetAtTime(0, ac.currentTime, 0.3); setTimeout(() => { [vind, hav, l1, l2].forEach(k => k.stop()); ac.close() }, 900) },
   }
 }
 
@@ -403,15 +428,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
     const ro = new ResizeObserver(() => { cancelAnimationFrame(bygger); bygger = requestAnimationFrame(bygg) })
     ro.observe(el)
 
-    // Musen och fingret
-    const mus = { x: 0.5, y: 0.5, dx: 0, dy: 0, aktiv: false }
-    const flytta = (e: PointerEvent) => {
-      const r = cv.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width, y = 1 - (e.clientY - r.top) / r.height
-      if (mus.aktiv) { mus.dx += (x - mus.x) * 9; mus.dy += (y - mus.y) * 9 }
-      mus.x = x; mus.y = y; mus.aktiv = true
-    }
-    const lamna = () => { mus.aktiv = false }
-    cv.addEventListener('pointermove', flytta); cv.addEventListener('pointerleave', lamna)
+    // Bilden reagerar inte på musen (beslut Max 2026-11-21). Vätskefältet rör sig av sig självt.
 
     const u = (p: WebGLProgram, n: string) => gl.getUniformLocation(p, n)
     const pass = (p: WebGLProgram, mal: { fb: WebGLFramebuffer; w: number; h: number } | null) => {
@@ -435,8 +452,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
 
       // Scenernas förlopp
       const sc = SCENER.reduce((a, s, i) => (T >= s.fran ? i : a), 0)
-      if (sc !== sistaScen.current) { if (sistaScen.current >= 0 && sc > sistaScen.current) ljudRef.current?.droppe(); sistaScen.current = sc }
-      ljudRef.current?.andas(T / SLUT)
+      if (sc !== sistaScen.current) { sistaScen.current = sc }
       const havNiva = 1.18 - 0.28 * ease((T - 5600) / 2400) - 0.26 * ease((T - 7800) / 2200)
       const batNer = ease((T - 7800) / 2000)
       const bob = Math.sin(sek * 1.4) * H * 0.008, vink = Math.sin(sek * 1.1) * 0.045
@@ -478,11 +494,10 @@ export default function Intro({ efter }: { efter?: () => void }) {
       // 1. Vätskefältet
       pass(pFlode, flB)
       gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, flA.tex); gl.uniform1i(u(pFlode, 'v'), 0)
-      gl.uniform2f(u(pFlode, 'm'), mus.x, mus.y); gl.uniform2f(u(pFlode, 'md'), mus.dx, mus.dy)
+      gl.uniform2f(u(pFlode, 'm'), 0.5, 0.5); gl.uniform2f(u(pFlode, 'md'), 0, 0)
       gl.uniform1f(u(pFlode, 'asp'), W / H); gl.uniform1f(u(pFlode, 't'), sek); gl.uniform1f(u(pFlode, 'dt'), dt)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
       ;[flA, flB] = [flB, flA]
-      mus.dx *= 0.82; mus.dy *= 0.82
 
       // 2. Täthet: partiklarna som mjuka fläckar
       gl.useProgram(pPunkt); gl.bindFramebuffer(gl.FRAMEBUFFER, dens.fb); gl.viewport(0, 0, dens.w, dens.h)
@@ -516,9 +531,10 @@ export default function Intro({ efter }: { efter?: () => void }) {
       {
         const kk = batRuta.bw / BAT_B, bx = (W - batRuta.bw) / 2, byy = (H - batRuta.bh) / 2
         const P = (uu: number, vv: number) => [bx + (uu + BAT_DX) * kk, byy + (vv + BAT_DY) * kk] as const
-        const [sx, sy] = P(ARM.axel[0], ARM.axel[1]), [hx0, hy0] = P(ARM.hand[0], ARM.hand[1])
-        const va = minskad ? 0 : Math.sin(sek * 5.2) * 0.34, dxa = hx0 - sx, dya = hy0 - sy
+        const [ax, ay] = P(ARM.axel[0], ARM.axel[1]), [sx, sy] = P(ARM.armbage[0], ARM.armbage[1]), [hx0, hy0] = P(ARM.hand[0], ARM.hand[1])
+        const va = minskad ? 0 : Math.sin(sek * 5.2) * 0.38, dxa = hx0 - sx, dya = hy0 - sy
         gl.uniform4f(u(pBild, 'arm'), sx, sy, sx + dxa * Math.cos(va) - dya * Math.sin(va), sy + dxa * Math.sin(va) + dya * Math.cos(va))
+        gl.uniform4f(u(pBild, 'armU'), ax, ay, sx, sy)
         gl.uniform1f(u(pBild, 'armR'), ARM.r * kk)
       }
       // Tidslinjen som flytande droppar: en aktiv droppe med släpande svans
@@ -538,7 +554,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
       raf = requestAnimationFrame(ruta)
     }
     raf = requestAnimationFrame(ruta)
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); cv.removeEventListener('pointermove', flytta); cv.removeEventListener('pointerleave', lamna) }
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); }
   }, [])
 
   useEffect(() => () => ljudRef.current?.stang(), [])
@@ -588,7 +604,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
 
 const CSS = `
 .ki-scen{position:relative;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(13,36,64,.14);aspect-ratio:16/9;min-height:380px;touch-action:pan-y}
-.ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair}
+.ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ki-topp{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:10px;z-index:3}
 .ki-tips{font:700 10.5px/1 Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1b57a0;background:#fff;border:1.5px solid #1b57a0;border-radius:999px;padding:7px 11px;opacity:0;transform:translateY(-4px);transition:opacity 1.1s,transform 1.1s}
 .ki-tips.syns{opacity:1;transform:none}
