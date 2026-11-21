@@ -690,7 +690,7 @@ const CSS = `
 .kr-start-inne h3{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(28px,4.6vw,58px);line-height:1.06;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(5,15,30,.6);margin:0}
 .kr-start-inne h3 em{color:#f0a866}
 .kr-start-inne p{font-size:clamp(13px,1.5vw,16px);font-weight:300;color:rgba(255,255,255,.88);margin:10px 0 0;text-shadow:0 1px 10px rgba(5,15,30,.55)}
-.kr-start-knapp{margin-top:16px;display:inline-block;background:#b5591a;color:#fff;font-weight:700;font-size:14px;border-radius:999px;padding:11px 22px;text-decoration:none}
+.kr-start-knapp{margin-top:16px;display:inline-block;background:#b5591a;color:#fff !important;font-weight:700;font-size:14px;border-radius:999px;padding:11px 22px;text-decoration:none}
 .kr-start-hav{position:absolute;left:-6%;right:-6%;top:0;height:128%;z-index:3;background:#1b57a0;border-radius:0 0 50% 50%/0 0 20% 20%;animation:krHavUpp 1.25s .12s cubic-bezier(.7,0,.25,1) forwards}
 @keyframes krHavUpp{to{transform:translateY(-112%)}}
 .kr-bandet2{animation-duration:1.55s}

@@ -58,11 +58,13 @@ function provForm(W: number, H: number, n: number, rita: (c: CanvasRenderingCont
    Lagt till: ett lågt skrov och två personer, en på var sida om seglen. Rutan är 26 × 25 enheter. */
 const BAT_B = 26, BAT_H = 25, BAT_DX = 4, BAT_DY = -1
 // Den vinkande armen: överarm från axel till armbåge (still), underarm och öppen hand vinkar kring armbågen
-const ARM = { axel: [-0.4, 16.85] as const, armbage: [0.8, 15.7] as const, hand: [0.9, 14.2] as const, r: 0.3 }
+const ARM = { axel: [-0.39, 16.16] as const, armbage: [1.11, 14.73] as const, hand: [1.24, 12.85] as const, r: 0.375 }
 /* En sittande person i Svallas tvåfärgade bläckstil: randig tröja med polokrage, ljust ansikte med öga, näsa och leende.
    Den ena har stickad mössa med tofs, den andra sjömansmössa och hästsvans. Vitt görs genom att skära hål i det blå. */
 function ritaPerson(c: CanvasRenderingContext2D, cx: number, sjoman: boolean) {
   const hal = (f: () => void) => { c.globalCompositeOperation = 'destination-out'; c.beginPath(); f(); c.fill(); c.globalCompositeOperation = 'source-over' }
+  // Figuren är ritad i grundstorlek och förstoras 1,25 gånger kring sittpunkten
+  c.save(); c.translate(cx, 19.6); c.scale(1.25, 1.25); c.translate(-cx, -19.6)
   // Tröjan: blå kontur, vit insida och två blå ränder
   c.beginPath(); c.moveTo(cx - 1.15, 19.6); c.lineTo(cx - 1.15, 17.0); c.quadraticCurveTo(cx - 1.12, 16.28, cx - 0.5, 16.25); c.lineTo(cx + 0.5, 16.25); c.quadraticCurveTo(cx + 1.12, 16.28, cx + 1.15, 17.0); c.lineTo(cx + 1.15, 19.6); c.closePath(); c.fill()
   hal(() => { c.moveTo(cx - 0.98, 18.5); c.lineTo(cx - 0.98, 17.0); c.quadraticCurveTo(cx - 0.96, 16.43, cx - 0.45, 16.42); c.lineTo(cx + 0.45, 16.42); c.quadraticCurveTo(cx + 0.96, 16.43, cx + 0.98, 17.0); c.lineTo(cx + 0.98, 18.5); c.closePath() })
@@ -92,6 +94,7 @@ function ritaPerson(c: CanvasRenderingContext2D, cx: number, sjoman: boolean) {
     hal(() => { c.rect(cx - 0.8, 14.48, 1.6, 0.11) })
     c.beginPath(); c.arc(cx, 13.84, 0.25, 0, Math.PI * 2); c.fill()
   }
+  c.restore()
 }
 function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number, medArm = true) {
   const k = bw / BAT_B
@@ -103,10 +106,10 @@ function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number, 
   c.beginPath(); c.moveTo(10.25, 4.3); c.lineTo(18, 18); c.lineTo(10.25, 18); c.closePath(); c.fill()
   c.beginPath(); c.moveTo(7.75, 8.3); c.lineTo(1, 17); c.lineTo(7.75, 17); c.closePath(); c.fill()
   // Skrov med svängd reling (för och akter högre än mitten)
-  c.beginPath(); c.moveTo(-3, 18.5); c.quadraticCurveTo(9, 20.3, 21, 18.5); c.quadraticCurveTo(20.1, 21.8, 17.4, 22.1); c.lineTo(0.6, 22.1); c.quadraticCurveTo(-2.1, 21.8, -3, 18.5); c.closePath(); c.fill()
+  c.beginPath(); c.moveTo(-3.4, 18.5); c.quadraticCurveTo(9, 20.3, 21.4, 18.5); c.quadraticCurveTo(20.4, 21.8, 17.4, 22.1); c.lineTo(0.6, 22.1); c.quadraticCurveTo(-2.4, 21.8, -3.4, 18.5); c.closePath(); c.fill()
   // Två personer som sitter i båten, huvud och axlar över relingen
-  ritaPerson(c, -1.45, false)
-  ritaPerson(c, 19.6, true)
+  ritaPerson(c, -1.7, false)
+  ritaPerson(c, 19.85, true)
   if (medArm) {
     c.beginPath(); c.moveTo(ARM.axel[0], ARM.axel[1]); c.lineTo(ARM.armbage[0], ARM.armbage[1]); c.lineTo(ARM.hand[0], ARM.hand[1]); c.lineWidth = ARM.r * 2; c.stroke()
     c.beginPath(); c.arc(ARM.hand[0], ARM.hand[1], ARM.r * 1.25, 0, Math.PI * 2); c.fill()
