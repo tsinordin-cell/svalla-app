@@ -455,7 +455,9 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
     hamnade rubriken rakt ovanpå den. vh-baserad padding följer solen på
     alla skärmhöjder. */
  .hero-top{padding-top:22vh}
- .hero-bottom{top:auto;bottom:4vh}
+ /* Valen slutar ovanför den flytande Tipsa oss-knappen (FeedbackWidget: bottom + 37 px + 12 px luft).
+    Med bottom:4vh låg knappen över "Hitta på kartan" (mätt 2026-11-21). */
+ .hero-bottom{top:auto;bottom:calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 63px)}
  .hero-eyebrow{margin-bottom:18px;font-size:11px;padding:5px 12px;margin-top:8px}
  .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:14px}
  .hero-sub{font-size:13.5px;margin:10px auto 18px}
