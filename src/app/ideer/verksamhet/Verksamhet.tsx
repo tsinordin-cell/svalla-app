@@ -172,6 +172,43 @@ export default function Verksamhet({ bilder }: { bilder: VBild[] }) {
           {forsta && <p className="vk-foto">Foton: {bilder.filter(Boolean).slice(0, 3).map(b => `${b!.fotograf}, ${b!.licens}`).join(' · ')}</p>}
         </div>
       </div>
+
+      <section className="vk-claes" id="partnerskap">
+        <small>Från Claes · Partnerskap och affärsmodell</small>
+        <h2>Det som händer runt sidan</h2>
+        <p className="vk-claes-ingress">Inte delar på sidan, utan sättet Svalla håller ihop med verksamheterna. Allt här är idéer, inget är bestämt.</p>
+        <div className="vk-claes-grid">
+          <article>
+            <em>Idé</em>
+            <b>Registrera sig som partner</b>
+            <p>Verksamheten skapar ett partnerkonto. Då har Svalla en kontakt att skriva till, och verksamheten en plats att uppdatera sin sida.</p>
+          </article>
+          <article>
+            <em>Idé</em>
+            <b>Partnerbrev varje månad</b>
+            <p>Ett brev inför varje månad, till exempel:</p>
+            <ul>
+              <li>Hej, här kommer partnerbrevet inför juni</li>
+              <li>Nya samarbetspartners förra månaden, med en lista</li>
+              <li>Grattis till den verksamhet vars förmån hämtades flest gånger</li>
+              <li>Ett nytt erbjudande att testa</li>
+              <li>Rabatt på toppplaceringen om man bokar före ett datum, till exempel inför midsommar</li>
+            </ul>
+            <small>Bara siffror vi faktiskt mäter, som hämtade förmåner. Brevet går till partner som sagt ja till det.</small>
+          </article>
+          <article>
+            <em>Idé</em>
+            <b>Freemium: Svalla Bas och Svalla Premium</b>
+            <p>Det mest grundläggande gratis. Mer värde kostar ett symboliskt belopp, till exempel några hundralappar. Det ger en intäkt och visar att Svalla är proffs och vågar ta betalt.</p>
+            <small>Vad som ingår i Premium och vad det kostar är inte bestämt.</small>
+          </article>
+          <article>
+            <em>Idé</em>
+            <b>Kampanj före säsongen</b>
+            <p>Halva priset på Svalla Premium fram till sista april, så att verksamheterna fyller sina sidor innan säsongen drar igång på riktigt.</p>
+          </article>
+        </div>
+      </section>
     </div>
   )
 }
@@ -265,10 +302,22 @@ const CSS = `
 .vk-bokabar span{display:block;text-align:center;font-size:14px;font-weight:700;background:#c8642a;color:#fff;border-radius:999px;padding:12px;box-shadow:0 6px 18px rgba(200,100,42,.35)}
 .vk-under{margin:12px 0 0;text-align:center;font-size:12.5px;color:#6b7f88}
 .vk-foto{margin:4px 0 0;text-align:center;font-size:10.5px;color:#8a9aa2}
+.vk-claes{max-width:1200px;margin:0 auto;padding:64px 24px 0;scroll-margin-top:50px}
+.vk-claes>small{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#b5591a}
+.vk-claes h2{font-size:clamp(28px,4vw,42px);margin:8px 0 8px}
+.vk-claes-ingress{font-size:16px;line-height:1.6;color:#3d5664;margin:0 0 20px;max-width:640px}
+.vk-claes-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.vk-claes-grid article{background:#fffdf8;border:1px solid rgba(150,110,60,.16);border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.vk-claes-grid em{align-self:flex-start;font-style:normal;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:#fbe8c0;color:#7a4a10;border-radius:999px;padding:3px 9px}
+.vk-claes-grid b{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:21px;color:#0d2440}
+.vk-claes-grid p{margin:0;font-size:14.5px;line-height:1.55;color:#3d5664}
+.vk-claes-grid ul{margin:4px 0 0;padding-left:18px;font-size:14px;line-height:1.55;color:#3d5664}
+.vk-claes-grid small{font-size:12.5px;color:#6b7f88;margin-top:4px}
 @media (max-width:900px){
   .vk-yta{grid-template-columns:minmax(0,1fr);gap:24px}
   .vk-telefon-plats{position:static;order:-1;max-width:360px;width:100%;justify-self:center}
   .vk-skarm{height:620px}
+  .vk-claes-grid{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:640px){
   .vk-intro,.vk-yta,.vk-topp{padding-left:16px;padding-right:16px}
