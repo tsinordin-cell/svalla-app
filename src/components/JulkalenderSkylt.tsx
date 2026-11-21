@@ -34,11 +34,13 @@ export default function JulkalenderSkylt() {
         /* Paketet göms när en meny är öppen, annars hamnar det ovanpå menyn (Max 2026-11-15) */
         body:has(.nav-dropdown:hover) .julskylt,body:has(.nav-dropdown:focus-within) .julskylt{opacity:0;pointer-events:none;transition:opacity .15s}
         .julskylt i{font-style:normal}.julskylt .kort{display:none}
-        @media (min-width:600px) and (max-width:999px){.julskylt{top:58px;left:14px}.julskylt span{font-size:11px}.julskylt .lang{display:none}.julskylt .kort{display:inline}}
+        /* Kort skylt upp till 1365 px: den långa låg över rubriken på 1024 och 1280 px (mätt 2026-11-21). */
+        @media (min-width:600px) and (max-width:1365px){.julskylt{top:58px;left:14px}.julskylt span{font-size:11px}.julskylt .lang{display:none}.julskylt .kort{display:inline}}
         @keyframes julsva{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}
         .julskylt svg{width:15px;height:20px;flex-shrink:0}
-        @media (min-width:1000px){.julskylt{top:90px;left:28px;gap:9px}.julskylt svg{width:30px;height:40px}.julskylt span{font-size:16px;padding:6px 12px;border-radius:10px}}
-        @media (min-width:1400px){.julskylt{top:96px;left:32px;gap:12px}.julskylt svg{width:45px;height:60px}.julskylt span{font-size:20px;padding:8px 16px;border-radius:12px}}
+        @media (min-width:1366px){.julskylt{top:90px;left:28px;gap:9px}.julskylt svg{width:30px;height:40px}.julskylt span{font-size:16px;padding:6px 12px;border-radius:10px}}
+        /* Från 1400 px: större paket men samma textstorlek. Med 20 px text låg skylten över "skärgårdsvistelse" på 1440 px. */
+        @media (min-width:1400px){.julskylt{top:92px;left:32px;gap:10px}.julskylt svg{width:36px;height:48px}.julskylt span{font-size:16px;padding:7px 14px;border-radius:11px}}
         @media (max-width:600px){.julskylt{top:68px;left:14px}.julskylt span{font-size:11px}}
         @media (prefers-reduced-motion: reduce){.julskylt{animation:none}}
       `}</style>
