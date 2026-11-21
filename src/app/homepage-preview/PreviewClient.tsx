@@ -2,6 +2,8 @@
 /**
  * FÖRHANDSVISNING (2026-11-20): startsidan, omkomponerad för mobil.
  *
+ * Layouten har redan <main id="innehall">, därför inget eget <main> här.
+ *
  * Isolering: inga produktionskomponenter ändras. Återanvänds oförändrade: MegaMeny, HeroAnimation,
  * RegionKarta, StartKarta och JulkalenderSkylt (bara på stor skärm). Startsidans egna delar
  * (StartDelar) är omskrivna här med samma texter, länkar och data.
@@ -43,13 +45,15 @@ const Nal = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" st
 const Lupp = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
 
 /* ── 1. Hjälten ── */
-function Julrad() {
+function Julrad({ start }: { start: number | null }) {
   // Samma regel som JulkalenderSkylt: synlig före och under december, eller med ?julkalender=1.
-  const [dag, setDag] = useState<number | null>(null)
+  // Startvärdet räknas på servern, så att raden finns från första målningen och inte knuffar ner rubriken.
+  const [dag, setDag] = useState<number | null>(start)
   useEffect(() => {
     const forhand = new URLSearchParams(window.location.search).get('julkalender') === '1'
     if (kalenderPagar()) setDag(oppnaLuckor())
     else if (kalenderSynlig() || forhand) setDag(0)
+    else setDag(null)
   }, [])
   if (dag === null) return null
   return (
@@ -61,7 +65,7 @@ function Julrad() {
   )
 }
 
-function Hero() {
+function Hero({ julStart }: { julStart: number | null }) {
   const sok = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const q = (new FormData(e.currentTarget).get('q') as string || '').trim()
@@ -74,7 +78,7 @@ function Hero() {
       </div>
       <div className="hp-hero-slojan" aria-hidden="true" />
       <div className="hp-hero-topp">
-        <Julrad />
+        <Julrad start={julStart} />
         <h1 id="hp-h1" className="hp-h1">Planera din <em>skärgårdsvistelse</em></h1>
         <p className="hp-hero-ingress">Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
       </div>
@@ -101,10 +105,11 @@ const SATT = [
 
 function Rubrik({ liten, children, id, ljus }: { liten: string; children: React.ReactNode; id?: string; ljus?: boolean }) {
   return (
-    <header className={ljus ? 'hp-rubrik hp-rubrik-ljus' : 'hp-rubrik'}>
+    // div, inte header: globals.css målar varje header-element mörkt i mörkt läge.
+    <div className={ljus ? 'hp-rubrik hp-rubrik-ljus' : 'hp-rubrik'}>
       <p className="hp-liten">{liten}</p>
       <h2 id={id} className="hp-h2">{children}</h2>
-    </header>
+    </div>
   )
 }
 
@@ -152,10 +157,10 @@ function JustNu() {
   return (
     <section className="hp-sek hp-papper hp-nu" aria-labelledby="hp-nu">
       <div className="hp-inre">
-        <header className="hp-rubrik hp-nu-topp">
+        <div className="hp-rubrik hp-nu-topp">
           <p className="hp-liten">Just nu i skärgården</p>
           <h2 id="hp-nu" className="hp-h2 hp-nu-datum">{datum ? <>{datum.charAt(0).toUpperCase() + datum.slice(1)}<span className="hp-nu-sep"> · </span><span className="hp-nu-klocka">{klocka}</span></> : ' '}</h2>
-        </header>
+        </div>
         <ul className="hp-nu-lista">
           {kommande.map(d => {
             const n = idag ? dagar(d.iso) : null
@@ -179,6 +184,15 @@ function JustNu() {
 }
 
 /* ── 4. Vad vill du känna? ── */
+/**
+ * Wikimedia-miniatyr i given bredd. Originalfiler (upload.wikimedia.org utan /thumb/) svarar 429
+ * när man länkar direkt till dem: bastu-rutan på startsidan är grå av det skälet (mätt 2026-11-20).
+ */
+function tumme(url: string, px: number): string {
+  if (url.includes('/thumb/')) return url.replace(/\/\d+px-/, `/${px}px-`)
+  const m = url.match(/^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\/([0-9a-f])\/([0-9a-f]{2})\/([^/]+)$/)
+  return m ? `https://upload.wikimedia.org/wikipedia/commons/thumb/${m[1]}/${m[2]}/${m[3]}/${px}px-${m[3]}` : url
+}
 const TURER: [string, string][] = [
   ['/resetips/djuro-grinda-dagstur', 'Djurö till Grinda'],
   ['/resetips/sandhamn-ytterskargard', 'Sandhamn med Cinderellabåten'],
@@ -202,7 +216,12 @@ function VadVillDuKanna({ kanslor }: { kanslor: StartKansla[] }) {
       </div>
       <div className="hp-kansla-rad" role="list">
         {kanslor.map(k => (
-          <Link key={k.href} href={k.href} role="listitem" className="hp-kansla-ruta" style={k.bild ? { backgroundImage: `url('${k.bild.url}')` } : undefined}>
+          <Link key={k.href} href={k.href} role="listitem" className="hp-kansla-ruta">
+            {k.bild && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={tumme(k.bild.url, 500)} srcSet={`${tumme(k.bild.url, 500)} 500w, ${tumme(k.bild.url, 960)} 960w`}
+                sizes="(min-width: 901px) 270px, (min-width: 640px) 260px, 64vw" alt="" loading="lazy" decoding="async" />
+            )}
             <span><b>{k.kansla}</b><small>{k.rubrik} · {k.antal} öar</small></span>
           </Link>
         ))}
@@ -267,7 +286,8 @@ function FragaThorkel() {
           <ul className="hp-thorkel-forslag" aria-label="Förslag på frågor">
             {FRAGOR.map(f => <li key={f}><Link href={`/guide?fraga=${encodeURIComponent(f)}`}>{f}<Pil /></Link></li>)}
           </ul>
-          <p className="hp-thorkel-not">Gratis, men kräver ett konto. <Link href="/utflykt">Planera utan konto →</Link></p>
+          <p className="hp-thorkel-not">Gratis, men kräver ett konto.</p>
+          <Link href="/utflykt" className="hp-thorkel-utan">Planera utan konto <Pil /></Link>
         </div>
       </div>
     </section>
@@ -359,14 +379,14 @@ function Bildkallor({ k }: { k: Bildkalla[] }) {
   )
 }
 
-export default function PreviewClient({ bildkallor = [], kanslor = [], antalKrogar = 0 }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalKrogar?: number }) {
+export default function PreviewClient({ bildkallor = [], kanslor = [], antalKrogar = 0, julStart = null }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalKrogar?: number; julStart?: number | null }) {
   return (
     <div className="hp">
       <MegaMeny overStart />
-      <Hero />
+      <Hero julStart={julStart} />
       {/* Stor skärm: julkalenderns paket i himlen, precis som på startsidan. I mobilen ligger den som en rad ovanför rubriken. */}
       <div className="hp-bara-stor"><JulkalenderSkylt /></div>
-      <main>
+      <div className="hp-innehall">
         <TreSatt />
         <JustNu />
         <VadVillDuKanna kanslor={kanslor} />
@@ -375,7 +395,7 @@ export default function PreviewClient({ bildkallor = [], kanslor = [], antalKrog
         <FragaThorkel />
         <Fragor />
         <GuidePaVattnet antalKrogar={antalKrogar} />
-      </main>
+      </div>
       <div className="hp-sidfot">
         <Bildkallor k={bildkallor} />
         <div dangerouslySetInnerHTML={{ __html: SIDFOT_HTML }} />
