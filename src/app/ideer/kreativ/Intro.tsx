@@ -146,7 +146,7 @@ void main(){
   float x = q.x;
   float niva = hav + (sin(x * 3.1 + t * 1.05) * .011 + sin(x * 7.7 - t * 1.6) * .0055 + (vn(vec2(x * 4., t * .4)) - .5) * .012) * vag;
   float havF = clamp((yd - niva) * 34. + .5, 0., 1.6);
-  float th = .5 + (kf - .5) * .13 + (kg - .5) * .1;
+  float th = .5 + (kf - .5) * .24 + (kg - .5) * .14;
   // Formmasken: bläcket sätter sig i Sveriges och båtens skarpa form, men krusas fortfarande av fältet
   vec2 sp = vec2(uv.x + disp.x, 1. - uv.y - disp.y) * stage;
   float m1 = sveS > 0. ? mjuk(sp / stage).r : 0.;
@@ -524,14 +524,14 @@ export default function Intro({ efter }: { efter?: () => void }) {
       // Tidslinjen som flytande droppar: en aktiv droppe med släpande svans
       const mal = Math.min(SCENER.length - 1, sc + klamp((T - SCENER[sc]!.fran) / ((SCENER[sc + 1]?.fran ?? SLUT) - SCENER[sc]!.fran)))
       const nv = nav.current
-      nv.v += (mal - nv.x) * 0.08; nv.v *= 0.72; nv.x += nv.v; nv.svans += (nv.x - nv.svans) * 0.06
+      nv.v += (mal - nv.x) * 0.08; nv.v *= 0.72; nv.x += nv.v; nv.svans += (nv.x - nv.svans) * 0.04
       const navB = W < 560 ? W - 32 : W - 32 - 220
       const px = (i: number) => (16 + NAV_KANT + (i / (SCENER.length - 1)) * (navB - 2 * NAV_KANT)) * DPR
       const py = 38 * DPR
       const dr = new Float32Array(21)
       for (let i = 0; i < 5; i++) { dr[i * 3] = px(i); dr[i * 3 + 1] = py; dr[i * 3 + 2] = (Math.abs(nv.x - i) < 0.6 ? 5 : 3.2) * DPR }
       dr[15] = px(nv.x); dr[16] = py; dr[17] = 7 * DPR
-      dr[18] = px(nv.svans); dr[19] = py; dr[20] = (2.4 + Math.min(4, Math.abs(nv.x - nv.svans) * 6)) * DPR
+      dr[18] = px(nv.svans); dr[19] = py; dr[20] = (3 + Math.min(6, Math.abs(nv.x - nv.svans) * 9)) * DPR
       gl.uniform3fv(u(pBild, 'drops'), dr)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
       if (Math.round(nu / 33) % 2 === 0) { setVisT(T); setNavPos({ x: nv.x, svans: nv.svans, hav: havNiva, bredd: navB }) }
