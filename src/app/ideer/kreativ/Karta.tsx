@@ -8,7 +8,7 @@
  */
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { ANTAL_PLAST, STRAND, byggVarld, flytta, hittaVag, iLand, narmastFri, radie, slump, hash, styrMot, type Bat, type O, type P } from './kartmotor'
+import { ANTAL_PLAST, STRAND, byggVarld, flytta, friPunkt, hittaVag, iLand, narmastFri, radie, slump, hash, styrMot, type Bat, type O, type P } from './kartmotor'
 
 type KO = { slug: string; namn: string; lat: number; lng: number; omrade: 'stockholm' | 'vast' }
 type Omrade = 'stockholm' | 'vast'
@@ -30,6 +30,9 @@ export default function Karta({ oar }: { oar: KO[] }) {
   const [medalj, setMedalj] = useState(false)
   const [klara, setKlara] = useState<Record<Omrade, boolean>>({ stockholm: false, vast: false })
   const [omstart, setOmstart] = useState(0)
+  const [grunt, setGrunt] = useState(0)
+  const [pek, setPek] = useState(false)
+  useEffect(() => { setPek(window.matchMedia('(pointer: coarse)').matches) }, [])
   const tagna = useRef<Set<number>>(new Set())
 
   const varld = useMemo(() => byggVarld(oar.filter(o => o.omrade === omrade), omrade === 'stockholm' ? 11 : 23), [oar, omrade])
@@ -60,6 +63,30 @@ export default function Karta({ oar }: { oar: KO[] }) {
     const poff: { x: number; y: number; t: number }[] = []
     const tangent: Record<string, boolean> = {}
     let raf = 0, senast = performance.now(), naraSlug = '', fast = 0, sving = 0, forraA = bat.a
+    // Polish 2026-11-21: stänk, kameraknuff och grundkänning. Reglerna är oförändrade.
+    const lugn = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let skak = 0, grundT = -1e9
+    const stank: { x: number; y: number; vx: number; vy: number; t: number }[] = []
+    // Andra båtar och ett vrak (påhittade). Båtarna följer samma farleder som spelaren och kan därför inte hamna på land.
+    const rs = slump(vast ? 77 : 55)
+    type Annan = { x: number; y: number; a: number; typ: number; vag: P[]; i: number }
+    const andra: Annan[] = []
+    const nyttMal = (b: Annan) => {
+      for (let f = 0; f < 6; f++) { const o = varld.oar[Math.floor(rs() * varld.oar.length)]; if (!o) break; const v = hittaVag(varld, b, o.hamn); if (v && v.length > 1) { b.vag = v; b.i = 1; return } }
+      b.vag = []; b.i = 0
+    }
+    for (let n = 0; n < Math.min(4, Math.max(2, Math.floor(varld.oar.length / 12))); n++) {
+      const o = varld.oar[Math.floor(rs() * varld.oar.length)]
+      if (!o) break
+      const b: Annan = { x: o.hamn.x, y: o.hamn.y, a: 0, typ: n % 2, vag: [], i: 0 }
+      nyttMal(b); andra.push(b)
+    }
+    let vrak: P | null = null
+    for (let f = 0; f < 300 && !vrak; f++) {
+      const p = { x: 120 + rs() * (varld.w - 240), y: 120 + rs() * (varld.h - 240) }
+      if (friPunkt(varld, p.x, p.y) && varld.oar.every(o => !iLand(o, p.x, p.y, 70)) && Math.hypot(p.x - varld.start.x, p.y - varld.start.y) > 240 && varld.plast.every(q => Math.hypot(q.x - p.x, q.y - p.y) > 110)) vrak = p
+    }
+    const plask = (x: number, y: number, n: number, kraft: number, nu: number) => { for (let i = 0; i < n; i++) { const v = Math.random() * Math.PI * 2, f = kraft * (0.5 + Math.random() * 0.7); stank.push({ x, y, vx: Math.cos(v) * f, vy: Math.sin(v) * f - kraft * 0.4, t: nu }) } }
 
     const planera = (till: P) => { const v = hittaVag(varld, bat, till); if (v) { vag = v; steg.n = 0; fast = 0; slutmal = v[v.length - 1] ?? null } }
     const form = (o: O, skala: number, dx = 0, dy = 0) => {
@@ -90,7 +117,10 @@ export default function Karta({ oar }: { oar: KO[] }) {
       } else {
         bat.a = vinkel(bat.a + sva * 2.4 * dt * (0.35 + Math.min(1, Math.abs(bat.v) / 110)))
         bat.v += gas * 200 * dt; bat.v *= Math.max(0, 1 - 1.3 * dt); bat.v = Math.max(-50, Math.min(190, bat.v))
-        if (!flytta(varld, bat, bat.x + Math.cos(bat.a) * bat.v * dt, bat.y + Math.sin(bat.a) * bat.v * dt)) bat.v *= Math.max(0, 1 - 5 * dt)
+        if (!flytta(varld, bat, bat.x + Math.cos(bat.a) * bat.v * dt, bat.y + Math.sin(bat.a) * bat.v * dt)) {
+          if (Math.abs(bat.v) > 45 && nu - grundT > 900) { grundT = nu; if (!lugn) skak = Math.min(1, Math.abs(bat.v) / 150); plask(bat.x + Math.cos(bat.a) * 22, bat.y + Math.sin(bat.a) * 22, 9, 70, nu); setGrunt(g => g + 1) }
+          bat.v *= Math.max(0, 1 - 7 * dt)
+        }
       }
       sving += ((vinkel(bat.a - forraA) / Math.max(dt, 0.001)) * 0.3 - sving) * Math.min(1, 4 * dt); forraA = bat.a
       if (Math.abs(bat.v) > 24 && (!kol.length || nu - kol[kol.length - 1]!.t > 45)) kol.push({ x: bat.x - Math.cos(bat.a) * 20, y: bat.y - Math.sin(bat.a) * 20, t: nu, a: bat.a })
@@ -99,24 +129,35 @@ export default function Karta({ oar }: { oar: KO[] }) {
       // Plocka plast
       varld.plast.forEach((p, i) => {
         if (tagna.current.has(i) || Math.hypot(p.x - bat.x, p.y - bat.y) > 30) return
-        tagna.current.add(i); spara(KUST[omrade].nyckel, [...tagna.current]); poff.push({ x: p.x, y: p.y, t: nu })
+        tagna.current.add(i); spara(KUST[omrade].nyckel, [...tagna.current]); poff.push({ x: p.x, y: p.y, t: nu }); plask(p.x, p.y, 12, 90, nu)
         const antal = tagna.current.size
         setPlock(antal)
         if (antal >= ANTAL_PLAST) { setMedalj(true); setKlara(k => ({ ...k, [omrade]: true })) }
       })
 
+      // De andra båtarna går längs sina rutter och saktar in när spelaren är nära
+      for (const b of andra) {
+        const m = b.vag[b.i]
+        if (!m) { nyttMal(b); continue }
+        const d = Math.hypot(m.x - b.x, m.y - b.y)
+        const fart = (b.typ === 0 ? 62 : 44) * (Math.hypot(bat.x - b.x, bat.y - b.y) < 80 ? 0.12 : 1) * dt
+        if (d <= fart) { b.x = m.x; b.y = m.y; b.i++; if (b.i >= b.vag.length) nyttMal(b) }
+        else { b.a = vinkel(b.a + vinkel(Math.atan2(m.y - b.y, m.x - b.x) - b.a) * Math.min(1, 3 * dt)); b.x += ((m.x - b.x) / d) * fart; b.y += ((m.y - b.y) / d) * fart }
+      }
       // Kameran följer mjukt och tittar lite framåt
       const fram = Math.min(80, Math.abs(bat.v) * 0.45)
       kam.x += (bat.x + Math.cos(bat.a) * fram - kam.x) * Math.min(1, 3.5 * dt); kam.y += (bat.y + Math.sin(bat.a) * fram - kam.y) * Math.min(1, 3.5 * dt)
       const kx = varld.w <= W ? (varld.w - W) / 2 : Math.max(0, Math.min(varld.w - W, kam.x - W / 2))
       const ky = varld.h <= H ? (varld.h - H) / 2 : Math.max(0, Math.min(varld.h - H, kam.y - H / 2))
       vy.kx = kx; vy.ky = ky
+      skak *= Math.max(0, 1 - 6 * dt)
+      const knx = Math.sin(nu / 26) * skak * 5, kny = Math.cos(nu / 21) * skak * 4
       const syns = (o: O, m: number) => !(o.x + m < kx || o.x - m > kx + W || o.y + m < ky || o.y - m > ky + H)
 
       // Havet
       const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, stil.hav); g.addColorStop(1, stil.djup)
       ctx.fillStyle = g; ctx.fillRect(0, 0, W, H)
-      ctx.save(); ctx.translate(-kx, -ky)
+      ctx.save(); ctx.translate(-kx + knx, -ky + kny)
       ctx.strokeStyle = 'rgba(255,255,255,.55)'; ctx.lineWidth = 1.4; ctx.lineCap = 'round'
       for (let gy = Math.floor(ky / 64) * 64; gy < ky + H + 64; gy += 64) for (let gx = Math.floor(kx / 96) * 96; gx < kx + W + 96; gx += 96) {
         const fas = Math.sin(nu / 1100 + gx * 0.013 + gy * 0.021), off = fas * 6 + ((gy / 64) % 2) * 48
@@ -125,7 +166,7 @@ export default function Karta({ oar }: { oar: KO[] }) {
       }
       ctx.globalAlpha = 1
       // Grunt vatten runt öarna
-      for (const o of varld.oar) { if (!syns(o, o.r * 2.4)) continue; ctx.fillStyle = 'rgba(255,255,255,.16)'; form(o, 1.62); ctx.fill(); ctx.fillStyle = stil.grunt; form(o, 1.36); ctx.fill() }
+      for (const o of varld.oar) { if (!syns(o, o.r * 2.4)) continue; ctx.fillStyle = 'rgba(255,255,255,.16)'; form(o, 1.62); ctx.fill(); ctx.fillStyle = stil.grunt; form(o, 1.36); ctx.fill(); const sk = 0.5 + 0.5 * Math.sin(nu / 900 + o.x * 0.01); ctx.strokeStyle = `rgba(255,255,255,${0.22 + 0.4 * sk})`; ctx.lineWidth = 1.6; form(o, STRAND + 0.045 + sk * 0.05); ctx.stroke() }
       // Kölvatten
       for (const s of kol) {
         const ald = (nu - s.t) / 2200, a = 1 - ald, bredd = 5 + ald * 26
@@ -140,6 +181,25 @@ export default function Karta({ oar }: { oar: KO[] }) {
         const puls = 0.5 + 0.5 * Math.sin(nu / 260)
         ctx.strokeStyle = `rgba(200,100,42,${0.9 - puls * 0.5})`; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(slutmal.x, slutmal.y, 9 + puls * 6, 0, Math.PI * 2); ctx.stroke()
         ctx.fillStyle = '#c8642a'; ctx.beginPath(); ctx.arc(slutmal.x, slutmal.y, 4, 0, Math.PI * 2); ctx.fill()
+      }
+      // Vraket: skrov som anas under ytan, en mast som sticker upp och ringar på vattnet
+      if (vrak && vrak.x > kx - 90 && vrak.x < kx + W + 90 && vrak.y > ky - 90 && vrak.y < ky + H + 90) {
+        const wx = vrak.x, wy = vrak.y
+        for (let i = 0; i < 3; i++) { const ring = (nu / 2600 + i / 3) % 1; ctx.strokeStyle = `rgba(255,255,255,${0.5 * (1 - ring)})`; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.ellipse(wx, wy, 16 + ring * 34, 9 + ring * 18, -0.35, 0, Math.PI * 2); ctx.stroke() }
+        ctx.save(); ctx.translate(wx, wy); ctx.rotate(-0.35)
+        ctx.fillStyle = 'rgba(13,36,64,.26)'; ctx.beginPath(); ctx.moveTo(-36, 0); ctx.quadraticCurveTo(-10, -16, 30, -7); ctx.quadraticCurveTo(39, 0, 30, 8); ctx.quadraticCurveTo(-10, 16, -36, 0); ctx.fill()
+        ctx.fillStyle = 'rgba(13,36,64,.2)'; for (let i = -2; i <= 2; i++) ctx.fillRect(i * 11 - 1, -9, 2, 18)
+        ctx.restore()
+        ctx.save(); ctx.translate(wx + 4, wy - 2); ctx.rotate(0.28 + (lugn ? 0 : Math.sin(nu / 900) * 0.04))
+        ctx.strokeStyle = '#5a4632'; ctx.lineWidth = 3.2; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(0, 0); ctx.lineTo(0, -34); ctx.stroke()
+        ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(-9, -24); ctx.lineTo(9, -26); ctx.stroke()
+        const trasa = lugn ? 0 : Math.sin(nu / 160) * 2
+        ctx.fillStyle = 'rgba(255,253,248,.88)'; ctx.beginPath(); ctx.moveTo(0, -34); ctx.lineTo(12 + trasa, -31); ctx.lineTo(9, -27 + trasa * 0.4); ctx.lineTo(0, -28); ctx.closePath(); ctx.fill()
+        ctx.restore()
+        ctx.font = '600 11px Inter, system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'
+        const vb = ctx.measureText('Vraket').width + 14
+        ctx.fillStyle = 'rgba(13,36,64,.72)'; ctx.beginPath(); ctx.roundRect(wx - vb / 2, wy + 22, vb, 18, 9); ctx.fill()
+        ctx.fillStyle = '#fff'; ctx.fillText('Vraket', wx, wy + 31.5)
       }
       // Öarna
       let narmast: O | null = null, nd = 1e9
@@ -160,8 +220,9 @@ export default function Karta({ oar }: { oar: KO[] }) {
           for (let i = 0; i < 7; i++) {
             const v = r() * Math.PI * 2, rr = Math.sqrt(r()) * radie(o, v) * 0.7, tx = o.x + Math.cos(v) * rr, ty = o.y + Math.sin(v) * rr
             ctx.fillStyle = 'rgba(13,36,64,.18)'; ctx.beginPath(); ctx.ellipse(tx + 3, ty + 5, 5, 2.4, 0, 0, Math.PI * 2); ctx.fill()
-            ctx.fillStyle = stil.trad; ctx.beginPath(); ctx.moveTo(tx, ty - 11); ctx.lineTo(tx - 5.5, ty + 4); ctx.lineTo(tx + 5.5, ty + 4); ctx.closePath(); ctx.fill()
-            ctx.fillStyle = '#3d7049'; ctx.beginPath(); ctx.moveTo(tx, ty - 11); ctx.lineTo(tx - 3, ty - 2); ctx.lineTo(tx + 1, ty - 2); ctx.closePath(); ctx.fill()
+            const vaj = lugn ? 0 : Math.sin(nu / 1300 + tx * 0.05) * 1.3
+            ctx.fillStyle = stil.trad; ctx.beginPath(); ctx.moveTo(tx + vaj, ty - 11); ctx.lineTo(tx - 5.5, ty + 4); ctx.lineTo(tx + 5.5, ty + 4); ctx.closePath(); ctx.fill()
+            ctx.fillStyle = '#3d7049'; ctx.beginPath(); ctx.moveTo(tx + vaj, ty - 11); ctx.lineTo(tx - 3 + vaj * 0.4, ty - 2); ctx.lineTo(tx + 1 + vaj * 0.4, ty - 2); ctx.closePath(); ctx.fill()
           }
         } else {
           ctx.strokeStyle = 'rgba(120,80,70,.4)'; ctx.lineWidth = 1.8; ctx.lineCap = 'round'
@@ -192,8 +253,30 @@ export default function Karta({ oar }: { oar: KO[] }) {
         ctx.fillStyle = '#c8642a'; ctx.beginPath(); ctx.arc(0, 4.5, 2.6, 0, Math.PI * 2); ctx.fill()
         ctx.restore()
       })
+      // De andra båtarna: en skärgårdsbåt och en liten segelbåt
+      for (const b of andra) {
+        if (b.x < kx - 60 || b.x > kx + W + 60 || b.y < ky - 60 || b.y > ky + H + 60) continue
+        ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.a + Math.PI / 2)
+        const lang = b.typ === 0 ? 22 : 13
+        ctx.strokeStyle = 'rgba(255,255,255,.5)'; ctx.lineWidth = 1.6; ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(-4, lang - 2); ctx.lineTo(-11, lang + 26); ctx.moveTo(4, lang - 2); ctx.lineTo(11, lang + 26); ctx.stroke()
+        ctx.fillStyle = 'rgba(13,36,64,.18)'; ctx.beginPath(); ctx.ellipse(3, 5, b.typ === 0 ? 10 : 7, lang + 1, 0, 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = '#fffdf8'; ctx.strokeStyle = NAVY; ctx.lineJoin = 'round'
+        if (b.typ === 0) {
+          ctx.lineWidth = 1.8; ctx.beginPath(); ctx.moveTo(0, -26); ctx.bezierCurveTo(9, -16, 9, 14, 7, 22); ctx.lineTo(-7, 22); ctx.bezierCurveTo(-9, 14, -9, -16, 0, -26); ctx.closePath(); ctx.fill(); ctx.stroke()
+          ctx.fillStyle = '#d5e3ec'; ctx.fillRect(-5, -12, 10, 25)
+          ctx.fillStyle = NAVY; ctx.fillRect(-5, -14, 10, 3)
+          ctx.fillStyle = '#c8642a'; ctx.beginPath(); ctx.arc(0, 4, 2.6, 0, Math.PI * 2); ctx.fill()
+        } else {
+          ctx.lineWidth = 1.6; ctx.beginPath(); ctx.moveTo(0, -16); ctx.bezierCurveTo(7, -7, 7, 6, 5, 13); ctx.lineTo(-5, 13); ctx.bezierCurveTo(-7, 6, -7, -7, 0, -16); ctx.closePath(); ctx.fill(); ctx.stroke()
+          const fyll = 0.75 + (lugn ? 0 : Math.sin(nu / 800 + b.x * 0.01) * 0.15)
+          ctx.fillStyle = '#f2a25c'; ctx.beginPath(); ctx.moveTo(0, -11); ctx.quadraticCurveTo(8 * fyll + 3, -2, 9 * fyll, 6); ctx.lineTo(0, 4); ctx.closePath(); ctx.fill(); ctx.stroke()
+        }
+        ctx.restore()
+      }
       // Båten, sedd uppifrån
       ctx.save(); ctx.translate(bat.x, bat.y); ctx.rotate(bat.a + Math.PI / 2)
+      const gung = lugn ? 1 : 1 + Math.sin(nu / 620) * 0.018
+      ctx.scale(gung * (1 - Math.min(0.1, Math.abs(sving) * 0.12)), gung)
       ctx.fillStyle = 'rgba(13,36,64,.2)'; ctx.beginPath(); ctx.ellipse(4, 6, 11, 22, 0, 0, Math.PI * 2); ctx.fill()
       ctx.fillStyle = '#fffdf8'; ctx.strokeStyle = NAVY; ctx.lineWidth = 2.2; ctx.lineJoin = 'round'
       ctx.beginPath(); ctx.moveTo(0, -24); ctx.bezierCurveTo(11, -10, 11, 8, 7, 19); ctx.lineTo(-7, 19); ctx.bezierCurveTo(-11, 8, -11, -10, 0, -24); ctx.closePath(); ctx.fill(); ctx.stroke()
@@ -203,15 +286,36 @@ export default function Karta({ oar }: { oar: KO[] }) {
       const slag = Math.max(-1, Math.min(1, -sving * 1.6 + Math.sin(nu / 700) * 0.12))
       ctx.fillStyle = '#fff'; ctx.strokeStyle = NAVY; ctx.lineWidth = 1.6
       ctx.beginPath(); ctx.moveTo(0, -17); ctx.quadraticCurveTo(10 * slag + 5 * Math.sign(slag || 1), -4, 13 * slag, 7); ctx.lineTo(0, 5); ctx.closePath(); ctx.fill(); ctx.stroke()
+      const fladder = lugn ? 0 : Math.sin(nu / 130) * 2.2
+      ctx.fillStyle = '#c8642a'; ctx.beginPath(); ctx.moveTo(-1.3, -17); ctx.lineTo(1.3, -17); ctx.lineTo(fladder - sving * 6, -8.5); ctx.closePath(); ctx.fill()
       ctx.fillStyle = NAVY; ctx.beginPath(); ctx.arc(0, -17, 1.6, 0, Math.PI * 2); ctx.fill()
       ctx.restore()
       // Plock: en ring och en etta
+      for (let i = stank.length - 1; i >= 0; i--) {
+        const s = stank[i]!, ald = (nu - s.t) / 600
+        if (ald > 1) { stank.splice(i, 1); continue }
+        s.x += s.vx * dt; s.y += s.vy * dt; s.vy += 160 * dt
+        ctx.fillStyle = `rgba(255,255,255,${0.9 * (1 - ald)})`; ctx.beginPath(); ctx.arc(s.x, s.y, 2.4 * (1 - ald * 0.5), 0, Math.PI * 2); ctx.fill()
+      }
       for (const q of poff) {
         const ald = (nu - q.t) / 900; if (ald > 1) continue
+        if (ald < 0.4) { const k = 1 - ald / 0.4; ctx.fillStyle = `rgba(255,253,248,${k})`; ctx.strokeStyle = `rgba(200,100,42,${k})`; ctx.lineWidth = 1.4; ctx.beginPath(); ctx.arc(q.x, q.y - ald * 46, 9 * k, 0, Math.PI * 2); ctx.fill(); ctx.stroke() }
         ctx.strokeStyle = `rgba(200,100,42,${1 - ald})`; ctx.lineWidth = 3 * (1 - ald) + 0.5; ctx.beginPath(); ctx.arc(q.x, q.y, 10 + ald * 34, 0, Math.PI * 2); ctx.stroke()
         ctx.fillStyle = `rgba(13,36,64,${1 - ald})`; ctx.font = '700 18px Inter, system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText('+1', q.x, q.y - 16 - ald * 26)
       }
       ctx.restore()
+      // Lätt dis i kanterna ger djup
+      const dis = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.45, W / 2, H / 2, Math.max(W, H) * 0.75)
+      dis.addColorStop(0, 'rgba(255,255,255,0)'); dis.addColorStop(1, 'rgba(232,242,246,.36)')
+      ctx.fillStyle = dis; ctx.fillRect(0, 0, W, H)
+      // Två måsar glider förbi högt över kartan
+      if (!lugn) {
+        ctx.strokeStyle = 'rgba(13,36,64,.36)'; ctx.lineWidth = 1.6; ctx.lineCap = 'round'
+        for (let i = 0; i < 2; i++) {
+          const p = (nu / (38000 + i * 9000) + i * 0.43) % 1, mx = -40 + p * (W + 80), my = H * (0.2 + i * 0.22) + Math.sin(nu / 1700 + i * 2) * 14, v = 4 + Math.sin(nu / 190 + i) * 2.4
+          ctx.beginPath(); ctx.moveTo(mx - 9, my - v); ctx.quadraticCurveTo(mx - 4, my - v - 3, mx, my); ctx.quadraticCurveTo(mx + 4, my - v - 3, mx + 9, my - v); ctx.stroke()
+        }
+      }
 
       const vid = narmast && nd < 46 && Math.abs(bat.v) < 60 ? narmast : null
       if ((vid?.slug ?? '') !== naraSlug) { naraSlug = vid?.slug ?? ''; setNara(vid) }
@@ -251,10 +355,11 @@ export default function Karta({ oar }: { oar: KO[] }) {
         </div>
         <div className={plock >= ANTAL_PLAST ? 'kk-rakna klar' : 'kk-rakna'} aria-live="polite">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8 Q3 17 6 21 Q12 23 18 21 Q21 17 19 8 Q12 10 5 8 Z" fill="#fffdf8" stroke="#c8642a" strokeWidth="1.6" strokeLinejoin="round" /><path d="M5 8 Q6 1 9.5 7.6 M19 8 Q18 1 14.5 7.6" fill="none" stroke="#c8642a" strokeWidth="1.6" /></svg>
-          <b>{plock}/{ANTAL_PLAST}</b><span>plast</span>
+          <b key={plock} className="kk-pop">{plock}/{ANTAL_PLAST}</b><span>plast</span>
           {plock >= ANTAL_PLAST && <button type="button" onClick={() => setMedalj(true)}>Visa medaljen</button>}
         </div>
-        <p className="kk-tips">Tryck på en ö eller på vattnet. Piltangenterna styr också.</p>
+        <p className="kk-tips">{pek ? 'Tryck på en ö eller på vattnet.' : 'Tryck på en ö eller på vattnet. Piltangenterna styr också.'}</p>
+        {grunt > 0 && !medalj && <p key={grunt} className="kk-grunt" aria-live="polite">Grunt här. Sväng undan.</p>}
         {nara && !medalj && (
           <div className="kk-kort">
             <small>Du ligger vid</small>
@@ -288,7 +393,7 @@ export default function Karta({ oar }: { oar: KO[] }) {
           </div>
         )}
       </div>
-      <p className="kr-not">Stiliserad karta, inte en sjökarta. Öarnas lägen kommer ur Svallas data, men formerna är påhittade och öarna är isärflyttade så att det går att segla mellan dem. Plasten är påhittad och ingår i spelet. Premiumprofilen är ett exempel och finns inte än.</p>
+      <p className="kr-not">Stiliserad karta, inte en sjökarta. Öarnas lägen kommer ur Svallas data, men formerna är påhittade och öarna är isärflyttade så att det går att segla mellan dem. Plasten, vraket och de andra båtarna är påhittade och ingår i spelet. Premiumprofilen är ett exempel och finns inte än.</p>
       <style>{CSS}</style>
     </div>
   )
@@ -315,6 +420,10 @@ const CSS = `
 .kk-kort b{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:22px;color:#0d2440}
 .kk-kort a{font-size:13px;font-weight:600}
 @keyframes kkUpp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.kk-pop{display:inline-block;animation:kkPop .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes kkPop{from{transform:scale(1.45)}to{transform:scale(1)}}
+.kk-grunt{position:absolute;left:50%;top:22%;margin:0;background:rgba(13,36,64,.84);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:7px 14px;pointer-events:none;white-space:nowrap;animation:kkGrunt 1.7s ease both}
+@keyframes kkGrunt{0%{opacity:0;transform:translate(-50%,6px)}12%,70%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-4px)}}
 .kk-medalj{position:absolute;inset:0;z-index:6;display:flex;align-items:center;justify-content:center;padding:14px;background:rgba(13,36,64,.5);animation:kkTona .3s ease both;overflow:auto}
 @keyframes kkTona{from{opacity:0}to{opacity:1}}
 .kk-medalj-kort{background:#fffdf8;border-radius:22px;padding:18px 22px 16px;max-width:400px;width:100%;text-align:center;box-shadow:0 24px 60px rgba(13,36,64,.35);animation:kkUpp .45s cubic-bezier(.2,.8,.2,1) both}
