@@ -27,8 +27,12 @@ describe('paminnelseFor', () => {
     expect(r.html).not.toMatch(/\{\{/)
     expect(r.html).toContain('https://svalla.se/julkalender/2')
   })
+  // Skicka aldrig undefined här: då läses process.env.EMAIL_AUTOMATIK, och i
+  // produktionsbygget står julkalender där sedan 2026-11-21 — testet fällde
+  // bygget. Fallet "variabeln saknas" täcks i mailfloden.test.ts, som tar bort
+  // variabeln under testet och lägger tillbaka den efteråt.
   it('flödet är avstängt tills det står i EMAIL_AUTOMATIK', () => {
-    expect(flodePa('julkalender', undefined)).toBe(false)
+    expect(flodePa('julkalender', '')).toBe(false)
     expect(flodePa('julkalender', 'manadsbrev')).toBe(false)
     expect(flodePa('julkalender', 'manadsbrev,julkalender')).toBe(true)
   })
