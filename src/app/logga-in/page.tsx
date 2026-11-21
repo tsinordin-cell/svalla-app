@@ -4,6 +4,8 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 import { validateUsername, deriveUsername } from '@/lib/username'
+import { bekraftelseMal } from '@/lib/epostbekraftelse'
+import KollaInkorgen, { SkickaBekraftelseIgen } from '@/components/BekraftaEpost'
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
@@ -47,6 +49,11 @@ function LoginContent() {
   // Månadsbrevet: frivilligt och INTE förkryssat (marknadsföringslagen 19 §,
   // samtycke i förväg). Bara kontot räcker inte för att få nyhetsbrev.
   const [nyhetsbrev,   setNyhetsbrev]   = useState(false)
+  // E-postbekräftelse (2026-11-21): adressen som väntar på att bekräftas,
+  // och om inloggningen nekades för att adressen inte är bekräftad.
+  const [vantarPa,     setVantarPa]     = useState('')
+  const [ejBekraftad,  setEjBekraftad]  = useState(false)
+  const mal = bekraftelseMal(returnTo)
 
   /* ── Mappa Supabase-felmeddelanden till svenska ── */
   function mapAuthError(msg: string): string {
@@ -82,7 +89,7 @@ function LoginContent() {
   /* ── Email/password ── */
   async function handle(e: React.FormEvent) {
     e.preventDefault()
-    setLoading(true); setErr(''); setMsg('')
+    setLoading(true); setErr(''); setMsg(''); setEjBekraftad(false)
 
     try {
       if (isNew) {
@@ -96,7 +103,8 @@ function LoginContent() {
 
         const { data, error } = await supabase.auth.signUp({
           email, password,
-          options: { data: { username: newUsername } },
+          // Länken i bekräftelsemejlet leder hit efteråt, se lib/epostbekraftelse.ts
+          options: { data: { username: newUsername }, emailRedirectTo: mal },
         })
         if (error) { setErr(mapAuthError(error.message)); return }
         if (data.user) {
@@ -131,13 +139,14 @@ function LoginContent() {
             return
           }
         }
-        setMsg('Bekräftelsemejl skickat! Klicka på länken och logga sedan in.')
-        setIsNew(false)
+        // Ingen session: adressen måste bekräftas först (Confirm email är på).
+        setVantarPa(email.trim())
       } else {
         const { data, error } = await supabase.auth.signInWithPassword({ email, password })
         if (error) {
           if (error.message.toLowerCase().includes('email not confirmed')) {
-            setErr('Mejlet är inte bekräftat. Kolla din inkorg.')
+            setErr('Du behöver bekräfta din e-postadress först. Tryck på länken i mejlet vi skickade.')
+            setEjBekraftad(true)
           } else if (error.message.toLowerCase().includes('invalid login')) {
             setErr('Fel e-post eller lösenord. Försök igen.')
           } else {
@@ -248,6 +257,7 @@ function LoginContent() {
         padding: '24px 20px 52px',
       }}>
         <div style={{ maxWidth: 400, margin: '0 auto' }}>
+          {vantarPa ? <KollaInkorgen epost={vantarPa} mal={mal} /> : <>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 20px', letterSpacing: '-0.3px' }}>
             {isNew ? 'Skapa konto' : 'Logga in'}
           </h2>
@@ -369,6 +379,7 @@ function LoginContent() {
                 {err}
               </div>
             )}
+            {ejBekraftad && email.trim() && <SkickaBekraftelseIgen epost={email} mal={mal} />}
             {msg && (
               <div style={{ fontSize: 13, color: 'var(--green, #0a7040)', background: 'rgba(34,197,94,0.08)', borderRadius: 12, padding: '10px 14px', textAlign: 'center' }}>
                 {msg}
@@ -410,6 +421,7 @@ function LoginContent() {
               Glömt lösenordet?
             </a>
           )}
+          </>}
         </div>
       </div>
     </div>
