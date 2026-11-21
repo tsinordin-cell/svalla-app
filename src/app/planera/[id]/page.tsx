@@ -88,10 +88,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  ? (rad as { start_name: string; end_name: string })
  : null
 
- if (!data) return { title: { absolute: 'Rutt | Svalla' } }
+ // Användares egna planer ska inte ligga i Google (Tom 2026-11-20). Länken
+ // fungerar för den som har den; sidan är också borttagen ur sitemapen.
+ const robots = { index: false, follow: true }
+ if (!data) return { title: { absolute: 'Rutt | Svalla' }, robots }
  const desc = `Planerad skärgårdsrutt från ${data.start_name} till ${data.end_name} med stopp längs vägen.`
  const ogImage = `https://svalla.se/api/og/planera/${id}`
  return {
+ robots,
  title: `${data.start_name} → ${data.end_name}`,
  description: desc,
  openGraph: {

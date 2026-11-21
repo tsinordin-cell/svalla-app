@@ -6,6 +6,7 @@ import SvallaLogo from '@/components/SvallaLogo'
 import { JULKALENDER_CSS, LANDSKAP_SVG, tonFor, ikonFor } from './julkalender-stil'
 import JulkalenderLucka from './JulkalenderLucka'
 import JulkalenderFramsteg from './JulkalenderFramsteg'
+import JulkalenderPaminnelse from './JulkalenderPaminnelse'
 import { JulkalenderVisad, JulkalenderLoggaIn } from './JulkalenderMatning'
 import { ogSida } from '@/lib/og-standard'
 
@@ -99,6 +100,7 @@ export default async function JulkalenderPage({ searchParams }: Props) {
           </div>
         )}
         {inloggad && !forhand && <JulkalenderFramsteg oppna={oppna} />}
+        {!!user && !forhand && !kalenderSlut() && <JulkalenderPaminnelse />}
         <div className="jk-grid">
           {Array.from({ length: 24 }, (_, i) => i + 1).map(dag => {
             const lucka = LUCKOR.find(l => l.dag === dag)
