@@ -15,8 +15,8 @@ const NAV_KANT = 34 // så att första och sista etiketten inte klipps
 const SCENER = [
   { namn: 'Prickar', fran: 0 },
   { namn: 'Sverige', fran: 2600 },
-  { namn: 'Båten', fran: 5200 },
-  { namn: 'Havet', fran: 7800 },
+  { namn: 'Havet', fran: 5200 },
+  { namn: 'Båten', fran: 7800 },
   { namn: 'In', fran: 10400 },
 ]
 
@@ -165,7 +165,7 @@ const FS_BILD = `#version 300 es
 precision highp float;
 uniform sampler2D den; uniform sampler2D vel; uniform sampler2D korn; uniform sampler2D txt; uniform sampler2D form;
 uniform vec2 res; uniform float t; uniform float hav; uniform float vag; uniform float txtA; uniform vec3 bla; uniform vec3 drops[7];
-uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform vec4 arm; uniform vec4 armU; uniform float armR;
+uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform float bxo; uniform vec4 arm; uniform vec4 armU; uniform float armR;
 in vec2 uv; out vec4 o;
 vec4 mjuk(vec2 p){ vec2 e = 1.1 / vec2(textureSize(form, 0));
   return texture(form, p) * .4 + (texture(form, p + e) + texture(form, p - e) + texture(form, p + vec2(e.x, -e.y)) + texture(form, p - vec2(e.x, -e.y))) * .15; }
@@ -190,7 +190,7 @@ void main(){
   // Formmasken: bläcket sätter sig i Sveriges och båtens skarpa form, men krusas fortfarande av fältet
   vec2 sp = vec2(uv.x + disp.x, 1. - uv.y - disp.y) * stage;
   float m1 = sveS > 0. ? mjuk(sp / stage).r : 0.;
-  vec2 qq = sp - vec2(0., by) - piv; float cs = cos(ang), sn = sin(ang);
+  vec2 qq = sp - vec2(bxo, by) - piv; float cs = cos(ang), sn = sin(ang);
   vec2 lp = piv + vec2(qq.x * cs + qq.y * sn, -qq.x * sn + qq.y * cs);
   float m2 = 0.;
   if (batS > 0.) { m2 = mjuk(lp / stage).g; float u1 = armR / .3; float ad = min(min(seg(lp, armU.xy, armU.zw), seg(lp, arm.xy, arm.zw) + armR * .1), length(lp - arm.zw) - armR * .2);
@@ -491,8 +491,11 @@ export default function Intro({ efter }: { efter?: () => void }) {
       // Gå in på Svalla: havet stiger och fyller hela bilden, sedan lämnar vi över
       const ut = utRef.current ? klamp((nu - utRef.current) / 950) : 0
       if (ut >= 1 && !klarUt) { klarUt = true; efterRef.current?.() }
-      const havNiva = 1.18 - 0.28 * ease((T - 5600) / 2400) - 0.26 * ease((T - 7800) / 2200) - ut * ut * 1.6
-      const batNer = ease((T - 7800) / 2000)
+      // Havet lägger sig först. Sedan seglar båten in från höger och stannar på sin plats (beslut Max 2026-11-21).
+      const havNiva = 1.18 - 0.54 * ease((T - 5300) / 2300) - ut * ut * 1.6
+      const batNer = 1
+      const segl = 1 - klamp((T - 7600) / 2800)
+      const batIn = segl * segl * segl * (W / 2 + batRuta.bw / 2 + 60)
       const bob = Math.sin(sek * 1.4) * H * 0.008, vink = Math.sin(sek * 1.1) * 0.045
       const vattenlinje = havNiva * H
       const batY = (H - batRuta.bh) / 2
@@ -513,9 +516,9 @@ export default function Intro({ efter }: { efter?: () => void }) {
         if (bat) {
           const by = malY * batNer + bob * e2
           const dx = x - pivX, dy = y - pivY, cs = Math.cos(vink * e2), sn = Math.sin(vink * e2)
-          x = pivX + dx * cs - dy * sn; y = pivY + dx * sn + dy * cs + by
+          x = pivX + dx * cs - dy * sn + batIn * e2; y = pivY + dx * sn + dy * cs + by * e2
         } else {
-          const e3 = fordrojd(7800)
+          const e3 = fordrojd(5600)
           x += (f.hav[j]! - x) * e3; y += (f.hav[j + 1]! * (havNiva / 0.64) - y) * e3
         }
         const bage = Math.sin(e1 * Math.PI) + Math.sin(e2 * Math.PI)
@@ -557,13 +560,14 @@ export default function Intro({ efter }: { efter?: () => void }) {
       const bind = (n: string, enhet: number, tex: WebGLTexture) => { gl.activeTexture(gl.TEXTURE0 + enhet); gl.bindTexture(gl.TEXTURE_2D, tex); gl.uniform1i(u(pBild, n), enhet) }
       bind('den', 0, sudd2.tex); bind('vel', 1, flA.tex); bind('korn', 2, korn); bind('txt', 3, txtTex)
       gl.uniform2f(u(pBild, 'res'), cv.width, cv.height); gl.uniform1f(u(pBild, 't'), sek)
-      gl.uniform1f(u(pBild, 'hav'), havNiva); gl.uniform1f(u(pBild, 'vag'), 0.4 + 0.6 * ease((T - 7800) / 1500))
+      gl.uniform1f(u(pBild, 'hav'), havNiva); gl.uniform1f(u(pBild, 'vag'), 0.4 + 0.6 * ease((T - 5800) / 1500))
       gl.uniform1f(u(pBild, 'txtA'), ease((T - 8300) / 1700)); gl.uniform3f(u(pBild, 'bla'), BLA[0]!, BLA[1]!, BLA[2]!)
       // Formmasken och båtens läge (samma rörelse som partiklarna), armen vinkar
       bind('form', 4, formTex)
       gl.uniform2f(u(pBild, 'stage'), W, H)
       gl.uniform1f(u(pBild, 'sveS'), klamp((T - 3700) / 800) * (1 - klamp((T - 5150) / 350)))
-      gl.uniform1f(u(pBild, 'batS'), klamp((T - 6500) / 800))
+      gl.uniform1f(u(pBild, 'batS'), klamp((T - 7300) / 300))
+      gl.uniform1f(u(pBild, 'bxo'), batIn)
       const eSen = ease((T - 5200 - 650) / 1500)
       gl.uniform2f(u(pBild, 'piv'), pivX, pivY); gl.uniform1f(u(pBild, 'ang'), vink * eSen); gl.uniform1f(u(pBild, 'by'), malY * batNer + bob * eSen)
       {
