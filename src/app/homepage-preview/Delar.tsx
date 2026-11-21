@@ -8,6 +8,7 @@
  *   (kontrollerat i koden 2026-11-21): /logga kräver konto, GPS live eller bild; /planera går att
  *   prova utan konto, inloggning för att spara och dela; /kom-igang ger ett gratis konto.
  * - KrogDel: krogägardelen, oförändrad text, som egen del.
+ * - CSS: dessutom svepraden för "Vad vill du känna?" i mobilen (stilen följer med GuideDel och Thorkel).
  */
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
@@ -26,6 +27,18 @@ const CSS = `
 .hpv-guide-val{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px}
 .hpv-prova{display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:700;color:#1e5c82;text-decoration:none}
 .sd-thorkel .hpv-konto{margin:0 0 12px}
+/* FÖRHANDSVISNING (Toms val 2026-11-21): "Vad vill du känna?" som svepbar rad i mobilen, alla åtta
+   rutorna (startsidan visar ett rutnät med fyra). Kortet bredvid sticker ut i kanten så att man ser
+   att raden går att svepa. */
+@media (max-width:900px){
+  .sd-kansla .sd-kansla-rutnat{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(64vw,248px);gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 4px;scroll-padding:0 16px;scrollbar-width:none}
+  .sd-kansla .sd-kansla-rutnat::-webkit-scrollbar{display:none}
+  .sd-kansla .sd-kansla-ruta{scroll-snap-align:start;aspect-ratio:4/5;border-radius:14px}
+  .sd-kansla .sd-kansla-ruta:nth-child(n+5){display:flex}
+  .sd-kansla .sd-kansla-ruta span{padding:16px}
+  .sd-kansla .sd-kansla-ruta b{font-size:23px}
+  .sd-kansla .sd-kansla-ruta small{font-size:12.5px}
+}
 @media (max-width:640px){
   .hpv-guide .sd-guide-yta{border-radius:22px}
   .hpv-krog .sd-krog{border-radius:22px}
