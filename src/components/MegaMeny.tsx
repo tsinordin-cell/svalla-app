@@ -403,6 +403,8 @@ const MM_CSS = `
 .mm-punkt.har:not(.oppen)::after{opacity:.55}
 .mm-punkt:focus-visible{outline:2px solid #e8924a;outline-offset:2px;border-radius:6px}
 .mm-hoger{display:flex;align-items:center;gap:14px;flex-shrink:0}
+/* Länkarna i sidans mitt (Max 2026-11-21): tre spalter från 1300 px. Blir det trångt glider länkarna mot vänster i stället för att krocka. Under 1300 px gäller flex som förut. */
+@media (min-width:1300px){.mm-rad{display:grid;grid-template-columns:minmax(max-content,1fr) auto minmax(max-content,1fr)}.mm-logga{justify-self:start}.mm-hoger{justify-self:end;padding-left:48px}.mm-rad .mm-sok input{width:130px}}
 .mm-sok{display:flex;align-items:center;gap:8px;padding:0 14px;height:38px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.8)}
 .mm-sok:focus-within{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.45)}
 .mm-sok input{width:170px;border:none!important;outline:none!important;background:transparent!important;box-shadow:none!important;color:#fff;font:inherit;font-size:13.5px;padding:0}
