@@ -12,12 +12,15 @@
  * licens listas under "Bildkällor" nederst på sidan — det är licensvillkoret.
  * Ordning: handplockad bild → Google-foto → öns Commons-foto. Listorna och
  * motiveringen per bild ligger i src/lib/startsidaBilder.ts.
+ *
+ * 2026-11-21: fotomappen hämtas inte längre. Korten som använde den togs bort
+ * 2026-11-20, och Google Places svarar fortfarande 403/429. Kvar är känslorutornas
+ * Commons-foton, som miniatyrer via commonsTumme (originalfilerna svarar 429).
  */
 import type { Metadata } from 'next'
-import { getLandingPhotos } from '@/lib/landingPhotos'
 import { OBILDER } from '@/app/o/obilder.generated'
-import LandingPageClient, { type Bildkalla } from './LandingPageClient'
-import { COMMONS_FOR_KORT, HANDPLOCKADE } from '@/lib/startsidaBilder'
+import LandingPageClient from './LandingPageClient'
+import { commonsTumme } from '@/lib/commonsTumme'
 import { ANTAL_OAR, ALL_ISLANDS } from '@/app/o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from '@/app/oar/oar-categories'
 import type { StartKansla } from '@/components/StartDelar'
@@ -35,22 +38,10 @@ export const metadata: Metadata = {
 }
 
 export default async function Page() {
-  const google = await getLandingPhotos()
-  const photoMap: Record<string, string> = { ...google }
-  const bildkallor: Bildkalla[] = []
-
-  for (const [kort, { url, ...kalla }] of Object.entries(HANDPLOCKADE)) {
-    photoMap[kort] = url
-    bildkallor.push(kalla)
-  }
-
-  for (const [kort, { slug, namn }] of Object.entries(COMMONS_FOR_KORT)) {
-    if (photoMap[kort]) continue
-    const b = OBILDER[slug]
-    if (!b) continue
-    photoMap[kort] = b.url.replace('/1280px-', '/960px-')
-    bildkallor.push({ namn, fotograf: b.fotograf, licens: b.licens, licensUrl: b.licensUrl, kalla: b.kalla })
-  }
+  // 2026-11-21: fotomappen (Google + startsidaBilder) och Bildkällor-listan hämtas inte längre.
+  // Korten de hörde till (Utvalda turer m.fl.) togs bort 2026-11-20, så inga element på sidan
+  // visade fotona, men listan räknade ändå upp dem. Känslorutorna anger fotograf och licens själva.
+  // Ska kort med foton tillbaka: återinför getLandingPhotos + HANDPLOCKADE/COMMONS_FOR_KORT (se git-historiken).
 
   // Antalet öar räknas här på servern så att ödatan inte hamnar i klientbundlen.
   // Samma lista som /api/stats (alla öar med egen guidesida, /o/[slug]) —
@@ -64,9 +55,9 @@ export default async function Page() {
     const o = oar.find(x => OBILDER[x.slug] && !anvanda.has(x.slug)) ?? oar.find(x => OBILDER[x.slug])
     if (o) anvanda.add(o.slug)
     const b = o ? OBILDER[o.slug] : undefined
-    return [{ href: `/oar/${slug}`, kansla, rubrik: kat.kort, antal: oar.length, bild: b ? { url: b.url.replace('/1280px-', '/960px-'), fotograf: b.fotograf, licens: b.licens } : null }]
+    return [{ href: `/oar/${slug}`, kansla, rubrik: kat.kort, antal: oar.length, bild: b ? { url: commonsTumme(b.url, 960), fotograf: b.fotograf, licens: b.licens } : null }]
   })
   const antalKrogar = ALL_ISLANDS.reduce((n, o) => n + (o.restaurants?.length ?? 0), 0)
 
-  return <LandingPageClient photoMap={photoMap} bildkallor={bildkallor} antalOar={ANTAL_OAR} kanslor={kanslor} antalKrogar={antalKrogar} />
+  return <LandingPageClient antalOar={ANTAL_OAR} kanslor={kanslor} antalKrogar={antalKrogar} />
 }

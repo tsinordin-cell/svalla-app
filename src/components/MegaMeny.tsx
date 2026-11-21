@@ -498,7 +498,7 @@ const MM_CSS = `
   .mm-mob-rad small{display:block;font-size:13px;color:#7b8a90;margin-top:3px}
   .mm-mob-rad i,.mm-mob-lank i{font-style:normal;font-size:24px;color:#c96e2a}
   .mm-mob-fot{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:22px}
-  .mm-mob-fot a{color:#1e5c82;font-size:14px;font-weight:700;text-decoration:none}
+  .mm-mob-fot a{display:inline-flex;align-items:center;min-height:44px;color:#1e5c82;font-size:14px;font-weight:700;text-decoration:none} /* tryckyta 44 px (Forum och Logga in var 21 px) */
   .mm-mob-fot a.mm-mob-konto{background:#b5591a;color:#fff;padding:10px 18px;border-radius:999px}
   .mm-mob-tillbaka{background:none;border:none;font:inherit;font-size:14px;font-weight:700;color:#1e5c82;padding:4px 0 10px;cursor:pointer}
   .mm-mob-titel{font-family:'Playfair Display',Georgia,serif;font-size:32px;font-weight:700;margin:0 0 6px}
