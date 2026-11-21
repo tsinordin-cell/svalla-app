@@ -46,8 +46,8 @@ export default function HotellSida() {
   const krogar = summa(x => x.restaurants?.length ?? 0)
   const hamnar = summa(x => x.harbors?.length ?? 0)
 
-  // Riktiga boenden på exempelön, så att listan på ösidan ser ut som den gör idag.
-  const grannar = (o?.accommodation ?? []).slice(0, 2).map(a => ({ namn: a.name, typ: a.type }))
+  // Generiska rader, inga riktiga verksamheter: sidan kan skickas till vilket hotell som helst.
+  const grannar = [{ namn: 'Krogen vid hamnen', typ: 'Mat' }, { namn: 'Gästhamnen', typ: 'Hamn' }]
 
   // Kartan: öarnas kontrollerade koordinater, utplattade till en yta.
   const kord = ISLAND_COORDS.filter(k => ALL_ISLANDS.some(x => x.slug === k.slug && x.region !== 'bohuslan' && x.region !== 'goteborg'))
@@ -150,7 +150,7 @@ export default function HotellSida() {
         <div className="ht-ytor">
           <article className="ht-yta">
             <div className="ht-yta-mock ht-mock-lista">
-              <small>Bo på {oNamn}</small>
+              <small>{oNamn} <Ex /></small>
               <div className="ht-rad du"><i>★</i><span><b>Ert hotell</b><small>Hotell · vid hamnen</small></span></div>
               {grannar.map(g => <div className="ht-rad" key={g.namn}><i>·</i><span><b>{g.namn}</b><small>{g.typ}</small></span></div>)}
             </div>
@@ -268,6 +268,9 @@ const CSS = `
 .ht-hero-inre{max-width:1160px;width:100%;margin:0 auto;padding:48px 40px 64px}
 .ht-hero small,.ht-rubrik small,.ht-forman-text small{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#f2a25c}
 .ht-rubrik small,.ht-forman-text small{color:#b5591a}
+.ht-hero small{color:#ffe2c2;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.ht-hero h1,.ht-hero p{text-shadow:0 2px 18px rgba(0,0,0,.25)}
+.fb-flytande{display:none!important}
 .ht-hero h1{font-size:clamp(40px,7vw,84px);line-height:1;margin:12px 0 18px;max-width:820px}
 .ht-hero p{font-size:clamp(16px,1.6vw,19px);line-height:1.6;max-width:600px;margin:0 0 26px;color:rgba(255,255,255,.9)}
 .ht-knappar{display:flex;flex-wrap:wrap;gap:12px}
@@ -303,7 +306,8 @@ const CSS = `
 .ht-skarm-knappar{display:flex;gap:8px;margin-top:4px}
 .ht-skarm-knappar span{flex:1;text-align:center;height:42px;line-height:42px;border-radius:999px;background:#c8642a;color:#fff;font-weight:700;font-size:14px}
 .ht-skarm-knappar span.ljus{background:#fff;color:#0d2440;border:1.5px solid rgba(13,36,64,.2)}
-.ht-skarm-forman{display:flex;align-items:center;gap:10px;margin-top:6px;padding:10px 12px;border-radius:14px;background:#f3ece0}
+.ht-skarm-forman{display:grid;grid-template-columns:30px minmax(0,1fr);align-items:center;gap:6px 10px;margin-top:6px;padding:10px 12px;border-radius:14px;background:#f3ece0}
+.ht-skarm-forman>em{grid-column:2;justify-self:start}
 .ht-skarm-forman i{font-style:normal;width:30px;height:30px;flex-shrink:0;border-radius:50%;background:#fde9c8;color:#b5591a;display:flex;align-items:center;justify-content:center}
 .ht-skarm-forman span{flex:1;min-width:0;display:flex;flex-direction:column}
 .ht-skarm-forman b{font-size:14px;color:#0d2440}
