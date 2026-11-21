@@ -293,13 +293,13 @@ const CSS = `
   .sd-nu-lista{grid-template-columns:1fr;gap:4px}
   .sd-nu-bricka{width:48px;height:52px}
   .sd-nu-bricka b{font-size:20px}
-  .sd-kansla-rutnat{grid-template-columns:1fr 1fr;gap:10px}
-  .sd-kansla-ruta{aspect-ratio:3/4;border-radius:16px}
+  /* Thomas 2026-11-21: rullande rad i mobilen. Alla känslor är kvar men tar mindre plats. */
+  .sd-kansla-rutnat{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;margin:0 -16px;padding:0 16px 4px;scroll-padding-left:16px;scrollbar-width:none}
+  .sd-kansla-rutnat::-webkit-scrollbar{display:none}
+  .sd-kansla-ruta{flex:0 0 62%;max-width:270px;aspect-ratio:4/5;border-radius:16px;scroll-snap-align:start}
   .sd-kansla-ruta span{padding:12px;gap:4px}
   .sd-kansla-ruta b{font-size:18px}
   .sd-kansla-ruta small{font-size:11.5px}
-  /* Max 2026-11-20: i mobilen visas bara de fyra första känslorna, resten finns på /oar */
-  .sd-kansla-ruta:nth-child(n+5){display:none}
   .sd-mer a{white-space:normal;display:inline-block;margin-right:14px}
   .sd-mer b{display:block}
   .sd-faq-gardin{padding:28px 12px}
