@@ -7,14 +7,16 @@
  *  2. "Din guide ute på vattnet" ligger direkt efter "Vad vill du känna?", med ny text (Delar.tsx).
  *  3. Krogdelen ligger kvar på sin plats, nu som egen del (Delar.tsx).
  *  4. Thorkel: "Gratis, men du behöver ett konto." före fältet (Delar.tsx).
+ *  5. Ordningen: Vad vill du känna → Tre sätt → guiden → Just nu. Just nu utan sekunder (Delar.tsx).
+ *  6. Mobil: svepbar bildrad, regiondelen utan Sverigekarta och pilar (CSS i Delar.tsx).
  * Bastu-bilden rättas i page.tsx. Produktionsfilen är orörd.
  */
 import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
 import ThorkelHero from '@/components/ThorkelHero'
-import { TreSatt, JustNu, VadVillDuKanna, type StartKansla } from '@/components/StartDelar'
-import { FragaThorkel, GuideDel, KrogDel } from './Delar'
+import { TreSatt, VadVillDuKanna, type StartKansla } from '@/components/StartDelar'
+import { FragaThorkel, GuideDel, JustNu, KrogDel } from './Delar'
 import MegaMeny from '@/components/MegaMeny'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
@@ -1324,11 +1326,12 @@ export default function PreviewClient({ photoMap, bildkallor = [], antalOar, kan
  <MegaMeny overStart />
  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroUtanMeny }} />
  <ThorkelHero />
- <TreSatt />
- <JustNu />
+ {/* FÖRHANDSVISNING (Toms beslut 2026-11-21): besökaren bestämmer först vart, sedan hur.
+     Ordning: Vad vill du känna → Tre sätt → guiden (kontot) → Just nu. */}
  <VadVillDuKanna kanslor={kanslor} />
- {/* FÖRHANDSVISNING: kontot är sajtens mål, därför direkt efter inspirationen */}
+ <TreSatt />
  <GuideDel />
+ <JustNu />
  {andraHtml !== null && (
  <section className="destinations-section" id="resmål" style={{ position: 'relative', zIndex: 1, paddingTop: 28, paddingBottom: 28 }}>
  <div className="section-inner">
