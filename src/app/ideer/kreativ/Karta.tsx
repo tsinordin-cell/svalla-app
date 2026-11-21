@@ -338,7 +338,8 @@ const CSS = `
   .kk-rakna span{display:none}
   .kk-kort{left:12px;right:12px}
   .kk-tips{font-size:11px}
-  .kk-medalj-kort{padding:14px 16px 12px}
+  .kk-medalj{position:fixed;z-index:1000}
+  .kk-medalj-kort{padding:16px 16px 14px;max-height:calc(100vh - 28px);overflow:auto}
   .kk-medalj-bild{width:54px}
   .kk-medalj-kort h4{font-size:22px}
 }

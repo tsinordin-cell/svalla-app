@@ -66,7 +66,8 @@ export function byggVarld(lista: KOin[], seed: number): Varld {
   const k = Math.cos((latM * Math.PI) / 180)
   const xs = lista.map(o => o.lng * k), ys = lista.map(o => -o.lat)
   const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys)
-  const skala = 2400 / Math.max(x1 - x0, (y1 - y0) * 1.2, 0.001)
+  // Få öar ger en mindre värld, så att det aldrig blir långt mellan dem
+  const skala = Math.min(2400, 700 + lista.length * 60) / Math.max(x1 - x0, (y1 - y0) * 1.2, 0.001)
   const oar: O[] = lista.map(o => {
     const r = slump(hash(o.slug))
     const rad = 28 + r() * 26
