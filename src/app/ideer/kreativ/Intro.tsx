@@ -159,7 +159,7 @@ void main(){
   float a = kant(fr + havF, th);
   float b = kant(fb, th);
   float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * .3).a;
-  tx = smoothstep(.45, .55, tx + (kf - .5) * .2) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
+  tx = smoothstep(.45, .55, tx + (kf - .5) * .1) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
   float ink = a;
   ink = mix(ink, 1. - ink, b);
   ink = mix(ink, 1. - ink, tx);
@@ -611,5 +611,5 @@ const CSS = `
 .ki-reserv-hav{position:absolute;left:0;right:0;bottom:0;height:40%;background:#1b57a0}
 .ki-reserv p{margin-top:18%;font:700 13px Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1b57a0}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
-@media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
+@media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
 `
