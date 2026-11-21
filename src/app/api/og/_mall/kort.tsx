@@ -108,11 +108,8 @@ function Prick() {
 /** Seglet ur loggan, stort och svagt, i högerpanelen när inget annat finns. */
 function Segel() {
   return (
-    <svg viewBox="0 0 20 22" width={360} height={360} style={{ position: 'absolute', left: OG_W - HOGER_B + 90, top: 150, opacity: 0.1 }}>
-      <line x1="9" y1="20" x2="9" y2="3" stroke="#fff" strokeWidth="1.2" strokeLinecap="round" />
-      <path d="M9,4 L18,18 L9,18 Z" fill="#fff" opacity="0.95" />
-      <path d="M9,8 L1,17 L9,17 Z" fill="#fff" opacity="0.55" />
-      <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#fff" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.8" />
+    <svg viewBox="0 0 24 27" width={360} height={360} style={{ position: 'absolute', left: OG_W - HOGER_B + 90, top: 150, opacity: 0.1 }}>
+      <rect x="11.2" y="0.6" width="1" height="22" fill={'#fff'} /><path d="M10.65 7.3V21.4H2.25Z" fill={'#fff'} /><path d="M12.65 2.6L23.6 21.4H12.65Z" fill={'#fff'} /><path d="M0.7 22.9Q11.6 27.1 22.6 22.9A0.6 0.6 0 0 1 22.7 24.1Q11.6 28.3 0.6 24.1A0.6 0.6 0 0 1 0.7 22.9Z" fill={'#fff'} />
     </svg>
   )
 }
