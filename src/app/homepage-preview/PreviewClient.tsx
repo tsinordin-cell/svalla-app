@@ -65,7 +65,7 @@ function Julrad({ start }: { start: number | null }) {
   )
 }
 
-function Hero({ julStart, antalOar, antalKrogar }: { julStart: number | null; antalOar: number; antalKrogar: number }) {
+function Hero({ julStart, antalKrogar }: { julStart: number | null; antalKrogar: number }) {
   const sok = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const q = (new FormData(e.currentTarget).get('q') as string || '').trim()
@@ -81,8 +81,8 @@ function Hero({ julStart, antalOar, antalKrogar }: { julStart: number | null; an
         <Julrad start={julStart} />
         <h1 id="hp-h1" className="hp-h1">Planera din <em>skärgårdsvistelse</em></h1>
         <p className="hp-hero-ingress">Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
-        {/* Förtroende med siffror ur datan (antal öar och krogar på ösidorna), inga påhittade. */}
-        {antalOar > 0 && <p className="hp-hero-fakta">{antalOar.toLocaleString('sv-SE')} öar<span aria-hidden="true">·</span>{antalKrogar.toLocaleString('sv-SE')} krogar och caféer<span aria-hidden="true">·</span>Gratis</p>}
+        {/* Förtroende med en siffra ur datan (krogarna på ösidorna). Antalet öar visas inte: Toms beslut 2026-11-21. */}
+        {antalKrogar > 0 && <p className="hp-hero-fakta">{antalKrogar.toLocaleString('sv-SE')} krogar och caféer<span aria-hidden="true">·</span>Gratis</p>}
       </div>
       <div className="hp-hero-botten">
         <form className="hp-sok" role="search" action="/sok" method="get" onSubmit={sok}>
@@ -390,11 +390,11 @@ function Bildkallor({ k }: { k: Bildkalla[] }) {
   )
 }
 
-export default function PreviewClient({ bildkallor = [], kanslor = [], antalOar = 0, antalKrogar = 0, julStart = null }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalOar?: number; antalKrogar?: number; julStart?: number | null }) {
+export default function PreviewClient({ bildkallor = [], kanslor = [], antalKrogar = 0, julStart = null }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalKrogar?: number; julStart?: number | null }) {
   return (
     <div className="hp">
       <MegaMeny overStart />
-      <Hero julStart={julStart} antalOar={antalOar} antalKrogar={antalKrogar} />
+      <Hero julStart={julStart} antalKrogar={antalKrogar} />
       {/* Stor skärm: julkalenderns paket i himlen, precis som på startsidan. I mobilen ligger den som en rad ovanför rubriken. */}
       <div className="hp-bara-stor"><JulkalenderSkylt /></div>
       <div className="hp-innehall">
