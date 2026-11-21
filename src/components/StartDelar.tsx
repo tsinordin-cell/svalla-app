@@ -298,16 +298,26 @@ const CSS = `
   .sd-kansla-ruta span{padding:12px;gap:4px}
   .sd-kansla-ruta b{font-size:18px}
   .sd-kansla-ruta small{font-size:11.5px}
+  /* Max 2026-11-20: i mobilen visas bara de fyra första känslorna, resten finns på /oar */
+  .sd-kansla-ruta:nth-child(n+5){display:none}
   .sd-mer a{white-space:normal;display:inline-block;margin-right:14px}
   .sd-mer b{display:block}
   .sd-faq-gardin{padding:28px 12px}
   .sd-faq-gardin summary{padding:14px 18px}
-  .sd-thorkel{padding:36px 0}
-  .sd-thorkel-inre{padding:0 20px;flex-direction:column;align-items:flex-start;gap:16px}
-  .sd-thorkel-bild{width:76px;height:76px;border-width:3px}
+  /* Max 2026-11-20: kompakt i mobilen. Thorkel liten bredvid rubriken, frågorna på en rad som går att svepa. */
+  .sd-thorkel{padding:26px 0}
+  .sd-thorkel-inre{position:relative;padding:0 16px;display:block}
+  .sd-thorkel-bild{position:absolute;right:16px;top:0;width:52px;height:52px;border-width:2px}
   .sd-thorkel-text{width:100%}
-  .sd-thorkel-falt{padding-left:16px}
-  .sd-thorkel-chips a{font-size:12.5px;padding:8px 12px}
+  .sd-thorkel .sd-liten{margin-bottom:4px}
+  .sd-thorkel h2{font-size:22px;margin:0 0 14px;padding-right:64px}
+  .sd-thorkel-falt{padding:4px 4px 4px 16px}
+  .sd-thorkel-falt input{font-size:15px;padding:7px 0}
+  .sd-thorkel-falt button{width:38px;height:38px;font-size:17px}
+  .sd-thorkel-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:10px -16px 0;padding:0 16px}
+  .sd-thorkel-chips::-webkit-scrollbar{display:none}
+  .sd-thorkel-chips a{flex-shrink:0;font-size:12.5px;padding:7px 12px;white-space:nowrap}
+  .sd-thorkel-not{font-size:12px;margin-top:10px}
   .sd-guide{padding:28px 12px}
   .sd-guide-yta{padding:28px 22px 0;grid-template-columns:1fr;gap:0;min-height:0;border-radius:22px 22px 0 0}
   .sd-guide-text{padding-bottom:28px}
