@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from 'react'
 
 const BLA = [0.106, 0.341, 0.627] // #1b57a0
 const SLUT = 11800
+const NAV_KANT = 34 // så att första och sista etiketten inte klipps
 const SCENER = [
   { namn: 'Prickar', fran: 0 },
   { namn: 'Sverige', fran: 2600 },
@@ -50,16 +51,27 @@ function provForm(W: number, H: number, n: number, rita: (c: CanvasRenderingCont
   return ut
 }
 
-/* Svallas båt (loggan B: mast, två segel) med skrov och två personer, i en ruta bw × bh med origo uppe till vänster. */
-function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number) {
-  const k = bw / 120
-  c.save(); c.translate(x, y); c.scale(k, k)
-  c.beginPath(); c.rect(57, 4, 3.4, 80); c.fill()
-  c.beginPath(); c.moveTo(61, 8); c.lineTo(106, 76); c.lineTo(61, 76); c.closePath(); c.fill()
-  c.beginPath(); c.moveTo(56, 26); c.lineTo(13, 74); c.lineTo(56, 74); c.closePath(); c.fill()
-  c.beginPath(); c.arc(38, 70, 4.6, 0, Math.PI * 2); c.fill(); c.fillRect(35, 74, 6.4, 10)
-  c.beginPath(); c.arc(78, 69, 4.6, 0, Math.PI * 2); c.fill(); c.fillRect(75, 73, 6.4, 11)
-  c.beginPath(); c.moveTo(4, 84); c.quadraticCurveTo(60, 95, 116, 84); c.lineTo(102, 103); c.quadraticCurveTo(60, 110, 18, 103); c.closePath(); c.fill()
+/* Svallas båt. Seglen, masten och vågen har loggan B:s mått (src/components/SvallaLogo.tsx, enheter 0 till 18).
+   Lagt till: ett lågt skrov och två personer, en på var sida om seglen. Rutan är 26 × 25 enheter. */
+const BAT_B = 26, BAT_H = 25, BAT_DX = 4, BAT_DY = -1
+const ARM = { axel: [-0.85, 16.5] as const, hand: [0.35, 13.5] as const, r: 0.42 }
+function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number, medArm = true) {
+  const k = bw / BAT_B
+  c.save(); c.translate(x, y); c.scale(k, k); c.translate(BAT_DX, BAT_DY)
+  c.strokeStyle = c.fillStyle as string; c.lineCap = 'round'; c.lineJoin = 'round'
+  // Mast (x 9 i loggan)
+  c.beginPath(); c.moveTo(9, 2.6); c.lineTo(9, 19.4); c.lineWidth = 1.3; c.stroke()
+  // Storseglet (loggan: M9,4 L18,18 L9,18) och focken (M9,8 L1,17 L9,17), med en smal glipa mot masten
+  c.beginPath(); c.moveTo(10.25, 4.3); c.lineTo(18, 18); c.lineTo(10.25, 18); c.closePath(); c.fill()
+  c.beginPath(); c.moveTo(7.75, 8.3); c.lineTo(1, 17); c.lineTo(7.75, 17); c.closePath(); c.fill()
+  // Skrov
+  c.beginPath(); c.moveTo(-2.7, 19.2); c.lineTo(20.7, 19.2); c.quadraticCurveTo(19.7, 21.9, 17.4, 22.1); c.lineTo(0.6, 22.1); c.quadraticCurveTo(-1.7, 21.9, -2.7, 19.2); c.closePath(); c.fill()
+  // Två personer
+  c.beginPath(); c.arc(-1.5, 14.7, 1.05, 0, Math.PI * 2); c.fill(); c.fillRect(-2.35, 16.15, 1.7, 3.3)
+  c.beginPath(); c.arc(19.95, 14.7, 1.05, 0, Math.PI * 2); c.fill(); c.fillRect(19.1, 16.15, 1.7, 3.3)
+  if (medArm) { c.beginPath(); c.moveTo(ARM.axel[0], ARM.axel[1]); c.lineTo(ARM.hand[0], ARM.hand[1]); c.lineWidth = ARM.r * 2; c.stroke() }
+  // Vågen (loggan: M2,20 Q6,17.5 9,20 Q12,17.5 17,20), här under skrovet
+  c.beginPath(); c.moveTo(-0.5, 24.3); c.quadraticCurveTo(4.25, 21.9, 9, 24.3); c.quadraticCurveTo(13.75, 21.9, 18.5, 24.3); c.lineWidth = 1.2; c.stroke()
   c.restore()
 }
 
@@ -108,9 +120,13 @@ void main(){
 }`
 const FS_BILD = `#version 300 es
 precision highp float;
-uniform sampler2D den; uniform sampler2D vel; uniform sampler2D korn; uniform sampler2D txt;
+uniform sampler2D den; uniform sampler2D vel; uniform sampler2D korn; uniform sampler2D txt; uniform sampler2D form;
 uniform vec2 res; uniform float t; uniform float hav; uniform float vag; uniform float txtA; uniform vec3 bla; uniform vec3 drops[7];
+uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform vec4 arm; uniform float armR;
 in vec2 uv; out vec4 o;
+vec4 mjuk(vec2 p){ vec2 e = 1.1 / vec2(textureSize(form, 0));
+  return texture(form, p) * .4 + (texture(form, p + e) + texture(form, p - e) + texture(form, p + vec2(e.x, -e.y)) + texture(form, p - vec2(e.x, -e.y))) * .15; }
+float seg(vec2 p, vec2 a, vec2 b){ vec2 pa = p - a, ba = b - a; float hh = clamp(dot(pa, ba) / dot(ba, ba), 0., 1.); return length(pa - ba * hh); }
 float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
 float vn(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f);
   return mix(mix(h(i), h(i + vec2(1, 0)), f.x), mix(h(i + vec2(0, 1)), h(i + vec2(1, 1)), f.x), f.y); }
@@ -128,8 +144,17 @@ void main(){
   float niva = hav + (sin(x * 3.1 + t * 1.05) * .011 + sin(x * 7.7 - t * 1.6) * .0055 + (vn(vec2(x * 4., t * .4)) - .5) * .012) * vag;
   float havF = clamp((yd - niva) * 34. + .5, 0., 1.6);
   float th = .5 + (kf - .5) * .13 + (kg - .5) * .1;
-  float a = kant(d.r + havF, th);
-  float b = kant(d.g, th);
+  // Formmasken: bläcket sätter sig i Sveriges och båtens skarpa form, men krusas fortfarande av fältet
+  vec2 sp = vec2(uv.x + disp.x, 1. - uv.y - disp.y) * stage;
+  float m1 = sveS > 0. ? mjuk(sp / stage).r : 0.;
+  vec2 qq = sp - vec2(0., by) - piv; float cs = cos(ang), sn = sin(ang);
+  vec2 lp = piv + vec2(qq.x * cs + qq.y * sn, -qq.x * sn + qq.y * cs);
+  float m2 = 0.;
+  if (batS > 0.) { m2 = mjuk(lp / stage).g; m2 = max(m2, clamp((armR - seg(lp, arm.xy, arm.zw)) / 1.6 + .5, 0., 1.)); }
+  float fr = mix(d.r, m1, sveS);
+  float fb = mix(d.g, m2, batS);
+  float a = kant(fr + havF, th);
+  float b = kant(fb, th);
   float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * .3).a;
   tx = smoothstep(.45, .55, tx + (kf - .5) * .2) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
   float ink = a;
@@ -254,7 +279,8 @@ export default function Intro({ efter }: { efter?: () => void }) {
     let data = new Float32Array(0)
     let pkt: WebGLVertexArrayObject | null = null, pb: WebGLBuffer | null = null
     let fran: Record<'prick' | 'sve' | 'bat' | 'dyn' | 'hav', Float32Array> = { prick: new Float32Array(0), sve: new Float32Array(0), bat: new Float32Array(0), dyn: new Float32Array(0), hav: new Float32Array(0) }
-    let attr = { droppT: new Float32Array(0), r: new Float32Array(0), size: new Float32Array(0) }
+    let attr = { droppT: new Float32Array(0), r: new Float32Array(0), size: new Float32Array(0), size0: new Float32Array(0), vikt: new Float32Array(0) }
+    const formTex = gl.createTexture()!
     let batRuta = { bw: 0, bh: 0 }
 
     const bygg = () => {
@@ -273,16 +299,37 @@ export default function Intro({ efter }: { efter?: () => void }) {
       const r = slump(7)
       const ytan = W * H
       const bas = Math.sqrt(ytan / N) * 2.6
-      // Prickar: målarstänk med olika storlek och en tid när de landar
-      const droppar = Array.from({ length: 28 }, (_, i) => ({ x: 0.08 + r() * 0.84, y: 0.1 + r() * 0.62, rad: (0.018 + r() * r() * 0.07) * Math.min(W, H * 1.6), t: 150 + i * 80 + r() * 60 }))
-      const vikter = droppar.map(d => d.rad * d.rad); const summa = vikter.reduce((a, b) => a + b, 0)
-      const prick = new Float32Array(N * 2), droppT = new Float32Array(N), rr = new Float32Array(N), size = new Float32Array(N)
+      // Prickar: stänk av målarfärg. Några större droppar med små satelliter runt, och fina prickar utspridda.
+      const md = Math.min(W, H * 1.6)
+      type Dr = { x: number; y: number; rx: number; ry: number; rot: number; t: number }
+      const droppar: Dr[] = []
+      const huvud = W < 700 ? 6 : 8
+      for (let i = 0; i < huvud; i++) {
+        const rad = (0.03 + r() * r() * 0.05) * md
+        const d: Dr = { x: (0.1 + r() * 0.8) * W, y: (0.14 + r() * 0.54) * H, rx: rad, ry: rad * (0.68 + r() * 0.3), rot: r() * Math.PI, t: 160 + i * 240 + r() * 90 }
+        droppar.push(d)
+        const sat = 3 + Math.floor(r() * 4)
+        for (let s = 0; s < sat; s++) {
+          const a = r() * Math.PI * 2, avst = rad * (1.3 + r() * 1.2), sr = rad * (0.1 + r() * r() * 0.26)
+          droppar.push({ x: d.x + Math.cos(a) * avst, y: d.y + Math.sin(a) * avst, rx: sr, ry: sr, rot: 0, t: d.t + 50 + r() * 170 })
+        }
+      }
+      const vikter = droppar.map(d => Math.max(d.rx * d.ry, 30)); const summa = vikter.reduce((a, b) => a + b, 0)
+      const prick = new Float32Array(N * 2), droppT = new Float32Array(N), rr = new Float32Array(N), size = new Float32Array(N), size0 = new Float32Array(N), vikt = new Float32Array(N)
+      const NS = W < 700 ? 50 : 80 // fina prickar, en partikel var
       for (let i = 0; i < N; i++) {
+        rr[i] = r(); size[i] = bas * (0.75 + r() * 0.6)
+        if (i >= N - NS) {
+          prick[i * 2] = (0.05 + r() * 0.9) * W; prick[i * 2 + 1] = (0.08 + r() * 0.7) * H
+          droppT[i] = 300 + r() * 2000; size0[i] = bas * (0.2 + r() * 0.22); vikt[i] = 3.2
+          continue
+        }
         let v = r() * summa, k = 0
         while (k < droppar.length - 1 && v > vikter[k]!) { v -= vikter[k]!; k++ }
-        const d = droppar[k]!, a = r() * Math.PI * 2, ra = Math.sqrt(r()) * d.rad
-        prick[i * 2] = d.x * W + Math.cos(a) * ra; prick[i * 2 + 1] = d.y * H + Math.sin(a) * ra
-        droppT[i] = d.t + r() * 120; rr[i] = r(); size[i] = bas * (0.75 + r() * 0.6)
+        const d = droppar[k]!, a = r() * Math.PI * 2, ra = Math.sqrt(r())
+        const lx = Math.cos(a) * ra * d.rx, ly = Math.sin(a) * ra * d.ry, cs = Math.cos(d.rot), sn = Math.sin(d.rot)
+        prick[i * 2] = d.x + lx * cs - ly * sn; prick[i * 2 + 1] = d.y + lx * sn + ly * cs
+        droppT[i] = d.t + r() * 110; size0[i] = bas * (0.5 + r() * 0.3); vikt[i] = 1
       }
       // Sverige: kontur från Natural Earth, inpassad i scenen
       const k = Math.cos((62 * Math.PI) / 180)
@@ -291,11 +338,25 @@ export default function Intro({ efter }: { efter?: () => void }) {
       const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)]
       const sk = Math.min((W * 0.5) / (x1 - x0), (H * 0.8) / (y1 - y0))
       const ox = W / 2 - ((x0 + x1) / 2) * sk, oy = H * 0.5 - ((y0 + y1) / 2) * sk
-      const sve = provForm(W, H, N, c => { for (const ring of SVERIGE) { c.beginPath(); ring.forEach((p, j) => { const px = p[0] * k * sk + ox, py = -p[1] * sk + oy; if (j) c.lineTo(px, py); else c.moveTo(px, py) }); c.closePath(); c.fill() } }, r)
+      const ritaSverige = (c: CanvasRenderingContext2D) => { for (const ring of SVERIGE) { c.beginPath(); ring.forEach((p, j) => { const px = p[0] * k * sk + ox, py = -p[1] * sk + oy; if (j) c.lineTo(px, py); else c.moveTo(px, py) }); c.closePath(); c.fill() } }
+      const sve = provForm(W, H, N, ritaSverige, r)
       // Båten
-      const bw = Math.min(W * 0.3, H * 0.46), bh = (bw * 110) / 120
+      const bw = Math.min(W * 0.3, H * 0.5), bh = (bw * BAT_H) / BAT_B
       batRuta = { bw, bh }
       const bat = provForm(W, H, N, c => ritaBat(c, (W - bw) / 2, (H - bh) / 2, bw), r)
+      // Formmasken i halv upplösning: röd kanal Sverige, grön kanal båten (utan armen, den ritas i shadern)
+      {
+        const mc = document.createElement('canvas'); mc.width = hw; mc.height = hh
+        const c = mc.getContext('2d')!
+        c.fillStyle = '#000'; c.fillRect(0, 0, hw, hh); c.scale(hw / W, hh / H)
+        c.fillStyle = 'rgb(255,0,0)'; ritaSverige(c)
+        c.globalCompositeOperation = 'lighter'; c.fillStyle = 'rgb(0,255,0)'; ritaBat(c, (W - bw) / 2, (H - bh) / 2, bw, false)
+        gl.bindTexture(gl.TEXTURE_2D, formTex)
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mc)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+      }
       // Dyning under båten och havet
       const dyn = new Float32Array(N * 2), hav = new Float32Array(N * 2)
       for (let i = 0; i < N; i++) {
@@ -303,7 +364,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
         hav[i * 2] = r() * W; hav[i * 2 + 1] = H * (0.66 + r() * 0.38)
       }
       fran = { prick, sve, bat, dyn, hav }
-      attr = { droppT, r: rr, size }
+      attr = { droppT, r: rr, size, size0, vikt }
       data = new Float32Array(N * 5)
       if (!pkt) {
         pkt = gl.createVertexArray()!; gl.bindVertexArray(pkt)
@@ -362,7 +423,9 @@ export default function Intro({ efter }: { efter?: () => void }) {
 
     const ruta = (nu: number) => {
       const dt = Math.min(0.05, (nu - forra) / 1000); forra = nu
-      const t = minskad ? SLUT : Math.min(nu - start.current, SLUT + 600000)
+      // window.__kiFrys = millisekunder låser tiden (bara för test och skärmbilder)
+      const frys = (window as unknown as { __kiFrys?: number }).__kiFrys
+      const t = typeof frys === 'number' ? frys : minskad ? SLUT : Math.min(nu - start.current, SLUT + 600000)
       tid.current = t
       const T = Math.min(t, SLUT)
       const sek = minskad ? 0 : nu / 1000
@@ -376,7 +439,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
       const bob = Math.sin(sek * 1.4) * H * 0.008, vink = Math.sin(sek * 1.1) * 0.045
       const vattenlinje = havNiva * H
       const batY = (H - batRuta.bh) / 2
-      const malY = vattenlinje - batRuta.bh * 0.86 - batY
+      const malY = vattenlinje - batRuta.bh * 0.8 - batY
       const pivX = W / 2, pivY = H / 2 + batRuta.bh * 0.3
 
       const f = fran, A = attr
@@ -403,8 +466,9 @@ export default function Intro({ efter }: { efter?: () => void }) {
         y += Math.cos(sek * 0.7 + rnd * 30) * 1.4 + Math.sin(rnd * 9) * bage * 26
         const o = i * 5
         data[o] = x; data[o + 1] = y
-        data[o + 2] = A.size[i]! * (0.35 + 0.65 * ease(syns)) * (1 + 0.25 * (1 - syns))
-        data[o + 3] = syns
+        const s0 = A.size0[i]! + (A.size[i]! - A.size0[i]!) * e1
+        data[o + 2] = s0 * (0.35 + 0.65 * ease(syns)) * (1 + 0.25 * (1 - syns))
+        data[o + 3] = syns * (1 + (A.vikt[i]! - 1) * (1 - e1))
         data[o + 4] = bat ? 1 : 0
       }
 
@@ -439,12 +503,27 @@ export default function Intro({ efter }: { efter?: () => void }) {
       gl.uniform2f(u(pBild, 'res'), cv.width, cv.height); gl.uniform1f(u(pBild, 't'), sek)
       gl.uniform1f(u(pBild, 'hav'), havNiva); gl.uniform1f(u(pBild, 'vag'), 0.4 + 0.6 * ease((T - 7800) / 1500))
       gl.uniform1f(u(pBild, 'txtA'), ease((T - 8300) / 1700)); gl.uniform3f(u(pBild, 'bla'), BLA[0]!, BLA[1]!, BLA[2]!)
+      // Formmasken och båtens läge (samma rörelse som partiklarna), armen vinkar
+      bind('form', 4, formTex)
+      gl.uniform2f(u(pBild, 'stage'), W, H)
+      gl.uniform1f(u(pBild, 'sveS'), klamp((T - 3700) / 800) * (1 - klamp((T - 5150) / 350)))
+      gl.uniform1f(u(pBild, 'batS'), klamp((T - 6500) / 800))
+      const eSen = ease((T - 5200 - 650) / 1500)
+      gl.uniform2f(u(pBild, 'piv'), pivX, pivY); gl.uniform1f(u(pBild, 'ang'), vink * eSen); gl.uniform1f(u(pBild, 'by'), malY * batNer + bob * eSen)
+      {
+        const kk = batRuta.bw / BAT_B, bx = (W - batRuta.bw) / 2, byy = (H - batRuta.bh) / 2
+        const P = (uu: number, vv: number) => [bx + (uu + BAT_DX) * kk, byy + (vv + BAT_DY) * kk] as const
+        const [sx, sy] = P(ARM.axel[0], ARM.axel[1]), [hx0, hy0] = P(ARM.hand[0], ARM.hand[1])
+        const va = minskad ? 0 : Math.sin(sek * 5.2) * 0.42, dxa = hx0 - sx, dya = hy0 - sy
+        gl.uniform4f(u(pBild, 'arm'), sx, sy, sx + dxa * Math.cos(va) - dya * Math.sin(va), sy + dxa * Math.sin(va) + dya * Math.cos(va))
+        gl.uniform1f(u(pBild, 'armR'), ARM.r * kk)
+      }
       // Tidslinjen som flytande droppar: en aktiv droppe med släpande svans
       const mal = Math.min(SCENER.length - 1, sc + klamp((T - SCENER[sc]!.fran) / ((SCENER[sc + 1]?.fran ?? SLUT) - SCENER[sc]!.fran)))
       const nv = nav.current
       nv.v += (mal - nv.x) * 0.08; nv.v *= 0.72; nv.x += nv.v; nv.svans += (nv.x - nv.svans) * 0.06
       const navB = W < 560 ? W - 32 : W - 32 - 220
-      const px = (i: number) => (16 + 10 + (i / (SCENER.length - 1)) * (navB - 20)) * DPR
+      const px = (i: number) => (16 + NAV_KANT + (i / (SCENER.length - 1)) * (navB - 2 * NAV_KANT)) * DPR
       const py = 38 * DPR
       const dr = new Float32Array(21)
       for (let i = 0; i < 5; i++) { dr[i * 3] = px(i); dr[i * 3 + 1] = py; dr[i * 3 + 2] = (Math.abs(nv.x - i) < 0.6 ? 5 : 3.2) * DPR }
@@ -491,7 +570,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
       <div className={navPos.hav < 0.93 ? 'ki-nav ljus' : 'ki-nav'}>
         <div className="ki-namn" style={{ width: navPos.bredd }}>
           {SCENER.map((s, i) => (
-            <button key={s.namn} type="button" style={{ left: 10 + (i / (SCENER.length - 1)) * (navPos.bredd - 20) }} className={Math.round(navPos.x) === i ? 'pa' : ''} onClick={() => hoppa(s.fran)}>{s.namn}</button>
+            <button key={s.namn} type="button" style={{ left: NAV_KANT + (i / (SCENER.length - 1)) * (navPos.bredd - 2 * NAV_KANT) }} className={Math.round(navPos.x) === i ? 'pa' : ''} onClick={() => hoppa(s.fran)}>{s.namn}</button>
           ))}
         </div>
         <button type="button" className="ki-hoppa" onClick={() => hoppa(SLUT)}>Hoppa över</button>
