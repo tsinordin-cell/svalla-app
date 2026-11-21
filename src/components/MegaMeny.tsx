@@ -181,6 +181,9 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
   }, [path])
   const [niva2, setNiva2] = useState<string | null>(null)
   const [karta, setKarta] = useState<Karta | null>(null)
+  // Sök i menyn som en liten knapp som öppnas på plats (Max 2026-11-21).
+  const [sokOppen, setSokOppen] = useState(false)
+  const sokRef = useRef<HTMLInputElement>(null)
   const aktivRef = useRef<string | null>(null)
   const via = useRef<'hover' | 'klick'>('hover')
   const oppnaT = useRef<number | undefined>(undefined)
@@ -253,10 +256,14 @@ export default function MegaMeny({ overStart = false }: { overStart?: boolean })
             ))}
           </nav>
 
-          <div className="mm-hoger">
-            <form action="/sok" method="get" role="search" className="mm-sok">
+          <div className={sokOppen ? 'mm-hoger sok-oppen' : 'mm-hoger'}>
+            <form action="/sok" method="get" role="search" className={sokOppen ? 'mm-sok oppen' : 'mm-sok'} onClick={() => sokRef.current?.focus()}>
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
-              <input type="search" name="q" placeholder="Sök ö, krog eller hamn" aria-label="Sök på Svalla" />
+              {!sokOppen && <span className="mm-sok-text">Sök</span>}
+              <input ref={sokRef} type="search" name="q" placeholder="Sök ö, krog eller hamn" aria-label="Sök på Svalla"
+                onFocus={() => setSokOppen(true)}
+                onBlur={e => { if (!e.currentTarget.value) setSokOppen(false) }}
+                onKeyDown={e => { if (e.key === 'Escape') { e.currentTarget.value = ''; e.currentTarget.blur() } }} />
             </form>
             <Link href="/forum" className="mm-liten">Forum</Link>
             <Link href={inloggad ? '/feed' : '/kom-igang'} className="mm-konto">{inloggad ? 'Till appen →' : 'Mitt Svalla'}</Link>
@@ -463,6 +470,12 @@ const MM_CSS = `
 .mm-mob{display:none}
 
 @media (min-width:1101px){.hero-search{display:none!important}}
+.mm-sok{cursor:pointer}
+.mm-sok-text{font-size:13.5px;font-weight:600;color:#fff}
+.mm-sok input{transition:width .22s ease,opacity .18s ease}
+.mm-rad .mm-sok:not(.oppen) input{width:0;opacity:0}
+.mm-rad .mm-sok.oppen input{width:150px;opacity:1}
+.mm-rad .mm-hoger.sok-oppen{padding-left:0}
 @media (max-width:1240px){.mm-inre{grid-template-columns:240px 1fr 260px;gap:32px}.mm-sok input{width:130px}}
 @media (max-width:1100px){
   .mm-rad{padding:0 16px;height:64px;gap:10px}
