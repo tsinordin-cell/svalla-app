@@ -302,6 +302,10 @@ export default function Intro({ efter }: { efter?: () => void }) {
   const [tips, setTips] = useState(true)
   const ljudRef = useRef<ReturnType<typeof skapaLjud> | null>(null)
   const sistaScen = useRef(-1)
+  const utRef = useRef(0)
+  const efterRef = useRef(efter)
+  efterRef.current = efter
+  const [gar, setGar] = useState(false)
   const nav = useRef({ x: 0, v: 0, svans: 0 })
   const [navPos, setNavPos] = useState({ x: 0, svans: 0, hav: 1.2, bredd: 600 })
 
@@ -465,7 +469,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
       gl.bindVertexArray(tri)
     }
 
-    let raf = 0, forra = performance.now()
+    let raf = 0, forra = performance.now(), klarUt = false
     start.current = performance.now() - tid.current
     if (minskad) { tid.current = SLUT; start.current = performance.now() - SLUT }
 
@@ -481,7 +485,10 @@ export default function Intro({ efter }: { efter?: () => void }) {
       // Scenernas förlopp
       const sc = SCENER.reduce((a, s, i) => (T >= s.fran ? i : a), 0)
       if (sc !== sistaScen.current) { sistaScen.current = sc }
-      const havNiva = 1.18 - 0.28 * ease((T - 5600) / 2400) - 0.26 * ease((T - 7800) / 2200)
+      // Gå in på Svalla: havet stiger och fyller hela bilden, sedan lämnar vi över
+      const ut = utRef.current ? klamp((nu - utRef.current) / 950) : 0
+      if (ut >= 1 && !klarUt) { klarUt = true; efterRef.current?.() }
+      const havNiva = 1.18 - 0.28 * ease((T - 5600) / 2400) - 0.26 * ease((T - 7800) / 2200) - ut * ut * 1.6
       const batNer = ease((T - 7800) / 2000)
       const bob = Math.sin(sek * 1.4) * H * 0.008, vink = Math.sin(sek * 1.1) * 0.045
       const vattenlinje = havNiva * H
@@ -576,6 +583,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
       for (let i = 0; i < 5; i++) { dr[i * 3] = px(i); dr[i * 3 + 1] = py; dr[i * 3 + 2] = (Math.abs(nv.x - i) < 0.6 ? 5 : 3.2) * DPR }
       dr[15] = px(nv.x); dr[16] = py; dr[17] = 7 * DPR
       dr[18] = px(nv.svans); dr[19] = py; dr[20] = (3 + Math.min(6, Math.abs(nv.x - nv.svans) * 9)) * DPR
+      if (ut > 0) for (let i = 2; i < 21; i += 3) dr[i] = 0
       gl.uniform3fv(u(pBild, 'drops'), dr)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
       if (Math.round(nu / 33) % 2 === 0) { setVisT(T); setNavPos({ x: nv.x, svans: nv.svans, hav: havNiva, bredd: navB }) }
@@ -603,15 +611,15 @@ export default function Intro({ efter }: { efter?: () => void }) {
   }
 
   return (
-    <div className="ki-scen" ref={scen}>
+    <div className={gar ? 'ki-scen ki-gar' : 'ki-scen'} ref={scen}>
       <canvas ref={canvas} className="ki-canvas" aria-label="Introt: blå prickar blir Sverige, sedan Svallas segelbåt och till sist ett hav." />
       <div className="ki-topp">
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
         <button type="button" className="ki-ljud" onClick={vaxlaLjud} aria-pressed={ljud}>{ljud ? 'Ljud på' : 'Ljud av'}</button>
       </div>
-      {visaIn && (
+      {visaIn && !gar && (
         <div className="ki-in">
-          <button type="button" className="ki-knapp" onClick={() => efter?.()}>Gå in på Svalla <i>→</i></button>
+          <button type="button" className="ki-knapp" onClick={() => { utRef.current = performance.now(); setGar(true) }}>Gå in på Svalla <i>→</i></button>
         </div>
       )}
       <div className={navPos.hav < 0.91 ? 'ki-nav ljus' : 'ki-nav'}>
@@ -636,6 +644,7 @@ const CSS = `
 .ki-topp{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:10px;z-index:3}
 .ki-tips{font:700 10.5px/1 Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1b57a0;background:#fff;border:1.5px solid #1b57a0;border-radius:999px;padding:7px 11px;opacity:0;transform:translateY(-4px);transition:opacity 1.1s,transform 1.1s}
 .ki-tips.syns{opacity:1;transform:none}
+.ki-gar .ki-nav,.ki-gar .ki-styr,.ki-gar .ki-topp{opacity:0;pointer-events:none;transition:opacity .25s}
 .ki-ljud{font:700 11px/1 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#1b57a0;border:none;border-radius:999px;padding:8px 13px;cursor:pointer}
 .ki-in{position:absolute;left:0;right:0;bottom:88px;display:flex;justify-content:center;z-index:3;animation:kiUpp .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes kiUpp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
