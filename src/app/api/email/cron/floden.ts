@@ -24,6 +24,7 @@ import { getGuidesForIsland } from '@/app/guider/guide-island-map'
 import { PUBLICERADE_GUIDER } from '@/app/guider/guides-data'
 import { SCB_OAR, SCB_OAR_KALLA } from '@/app/o/scb-oar.generated'
 import { veckansOFor, hamtaGodkannande } from '@/lib/veckans-o'
+import { paminnelseFor, AR as JULKALENDER_AR } from '@/lib/julkalender'
 
 const MAX_PER_KORNING = 80
 
@@ -226,6 +227,37 @@ export async function korAvstangdaFloden(
       else {
         const lista = mottagare.map(m => ({ email: m.email, vars, loggnyckel: nyckel }))
         ut.weekly_island = { ...(await skickaEnGang(service, 'weekly_island', lista, budget)), details: { o: o.slug } }
+      }
+    }
+  }
+
+  // ── Julkalenderns påminnelse (1–24 december) ───────────────────────
+  // Bara till konton med en rad i julkalender_paminnelser: raden är
+  // samtycket, som kontot själv har gett på /julkalender. Avregistrerade
+  // adresser filtreras bort, och går listan inte att läsa skickas inget.
+  if (!flodePa('julkalender')) ut.julkalender = { sent: 0, errors: 0, skipped: 'avstängt' }
+  else {
+    const p = paminnelseFor(today)
+    if (!p) ut.julkalender = { sent: 0, errors: 0, skipped: 'ingen lucka öppnas i dag' }
+    else {
+      const [{ data: rader, error: e1 }, { data: avreg, error: e2 }] = await Promise.all([
+        service.from('julkalender_paminnelser').select('user_id').limit(5000),
+        service.from('email_unsubscribes').select('email').limit(10000),
+      ])
+      const ids = (rader ?? []).map(r => r.user_id as string)
+      const { data: konton, error: e3 } = ids.length
+        ? await service.from('users').select('id, email').in('id', ids)
+        : { data: [] as Array<{ id: string; email: string | null }>, error: null }
+      if (e1 || e2 || e3) ut.julkalender = { sent: 0, errors: 0, skipped: 'kunde inte läsa listan, skickar inget' }
+      else {
+        const bort = new Set((avreg ?? []).map(r => String(r.email).toLowerCase()))
+        const lista: Mottagare[] = (konton ?? [])
+          .filter(k => k.email && !bort.has(String(k.email).toLowerCase()))
+          .map(k => ({
+            email: String(k.email), userId: k.id as string, vars: p.vars,
+            loggnyckel: `julkalender-${JULKALENDER_AR}-${p.dag}`,
+          }))
+        ut.julkalender = { ...(await skickaEnGang(service, 'julkalender', lista, budget)), details: { dag: p.dag, mottagare: lista.length } }
       }
     }
   }

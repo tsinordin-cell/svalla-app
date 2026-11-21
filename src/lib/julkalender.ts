@@ -383,6 +383,27 @@ export function kalenderPagar(nu: Date = new Date()): boolean {
   return ar === AR && manad === 12 && dag >= 1 && dag <= 24
 }
 
+/**
+ * Påminnelsemejlets innehåll för dagens lucka (2026-11-21). Bara titel och
+ * teaser, som utloggade redan ser på /julkalender; inga nya påståenden.
+ * null om ingen lucka öppnas i dag eller om luckan saknar innehåll.
+ */
+export function paminnelseFor(nu: Date = new Date()): { dag: number; vars: Record<string, string> } | null {
+  if (!kalenderPagar(nu)) return null
+  const { dag } = idagSverige(nu)
+  const lucka = LUCKOR.find(l => l.dag === dag)
+  if (!lucka) return null
+  return {
+    dag,
+    vars: {
+      dag: String(dag),
+      titel: lucka.titel,
+      teaser: lucka.teaser,
+      lucka_url: `https://svalla.se/julkalender/${dag}`,
+    },
+  }
+}
+
 /** true efter julafton (från 25 december 2026): kalendern visas som avslutad. */
 export function kalenderSlut(nu: Date = new Date()): boolean {
   const { ar, manad, dag } = idagSverige(nu)

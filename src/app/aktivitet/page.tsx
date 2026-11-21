@@ -3,8 +3,9 @@ import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
-import { ACTIVITY_LIST, islandsForActivity } from './activity-data'
+import { ACTIVITY_LIST } from './activity-data'
 import { ogSida } from '@/lib/og-standard'
+import { islandsForActivity } from './activity-islands'
 
 export const metadata: Metadata = {
   title: 'Aktiviteter i skärgården: segling, cykling, bad, vandring, mat',
