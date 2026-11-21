@@ -18,7 +18,7 @@ export default function IntegritetspolicyPage() {
       }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
           <h1 style={{ fontSize: 28, fontWeight: 700, color: '#fff', margin: '0 0 6px' }}>Integritetspolicy</h1>
-          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Senast uppdaterad: september 2026</p>
+          <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: 14, margin: 0 }}>Senast uppdaterad: november 2026</p>
         </div>
       </div>
 
@@ -53,12 +53,13 @@ export default function IntegritetspolicyPage() {
             <li>Visa dina loggade turer och sparade platser</li>
             <li>Skicka pushnotiser om du valt att aktivera dessa</li>
             <li>Skicka nyhetsbrevet till dig som har valt att prenumerera. Att ha ett konto räcker inte för att få nyhetsbrevet, du väljer det själv. Varje brev har en länk där du avregistrerar dig</li>
+            <li>Skicka julkalenderns påminnelse, ett mejl per dag 1 till 24 december, till dig som själv har kryssat i det på julkalendersidan. Du stänger av den där eller via länken i mejlet</li>
             <li>Analysera anonym användningsstatistik för att förbättra appen</li>
           </ul>
           <p>Vi säljer aldrig dina personuppgifter till tredje part.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>4. Rättslig grund</h2>
-          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata), <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik, och listan över hantverkare och företag på öarna) och <strong>samtycke</strong> (nyhetsbrevet, som du kan återkalla när som helst genom att avregistrera dig) i enlighet med GDPR artikel 6.</p>
+          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata), <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik, och listan över hantverkare och företag på öarna) och <strong>samtycke</strong> (nyhetsbrevet och julkalenderns påminnelse, som du kan återkalla när som helst genom att avregistrera dig eller stänga av påminnelsen) i enlighet med GDPR artikel 6.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>5. Lagring och säkerhet</h2>
           <p>Dina uppgifter lagras säkert hos Supabase (EU-region) med kryptering i transit och vila. Vi behåller kontouppgifter tills du väljer att radera ditt konto.</p>
