@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { ALL_ISLANDS } from './o/island-data'
 import { getHantverkareForIsland } from './o/hantverkare-data'
-import { ACTIVITY_LIST, islandsForActivity } from './aktivitet/activity-data'
+import { ACTIVITY_LIST } from './aktivitet/activity-data'
 import { OAR_CATEGORIES } from './oar/oar-categories'
 import { createClient } from '@/lib/supabase'
 import { REGIONS, CATEGORIES } from '@/components/RegionCategoryPage'
@@ -13,6 +13,7 @@ import { SEGELKURS_SUBS } from './segelkurs/segelkurs-data'
 import { verkligtDatum } from '@/lib/sidodatum'
 import { TRIPS } from './resetips/trips-data'
 import { SEASON_GUIDES } from './guide/stockholm/season-data'
+import { islandsForActivity } from '@/app/aktivitet/activity-islands'
 
 
 // Jämförelsesidor — speglar PAIRS i jamfor/[pair]/page.tsx
