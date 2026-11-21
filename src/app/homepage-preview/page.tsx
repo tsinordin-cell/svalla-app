@@ -13,7 +13,7 @@
  */
 import type { Metadata } from 'next'
 import { OBILDER } from '@/app/o/obilder.generated'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { ALL_ISLANDS, ANTAL_OAR } from '@/app/o/island-data'
 import { OAR_CATEGORIES, islandsForCategory } from '@/app/oar/oar-categories'
 import type { Bildkalla } from '@/app/LandingPageClient'
 import type { StartKansla } from '@/components/StartDelar'
@@ -55,5 +55,5 @@ export default function Page() {
   const julStart = kalenderPagar() ? oppnaLuckor() : kalenderSynlig() ? 0 : null
   const antalKrogar = ALL_ISLANDS.reduce((n, o) => n + (o.restaurants?.length ?? 0), 0)
 
-  return <PreviewClient bildkallor={bildkallor} kanslor={kanslor} antalKrogar={antalKrogar} julStart={julStart} />
+  return <PreviewClient bildkallor={bildkallor} antalOar={ANTAL_OAR} kanslor={kanslor} antalKrogar={antalKrogar} julStart={julStart} />
 }

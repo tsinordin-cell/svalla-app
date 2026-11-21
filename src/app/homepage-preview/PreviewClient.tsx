@@ -65,7 +65,7 @@ function Julrad({ start }: { start: number | null }) {
   )
 }
 
-function Hero({ julStart }: { julStart: number | null }) {
+function Hero({ julStart, antalOar, antalKrogar }: { julStart: number | null; antalOar: number; antalKrogar: number }) {
   const sok = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const q = (new FormData(e.currentTarget).get('q') as string || '').trim()
@@ -81,6 +81,8 @@ function Hero({ julStart }: { julStart: number | null }) {
         <Julrad start={julStart} />
         <h1 id="hp-h1" className="hp-h1">Planera din <em>skärgårdsvistelse</em></h1>
         <p className="hp-hero-ingress">Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
+        {/* Förtroende med siffror ur datan (antal öar och krogar på ösidorna), inga påhittade. */}
+        {antalOar > 0 && <p className="hp-hero-fakta">{antalOar.toLocaleString('sv-SE')} öar<span aria-hidden="true">·</span>{antalKrogar.toLocaleString('sv-SE')} krogar och caféer<span aria-hidden="true">·</span>Gratis</p>}
       </div>
       <div className="hp-hero-botten">
         <form className="hp-sok" role="search" action="/sok" method="get" onSubmit={sok}>
@@ -246,7 +248,7 @@ function VadVillDuKanna({ kanslor }: { kanslor: StartKansla[] }) {
 /* ── 5–6. Regionerna och kartan (produktionskomponenterna, nya rubriker) ── */
 function Regioner() {
   return (
-    <section className="hp-sek hp-papper hp-regioner" id="resmål" aria-labelledby="hp-reg">
+    <section className="hp-sek hp-sand hp-regioner" id="resmål" aria-labelledby="hp-reg">
       <div className="hp-inre">
         <Rubrik liten="Utforska skärgården" id="hp-reg">Välj din del av skärgården</Rubrik>
         <p className="hp-ingress">Fyra kuster och de stora sjöarna. Välj en del, så ser du regionerna där.</p>
@@ -258,7 +260,7 @@ function Regioner() {
 
 function Karta() {
   return (
-    <section className="hp-sek hp-sand hp-karta" id="karta-start" aria-labelledby="hp-karta">
+    <section className="hp-sek hp-papper hp-karta" id="karta-start" aria-labelledby="hp-karta">
       <div className="hp-inre">
         <Rubrik liten="Allt på en karta" id="hp-karta">Hitta ditt nästa stopp</Rubrik>
         <p className="hp-ingress">Öar, krogar, gästhamnar, boenden och bad. Välj vad du vill se, eller sök direkt i rutan på kartan.</p>
@@ -279,6 +281,8 @@ function FragaThorkel() {
         <img src="/thorkel-avatar.svg" alt="" className="hp-thorkel-bild" width={150} height={150} />
         <div className="hp-thorkel-text">
           <Rubrik liten="Svallas AI-guide" id="hp-thorkel" ljus>Fråga Thorkel om skärgården</Rubrik>
+          {/* Kontokravet före fältet: förut fick man veta det först efter att ha skrivit sin fråga. */}
+          <p className="hp-thorkel-not hp-thorkel-forst">Gratis, men du behöver ett konto.</p>
           <form action="/guide" method="get" className="hp-thorkel-falt">
             <input name="fraga" type="text" placeholder="Fråga om öar, båtar, krogar och bad" aria-label="Fråga Thorkel" />
             <button type="submit" aria-label="Skicka frågan"><Pil /></button>
@@ -286,7 +290,6 @@ function FragaThorkel() {
           <ul className="hp-thorkel-forslag" aria-label="Förslag på frågor">
             {FRAGOR.map(f => <li key={f}><Link href={`/guide?fraga=${encodeURIComponent(f)}`}>{f}<Pil /></Link></li>)}
           </ul>
-          <p className="hp-thorkel-not">Gratis, men kräver ett konto.</p>
           <Link href="/utflykt" className="hp-thorkel-utan">Planera utan konto <Pil /></Link>
         </div>
       </div>
@@ -315,22 +318,26 @@ function Fragor() {
 }
 
 /* ── 9. För utforskaren och krogägaren ── */
-function GuidePaVattnet({ antalKrogar }: { antalKrogar: number }) {
+function GuidePaVattnet() {
   const [bred, setBred] = useState(false)
   useEffect(() => { setBred(window.matchMedia('(min-width:901px)').matches) }, [])
   return (
-    <>
-      <section className="hp-sek hp-papper hp-guide" aria-labelledby="hp-guide">
+    <section className="hp-sek hp-papper hp-guide" aria-labelledby="hp-guide">
         <div className="hp-inre hp-guide-inre">
           <div className="hp-guide-text">
             <Rubrik liten="För utforskaren" id="hp-guide">Din guide ute på vattnet</Rubrik>
-            <p className="hp-ingress">Allt du behöver för att planera och logga dina turer, utan kostnad.</p>
+            {/* Löftena följer vad sidorna gör i dag (kontrollerat 2026-11-21): /logga (konto: GPS live eller bild),
+                /planera (start, mål och intressen; prova utan konto, spara med konto), /kom-igang (gratis konto). */}
+            <p className="hp-ingress">Med ett gratis konto får du en egen loggbok, en ruttplanerare och andras turer att följa.</p>
             <ul className="hp-guide-lista">
-              <li><b>Logga turen på 10 sek</b>Foto + plats. Klart. Din dagbok byggs automatiskt.</li>
-              <li><b>Hitta krogar &amp; platser</b>Bastun, bryggor och krogar längs din rutt</li>
-              <li><b>Community-feed</b>Se andras turer. Bli inspirerad. Ge igen.</li>
+              <li><b>Logga dina turer</b>Spåra turen live med GPS, eller logga den efteråt med en bild.</li>
+              <li><b>Planera rutten</b>Välj start, mål och vad du vill göra, så hittar Svalla krogar, bastur och bryggor längs vägen.</li>
+              <li><b>Följ andra</b>Se var andra varit ute och hämta idéer till nästa tur.</li>
             </ul>
-            <Link href="/kom-igang" className="hp-knapp">Kom igång <Pil /></Link>
+            <div className="hp-guide-val">
+              <Link href="/kom-igang" className="hp-knapp hp-knapp-acc">Skapa gratis konto <Pil /></Link>
+              <Link href="/planera" className="hp-guide-prova">Prova ruttplaneraren utan konto <Pil /></Link>
+            </div>
           </div>
           {bred && (
             <div className="hp-telefon" aria-hidden="true">
@@ -349,16 +356,20 @@ function GuidePaVattnet({ antalKrogar }: { antalKrogar: number }) {
           )}
         </div>
       </section>
-      <section className="hp-sek hp-natt hp-krog" aria-labelledby="hp-krog">
-        <div className="hp-inre hp-krog-inre">
-          <div>
-            <Rubrik liten="För krogägaren" id="hp-krog" ljus>Sätt er krog på kartan</Rubrik>
-            <p>Nå gäster som planerar att åka ut. Det kostar ingenting att finnas med. {antalKrogar} krogar och caféer finns redan på ösidorna.</p>
-          </div>
-          <Link href="/registrera-krog" className="hp-knapp hp-knapp-acc">Registrera er krog <Pil /></Link>
+  )
+}
+
+function ForKrogagaren({ antalKrogar }: { antalKrogar: number }) {
+  return (
+    <section className="hp-sek hp-natt hp-krog" aria-labelledby="hp-krog">
+      <div className="hp-inre hp-krog-inre">
+        <div>
+          <Rubrik liten="För krogägaren" id="hp-krog" ljus>Sätt er krog på kartan</Rubrik>
+          <p>Nå gäster som planerar att åka ut. Det kostar ingenting att finnas med. {antalKrogar} krogar och caféer finns redan på ösidorna.</p>
         </div>
-      </section>
-    </>
+        <Link href="/registrera-krog" className="hp-knapp hp-knapp-acc">Registrera er krog <Pil /></Link>
+      </div>
+    </section>
   )
 }
 
@@ -379,22 +390,24 @@ function Bildkallor({ k }: { k: Bildkalla[] }) {
   )
 }
 
-export default function PreviewClient({ bildkallor = [], kanslor = [], antalKrogar = 0, julStart = null }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalKrogar?: number; julStart?: number | null }) {
+export default function PreviewClient({ bildkallor = [], kanslor = [], antalOar = 0, antalKrogar = 0, julStart = null }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalOar?: number; antalKrogar?: number; julStart?: number | null }) {
   return (
     <div className="hp">
       <MegaMeny overStart />
-      <Hero julStart={julStart} />
+      <Hero julStart={julStart} antalOar={antalOar} antalKrogar={antalKrogar} />
       {/* Stor skärm: julkalenderns paket i himlen, precis som på startsidan. I mobilen ligger den som en rad ovanför rubriken. */}
       <div className="hp-bara-stor"><JulkalenderSkylt /></div>
       <div className="hp-innehall">
         <TreSatt />
         <JustNu />
         <VadVillDuKanna kanslor={kanslor} />
+        {/* Kontot är sajtens mål, därför direkt efter inspirationen i stället för näst sist. */}
+        <GuidePaVattnet />
         <Regioner />
         <Karta />
         <FragaThorkel />
         <Fragor />
-        <GuidePaVattnet antalKrogar={antalKrogar} />
+        <ForKrogagaren antalKrogar={antalKrogar} />
       </div>
       <div className="hp-sidfot">
         <Bildkallor k={bildkallor} />
