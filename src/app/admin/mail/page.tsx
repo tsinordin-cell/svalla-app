@@ -42,6 +42,11 @@ const EXEMPELVARDEN: Record<EmailTemplate, Record<string, string | number>> = {
     island_url: 'https://svalla.se/o/grinda', planera_url: 'https://svalla.se/utflykt?o=grinda',
     guide_rad: '',
   },
+  julkalender: {
+    dag: 2, titel: 'Julmarknader andra advent',
+    teaser: 'Två julmarknader i kuststäder samma helg, med datum och tider.',
+    lucka_url: 'https://svalla.se/julkalender/2',
+  },
 }
 
 const BESKRIVNING: Record<EmailTemplate, string> = {
@@ -59,12 +64,13 @@ const BESKRIVNING: Record<EmailTemplate, string> = {
   day90: 'Konto + 90 dagar utan tur och utan sparad ö. Går till konton: kräver samtycke innan det slås på',
   saved_island: 'Dagen efter att en användare sparat en ö (en gång per ö). Går till konton: kräver samtycke innan det slås på',
   weekly_island: 'Tisdagar april till september, en ö per vecka. Går bara till bekräftade prenumeranter',
+  julkalender: '1 till 24 december kl 10. Går bara till konton som själva kryssat i påminnelsen på /julkalender (samtycket är raden i julkalender_paminnelser)',
 }
 
 const ORDNING: EmailTemplate[] = [
   'welcome', 'day7', 'season_open', 'season_close', 'weather_tip',
   'newsletter_welcome', 'day3_newsletter', 'day14_newsletter', 'day30_newsletter',
-  'manadsbrev', 'day60', 'day90', 'saved_island', 'weekly_island',
+  'manadsbrev', 'day60', 'day90', 'saved_island', 'weekly_island', 'julkalender',
 ]
 
 export default async function AdminMailPage() {
