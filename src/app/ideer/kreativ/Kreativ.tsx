@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
 import IntroV2 from './Intro'
+import Karta from './Karta'
 import dynamic from 'next/dynamic'
 
 // Startsidans egen animering (samma komponent som på svalla.se), laddas först när man går in
@@ -469,145 +470,12 @@ function Partnersida({ foton }: { foton: KFoto[] }) {
   )
 }
 
-/* ─────────────────────────── 6. LEVANDE KARTAN ─────────────────────────── */
-
-type Projicerad = { slug: string; namn: string; x: number; y: number; r: number; form: number[] }
-
-function Karta({ oar }: { oar: KO[] }) {
-  const [omrade, setOmrade] = useState<'stockholm' | 'vast'>('stockholm')
-  const canvas = useRef<HTMLCanvasElement>(null)
-  const [nara, setNara] = useState<Projicerad | null>(null)
-  const tangent = useRef<Record<string, boolean>>({})
-  const mal = useRef<{ x: number; y: number } | null>(null)
-
-  const varld = useMemo(() => {
-    const lista = oar.filter(o => o.omrade === omrade)
-    if (!lista.length) return { oar: [] as Projicerad[], w: 1000, h: 800 }
-    const latM = lista.reduce((a, o) => a + o.lat, 0) / lista.length
-    const k = Math.cos((latM * Math.PI) / 180)
-    const xs = lista.map(o => o.lng * k), ys = lista.map(o => -o.lat)
-    const [x0, x1, y0, y1] = [Math.min(...xs), Math.max(...xs), Math.min(...ys), Math.max(...ys)]
-    const skala = 2200 / Math.max(x1 - x0, (y1 - y0) * 1.2, 0.001)
-    const pad = 260
-    const ut = lista.map(o => {
-      const r = rnd(hash(o.slug))
-      const rad = 22 + r() * 26
-      return { slug: o.slug, namn: o.namn, x: pad + (o.lng * k - x0) * skala, y: pad + (-o.lat - y0) * skala, r: rad, form: Array.from({ length: 14 }, () => 0.72 + r() * 0.5) }
-    })
-    return { oar: ut, w: (x1 - x0) * skala + pad * 2, h: (y1 - y0) * skala + pad * 2 }
-  }, [oar, omrade])
-
-  useEffect(() => {
-    const c = canvas.current
-    if (!c) return
-    const ctx = c.getContext('2d')
-    if (!ctx) return
-    const start = varld.oar[0]
-    const bat = { x: (start?.x ?? 300) - 90, y: (start?.y ?? 300) + 60, v: 0, a: -Math.PI / 2 }
-    const kolvatten: { x: number; y: number; t: number }[] = []
-    let raf = 0, senast = performance.now(), naraSlug = ''
-    const stil = omrade === 'stockholm'
-      ? { hav: '#cfe3ea', havMork: '#a8c9d6', land: '#7fa36b', strand: '#d9cfb8', trad: '#355e3f', hus: '#a33a2a' }
-      : { hav: '#c9dde6', havMork: '#9cbfcf', land: '#c9a9a0', strand: '#e6d6cf', trad: '', hus: '#a33a2a' }
-    const rita = (nu: number) => {
-      const dt = Math.min(0.05, (nu - senast) / 1000); senast = nu
-      const dpr = Math.min(2, window.devicePixelRatio || 1)
-      const W = c.clientWidth, H = c.clientHeight
-      if (c.width !== W * dpr) { c.width = W * dpr; c.height = H * dpr }
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      const k = tangent.current
-      let gas = (k.ArrowUp || k.w ? 1 : 0) - (k.ArrowDown || k.s ? 0.6 : 0)
-      let sva = (k.ArrowRight || k.d ? 1 : 0) - (k.ArrowLeft || k.a ? 1 : 0)
-      if (mal.current) {
-        const dx = mal.current.x - bat.x, dy = mal.current.y - bat.y
-        const avst = Math.hypot(dx, dy)
-        if (avst < 30) mal.current = null
-        else { const onskad = Math.atan2(dy, dx); let diff = onskad - bat.a; while (diff > Math.PI) diff -= 2 * Math.PI; while (diff < -Math.PI) diff += 2 * Math.PI; sva = Math.max(-1, Math.min(1, diff * 2)); gas = 1 }
-      }
-      bat.a += sva * 2.2 * dt * (0.4 + Math.min(1, Math.abs(bat.v) / 120))
-      bat.v += gas * 160 * dt; bat.v *= 0.985; bat.v = Math.max(-60, Math.min(220, bat.v))
-      let nx = bat.x + Math.cos(bat.a) * bat.v * dt, ny = bat.y + Math.sin(bat.a) * bat.v * dt
-      for (const o of varld.oar) { const d = Math.hypot(nx - o.x, ny - o.y); if (d < o.r * 0.9) { nx = bat.x; ny = bat.y; bat.v *= -0.3 } }
-      bat.x = Math.max(20, Math.min(varld.w - 20, nx)); bat.y = Math.max(20, Math.min(varld.h - 20, ny))
-      if (Math.abs(bat.v) > 20) kolvatten.push({ x: bat.x - Math.cos(bat.a) * 14, y: bat.y - Math.sin(bat.a) * 14, t: nu })
-      while (kolvatten.length && nu - kolvatten[0]!.t > 1800) kolvatten.shift()
-      const kx = Math.max(0, Math.min(varld.w - W, bat.x - W / 2)), ky = Math.max(0, Math.min(varld.h - H, bat.y - H / 2))
-      ctx.fillStyle = stil.hav; ctx.fillRect(0, 0, W, H)
-      ctx.save(); ctx.translate(-kx, -ky)
-      ctx.strokeStyle = stil.havMork; ctx.lineWidth = 1.5; ctx.globalAlpha = 0.5
-      for (let gy = Math.floor(ky / 70) * 70; gy < ky + H + 70; gy += 70) for (let gx = Math.floor(kx / 90) * 90; gx < kx + W + 90; gx += 90) {
-        const off = Math.sin(nu / 900 + gx * 0.01 + gy * 0.02) * 4
-        ctx.beginPath(); ctx.moveTo(gx + off, gy); ctx.quadraticCurveTo(gx + 10 + off, gy - 5, gx + 20 + off, gy); ctx.stroke()
-      }
-      ctx.globalAlpha = 1
-      for (const s of kolvatten) { const a = 1 - (nu - s.t) / 1800; ctx.fillStyle = `rgba(255,255,255,${0.5 * a})`; ctx.beginPath(); ctx.arc(s.x, s.y, 3 + (1 - a) * 9, 0, Math.PI * 2); ctx.fill() }
-      let narmast: Projicerad | null = null, nd = 1e9
-      for (const o of varld.oar) {
-        if (o.x + o.r * 2 < kx || o.x - o.r * 2 > kx + W || o.y + o.r * 2 < ky || o.y - o.r * 2 > ky + H) continue
-        const form = (skala: number) => { ctx.beginPath(); o.form.forEach((f, i) => { const v = (i / o.form.length) * Math.PI * 2; const px = o.x + Math.cos(v) * o.r * f * skala, py = o.y + Math.sin(v) * o.r * f * skala; if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py) }); ctx.closePath() }
-        ctx.fillStyle = stil.strand; form(1.12); ctx.fill()
-        ctx.fillStyle = stil.land; form(1); ctx.fill()
-        const r = rnd(hash(o.slug) + 9)
-        if (stil.trad) { for (let i = 0; i < 6; i++) { const tx = o.x + (r() - 0.5) * o.r, ty = o.y + (r() - 0.5) * o.r; ctx.fillStyle = stil.trad; ctx.beginPath(); ctx.moveTo(tx, ty - 9); ctx.lineTo(tx - 5, ty + 4); ctx.lineTo(tx + 5, ty + 4); ctx.closePath(); ctx.fill() } }
-        else { ctx.strokeStyle = 'rgba(120,80,70,.35)'; ctx.lineWidth = 2; for (let i = 0; i < 3; i++) { const tx = o.x + (r() - 0.5) * o.r, ty = o.y + (r() - 0.5) * o.r; ctx.beginPath(); ctx.arc(tx, ty, 5 + r() * 6, 0.3, 2.6); ctx.stroke() } }
-        ctx.fillStyle = stil.hus; ctx.fillRect(o.x + o.r * 0.3, o.y + o.r * 0.2, 7, 5)
-        ctx.fillStyle = NAVY; ctx.font = '600 12px Inter, system-ui, sans-serif'; ctx.textAlign = 'center'; ctx.fillText(o.namn, o.x, o.y - o.r * 1.25)
-        const d = Math.hypot(bat.x - o.x, bat.y - o.y) - o.r
-        if (d < nd) { nd = d; narmast = o }
-      }
-      ctx.save(); ctx.translate(bat.x, bat.y); ctx.rotate(bat.a + Math.PI / 2); ctx.scale(1.7, 1.7)
-      ctx.fillStyle = NAVY; ctx.beginPath(); ctx.moveTo(0, -14); ctx.quadraticCurveTo(8, -2, 6, 12); ctx.lineTo(-6, 12); ctx.quadraticCurveTo(-8, -2, 0, -14); ctx.fill()
-      ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.moveTo(0, -10); ctx.lineTo(9, 6); ctx.lineTo(0, 6); ctx.closePath(); ctx.fill()
-      ctx.restore(); ctx.restore()
-      const ny2 = narmast && nd < 70 ? narmast : null
-      if ((ny2?.slug ?? '') !== naraSlug) { naraSlug = ny2?.slug ?? ''; setNara(ny2) }
-      raf = requestAnimationFrame(rita)
-    }
-    raf = requestAnimationFrame(rita)
-    const ner = (e: KeyboardEvent) => { if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key) && document.activeElement === c) e.preventDefault(); tangent.current[e.key] = true }
-    const upp = (e: KeyboardEvent) => { tangent.current[e.key] = false }
-    const klick = (e: PointerEvent) => {
-      const r = c.getBoundingClientRect()
-      const W = c.clientWidth, H = c.clientHeight
-      const kx = Math.max(0, Math.min(varld.w - W, bat.x - W / 2)), ky = Math.max(0, Math.min(varld.h - H, bat.y - H / 2))
-      mal.current = { x: e.clientX - r.left + kx, y: e.clientY - r.top + ky }
-      c.focus()
-    }
-    c.addEventListener('keydown', ner); c.addEventListener('keyup', upp); c.addEventListener('pointerdown', klick)
-    return () => { cancelAnimationFrame(raf); c.removeEventListener('keydown', ner); c.removeEventListener('keyup', upp); c.removeEventListener('pointerdown', klick) }
-  }, [varld, omrade])
-
-  return (
-    <div className="kr-karta">
-      <div className="kr-alt">
-        <article><b>A. Rutten på scroll</b><p>En målad karta där båten följer en rutt när man scrollar och stannar vid varje ö. Billigast och fungerar på alla telefoner.</p></article>
-        <article><b>B. 3D-diorama</b><p>Kusten som en liten modell i 3D, som Route 66-kartan. Mest imponerande, men kräver 3D-modeller och är tyngst för telefonen.</p></article>
-        <article className="vald"><b>C. Styr båten själv</b><p>Prototypen nedan. Öarna ligger på sina lägen och landskapet skiftar mellan Stockholms skärgård och västkusten.</p></article>
-      </div>
-      <div className="kr-scen kr-karta-yta">
-        <canvas ref={canvas} tabIndex={0} aria-label="Spelbar karta. Styr båten med piltangenterna eller klicka dit du vill åka." />
-        <div className="kr-karta-val" role="group" aria-label="Område">
-          <button type="button" className={omrade === 'stockholm' ? 'pa' : ''} onClick={() => setOmrade('stockholm')}>Stockholms skärgård</button>
-          <button type="button" className={omrade === 'vast' ? 'pa' : ''} onClick={() => setOmrade('vast')}>Västkusten</button>
-        </div>
-        <p className="kr-karta-tips">Klicka dit du vill åka, eller använd piltangenterna</p>
-        {nara && (
-          <div className="kr-karta-kort">
-            <small>Du är vid</small>
-            <b>{nara.namn}</b>
-            <Link href={`/o/${nara.slug}`}>Till ösidan →</Link>
-          </div>
-        )}
-      </div>
-      <p className="kr-not">Stiliserad karta, inte en sjökarta. Stockholms skärgård ligger på kontrollerade lägen, västkustens öar på ungefärliga mittpunkter. Öarnas former är påhittade.</p>
-    </div>
-  )
-}
+/* Levande kartan (del 2) ligger i Karta.tsx och kartmotor.ts. */
 
 /* ─────────────────────────── SIDAN ─────────────────────────── */
 
 const DELAR = [
-  ['intro', 'Introt'], ['fragan', 'Frågan'], ['bandet', 'Bandet'], ['halsbricka', 'Halsbrickan'], ['partner', 'Partnersidan'], ['karta', 'Kartan'],
+  ['intro', 'Introt'], ['karta', 'Kartan'], ['fragan', 'Frågan'], ['halsbricka', 'Halsbrickan'], ['bandet', 'Bandet'], ['partner', 'Partnersidan'],
 ] as const
 
 export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto[]; onamn: string[] }) {
@@ -626,20 +494,20 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
       <Del nr="1" id="intro" rubrik="Introt: prickarna blir ett hav" forebild={<><a href="https://plastichuman.org/" target="_blank" rel="noopener noreferrer">plastichuman.org</a> och tidslinjen hos <a href="https://www.hoverstat.es/features/xk-studio/" target="_blank" rel="noopener noreferrer">XK Studio</a></>} varfor="Version 2, byggd i WebGL2 i full skärpa. Tusentals partiklar blir bläck som formar Sverige, sedan Svallas segelbåt med två personer ombord, och flyter ut till ett hav. Ett vätskefält under ytan krusar kanten hela tiden. Båten glider ner i havet och texten inverterar det där den korsar. Ljudet är en lugn havsbris med stilla vågor och är av tills man slår på det. När man trycker på Gå in på Svalla stiger havet och fyller bilden, banden sveper förbi och startsidans egen animering tar över.">
         <IntroDel />
       </Del>
-      <Del nr="2" id="fragan" rubrik="Frågan vid dörren" forebild={<>välkomstskärmen på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En lekfull fråga med två svar innan man kommer in. Frågan byts varje gång och båda svaren leder vidare. Kan visas efter introt eller i stället för det.">
-        <Fragan />
+      <Del nr="2" id="karta" rubrik="Levande karta: segla, plocka plast och ta medaljen" forebild={<>Route 66-kartan av Ohsson Studio</>} varfor="Tryck på en ö så seglar båten till dess brygga, runt allt som ligger emellan och aldrig över land. Rutten ritas fram som en streckad linje. Längs kusten flyter tio plastpåsar. Plocka alla och få en medalj, öst och väst var för sig.">
+        <Karta oar={oar} />
       </Del>
-      <Del nr="3" id="bandet" rubrik="Startsidan: bandet som vecklas ut" forebild={<><a href="https://www.awwwards.com/inspiration/page-transition-sweet-tape" target="_blank" rel="noopener noreferrer">Sweet Tape på Awwwards</a></>} varfor="Band i Svallas färger sveper över skärmen och avslöjar Svalla, med riktiga ö-namn runt omkring. Kan också användas när man byter sida.">
-        <Bandet onamn={onamn} />
+      <Del nr="3" id="fragan" rubrik="Frågan vid dörren" forebild={<>välkomstskärmen på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En lekfull fråga med två svar innan man kommer in. Frågan byts varje gång och båda svaren leder vidare. Kan visas efter introt eller i stället för det.">
+        <Fragan />
       </Del>
       <Del nr="4" id="halsbricka" rubrik="Halsbrickan på partnersidan" forebild={<><a href="https://www.awwwards.com/inspiration/studio-pass-lanyard-carter-ogunsola" target="_blank" rel="noopener noreferrer">Studio pass lanyard på Awwwards</a></>} varfor="Passerkortet faller ner från toppen när partnerns sida öppnas, gungar till ro och går att dra i. Skriv in ett namn och se kortet ändras, så kan en verksamhet se sitt eget.">
         <Halsbricka />
       </Del>
-      <Del nr="5" id="partner" rubrik="Partnersida i Svallastil" forebild={<><a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En levande skärgårdsscen i lager som rör sig när man för musen, dag och natt, penseldragen knapp och erbjudanden i vågiga ramar med öarnas riktiga foton.">
-        <Partnersida foton={foton} />
+      <Del nr="5" id="bandet" rubrik="Startsidan: bandet som vecklas ut" forebild={<><a href="https://www.awwwards.com/inspiration/page-transition-sweet-tape" target="_blank" rel="noopener noreferrer">Sweet Tape på Awwwards</a></>} varfor="Band i Svallas färger sveper över skärmen och avslöjar Svalla, med riktiga ö-namn runt omkring. Kan också användas när man byter sida.">
+        <Bandet onamn={onamn} />
       </Del>
-      <Del nr="6" id="karta" rubrik="Levande karta: styr båten" forebild={<>Route 66-kartan av Ohsson Studio</>} varfor="Tre sätt att bygga det, och en spelbar prototyp av det tredje. Kom nära en ö så dyker den upp med länk till ösidan.">
-        <Karta oar={oar} />
+      <Del nr="6" id="partner" rubrik="Partnersida i Svallastil" forebild={<><a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En levande skärgårdsscen i lager som rör sig när man för musen, dag och natt, penseldragen knapp och erbjudanden i vågiga ramar med öarnas riktiga foton.">
+        <Partnersida foton={foton} />
       </Del>
 
       <section className="kr-avslut">
@@ -648,7 +516,7 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
           <li><b>Introt:</b> visas bara första besöket, alltid med Hoppa över, och aldrig för den som valt minskad rörelse i telefonen.</li>
           <li><b>Bilderna:</b> riktigt måleriska illustrationer som på stayveluwe kräver en illustratör eller ett bildverktyg. Här är scenen ritad i kod.</li>
           <li><b>Halsbrickan:</b> namnet hämtas från partnerns uppgifter när avtal finns.</li>
-          <li><b>Kartan:</b> riktiga kustlinjer från OpenStreetMap och fler regioner, till exempel Höga kusten.</li>
+          <li><b>Kartan:</b> riktiga kustlinjer från OpenStreetMap, fler regioner som Höga kusten, och ett beslut om vad medaljen ska ge. Premiumprofilen finns inte än.</li>
         </ul>
       </section>
     </div>
