@@ -57,21 +57,40 @@ function provForm(W: number, H: number, n: number, rita: (c: CanvasRenderingCont
 /* Svallas båt. Seglen, masten och vågen har loggan B:s mått (src/components/SvallaLogo.tsx, enheter 0 till 18).
    Lagt till: ett lågt skrov och två personer, en på var sida om seglen. Rutan är 26 × 25 enheter. */
 const BAT_B = 26, BAT_H = 25, BAT_DX = 4, BAT_DY = -1
-// Den vinkande armen: överarm från axel till armbåge (still), underarm och hand vinkar kring armbågen
-const ARM = { axel: [0.0, 16.75] as const, armbage: [0.95, 15.65] as const, hand: [1.05, 14.15] as const, r: 0.3 }
-/* En sittande person i siluett, som en byst: huvud, hals, rundade axlar och överkropp ner under relingen. */
-function ritaPerson(c: CanvasRenderingContext2D, cx: number, keps: boolean) {
-  c.beginPath(); c.ellipse(cx, 14.7, 0.62, 0.76, 0, 0, Math.PI * 2); c.fill()
-  c.fillRect(cx - 0.28, 15.2, 0.56, 0.95)
-  c.beginPath()
-  c.moveTo(cx - 0.32, 16.0)
-  c.bezierCurveTo(cx - 1.0, 16.05, cx - 1.45, 16.25, cx - 1.5, 16.95)
-  c.lineTo(cx - 1.6, 19.6); c.lineTo(cx + 1.6, 19.6); c.lineTo(cx + 1.5, 16.95)
-  c.bezierCurveTo(cx + 1.45, 16.25, cx + 1.0, 16.05, cx + 0.32, 16.0)
-  c.closePath(); c.fill()
-  if (keps) {
-    c.beginPath(); c.ellipse(cx, 14.45, 0.68, 0.48, 0, Math.PI, Math.PI * 2); c.fill()
-    c.beginPath(); c.moveTo(cx - 0.2, 14.3); c.lineTo(cx + 1.15, 14.3); c.quadraticCurveTo(cx + 1.2, 14.55, cx + 0.9, 14.55); c.lineTo(cx - 0.2, 14.55); c.closePath(); c.fill()
+// Den vinkande armen: överarm från axel till armbåge (still), underarm och öppen hand vinkar kring armbågen
+const ARM = { axel: [-0.4, 16.85] as const, armbage: [0.8, 15.7] as const, hand: [0.9, 14.2] as const, r: 0.3 }
+/* En sittande person i Svallas tvåfärgade bläckstil: randig tröja med polokrage, ljust ansikte med öga, näsa och leende.
+   Den ena har stickad mössa med tofs, den andra sjömansmössa och hästsvans. Vitt görs genom att skära hål i det blå. */
+function ritaPerson(c: CanvasRenderingContext2D, cx: number, sjoman: boolean) {
+  const hal = (f: () => void) => { c.globalCompositeOperation = 'destination-out'; c.beginPath(); f(); c.fill(); c.globalCompositeOperation = 'source-over' }
+  // Tröjan: blå kontur, vit insida och två blå ränder
+  c.beginPath(); c.moveTo(cx - 1.15, 19.6); c.lineTo(cx - 1.15, 17.0); c.quadraticCurveTo(cx - 1.12, 16.28, cx - 0.5, 16.25); c.lineTo(cx + 0.5, 16.25); c.quadraticCurveTo(cx + 1.12, 16.28, cx + 1.15, 17.0); c.lineTo(cx + 1.15, 19.6); c.closePath(); c.fill()
+  hal(() => { c.moveTo(cx - 0.98, 18.5); c.lineTo(cx - 0.98, 17.0); c.quadraticCurveTo(cx - 0.96, 16.43, cx - 0.45, 16.42); c.lineTo(cx + 0.45, 16.42); c.quadraticCurveTo(cx + 0.96, 16.43, cx + 0.98, 17.0); c.lineTo(cx + 0.98, 18.5); c.closePath() })
+  c.fillRect(cx - 1.0, 17.22, 2.0, 0.26); c.fillRect(cx - 1.0, 17.8, 2.0, 0.26)
+  // Polokrage
+  c.fillRect(cx - 0.5, 15.7, 1.0, 0.72)
+  hal(() => { c.rect(cx - 0.35, 15.86, 0.7, 0.62) })
+  // Huvud med ljust ansikte, öga, leende och näsa (båda tittar åt höger)
+  c.beginPath(); c.arc(cx, 15.0, 0.85, 0, Math.PI * 2); c.fill()
+  hal(() => { c.arc(cx, 15.0, 0.68, 0, Math.PI * 2) })
+  c.beginPath(); c.arc(cx + 0.36, 15.13, 0.12, 0, Math.PI * 2); c.fill()
+  c.beginPath(); c.arc(cx + 0.26, 15.2, 0.3, Math.PI * 0.12, Math.PI * 0.7); c.lineWidth = 0.13; c.stroke()
+  c.beginPath(); c.arc(cx + 0.86, 15.2, 0.15, 0, Math.PI * 2); c.fill()
+  if (sjoman) {
+    // Hår och hästsvans
+    c.beginPath(); c.arc(cx, 15.0, 0.85, Math.PI * 0.72, Math.PI * 1.5); c.lineTo(cx - 0.1, 14.85); c.lineTo(cx - 0.42, 15.5); c.closePath(); c.fill()
+    c.beginPath(); c.arc(cx - 1.02, 15.5, 0.36, 0, Math.PI * 2); c.fill()
+    // Sjömansmössa: vit kulle, blått band och skärm
+    c.beginPath(); c.ellipse(cx - 0.05, 14.32, 0.9, 0.46, 0, 0, Math.PI * 2); c.fill()
+    hal(() => { c.ellipse(cx - 0.05, 14.3, 0.72, 0.29, 0, 0, Math.PI * 2) })
+    c.fillRect(cx - 0.86, 14.58, 1.72, 0.26)
+    c.beginPath(); c.moveTo(cx + 0.5, 14.72); c.lineTo(cx + 1.3, 14.86); c.lineWidth = 0.2; c.stroke()
+  } else {
+    // Stickad mössa med uppvikt kant och tofs
+    c.beginPath(); c.ellipse(cx, 14.72, 0.9, 0.82, 0, Math.PI, Math.PI * 2); c.closePath(); c.fill()
+    c.fillRect(cx - 0.94, 14.6, 1.88, 0.3)
+    hal(() => { c.rect(cx - 0.8, 14.48, 1.6, 0.11) })
+    c.beginPath(); c.arc(cx, 13.84, 0.25, 0, Math.PI * 2); c.fill()
   }
 }
 function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number, medArm = true) {
@@ -86,14 +105,13 @@ function ritaBat(c: CanvasRenderingContext2D, x: number, y: number, bw: number, 
   // Skrov med svängd reling (för och akter högre än mitten)
   c.beginPath(); c.moveTo(-3, 18.5); c.quadraticCurveTo(9, 20.3, 21, 18.5); c.quadraticCurveTo(20.1, 21.8, 17.4, 22.1); c.lineTo(0.6, 22.1); c.quadraticCurveTo(-2.1, 21.8, -3, 18.5); c.closePath(); c.fill()
   // Två personer som sitter i båten, huvud och axlar över relingen
-  ritaPerson(c, -1.35, false)
-  ritaPerson(c, 19.7, true)
+  ritaPerson(c, -1.45, false)
+  ritaPerson(c, 19.6, true)
   if (medArm) {
     c.beginPath(); c.moveTo(ARM.axel[0], ARM.axel[1]); c.lineTo(ARM.armbage[0], ARM.armbage[1]); c.lineTo(ARM.hand[0], ARM.hand[1]); c.lineWidth = ARM.r * 2; c.stroke()
     c.beginPath(); c.arc(ARM.hand[0], ARM.hand[1], ARM.r * 1.25, 0, Math.PI * 2); c.fill()
   }
-  // Vågen (loggan: M2,20 Q6,17.5 9,20 Q12,17.5 17,20), här under skrovet
-  c.beginPath(); c.moveTo(-0.5, 24.3); c.quadraticCurveTo(4.25, 21.9, 9, 24.3); c.quadraticCurveTo(13.75, 21.9, 18.5, 24.3); c.lineWidth = 1.2; c.stroke()
+  // Inget vågstreck under skrovet (beslut Max 2026-11-21). Havet i scenen är vågen.
   c.restore()
 }
 
@@ -172,7 +190,14 @@ void main(){
   vec2 qq = sp - vec2(0., by) - piv; float cs = cos(ang), sn = sin(ang);
   vec2 lp = piv + vec2(qq.x * cs + qq.y * sn, -qq.x * sn + qq.y * cs);
   float m2 = 0.;
-  if (batS > 0.) { m2 = mjuk(lp / stage).g; float ad = min(min(seg(lp, armU.xy, armU.zw), seg(lp, arm.xy, arm.zw) + armR * .1), length(lp - arm.zw) - armR * .3); m2 = max(m2, clamp((armR - ad) / 1.6 + .5, 0., 1.)); }
+  if (batS > 0.) { m2 = mjuk(lp / stage).g; float u1 = armR / .3; float ad = min(min(seg(lp, armU.xy, armU.zw), seg(lp, arm.xy, arm.zw) + armR * .1), length(lp - arm.zw) - armR * .2);
+    vec2 fd = normalize(arm.zw - arm.xy);
+    for (int i = 0; i < 4; i++) { float fa = (float(i) - 1.5) * .42; vec2 dd = vec2(fd.x * cos(fa) - fd.y * sin(fa), fd.x * sin(fa) + fd.y * cos(fa)); ad = min(ad, seg(lp, arm.zw + dd * u1 * .3, arm.zw + dd * u1 * .85) + armR * .63); }
+    m2 = max(m2, clamp((armR - ad) / 1.6 + .5, 0., 1.));
+    // Små vinkstreck ovanför handen
+    float mr = u1 * .13 * (.7 + .3 * abs(sin(t * 5.2)));
+    float md = min(min(seg(lp, armU.zw + u1 * vec2(-.5, -3.2), armU.zw + u1 * vec2(-.62, -3.65)), seg(lp, armU.zw + u1 * vec2(.2, -3.35), armU.zw + u1 * vec2(.24, -3.85))), seg(lp, armU.zw + u1 * vec2(.85, -3.1), armU.zw + u1 * vec2(1.1, -3.5)));
+    m2 = max(m2, clamp((mr - md) / 1.6 + .5, 0., 1.)); }
   float fr = mix(d.r, m1, sveS);
   float fb = mix(d.g, m2, batS);
   float a = kant(fr + havF, th);
@@ -374,13 +399,14 @@ export default function Intro({ efter }: { efter?: () => void }) {
       const bw = Math.min(W * (W < 700 ? 0.58 : 0.3), H * 0.5), bh = (bw * BAT_H) / BAT_B
       batRuta = { bw, bh }
       const bat = provForm(W, H, N, c => ritaBat(c, (W - bw) / 2, (H - bh) / 2, bw), r)
-      // Formmasken i halv upplösning: röd kanal Sverige, grön kanal båten (utan armen, den ritas i shadern)
+      // Formmasken i full upplösning: röd kanal Sverige, grön kanal båten (utan armen, den ritas i shadern)
       {
-        const mc = document.createElement('canvas'); mc.width = hw; mc.height = hh
-        const c = mc.getContext('2d')!
-        c.fillStyle = '#000'; c.fillRect(0, 0, hw, hh); c.scale(hw / W, hh / H)
+        const ny = (): [HTMLCanvasElement, CanvasRenderingContext2D] => { const k2 = document.createElement('canvas'); k2.width = cv.width; k2.height = cv.height; const x2 = k2.getContext('2d')!; x2.scale(cv.width / W, cv.height / H); return [k2, x2] }
+        const [mc, c] = ny(), [bc, b] = ny()
+        c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.fillStyle = '#000'; c.fillRect(0, 0, mc.width, mc.height); c.restore()
         c.fillStyle = 'rgb(255,0,0)'; ritaSverige(c)
-        c.globalCompositeOperation = 'lighter'; c.fillStyle = 'rgb(0,255,0)'; ritaBat(c, (W - bw) / 2, (H - bh) / 2, bw, false)
+        b.fillStyle = 'rgb(0,255,0)'; ritaBat(b, (W - bw) / 2, (H - bh) / 2, bw, false)
+        c.setTransform(1, 0, 0, 1, 0, 0); c.globalCompositeOperation = 'lighter'; c.drawImage(bc, 0, 0)
         gl.bindTexture(gl.TEXTURE_2D, formTex)
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, mc)
@@ -534,7 +560,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
         const kk = batRuta.bw / BAT_B, bx = (W - batRuta.bw) / 2, byy = (H - batRuta.bh) / 2
         const P = (uu: number, vv: number) => [bx + (uu + BAT_DX) * kk, byy + (vv + BAT_DY) * kk] as const
         const [ax, ay] = P(ARM.axel[0], ARM.axel[1]), [sx, sy] = P(ARM.armbage[0], ARM.armbage[1]), [hx0, hy0] = P(ARM.hand[0], ARM.hand[1])
-        const va = minskad ? 0 : Math.sin(sek * 5.2) * 0.38, dxa = hx0 - sx, dya = hy0 - sy
+        const va = minskad ? 0 : 0.1 + Math.sin(sek * 5.2) * 0.34, dxa = hx0 - sx, dya = hy0 - sy
         gl.uniform4f(u(pBild, 'arm'), sx, sy, sx + dxa * Math.cos(va) - dya * Math.sin(va), sy + dxa * Math.sin(va) + dya * Math.cos(va))
         gl.uniform4f(u(pBild, 'armU'), ax, ay, sx, sy)
         gl.uniform1f(u(pBild, 'armR'), ARM.r * kk)
