@@ -32,6 +32,7 @@ export default function Karta({ oar }: { oar: KO[] }) {
   const [omstart, setOmstart] = useState(0)
   const [grunt, setGrunt] = useState(0)
   const [pek, setPek] = useState(false)
+  const [bud, setBud] = useState<{ n: number; text: string } | null>(null)
   useEffect(() => { setPek(window.matchMedia('(pointer: coarse)').matches) }, [])
   const tagna = useRef<Set<number>>(new Set())
 
@@ -66,7 +67,7 @@ export default function Karta({ oar }: { oar: KO[] }) {
     // Polish 2026-11-21: stänk, kameraknuff och grundkänning. Reglerna är oförändrade.
     const lugn = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     let skak = 0, grundT = -1e9
-    const stank: { x: number; y: number; vx: number; vy: number; t: number }[] = []
+    const stank: { x: number; y: number; vx: number; vy: number; t: number; farg: string; liv: number }[] = []
     // Andra båtar och ett vrak (påhittade). Båtarna följer samma farleder som spelaren och kan därför inte hamna på land.
     const rs = slump(vast ? 77 : 55)
     type Annan = { x: number; y: number; a: number; typ: number; vag: P[]; i: number }
@@ -86,7 +87,9 @@ export default function Karta({ oar }: { oar: KO[] }) {
       const p = { x: 120 + rs() * (varld.w - 240), y: 120 + rs() * (varld.h - 240) }
       if (friPunkt(varld, p.x, p.y) && varld.oar.every(o => !iLand(o, p.x, p.y, 70)) && Math.hypot(p.x - varld.start.x, p.y - varld.start.y) > 240 && varld.plast.every(q => Math.hypot(q.x - p.x, q.y - p.y) > 110)) vrak = p
     }
-    const plask = (x: number, y: number, n: number, kraft: number, nu: number) => { for (let i = 0; i < n; i++) { const v = Math.random() * Math.PI * 2, f = kraft * (0.5 + Math.random() * 0.7); stank.push({ x, y, vx: Math.cos(v) * f, vy: Math.sin(v) * f - kraft * 0.4, t: nu }) } }
+    const plask = (x: number, y: number, n: number, kraft: number, nu: number, farger: string[] = ['255,255,255'], liv = 600) => { for (let i = 0; i < n; i++) { const v = Math.random() * Math.PI * 2, f = kraft * (0.5 + Math.random() * 0.7); stank.push({ x, y, vx: Math.cos(v) * f, vy: Math.sin(v) * f - kraft * 0.4, t: nu, farg: farger[i % farger.length]!, liv }) } }
+    let pil: { x: number; y: number; mal: P } | null = null
+    let medaljT = 0
 
     const planera = (till: P) => { const v = hittaVag(varld, bat, till); if (v) { vag = v; steg.n = 0; fast = 0; slutmal = v[v.length - 1] ?? null } }
     const form = (o: O, skala: number, dx = 0, dy = 0) => {
@@ -132,7 +135,15 @@ export default function Karta({ oar }: { oar: KO[] }) {
         tagna.current.add(i); spara(KUST[omrade].nyckel, [...tagna.current]); poff.push({ x: p.x, y: p.y, t: nu }); plask(p.x, p.y, 12, 90, nu)
         const antal = tagna.current.size
         setPlock(antal)
-        if (antal >= ANTAL_PLAST) { setMedalj(true); setKlara(k => ({ ...k, [omrade]: true })) }
+        if (antal === 1) setBud({ n: nu, text: 'Första påsen. Nio kvar.' })
+        else if (antal === 5) setBud({ n: nu, text: 'Halvvägs. Fem kvar.' })
+        else if (antal === ANTAL_PLAST - 1) setBud({ n: nu, text: 'En påse kvar.' })
+        if (antal >= ANTAL_PLAST) {
+          // Belöningen: konfetti i Svallas färger, sedan medaljen
+          plask(p.x, p.y, lugn ? 0 : 70, 230, nu, ['31,95,153', '200,100,42', '242,162,92', '255,253,248', '13,36,64'], 1500)
+          setKlara(k => ({ ...k, [omrade]: true }))
+          medaljT = window.setTimeout(() => setMedalj(true), lugn ? 0 : 850)
+        }
       })
 
       // De andra båtarna går längs sina rutter och saktar in när spelaren är nära
@@ -292,10 +303,10 @@ export default function Karta({ oar }: { oar: KO[] }) {
       ctx.restore()
       // Plock: en ring och en etta
       for (let i = stank.length - 1; i >= 0; i--) {
-        const s = stank[i]!, ald = (nu - s.t) / 600
+        const s = stank[i]!, ald = (nu - s.t) / s.liv
         if (ald > 1) { stank.splice(i, 1); continue }
         s.x += s.vx * dt; s.y += s.vy * dt; s.vy += 160 * dt
-        ctx.fillStyle = `rgba(255,255,255,${0.9 * (1 - ald)})`; ctx.beginPath(); ctx.arc(s.x, s.y, 2.4 * (1 - ald * 0.5), 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = `rgba(${s.farg},${0.9 * (1 - ald)})`; ctx.beginPath(); ctx.arc(s.x, s.y, (s.liv > 700 ? 3.6 : 2.4) * (1 - ald * 0.5), 0, Math.PI * 2); ctx.fill()
       }
       for (const q of poff) {
         const ald = (nu - q.t) / 900; if (ald > 1) continue
@@ -308,6 +319,31 @@ export default function Karta({ oar }: { oar: KO[] }) {
       const dis = ctx.createRadialGradient(W / 2, H / 2, Math.min(W, H) * 0.45, W / 2, H / 2, Math.max(W, H) * 0.75)
       dis.addColorStop(0, 'rgba(255,255,255,0)'); dis.addColorStop(1, 'rgba(232,242,246,.36)')
       ctx.fillStyle = dis; ctx.fillRect(0, 0, W, H)
+      // Pil mot närmaste plastpåse när ingen syns i bild. Ett tryck på pilen seglar dit.
+      pil = null
+      let np: P | null = null, npd = 1e18, iBild = false
+      for (let i = 0; i < varld.plast.length; i++) {
+        if (tagna.current.has(i)) continue
+        const p = varld.plast[i]!, d = (p.x - bat.x) * (p.x - bat.x) + (p.y - bat.y) * (p.y - bat.y)
+        if (p.x > kx + 20 && p.x < kx + W - 20 && p.y > ky + 20 && p.y < ky + H - 20) iBild = true
+        if (d < npd) { npd = d; np = p }
+      }
+      if (np && !iBild) {
+        const cx = bat.x - kx, cy = bat.y - ky, dx = np.x - kx - cx, dy = np.y - ky - cy
+        let s = 1
+        if (dx > 0) s = Math.min(s, (W - 36 - cx) / dx); else if (dx < 0) s = Math.min(s, (36 - cx) / dx)
+        if (dy > 0) s = Math.min(s, (H - 50 - cy) / dy); else if (dy < 0) s = Math.min(s, (72 - cy) / dy)
+        s = Math.max(0, s)
+        const ax = cx + dx * s, ay = cy + dy * s, puls = lugn ? 0 : Math.sin(nu / 300) * 2
+        pil = { x: ax, y: ay, mal: np }
+        ctx.save(); ctx.translate(ax, ay)
+        ctx.fillStyle = 'rgba(13,36,64,.16)'; ctx.beginPath(); ctx.arc(2, 4, 16, 0, Math.PI * 2); ctx.fill()
+        ctx.fillStyle = 'rgba(255,253,248,.97)'; ctx.strokeStyle = '#c8642a'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, 0, 15 + puls * 0.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke()
+        ctx.lineWidth = 1.4; ctx.lineJoin = 'round'; ctx.beginPath(); ctx.moveTo(-5, -2); ctx.quadraticCurveTo(-7, 5, -4, 7); ctx.quadraticCurveTo(0, 9, 4, 7); ctx.quadraticCurveTo(7, 5, 5, -2); ctx.quadraticCurveTo(0, 0, -5, -2); ctx.closePath(); ctx.stroke()
+        ctx.beginPath(); ctx.moveTo(-5, -2); ctx.quadraticCurveTo(-4, -8, -2, -2.4); ctx.moveTo(5, -2); ctx.quadraticCurveTo(4, -8, 2, -2.4); ctx.stroke()
+        ctx.rotate(Math.atan2(dy, dx)); ctx.fillStyle = '#c8642a'; ctx.beginPath(); ctx.moveTo(27 + puls, 0); ctx.lineTo(19, -6); ctx.lineTo(19, 6); ctx.closePath(); ctx.fill()
+        ctx.restore()
+      }
       // Två måsar glider förbi högt över kartan
       if (!lugn) {
         ctx.strokeStyle = 'rgba(13,36,64,.36)'; ctx.lineWidth = 1.6; ctx.lineCap = 'round'
@@ -330,14 +366,15 @@ export default function Karta({ oar }: { oar: KO[] }) {
       const r = c.getBoundingClientRect()
       const x = e.clientX - r.left + vy.kx, y = e.clientY - r.top + vy.ky
       let till: P | null = null
-      for (const o of varld.oar) if (iLand(o, x, y, 16) || (Math.abs(x - o.x) < 54 && Math.abs(y - (o.y - o.r * 1.32 - 12)) < 14)) { till = o.hamn; break }
+      if (pil && Math.hypot(e.clientX - r.left - pil.x, e.clientY - r.top - pil.y) < 28) till = pil.mal
+      if (!till) for (const o of varld.oar) if (iLand(o, x, y, 16) || (Math.abs(x - o.x) < 54 && Math.abs(y - (o.y - o.r * 1.32 - 12)) < 14)) { till = o.hamn; break }
       if (!till) varld.plast.forEach((p, i) => { if (!till && !tagna.current.has(i) && Math.hypot(p.x - x, p.y - y) < 44) till = p })
       if (!till) till = narmastFri(varld, x, y)
       if (till) planera(till)
       c.focus({ preventScroll: true })
     }
     c.addEventListener('keydown', ner); c.addEventListener('keyup', upp); c.addEventListener('blur', slapp); c.addEventListener('click', klick)
-    return () => { cancelAnimationFrame(raf); c.removeEventListener('keydown', ner); c.removeEventListener('keyup', upp); c.removeEventListener('blur', slapp); c.removeEventListener('click', klick) }
+    return () => { cancelAnimationFrame(raf); window.clearTimeout(medaljT); c.removeEventListener('keydown', ner); c.removeEventListener('keyup', upp); c.removeEventListener('blur', slapp); c.removeEventListener('click', klick) }
   }, [varld, omrade, omstart])
 
   const borjaOm = () => { spara(KUST[omrade].nyckel, []); setOmstart(n => n + 1) }
@@ -360,6 +397,8 @@ export default function Karta({ oar }: { oar: KO[] }) {
         </div>
         <p className="kk-tips">{pek ? 'Tryck på en ö eller på vattnet.' : 'Tryck på en ö eller på vattnet. Piltangenterna styr också.'}</p>
         {grunt > 0 && !medalj && <p key={grunt} className="kk-grunt" aria-live="polite">Grunt här. Sväng undan.</p>}
+        {bud && !medalj && <p key={bud.n} className="kk-grunt kk-bud" aria-live="polite">{bud.text}</p>}
+        {plock === 0 && <p className="kk-uppdrag">Uppdrag: plocka tio plastpåsar</p>}
         {nara && !medalj && (
           <div className="kk-kort">
             <small>Du ligger vid</small>
@@ -420,6 +459,8 @@ const CSS = `
 .kk-kort b{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:22px;color:#0d2440}
 .kk-kort a{font-size:13px;font-weight:600}
 @keyframes kkUpp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.kk-bud{top:31%;background:rgba(200,100,42,.94)}
+.kk-uppdrag{position:absolute;top:58px;right:14px;margin:0;background:#0d2440;color:#fff;font-size:12.5px;font-weight:600;border-radius:999px;padding:7px 13px;pointer-events:none;box-shadow:0 6px 18px rgba(13,36,64,.2);animation:kkUpp .5s .4s ease both}
 .kk-pop{display:inline-block;animation:kkPop .45s cubic-bezier(.2,1.6,.4,1)}
 @keyframes kkPop{from{transform:scale(1.45)}to{transform:scale(1)}}
 .kk-grunt{position:absolute;left:50%;top:22%;margin:0;background:rgba(13,36,64,.84);color:#fff;font-size:13px;font-weight:600;border-radius:999px;padding:7px 14px;pointer-events:none;white-space:nowrap;animation:kkGrunt 1.7s ease both}
@@ -445,6 +486,7 @@ const CSS = `
   .kk-rakna{padding:5px 11px 5px 8px}
   .kk-rakna b{font-size:17px}
   .kk-rakna span{display:none}
+  .kk-uppdrag{top:52px;font-size:11.5px;padding:6px 11px}
   .kk-kort{left:12px;right:12px}
   .kk-tips{font-size:11px}
   .kk-medalj{position:fixed;z-index:1000}
