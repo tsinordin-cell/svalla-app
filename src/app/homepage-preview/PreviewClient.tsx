@@ -20,7 +20,6 @@ import MegaMeny from '@/components/MegaMeny'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
-import { kalenderPagar, kalenderSynlig, oppnaLuckor } from '@/lib/julkalender'
 import type { StartKansla } from '@/components/StartDelar'
 import type { Bildkalla } from '@/app/LandingPageClient'
 import { FAQ, FAQ_SCHEMA, SIDFOT_HTML } from './innehall.generated'
@@ -42,30 +41,9 @@ const variant = (): 1 | 6 => {
 const Pil = () => <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
 const Kompass = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" /></svg>
 const Nal = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
-const Lupp = () => <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
 
 /* ── 1. Hjälten ── */
-function Julrad({ start }: { start: number | null }) {
-  // Samma regel som JulkalenderSkylt: synlig före och under december, eller med ?julkalender=1.
-  // Startvärdet räknas på servern, så att raden finns från första målningen och inte knuffar ner rubriken.
-  const [dag, setDag] = useState<number | null>(start)
-  useEffect(() => {
-    const forhand = new URLSearchParams(window.location.search).get('julkalender') === '1'
-    if (kalenderPagar()) setDag(oppnaLuckor())
-    else if (kalenderSynlig() || forhand) setDag(0)
-    else setDag(null)
-  }, [])
-  if (dag === null) return null
-  return (
-    <Link href="/julkalender" className="hp-julrad">
-      <svg width="12" height="16" viewBox="0 0 44 58" aria-hidden="true"><rect x="6" y="22" width="32" height="30" rx="3" fill="#c0392b" /><rect x="4" y="16" width="36" height="9" rx="2" fill="#d94a3a" /><rect x="19" y="16" width="6" height="36" fill="#f2c230" /><path d="M22 16 C14 6 8 12 16 16 M22 16 C30 6 36 12 28 16" stroke="#f2c230" strokeWidth="3" fill="none" /></svg>
-      {dag === 0 ? 'Julkalendern öppnar 1 december' : `Julkalendern, lucka ${dag}`}
-      <Pil />
-    </Link>
-  )
-}
-
-function Hero({ julStart, antalKrogar }: { julStart: number | null; antalKrogar: number }) {
+function Hero() {
   const sok = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const q = (new FormData(e.currentTarget).get('q') as string || '').trim()
@@ -76,18 +54,14 @@ function Hero({ julStart, antalKrogar }: { julStart: number | null; antalKrogar:
       <div className="hp-hero-scen" aria-hidden="true">
         <Suspense fallback={null}><HeroAnimation variant={variant()} /></Suspense>
       </div>
-      <div className="hp-hero-slojan" aria-hidden="true" />
       <div className="hp-hero-topp">
-        <Julrad start={julStart} />
         <h1 id="hp-h1" className="hp-h1">Planera din <em>skärgårdsvistelse</em></h1>
         <p className="hp-hero-ingress">Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
-        {/* Förtroende med en siffra ur datan (krogarna på ösidorna). Antalet öar visas inte: Toms beslut 2026-11-21. */}
-        {antalKrogar > 0 && <p className="hp-hero-fakta">{antalKrogar.toLocaleString('sv-SE')} krogar och caféer<span aria-hidden="true">·</span>Gratis</p>}
       </div>
       <div className="hp-hero-botten">
         <form className="hp-sok" role="search" action="/sok" method="get" onSubmit={sok}>
           <input type="search" name="q" enterKeyHint="search" autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} aria-label="Sök ö, krog eller hamn" placeholder="Sök ö, krog eller hamn" />
-          <button type="submit" aria-label="Sök"><Lupp /><span>Sök</span></button>
+          <button type="submit">Sök</button>
         </form>
         <div className="hp-hero-val">
           <Link href="/utflykt" className="hp-val hp-val-1"><span className="hp-val-ikon"><Kompass /></span><span className="hp-val-text"><strong>Planera din tur</strong><small>Öar, restid och båttider för dagen</small></span><span className="hp-val-pil"><Pil /></span></Link>
@@ -390,13 +364,13 @@ function Bildkallor({ k }: { k: Bildkalla[] }) {
   )
 }
 
-export default function PreviewClient({ bildkallor = [], kanslor = [], antalKrogar = 0, julStart = null }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalKrogar?: number; julStart?: number | null }) {
+export default function PreviewClient({ bildkallor = [], kanslor = [], antalKrogar = 0 }: { bildkallor?: Bildkalla[]; kanslor?: StartKansla[]; antalKrogar?: number }) {
   return (
     <div className="hp">
       <MegaMeny overStart />
-      <Hero julStart={julStart} antalKrogar={antalKrogar} />
-      {/* Stor skärm: julkalenderns paket i himlen, precis som på startsidan. I mobilen ligger den som en rad ovanför rubriken. */}
-      <div className="hp-bara-stor"><JulkalenderSkylt /></div>
+      <Hero />
+      {/* Julkalenderns paket i himlen, som på startsidan (Toms val 2026-11-21). */}
+      <JulkalenderSkylt />
       <div className="hp-innehall">
         <TreSatt />
         <JustNu />

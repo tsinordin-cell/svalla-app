@@ -63,62 +63,51 @@
 .hp .hp-lankrad a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 650; color: var(--hp-lank); text-decoration: none; }
 .hp .hp-lankrad a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-.hp .hp-bara-stor { display: none; }
 
-/* ── 1. Hjälten ── */
+/* ── 1. Hjälten ──
+ * Toms beslut 2026-11-21: hjälten ska se ut som på startsidan. Värdena nedan är kopierade från
+ * LandingPageClient (.hero-title, .hero-sub, .hero-search, .hero-knapp). Enda skillnaden: valen
+ * slutar ovanför den flytande Tipsa oss-knappen (samma rättelse som PR #634). */
 .hp .hp-hero {
   position: relative; z-index: 1; overflow: hidden;
-  height: 100svh; min-height: 620px; max-height: 940px;
+  height: 100svh; min-height: 560px; max-height: 940px;
   display: flex; flex-direction: column; justify-content: space-between;
-  /* Nederkant: valen slutar ovanför den flytande Tipsa oss-knappen (FeedbackWidget, samma formel som dess
-     bottom + 37 px hög knapp + 12 px luft), så att knappen inte ligger över "Hitta på kartan". */
-  padding: 104px var(--hp-sido) calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 63px);
+  padding: 22vh 0 calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 63px);
   color: #fff; text-align: center;
-  /* Samma platshållare som startsidan tills canvasen målat. */
   background: linear-gradient(to bottom, #3d94d4 0%, #60aee0 20%, #92c8f0 44%, #b0dcf2 58%, #2488c0 58%, #186aa8 72%, #104e84 86%, #0a2e5a 100%);
 }
 .hp .hp-hero-scen { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
-/* Mjuk skugga bakom rubriken. Vinterhimlen är ljus, och vit text låg där på 1,6:1. */
-.hp .hp-hero-slojan { position: absolute; inset: 0 0 auto; height: 62%; z-index: 0; pointer-events: none;
-  background: radial-gradient(120% 70% at 50% 18%, rgba(9, 28, 48, .52) 0%, rgba(9, 28, 48, .30) 45%, rgba(9, 28, 48, 0) 78%); }
 .hp .hp-hero-topp, .hp .hp-hero-botten { position: relative; z-index: 2; }
-.hp .hp-hero-topp { display: flex; flex-direction: column; align-items: center; }
+.hp .hp-hero-topp { padding: 0 24px; }
 
-.hp .hp-julrad { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; margin: 0 0 18px; padding: 8px 14px 8px 12px; border-radius: 999px; background: rgba(255, 255, 255, .94); color: #0f2f40; font-size: 12.5px; font-weight: 600; line-height: 1; text-decoration: none; box-shadow: 0 4px 14px rgba(9, 28, 48, .18); }
-.hp .hp-julrad svg:last-child { color: var(--hp-acc); width: 14px; height: 14px; }
+.hp .hp-h1 { margin: 0 0 14px; font-family: var(--hp-serif); font-weight: 900; font-size: clamp(28px, 8.5vw, 40px); line-height: 1.06; letter-spacing: -.02em; color: #fff; text-shadow: 0 2px 24px rgba(5, 15, 30, .6); }
+.hp .hp-h1 em { display: block; font-style: italic; background: linear-gradient(135deg, #e8924a, #f4b06a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-shadow: none; }
+.hp .hp-hero-ingress { margin: 10px auto 18px; max-width: 600px; font-size: 13.5px; line-height: 1.6; font-weight: 300; color: rgba(255, 255, 255, .72); text-shadow: 0 1px 10px rgba(5, 15, 30, .55); }
 
-.hp .hp-h1 { margin: 0; font-family: var(--hp-serif); font-weight: 500; font-size: clamp(32px, 10vw, 46px); line-height: 1.04; letter-spacing: -.015em; color: #fff; text-shadow: 0 2px 18px rgba(5, 18, 34, .45); }
-.hp .hp-h1 em { display: block; font-style: italic; font-weight: 500; color: #ffcf98; }
-.hp .hp-hero-ingress { margin: 14px auto 0; max-width: 300px; font-size: 16px; line-height: 1.5; font-weight: 450; color: #fff; text-shadow: 0 1px 10px rgba(5, 18, 34, .55); text-wrap: balance; }
-
-.hp .hp-hero-fakta { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 10px; margin: 14px 0 0; font-size: 13px; font-weight: 600; letter-spacing: .02em; color: rgba(255, 255, 255, .92); text-shadow: 0 1px 8px rgba(5, 18, 34, .55); }
-.hp .hp-hero-fakta span { opacity: .6; }
-.hp .hp-hero-botten { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 520px; margin: 0 auto; }
-.hp .hp-sok { display: flex; align-items: center; height: 54px; padding: 5px 5px 5px 20px; background: #fff; border-radius: 999px; box-shadow: 0 10px 30px rgba(4, 16, 32, .35); }
-.hp .hp-sok:focus-within { box-shadow: 0 10px 30px rgba(4, 16, 32, .35), 0 0 0 3px rgba(255, 255, 255, .55); }
-.hp .hp-sok input { flex: 1; min-width: 0; height: 100%; border: 0 !important; outline: 0; padding: 0; background: transparent !important; box-shadow: none !important; font: 400 16px var(--hp-sans); color: #14202a !important; -webkit-text-fill-color: #14202a; -webkit-appearance: none; appearance: none; }
-.hp .hp-sok input::placeholder { color: #55666e !important; -webkit-text-fill-color: #55666e; opacity: 1; }
+.hp .hp-hero-botten { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; }
+.hp .hp-sok { display: flex; align-items: center; width: 100%; max-width: 92%; margin: 0 auto; background: #fff; border: 1.5px solid #1a3348; border-radius: 50px; overflow: hidden; box-shadow: 0 2px 6px rgba(8, 20, 36, .18), 0 14px 32px rgba(8, 20, 36, .28); }
+.hp .hp-sok:focus-within { border-color: #0d2440; box-shadow: 0 2px 6px rgba(8, 20, 36, .18), 0 14px 32px rgba(8, 20, 36, .28), 0 0 0 2px #fff, 0 0 0 5px #0d2440; }
+.hp .hp-sok input { flex: 1; min-width: 0; border: 0 !important; outline: 0; padding: 10px 14px; background: transparent !important; box-shadow: none !important; font: 400 13px var(--hp-sans); color: #1c2b2e !important; -webkit-text-fill-color: #1c2b2e; -webkit-appearance: none; appearance: none; }
+.hp .hp-sok input::placeholder { color: #3e5160 !important; -webkit-text-fill-color: #3e5160; opacity: 1; }
 .hp .hp-sok input::-webkit-search-cancel-button { display: none; }
-.hp .hp-sok button { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--hp-natt); color: #fff; cursor: pointer; }
-.hp .hp-sok button span { display: none; }
+.hp .hp-sok button { flex-shrink: 0; margin: 4px 4px 4px 0; padding: 8px 18px; border: 0; border-radius: 50px; background: #b5591a; color: #fff; font: 700 12.5px var(--hp-sans); white-space: nowrap; cursor: pointer; }
+.hp .hp-sok button:hover { background: #9e4c14; }
 
-.hp .hp-hero-val { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.hp .hp-val { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; padding: 0 12px; border-radius: 999px; font-size: 14.5px; font-weight: 650; text-decoration: none; white-space: nowrap; transition: transform .15s ease, background .2s ease; }
-.hp .hp-val:active { transform: scale(.98); }
+.hp .hp-hero-val { display: flex; flex-wrap: nowrap; gap: 8px; justify-content: center; width: 100%; padding: 0 14px; }
+.hp .hp-val { display: flex; align-items: center; flex: 1 1 0; min-width: 0; gap: 8px; padding: 5px 12px 5px 5px; border-radius: 999px; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+.hp .hp-val-ikon { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.hp .hp-val-ikon svg { width: 14px; height: 14px; }
+.hp .hp-val-text { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
+.hp .hp-val-text strong { font-size: 12.5px; font-weight: 700; white-space: nowrap; }
 .hp .hp-val-text small, .hp .hp-val-pil { display: none; }
-.hp .hp-val-ikon { display: inline-flex; }
-.hp .hp-val-ikon svg { width: 17px; height: 17px; }
-.hp .hp-val-1 { background: var(--hp-acc); color: #fff; box-shadow: 0 8px 22px rgba(120, 50, 10, .35); }
-.hp .hp-val-2 { background: rgba(8, 26, 46, .38); color: #fff; border: 1px solid rgba(255, 255, 255, .5); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.hp .hp-val-1 { background: linear-gradient(135deg, #ec9a52 0%, #c96e2a 100%); color: #fff; box-shadow: 0 12px 30px rgba(201, 110, 42, .45), inset 0 1px 0 rgba(255, 255, 255, .25); }
+.hp .hp-val-1 .hp-val-ikon { background: rgba(255, 255, 255, .22); }
+.hp .hp-val-2 { background: rgba(255, 253, 248, .95); color: #14202a; box-shadow: 0 12px 30px rgba(5, 20, 40, .32); }
+.hp .hp-val-2 .hp-val-ikon { background: #1e5c82; color: #fff; }
+.hp .hp-val-2 .hp-val-text small { color: #3d5865; }
 
 @media (max-width: 359px) {
   .hp { --hp-sido: 16px; }
-  .hp .hp-val { font-size: 13.5px; gap: 6px; padding: 0 8px; }
-  .hp .hp-val-ikon svg { width: 15px; height: 15px; }
-}
-@media (max-height: 700px) and (max-width: 900px) {
-  .hp .hp-hero { padding-top: 88px; }
-  .hp .hp-julrad { margin-bottom: 12px; }
 }
 
 /* ── 2. Tre sätt ── */
@@ -275,28 +264,24 @@
 @media (min-width: 901px) {
   .hp { --hp-sido: 40px; --hp-sek: 64px; }
 
-  /* Hjälten som i dag: rubriken högt upp i himlen, de två valen vid vattenlinjen */
-  .hp .hp-hero { height: 100vh; max-height: none; min-height: 640px; padding: 0 24px; justify-content: flex-start; }
-  .hp .hp-hero-slojan { background: radial-gradient(55% 42% at 50% 22%, rgba(9, 28, 48, .45) 0%, rgba(9, 28, 48, .18) 55%, rgba(9, 28, 48, 0) 80%); }
-  .hp .hp-hero-fakta { font-size: 14px; }
-  .hp .hp-hero-topp { padding-top: 86px; }
-  .hp .hp-h1 { font-weight: 800; font-size: clamp(44px, 5.4vw, 76px); line-height: 1.02; }
-  .hp .hp-h1 em { font-weight: 700; color: #f6a35c; }
-  .hp .hp-hero-ingress { max-width: 600px; font-size: 17px; font-weight: 450; color: #fff; }
-  .hp .hp-hero-botten { position: absolute; left: 0; right: 0; top: 61vh; max-width: none; align-items: center; }
-  .hp .hp-sok { display: none; } /* på dator ligger sökrutan i menyraden */
-  .hp .hp-hero-val { display: flex; gap: 12px; justify-content: center; }
-  .hp .hp-val { height: auto; min-width: 280px; justify-content: flex-start; gap: 12px; padding: 8px 18px 8px 8px; }
+  /* Hjälten som på startsidan */
+  .hp .hp-hero { height: 100vh; max-height: none; min-height: 640px; padding: 0; justify-content: flex-start; }
+  .hp .hp-hero-topp { padding-top: 86px; max-width: 860px; margin: 0 auto; }
+  .hp .hp-h1 { font-size: clamp(36px, 5vw, 66px); }
+  .hp .hp-hero-ingress { font-size: clamp(14px, 1.8vw, 16px); margin: 8px auto 18px; }
+  .hp .hp-hero-botten { position: absolute; left: 0; right: 0; top: 61vh; }
+  .hp .hp-sok { max-width: 480px; }
+  .hp .hp-sok input { padding: 16px 22px; font-size: 15px; }
+  .hp .hp-sok button { margin: 6px 6px 6px 0; padding: 12px 28px; font-size: 14px; }
+  .hp .hp-hero-val { flex-wrap: wrap; gap: 10px; padding: 0 16px; }
+  .hp .hp-val { flex: 0 0 auto; min-width: 240px; gap: 10px; padding: 7px 16px 7px 7px; }
   .hp .hp-val:hover { transform: translateY(-2px); }
-  .hp .hp-val-ikon { width: 36px; height: 36px; border-radius: 50%; align-items: center; justify-content: center; }
-  .hp .hp-val-text { display: flex; flex-direction: column; text-align: left; line-height: 1.25; }
-  .hp .hp-val-text strong { font-size: 15px; }
-  .hp .hp-val-text small { display: block; margin-top: 2px; font-size: 12px; font-weight: 500; opacity: .85; }
-  .hp .hp-val-pil { display: inline-flex; margin-left: auto; }
-  .hp .hp-val-1 { background: linear-gradient(135deg, #ec9a52 0%, #c96e2a 100%); }
-  .hp .hp-val-1 .hp-val-ikon { background: rgba(255, 255, 255, .22); }
-  .hp .hp-val-2 { background: rgba(255, 253, 248, .95); color: #14202a; border: 0; box-shadow: 0 12px 30px rgba(5, 20, 40, .32); }
-  .hp .hp-val-2 .hp-val-ikon { background: var(--hp-lank); color: #fff; }
+  .hp .hp-val-ikon { width: 36px; height: 36px; }
+  .hp .hp-val-ikon svg { width: 18px; height: 18px; }
+  .hp .hp-val-text strong { font-size: 14.5px; }
+  .hp .hp-val-text small { display: block; margin-top: 2px; font-size: 11.5px; font-weight: 500; opacity: .82; }
+  .hp .hp-val-2 .hp-val-text small { opacity: 1; }
+  .hp .hp-val-pil { display: inline-flex; margin-left: auto; padding-left: 8px; }
 
   /* Tre sätt: tre spalter, som i dag */
   .hp .hp-satt { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(150, 110, 60, .16); border-radius: 22px; background: #fffdf8; overflow: hidden; }
@@ -353,14 +338,10 @@
 }
 
 @media (min-width: 1101px) {
+  .hp .hp-sok { display: none; } /* här ligger sökrutan i menyraden, som på startsidan */
   .hp .hp-nu-lista { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Julkalenderns paket i himlen först från 1280 px. Smalare låg det över rubriken (mätt på 1024 px). */
-@media (min-width: 1280px) {
-  .hp .hp-bara-stor { display: block; }
-  .hp .hp-julrad { display: none; }
-}
 
 /* Kartans sökruta: mörkt läges globala inputregler gav nästan osynlig platshållartext på den vita rutan. */
 .hp .hp-karta .skn-sok input { color: #14202a !important; -webkit-text-fill-color: #14202a; }
