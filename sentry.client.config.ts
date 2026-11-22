@@ -3,23 +3,14 @@ import * as Sentry from '@sentry/nextjs'
 Sentry.init({
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
 
-  // Fånga 20% av alla traces — justeras upp när trafiken ökar
-  tracesSampleRate: 0.2,
+  // Felrapporterna går via vår egen adress (src/app/api/sentry-tunnel/route.ts),
+  // så att CSP:n släpper igenom dem och annonsblockerare inte stoppar dem.
+  tunnel: '/api/sentry-tunnel',
 
-  // Spela in 5% av sessioner, 100% vid fel
-  replaysSessionSampleRate: 0.05,
-  replaysOnErrorSampleRate: 1.0,
-
-  integrations: [
-    Sentry.replayIntegration({
-      // Maska inputs alltid — användarinmatning kan innehålla email/lösen/PII.
-      // maskAllText avstängd så replays fortfarande är användbara för debug,
-      // men element med klassen .sentry-mask maskas (forms, profilfält etc).
-      maskAllInputs: true,
-      maskAllText: false,
-      blockAllMedia: false,
-    }),
-  ],
+  // Bara fel, 2026-11-22. Spårning (traces) och sessionsinspelning (replay)
+  // är avstängda: de har aldrig körts i webbläsaren, gör sidorna tyngre och
+  // inspelning av besökares sessioner bör vänta tills samtycke finns i
+  // cookie-rutan.
 
   // Skicka inte cookies/headers/IP automatiskt — vi har auth-cookies med Supabase JWTs.
   sendDefaultPii: false,
