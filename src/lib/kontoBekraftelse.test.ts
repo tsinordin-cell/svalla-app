@@ -49,3 +49,24 @@ describe('färsk inloggning', () => {
     expect(farskInloggning(bevis([{ method: 'oauth', timestamp: t0 + 3600 }]), NU)).toBe(false)
   })
 })
+
+describe('radering: Google eller färsk inloggning (2026-11-22)', () => {
+  it('harGoogle läser identiteter och leverantörer', async () => {
+    const { harGoogle } = await import('./kontoBekraftelse')
+    expect(harGoogle([{ provider: 'email' }, { provider: 'google' }])).toBe(true)
+    expect(harGoogle([{ provider: 'email' }])).toBe(false)
+    expect(harGoogle(undefined, ['email', 'google'])).toBe(true)
+    expect(harGoogle(null, null)).toBe(false)
+  })
+  it('färsk inloggning räcker även för konto med lösenord', async () => {
+    const { raderingBekraftad } = await import('./kontoBekraftelse')
+    expect(raderingBekraftad({ nyssInloggad: true, medLosenord: true, losenordRatt: false })).toBe(true)
+    expect(raderingBekraftad({ nyssInloggad: true, medLosenord: false, losenordRatt: false })).toBe(true)
+  })
+  it('utan färsk inloggning krävs rätt lösenord', async () => {
+    const { raderingBekraftad } = await import('./kontoBekraftelse')
+    expect(raderingBekraftad({ nyssInloggad: false, medLosenord: true, losenordRatt: true })).toBe(true)
+    expect(raderingBekraftad({ nyssInloggad: false, medLosenord: true, losenordRatt: false })).toBe(false)
+    expect(raderingBekraftad({ nyssInloggad: false, medLosenord: false, losenordRatt: true })).toBe(false)
+  })
+})

@@ -42,3 +42,25 @@ export function farskInloggning(bevis: string | null | undefined, nu: Date = new
   const alder = inloggningAlderSekunder(bevis, nu)
   return alder !== null && alder >= -60 && alder <= FARSK_INLOGGNING_SEKUNDER
 }
+
+/**
+ * Har kontot Google kopplat? (2026-11-22) Konton kan ha både lösenord och
+ * Google. Tom kunde inte radera ett sådant konto: sidan krävde lösenordet,
+ * som han inte använt sedan Google kopplades.
+ */
+export function harGoogle(
+  identiteter: readonly Identitet[] | null | undefined,
+  leverantorer?: readonly string[] | null,
+): boolean {
+  if (Array.isArray(identiteter) && identiteter.some(i => i.provider === 'google')) return true
+  return Array.isArray(leverantorer) && leverantorer.includes('google')
+}
+
+/**
+ * Räcker bekräftelsen för att radera? (2026-11-22) En färsk inloggning (högst
+ * tio minuter, med vilket inloggningssätt som helst) räcker alltid. Annars
+ * krävs rätt lösenord, och bara konton med lösenord kan ange ett.
+ */
+export function raderingBekraftad(o: { nyssInloggad: boolean; medLosenord: boolean; losenordRatt: boolean }): boolean {
+  return o.nyssInloggad || (o.medLosenord && o.losenordRatt)
+}
