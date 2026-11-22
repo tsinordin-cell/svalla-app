@@ -325,6 +325,15 @@ const SKYLTAR = [
   { id: 'karta', namn: 'Karta', href: '/karta' },
   { id: 'gora', namn: 'Aktiviteter', href: '/aktiviteter' },
 ] as const
+// Små tecknade ikoner till skyltarna, i samma bläckstil som scenen (Max 2026-11-22: knapparna kändes för enkla)
+const IKON: Record<string, string> = {
+  oar: 'M2.5 18.5c3.5-3 15.5-3 19 0M8 15.8V7M8 7l-3.5 5h7zM8 4.5l-2.5 3.5h5zM15 16.5c1-2.5 4-2.5 5 0',
+  boende: 'M4 11l8-6.5 8 6.5M6 9.5V20h12V9.5M10 20v-5h4v5',
+  krogar: 'M7 3v18M4.5 3v5a2.5 2.5 0 005 0V3M17 21V3c-2.5 1.5-3.5 5-3.5 8h3.5',
+  farjor: 'M2.5 15h19l-3.5 5H6zM6 15v-5h12v5M9 10V6.5h4V10M8.5 12.5h1M12 12.5h1M15.5 12.5h1',
+  karta: 'M3 6.5l6-2.5 6 2.5 6-2.5v13.5L15 20l-6-2.5L3 20zM9 4v13.5M15 6.5V20',
+  gora: 'M5 19L19 5M16.5 3.5l4 4-2.5 1.5-3-3zM3.5 16.5l4 4-3 1-2-2z',
+}
 // Startscenen hoppar över prickarna och Sverige och börjar när havet stiger (beslut Max 2026-11-22)
 const VSTART = 6000
 
@@ -733,7 +742,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       {varld && (
         <nav className={visT >= 10900 && !gar ? 'ki-skyltar syns' : 'ki-skyltar'} aria-label="Vägar in i Svalla">
           {SKYLTAR.map((s, i) => (
-            <a key={s.id} href={s.href} className={'ki-skylt ki-s-' + s.id} style={{ transitionDelay: i * 110 + 'ms' }}><i />{s.namn}</a>
+            <a key={s.id} href={s.href} className={'ki-skylt ki-s-' + s.id} style={{ transitionDelay: i * 110 + 'ms' }}>{s.id !== 'planera' && <svg className="ki-ik" viewBox="0 0 24 24" aria-hidden="true"><path d={IKON[s.id]} /></svg>}<span>{s.namn}</span></a>
           ))}
         </nav>
       )}
@@ -828,28 +837,35 @@ const CSS = `
 .ki-varld.syns .ki-v-masar{opacity:1}
 @keyframes kiSvav{to{translate:14px -8px}}
 .ki-skyltar{position:absolute;inset:0;z-index:3;pointer-events:none}
-.ki-skylt{position:absolute;display:inline-flex;align-items:center;gap:7px;font:400 15px/1 'Playfair Display',Georgia,serif;color:#1b57a0 !important;background:#fff;border-radius:19px 16px 18px 15px;padding:9px 14px 9px 11px;text-decoration:none !important;white-space:nowrap;box-shadow:0 6px 18px rgba(13,36,64,.16);opacity:0;visibility:hidden;transform:translate(var(--x,0),8px) rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s .5s}
+.ki-skylt{position:absolute;display:inline-flex;align-items:center;gap:8px;font:400 16px/1 'Playfair Display',Georgia,serif;color:#143c78 !important;background:#fbf7ee;border:2px solid #143c78;border-radius:15px 18px 14px 17px/17px 14px 18px 15px;padding:8px 15px 8px 10px;text-decoration:none !important;white-space:nowrap;box-shadow:3px 3px 0 #143c78;opacity:0;visibility:hidden;transform:translate(var(--x,0),8px) rotate(var(--r,0deg));transition:opacity .5s,transform .45s cubic-bezier(.2,1.4,.4,1),box-shadow .25s,background-color .25s,visibility 0s .5s}
+.ki-skylt::before{content:'';position:absolute;left:20px;bottom:-7px;width:11px;height:11px;background:inherit;border-right:2px solid #143c78;border-bottom:2px solid #143c78;border-radius:0 0 3px 0;transform:rotate(45deg)}
+.ki-skylt span{position:relative}
+.ki-ik{width:20px;height:20px;flex:none;fill:none;stroke:#c8642a;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;transform-origin:50% 80%}
 .ki-skyltar.syns .ki-skylt{opacity:1;visibility:visible;pointer-events:auto;transform:translate(var(--x,0),0) rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s}
-.ki-skyltar.syns .ki-skylt:hover,.ki-skyltar.syns .ki-skylt:focus-visible{transform:translate(var(--x,0),-3px) rotate(0deg);box-shadow:0 10px 24px rgba(13,36,64,.26);transition-delay:0s !important}
-.ki-skylt i{width:8px;height:8px;border-radius:50%;background:#c8642a;animation:kiPuls 2.4s ease-out infinite}
+.ki-skyltar.syns .ki-skylt:hover,.ki-skyltar.syns .ki-skylt:focus-visible{transform:translate(var(--x,0),-4px) rotate(0deg);box-shadow:5px 6px 0 #143c78;background-color:#fff;transition-delay:0s !important}
+.ki-skylt:hover .ki-ik,.ki-skylt:focus-visible .ki-ik{animation:kiVick .5s ease-in-out}
+@keyframes kiVick{25%{transform:rotate(-12deg)}60%{transform:rotate(9deg)}100%{transform:rotate(0)}}
+.ki-skylt:focus-visible{outline:3px solid #f2c27a;outline-offset:3px}
 @keyframes kiPuls{0%{box-shadow:0 0 0 0 rgba(200,100,42,.55)}70%,100%{box-shadow:0 0 0 9px rgba(200,100,42,0)}}
 .ki-s-oar{left:6.5%;top:37%;--r:-3deg}
 .ki-s-boende{left:14.5%;top:45%;--r:2deg}
 .ki-s-krogar{left:21%;top:55%;--r:-2deg}
-.ki-s-planera{left:56.5%;top:35%;--r:2deg;font-size:17px;padding:11px 16px 11px 13px}
-.ki-s-planera::after{content:'→';margin-left:2px}
+.ki-s-planera{left:56.5%;top:35%;--r:2deg;font-size:18px;padding:11px 18px 11px 17px;background:#c8642a;color:#fbf7ee !important}
+.ki-skyltar.syns .ki-s-planera:hover,.ki-skyltar.syns .ki-s-planera:focus-visible{background-color:#d5733a}
+.ki-s-planera::after{content:'→';margin-left:3px;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ki-s-planera:hover::after{transform:translateX(4px)}
 .ki-s-gora{left:19.5%;top:19%;--r:2deg}
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-skylt i,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
 @media (max-width:860px){.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
-.ki-skylt{font-size:12.5px;padding:7px 10px 7px 8px;gap:5px}
+.ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-s-planera{left:50%;top:71%;--x:-50%;--r:0deg;font-size:16px;padding:11px 18px 11px 14px}
 .ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-gora{top:84%;--r:0deg}
 .ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
-@media (max-width:560px){.ki-skylt{font-size:11.5px;padding:6px 8px 6px 7px}.ki-s-planera{font-size:15px;padding:10px 16px 10px 12px}}
+@media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-s-planera{font-size:15px;padding:10px 17px 10px 15px}}
 `
