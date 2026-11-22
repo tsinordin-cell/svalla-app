@@ -18,7 +18,7 @@ import { ISLAND_COORDS } from '@/lib/islandCoords'
  */
 export const metadata: Metadata = {
   title: { absolute: 'Vi vill ha med er på Svalla | För hotell i skärgården' },
-  description: 'Svalla är Sveriges samlade skärgårdssida. Så här skulle ert hotell synas, och det kostar ingenting att vara med.',
+  description: 'Skärgården börjar här, på Svalla. Så här skulle ert hotell synas, och det kostar ingenting att vara med.',
   robots: { index: false, follow: false },
 }
 
@@ -70,7 +70,7 @@ export default function HotellSida() {
 
       <header className="ht-topp">
         <Link href="/" aria-label="Svalla, till startsidan"><SvallaLogo height={22} color="#0d2440" /></Link>
-        <span>Sveriges samlade skärgårdssida</span>
+        <span>Skärgården börjar här</span>
       </header>
 
       {/* 1. Hälsningen */}
@@ -78,7 +78,7 @@ export default function HotellSida() {
         <div className="ht-hero-inre">
           <small>Till er som driver hotell i skärgården</small>
           <h1>Vi vill ha med er på Svalla</h1>
-          <p>Svalla är Sveriges samlade skärgårdssida. Öarna, båtarna, krogarna och boendena på ett ställe, där resan planeras innan någon har packat väskan. Ert hotell hör hemma här, och det kostar ingenting att vara med.</p>
+          <p>Skärgården börjar här, på Svalla. Öarna, båtarna, krogarna och boendena på ett ställe, där resan planeras innan någon har packat väskan. Ert hotell hör hemma här, och det kostar ingenting att vara med.</p>
           <div className="ht-knappar">
             <a className="ht-knapp" href={MAILTO}>Ja, vi vill vara med</a>
             <a className="ht-knapp ljus" href="#er-sida">Se hur det skulle se ut</a>
@@ -251,7 +251,7 @@ export default function HotellSida() {
       </section>
 
       <footer className="ht-fot">
-        <span>Svalla · Sveriges samlade skärgårdssida · <a href={`mailto:${MEJL}`}>{MEJL}</a></span>
+        <span>Svalla · Skärgården börjar här · <a href={`mailto:${MEJL}`}>{MEJL}</a></span>
         <span>Ert hotell, texten om hotellet, förmånen och rapportens siffror är exempel. Övriga siffror räknas ur Svallas egen data.</span>
       </footer>
     </div>

@@ -268,7 +268,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#e8ee
       <tr>
         <td class="hero-pad" style="background-color:#0b3350;background-image:linear-gradient(135deg,#0b3350 0%,${SEA} 55%,${TEAL} 100%);padding:30px 40px 28px">
           <img src="${logoSrc}" width="150" height="34" alt="SVALLA" style="display:block;border:0;width:150px;max-width:150px;height:auto;outline:none;margin:0 0 8px;color:#ffffff;font-family:${SANS};font-size:22px;font-weight:800;letter-spacing:4px;line-height:34px">
-          <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.74);letter-spacing:0.4px;font-family:${SANS}">Sveriges samlade skärgårdssida</p>
+          <p style="margin:0;font-size:12px;color:rgba(255,255,255,0.74);letter-spacing:0.4px;font-family:${SANS}">Skärgården börjar här</p>
         </td>
       </tr>
       <tr>
@@ -289,7 +289,7 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#e8ee
     </table>
     <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" class="tagline" style="max-width:600px;margin-top:14px">
       <tr><td align="center">
-        <p style="font-size:11px;color:#93aab6;margin:0;letter-spacing:0.3px">Svalla AB · Stockholm · Sveriges samlade skärgårdssida</p>
+        <p style="font-size:11px;color:#93aab6;margin:0;letter-spacing:0.3px">Svalla AB · Stockholm · Skärgården börjar här</p>
       </td></tr>
     </table>
   </td></tr>
