@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -130,7 +131,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(transportSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(transportSchema) }} />
 
       <IslandSubPageHeader
         island={island}

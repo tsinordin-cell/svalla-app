@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
@@ -2427,17 +2428,17 @@ export default async function BloggPostPage({
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
  <script
  type="application/ld+json"
- dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+ dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }}
  />
  {faqSchema && (
    <script
      type="application/ld+json"
-     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+     dangerouslySetInnerHTML={{ __html: serializeForScript(faqSchema) }}
    />
  )}
  <script
  type="application/ld+json"
- dangerouslySetInnerHTML={{ __html: JSON.stringify({
+ dangerouslySetInnerHTML={{ __html: serializeForScript({
  '@context': 'https://schema.org',
  '@type': 'BreadcrumbList',
  itemListElement: [

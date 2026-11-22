@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
@@ -100,8 +101,8 @@ export default function BlekingeSkargardPage() {
  }
  return (
  <>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumbJsonLd) }} />
  <CategoryLanding
  regionNav={<RegionNav data={byggRegionNav('Blekinge skärgård', ['tarno', 'hano', 'utklippan', 'aspo-blekinge', 'sturko', 'tjaro', 'hastholmen-ytteron'], ['blekinge-skargard-guide', 'aspo-sturko-guide', 'hano-guide', 'karlskrona-guide'])} />}
  heroGradient={['#4a3728', '#6b5040']}

@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import { kastaVidDatabasfel } from '@/lib/databasfel'
 import { forbyggUrval } from '@/lib/forbygge'
 import { createPublicSupabaseClient } from '@/lib/supabase-server'
@@ -140,11 +141,11 @@ export default async function TourPage({ params }: { params: Promise<{ id: strin
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 100 }}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        dangerouslySetInnerHTML={{ __html: serializeForScript({
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [

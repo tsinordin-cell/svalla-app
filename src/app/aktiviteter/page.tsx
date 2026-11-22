@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import OmradesVal from '@/components/OmradesVal'
 import { byggOmraden, bildFor } from '@/lib/omraden'
@@ -129,8 +130,8 @@ export default function AktiviteterPage() {
   }
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumbJsonLd) }} />
       <CategoryLanding
        regionNav={<OmradesVal rubrik="Aktiviteter där du är" vad="aktiviteter" omraden={byggOmraden('aktiviteter')} standardBild={bildFor('hano', 'Hanö')} />}
       heroGradient={['#1e5c82', '#2d7d8a']}

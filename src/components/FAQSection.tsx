@@ -1,4 +1,5 @@
 'use client'
+import { serializeForScript } from '@/lib/serializeForScript'
 import { useState } from 'react'
 
 export interface FAQItem {
@@ -30,7 +31,7 @@ export default function FAQSection({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeForScript({
               '@context': 'https://schema.org',
               '@type': 'FAQPage',
               ...(schemaUrl ? { url: schemaUrl } : {}),

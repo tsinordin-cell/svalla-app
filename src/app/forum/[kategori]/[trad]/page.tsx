@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import { notFound } from 'next/navigation'
 import { forbyggUrval } from '@/lib/forbygge'
 import Link from 'next/link'
@@ -306,9 +307,9 @@ export default async function ForumTradPage({ params }: Props) {
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
     }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }} />
       {productJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(productJsonLd) }} />
       )}
 
       {/* ── Header ── */}

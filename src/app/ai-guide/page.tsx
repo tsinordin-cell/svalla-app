@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Icon from '@/components/Icon'
@@ -103,8 +104,8 @@ const softwareSchema = {
 export default function AIGuidePage() {
   return (
     <div style={{ minHeight: '100vh', background: '#f8f7f4' }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(softwareSchema) }} />
 
       {/* Hero */}
       <div style={{

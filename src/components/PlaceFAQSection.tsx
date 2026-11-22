@@ -11,6 +11,7 @@
  * Innehåller native <details>/<summary> för progressiv expansion utan JS.
  */
 
+import { serializeForScript } from '@/lib/serializeForScript'
 import { regionEtikett } from '@/lib/regionEtikett'
 interface Props {
   name: string
@@ -125,7 +126,7 @@ export default function PlaceFAQSection({
     }}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }}
       />
 
       <div style={{

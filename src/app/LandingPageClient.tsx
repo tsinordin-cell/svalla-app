@@ -1,4 +1,5 @@
 'use client'
+import { serializeForScript } from '@/lib/serializeForScript'
 import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
@@ -1282,7 +1283,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
 
  return (
  <>
- {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${JSON.stringify(photoMap)}` }} />}
+ {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${serializeForScript(photoMap)}` }} />}
  <div style={{ position: 'relative' }}>
  {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
  <div style={{

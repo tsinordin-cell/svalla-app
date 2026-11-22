@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import {
@@ -109,8 +110,8 @@ export default function RegionGuides({ regionSlug }: { regionSlug: string }) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(itemList) }} />
 
       {/* Header */}
       <div style={{

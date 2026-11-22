@@ -5,6 +5,7 @@
  * (transparent: AI-karaktär), Organization referens från layout.tsx,
  * "Hur vi samlar data"-sektion för transparency.
  */
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import SidHuvud from '@/components/SidHuvud'
@@ -84,11 +85,11 @@ export default function OmPage() {
       <SidHuvud />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(THORKEL_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(THORKEL_SCHEMA) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(BREADCRUMB_SCHEMA) }}
       />
 
       <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>

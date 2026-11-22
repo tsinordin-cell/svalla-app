@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import SidHuvud from '@/components/SidHuvud'
@@ -90,7 +91,7 @@ export default function OarIndexPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeForScript({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: 'Alla öar i skärgården',

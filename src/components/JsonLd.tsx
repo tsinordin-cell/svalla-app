@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 /**
  * JsonLd — enkel server component för strukturerad data.
  * Renderar ett godtyckligt JSON-LD-objekt som <script type="application/ld+json">
@@ -11,7 +12,7 @@ export default function JsonLd({ data }: { data: Record<string, unknown> }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeForScript(data) }}
     />
   )
 }

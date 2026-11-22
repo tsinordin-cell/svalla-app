@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import { regionForIsland } from '@/lib/region-lank'
@@ -193,7 +194,7 @@ export default async function IslandPage({ params }: Props) {
      <script
        type="application/ld+json"
        dangerouslySetInnerHTML={{
-         __html: JSON.stringify({
+         __html: serializeForScript({
            '@context': 'https://schema.org',
            '@type': ['TouristDestination', 'TouristAttraction'],
            '@id': `https://svalla.se/o/${island.slug}#place`,
@@ -256,7 +257,7 @@ export default async function IslandPage({ params }: Props) {
  })()}
  <script
  type="application/ld+json"
- dangerouslySetInnerHTML={{ __html: JSON.stringify({
+ dangerouslySetInnerHTML={{ __html: serializeForScript({
  '@context': 'https://schema.org',
  '@type': 'BreadcrumbList',
  itemListElement: [
@@ -268,7 +269,7 @@ export default async function IslandPage({ params }: Props) {
  />
  <script
  type="application/ld+json"
- dangerouslySetInnerHTML={{ __html: JSON.stringify({
+ dangerouslySetInnerHTML={{ __html: serializeForScript({
  '@context': 'https://schema.org',
  '@type': 'FAQPage',
  mainEntity: getFaqsForIsland(island).map(faq => ({
