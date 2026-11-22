@@ -6,6 +6,8 @@ import Icon, { type IconName } from '@/components/Icon'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 import LoppisGrid, { type ThreadWithListing } from './LoppisGrid'
 import { ogSida } from '@/lib/og-standard'
+import { arRedaktionellt } from '@/lib/redaktionellt'
+import RedaktionellEtikett from '@/components/RedaktionellEtikett'
 
 function CategoryIcon({ iconName }: { iconName: IconName }) {
  return <Icon name={iconName} size={18} stroke={1.85} />
@@ -228,6 +230,7 @@ export default async function ForumKategoriPage({ params }: Props) {
  <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
  <AvatarMini username={thread.author.username} avatar={thread.author.avatar} />
  {thread.author.username}
+ {arRedaktionellt(thread.user_id) && <RedaktionellEtikett />}
  </span>
  )}
  <span>·</span>
