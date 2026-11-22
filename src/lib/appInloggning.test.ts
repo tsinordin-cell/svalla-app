@@ -47,3 +47,34 @@ describe('appInloggning', () => {
     expect(sakerNasta(null)).toBe('/feed')
   })
 })
+
+describe('Apple-inloggning', () => {
+  it('är av tills flaggan sätts', async () => {
+    const { appleInloggningPa } = await import('./appInloggning')
+    const tidigare = process.env.NEXT_PUBLIC_APPLE_INLOGGNING
+    delete process.env.NEXT_PUBLIC_APPLE_INLOGGNING
+    expect(appleInloggningPa()).toBe(false)
+    process.env.NEXT_PUBLIC_APPLE_INLOGGNING = 'true'
+    expect(appleInloggningPa()).toBe(true)
+    if (tidigare === undefined) delete process.env.NEXT_PUBLIC_APPLE_INLOGGNING
+    else process.env.NEXT_PUBLIC_APPLE_INLOGGNING = tidigare
+  })
+
+  it('startaOAuthInloggning skickar vald leverantör och rätt tillbaka-url', async () => {
+    const { startaOAuthInloggning } = await import('./appInloggning')
+    const anrop: Array<{ provider: string; options: { redirectTo: string } }> = []
+    const klient = {
+      auth: {
+        signInWithOAuth: async (a: { provider: 'google' | 'apple'; options: { redirectTo: string } }) => {
+          anrop.push(a)
+          return { error: null }
+        },
+      },
+    }
+    ;(globalThis as { location?: { origin: string } }).location = { origin: 'https://svalla.se' }
+    const svar = await startaOAuthInloggning(klient as never, 'apple', { next: '/feed', villkor: '2026-11-22' })
+    expect(svar.error).toBeNull()
+    expect(anrop[0]?.provider).toBe('apple')
+    expect(anrop[0]?.options.redirectTo).toBe('https://svalla.se/auth/callback?next=%2Ffeed&villkor=2026-11-22')
+  })
+})

@@ -12,6 +12,7 @@ import BlockButton from '@/components/BlockButton'
 import Icon from '@/components/Icon'
 import { IconAnchor, IconMotorboat } from '@/components/icons/SvallaIcons'
 import { isPro, isProEnabled } from '@/lib/pro'
+import { arIIosApp } from '@/lib/appInloggning'
 import { isBlocked } from '@/lib/blocks'
 import { track } from '@/lib/analytics-events'
 
@@ -68,6 +69,7 @@ export default function TripActions({
   const [deleting,  setDeleting]  = useState(false)
   const [confirm,   setConfirm]   = useState(false)   // delete confirm
   const [paywall,   setPaywall]   = useState(false)   // GPX paywall sheet
+  const [iIosApp,   setIIosApp]   = useState(false)
   const [reportOpen, setReportOpen] = useState(false)
   const [blocked, setBlocked] = useState(false)
   const [blockKnown, setBlockKnown] = useState(false)
@@ -93,7 +95,10 @@ export default function TripActions({
     getViewer(supabase).then(async ({ data: { user } }) => {
       setUserId(user?.id ?? null)
       if (user && isProEnabled()) {
-        const proActive = await isPro(supabase, user.id)
+        // iOS-appen: Pro låses inte upp och kan inte köpas där (App Store 3.1.1 och 3.1.3(b)).
+        const iIos = await arIIosApp()
+        setIIosApp(iIos)
+        const proActive = iIos ? false : await isPro(supabase, user.id)
         setIsProUser(proActive)
       }
       setReady(true)
@@ -541,9 +546,11 @@ export default function TripActions({
                 GPX-export är Pro
               </h3>
               <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', lineHeight: 1.5 }}>
-                Exportera dina turer som GPX-filer med Svalla Pro: kompatibelt med Navionics, Garmin och alla populära sjökortsappar.
+                {iIosApp
+                  ? 'GPX-export ingår i Svalla Pro, som inte går att köpa i appen.'
+                  : 'Exportera dina turer som GPX-filer med Svalla Pro: kompatibelt med Navionics, Garmin och alla populära sjökortsappar.'}
               </p>
-              <button
+              {!iIosApp && <button
                 onClick={() => { setPaywall(false); router.push('/pro') }}
                 className="press-feedback"
                 style={{
@@ -553,7 +560,7 @@ export default function TripActions({
                 }}
               >
                 Uppgradera: 49 kr/mån
-              </button>
+              </button>}
               <button
                 onClick={() => setPaywall(false)}
                 className="press-feedback"

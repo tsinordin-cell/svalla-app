@@ -94,31 +94,47 @@ export function oauthTillbakaUrl(origin: string, opts: { next: string; iApp: boo
   return u.toString()
 }
 
+export type OAuthLeverantor = 'google' | 'apple'
+
+/** Logga in med Apple visas först när Apple och Supabase är inställda och flaggan är på. */
+export function appleInloggningPa(): boolean {
+  return process.env.NEXT_PUBLIC_APPLE_INLOGGNING === 'true'
+}
+
 type OAuthKlient = {
   auth: {
     signInWithOAuth: (args: {
-      provider: 'google'
+      provider: OAuthLeverantor
       options: { redirectTo: string; queryParams?: Record<string, string> }
     }) => Promise<{ error: { message: string } | null }>
   }
 }
 
 /**
- * Startar Google-inloggningen, på webben som förut och i appen via Safari.
- * Returnerar felet (om något) och om vi är i appen: där lämnar sidan
- * webbvyn till Safari och knappen ska inte snurra kvar när man kommer tillbaka.
+ * Startar inloggning med Google eller Apple, på webben som förut och i appen
+ * via Safari. Returnerar felet (om något) och om vi är i appen: där lämnar
+ * sidan webbvyn till Safari och knappen ska inte snurra kvar när man kommer tillbaka.
  */
-export async function startaGoogleInloggning(
+export async function startaOAuthInloggning(
   supabase: OAuthKlient,
+  provider: OAuthLeverantor,
   opts: { next: string; villkor?: string; queryParams?: Record<string, string> },
 ): Promise<{ error: { message: string } | null; iApp: boolean }> {
   const iApp = await arIApp()
   const { error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
+    provider,
     options: {
       redirectTo: oauthTillbakaUrl(location.origin, { next: opts.next, iApp, villkor: opts.villkor }),
       ...(opts.queryParams ? { queryParams: opts.queryParams } : {}),
     },
   })
   return { error, iApp }
+}
+
+/** Google-inloggning, se startaOAuthInloggning. */
+export function startaGoogleInloggning(
+  supabase: OAuthKlient,
+  opts: { next: string; villkor?: string; queryParams?: Record<string, string> },
+): Promise<{ error: { message: string } | null; iApp: boolean }> {
+  return startaOAuthInloggning(supabase, 'google', opts)
 }

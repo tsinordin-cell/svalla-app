@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import SidHuvud from '@/components/SidHuvud'
 import PublicFooter from '@/components/PublicFooter'
-import { VILLKOR_VERSION } from '@/lib/villkor'
+import { VILLKOR_VERSION, operatorRad } from '@/lib/villkor'
 
 export const metadata: Metadata = {
   title: 'Användarvillkor',
@@ -21,6 +21,9 @@ const lank: React.CSSProperties = { color: 'var(--sea)' }
  * Ändras något väsentligt: höj VILLKOR_VERSION i lib/villkor.ts.
  */
 export default function AnvandarvillkorPage() {
+  const operator = operatorRad()
+  // Förhandsvisningen visar var uppgifterna hamnar; i produktion visas inget förrän de är ifyllda.
+  const visaPlatshallare = !operator && process.env.VERCEL_ENV !== 'production'
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <SidHuvud />
@@ -36,6 +39,8 @@ export default function AnvandarvillkorPage() {
 
           <h2 style={{ ...h2, marginTop: 0 }}>1. Om villkoren</h2>
           <p>Svalla (svalla.se och Svalla-appen) är en tjänst om svensk skärgård: öar, hamnar, krogar, båttider, rutter och en gemenskap där du kan logga turer, skriva i forumet, annonsera på loppis och skicka meddelanden. Villkoren gäller när du använder Svalla med ett konto. När du skapar ett konto godkänner du dem.</p>
+          {operator && <p>{operator}</p>}
+          {visaPlatshallare && <p style={{ background: 'rgba(201,110,42,0.12)', padding: '8px 12px', borderRadius: 8 }}>[Här står bolagsnamn och organisationsnummer när de är ifyllda.]</p>}
           <p>Hur vi hanterar dina personuppgifter står i vår <Link href="/integritetspolicy" style={lank}>integritetspolicy</Link>.</p>
 
           <h2 style={h2}>2. Ditt konto</h2>

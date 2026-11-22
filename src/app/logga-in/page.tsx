@@ -6,7 +6,8 @@ import SvallaLogo from '@/components/SvallaLogo'
 import { validateUsername, deriveUsername } from '@/lib/username'
 import { bekraftelseMal } from '@/lib/epostbekraftelse'
 import KollaInkorgen, { SkickaBekraftelseIgen } from '@/components/BekraftaEpost'
-import { startaGoogleInloggning } from '@/lib/appInloggning'
+import { startaGoogleInloggning, startaOAuthInloggning, appleInloggningPa } from '@/lib/appInloggning'
+import AppleInloggningKnapp from '@/components/AppleInloggningKnapp'
 import { VILLKOR_VERSION, VILLKOR_SOKVAG } from '@/lib/villkor'
 
 const inputStyle: React.CSSProperties = {
@@ -44,7 +45,7 @@ function LoginContent() {
   // mode=ny → externa besökare/oautentiserade redirectar → visa "Skapa konto" direkt
   const [isNew,        setIsNew]        = useState(sp.get('mode') === 'ny')
   const [loading,      setLoading]      = useState(false)
-  const [oauthLoading, setOauthLoading] = useState<'google' | null>(null)
+  const [oauthLoading, setOauthLoading] = useState<'google' | 'apple' | null>(null)
   const [err,          setErr]          = useState('')
   const [msg,          setMsg]          = useState('')
   const [showPwd,      setShowPwd]      = useState(false)
@@ -84,6 +85,16 @@ function LoginContent() {
       next: returnTo,
       villkor: VILLKOR_VERSION,
       queryParams: { access_type: 'offline', prompt: 'consent' },
+    })
+    if (iApp && !error) setTimeout(() => setOauthLoading(null), 4000)
+    if (error) { setErr(mapAuthError(error.message)); setOauthLoading(null) }
+  }
+
+  async function signInWithApple() {
+    setOauthLoading('apple'); setErr('')
+    const { error, iApp } = await startaOAuthInloggning(supabase, 'apple', {
+      next: returnTo,
+      villkor: VILLKOR_VERSION,
     })
     if (iApp && !error) setTimeout(() => setOauthLoading(null), 4000)
     if (error) { setErr(mapAuthError(error.message)); setOauthLoading(null) }
@@ -291,8 +302,9 @@ function LoginContent() {
             </svg>
             {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
           </button>
+          <AppleInloggningKnapp onClick={() => signInWithApple()} laddar={oauthLoading === 'apple'} disabled={!!oauthLoading} />
           <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '-8px 0 16px', lineHeight: 1.5 }}>
-            Skapas ett nytt konto med Google godkänner du{' '}
+            Skapas ett nytt konto med {appleInloggningPa() ? 'Google eller Apple' : 'Google'} godkänner du{' '}
             <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>användarvillkoren</a>.
           </p>
 

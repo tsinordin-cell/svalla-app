@@ -3,6 +3,7 @@ import { pingaIndexNow } from '@/lib/indexnow'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
+import { arAllvarligtInnehall } from '@/lib/moderation'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 // TODO: wrap handlers with withSentrySimple(handler, 'forum/threads') — se src/lib/api-handler.ts
 
@@ -92,7 +93,8 @@ export async function POST(req: NextRequest) {
 
     // Spam-kö: om användaren har färre än 3 godkända inlägg totalt
     const approvedCount = await getUserForumPostCount(user.id)
-    const inSpamQueue   = approvedCount < 3
+    // Allvarligt innehåll (hatord, uppmaning till självskada eller våld) granskas alltid först
+    const inSpamQueue   = approvedCount < 3 || arAllvarligtInnehall(trimTitle, trimBody)
 
     // Validera island_slug om det skickades med (max 80 tecken, bara slug-tecken)
     const validatedIslandSlug =

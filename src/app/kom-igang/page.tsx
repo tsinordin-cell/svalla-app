@@ -8,7 +8,8 @@ import Icon from '@/components/Icon'
 import { validateUsername, deriveUsername } from '@/lib/username'
 import { bekraftelseMal } from '@/lib/epostbekraftelse'
 import KollaInkorgen from '@/components/BekraftaEpost'
-import { startaGoogleInloggning } from '@/lib/appInloggning'
+import { startaGoogleInloggning, startaOAuthInloggning, appleInloggningPa } from '@/lib/appInloggning'
+import AppleInloggningKnapp from '@/components/AppleInloggningKnapp'
 import { VILLKOR_VERSION, VILLKOR_SOKVAG } from '@/lib/villkor'
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -113,7 +114,7 @@ function KomIgangInner() {
  const [showPw, setShowPw] = useState(false)
  const [showConfirmPw, setShowConfirmPw] = useState(false)
  const [loading, setLoading] = useState(false)
- const [oauthLoading, setOauthLoading] = useState<'google' | null>(null)
+ const [oauthLoading, setOauthLoading] = useState<'google' | 'apple' | null>(null)
  const [err, setErr] = useState('')
  const [hasSession, setHasSession] = useState(false)
  // Användarvillkoren (2026-11-22): måste godkännas för att skapa konto
@@ -169,6 +170,16 @@ function KomIgangInner() {
  next: '/feed',
  villkor: VILLKOR_VERSION,
  queryParams: { access_type: 'offline', prompt: 'consent' },
+ })
+ if (iApp && !error) setTimeout(() => setOauthLoading(null), 4000)
+ if (error) { setErr(swErr(error.message)); setOauthLoading(null) }
+ }
+
+ async function signInWithApple() {
+ setOauthLoading('apple'); setErr('')
+ const { error, iApp } = await startaOAuthInloggning(supabase, 'apple', {
+ next: '/feed',
+ villkor: VILLKOR_VERSION,
  })
  if (iApp && !error) setTimeout(() => setOauthLoading(null), 4000)
  if (error) { setErr(swErr(error.message)); setOauthLoading(null) }
@@ -464,8 +475,9 @@ function KomIgangInner() {
  <GoogleIcon />
  {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
  </button>
+ <AppleInloggningKnapp onClick={() => signInWithApple()} laddar={oauthLoading === 'apple'} disabled={!!oauthLoading} marginBottom={0} />
  <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '-4px 0 0', lineHeight: 1.5 }}>
- Skapas ett nytt konto med Google godkänner du{' '}
+ Skapas ett nytt konto med {appleInloggningPa() ? 'Google eller Apple' : 'Google'} godkänner du{' '}
  <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>användarvillkoren</a>.
  </p>
 
@@ -553,6 +565,7 @@ function KomIgangInner() {
  <GoogleIcon />
  {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
  </button>
+ <AppleInloggningKnapp onClick={() => signInWithApple()} laddar={oauthLoading === 'apple'} disabled={!!oauthLoading} marginBottom={20} />
 
  {/* Divider */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
