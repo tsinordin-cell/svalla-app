@@ -46,7 +46,18 @@ export async function fetchCurrentWeather(
   // Loggar orsaken när det misslyckas. Ett tyst null gav mig ingen ledtråd
   // förra gången och kostade en hel deploy-cykel att felsöka.
   try {
-    const res = await fetch(url, { next: { revalidate: 900 } })
+    // 2026-11-22: open-meteo svarade inte alls ibland (ETIMEDOUT i loggarna på
+    // /platser, /tur, /feed och /planera), och då väntade hela sidan. En kapplöpning
+    // mot en timer rör inte fetchens cache (inget signal-objekt, se ovan): efter
+    // 4 sekunder renderas sidan utan väderpill, och hämtningen får fortsätta.
+    const res = await Promise.race([
+      fetch(url, { next: { revalidate: 900 } }),
+      new Promise<null>(resolve => setTimeout(() => resolve(null), 4000)),
+    ])
+    if (!res) {
+      console.warn('[weather] open-meteo svarade inte inom 4 s för', lat, lng)
+      return null
+    }
     if (!res.ok) {
       console.warn('[weather] open-meteo svarade', res.status, 'för', lat, lng)
       return null
