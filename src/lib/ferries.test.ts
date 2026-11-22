@@ -346,3 +346,18 @@ describe('bakåtkompatibilitet', () => {
     expect(operatorWebbplats(rutt('cinderella-sandhamn'))).toBe('stromma.com')
   })
 })
+
+describe('visaBryggnamn', () => {
+  it('tar bort kommunen och dubbelt "brygga" (granskningen 2026-11-22)', async () => {
+    const { visaBryggnamn } = await import('./ferries')
+    expect(visaBryggnamn('Utö Gruvbryggan brygga (Haninge kn)')).toBe('Utö Gruvbryggan')
+    expect(visaBryggnamn('Grinda Södra bryggan (Värmdö kn)')).toBe('Grinda Södra bryggan')
+    expect(visaBryggnamn('Finnhamn brygga (Österåker kn)')).toBe('Finnhamn brygga')
+  })
+  it('lämnar namn utan kommun eller dubblering orörda', async () => {
+    const { visaBryggnamn } = await import('./ferries')
+    expect(visaBryggnamn('Vaxholm Hotellkajen')).toBe('Vaxholm Hotellkajen')
+    expect(visaBryggnamn('Berg brygga')).toBe('Berg brygga')
+    expect(visaBryggnamn('Grinda')).toBe('Grinda')
+  })
+})
