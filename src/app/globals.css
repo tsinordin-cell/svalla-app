@@ -1450,3 +1450,10 @@ body.underkantsruta-oppen .fb-flytande {
     width: 400px;
   }
 }
+
+/* Sökningens filterchips: på telefon skrollas raden med fingret, på dator
+   finns ingen synlig skrollist, så de sista chipsen gick inte att nå.
+   Granskningen 2026-11-22. */
+@media (min-width: 768px) {
+  .sok-filter { flex-wrap: wrap; overflow-x: visible !important; row-gap: 6px; }
+}

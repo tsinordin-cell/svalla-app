@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { arInbyggdApp, efterCookievalOchTid } from '@/lib/forstaRutor'
+import { arInbyggdApp, efterCookievalOchTid, paRutsida } from '@/lib/forstaRutor'
 import { useForstaRuta } from '@/lib/useForstaRuta'
 
 interface BeforeInstallPromptEvent extends Event {
@@ -10,7 +10,6 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 // Visa bara install-prompten på app-sidor
-const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
 const BESOK = 'svalla-besok'
 const RAKNAD_I_SESSIONEN = 'svalla-besok-raknad'
@@ -92,7 +91,7 @@ export default function InstallPrompt() {
     }
   }, [])
 
-  const [show, lamnaPlatsen] = useForstaRuta('installera', redo, APP_PATHS.some(p => pathname?.startsWith(p)))
+  const [show, lamnaPlatsen] = useForstaRuta('installera', redo, paRutsida(pathname))
 
   function dismiss() {
     /*
