@@ -290,6 +290,17 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         cursor: 'pointer',
       }}
     >
+      {/* Hela kortet är klickbart med mus, men ett klick på <article> når inte
+          tangentbord eller skärmläsare. Länken syns först när den får fokus
+          (granskningen 2026-11-22). */}
+      <Link
+        href={`/tur/${trip.id}`}
+        onClick={e => e.stopPropagation()}
+        className="sr-only focus:not-sr-only focus:block focus:px-5 focus:pt-3 text-sm font-semibold"
+        style={{ color: 'var(--sea)' }}
+      >
+        Öppna turen{trip.location_name ? `: ${trip.location_name}` : ''}
+      </Link>
 
       {/* ── 1. Header ── */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '16px 20px 14px' }}>

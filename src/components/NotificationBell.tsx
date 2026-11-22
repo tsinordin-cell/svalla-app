@@ -159,6 +159,16 @@ export default function NotificationBell() {
  return () => document.removeEventListener('mousedown', handleClick)
  }, [])
 
+ // Escape stänger listan och lämnar fokus på klockan (granskningen 2026-11-22).
+ useEffect(() => {
+ if (!open) return
+ function handleKey(e: KeyboardEvent) {
+ if (e.key === 'Escape') { setOpen(false); knappRef.current?.focus() }
+ }
+ document.addEventListener('keydown', handleKey)
+ return () => document.removeEventListener('keydown', handleKey)
+ }, [open])
+
  if (!userId) return null
 
  return (

@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
+import { rangordnaForslag } from '@/lib/rangordnaForslag'
 import { DEPARTURES } from '@/lib/planner-client'
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -30,6 +31,7 @@ interface Suggestion {
   vessel_model: string | null
   home_port: string | null
   boat_type?: string | null
+  van?: boolean
 }
 
 interface Props {
@@ -537,7 +539,7 @@ const PRIMARY_BTN = (disabled = false): React.CSSProperties => ({
   background: disabled
     ? 'rgba(255,255,255,0.08)'
     : 'linear-gradient(135deg, #1e5c82 0%, #2d7d8a 50%, #65b8c8 100%)',
-  color: disabled ? 'rgba(255,255,255,0.30)' : '#fff',
+  color: disabled ? 'rgba(255,255,255,0.55)' : '#fff',
   fontSize: 15, fontWeight: 700, letterSpacing: '0.02em',
   boxShadow: disabled ? 'none' : '0 8px 28px rgba(45,125,138,0.40)',
   transition: 'all 0.2s',
@@ -567,6 +569,11 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   const [followIds, setFollowIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  // Förslagen ordnas efter valen i guiden (samma hemmahamn, sedan båttyp).
+  const sorteradeForslag = useMemo(
+    () => rangordnaForslag(suggestions, normaliseraHamn(homePort), boatType),
+    [suggestions, homePort, boatType],
+  )
 
   useEffect(() => { track('onboarding_started', { step: 1 }) }, [])
 
@@ -874,17 +881,30 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           {BOAT_OPTIONS.map(({ value, label, Icon, desc }) => {
             const active = boatType === value
             return (
-              <button key={value} onClick={() => setBoatType(value)} type="button"
+              <button key={value} onClick={() => setBoatType(value)} type="button" aria-pressed={active}
                 style={{
+                  position: 'relative',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
                   padding: '16px 10px 14px', borderRadius: 14, border: 'none',
                   cursor: 'pointer', fontFamily: 'inherit',
                   background: active
                     ? 'linear-gradient(135deg, rgba(30,92,130,0.60), rgba(45,125,138,0.52))'
                     : 'rgba(255,255,255,0.06)',
-                  outline: active ? '1.5px solid rgba(165,205,225,0.55)' : '1.5px solid rgba(255,255,255,0.08)',
+                  outline: active ? '2px solid rgba(165,235,248,0.95)' : '1.5px solid rgba(255,255,255,0.08)',
                   transition: 'all 0.18s',
                 }}>
+                {/* Tydligare valt läge: bock i hörnet (granskningen 2026-11-22: valt kort syntes knappt). */}
+                {active && (
+                  <span aria-hidden style={{
+                    position: 'absolute', top: 8, right: 8, width: 20, height: 20, borderRadius: '50%',
+                    background: 'rgba(165,235,248,0.95)', color: '#0e3848',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3.5} style={{ width: 12, height: 12 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                )}
                 <div style={{ opacity: active ? 1 : 0.7 }}><Icon/></div>
                 <span style={{ fontSize: 13, fontWeight: 700, color: active ? '#fff' : 'rgba(255,255,255,0.72)' }}>
                   {label}
@@ -912,6 +932,16 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
             {saving ? 'Sparar…' : <>Nästa <ArrowRightIcon/></>}
           </button>
         </div>
+        {/* Steget gick inte att hoppa över; båttypen kan sättas senare på profilen. */}
+        {!boatType && (
+          <button type="button" onClick={goNext} style={{
+            display: 'block', margin: '14px auto 0', background: 'none', border: 'none',
+            color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+            fontFamily: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3,
+          }}>
+            Hoppa över, välj senare på profilen
+          </button>
+        )}
       </div>
     </>
   )
@@ -999,7 +1029,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         {suggestions.length > 0 && (
           <>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 22 }}>
-              {suggestions.slice(0, 3).map(s => {
+              {sorteradeForslag.slice(0, 3).map(s => {
                 const isFollowing = followIds.has(s.id)
                 return (
                   <button key={s.id} onClick={() => toggleFollow(s.id)} type="button"

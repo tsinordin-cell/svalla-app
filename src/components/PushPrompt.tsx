@@ -2,6 +2,8 @@
 import Icon from '@/components/Icon'
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
+import { efterCookievalOchTid } from '@/lib/forstaRutor'
+import { useForstaRuta } from '@/lib/useForstaRuta'
 
 const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
@@ -15,7 +17,9 @@ function urlBase64ToUint8Array(base64String: string) {
 }
 
 export default function PushPrompt() {
-  const [show, setShow] = useState(false)
+  // `redo` = villkoren uppfyllda. Om rutan faktiskt syns avgör turordningen
+  // (forstaRutor.ts): efter cookievalet och aldrig samtidigt som installrutan.
+  const [redo, setRedo] = useState(false)
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
   const pathname = usePathname()
@@ -28,17 +32,20 @@ export default function PushPrompt() {
     if (sessionStorage.getItem('svalla-push-dismissed')) return
     if (!VAPID_PUBLIC) return
 
-    // Visa prompten med lite delay
-    const t = setTimeout(() => setShow(true), 15000)
+    // 15 sekunder efter cookievalet, inte efter sidladdningen.
+    const sluta = efterCookievalOchTid(15000, () => setRedo(true))
     return () => {
-      clearTimeout(t)
+      sluta()
       if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current)
     }
   }, [])
 
+  const [show, lamnaPlatsen] = useForstaRuta('notiser', redo, APP_PATHS.some(p => pathname?.startsWith(p)))
+
   function dismiss() {
-    sessionStorage.setItem('svalla-push-dismissed', '1')
-    setShow(false)
+    try { sessionStorage.setItem('svalla-push-dismissed', '1') } catch { /* privat läge */ }
+    setRedo(false)
+    lamnaPlatsen()
   }
 
   async function enable() {
@@ -71,7 +78,6 @@ export default function PushPrompt() {
   }
 
   if (!show) return null
-  if (!APP_PATHS.some(p => pathname?.startsWith(p))) return null
 
   return (
     <div style={{
@@ -126,7 +132,7 @@ export default function PushPrompt() {
         )}
       </div>
 
-      <button onClick={dismiss} style={{
+      <button onClick={dismiss} aria-label="Stäng" style={{
         background: 'rgba(255,255,255,0.12)', border: 'none', borderRadius: '50%',
         width: 28, height: 28, cursor: 'pointer', color: 'rgba(255,255,255,0.7)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',

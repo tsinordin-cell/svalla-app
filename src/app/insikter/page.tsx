@@ -145,8 +145,8 @@ export default function InsikterPage() {
 
  {!loading && !userId && (
  <div style={{ textAlign: 'center', padding: '60px 20px' }}>
- <Icon name="info" size={48} style={{ color: 'var(--txt3)', marginBottom: 12, display: 'block' }} />
- <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>Logga in för att se dina insights.</p>
+ <Icon name="info" size={48} style={{ color: 'var(--txt3)', margin: '0 auto 12px', display: 'block' }} />
+ <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>Logga in för att se dina insikter.</p>
  <Link href="/logga-in" style={{
  display: 'inline-block', padding: '10px 22px', borderRadius: 14,
  background: 'var(--grad-sea)',
@@ -159,7 +159,7 @@ export default function InsikterPage() {
 
  {!loading && insights && insights.total_trips === 0 && (
  <div style={{ textAlign: 'center', padding: '60px 20px' }}>
- <Icon name="sailboat" size={48} style={{ color: 'var(--txt3)', marginBottom: 12, display: 'block' }} />
+ <Icon name="sailboat" size={48} style={{ color: 'var(--txt3)', margin: '0 auto 12px', display: 'block' }} />
  <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>
  {scope === 'all' ? 'Inga turer än, logga din första och kom tillbaka!' : `Inga turer loggade under ${scope}.`}
  </p>
