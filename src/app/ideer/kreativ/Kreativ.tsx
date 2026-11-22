@@ -221,16 +221,9 @@ function StartHero() {
   )
 }
 
-/* Startscenen: samma intro som del 1, påbyggt med ö, fyr och färja som bär knappar in till sajten. */
+/* Startscenen: ett alternativ till startsidans animering. Samma stil som introt, men den börjar med havet och har knappar in till sajten. */
 function ScenDel() {
-  const [inne, setInne] = useState(false)
-  if (!inne) return <IntroV2 varld efter={() => setInne(true)} />
-  return (
-    <div className="kr-intro-v2">
-      <StartHero />
-      <button type="button" className="kr-spela kr-igen2" onClick={() => setInne(false)}>Spela introt igen</button>
-    </div>
-  )
+  return <IntroV2 varld />
 }
 
 /* Introt version 2 (WebGL2, egen fil) och vidare in till startsidans animering. */
@@ -522,7 +515,7 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
         <Partnersida foton={foton} />
       </Del>
 
-      <Del nr="7" id="scen" rubrik="Introt som startscen: knappar i bilden" forebild={<>startbilden på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="Samma intro som del 1, påbyggt. När båten har lagt sig stiger en ö med stuga och brygga, en fyr och en färja upp ur havet. På dem sitter knappar som leder till öar, boende, krogar, segelrutter, färjor och kartan. Ön, fyren och färjan är påhittade och föreställer ingen verklig plats.">
+      <Del nr="7" id="scen" rubrik="Startscenen: alternativ till startsidans animering" forebild={<>startbilden på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="Samma stil som introt i del 1, tänkt som startbild. Havet stiger, båten seglar in och en ö med stuga och brygga, en fyr och en färja växer fram. På dem sitter knappar som leder till öar, boende, krogar, turplaneringen, färjor, kartan och aktiviteter. Ön, fyren och färjan är påhittade och föreställer ingen verklig plats.">
         <ScenDel />
       </Del>
 

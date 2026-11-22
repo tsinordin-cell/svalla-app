@@ -216,6 +216,8 @@ void main(){
     m2 = max(m2, clamp((mr - md) / 1.6 + .5, 0., 1.)); }
   float fr = mix(d.r, m1, sveS);
   float fb = mix(d.g, m2 * (1. - malad), batS);
+  // Startscenen har varken prickar eller Sverige, bara hav, båt och text
+  if (genom > .5) { fr = 0.; fb = 0.; }
   float a = kant(fr + havF, th);
   float b = kant(fb, th);
   float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * .3).a;
@@ -315,19 +317,22 @@ function skapaLjud() {
 
 /* Vägarna in från startscenen. Alla leder till sidor som finns på Svalla. */
 const SKYLTAR = [
-  { id: 'oar', namn: 'Öar', href: '/oar' },
+  { id: 'oar', namn: 'Hitta din ö', href: '/oar' },
   { id: 'boende', namn: 'Boende', href: '/boende' },
   { id: 'krogar', namn: 'Krogar', href: '/krogar-och-mat' },
-  { id: 'segla', namn: 'Segelrutter', href: '/segelrutter' },
+  { id: 'planera', namn: 'Planera din tur', href: '/planera-tur' },
   { id: 'farjor', namn: 'Färjor', href: '/farjor' },
   { id: 'karta', namn: 'Karta', href: '/karta' },
+  { id: 'gora', namn: 'Aktiviteter', href: '/aktiviteter' },
 ] as const
+// Startscenen hoppar över prickarna och Sverige och börjar när havet stiger (beslut Max 2026-11-22)
+const VSTART = 6000
 
 /* varld = startscenen (del 7): samma intro, men pappret är genomskinligt så att en ö, en fyr och en färja kan stiga upp bakom havet. */
 export default function Intro({ efter, varld = false }: { efter?: () => void; varld?: boolean }) {
   const scen = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
-  const tid = useRef(0)
+  const tid = useRef(varld ? VSTART : 0)
   const start = useRef(0)
   const [visT, setVisT] = useState(0)
   const [stod, setStod] = useState(true)
@@ -533,7 +538,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       const frys = (window as unknown as { __kiFrys?: number }).__kiFrys
       const t = typeof frys === 'number' ? frys : minskad ? SLUT : Math.min(nu - start.current, SLUT + 600000)
       tid.current = t
-      const T = Math.min(t, SLUT)
+      const T = Math.max(varld ? VSTART : 0, Math.min(t, SLUT))
       const sek = minskad ? 0 : nu / 1000
 
       // Scenernas förlopp
@@ -651,6 +656,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       dr[15] = px(nv.x); dr[16] = py; dr[17] = 7 * DPR
       dr[18] = px(nv.svans); dr[19] = py; dr[20] = (3 + Math.min(6, Math.abs(nv.x - nv.svans) * 9)) * DPR
       if (ut > 0) for (let i = 2; i < 21; i += 3) dr[i] = 0
+      if (varld) for (let i = 0; i < dr.length; i++) dr[i] = 0
       gl.uniform3fv(u(pBild, 'drops'), dr)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
       if (Math.round(nu / 33) % 2 === 0) { setVisT(T); setNavPos({ x: nv.x, svans: nv.svans, hav: havNiva, bredd: navB }) }
@@ -691,7 +697,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
           <svg className="ki-v-masar tva" viewBox="0 0 60 30" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M4 20 Q16 6 28 18 Q40 4 56 16" /></svg>
         </div>
       )}
-      <canvas ref={canvas} className="ki-canvas" aria-label="Introt: blå prickar blir Sverige, sedan Svallas segelbåt och till sist ett hav." />
+      <canvas ref={canvas} className="ki-canvas" aria-label={varld ? 'Startscenen: havet stiger, Svallas segelbåt seglar in och en skärgård växer fram.' : 'Introt: blå prickar blir Sverige, sedan Svallas segelbåt och till sist ett hav.'} />
       {varld && (
         <nav className={visT >= 10900 && !gar ? 'ki-skyltar syns' : 'ki-skyltar'} aria-label="Vägar in i Svalla">
           {SKYLTAR.map((s, i) => (
@@ -703,12 +709,12 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
         <button type="button" className="ki-ljud" onClick={vaxlaLjud} aria-pressed={ljud}>{ljud ? 'Ljud på' : 'Ljud av'}</button>
       </div>
-      {visaIn && !gar && (
+      {visaIn && !gar && !varld && (
         <div className="ki-in">
           <button type="button" className="ki-knapp" onClick={() => { utRef.current = performance.now(); setGar(true) }}>Gå in på Svalla <i>→</i></button>
         </div>
       )}
-      <div className={navPos.hav < 0.91 ? 'ki-nav ljus' : 'ki-nav'}>
+      <div className={(navPos.hav < 0.91 ? 'ki-nav ljus' : 'ki-nav') + (varld ? ' ki-dold' : '')}>
         <div className="ki-namn" style={{ width: navPos.bredd }}>
           {SCENER.map((s, i) => (
             <button key={s.namn} type="button" style={{ left: NAV_KANT + (i / (SCENER.length - 1)) * (navPos.bredd - 2 * NAV_KANT) }} className={Math.round(navPos.x) === i ? 'pa' : ''} onClick={() => hoppa(s.fran)}>{s.namn}</button>
@@ -716,7 +722,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
         </div>
       </div>
       <div className={navPos.hav < 0.91 ? 'ki-styr ljus' : 'ki-styr'}>
-        <button type="button" onClick={() => hoppa(0)}>Spela igen</button>
+        <button type="button" onClick={() => hoppa(varld ? VSTART : 0)}>Spela igen</button>
         <button type="button" onClick={() => hoppa(SLUT)}>Hoppa över</button>
       </div>
       <style>{CSS}</style>
@@ -764,15 +770,18 @@ const CSS = `
 .ki-varld.syns .ki-v-masar{opacity:1}
 @keyframes kiSvav{to{translate:14px -8px}}
 .ki-skyltar{position:absolute;inset:0;z-index:3;pointer-events:none}
-.ki-skylt{position:absolute;display:inline-flex;align-items:center;gap:7px;font:400 15px/1 'Playfair Display',Georgia,serif;color:#1b57a0 !important;background:#fff;border-radius:19px 16px 18px 15px;padding:9px 14px 9px 11px;text-decoration:none !important;white-space:nowrap;box-shadow:0 6px 18px rgba(13,36,64,.16);opacity:0;visibility:hidden;transform:translateY(8px) rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s .5s}
-.ki-skyltar.syns .ki-skylt{opacity:1;visibility:visible;pointer-events:auto;transform:rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s}
-.ki-skyltar.syns .ki-skylt:hover,.ki-skyltar.syns .ki-skylt:focus-visible{transform:translateY(-3px) rotate(0deg);box-shadow:0 10px 24px rgba(13,36,64,.26);transition-delay:0s !important}
+.ki-skylt{position:absolute;display:inline-flex;align-items:center;gap:7px;font:400 15px/1 'Playfair Display',Georgia,serif;color:#1b57a0 !important;background:#fff;border-radius:19px 16px 18px 15px;padding:9px 14px 9px 11px;text-decoration:none !important;white-space:nowrap;box-shadow:0 6px 18px rgba(13,36,64,.16);opacity:0;visibility:hidden;transform:translate(var(--x,0),8px) rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s .5s}
+.ki-skyltar.syns .ki-skylt{opacity:1;visibility:visible;pointer-events:auto;transform:translate(var(--x,0),0) rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s}
+.ki-skyltar.syns .ki-skylt:hover,.ki-skyltar.syns .ki-skylt:focus-visible{transform:translate(var(--x,0),-3px) rotate(0deg);box-shadow:0 10px 24px rgba(13,36,64,.26);transition-delay:0s !important}
 .ki-skylt i{width:8px;height:8px;border-radius:50%;background:#c8642a;animation:kiPuls 2.4s ease-out infinite}
 @keyframes kiPuls{0%{box-shadow:0 0 0 0 rgba(200,100,42,.55)}70%,100%{box-shadow:0 0 0 9px rgba(200,100,42,0)}}
 .ki-s-oar{left:6.5%;top:37%;--r:-3deg}
 .ki-s-boende{left:14.5%;top:45%;--r:2deg}
 .ki-s-krogar{left:21%;top:55%;--r:-2deg}
-.ki-s-segla{left:56.5%;top:35.5%;--r:2deg}
+.ki-s-planera{left:56.5%;top:35%;--r:2deg;font-size:17px;padding:11px 16px 11px 13px}
+.ki-s-planera::after{content:'→';margin-left:2px}
+.ki-s-gora{left:19.5%;top:19%;--r:2deg}
+.ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
 @media (prefers-reduced-motion:reduce){.ki-skylt i,.ki-v-masar,.ki-varld.syns .ki-v-farja{animation:none}}
@@ -781,7 +790,8 @@ const CSS = `
 @media (max-width:860px){.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:12.5px;padding:7px 10px 7px 8px;gap:5px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
-.ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-segla{top:auto;bottom:132px;--r:0deg}
-.ki-s-boende{left:3%}.ki-s-krogar{left:26%}.ki-s-farjor{left:48.5%}.ki-s-segla{left:auto;right:3%}}
-@media (max-width:560px){.ki-skylt{font-size:11.5px;padding:6px 8px 6px 7px}.ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-segla{bottom:136px}}
+.ki-s-planera{left:50%;top:71%;--x:-50%;--r:0deg;font-size:16px;padding:11px 18px 11px 14px}
+.ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-gora{top:84%;--r:0deg}
+.ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
+@media (max-width:560px){.ki-skylt{font-size:11.5px;padding:6px 8px 6px 7px}.ki-s-planera{font-size:15px;padding:10px 16px 10px 12px}}
 `
