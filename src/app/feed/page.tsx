@@ -287,7 +287,6 @@ export default async function FeedPage(
  display: 'flex', alignItems: 'center', gap: 14,
  boxShadow: '0 4px 20px rgba(30,92,130,0.25)',
  }}>
- <div style={{ fontSize: 28, flexShrink: 0 }}> </div>
  <div>
  <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
  {thisWeek.length} {thisWeek.length === 1 ? 'tur' : 'turer'} loggades senaste veckan
