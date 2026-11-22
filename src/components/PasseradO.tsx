@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
+import { slugVarianter } from '@/lib/gamlaSlugs'
 
 export default function PasseradO({ slug, namn, tripId }: { slug: string; namn: string; tripId: string | null }) {
   const router = useRouter()
@@ -23,7 +24,7 @@ export default function PasseradO({ slug, namn, tripId }: { slug: string; namn: 
     const { error } = await supabase.from('visited_islands')
       .upsert({ user_id: user.id, island_slug: slug, trip_id: tripId }, { onConflict: 'user_id,island_slug', ignoreDuplicates: true })
     if (error) { setLaget('fel'); return }
-    await supabase.from('passerade_oar').delete().eq('user_id', user.id).eq('island_slug', slug)
+    await supabase.from('passerade_oar').delete().eq('user_id', user.id).in('island_slug', slugVarianter(slug))
     track('passerad_till_besokt', { slug })
     setLaget('klar')
     router.refresh()

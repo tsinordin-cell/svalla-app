@@ -49,7 +49,7 @@ const ISLANDS = [
   { slug: 'uto',           name: 'Utö',           lat: 58.9361, lng: 18.2503, radius: 4000 },
   { slug: 'orno',          name: 'Ornö',          lat: 59.0582, lng: 18.4006, radius: 5000 },
   { slug: 'dalaro',        name: 'Dalarö',        lat: 59.1353, lng: 18.4106, radius: 3000 },
-  { slug: 'smaadalaro',    name: 'Smådalarö',     lat: 59.1619, lng: 18.4446, radius: 2500 },
+  { slug: 'smadalaro',    name: 'Smådalarö',     lat: 59.1619, lng: 18.4446, radius: 2500 },
   { slug: 'galo',          name: 'Gålö',          lat: 59.0914, lng: 18.2814, radius: 3000 },
   { slug: 'fjardlang',     name: 'Fjärdlång',     lat: 59.0371, lng: 18.5233, radius: 2500 },
   { slug: 'nattaro',       name: 'Nåttarö',       lat: 58.8717, lng: 18.1203, radius: 3000 },

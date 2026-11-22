@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
-import { OAR_CATEGORIES, getOarCategory, islandsForCategory } from '../oar-categories'
+import { OAR_CATEGORIES, getOarCategory, islandsForCategory, gruppFor } from '../oar-categories'
 import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
 import { commonsThumb } from '@/lib/commonsBild'
@@ -44,6 +44,7 @@ const REGION_LABELS: Record<string, string> = {
   bohuslan: 'Bohuslän',
   goteborg: 'Göteborgs skärgård',
   ovriga: 'Övriga Sverige',
+  malaren: 'Mälaren',
 }
 
 export default async function OarCategoryPage({ params }: Props) {
@@ -54,9 +55,9 @@ export default async function OarCategoryPage({ params }: Props) {
   const islands = islandsForCategory(kategori)
 
   // Gruppera per region
-  const grouped: Record<string, typeof islands> = { norra: [], mellersta: [], södra: [], bohuslan: [], goteborg: [], ovriga: [] }
+  const grouped: Record<string, typeof islands> = { norra: [], mellersta: [], södra: [], malaren: [], bohuslan: [], goteborg: [], ovriga: [] }
   for (const i of islands) {
-    const region = i.region in grouped ? i.region : 'mellersta'
+    const region = gruppFor(i, grouped)
     const bucket = grouped[region]
     if (bucket) bucket.push(i)
   }
@@ -121,7 +122,7 @@ export default async function OarCategoryPage({ params }: Props) {
             Vi hittade inga öar för denna kategori, säg till om någon saknas.
           </div>
         ) : (
-          (['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
+          (['norra', 'mellersta', 'södra', 'malaren', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (

@@ -290,19 +290,22 @@ const nextConfig: NextConfig = {
       { source: '/ta-dig-till/:slug', destination: '/o/:slug/komma-dit', permanent: true },
       // Kanholmen borttagen 2026-09-28 (Toms beslut): ingen tillåten källa beskriver ön. Närmaste belagda ösida är Djurö.
       { source: '/o/kanholmen', destination: '/o/djuro', permanent: true },
-      // Adelsö har sluggen 'adelsjo' sedan starten. /o/adelso gav 404 men fick
-      // besök (admin/oar-trafik, 2026-10-09). Sluggen byts inte, den är indexerad.
-      { source: '/o/adelso', destination: '/o/adelsjo', permanent: true },
-      { source: '/o/adelso/:path*', destination: '/o/adelsjo/:path*', permanent: true },
-      // Samma sak för fyra öar till vars slug inte följer namnet (2026-10-09).
-      { source: '/o/smadalaro', destination: '/o/smaadalaro', permanent: true }, // Smådalarö
-      { source: '/o/smadalaro/:path*', destination: '/o/smaadalaro/:path*', permanent: true },
-      { source: '/o/ormskar', destination: '/o/ormsko', permanent: true }, // Ormskär
-      { source: '/o/ormskar/:path*', destination: '/o/ormsko/:path*', permanent: true },
-      { source: '/o/grasko', destination: '/o/graskar', permanent: true }, // Gräskö
-      { source: '/o/grasko/:path*', destination: '/o/graskar/:path*', permanent: true },
-      { source: '/o/visingso', destination: '/o/visingo', permanent: true }, // Visingsö
-      { source: '/o/visingso/:path*', destination: '/o/visingo/:path*', permanent: true },
+      // Fem öar hade en slug som inte följde namnet (adelsjo, smaadalaro, ormsko,
+      // graskar, visingo). 2026-10-09 lades omdirigeringar från rätt stavning till
+      // den felstavade. 2026-11-22 (beslut 4, Toms ja) byttes sluggarna till rätt
+      // stavning, och omdirigeringarna vänds: de gamla adresserna, som är indexerade
+      // och kan finnas i sparade länkar och notiser, går permanent till de nya.
+      // Sparade och besökta öar i databasen med gammal slug läses via GAMLA_SLUGS.
+      { source: '/o/adelsjo', destination: '/o/adelso', permanent: true },       // Adelsö
+      { source: '/o/adelsjo/:path*', destination: '/o/adelso/:path*', permanent: true },
+      { source: '/o/smaadalaro', destination: '/o/smadalaro', permanent: true }, // Smådalarö
+      { source: '/o/smaadalaro/:path*', destination: '/o/smadalaro/:path*', permanent: true },
+      { source: '/o/ormsko', destination: '/o/ormskar', permanent: true },       // Ormskär
+      { source: '/o/ormsko/:path*', destination: '/o/ormskar/:path*', permanent: true },
+      { source: '/o/graskar', destination: '/o/grasko', permanent: true },       // Gräskö
+      { source: '/o/graskar/:path*', destination: '/o/grasko/:path*', permanent: true },
+      { source: '/o/visingo', destination: '/o/visingso', permanent: true },     // Visingsö
+      { source: '/o/visingo/:path*', destination: '/o/visingso/:path*', permanent: true },
       { source: '/o/kanholmen/:path*', destination: '/o/djuro', permanent: true },
       { source: '/blogg/packlista-skargarden', destination: '/guider/packlista-skargarden', permanent: true },
       { source: '/blogg/allemansratten-pa-sjon', destination: '/guider/allemansratten-pa-sjon', permanent: true },
