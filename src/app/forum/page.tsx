@@ -274,7 +274,7 @@ export default async function ForumPage() {
  {cat.thread_count}
  </div>
  <div style={{ fontSize: 11, color: 'var(--txt3)' }}>
- trådar
+ {cat.thread_count === 1 ? 'tråd' : 'trådar'}
  </div>
  </>
  ) : (

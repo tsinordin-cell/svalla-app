@@ -204,7 +204,7 @@ export default async function ToplistaPage() {
 
         {/* ── Alltime topp: NM ── */}
         <LeaderboardSection
-          title="Alltime: Nautiska mil"
+          title="Genom tiderna: Nautiska mil"
           subtitle="Totalt seglat"
           rows={allTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${v.toFixed(0)} NM`}
@@ -214,10 +214,10 @@ export default async function ToplistaPage() {
 
         {/* ── Alltime topp: antal turer ── */}
         <LeaderboardSection
-          title="Alltime: Flest turer"
+          title="Genom tiderna: Flest turer"
           subtitle="Antal loggade turer"
           rows={allTopCount.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.count, secondaryLabel: `${r.nm.toFixed(0)} NM` }))}
-          formatValue={v => `${v} turer`}
+          formatValue={v => `${v} ${v === 1 ? 'tur' : 'turer'}`}
           emptyText="Inga turer loggade"
           accentColor="#2a9d5c"
         />
@@ -225,7 +225,7 @@ export default async function ToplistaPage() {
         {/* ── Magic trips leaderboard ── */}
         {allTopMagic.length > 0 && (
           <LeaderboardSection
-            title="Alltime: Magiska turer"
+            title="Genom tiderna: Magiska turer"
             subtitle="Flest magiska turer"
             rows={allTopMagic.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.magic, secondaryLabel: `${r.nm.toFixed(0)} NM totalt` }))}
             formatValue={v => `×${v} magiska`}
@@ -237,7 +237,7 @@ export default async function ToplistaPage() {
         {/* ── Speed leaderboard ── */}
         {allTopSpeed.length > 0 && (
           <LeaderboardSection
-            title="Alltime: Toppfart"
+            title="Genom tiderna: Toppfart"
             subtitle="Högsta uppmätta hastighet"
             rows={allTopSpeed.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.maxSpeed, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
             formatValue={v => `${decimal(v)} kn`}

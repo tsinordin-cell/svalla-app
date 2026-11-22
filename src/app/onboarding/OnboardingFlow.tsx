@@ -411,7 +411,7 @@ const BOAT_OPTIONS = [
   { value: 'Segelbåt', label: 'Segelbåt',     Icon: SailboatIcon, desc: 'Kryss och slör mellan öarna' },
   { value: 'Motorbåt', label: 'Motorbåt',     Icon: MotorboatIcon, desc: 'Snabb genom skärgården' },
   { value: 'Kajak',    label: 'Kajak / SUP',  Icon: KayakIcon, desc: 'Nära vattnet och tystnaden' },
-  { value: 'Charter',  label: 'Utan egen båt', Icon: CharterIcon, desc: 'Hyr, åk med, eller besätter' },
+  { value: 'Charter',  label: 'Utan egen båt', Icon: CharterIcon, desc: 'Hyr, åker med eller mönstrar på' },
 ]
 
 /** "åkersberga" → "Åkersberga"; "  Vaxholm " → "Vaxholm". Högst 60 tecken. */
@@ -715,7 +715,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         <h2 style={HEADING}>Logga dina turer</h2>
         <p style={SUBTITLE}>
           Spåra rutten med GPS direkt från telefonen. Distans, tid, fart och rutt
-          sparas automatiskt, som ett digitalt loggbok-uppslag.
+          sparas automatiskt, som ett digitalt loggboksuppslag.
         </p>
         <ChartRouteIllustration/>
         <NavHint label="Logga"/>
@@ -723,7 +723,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 20,
           flexWrap: 'wrap',
         }}>
-          {['GPS i bakgrunden', 'Foto från turen', 'Pinnar-rating'].map(b => (
+          {['GPS i bakgrunden', 'Foto från turen', 'Betyg på turen'].map(b => (
             <span key={b} style={{
               fontSize: 11.5, fontWeight: 600, color: 'rgba(255,255,255,0.75)',
               padding: '6px 12px', borderRadius: 999,
@@ -754,7 +754,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         <h2 style={HEADING}>Pejla in skärgården</h2>
         <p style={SUBTITLE}>
           Hitta krogar, gästbryggor, bastur och bensinmackar längs hela kusten.
-          Sökbart sjökort med riktiga koordinater, inga gissningar.
+          Sökbar karta med riktiga koordinater, inga gissningar.
         </p>
         <MapMarkersIllustration/>
         <NavHint label="Utforska"/>
@@ -797,7 +797,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       <SeaBackdrop/>
       <div key={animKey} style={CARD}>
         <CompassProgress current={step}/>
-        <h2 style={HEADING}>Hitta rundt i Svalla</h2>
+        <h2 style={HEADING}>Hitta runt i Svalla</h2>
         <p style={SUBTITLE}>
           Allt du behöver finns i menyn. Här är en snabb karta.
         </p>

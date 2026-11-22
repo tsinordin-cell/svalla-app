@@ -11,7 +11,7 @@ import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt',
-  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastun, bryggor och naturupplevelser.',
+  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastur, bryggor och naturupplevelser.',
   openGraph: {
     images: ogSida('https://svalla.se/planera'),
     title: 'Planera din skärgårdsrutt | Svalla',
@@ -109,7 +109,7 @@ function PlaneraVy({
             Planera din skärgårdsrutt
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.72)', margin: '0 0 20px', lineHeight: 1.55 }}>
-            Välj start, mål och intressen. Vi hittar krogar, bastun och bryggor längs vägen.
+            Välj start, mål och intressen. Vi hittar krogar, bastur och bryggor längs vägen.
           </p>
           <Link href="/planera/ny" className="planera-ny-rutt" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,

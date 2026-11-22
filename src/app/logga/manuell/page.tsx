@@ -503,7 +503,7 @@ function ManuellForm() {
         borderBottom: '1px solid rgba(10,123,140,0.10)',
         position: 'sticky', top: 0, zIndex: 50,
       }}>
-        <button onClick={() => router.back()} className="press-feedback" style={{
+        <button onClick={() => router.back()} aria-label="Tillbaka" className="press-feedback" style={{
           width: 36, height: 36, borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           background: 'rgba(10,123,140,0.07)', border: 'none', cursor: 'pointer',
@@ -899,12 +899,12 @@ function ManuellForm() {
               {/* Distans + Tid */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
                 {[
-                  { label: 'Distans (NM)', value: distance, set: setDistance, step: '0.1' },
-                  { label: 'Tid (min)', value: duration, set: setDuration, step: '1' },
-                ].map(({ label, value, set, step }) => (
+                  { id: 'manuell-distans', label: 'Distans (NM)', value: distance, set: setDistance, step: '0.1' },
+                  { id: 'manuell-tid', label: 'Tid (min)', value: duration, set: setDuration, step: '1' },
+                ].map(({ id, label, value, set, step }) => (
                   <div key={label}>
-                    <label style={{ fontSize: 11, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
-                    <input type="number" inputMode="decimal" step={step} min="0" placeholder="0"
+                    <label htmlFor={id} style={{ fontSize: 11, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
+                    <input id={id} type="number" inputMode="decimal" step={step} min="0" placeholder="0"
                       value={value} onChange={e => set(e.target.value)}
                       style={{
                         width: '100%', padding: '10px 12px', borderRadius: 12,

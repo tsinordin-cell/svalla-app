@@ -188,6 +188,18 @@ export default function SparaPage() {
       if (!data.user) { router.push('/logga-in?returnTo=%2Fspara&mode=ny'); return }
       setCurrentUserId(data.user.id)
       setAuthLoading(false)
+      // Förval: båttypen från guiden/profilen (users.vessel_type via min_profil).
+      // Granskningen 2026-11-22: guiden sparade Segelbåt men /spara krävde
+      // nytt val. Väljer man själv innan svaret kommer vinner det valet.
+      void (async () => {
+        try {
+          const { data: profil } = await supabase.rpc('min_profil').maybeSingle()
+          const vt = (profil as { vessel_type?: string | null } | null)?.vessel_type
+          if (vt && (BOAT_TYPES as readonly string[]).includes(vt)) {
+            setBoatType(prev => prev || vt)
+          }
+        } catch { /* inget förval, samma läge som tidigare */ }
+      })()
     })
   }, [supabase, router])
 
@@ -1089,7 +1101,7 @@ export default function SparaPage() {
     return (
       <div className="min-h-screen">
         <header className="sticky top-0 z-40 flex items-center gap-3 px-4 py-3 bg-white/96 border-b border-sea-light/40">
-          <button onClick={() => router.back()} className="w-9 h-9 rounded-full flex items-center justify-center bg-sea-xl">
+          <button onClick={() => router.back()} aria-label="Tillbaka" className="w-9 h-9 rounded-full flex items-center justify-center bg-sea-xl">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
