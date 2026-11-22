@@ -867,5 +867,6 @@ const CSS = `
 .ki-s-planera{left:50%;top:71%;--x:-50%;--r:0deg;font-size:16px;padding:11px 18px 11px 14px}
 .ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-gora{top:84%;--r:0deg}
 .ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
-@media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-s-planera{font-size:15px;padding:10px 17px 10px 15px}}
+@media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-s-planera{font-size:15px;padding:10px 17px 10px 15px}
+.ki-skyltar .ki-s-planera{top:67%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
 `
