@@ -8,6 +8,8 @@ import Icon from '@/components/Icon'
 import { validateUsername, deriveUsername } from '@/lib/username'
 import { bekraftelseMal } from '@/lib/epostbekraftelse'
 import KollaInkorgen from '@/components/BekraftaEpost'
+import { startaGoogleInloggning } from '@/lib/appInloggning'
+import { VILLKOR_VERSION, VILLKOR_SOKVAG } from '@/lib/villkor'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  /kom-igang — Premium onboarding flow
@@ -114,6 +116,9 @@ function KomIgangInner() {
  const [oauthLoading, setOauthLoading] = useState<'google' | null>(null)
  const [err, setErr] = useState('')
  const [hasSession, setHasSession] = useState(false)
+ // Användarvillkoren (2026-11-22): måste godkännas för att skapa konto
+ // (App Store-riktlinje 1.2, appar med användarinnehåll).
+ const [villkorOk, setVillkorOk] = useState(false)
  const [stats, setStats] = useState<LiveStats | null>(null)
 
  const pw = passwordStrength(password)
@@ -158,17 +163,14 @@ function KomIgangInner() {
  /* ── OAuth ── */
  async function signInWithOAuth() {
  setOauthLoading('google'); setErr('')
- // redirectTo måste peka på /auth/callback — inte direkt på /feed.
- // /auth/callback växlar authorization code mot session och redirectar vidare.
- const callbackUrl = new URL(`${location.origin}/auth/callback`)
- callbackUrl.searchParams.set('next', '/feed')
- const { error } = await supabase.auth.signInWithOAuth({
- provider: 'google',
- options: {
- redirectTo: callbackUrl.toString(),
+ // /auth/callback växlar koden mot en session och redirectar vidare till /feed.
+ // I appen går vägen via Safari, se lib/appInloggning.ts.
+ const { error, iApp } = await startaGoogleInloggning(supabase, {
+ next: '/feed',
+ villkor: VILLKOR_VERSION,
  queryParams: { access_type: 'offline', prompt: 'consent' },
- },
  })
+ if (iApp && !error) setTimeout(() => setOauthLoading(null), 4000)
  if (error) { setErr(swErr(error.message)); setOauthLoading(null) }
  }
 
@@ -178,6 +180,7 @@ function KomIgangInner() {
  if (!/\S+@\S+\.\S+/.test(email)) return 'Ogiltig e-postadress.'
  if (password.length < 6) return 'Lösenordet måste vara minst 6 tecken.'
  if (password !== confirmPw) return 'Lösenorden matchar inte.'
+ if (!villkorOk) return 'Du behöver godkänna användarvillkoren för att skapa ett konto.'
  // Username validerades ALDRIG här tidigare — därför kunde en hel
  // e-postadress bli username och ligga publikt indexerad. Se src/lib/username.ts.
  if (username.trim()) {
@@ -185,7 +188,7 @@ function KomIgangInner() {
  if (usernameErr) return usernameErr
  }
  return null
- }, [email, password, confirmPw, username])
+ }, [email, password, confirmPw, username, villkorOk])
 
  /* ── Sign up ── */
  async function handleSignup(e: React.FormEvent) {
@@ -204,7 +207,7 @@ function KomIgangInner() {
  email: email.trim(),
  password,
  // Länken i bekräftelsemejlet leder hit efteråt, se lib/epostbekraftelse.ts
- options: { data: { username: derivedUsername, full_name: name.trim() }, emailRedirectTo: bekraftelseMal(efterBekraftelse) },
+ options: { data: { username: derivedUsername, full_name: name.trim(), villkor_version: VILLKOR_VERSION, villkor_godkanda: new Date().toISOString() }, emailRedirectTo: bekraftelseMal(efterBekraftelse) },
  })
 
  if (error) { setErr(swErr(error.message)); setLoading(false); return }
@@ -461,6 +464,10 @@ function KomIgangInner() {
  <GoogleIcon />
  {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
  </button>
+ <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '-4px 0 0', lineHeight: 1.5 }}>
+ Skapas ett nytt konto med Google godkänner du{' '}
+ <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>användarvillkoren</a>.
+ </p>
 
  {err && (
  <div style={{
@@ -746,6 +753,24 @@ function KomIgangInner() {
  </div>
  )}
 
+ {/* Användarvillkor, obligatoriskt */}
+ <label htmlFor="villkor" style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13, lineHeight: 1.5, color: 'var(--txt2)', cursor: 'pointer', padding: '2px 2px 0' }}>
+ <input
+ id="villkor"
+ type="checkbox"
+ required
+ checked={villkorOk}
+ onChange={e => setVillkorOk(e.target.checked)}
+ style={{ marginTop: 3, width: 16, height: 16, flexShrink: 0 }}
+ />
+ <span>
+ Jag godkänner Svallas{' '}
+ <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>användarvillkor</a>
+ {' '}och har läst{' '}
+ <a href="/integritetspolicy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>integritetspolicyn</a>.
+ </span>
+ </label>
+
  {/* Submit */}
  <button
  className="press-feedback" type="submit"
@@ -771,9 +796,8 @@ function KomIgangInner() {
  </button>
 
  <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '6px 0 0', lineHeight: 1.5 }}>
- {/* /villkor fanns aldrig (404 till 2026-11-07). Användarvillkor är inte skrivna; tills de finns länkar vi bara integritetspolicyn. */}
- Genom att skapa ett konto godkänner du vår{' '}
- <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>integritetspolicy</a>.
+ Skapar du kontot med Google godkänner du också{' '}
+ <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>användarvillkoren</a>.
  </p>
  </form>
 

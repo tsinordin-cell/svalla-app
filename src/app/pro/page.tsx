@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient, getViewer } from '@/lib/supabase'
 import { isProEnabled } from '@/lib/pro'
 import { track } from '@/lib/analytics-events'
+import { arIIosApp } from '@/lib/appInloggning'
 
 function ProIcon({ name }: { name: string }) {
   const s = { width: 20, height: 20, flexShrink: 0 as const }
@@ -39,6 +40,11 @@ function ProPageInner() {
   const [loading, setLoading] = useState(false)
   const [plan, setPlan] = useState<'month' | 'year'>('year')
   const [checkoutCompletedFired, setCheckoutCompletedFired] = useState(false)
+  // App Store-riktlinje 3.1.1: digitala köp i iOS-appen måste gå via Apple.
+  // Tills det finns köp via Apple säljs Pro inte i iOS-appen, och appen
+  // hänvisar inte heller till webben (3.1.1(a)).
+  const [iIosApp, setIIosApp] = useState(false)
+  useEffect(() => { arIIosApp().then(setIIosApp) }, [])
 
   useEffect(() => {
     if (!isProEnabled()) return
@@ -222,7 +228,7 @@ function ProPageInner() {
           Till flödet
         </button>
 
-        <button
+        {!iIosApp && <button
           onClick={handlePortal}
           disabled={loading}
           className="press-feedback"
@@ -233,7 +239,7 @@ function ProPageInner() {
           }}
         >
           {loading ? 'Laddar…' : 'Hantera prenumeration'}
-        </button>
+        </button>}
       </div>
     )
   }
@@ -279,7 +285,13 @@ function ProPageInner() {
         ))}
       </div>
 
-      {isProUser === false && (
+      {isProUser === false && iIosApp && (
+        <p style={{ textAlign: 'center', fontSize: 14, color: 'var(--txt2)', margin: '0 0 8px', lineHeight: 1.5 }}>
+          Svalla Pro går inte att köpa i appen.
+        </p>
+      )}
+
+      {isProUser === false && !iIosApp && (
         <>
           <div style={{ display: 'flex', gap: 10, marginBottom: 16 }}>
             <button style={planPill('month')} onClick={() => setPlan('month')}>
@@ -317,7 +329,7 @@ function ProPageInner() {
       )}
 
       {isProUser === true && (
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: 'center' }}>{/* Hantera-knappen öppnar Stripe: visas inte i iOS-appen */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 18px',
             background: 'rgba(30,92,130,0.08)', borderRadius: 12, marginBottom: 16,
@@ -329,7 +341,7 @@ function ProPageInner() {
             Du är Pro
           </div>
           <br />
-          <button
+          {!iIosApp && <button
             onClick={handlePortal}
             disabled={loading}
             className="press-feedback"
@@ -346,7 +358,7 @@ function ProPageInner() {
             }}
           >
             {loading ? 'Laddar…' : 'Hantera prenumeration'}
-          </button>
+          </button>}
         </div>
       )}
 
@@ -354,9 +366,11 @@ function ProPageInner() {
         <div style={{ height: 52 }} />
       )}
 
-      <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--txt3)', marginTop: 20 }}>
-        Säkert betalning via Stripe. Avsluta när som helst.
-      </p>
+      {!iIosApp && (
+        <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--txt3)', marginTop: 20 }}>
+          Säkert betalning via Stripe. Avsluta när som helst.
+        </p>
+      )}
 
       <button
         onClick={() => router.back()}
