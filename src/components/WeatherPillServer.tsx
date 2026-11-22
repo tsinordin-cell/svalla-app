@@ -13,10 +13,12 @@ import {
 } from '@/lib/weatherServer'
 
 export default async function WeatherPillServer({
-  lat, lng, tone = 'onDark',
+  lat, lng, plats, tone = 'onDark',
 }: {
   lat: number
   lng: number
+  /** Ortnamnet som vädret gäller. Utan det vet man inte var vädret är (granskningen 2026-11-22). */
+  plats?: string
   /** onDark = ljus text på mörk hero. onLight = mörk text på ljus yta. */
   tone?: 'onDark' | 'onLight'
 }) {
@@ -36,6 +38,12 @@ export default async function WeatherPillServer({
       border: mörk ? '1px solid rgba(255,255,255,0.16)' : '1px solid var(--border)',
       fontSize: 13, color: färg, whiteSpace: 'nowrap',
     }}>
+      {plats && (
+        <>
+          <span style={{ fontWeight: 700 }}>{plats}</span>
+          <span aria-hidden style={{ color: dämpad }}>|</span>
+        </>
+      )}
       <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontWeight: 700 }}>
         <Icon name={icon} size={15} aria-hidden />
         {v.tempC}°

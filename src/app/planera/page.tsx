@@ -8,6 +8,7 @@ import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import Icon from '@/components/Icon'
 import WeatherPillServer from '@/components/WeatherPillServer'
 import { ogSida } from '@/lib/og-standard'
+import { ISLAND_COORDS } from '@/lib/islandCoords'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt',
@@ -22,6 +23,13 @@ export const metadata: Metadata = {
 }
 
 export const dynamic = 'force-dynamic'
+
+/**
+ * Vädret på Planera gällde förut en punkt utan namn (59.32, 18.20). Nu en
+ * namngiven ort ur islandCoords, så man vet var vädret gäller. Vaxholm är
+ * porten till innerskärgården, dit de flesta rutter börjar.
+ */
+const VADERORT = ISLAND_COORDS.find(o => o.slug === 'vaxholm') ?? { name: 'Vaxholm', lat: 59.4022, lng: 18.3520 }
 
 type PlannedRoute = {
   id: string
@@ -52,7 +60,7 @@ export default async function PlaneraPage() {
     <PlaneraVy
       inloggad={!!session}
       myRoutes={myRoutes}
-      vader={<WeatherPillServer lat={59.32} lng={18.20} />}
+      vader={<WeatherPillServer lat={VADERORT.lat} lng={VADERORT.lng} plats={VADERORT.name} />}
     />
   )
 }
@@ -219,17 +227,11 @@ function PlaneraVy({
               <Icon name="map" size={32} stroke={1.6} />
             </div>
             <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Inga rutter ännu</p>
-            <p className="planera-sekundar" style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 20px' }}>
-              Planera din första skärgårdsrutt och se vilka stopp som passar.
+            {/* Knappen "Planera din första rutt" togs bort: heron har redan
+                "Planera ny rutt" till samma sida (beslut 9, 2026-11-22). */}
+            <p className="planera-sekundar" style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
+              Tryck på Planera ny rutt ovan för att se vilka stopp som passar din första skärgårdsrutt.
             </p>
-            <Link href="/planera/ny" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '12px 28px', borderRadius: 50,
-              background: 'var(--grad-sea)', color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none',
-            }}>
-              <Icon name="map" size={15} stroke={2} />
-              Planera din första rutt
-            </Link>
           </div>
         )}
 

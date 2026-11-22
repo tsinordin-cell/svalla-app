@@ -61,6 +61,18 @@ export async function GET(
 
   const googleUrl = `https://places.googleapis.com/v1/${photoName}/media?${params.toString()}`
 
+  // Spärr: när Google nyss nekat nyckeln (403) eller dagskvoten är slut (429)
+  // frågar vi inte igen förrän spärren släppt. Se googleNekarTill nedan.
+  if (Date.now() < googleNekarTill) {
+    return new Response(null, {
+      status: 502,
+      headers: {
+        'Cache-Control': `public, max-age=${NEKAD_CACHE_S}, s-maxage=${NEKAD_CACHE_S}`,
+        'X-Photo-Error': 'sparr',
+      },
+    })
+  }
+
   const r = await fetch(googleUrl, { redirect: 'follow' })
   if (!r.ok) {
     // Logga Googles FAKTISKA felmeddelande. Tidigare kastades det bort och
@@ -112,11 +124,18 @@ export async function GET(
     //
     // Satori/OG-bilden tal detta eftersom /api/og/upptack forst kontrollerar
     // att bakgrundsbilden verkligen ar en bild (se bildFungerar dar).
+    // 403 (nyckeln nekas) och 429 (kvoten slut) gäller hela nyckeln, inte
+    // just den här bilden. Då spärrar vi alla fotoanrop i instansen en stund
+    // och låter CDN:en minnas felet längre, så att varje sidvisning inte
+    // väntar på ett nytt nej från Google.
+    const helaNyckeln = r.status === 403 || r.status === 429
+    if (helaNyckeln) googleNekarTill = Date.now() + NEKAD_SPARR_MS
+    const felCache = helaNyckeln ? NEKAD_CACHE_S : 300
     return new Response(null, {
       status: 502,
       headers: {
         // Kort cache: sa fort referenserna lagas ska sidorna self-healas.
-        'Cache-Control': 'public, max-age=300, s-maxage=300',
+        'Cache-Control': `public, max-age=${felCache}, s-maxage=${felCache}`,
         'X-Photo-Error': String(r.status),
       },
     })
@@ -132,6 +151,22 @@ export async function GET(
     },
   })
 }
+
+/**
+ * 2026-11-22 (beslut 6, färre Google-anrop).
+ * MÄTT 2026-11-22 i Vercels runtime-loggar: 113 av 133 fel från Google det
+ * senaste dygnet var 403 PERMISSION_DENIED "Permission denied on the service"
+ * på places.googleapis.com. Det gäller nyckeln, inte bilden, så varje nytt
+ * försök ger samma nej. Tidigare cachades nejet bara 5 minuter per bild-URL
+ * och varje bild frågade Google på egen hand.
+ *
+ * Nu: efter ett 403 eller 429 frågar instansen inte Google på 30 minuter, och
+ * CDN:en minns felet i 30 minuter per bild. När nyckeln fungerar igen släpper
+ * spärren av sig själv. Kvoten och faktureringen i Google Cloud rörs inte.
+ */
+let googleNekarTill = 0
+const NEKAD_SPARR_MS = 30 * 60 * 1000
+const NEKAD_CACHE_S = 30 * 60
 
 function clamp(n: number, lo: number, hi: number) {
   if (Number.isNaN(n)) return lo

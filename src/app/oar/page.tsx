@@ -260,20 +260,22 @@ export default function OarIndexPage() {
               </Link>
             ))}
           </div>
-          <Link
-            href="/oar/barnvanliga"
+          {/* Länken hette "Alla kategorier" men ledde till Barnvänliga. Nu leder
+              den till översikten över alla öar längre ner (beslut 5, 2026-11-22). */}
+          <a
+            href="#alla-oar"
             style={{
               display: 'inline-block', marginTop: 14,
               fontSize: 13, color: 'var(--sea)', fontWeight: 600,
               textDecoration: 'none',
             }}
           >
-            Alla kategorier →
-          </Link>
+            Se alla {ANTAL_OAR} öar ↓
+          </a>
         </section>
 
         {/* Alla öar grupperade per region */}
-        <section style={{ marginBottom: 48 }}>
+        <section id="alla-oar" style={{ marginBottom: 48, scrollMarginTop: 16 }}>
           <h2 style={{
             fontSize: 28, fontWeight: 700,
             color: 'var(--txt)', margin: '0 0 8px',
