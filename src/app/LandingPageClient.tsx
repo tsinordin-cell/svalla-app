@@ -618,7 +618,7 @@ __MOB_NAV__ </nav>
  </p>
  </div>
  <div class="hero-bottom">
- <form class="hero-search" role="search" action="/sok" method="get" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
+ <form class="hero-search" role="search" action="/sok" method="get">
  <input type="search" name="q" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Sök ö, krog eller hamn" placeholder="Sök ö, krog eller hamn…" id="heroSearchInput"/>
  <button type="submit">Sök</button>
  </form>
@@ -1097,6 +1097,17 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
    if (!varOppen) item.classList.add('open')
  }
  document.addEventListener('click', onFaqClick)
+ // Hero-sökningen. Tidigare inbäddad onsubmit, som CSP:n nu blockerar
+ // (script-src-attr 'none'). Utan JS skickar formuläret ändå GET /sok?q=…
+ const onHeroSubmit = (e: SubmitEvent) => {
+   const form = e.target as HTMLElement | null
+   if (!form?.classList?.contains('hero-search')) return
+   e.preventDefault()
+   const input = document.getElementById('heroSearchInput') as HTMLInputElement | null
+   const q = (input?.value ?? '').trim()
+   router.push('/sok' + (q ? '?q=' + encodeURIComponent(q) : ''))
+ }
+ document.addEventListener('submit', onHeroSubmit)
 
 
  // Nav-styling sköts via CSS — inga inline-overrides
@@ -1259,6 +1270,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  window.removeEventListener('scroll', handleScroll)
  document.removeEventListener('click', onLinkClick)
  document.removeEventListener('click', onFaqClick)
+ document.removeEventListener('submit', onHeroSubmit)
  document.removeEventListener('pointerover', onLinkHover)
  observer.disconnect()
  bildObserver?.disconnect()
