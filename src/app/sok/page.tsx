@@ -655,6 +655,8 @@ function SokPageInner() {
 }
 
 function ResultRow({ r }: { r: Result }) {
+ // Bild som inte gick att ladda (t.ex. när Googles bildkvot är slut): visa typens ikon i stället för en tom ruta.
+ const [bildTrasig, setBildTrasig] = useState(false)
  return (
  <Link href={r.href} style={{ textDecoration: 'none' }}>
  <div style={{
@@ -676,8 +678,8 @@ function ResultRow({ r }: { r: Result }) {
  overflow: 'hidden',
  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
  }}>
- {r.image
- ? <Image src={r.image} alt="" width={46} height={46} unoptimized={r.image.includes('wikimedia.org')} onError={e => { e.currentTarget.style.visibility = 'hidden' }} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+ {r.image && !bildTrasig
+ ? <Image src={r.image} alt="" width={46} height={46} unoptimized={r.image.includes('wikimedia.org')} onError={() => setBildTrasig(true)} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
  : r.type === 'seglare'
  ? <span style={{ fontSize: 18, fontWeight: 600, color: '#fff' }}>{r.title[0]?.toUpperCase()}</span>
  : TYPE_ICON[r.type]
