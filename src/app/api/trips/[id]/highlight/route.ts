@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { turArPublik } from '@/lib/besokSynlighet'
+import { checkRateLimit } from '@/lib/rateLimit'
+import { HOJDPUNKT_PUSH_PER_DYGN, giltigPlatsSlug, nyHojdpunktsplats } from '@/lib/hojdpunktPush'
 import webpush from 'web-push'
 
 /**
@@ -40,7 +42,11 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     return NextResponse.json({ error: 'Ogiltig JSON' }, { status: 400 })
   }
 
-  if (!body.place_slug || !body.place_name) {
+  if (
+    typeof body.place_slug !== 'string' || !body.place_slug ||
+    typeof body.place_name !== 'string' || !body.place_name ||
+    body.place_slug.length > 120 || body.place_name.length > 120
+  ) {
     return NextResponse.json({ error: 'place_slug och place_name krävs' }, { status: 400 })
   }
   if (body.note && body.note.length > 200) {
@@ -59,6 +65,13 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
     .single()
   if (!trip) return NextResponse.json({ error: 'Tur hittades inte' }, { status: 404 })
   if (trip.user_id !== user.id) return NextResponse.json({ error: 'Inte din tur' }, { status: 403 })
+
+  // Förra höjdpunkten på turen: samma plats igen ska inte ge en ny push.
+  const { data: forra } = await supabase
+    .from('trip_highlights')
+    .select('place_slug')
+    .eq('trip_id', tripId)
+    .maybeSingle()
 
   // Upsert: en höjdpunkt per tur (unique index på trip_id)
   // Vi gör DELETE + INSERT för att få ren ersättning om användaren ändrar sig.
@@ -88,9 +101,17 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   // Bästa-effort, fail-silent — användarens spara-flöde får inte blockeras.
   // Bara för en publik tur (2026-11-19): pushen säger "X just nu på <plats>"
   // och gick tidigare ut även när turen var privat.
-  if (turArPublik(trip)) {
+  // Granskning 2026-11-22 (lib/hojdpunktPush.ts): namnet i pushen hämtas ur
+  // platstabellen, samma plats igen ger ingen ny push, och högst
+  // HOJDPUNKT_PUSH_PER_DYGN pushar per konto och dygn.
+  if (
+    turArPublik(trip) &&
+    giltigPlatsSlug(body.place_slug) &&
+    nyHojdpunktsplats(forra?.place_slug as string | null | undefined, body.place_slug) &&
+    (await checkRateLimit(`hojdpunkt-push:${user.id}`, HOJDPUNKT_PUSH_PER_DYGN, 24 * 60 * 60 * 1000))
+  ) {
     try {
-      await notifyPlaceSavers(body.place_slug, body.place_name, user.id)
+      await notifyPlaceSavers(body.place_slug, user.id)
     } catch {
       /* tyst */
     }
@@ -99,8 +120,18 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   return NextResponse.json({ id: hl.id })
 }
 
-async function notifyPlaceSavers(placeSlug: string, placeName: string, byUserId: string) {
+async function notifyPlaceSavers(placeSlug: string, byUserId: string) {
   const admin = getAdminClient()
+
+  // Platsens namn ur databasen, inte ur anropet. Okänd eller dold plats: ingen push.
+  const { data: plats } = await admin
+    .from('restaurants')
+    .select('name')
+    .eq('slug', placeSlug)
+    .is('hidden_at', null)
+    .maybeSingle()
+  const placeName = typeof plats?.name === 'string' ? plats.name : null
+  if (!placeName) return
 
   // Hitta användare som har sparat platsen (exklusive höjdpunkt-skaparen själv)
   const { data: savers } = await admin
