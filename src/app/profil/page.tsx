@@ -659,7 +659,8 @@ export default function ProfilPage() {
                       borderRadius: 14,
                       background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
                       border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
-                      opacity: unlocked ? 1 : 0.38,
+                      // 0,38 gjorde låsta märken nästan osynliga mot den ljusa bakgrunden (granskningen 2026-11-22).
+                      opacity: unlocked ? 1 : 0.6,
                       filter: unlocked ? 'none' : 'grayscale(1)',
                       boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
                       position: 'relative',
