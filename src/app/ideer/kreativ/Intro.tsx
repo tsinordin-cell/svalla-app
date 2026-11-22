@@ -507,7 +507,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       c.fillText('SVALLA', W / 2 + stor * 0.08, H * 0.2)
       c.font = `700 ${Math.max(10, stor * 0.17)}px ${sans}`
       if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.05}px`
-      c.fillText('SVERIGES SAMLADE SKÄRGÅRDSSIDA', W / 2, H * 0.2 + stor * 0.42)
+      c.fillText('SKÄRGÅRDEN BÖRJAR HÄR', W / 2, H * 0.2 + stor * 0.42)
       gl.bindTexture(gl.TEXTURE_2D, txtTex)
       gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, tc)
@@ -678,7 +678,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
     return (
       <div className="ki-scen ki-reserv" ref={scen}>
         <div className="ki-reserv-hav" />
-        <p>Svalla · Sveriges samlade skärgårdssida</p>
+        <p>Svalla · Skärgården börjar här</p>
       </div>
     )
   }
@@ -687,17 +687,49 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
     <div className={gar ? 'ki-scen ki-gar' : 'ki-scen'} ref={scen}>
       {varld && (
         <div className={visT >= 9800 ? 'ki-varld syns' : 'ki-varld'} aria-hidden="true">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-v-o" src="/kreativ/scen-o.webp" alt="" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-v-farja" src="/kreativ/scen-farja.webp" alt="" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-v-fyr" src="/kreativ/scen-fyr.webp" alt="" />
+          {/* Ön med midsommarstång och flagga, ångbåten som pustar rök, fyren och bastuflotten (Max 2026-11-22) */}
+          <div className="ki-v ki-v-o">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-bild" src="/kreativ/scen-o.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-stang" src="/kreativ/scen-midsommarstang.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-flagga" src="/kreativ/scen-flagga.webp" alt="" />
+          </div>
+          <div className="ki-v ki-v-farja">
+            <span className="ki-rok" aria-hidden="true"><i /><i /><i /><i /></span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-bild" src="/kreativ/scen-angbat.webp" alt="" />
+          </div>
+          <div className="ki-v ki-v-bastu">
+            <span className="ki-rok ki-rok-bastu" aria-hidden="true"><i /><i /><i /></span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-bild" src="/kreativ/scen-bastuflotte.webp" alt="" />
+          </div>
+          <div className="ki-v ki-v-fyr">{/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /></div>
           <svg className="ki-v-masar" viewBox="0 0 120 44" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M6 24 Q20 8 32 22 Q44 6 60 20" /><path d="M74 36 Q84 26 92 35 Q100 25 112 34" /></svg>
           <svg className="ki-v-masar tva" viewBox="0 0 60 30" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M4 20 Q16 6 28 18 Q40 4 56 16" /></svg>
         </div>
       )}
       <canvas ref={canvas} className="ki-canvas" aria-label={varld ? 'Startscenen: havet stiger, Svallas segelbåt seglar in och en skärgård växer fram.' : 'Introt: blå prickar blir Sverige, sedan Svallas segelbåt och till sist ett hav.'} />
+      {varld && (
+        <div className={visT >= 9800 ? 'ki-djup syns' : 'ki-djup'} aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-d ki-d-orca" src="/kreativ/scen-spackhuggare.webp" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-d ki-d-f1" src="/kreativ/scen-fisk1.webp" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-d ki-d-f2" src="/kreativ/scen-fisk2.webp" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-d ki-d-f3" src="/kreativ/scen-fisk3.webp" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-d ki-d-f4" src="/kreativ/scen-fisk2.webp" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-d ki-d-f5" src="/kreativ/scen-fisk1.webp" alt="" />
+          <span className="ki-bubbla" /><span className="ki-bubbla b2" /><span className="ki-bubbla b3" />
+        </div>
+      )}
       {varld && (
         <nav className={visT >= 10900 && !gar ? 'ki-skyltar syns' : 'ki-skyltar'} aria-label="Vägar in i Svalla">
           {SKYLTAR.map((s, i) => (
@@ -756,14 +788,40 @@ const CSS = `
 .ki-reserv-hav{position:absolute;left:0;right:0;bottom:0;height:40%;background:#1b57a0}
 .ki-reserv p{margin-top:18%;font:700 13px Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1b57a0}
 .ki-varld{position:absolute;inset:0;pointer-events:none}
-.ki-varld img{position:absolute;bottom:36%;height:auto;opacity:0;transform:translateY(75%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1),opacity .5s}
-.ki-varld.syns img{opacity:1}
+.ki-varld .ki-v{position:absolute;bottom:36%;opacity:0;transform:translateY(75%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.ki-varld.syns .ki-v{opacity:1}
+.ki-v-bild{display:block;width:100%;height:auto}
+.ki-v-stang{position:absolute;left:60.9%;bottom:23.3%;width:13.7%;height:auto;transform-origin:50% 100%;animation:kiVaj 5s ease-in-out infinite alternate}
+.ki-v-flagga{position:absolute;left:38.5%;bottom:28%;width:9.5%;height:auto;transform-origin:5% 100%;animation:kiVaj 3.4s ease-in-out infinite alternate}
+@keyframes kiVaj{from{rotate:-1.2deg}to{rotate:1.2deg}}
+.ki-v-bastu{left:73.5%;width:8.5%}
+.ki-varld.syns .ki-v-bastu{transform:translateY(6.6%);transition-delay:.45s}
+.ki-rok{position:absolute;left:40%;top:1%;width:24%;height:60%;pointer-events:none}
+.ki-rok-bastu{left:63%;top:-6%;width:18%}
+.ki-rok i{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:1;border-radius:50%;background:#e9eef6;opacity:0;animation:kiRok 4.2s ease-out infinite}
+.ki-rok i:nth-child(2){animation-delay:1.05s}.ki-rok i:nth-child(3){animation-delay:2.1s}.ki-rok i:nth-child(4){animation-delay:3.15s}
+.ki-rok-bastu i{background:#f2efe8;animation-duration:5s}
+@keyframes kiRok{0%{opacity:0;transform:translate(0,0) scale(.35)}15%{opacity:.85}100%{opacity:0;transform:translate(-140%,-260%) scale(1.6)}}
+.ki-djup{position:absolute;left:0;right:0;top:66%;bottom:0;z-index:2;pointer-events:none;overflow:hidden;opacity:0;transition:opacity 1.2s .9s}
+.ki-djup.syns{opacity:1}
+.ki-d{position:absolute;height:auto;animation:kiSimHo linear infinite}
+.ki-d-orca{width:15%;top:30%;animation:kiSimVa 34s linear infinite;animation-delay:-6s}
+.ki-d-f1{width:6.5%;top:12%;animation-duration:22s;animation-delay:-3s}
+.ki-d-f2{width:6%;top:44%;animation-duration:17s;animation-delay:-11s}
+.ki-d-f3{width:5.5%;top:66%;animation-duration:26s;animation-delay:-18s}
+.ki-d-f4{width:4.2%;top:22%;animation-duration:15s;animation-delay:-7s;opacity:.8}
+.ki-d-f5{width:4.8%;top:78%;animation-duration:20s;animation-delay:-14s;opacity:.85}
+@keyframes kiSimHo{from{left:-12%;translate:0 0}50%{translate:0 -10px}to{left:108%;translate:0 0}}
+@keyframes kiSimVa{from{left:105%;translate:0 0}50%{translate:0 12px}to{left:-20%;translate:0 0}}
+.ki-bubbla{position:absolute;left:30%;bottom:-10px;width:8px;height:8px;border-radius:50%;border:1.5px solid rgba(233,238,246,.7);animation:kiBubbla 7s ease-in infinite}
+.ki-bubbla.b2{left:58%;animation-delay:-2.5s;width:6px;height:6px}.ki-bubbla.b3{left:81%;animation-delay:-4.8s}
+@keyframes kiBubbla{from{transform:translateY(0);opacity:0}15%{opacity:1}to{transform:translateY(-260px);opacity:0}}
 .ki-v-o{left:1.5%;width:27%}
 .ki-varld.syns .ki-v-o{transform:translateY(11.8%)}
 .ki-v-fyr{right:3.5%;width:13.5%}
 .ki-varld.syns .ki-v-fyr{transform:translateY(10.4%);transition-delay:.3s}
-.ki-v-farja{left:67%;width:10.5%}
-.ki-varld.syns .ki-v-farja{transform:translateY(17.7%);transition-delay:.6s;animation:kiDrift 36s ease-in-out 2.4s infinite alternate}
+.ki-v-farja{left:60%;width:12.5%}
+.ki-varld.syns .ki-v-farja{transform:translateY(13.5%);transition-delay:.6s;animation:kiDrift 36s ease-in-out 2.4s infinite alternate}
 @keyframes kiDrift{to{translate:-55% 0}}
 .ki-v-masar{position:absolute;left:10%;top:17%;width:9%;opacity:0;transition:opacity 1.2s .8s;animation:kiSvav 7s ease-in-out infinite alternate}
 .ki-v-masar.tva{left:auto;right:19%;top:27%;width:6%;animation-duration:9s}
@@ -784,10 +842,10 @@ const CSS = `
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-skylt i,.ki-v-masar,.ki-varld.syns .ki-v-farja{animation:none}}
+@media (prefers-reduced-motion:reduce){.ki-skylt i,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:12.5px;padding:7px 10px 7px 8px;gap:5px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-s-planera{left:50%;top:71%;--x:-50%;--r:0deg;font-size:16px;padding:11px 18px 11px 14px}
