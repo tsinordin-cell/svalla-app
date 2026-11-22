@@ -223,8 +223,10 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
       )}
 
       {/* ── Discovery — seglare att följa, visas om inloggad men följer ingen ── */}
+      {/* .feed-suggested-mobile döljs vid ≥1280px där sidopanelen visar samma lista
+          (granskningen 2026-11-22: listan syntes två gånger på desktop). */}
       {!initialLoad && isLoggedIn && followingTrips.length === 0 && (
-        <SuggestedUsers />
+        <div className="feed-suggested-mobile"><SuggestedUsers /></div>
       )}
 
       {/* ── Feed list ── */}

@@ -7,6 +7,7 @@ import type { Metadata } from 'next'
  * kan inte exportera metadata själv, därför denna layout.
  */
 export const metadata: Metadata = {
+  title: 'Logga tur manuellt',
   robots: { index: false, follow: false },
 }
 

@@ -50,7 +50,7 @@ const FILTER_TABS: { value: FilterTab; label: string }[] = [
  { value: 'seglare', label: '👤 Seglare' },
  { value: 'tur', label: 'Turer' },
  { value: 'plats', label: 'Platser' },
- { value: 'rutt', label: '️ Rutter' },
+ { value: 'rutt', label: 'Rutter' },
  { value: 'hashtag', label: '# Taggar' },
 ]
 
@@ -358,7 +358,7 @@ function SokPageInner() {
  position: 'sticky', top: 0, zIndex: 50,
  }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, maxWidth: 520, margin: '0 auto' }}>
- <Link href="/feed" prefetch={false} style={{
+ <Link href="/feed" prefetch={false} aria-label="Tillbaka till flödet" style={{
  width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
  background: 'rgba(10,123,140,0.07)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -403,6 +403,7 @@ function SokPageInner() {
  <button
  key={tab.value}
  onClick={() => setActiveTab(tab.value)}
+ aria-pressed={activeTab === tab.value}
  style={{
  flexShrink: 0, padding: '5px 12px', borderRadius: 20, border: 'none', cursor: 'pointer',
  background: activeTab === tab.value ? 'var(--sea-knapp)' : 'rgba(10,123,140,0.07)',
@@ -412,6 +413,7 @@ function SokPageInner() {
  }}
  >
  {tab.label}
+ {tab.value !== 'alla' && results.filter(r => r.type === tab.value).length > 0 && ' '}
  {tab.value !== 'alla' && results.filter(r => r.type === tab.value).length > 0 && (
  <span style={{
  marginLeft: 5, background: activeTab === tab.value ? 'rgba(255,255,255,0.25)' : 'rgba(10,123,140,0.12)',

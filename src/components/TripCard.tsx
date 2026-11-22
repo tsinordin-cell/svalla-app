@@ -266,7 +266,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
     { label: 'Tid',     value: dur || '—' },
     { label: 'Snitt',   value: avgNum >= 0.5 ? fmt(avgNum) : '—', unit: 'kn' },
     { label: 'Topp',    value: maxNum >= 0.5 ? fmt(maxNum) : '—', unit: 'kn' },
-  ]
+  ].filter(s => s.value !== '—')
+  // Granskningen 2026-11-22: manuellt loggade turer utan distans/tid visade en
+  // hel rad med fyra streck. Tomma fält döljs; finns inget värde alls döljs raden.
 
   const MAX_CAPTION = 120
   const caption = trip.caption ?? ''
@@ -508,7 +510,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       )}
 
       {/* ── 3. Stats row ── */}
-      <div style={{
+      {statsRow.length > 0 && <div style={{
         display: 'flex',
         borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
         borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
@@ -541,7 +543,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           </div>
         ))}
-      </div>
+      </div>}
 
       {/* ── 4. Caption ── */}
       {caption ? (

@@ -80,7 +80,7 @@ export default function InsikterPage() {
  position: 'sticky', top: 0, zIndex: 50,
  }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, maxWidth: 560, margin: '0 auto' }}>
- <Link href="/profil" style={{
+ <Link href="/profil" aria-label="Tillbaka till profilen" style={{
  width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
  background: 'rgba(10,123,140,0.07)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -94,7 +94,7 @@ export default function InsikterPage() {
  Svalla Wrapped
  </div>
  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)' }}>
- Dina insights
+ Dina insikter
  </div>
  </div>
  <button

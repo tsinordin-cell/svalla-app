@@ -263,9 +263,6 @@ export default async function FeedPage(
  {/* Vinterläge nov–mars: vintertrafik, planera sommaren, Thorkel (VinterIFlodet) */}
  <VinterIFlodet />
 
- {/* Loppis-banner: visas en gång per användare, dismissible */}
- <LoppisFeedBanner />
-
  {SAFE && (
  <div role="status" style={{
  background: 'rgba(201,110,42,0.12)',
@@ -293,10 +290,10 @@ export default async function FeedPage(
  <div style={{ fontSize: 28, flexShrink: 0 }}> </div>
  <div>
  <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
- {thisWeek.length} turer loggades senaste veckan
+ {thisWeek.length} {thisWeek.length === 1 ? 'tur' : 'turer'} loggades senaste veckan
  </div>
  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', marginTop: 2 }}>
- {uniqueUsers} seglare · {uniquePlaces} unika platser
+ {uniqueUsers} seglare · {uniquePlaces} {uniquePlaces === 1 ? 'unik plats' : 'unika platser'}
  </div>
  </div>
  </div>

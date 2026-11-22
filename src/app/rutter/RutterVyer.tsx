@@ -207,7 +207,9 @@ export default function RutterVyer({
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div>
-          <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Turer</h1>
+          <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>
+            {vy === 'oar' ? 'Öar' : vy === 'farjor' ? 'Färjor' : 'Rutter'}
+          </h1>
           <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
             {vy === 'oar'
               ? `${antalOar} öar · Stockholms skärgård`
@@ -215,7 +217,7 @@ export default function RutterVyer({
                 ? `${antalFarjelinjer} linjer · Waxholmsbolaget & Cinderella`
               : isFiltered
                 ? `Visar ${filtered.length} av ${tours.length} turer`
-                : `${filtered.length} turer · Sverige`}
+                : `${filtered.length} ${filtered.length === 1 ? 'tur' : 'turer'} · Sverige`}
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
