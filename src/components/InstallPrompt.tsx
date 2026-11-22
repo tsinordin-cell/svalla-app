@@ -118,7 +118,9 @@ export default function InstallPrompt() {
   if (!show) return null
 
   return (
-    <div style={{
+    // .install-prompt: på dator (>=1024px) nedre högra hörnet, som notisrutan,
+    // i stället för en remsa över hela bredden som la sig över sidomenyn.
+    <div className="install-prompt" style={{
       position: 'fixed',
       bottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 12px)',
       left: 12, right: 12, zIndex: 9999,

@@ -677,7 +677,11 @@ export default function ProfilPage() {
                         fontSize: 9, fontWeight: 600,
                         color: unlocked ? 'var(--txt)' : 'var(--txt3)',
                         textAlign: 'center', lineHeight: 1.3,
-                        maxWidth: 56, overflow: 'hidden',
+                        // maxWidth 56 klippte långa ord som "Saltvattenblod" till
+                        // "Saltvattenblc". Avstavning på svenska (lang="sv"), och
+                        // radbrytning i ordet som reserv om webbläsaren saknar den.
+                        maxWidth: '100%', overflow: 'hidden',
+                        hyphens: 'auto', WebkitHyphens: 'auto', overflowWrap: 'anywhere',
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: 'vertical',
