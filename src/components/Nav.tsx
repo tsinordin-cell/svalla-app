@@ -64,7 +64,11 @@ export default function Nav() {
   }, [])
 
   // Visa bara bottom nav på app-sidor — INTE på informationssidor, ö-sidor eller öar-listan
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sparade', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide/', '/forum', '/loppis']
+  // 2026-11-22 (beslut 3, Toms ja): inloggade sidor har alltid appmenyn. /insikter och
+  // /min-skargard är bara för inloggade men saknade den; /insikter hade i stället
+  // startsidans meny och två tillbakaknappar. /check-in är gömd (404) och står inte här. /onboarding står medvetet
+  // utanför: ett flöde man ska gå igenom utan att ledas bort.
+  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sparade', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide/', '/forum', '/loppis', '/insikter', '/min-skargard']
   const EXACT_PATHS = ['/logga', '/meddelanden']
 
   /**
@@ -215,9 +219,11 @@ export default function Nav() {
           transition: 'transform 0.22s ease, opacity 0.18s ease',
           pointerEvents: klockorDolda ? 'none' : 'auto',
         }}>
+          {/* 2026-11-22 (beslut 3): hemikonen går till flödet, appens hem för en inloggad.
+              Ikonerna visas bara för inloggade (visaGlobalaKlockor). Loggan går fortfarande till startsidan. */}
           <Link
-            href="/"
-            aria-label="Till startsidan"
+            href="/feed"
+            aria-label="Till flödet"
             style={{
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               width: 36, height: 36, borderRadius: '50%',
