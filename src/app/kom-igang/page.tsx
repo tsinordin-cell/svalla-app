@@ -7,6 +7,7 @@ import HeroAnimation from '@/components/HeroAnimation'
 import Icon from '@/components/Icon'
 import { validateUsername, deriveUsername } from '@/lib/username'
 import { bekraftelseMal } from '@/lib/epostbekraftelse'
+import { VILLKOR_SOKVAG, INTEGRITET_SOKVAG, kontrolleraVillkor, villkorsGodkannande } from '@/lib/villkor'
 import KollaInkorgen from '@/components/BekraftaEpost'
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -110,6 +111,7 @@ function KomIgangInner() {
  const [confirmPw, setConfirmPw] = useState('')
  const [showPw, setShowPw] = useState(false)
  const [showConfirmPw, setShowConfirmPw] = useState(false)
+ const [villkorGodkanda, setVillkorGodkanda] = useState(false)
  const [loading, setLoading] = useState(false)
  const [oauthLoading, setOauthLoading] = useState<'google' | null>(null)
  const [err, setErr] = useState('')
@@ -184,8 +186,11 @@ function KomIgangInner() {
  const usernameErr = validateUsername(username)
  if (usernameErr) return usernameErr
  }
+ // Apple-riktlinje 1.2: aktivt godkännande av villkoren, se lib/villkor.ts
+ const villkorErr = kontrolleraVillkor(villkorGodkanda)
+ if (villkorErr) return villkorErr
  return null
- }, [email, password, confirmPw, username])
+ }, [email, password, confirmPw, username, villkorGodkanda])
 
  /* ── Sign up ── */
  async function handleSignup(e: React.FormEvent) {
@@ -204,7 +209,7 @@ function KomIgangInner() {
  email: email.trim(),
  password,
  // Länken i bekräftelsemejlet leder hit efteråt, se lib/epostbekraftelse.ts
- options: { data: { username: derivedUsername, full_name: name.trim() }, emailRedirectTo: bekraftelseMal(efterBekraftelse) },
+ options: { data: { username: derivedUsername, full_name: name.trim(), ...villkorsGodkannande() }, emailRedirectTo: bekraftelseMal(efterBekraftelse) },
  })
 
  if (error) { setErr(swErr(error.message)); setLoading(false); return }
@@ -461,6 +466,9 @@ function KomIgangInner() {
  <GoogleIcon />
  {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
  </button>
+ <p style={{ fontSize: 11, color: 'var(--txt3)', textAlign: 'center', margin: '-4px 0 0', lineHeight: 1.5 }}>
+ Med Google godkänner du Svallas <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>användarvillkor</a>.
+ </p>
 
  {err && (
  <div style={{
@@ -546,6 +554,9 @@ function KomIgangInner() {
  <GoogleIcon />
  {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
  </button>
+ <p style={{ fontSize: 11, color: 'var(--txt3)', textAlign: 'center', margin: '-12px 0 18px', lineHeight: 1.5 }}>
+ Med Google godkänner du Svallas <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>användarvillkor</a>.
+ </p>
 
  {/* Divider */}
  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
@@ -736,6 +747,24 @@ function KomIgangInner() {
  )}
  </div>
 
+ {/* Godkännande av villkoren (Apple-riktlinje 1.2). Måste vara ikryssad. Länkarna öppnas i ny flik så att formuläret ligger kvar. */}
+ <label htmlFor="signup-villkor" style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginTop: 4, fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5, cursor: 'pointer' }}>
+ <input
+ id="signup-villkor"
+ type="checkbox"
+ checked={villkorGodkanda}
+ onChange={e => { setVillkorGodkanda(e.target.checked); setErr('') }}
+ required
+ style={{ width: 18, height: 18, marginTop: 1, flexShrink: 0, accentColor: 'var(--sea)', cursor: 'pointer' }}
+ />
+ <span>
+ Jag godkänner Svallas{' '}
+ <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>användarvillkor</a>
+ {' '}och har läst{' '}
+ <a href={INTEGRITET_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>integritetspolicyn</a>.
+ </span>
+ </label>
+
  {/* Error */}
  {err && (
  <div style={{
@@ -770,11 +799,6 @@ function KomIgangInner() {
  }
  </button>
 
- <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '6px 0 0', lineHeight: 1.5 }}>
- {/* /villkor fanns aldrig (404 till 2026-11-07). Användarvillkor är inte skrivna; tills de finns länkar vi bara integritetspolicyn. */}
- Genom att skapa ett konto godkänner du vår{' '}
- <a href="/integritetspolicy" style={{ color: 'var(--sea)', textDecoration: 'none', fontWeight: 600 }}>integritetspolicy</a>.
- </p>
  </form>
 
  {/* Already have account */}
