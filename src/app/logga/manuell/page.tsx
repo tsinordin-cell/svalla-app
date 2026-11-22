@@ -944,7 +944,9 @@ function ManuellForm() {
           disabled={!canSubmit}
           className={canSubmit ? 'press-feedback' : undefined}
           style={{
-            width: '100%', padding: '15px 0', borderRadius: 16, border: 'none',
+            // Samma bredd som formuläret (560) i stället för hela skärmen på dator.
+            display: 'block', width: '100%', maxWidth: 560, margin: '0 auto',
+            padding: '15px 0', borderRadius: 16, border: 'none',
             background: canSubmit ? 'var(--grad-acc)' : 'rgba(10,123,140,0.10)',
             color: canSubmit ? '#fff' : 'var(--txt3)',
             fontSize: 16, fontWeight: 700, cursor: canSubmit ? 'pointer' : 'default',

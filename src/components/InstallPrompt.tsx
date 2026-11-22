@@ -146,7 +146,14 @@ export default function InstallPrompt() {
         {isIOS ? (
           <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.4 }}>
             Tryck på{' '}
-            <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '1px 5px', fontSize: 13 }}>⎋</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '1px 5px', fontSize: 12, verticalAlign: 'middle' }}>
+              {/* Safaris Dela-symbol: en ruta med en pil uppåt */}
+              <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 1v8M3.2 3.6 6 1l2.8 2.6"/>
+                <path d="M4 5.6H2.2a1 1 0 0 0-1 1v5.2a1 1 0 0 0 1 1h7.6a1 1 0 0 0 1-1V6.6a1 1 0 0 0-1-1H8"/>
+              </svg>
+              Dela
+            </span>
             {' '}och välj <strong style={{ color: 'rgba(255,255,255,0.85)' }}>&quot;Lägg till på hemskärmen&quot;</strong>
           </p>
         ) : (

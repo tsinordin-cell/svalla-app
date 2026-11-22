@@ -24,13 +24,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  const { username: rawUsername, year } = await params
  const username = decodeURIComponent(rawUsername)
  const title = `${username}s ${year} på Svalla`
+ // Ett konto utan turer det året får en tom vy (inte 404). Den ska inte
+ // indexeras: den har inget innehåll, och sajtens sidor får inte bli tunnare.
+ const harTurer = await harTurerAr(username, parseInt(year, 10))
  // "Svalla" ingår i frasen → absolute, annars lägger mallen på "– Svalla" igen (titelregeln, undantagen).
  const description = `Se ${username}s seglarsäsong ${year}: turer, distans och höjdpunkter.`
  const ogUrl = `/wrapped/${encodeURIComponent(username)}/${year}/opengraph-image`
  return {
  title: { absolute: title },
  description,
- robots: { index: true, follow: true },
+ robots: harTurer ? { index: true, follow: true } : { index: false, follow: true },
  alternates: { canonical: `https://svalla.se/wrapped/${encodeURIComponent(username)}/${year}` },
  openGraph: {
  title,
@@ -40,6 +43,51 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  },
  twitter: { card: 'summary_large_image', title, description, images: [ogUrl] },
  }
+}
+
+async function harTurerAr(username: string, yr: number): Promise<boolean> {
+ if (isNaN(yr)) return false
+ const supabase = await createServerSupabaseClient()
+ const { data: userRow } = await supabase.from('users_publik').select('id').eq('username', username).single()
+ if (!userRow) return false
+ const { count } = await supabase
+ .from('trips')
+ .select('id', { count: 'exact', head: true })
+ .eq('user_id', userRow.id)
+ .is('deleted_at', null)
+ .gte('started_at', `${yr}-01-01`)
+ .lt('started_at', `${yr + 1}-01-01`)
+ return (count ?? 0) > 0
+}
+
+/** Visas i stället för 404 när kontot inte har loggat någon tur det året. */
+function TomWrapped({ username, year, egen }: { username: string; year: string; egen: boolean }) {
+ return (
+ <div style={{ minHeight: '100vh', background: 'var(--bg)', padding: '80px 20px', display: 'flex', justifyContent: 'center' }}>
+ <div style={{ maxWidth: 420, width: '100%', textAlign: 'center' }}>
+ <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '1.5px', margin: '0 0 10px' }}>
+ Säsongsrecap {year}
+ </p>
+ <h1 style={{ fontSize: 24, fontWeight: 800, color: 'var(--txt)', margin: '0 0 12px' }}>
+ {egen ? `Ingen tur loggad ${year} än` : `${username} har inte loggat någon tur ${year}`}
+ </h1>
+ <p style={{ fontSize: 15, lineHeight: 1.6, color: 'var(--txt2)', margin: '0 0 28px' }}>
+ {egen
+ ? 'Din säsongsrecap fylls på med distans, tid och dina längsta turer när du loggar din första tur.'
+ : 'Säsongsrecapen visar turer, distans och höjdpunkter när det finns turer loggade det året.'}
+ </p>
+ {egen ? (
+ <Link href="/logga" style={{ display: 'inline-block', padding: '12px 24px', borderRadius: 999, background: 'var(--grad-acc)', color: '#fff', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
+ Logga en tur
+ </Link>
+ ) : (
+ <Link href={`/u/${encodeURIComponent(username)}`} style={{ display: 'inline-block', padding: '12px 24px', borderRadius: 999, border: '1px solid var(--border, rgba(0,0,0,0.12))', color: 'var(--sea)', fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
+ Till {username}s profil
+ </Link>
+ )}
+ </div>
+ </div>
+ )
 }
 
 function buildSpaghettiPath(
@@ -98,7 +146,10 @@ export default async function WrappedPage({ params }: Props) {
  .order('started_at', { ascending: true })
 
  const trips = (rawTrips ?? []) as Trip[]
- if (trips.length === 0) notFound()
+ if (trips.length === 0) {
+ const { data: { user } } = await supabase.auth.getUser()
+ return <TomWrapped username={username} year={year} egen={user?.id === userRow.id} />
+ }
 
  // ── Stats ─────────────────────────────────────────────────────────────────
  const totalDist = trips.reduce((a, t) => a + (t.distance ?? 0), 0)
