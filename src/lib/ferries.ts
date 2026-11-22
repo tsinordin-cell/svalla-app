@@ -100,9 +100,20 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     name: 'Strömkajen → Grinda',
     from: 'Strömkajen',
     to: 'Grinda',
-    stops: ['Strömkajen', 'Vaxholm', 'Ramsö', 'Vindö', 'Grinda'],
+    // RÄTTAD 2026-11-22 (beslut 8). Säsongen sa "Sommar (maj till sep)" och
+    // stoppen listade Ramsö och Vindö. Waxholmsbolagets egen tidtabell för
+    // linje 11 säger något annat.
+    // KÄLLA: waxholmsbolaget.linjetidtabeller.se (länkad från
+    //   waxholmsbolaget.se/reseplanering/tidtabeller), PDF h11 — "11A STOCKHOLM –
+    //   VAXHOLM – GRINDA – BODA – SOLLENKROKA", "GÄLLER 2 APRIL 2026 – 18 JUNI
+    //   2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-11-22).
+    //   Bryggor i tabellen mellan Vaxholm och Grinda: Sippsö, Lillsved, Viggsö.
+    //   Ramsö och Vindö finns inte i tabell 11.
+    // Ingen sommartabell (19 jun–16 aug) fanns publicerad vid läsningen, så
+    // etiketten säger bara det tabellen säger och påstår inget om sommaren.
+    stops: ['Strömkajen', 'Vaxholm', 'Sippsö', 'Lillsved', 'Grinda'],
     operator: 'Waxholmsbolaget',
-    season: 'Sommar (maj till sep)',
+    season: 'Tabell 11: 2 apr–18 jun, 17 aug–12 dec 2026',
     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
   {
