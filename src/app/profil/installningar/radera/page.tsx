@@ -75,7 +75,7 @@ export default async function RaderaKontoPage() {
         </div>
       </header>
 
-      <main style={{ maxWidth: 560, margin: '-40px auto 0', padding: '0 16px', display: 'grid', gap: 14 }}>
+      <main style={{ maxWidth: 600, margin: '-40px auto 0', padding: '0 20px', display: 'grid', gap: 14, boxSizing: 'border-box' }}>
         <section style={kort}>
           <h2 style={kortRubrik}>Det här raderas</h2>
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 10 }}>
