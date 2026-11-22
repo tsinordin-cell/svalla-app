@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { _aterstallRutor, efterCookievalOchTid, paLedig, slappRuta, taRuta } from './forstaRutor'
+import { _aterstallRutor, efterCookievalOchTid, paLedig, paRutsida, slappRuta, taRuta } from './forstaRutor'
 
 afterEach(() => { _aterstallRutor(); vi.useRealTimers() })
 
@@ -48,5 +48,20 @@ describe('efterCookievalOchTid', () => {
     sluta()
     vi.advanceTimersByTime(10000)
     expect(klar).not.toHaveBeenCalled()
+  })
+})
+
+describe('paRutsida', () => {
+  it('visar rutor på vanliga app-sidor', () => {
+    expect(paRutsida('/feed')).toBe(true)
+    expect(paRutsida('/topplista')).toBe(true)
+    expect(paRutsida('/u/someone')).toBe(true)
+  })
+
+  it('inga rutor medan man loggar eller sparar en tur', () => {
+    expect(paRutsida('/logga')).toBe(false)
+    expect(paRutsida('/logga/manuell')).toBe(false)
+    expect(paRutsida('/spara')).toBe(false)
+    expect(paRutsida(null)).toBe(false)
   })
 })

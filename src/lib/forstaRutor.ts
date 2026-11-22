@@ -11,7 +11,17 @@
  * 2. Bara en ruta i taget. Nästa väntar tills den förra stängts.
  * 3. Installrutan visas aldrig i den inbyggda appen: där är Svalla redan
  *    installerat, och iOS-texten "Lägg till på hemskärmen" stämmer inte.
+ * 4. Ingen ruta medan man fyller i ett formulär (logga och spara tur). På
+ *    telefon täckte notisrutan halva Snabb-logg. Rutan väntar i stället och
+ *    visas på nästa sida.
  */
+
+/** Sidorna där rutorna får visas. Inte /logga och /spara, se regel 4. */
+const RUTSIDOR = ['/platser', '/rutter', '/feed', '/profil', '/sok', '/tur/', '/u/', '/topplista', '/o/']
+
+export function paRutsida(pathname: string | null | undefined): boolean {
+  return !!pathname && RUTSIDOR.some(p => pathname.startsWith(p))
+}
 
 export const COOKIE_NYCKEL = 'svalla_cookie_consent'
 

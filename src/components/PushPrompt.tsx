@@ -2,11 +2,10 @@
 import Icon from '@/components/Icon'
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
-import { efterCookievalOchTid } from '@/lib/forstaRutor'
+import { efterCookievalOchTid, paRutsida } from '@/lib/forstaRutor'
 import { useForstaRuta } from '@/lib/useForstaRuta'
 import { createClient } from '@/lib/supabase'
 
-const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
 const VAPID_PUBLIC = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY ?? ''
 
@@ -50,7 +49,7 @@ export default function PushPrompt() {
     }
   }, [])
 
-  const [show, lamnaPlatsen] = useForstaRuta('notiser', redo, APP_PATHS.some(p => pathname?.startsWith(p)))
+  const [show, lamnaPlatsen] = useForstaRuta('notiser', redo, paRutsida(pathname))
 
   function dismiss() {
     try { sessionStorage.setItem('svalla-push-dismissed', '1') } catch { /* privat läge */ }
