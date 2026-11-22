@@ -15,3 +15,17 @@ export default function SvallaLogo({ height = 26, color = '#ffffff' }: { height?
     </svg>
   )
 }
+
+/** Bara seglet ur loggan, utan texten (Tom 2026-11-22). Samma form som SvallaLogo. */
+export function SvallaSegel({ size = 48, color = '#ffffff' }: { size?: number; color?: string }) {
+  return (
+    <svg viewBox="0 3 19 21" width={size * 19 / 21} height={size} xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ display: 'block' }}>
+      <g transform="translate(0,2)">
+        <line x1="9" y1="20" x2="9" y2="3" stroke={color} strokeWidth="1.4" strokeLinecap="round"/>
+        <path d="M9,4 L18,18 L9,18 Z" fill={color} opacity="0.9"/>
+        <path d="M9,8 L1,17 L9,17 Z" fill={color} opacity="0.5"/>
+        <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke={color} strokeWidth="1.2" fill="none" strokeLinecap="round" opacity="0.7"/>
+      </g>
+    </svg>
+  )
+}
