@@ -8,6 +8,7 @@ import { TreSatt, JustNu, VadVillDuKanna, FragaThorkel, GuidePaVattnet, type Sta
 import MegaMeny from '@/components/MegaMeny'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
+import StartMobil from '@/components/StartMobil'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
@@ -1352,6 +1353,8 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  {slutHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: slutHtml }} />}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />
+ {/* Max och Thomas 2026-11-22: startsidans form i mobilen, se StartMobil.tsx */}
+ <StartMobil />
  </div>
  </>
  )
