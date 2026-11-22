@@ -1426,3 +1426,14 @@ img {
   .fb-flytande { padding: 0 !important; width: 37px; height: 37px; justify-content: center; }
   .fb-flytande .fb-flytande-text { display: none; }
 }
+
+/* Notisrutan (PushPrompt) på dator: nedre högra hörnet, inte under sidomenyn.
+   Inline-stilen sätter left/right: 12 för mobil, därav !important här. */
+@media (min-width: 1024px) {
+  .push-prompt {
+    left: auto !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    width: 400px;
+  }
+}

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { efterCookievalOchTid } from '@/lib/forstaRutor'
 import { useForstaRuta } from '@/lib/useForstaRuta'
+import { createClient } from '@/lib/supabase'
 
 const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
@@ -32,10 +33,19 @@ export default function PushPrompt() {
     if (sessionStorage.getItem('svalla-push-dismissed')) return
     if (!VAPID_PUBLIC) return
 
-    // 15 sekunder efter cookievalet, inte efter sidladdningen.
-    const sluta = efterCookievalOchTid(15000, () => setRedo(true))
+    // Bara för inloggade: /api/push/subscribe svarar 401 utan konto, så en
+    // utloggad som tryckte "Aktivera" fick webbläsarens fråga och sedan ingen
+    // notis alls. Granskningen 2026-11-22.
+    let avbruten = false
+    let sluta: (() => void) | null = null
+    createClient().auth.getSession().then(({ data }) => {
+      if (avbruten || !data.session) return
+      // 15 sekunder efter cookievalet, inte efter sidladdningen.
+      sluta = efterCookievalOchTid(15000, () => setRedo(true))
+    }).catch(() => { /* okänt läge: visa inte rutan */ })
     return () => {
-      sluta()
+      avbruten = true
+      sluta?.()
       if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current)
     }
   }, [])
@@ -80,7 +90,10 @@ export default function PushPrompt() {
   if (!show) return null
 
   return (
-    <div style={{
+    // .push-prompt: på dator (>=1024px) flyttas rutan till nedre högra hörnet
+    // i globals.css. Med left: 12 låg den under sidomenyn (220px), som
+    // täckte ikonen och knappen "Inte nu". Granskningen 2026-11-22.
+    <div className="push-prompt" style={{
       position: 'fixed',
       bottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 12px)',
       // 2026-10-26: under modaler (delningsrutan 1200, kommentarer 1400) och navet (900).

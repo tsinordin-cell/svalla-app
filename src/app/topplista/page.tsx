@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Topplista',
-  description: 'Veckans och alltidens bästa skärgårdsseglare. Se vem som seglat mest nautiska mil på Svalla.',
+  description: 'Veckans och genom tidernas bästa skärgårdsseglare. Se vem som seglat mest nautiska mil på Svalla.',
   openGraph: {
     images: ogSida('https://svalla.se/topplista'),
     title: 'Topplista | Svalla',
@@ -156,7 +156,7 @@ export default async function ToplistaPage() {
         </Link>
         <div>
           <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Topplista</h1>
-          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0 }}>Veckans &amp; alltidens bästa seglare</p>
+          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0 }}>Veckans och genom tidernas bästa seglare</p>
         </div>
       </header>
 
