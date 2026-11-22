@@ -236,9 +236,12 @@ export default function RutterVyer({
         </div>
       </header>
 
-      {/* Vy-toggle: Planera / Rutter / Öar / Färjor */}
-      <div
-        role="tablist"
+      {/* Vy-toggle: Planera / Rutter / Öar / Färjor.
+          Granskningen 2026-11-22: raden var märkt som flikar (tablist) men
+          gick inte att styra med piltangenter, och Planera är en länk till en
+          annan sida. Varje val har en egen adress, så det är länkar: en nav
+          med aria-current på den aktiva, som Tab och skärmläsare förstår. */}
+      <nav
         aria-label="Vy"
         style={{
           display: 'flex',
@@ -268,7 +271,7 @@ export default function RutterVyer({
           }
           if (t.key === 'planera') {
             return (
-              <Link key={t.key} href="/planera" prefetch={false} role="tab" aria-selected={false} style={style}>
+              <Link key={t.key} href="/planera" prefetch={false} style={style}>
                 {t.label}
               </Link>
             )
@@ -278,15 +281,14 @@ export default function RutterVyer({
               key={t.key}
               href={vyHref(t.key)}
               onClick={(e) => bytVy(e, t.key)}
-              role="tab"
-              aria-selected={active}
+              aria-current={active ? 'page' : undefined}
               style={style}
             >
               {t.label}
             </a>
           )
         })}
-      </div>
+      </nav>
 
       {vy === 'oar' ? (
         oar
