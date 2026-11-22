@@ -39,6 +39,8 @@ const MALLAR = {
   weekly_island: '14_weekly_island.md',
   // Julkalenderns påminnelse 2026-11-21: bara till konton med rad i julkalender_paminnelser.
   julkalender: '15_julkalender.md',
+  // Dubbel bekräftelse för nyhetsbrevet 2026-11-22: skickas av /api/subscribe.
+  prenumeration_bekrafta: '16_prenumeration_bekrafta.md',
 }
 
 const saknade = []

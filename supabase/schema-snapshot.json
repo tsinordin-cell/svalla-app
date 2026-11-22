@@ -33,7 +33,7 @@
   "passerade_oar": "user_id,island_slug,trip_id,passerad_at",
   "place_photos": "id,place_id,url,source,source_ref,credit,blurhash,width,height,sort_order,is_hero,created_at,uploaded_by",
   "place_saves": "id,user_id,place_slug,place_name,place_type,lat,lng,image_url,island,notes,created_at",
-  "planned_routes": "id,user_id,start_name,end_name,start_lat,start_lng,end_lat,end_lng,interests,suggested_stops,status,trip_id,created_at,updated_at,cached_path,cached_quality,cached_validated,cached_at",
+  "planned_routes": "id,user_id,start_name,end_name,start_lat,start_lng,end_lat,end_lng,interests,suggested_stops,status,trip_id,created_at,updated_at,cached_path,cached_quality,cached_validated,cached_at,ansprak_hash",
   "push_log": "target_user_id,conversation_id,last_sent_at",
   "push_subscriptions": "id,user_id,endpoint,p256dh,auth,created_at",
   "reports": "id,reporter_id,target_type,target_id,reason,note,status,auto_flagged,created_at,reviewed_by,reviewed_at",

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { DEPARTURES, sortRegions, requiresLock, isLandlocked, haversineKm, type Departure, type Interest } from '@/lib/planner-client'
 import Icon, { type IconName } from '@/components/Icon'
 import { track } from '@/lib/analytics-events'
+import { sparaAnsprak } from '@/lib/ruttAnsprakKlient'
 
 const INTERESTS: { value: Interest; label: string; iconName: IconName }[] = [
  { value: 'krog', label: 'Krog & mat',       iconName: 'utensils' },
@@ -72,7 +73,9 @@ export default function PlaneraNyClient() {
  return
  }
 
- const json = await res.json().catch(() => null) as { id?: string; error?: string } | null
+ const json = await res.json().catch(() => null) as { id?: string; ansprak?: string; error?: string } | null
+ // Utloggad: nyckeln som krävs för att spara rutten i kontot efter inloggning.
+ if (json?.id && json.ansprak) sparaAnsprak(json.id, json.ansprak)
  if (!json?.id) {
  console.error('[planera/ny] no id in response:', json)
  setError('Servern svarade utan rutt-id. Försök igen.')

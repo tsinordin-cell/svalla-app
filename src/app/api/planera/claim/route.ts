@@ -6,6 +6,7 @@ import { cookies } from 'next/headers'
 import { logger } from '@/lib/logger'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { ansprakGiltigt } from '@/lib/ruttAnsprak'
 // TODO: wrap handlers with withSentrySimple(handler, 'planera/claim') — se src/lib/api-handler.ts
 
 /**
@@ -24,6 +25,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Ogiltigt JSON' }, { status: 400 })
   }
   const routeId = typeof body.routeId === 'string' ? body.routeId : null
+  const nyckel = (body as { nyckel?: unknown }).nyckel
   if (!routeId) {
     return NextResponse.json({ error: 'routeId krävs' }, { status: 400 })
   }
@@ -56,7 +58,7 @@ export async function POST(req: NextRequest) {
   // klient sedan rutter bara listas av ägaren (2026-11-20).
   const { data: route, error: fetchError } = await getAdminClient()
     .from('planned_routes')
-    .select('id, user_id')
+    .select('id, user_id, ansprak_hash')
     .eq('id', routeId)
     .single()
 
@@ -74,6 +76,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Rutten tillhör redan en användare' }, { status: 403 })
   }
 
+  // Bara den som skapade rutten har nyckeln (granskning 2026-11-22,
+  // lib/ruttAnsprak.ts). Rutter från före nyckeln (ansprak_hash null) kan inte
+  // tas över alls.
+  if (!ansprakGiltigt(nyckel, route.ansprak_hash as string | null)) {
+    return NextResponse.json({ error: 'Rutten kan bara sparas av den som skapade den' }, { status: 403 })
+  }
+
   // Skrivningen görs med tjänsteklienten (2026-10-06, kort 8ce07e20).
   // Tidigare skrevs den med besökarens session, vilket krävde databaspolicyn
   // planned_routes_update_stops: "vem som helst, även utloggad, får ändra
@@ -82,7 +91,7 @@ export async function POST(req: NextRequest) {
   // user_id. Policyn kan då tas bort (supabase/migrations/20261006000001).
   const { data: uppdaterad, error: updateError } = await getAdminClient()
     .from('planned_routes')
-    .update({ user_id: user.id })
+    .update({ user_id: user.id, ansprak_hash: null })
     .eq('id', routeId)
     .is('user_id', null) // race-skydd: bara om fortfarande null
     .select('id')

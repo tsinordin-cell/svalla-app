@@ -5,6 +5,8 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { sendEmail } from '@/lib/email'
 import { logger } from '@/lib/logger'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { getAdminClient } from '@/lib/supabase-admin'
+import { skickaPrenumerationsmejl } from '@/lib/prenumerationUtskick'
 
 /**
  * POST /api/auth/post-signup
@@ -34,6 +36,31 @@ export async function POST(_req: NextRequest) {
     !!iso && (Date.now() - new Date(iso).getTime()) / 60_000 <= 5
   if (!nyligen(user.created_at) && !nyligen(user.email_confirmed_at)) {
     return NextResponse.json({ error: 'Konto är inte nyskapat' }, { status: 403 })
+  }
+
+  // Kryssade användaren i nyhetsbrevet vid registreringen sparades adressen
+  // obekräftad (/api/subscribe, source 'registrering'). Nu är kontots adress
+  // bekräftad, alltså är nyhetsbrevets också det (dubbel bekräftelse
+  // 2026-11-22). Bara en rad som skapades i samband med kontot (inom 10 min),
+  // så att en anmälan som någon annan gjort tidigare inte räknas.
+  if (user.email && user.email_confirmed_at && user.created_at) {
+    try {
+      const skapad = new Date(user.created_at).getTime()
+      const service = getAdminClient()
+      const { data: rader } = await service
+        .from('email_subscribers')
+        .update({ confirmed: true, user_id: user.id })
+        .eq('email', user.email.toLowerCase())
+        .eq('source', 'registrering')
+        .eq('confirmed', false)
+        .eq('unsubscribed', false)
+        .gte('created_at', new Date(skapad - 10 * 60_000).toISOString())
+        .lte('created_at', new Date(skapad + 10 * 60_000).toISOString())
+        .select('id')
+      if (rader && rader.length > 0) await skickaPrenumerationsmejl(service, user.email.toLowerCase(), 'newsletter_welcome')
+    } catch (e) {
+      logger.error('post-signup', 'nyhetsbrevet kunde inte bekräftas', { e: String(e) })
+    }
   }
 
   // Rate-limit: max 1 anrop per user per dygn (idempotent)

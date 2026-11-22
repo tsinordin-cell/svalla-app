@@ -9,6 +9,7 @@ import { THORKEL } from '@/lib/thorkel/persona'
 import { THORKEL_COPY } from '@/lib/thorkel/copy'
 import { track } from '@/lib/analytics-events'
 import type { PlanData, TransitData } from '@/app/api/guide/route'
+import { sparaAnsprak } from '@/lib/ruttAnsprakKlient'
 
 type Message = {
   role: 'user' | 'assistant'
@@ -200,6 +201,7 @@ function GuideContent() {
         body: JSON.stringify(planData),
       })
       const json = await res.json()
+      if (json.id && typeof json.ansprak === 'string') sparaAnsprak(json.id, json.ansprak)
       if (json.id) router.push(`/planera/${json.id}`)
     } catch { /* silent */ } finally {
       setSavingPlan(false)

@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
-import { sendEmail } from '@/lib/email'
 import { arSegment } from '@/lib/mejlsegment'
 import { stadaKampanj } from '@/lib/kampanj'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
 import {
-  PRENUMERATION_PER_IP_OCH_TIMME, stadaKalla, stadaPreferenser, valkomstTillaten,
+  PRENUMERATION_PER_IP_OCH_TIMME, stadaKalla, stadaPreferenser, adressRedanBekraftad, bekraftaLank,
 } from '@/lib/prenumeration'
+import { skickaPrenumerationsmejl } from '@/lib/prenumerationUtskick'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -48,8 +48,14 @@ export async function POST(request: Request) {
   // Knyt till user_id om inloggad
   const { data: { user } } = await supabase.auth.getUser()
 
-  // Insert med ON CONFLICT — om e-posten redan finns, ignorera tyst
-  // confirmed: true direkt (explicit opt-in via formulär, inget behov av double opt-in)
+  // Dubbel bekräftelse (Toms ja 2026-11-22, lib/prenumeration.ts): adressen
+  // blir prenumerant (confirmed) först när länken i bekräftelsemejlet följts.
+  // Undantag: inloggad med bekräftad kontoadress som anmäler just den.
+  // Anmälan från registreringen (source 'registrering') får inget eget mejl:
+  // den bekräftas när kontots adress bekräftas (/api/auth/post-signup).
+  const verifierad = adressRedanBekraftad(user, normalizedEmail)
+  const kalla = stadaKalla(source)
+
   // Skrivningen MÅSTE gå via service-klienten. Besökaren som prenumererar är
   // anonym och har ingen insert-policy på email_subscribers → 42501 och 500 på
   // varje prenumeration. Ändra inte tillbaka till `supabase.from(...)`.
@@ -58,7 +64,7 @@ export async function POST(request: Request) {
     email: normalizedEmail,
     // Bara formulärnamn och de två kända valen sparas (lib/prenumeration.ts);
     // tidigare sparades godtycklig JSON ur anropet.
-    source: stadaKalla(source),
+    source: kalla,
     // Kampanjlänk (?k=) som besökaren kom via, se lib/kampanj.ts. Segment
     // bara om besökaren själv valt ett (lib/mejlsegment.ts).
     preferences: (() => {
@@ -71,7 +77,7 @@ export async function POST(request: Request) {
       }
     })(),
     user_id: user?.id ?? null,
-    confirmed: true,
+    confirmed: verifierad,
   }).select('id')
 
   const isDuplicate = error?.message?.toLowerCase().includes('duplicate')
@@ -82,62 +88,54 @@ export async function POST(request: Request) {
     console.error('[subscribe] insert failed', error)
     return NextResponse.json({ error: 'Kunde inte spara: försök igen' }, { status: 500 })
   }
+  const ny = !isDuplicate && !!insertedRows && insertedRows.length > 0
+
+  let befintlig: { id: string; confirmed: boolean | null; unsubscribed: boolean | null; preferences: unknown } | null = null
+  if (isDuplicate) {
+    const { data: rad } = await service
+      .from('email_subscribers')
+      .select('id, confirmed, unsubscribed, preferences')
+      .eq('email', normalizedEmail)
+      .maybeSingle()
+    befintlig = rad
+  }
 
   // Segment (2026-10-02): svaret på "Vad stämmer bäst?" kommer i ett andra
   // anrop med samma adress, efter att raden redan skapats. Vi sätter bara
   // segment om raden saknar ett, så att ett anrop med någon annans adress
   // inte kan skriva över ett svar som redan finns.
-  if (isDuplicate && valtSegment) {
-    const { data: rad } = await service
-      .from('email_subscribers')
-      .select('id, preferences')
-      .eq('email', normalizedEmail)
-      .maybeSingle()
-    const pref = (rad?.preferences ?? {}) as Record<string, unknown>
-    if (rad && !arSegment(pref.segment)) {
+  if (befintlig && valtSegment) {
+    const pref = (befintlig.preferences ?? {}) as Record<string, unknown>
+    if (!arSegment(pref.segment)) {
       await service
         .from('email_subscribers')
         .update({ preferences: { ...pref, segment: valtSegment } })
-        .eq('id', rad.id)
+        .eq('id', befintlig.id)
     }
   }
 
-  // Skicka välkomstmail till NYA prenumeranter (inte vid dubbletter), och högst
-  // VALKOMST_PER_TIMME per timme för hela sajten. Resend skickar också
-  // bekräftelse- och återställningsmejlen; en flod av välkomstmejl får inte
-  // tömma dagskvoten för dem. Prenumerationen sparas ändå.
-  let valkomstOk = true
-  if (!isDuplicate && insertedRows && insertedRows.length > 0) {
-    const { count, error: raknaFel } = await service
-      .from('email_log')
-      .select('id', { count: 'exact', head: true })
-      .eq('template', 'newsletter_welcome')
-      .gte('sent_at', new Date(Date.now() - 60 * 60 * 1000).toISOString())
-    valkomstOk = !raknaFel && valkomstTillaten(count)
-    if (!valkomstOk) logger.warn('subscribe', 'välkomstmejl hoppat över: timgränsen nådd eller räkningen misslyckades', { count, fel: raknaFel?.message })
-  }
-  if (valkomstOk && !isDuplicate && insertedRows && insertedRows.length > 0) {
-    try {
-      const mailResult = await sendEmail({
-        template: 'newsletter_welcome',
-        to: normalizedEmail,
-      })
+  const avregistrerad = !!befintlig?.unsubscribed
+  const vantarPaBekraftelse = befintlig ? !befintlig.confirmed && !avregistrerad : ny && !verifierad
 
-      // Logga skickat mail (för att undvika duplicat via cron-jobbet)
-      if (mailResult.ok) {
-        const service = getAdminClient()
-        await service.from('email_log').insert({
-          email: normalizedEmail,
-          template: 'newsletter_welcome',
-          sent_at: new Date().toISOString(),
-          resend_id: mailResult.id ?? null,
-        }).then(() => {}, () => {})
-      }
-    } catch (e) {
-      // Tyst fel — prenumerationen lyckades, mailet kan skickas manuellt
-      console.error('[subscribe] welcome email failed', e)
-    }
+  // Inloggad med bekräftad adress och en obekräftad rad: bekräfta direkt.
+  if (befintlig && vantarPaBekraftelse && verifierad) {
+    await service.from('email_subscribers')
+      .update({ confirmed: true, user_id: user?.id ?? null })
+      .eq('id', befintlig.id)
   }
 
-  return NextResponse.json({ ok: true })
+  // Mejlen har en gemensam timgräns för hela sajten (lib/prenumerationUtskick.ts).
+  if (ny && verifierad) {
+    await skickaPrenumerationsmejl(service, normalizedEmail, 'newsletter_welcome')
+  } else if (vantarPaBekraftelse && !verifierad && kalla !== 'registrering' && !valtSegment) {
+    const lank = bekraftaLank(normalizedEmail, process.env.UNSUBSCRIBE_SECRET)
+    if (lank) await skickaPrenumerationsmejl(service, normalizedEmail, 'prenumeration_bekrafta', { bekrafta_url: lank })
+    else logger.warn('subscribe', 'UNSUBSCRIBE_SECRET saknas: inget bekräftelsemejl')
+  } else if (befintlig && vantarPaBekraftelse && verifierad) {
+    await skickaPrenumerationsmejl(service, normalizedEmail, 'newsletter_welcome')
+  }
+
+  // bekrafta: formuläret ska be besökaren titta i inkorgen.
+  return NextResponse.json({ ok: true, bekrafta: vantarPaBekraftelse && !verifierad })
 }
+
