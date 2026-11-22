@@ -80,6 +80,7 @@ export default async function ToplistaPage() {
   }
   const weekTopNM = Object.entries(weekByNM)
     .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))
+    .filter(r => r.nm > 0)
     .sort((a, b) => b.nm - a.nm)
     .slice(0, 10)
 
@@ -94,6 +95,7 @@ export default async function ToplistaPage() {
   }
   const monthTopNM = Object.entries(monthByNM)
     .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))
+    .filter(r => r.nm > 0)
     .sort((a, b) => b.nm - a.nm)
     .slice(0, 10)
 
@@ -122,7 +124,10 @@ export default async function ToplistaPage() {
     avgSpeed:     v.avgSpeedCount > 0 ? v.avgSpeedSum / v.avgSpeedCount : 0,
   }))
 
-  const allTopNM     = [...allUsers].sort((a, b) => b.nm - a.nm).slice(0, 10)
+  // Bara den som loggat distans hamnar på NM-listorna. Granskningen 2026-11-22:
+  // alla rader visade 0 NM (manuella turer utan distans), och en lista där
+  // alla har noll rangordnar ingenting.
+  const allTopNM     = [...allUsers].filter(u => u.nm > 0).sort((a, b) => b.nm - a.nm).slice(0, 10)
   const allTopCount  = [...allUsers].sort((a, b) => b.count - a.count).slice(0, 10)
   const allTopMagic  = [...allUsers].filter(u => u.magic > 0).sort((a, b) => b.magic - a.magic).slice(0, 10)
   const allTopSpeed  = [...allUsers].filter(u => u.maxSpeed > 0).sort((a, b) => b.maxSpeed - a.maxSpeed).slice(0, 10)
@@ -188,7 +193,7 @@ export default async function ToplistaPage() {
           subtitle="Senaste 7 dagarna"
           rows={weekTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${decimal(v)} NM`}
-          emptyText="Ingen har loggat denna vecka än"
+          emptyText="Ingen har loggat distans denna vecka än"
           accentColor="#c96e2a"
         />
 
@@ -198,7 +203,7 @@ export default async function ToplistaPage() {
           subtitle="Senaste 30 dagarna"
           rows={monthTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}${r.magic > 0 ? ` · ${r.magic} magiska` : ''}` }))}
           formatValue={v => `${decimal(v)} NM`}
-          emptyText="Ingen har loggat denna månad än"
+          emptyText="Ingen har loggat distans denna månad än"
           accentColor="#2d7d8a"
         />
 
@@ -208,7 +213,7 @@ export default async function ToplistaPage() {
           subtitle="Totalt seglat"
           rows={allTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${v.toFixed(0)} NM`}
-          emptyText="Inga turer loggade"
+          emptyText="Ingen har loggat distans än. Fyll i distansen när du loggar en tur, så hamnar du här."
           accentColor="#1e5c82"
         />
 

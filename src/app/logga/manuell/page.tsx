@@ -834,10 +834,33 @@ function ManuellForm() {
           {/* ── Synlighet ── */}
           <SynlighetVaxel privat={isPrivate} onChange={setIsPrivate} />
 
+          {/* Distans + Tid. Låg tidigare dolt under "Lägg till detaljer", så de flesta
+              manuella turer sparades utan distans och topplistan visade 0 NM
+              (granskningen 2026-11-22). */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+            {[
+              { id: 'manuell-distans', label: 'Distans (NM)', value: distance, set: setDistance, step: '0.1' },
+              { id: 'manuell-tid', label: 'Tid (min)', value: duration, set: setDuration, step: '1' },
+            ].map(({ id, label, value, set, step }) => (
+              <div key={label}>
+                <label htmlFor={id} style={{ fontSize: 11, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
+                <input id={id} type="number" inputMode="decimal" step={step} min="0" placeholder="0"
+                  value={value} onChange={e => set(e.target.value)}
+                  style={{
+                    width: '100%', padding: '10px 12px', borderRadius: 12,
+                    border: '1.5px solid rgba(10,123,140,0.15)',
+                    background: 'var(--white)', fontSize: 14, textAlign: 'center',
+                    outline: 'none', boxSizing: 'border-box',
+                  }} />
+              </div>
+            ))}
+          </div>
+
           {/* ── Mer info (collapsible) ── */}
           <button
             type="button"
             onClick={() => setShowMore(!showMore)}
+            aria-expanded={showMore}
             style={{
               background: 'none', border: 'none', padding: '4px 0',
               fontSize: 12, color: 'var(--txt3)', fontWeight: 600, cursor: 'pointer',
@@ -847,7 +870,7 @@ function ManuellForm() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 14, height: 14, transform: showMore ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
-            {showMore ? 'Dölj detaljer' : '+ Lägg till detaljer (båttyp, distans)'}
+            {showMore ? 'Dölj detaljer' : '+ Lägg till detaljer (båttyp, rutt)'}
           </button>
 
           {showMore && (
@@ -896,25 +919,6 @@ function ManuellForm() {
                 </div>
               )}
 
-              {/* Distans + Tid */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                {[
-                  { id: 'manuell-distans', label: 'Distans (NM)', value: distance, set: setDistance, step: '0.1' },
-                  { id: 'manuell-tid', label: 'Tid (min)', value: duration, set: setDuration, step: '1' },
-                ].map(({ id, label, value, set, step }) => (
-                  <div key={label}>
-                    <label htmlFor={id} style={{ fontSize: 11, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
-                    <input id={id} type="number" inputMode="decimal" step={step} min="0" placeholder="0"
-                      value={value} onChange={e => set(e.target.value)}
-                      style={{
-                        width: '100%', padding: '10px 12px', borderRadius: 12,
-                        border: '1.5px solid rgba(10,123,140,0.15)',
-                        background: 'var(--white)', fontSize: 14, textAlign: 'center',
-                        outline: 'none', boxSizing: 'border-box',
-                      }} />
-                  </div>
-                ))}
-              </div>
             </div>
           )}
 

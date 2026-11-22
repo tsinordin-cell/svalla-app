@@ -1,6 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { arInbyggdApp, efterCookievalOchTid } from '@/lib/forstaRutor'
+import { useForstaRuta } from '@/lib/useForstaRuta'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
@@ -54,14 +56,16 @@ function harAvbojt(): boolean {
 }
 
 export default function InstallPrompt() {
-  const [show, setShow] = useState(false)
+  // Om rutan syns avgör turordningen i forstaRutor.ts.
+  const [redo, setRedo] = useState(false)
   const [isIOS, setIsIOS] = useState(false)
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
     const standalone = window.matchMedia('(display-mode: standalone)').matches
-    if (standalone || harAvbojt()) return
+    // I den inbyggda appen är Svalla redan installerat (granskningen 2026-11-22).
+    if (standalone || arInbyggdApp() || harAvbojt()) return
 
     // Andra besöket, inte det första. Se raknaBesok().
     if (raknaBesok() < 2) return
@@ -69,23 +73,26 @@ export default function InstallPrompt() {
     const ios = /iphone|ipad|ipod/i.test(navigator.userAgent)
 
     if (ios) {
-      const t = setTimeout(() => { setIsIOS(true); setShow(true) }, 8000)
-      return () => clearTimeout(t)
+      setIsIOS(true)
+      return efterCookievalOchTid(8000, () => setRedo(true))
     }
 
     // Android / Chrome — fånga beforeinstallprompt
-    let timer: ReturnType<typeof setTimeout> | null = null
+    let sluta: (() => void) | null = null
     const handler = (e: Event) => {
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
-      timer = setTimeout(() => setShow(true), 5000)
+      sluta?.()
+      sluta = efterCookievalOchTid(5000, () => setRedo(true))
     }
     window.addEventListener('beforeinstallprompt', handler)
     return () => {
       window.removeEventListener('beforeinstallprompt', handler)
-      if (timer) clearTimeout(timer)
+      sluta?.()
     }
   }, [])
+
+  const [show, lamnaPlatsen] = useForstaRuta('installera', redo, APP_PATHS.some(p => pathname?.startsWith(p)))
 
   function dismiss() {
     /*
@@ -94,7 +101,8 @@ export default function InstallPrompt() {
       som tackat nej ska slippa frågan.
     */
     try { window.localStorage.setItem(AVBOJT, '1') } catch { /* privat läge */ }
-    setShow(false)
+    setRedo(false)
+    lamnaPlatsen()
   }
 
   async function installAndroid() {
@@ -102,12 +110,12 @@ export default function InstallPrompt() {
     deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice
     if (outcome === 'accepted') { try { window.localStorage.setItem(AVBOJT, '1') } catch { /* privat läge */ } }
-    setShow(false)
+    setRedo(false)
+    lamnaPlatsen()
     setDeferredPrompt(null)
   }
 
   if (!show) return null
-  if (!APP_PATHS.some(p => pathname?.startsWith(p))) return null
 
   return (
     <div style={{
