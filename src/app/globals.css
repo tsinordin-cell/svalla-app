@@ -1425,4 +1425,35 @@ img {
 @media (max-width: 640px) {
   .fb-flytande { padding: 0 !important; width: 37px; height: 37px; justify-content: center; }
   .fb-flytande .fb-flytande-text { display: none; }
+  /* Göms vid skroll nedåt (FeedbackWidget.tsx), så den inte ligger över text. */
+  .fb-flytande { transition: transform .2s ease, opacity .2s ease, visibility .2s !important; }
+  .fb-flytande--dold { transform: translateY(calc(100% + 24px)); opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+/* Medan notis- eller installrutan syns ligger den över "Tipsa oss" i samma
+   hörn (granskningen 2026-11-22). Knappen göms tills rutan stängs; klassen
+   sätts i useForstaRuta.ts. */
+body.underkantsruta-oppen .fb-flytande {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Notisrutan (PushPrompt) och installrutan (InstallPrompt) på dator: nedre
+   högra hörnet, inte under eller över sidomenyn.
+   Inline-stilen sätter left/right: 12 för mobil, därav !important här. */
+@media (min-width: 1024px) {
+  .push-prompt, .install-prompt {
+    left: auto !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    width: 400px;
+  }
+}
+
+/* Sökningens filterchips: på telefon skrollas raden med fingret, på dator
+   finns ingen synlig skrollist, så de sista chipsen gick inte att nå.
+   Granskningen 2026-11-22. */
+@media (min-width: 768px) {
+  .sok-filter { flex-wrap: wrap; overflow-x: visible !important; row-gap: 6px; }
 }

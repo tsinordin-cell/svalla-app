@@ -259,7 +259,7 @@ export default function Comments({
  const trigger = compact ? (
  <button
  onClick={() => setOpen(o => !o)}
- aria-label={displayCount > 0 ? `${displayCount} kommentarer` : 'Kommentera'}
+ aria-label={displayCount > 0 ? `${displayCount} ${displayCount === 1 ? 'kommentar' : 'kommentarer'}` : 'Kommentera'}
  aria-expanded={open}
  style={{
  display: 'flex', alignItems: 'center', gap: 5,
@@ -277,7 +277,7 @@ export default function Comments({
  ) : (
  <button
  onClick={() => setOpen(o => !o)}
- aria-label={displayCount > 0 ? `${displayCount} kommentarer` : 'Kommentera'}
+ aria-label={displayCount > 0 ? `${displayCount} ${displayCount === 1 ? 'kommentar' : 'kommentarer'}` : 'Kommentera'}
  aria-expanded={open}
  style={{
  display: 'inline-flex', alignItems: 'center', gap: 7,

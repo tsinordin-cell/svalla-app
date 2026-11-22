@@ -11,7 +11,7 @@ import { ogSida } from '@/lib/og-standard'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt',
-  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastun, bryggor och naturupplevelser.',
+  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastur, bryggor och naturupplevelser.',
   openGraph: {
     images: ogSida('https://svalla.se/planera'),
     title: 'Planera din skärgårdsrutt | Svalla',
@@ -71,8 +71,9 @@ function PlaneraVy({
       minHeight: '100dvh', background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
     }}>
-      {/* Delade flikar: Planera / Rutter / Öar / Färjor */}
-      <div role="tablist" style={{
+      {/* Delade flikar: Planera / Rutter / Öar / Färjor. Länkar till egna sidor,
+          så en navigering med aria-current, som på /rutter (granskningen 2026-11-22). */}
+      <nav aria-label="Vy" style={{
         display: 'flex', gap: 0, padding: '0 16px',
         background: 'var(--glass-96)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
@@ -83,7 +84,7 @@ function PlaneraVy({
           { label: 'Öar',     href: '/rutter?vy=oar',    active: false },
           { label: 'Färjor',  href: '/rutter?vy=farjor', active: false },
         ]).map(t => (
-          <Link key={t.href} href={t.href} role="tab" aria-selected={t.active} style={{
+          <Link key={t.href} href={t.href} aria-current={t.active ? 'page' : undefined} style={{
             flex: 1, textAlign: 'center', padding: '12px 0 10px',
             fontSize: 14, fontWeight: t.active ? 700 : 600,
             color: t.active ? 'var(--sea)' : 'var(--txt3)',
@@ -93,7 +94,7 @@ function PlaneraVy({
             marginBottom: -1,
           }}>{t.label}</Link>
         ))}
-      </div>
+      </nav>
 
       {/* Hero */}
       <div style={{
@@ -109,7 +110,7 @@ function PlaneraVy({
             Planera din skärgårdsrutt
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.72)', margin: '0 0 20px', lineHeight: 1.55 }}>
-            Välj start, mål och intressen. Vi hittar krogar, bastun och bryggor längs vägen.
+            Välj start, mål och intressen. Vi hittar krogar, bastur och bryggor längs vägen.
           </p>
           <Link href="/planera/ny" className="planera-ny-rutt" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -265,7 +266,7 @@ function PlaneraVy({
           </span>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Utforska utvalda turer</div>
-            <div className="planera-sekundar" style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med waypoints, svårighetsgrad och tips.</div>
+            <div className="planera-sekundar" style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med vägpunkter, svårighetsgrad och tips.</div>
           </div>
           <Link href="/rutter" className="planera-chip" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',

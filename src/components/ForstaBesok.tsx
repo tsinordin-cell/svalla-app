@@ -133,6 +133,8 @@ export default function ForstaBesok() {
         <button type="button" className="fb-stang fb-stang-liten" aria-label="Stäng" onClick={() => stang('nej')}>×</button>
         <style>{`
           .fb-liten-ruta{position:fixed;left:12px;right:84px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9000;background:#fff;border-radius:999px;padding:6px 40px 6px 6px;box-shadow:0 10px 30px rgba(7,26,44,.22);animation:fbIn .35s ease-out}
+          /* Ovanför bottenmenyn där den finns, annars låg rutan över Utforska, Planera, Logga tur och Flöde (500 px, 22 nov 2026). */
+          body.has-app-nav .fb-liten-ruta{bottom:calc(var(--nav-h) + 12px + env(safe-area-inset-bottom,0px))}
           @keyframes fbIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
           .fb-oppna{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-size:13.5px;font-weight:700;color:#1e5c82;font-family:inherit}
           .fb-oppna img{border-radius:50%;flex-shrink:0}
@@ -185,6 +187,7 @@ export default function ForstaBesok() {
       )}
       <style>{`
         .fb-ruta{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:9000;width:min(360px,calc(100vw - 32px));background:#fff;border-radius:18px;padding:16px 16px 14px;box-shadow:0 18px 50px rgba(7,26,44,.28);color:#162d3a;animation:fbIn .35s ease-out}
+        body.has-app-nav .fb-ruta{bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom,0px))}
         @keyframes fbIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
         .fb-stang{position:absolute;top:8px;right:10px;background:none;border:0;font-size:22px;line-height:1;color:#8ea7b1;cursor:pointer}
         .fb-topp{display:flex;align-items:center;gap:10px;margin-bottom:8px}

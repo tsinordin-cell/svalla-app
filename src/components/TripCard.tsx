@@ -266,7 +266,9 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
     { label: 'Tid',     value: dur || '—' },
     { label: 'Snitt',   value: avgNum >= 0.5 ? fmt(avgNum) : '—', unit: 'kn' },
     { label: 'Topp',    value: maxNum >= 0.5 ? fmt(maxNum) : '—', unit: 'kn' },
-  ]
+  ].filter(s => s.value !== '—')
+  // Granskningen 2026-11-22: manuellt loggade turer utan distans/tid visade en
+  // hel rad med fyra streck. Tomma fält döljs; finns inget värde alls döljs raden.
 
   const MAX_CAPTION = 120
   const caption = trip.caption ?? ''
@@ -288,6 +290,17 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         cursor: 'pointer',
       }}
     >
+      {/* Hela kortet är klickbart med mus, men ett klick på <article> når inte
+          tangentbord eller skärmläsare. Länken syns först när den får fokus
+          (granskningen 2026-11-22). */}
+      <Link
+        href={`/tur/${trip.id}`}
+        onClick={e => e.stopPropagation()}
+        className="sr-only focus:not-sr-only focus:block focus:px-5 focus:pt-3 text-sm font-semibold"
+        style={{ color: 'var(--sea)' }}
+      >
+        Öppna turen{trip.location_name ? `: ${trip.location_name}` : ''}
+      </Link>
 
       {/* ── 1. Header ── */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '16px 20px 14px' }}>
@@ -508,7 +521,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       )}
 
       {/* ── 3. Stats row ── */}
-      <div style={{
+      {statsRow.length > 0 && <div style={{
         display: 'flex',
         borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
         borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
@@ -541,7 +554,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
             </div>
           </div>
         ))}
-      </div>
+      </div>}
 
       {/* ── 4. Caption ── */}
       {caption ? (

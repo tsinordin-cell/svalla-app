@@ -495,6 +495,7 @@ export default function ProfilPage() {
           )}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
             {u?.nationality && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>{u.nationality}</span>}
+            {u?.vessel_type && !u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><IconSailboat size={12} /> {u.vessel_type}</span>}
             {u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><IconSailboat size={12} /> {u.vessel_name}{u.vessel_model ? ` · ${u.vessel_model}` : ''}</span>}
             {u?.home_port && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Home size={12} /> {u.home_port}</span>}
           </div>
@@ -658,7 +659,8 @@ export default function ProfilPage() {
                       borderRadius: 14,
                       background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
                       border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
-                      opacity: unlocked ? 1 : 0.38,
+                      // 0,38 gjorde låsta märken nästan osynliga mot den ljusa bakgrunden (granskningen 2026-11-22).
+                      opacity: unlocked ? 1 : 0.6,
                       filter: unlocked ? 'none' : 'grayscale(1)',
                       boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
                       position: 'relative',
@@ -675,7 +677,11 @@ export default function ProfilPage() {
                         fontSize: 9, fontWeight: 600,
                         color: unlocked ? 'var(--txt)' : 'var(--txt3)',
                         textAlign: 'center', lineHeight: 1.3,
-                        maxWidth: 56, overflow: 'hidden',
+                        // maxWidth 56 klippte långa ord som "Saltvattenblod" till
+                        // "Saltvattenblc". Avstavning på svenska (lang="sv"), och
+                        // radbrytning i ordet som reserv om webbläsaren saknar den.
+                        maxWidth: '100%', overflow: 'hidden',
+                        hyphens: 'auto', WebkitHyphens: 'auto', overflowWrap: 'anywhere',
                         display: '-webkit-box',
                         WebkitLineClamp: 2,
                         WebkitBoxOrient: 'vertical',
@@ -786,8 +792,11 @@ export default function ProfilPage() {
           )}
         </div>
 
-        {/* ── Svalla Wrapped CTA ── */}
-        {user?.username && (
+        {/* ── Svalla Wrapped CTA ──
+            Visas bara när kontot har minst en tur med start i år. Wrapped-sidan
+            filtrerar på started_at inom året och ger 404 utan turer
+            (granskningen 2026-11-22: nya konton möttes av 404 härifrån). */}
+        {user?.username && trips.some(t => t.started_at?.startsWith(String(new Date().getFullYear()))) && (
           <Link href={`/wrapped/${user.username}/${new Date().getFullYear()}`} style={{ textDecoration: 'none', display: 'block', marginTop: 12 }}>
             <div style={{
               position: 'relative', overflow: 'hidden',
@@ -841,7 +850,7 @@ export default function ProfilPage() {
           {[
             { href: '/meddelanden', icon: <MessageCircle size={20} style={{ color: 'var(--sea)' }} />, label: 'Meddelanden', sub: 'Direktmeddelanden med andra seglare' },
             { href: '/insikter',   icon: <BarChart2 size={20} style={{ color: 'var(--sea)' }} />,    label: 'Insikter',    sub: 'Din seglingsstatistik och trender' },
-            { href: '/topplista',  icon: <Trophy size={20} style={{ color: 'var(--sea)' }} />,       label: 'Topplista',   sub: 'Veckans och alltidens bästa seglare' },
+            { href: '/topplista',  icon: <Trophy size={20} style={{ color: 'var(--sea)' }} />,       label: 'Topplista',   sub: 'Veckans och genom tidernas bästa seglare' },
             // Check-in och Bjud in borttagna 2026-09-29: tabellerna check_ins/invites finns inte (se PR #409).
           ].map(({ href, icon, label, sub }, i, arr) => (
             <Link key={href} href={href} style={{ textDecoration: 'none', display: 'block' }}>

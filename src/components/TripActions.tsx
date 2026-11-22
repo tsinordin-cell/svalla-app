@@ -459,7 +459,10 @@ export default function TripActions({
             <button
               type="button"
               onClick={() => setIsPrivate(v => !v)}
-              aria-pressed={isPrivate}
+              // På när turen syns för alla, som SynlighetVaxel (granskningen 2026-11-22).
+              role="switch"
+              aria-checked={!isPrivate}
+              aria-label="Synlig för alla"
               className="press-feedback"
               style={{
                 width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -481,12 +484,12 @@ export default function TripActions({
                 aria-hidden="true"
                 style={{
                   flexShrink: 0, width: 46, height: 26, borderRadius: 13, position: 'relative',
-                  background: isPrivate ? 'var(--sea)' : 'rgba(10,123,140,0.18)',
+                  background: !isPrivate ? 'var(--sea)' : 'rgba(10,123,140,0.18)',
                   transition: 'background 0.15s ease',
                 }}
               >
                 <span style={{
-                  position: 'absolute', top: 3, left: isPrivate ? 23 : 3,
+                  position: 'absolute', top: 3, left: !isPrivate ? 23 : 3,
                   width: 20, height: 20, borderRadius: '50%', background: '#fff',
                   boxShadow: '0 1px 3px rgba(0,20,35,0.25)', transition: 'left 0.15s ease',
                 }} />

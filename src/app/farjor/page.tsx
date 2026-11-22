@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
-import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats } from '@/lib/ferries'
+import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, visaBryggnamn } from '@/lib/ferries'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { ogSida } from '@/lib/og-standard'
 
@@ -303,7 +303,7 @@ export default async function FarjorPage() {
                         {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{' till '}{d.arrival}</span>}
                       </div>
                       <div style={{ fontSize: 12, color: 'var(--txt2)', textAlign: 'right' }}>
-                        {d.to}
+                        {visaBryggnamn(d.to)}
                         {d.changes ? <span style={{ color: 'var(--txt3)' }}> · {d.changes} byte{d.changes > 1 ? 'n' : ''}</span> : null}
                       </div>
                     </div>

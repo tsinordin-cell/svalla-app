@@ -1,4 +1,5 @@
 'use client'
+import SynlighetVaxel from '@/components/SynlighetVaxel'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { komprimeraBild } from '@/lib/komprimeraBild'
 import { useRouter } from 'next/navigation'
@@ -188,6 +189,18 @@ export default function SparaPage() {
       if (!data.user) { router.push('/logga-in?returnTo=%2Fspara&mode=ny'); return }
       setCurrentUserId(data.user.id)
       setAuthLoading(false)
+      // Förval: båttypen från guiden/profilen (users.vessel_type via min_profil).
+      // Granskningen 2026-11-22: guiden sparade Segelbåt men /spara krävde
+      // nytt val. Väljer man själv innan svaret kommer vinner det valet.
+      void (async () => {
+        try {
+          const { data: profil } = await supabase.rpc('min_profil').maybeSingle()
+          const vt = (profil as { vessel_type?: string | null } | null)?.vessel_type
+          if (vt && (BOAT_TYPES as readonly string[]).includes(vt)) {
+            setBoatType(prev => prev || vt)
+          }
+        } catch { /* inget förval, samma läge som tidigare */ }
+      })()
     })
   }, [supabase, router])
 
@@ -1089,7 +1102,7 @@ export default function SparaPage() {
     return (
       <div className="min-h-screen">
         <header className="sticky top-0 z-40 flex items-center gap-3 px-4 py-3 bg-white/96 border-b border-sea-light/40">
-          <button onClick={() => router.back()} className="w-9 h-9 rounded-full flex items-center justify-center bg-sea-xl">
+          <button onClick={() => router.back()} aria-label="Tillbaka" className="w-9 h-9 rounded-full flex items-center justify-center bg-sea-xl">
             <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
@@ -2186,43 +2199,7 @@ export default function SparaPage() {
         {/* Synlighet (beslut A 2026-08-16): privat tur syns bara for dig -
             RLS-policyn trips_select_visible filtrerar den ur flode/profil/
             sok/tursida for alla andra, pa databasniva. */}
-        <button
-          type="button"
-          onClick={() => setIsPrivate(v => !v)}
-          aria-pressed={isPrivate}
-          className="w-full rounded-2xl press-feedback"
-          style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            gap: 12, padding: '14px 16px', cursor: 'pointer', textAlign: 'left',
-            background: 'var(--white)', border: '1px solid rgba(10,123,140,0.15)',
-            boxShadow: '0 1px 6px rgba(0,45,60,0.06)',
-          }}
-        >
-          <span style={{ minWidth: 0 }}>
-            <span style={{ display: 'block', fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>
-              {isPrivate ? 'Privat tur' : 'Synlig för alla'}
-            </span>
-            <span style={{ display: 'block', fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>
-              {isPrivate
-                ? 'Bara du ser turen. Den visas inte i flödet eller på din profil för andra.'
-                : 'Turen visas i flödet och på din profil. Växla för att hålla den privat.'}
-            </span>
-          </span>
-          <span
-            aria-hidden="true"
-            style={{
-              flexShrink: 0, width: 46, height: 26, borderRadius: 13, position: 'relative',
-              background: isPrivate ? 'var(--sea)' : 'rgba(10,123,140,0.18)',
-              transition: 'background 0.15s ease',
-            }}
-          >
-            <span style={{
-              position: 'absolute', top: 3, left: isPrivate ? 23 : 3,
-              width: 20, height: 20, borderRadius: '50%', background: '#fff',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.25)', transition: 'left 0.15s ease',
-            }} />
-          </span>
-        </button>
+        <SynlighetVaxel privat={isPrivate} onChange={setIsPrivate} />
 
         <button
           onClick={handleSave} disabled={saving}

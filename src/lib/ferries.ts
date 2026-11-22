@@ -45,6 +45,20 @@ export type FerryDeparture = {
   changes?: number
 }
 
+/**
+ * Bryggnamnet som det visas för besökaren. Granskningen 2026-11-22: ResRobot
+ * skickar hållplatsnamn med kommun och ibland dubbelt "brygga", som
+ * "Utö Gruvbryggan brygga (Haninge kn)". Kommunen säger inget för den som
+ * väntar på båten, och "Gruvbryggan brygga" läses som ett skrivfel.
+ * Bara visningen ändras; sökningar och avgångsurvalet använder originalnamnet.
+ */
+export function visaBryggnamn(namn: string): string {
+  return namn
+    .replace(/\s*\([^()]*\bkn\)\s*$/, '')
+    .replace(/(brygga|bryggan|kaj|kajen)\s+brygga$/i, '$1')
+    .trim()
+}
+
 export type FerryRoute = {
   id: string
   name: string
@@ -73,7 +87,7 @@ export type FerryDeparturesResult = {
 export const SEED_FERRY_ROUTES: FerryRoute[] = [
   {
     id: 'wxb-vaxholm',
-    name: 'Strömkajen: Vaxholm',
+    name: 'Strömkajen → Vaxholm',
     from: 'Strömkajen',
     to: 'Vaxholm',
     stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Ramsö', 'Tynningö', 'Vaxholm'],
@@ -83,7 +97,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'wxb-grinda',
-    name: 'Strömkajen: Grinda',
+    name: 'Strömkajen → Grinda',
     from: 'Strömkajen',
     to: 'Grinda',
     stops: ['Strömkajen', 'Vaxholm', 'Ramsö', 'Vindö', 'Grinda'],
@@ -93,7 +107,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'cinderella-sandhamn',
-    name: 'Strandvägen: Sandhamn',
+    name: 'Strandvägen → Sandhamn',
     from: 'Strandvägen',
     to: 'Sandhamn',
     // RÄTTAD 2026-08-05. Kommentaren här sa "Strömkajen och Strandvägen är
@@ -111,7 +125,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'wxb-uto',
-    name: 'Årsta Brygga: Utö',
+    name: 'Årsta Brygga → Utö',
     from: 'Årsta Brygga',
     to: 'Utö',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "21A ÅRSTA – UTÖ" (läst 2026-10-29)
@@ -124,7 +138,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'wxb-finnhamn',
-    name: 'Strömkajen: Finnhamn',
+    name: 'Strömkajen → Finnhamn',
     from: 'Strömkajen',
     to: 'Finnhamn',
     stops: ['Strömkajen', 'Vaxholm', 'Ljusterö', 'Husarö', 'Finnhamn'],
@@ -134,7 +148,7 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
   },
   {
     id: 'wxb-moja',
-    name: 'Sollenkroka: Möja',
+    name: 'Sollenkroka → Möja',
     from: 'Sollenkroka',
     to: 'Möja',
     stops: ['Sollenkroka', 'Svartsö', 'Norra Stavsudda', 'Berg (Möja)'],

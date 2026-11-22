@@ -3,7 +3,7 @@ import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ISLANDS } from '@/app/o/island-data'
-import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, type FerryRoute } from '@/lib/ferries'
+import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, visaBryggnamn, type FerryRoute } from '@/lib/ferries'
 import RutterVyer from './RutterVyer'
 import { ogSida } from '@/lib/og-standard'
 
@@ -90,7 +90,9 @@ export default async function RutterPage() {
   return (
     <RutterVyer
       tours={(tours ?? []) as Tour[]}
-      antalOar={ISLANDS.length}
+      // Antalet som faktiskt visas i Öar-fliken, inte hela ödatan (granskningen
+      // 2026-11-22: rubriken sa 126 öar medan fliken visade 55).
+      antalOar={ISLAND_SECTIONS.reduce((n, s) => n + s.slugs.filter(slug => !!islandBySlug[slug]).length, 0)}
       antalFarjelinjer={SEED_FERRY_ROUTES.length}
       oar={<IslandsView />}
       farjor={<FerriesView />}
@@ -228,7 +230,7 @@ async function FerriesView() {
                       {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{' till '}{d.arrival}</span>}
                     </div>
                     <div style={{ fontSize: 11, color: 'var(--txt2)', textAlign: 'right' }}>
-                      {d.to}
+                      {visaBryggnamn(d.to)}
                       {d.changes ? <span style={{ color: 'var(--txt3)' }}> · {d.changes} byte{d.changes > 1 ? 'n' : ''}</span> : null}
                     </div>
                   </div>
@@ -273,7 +275,7 @@ function IslandsView() {
                     fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 10,
                     background: section.bg, color: section.color,
                   }}>
-                    {islands.length} öar
+                    {islands.length} {islands.length === 1 ? 'ö' : 'öar'}
                   </span>
                 </div>
                 <p style={{ fontSize: 12, color: 'var(--txt2)', margin: 0, lineHeight: 1.4 }}>
