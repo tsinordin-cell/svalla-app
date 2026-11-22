@@ -3,7 +3,7 @@ import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ISLANDS } from '@/app/o/island-data'
-import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, type FerryRoute } from '@/lib/ferries'
+import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, visaBryggnamn, type FerryRoute } from '@/lib/ferries'
 import RutterVyer from './RutterVyer'
 import { ogSida } from '@/lib/og-standard'
 
@@ -230,7 +230,7 @@ async function FerriesView() {
                       {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{' till '}{d.arrival}</span>}
                     </div>
                     <div style={{ fontSize: 11, color: 'var(--txt2)', textAlign: 'right' }}>
-                      {d.to}
+                      {visaBryggnamn(d.to)}
                       {d.changes ? <span style={{ color: 'var(--txt3)' }}> · {d.changes} byte{d.changes > 1 ? 'n' : ''}</span> : null}
                     </div>
                   </div>
