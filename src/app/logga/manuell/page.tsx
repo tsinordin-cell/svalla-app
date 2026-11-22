@@ -493,7 +493,7 @@ function ManuellForm() {
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 80px)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 88px)' }}>
       {/* Header */}
       <header style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -932,9 +932,12 @@ function ManuellForm() {
 
       {/* ── Sticky bottom CTA ── */}
       <div style={{
-        position: 'fixed', bottom: 'var(--nav-h)', left: 0, right: 0,
+        // Bottenmenyn visas inte på /logga/manuell (Nav.tsx), men --nav-h är
+        // 64px på mobil. Med bottom: var(--nav-h) la sig knappen 64px upp med
+        // en tom remsa under. Granskningen 2026-11-22.
+        position: 'fixed', bottom: 0, left: 0, right: 0,
         padding: '12px 14px',
-        paddingBottom: 12,
+        paddingBottom: 'calc(12px + env(safe-area-inset-bottom, 0px))',
         background: 'var(--glass-96)',
         backdropFilter: 'blur(12px)',
         borderTop: '1px solid rgba(10,123,140,0.10)',

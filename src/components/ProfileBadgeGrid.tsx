@@ -28,7 +28,8 @@ export default function ProfileBadgeGrid({ unlockedIds }: { unlockedIds: string[
               borderRadius: 14,
               background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
               border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
-              opacity: unlocked ? 1 : 0.38,
+              // Samma som på egna profilen: 0,38 gjorde låsta märken nästan osynliga.
+              opacity: unlocked ? 1 : 0.6,
               filter: unlocked ? 'none' : 'grayscale(1)',
               boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
               position: 'relative',
@@ -45,7 +46,11 @@ export default function ProfileBadgeGrid({ unlockedIds }: { unlockedIds: string[
                 fontSize: 9, fontWeight: 600,
                 color: unlocked ? 'var(--txt)' : 'var(--txt3)',
                 textAlign: 'center', lineHeight: 1.3,
-                maxWidth: 56, overflow: 'hidden',
+                // maxWidth 56 klippte långa ord som "Saltvattenblod" till
+                // "Saltvattenblc". Avstavning på svenska (lang="sv"), och
+                // radbrytning i ordet som reserv om webbläsaren saknar den.
+                maxWidth: '100%', overflow: 'hidden',
+                hyphens: 'auto', WebkitHyphens: 'auto', overflowWrap: 'anywhere',
                 display: '-webkit-box',
                 WebkitLineClamp: 2,
                 WebkitBoxOrient: 'vertical',
