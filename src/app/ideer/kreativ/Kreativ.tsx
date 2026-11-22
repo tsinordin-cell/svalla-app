@@ -221,6 +221,18 @@ function StartHero() {
   )
 }
 
+/* Startscenen: samma intro som del 1, påbyggt med ö, fyr och färja som bär knappar in till sajten. */
+function ScenDel() {
+  const [inne, setInne] = useState(false)
+  if (!inne) return <IntroV2 varld efter={() => setInne(true)} />
+  return (
+    <div className="kr-intro-v2">
+      <StartHero />
+      <button type="button" className="kr-spela kr-igen2" onClick={() => setInne(false)}>Spela introt igen</button>
+    </div>
+  )
+}
+
 /* Introt version 2 (WebGL2, egen fil) och vidare in till startsidans animering. */
 function IntroDel() {
   const [inne, setInne] = useState(false)
@@ -475,7 +487,7 @@ function Partnersida({ foton }: { foton: KFoto[] }) {
 /* ─────────────────────────── SIDAN ─────────────────────────── */
 
 const DELAR = [
-  ['intro', 'Introt'], ['karta', 'Kartan'], ['fragan', 'Frågan'], ['halsbricka', 'Halsbrickan'], ['bandet', 'Bandet'], ['partner', 'Partnersidan'],
+  ['intro', 'Introt'], ['karta', 'Kartan'], ['fragan', 'Frågan'], ['halsbricka', 'Halsbrickan'], ['bandet', 'Bandet'], ['partner', 'Partnersidan'], ['scen', 'Startscenen'],
 ] as const
 
 export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto[]; onamn: string[] }) {
@@ -508,6 +520,10 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
       </Del>
       <Del nr="6" id="partner" rubrik="Partnersida i Svallastil" forebild={<><a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En levande skärgårdsscen i lager som rör sig när man för musen, dag och natt, penseldragen knapp och erbjudanden i vågiga ramar med öarnas riktiga foton.">
         <Partnersida foton={foton} />
+      </Del>
+
+      <Del nr="7" id="scen" rubrik="Introt som startscen: knappar i bilden" forebild={<>startbilden på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="Samma intro som del 1, påbyggt. När båten har lagt sig stiger en ö med stuga och brygga, en fyr och en färja upp ur havet. På dem sitter knappar som leder till öar, boende, krogar, segelrutter, färjor och kartan. Ön, fyren och färjan är påhittade och föreställer ingen verklig plats.">
+        <ScenDel />
       </Del>
 
       <section className="kr-avslut">

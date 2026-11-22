@@ -169,7 +169,7 @@ const FS_BILD = `#version 300 es
 precision highp float;
 uniform sampler2D den; uniform sampler2D vel; uniform sampler2D korn; uniform sampler2D txt; uniform sampler2D form;
 uniform vec2 res; uniform float t; uniform float hav; uniform float vag; uniform float txtA; uniform vec3 bla; uniform vec3 drops[7];
-uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform float bxo; uniform sampler2D batT; uniform sampler2D armT; uniform vec4 batR; uniform vec4 armQ; uniform vec2 armE; uniform float armV; uniform float malad; uniform vec4 arm; uniform vec4 armU; uniform float armR;
+uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform float bxo; uniform sampler2D batT; uniform sampler2D armT; uniform vec4 batR; uniform vec4 armQ; uniform vec2 armE; uniform float armV; uniform float malad; uniform float genom; uniform vec4 arm; uniform vec4 armU; uniform float armR;
 in vec2 uv; out vec4 o;
 vec4 mjuk(vec2 p){ vec2 e = 1.1 / vec2(textureSize(form, 0));
   return texture(form, p) * .4 + (texture(form, p + e) + texture(form, p - e) + texture(form, p + vec2(e.x, -e.y)) + texture(form, p - vec2(e.x, -e.y))) * .15; }
@@ -230,7 +230,9 @@ void main(){
   // Båten ligger över pappret och bläcket men bakom havet, så att skrovet sjunker ner i vattnet
   float synlig = 1. - kant(havF, th);
   farg = farg * (1. - bc.a * synlig) + bc.rgb * synlig;
-  o = vec4(farg, 1.);
+  // Startscenen: pappret släpper igenom det som ligger bakom bilden
+  float tack = 1. - (1. - ink) * (1. - bc.a * synlig);
+  o = genom > .5 ? vec4(farg - (1. - tack), tack) : vec4(farg, 1.);
 }`
 
 type GL = WebGL2RenderingContext
@@ -311,7 +313,18 @@ function skapaLjud() {
   }
 }
 
-export default function Intro({ efter }: { efter?: () => void }) {
+/* Vägarna in från startscenen. Alla leder till sidor som finns på Svalla. */
+const SKYLTAR = [
+  { id: 'oar', namn: 'Öar', href: '/oar' },
+  { id: 'boende', namn: 'Boende', href: '/boende' },
+  { id: 'krogar', namn: 'Krogar', href: '/krogar-och-mat' },
+  { id: 'segla', namn: 'Segelrutter', href: '/segelrutter' },
+  { id: 'farjor', namn: 'Färjor', href: '/farjor' },
+  { id: 'karta', namn: 'Karta', href: '/karta' },
+] as const
+
+/* varld = startscenen (del 7): samma intro, men pappret är genomskinligt så att en ö, en fyr och en färja kan stiga upp bakom havet. */
+export default function Intro({ efter, varld = false }: { efter?: () => void; varld?: boolean }) {
   const scen = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
   const tid = useRef(0)
@@ -336,7 +349,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
   useEffect(() => {
     const el = scen.current, cv = canvas.current
     if (!el || !cv) return
-    const gl = cv.getContext('webgl2', { antialias: false, premultipliedAlpha: false, alpha: false })
+    const gl = cv.getContext('webgl2', { antialias: false, premultipliedAlpha: varld, alpha: varld })
     if (!gl) { setStod(false); return }
     const minskad = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
@@ -624,6 +637,7 @@ export default function Intro({ efter }: { efter?: () => void }) {
         gl.uniform2f(u(pBild, 'armE'), vx + MALAD.armbage[0] * pk, byy + MALAD.armbage[1] * pk)
         gl.uniform1f(u(pBild, 'armV'), minskad ? 0 : 0.06 + Math.sin(sek * 5.2) * 0.3)
         gl.uniform1f(u(pBild, 'malad'), maladKlar >= 2 ? 1 : 0)
+        gl.uniform1f(u(pBild, 'genom'), varld ? 1 : 0)
       }
       // Tidslinjen som flytande droppar: en aktiv droppe med släpande svans
       const mal = Math.min(SCENER.length - 1, sc + klamp((T - SCENER[sc]!.fran) / ((SCENER[sc + 1]?.fran ?? SLUT) - SCENER[sc]!.fran)))
@@ -665,7 +679,26 @@ export default function Intro({ efter }: { efter?: () => void }) {
 
   return (
     <div className={gar ? 'ki-scen ki-gar' : 'ki-scen'} ref={scen}>
+      {varld && (
+        <div className={visT >= 9800 ? 'ki-varld syns' : 'ki-varld'} aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-o" src="/kreativ/scen-o.webp" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-farja" src="/kreativ/scen-farja.webp" alt="" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-fyr" src="/kreativ/scen-fyr.webp" alt="" />
+          <svg className="ki-v-masar" viewBox="0 0 120 44" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M6 24 Q20 8 32 22 Q44 6 60 20" /><path d="M74 36 Q84 26 92 35 Q100 25 112 34" /></svg>
+          <svg className="ki-v-masar tva" viewBox="0 0 60 30" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M4 20 Q16 6 28 18 Q40 4 56 16" /></svg>
+        </div>
+      )}
       <canvas ref={canvas} className="ki-canvas" aria-label="Introt: blå prickar blir Sverige, sedan Svallas segelbåt och till sist ett hav." />
+      {varld && (
+        <nav className={visT >= 10900 && !gar ? 'ki-skyltar syns' : 'ki-skyltar'} aria-label="Vägar in i Svalla">
+          {SKYLTAR.map((s, i) => (
+            <a key={s.id} href={s.href} className={'ki-skylt ki-s-' + s.id} style={{ transitionDelay: i * 110 + 'ms' }}><i />{s.namn}</a>
+          ))}
+        </nav>
+      )}
       <div className="ki-topp">
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
         <button type="button" className="ki-ljud" onClick={vaxlaLjud} aria-pressed={ljud}>{ljud ? 'Ljud på' : 'Ljud av'}</button>
@@ -716,6 +749,39 @@ const CSS = `
 .ki-reserv{display:flex;align-items:flex-start;justify-content:center}
 .ki-reserv-hav{position:absolute;left:0;right:0;bottom:0;height:40%;background:#1b57a0}
 .ki-reserv p{margin-top:18%;font:700 13px Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1b57a0}
+.ki-varld{position:absolute;inset:0;pointer-events:none}
+.ki-varld img{position:absolute;bottom:36%;height:auto;opacity:0;transform:translateY(75%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1),opacity .5s}
+.ki-varld.syns img{opacity:1}
+.ki-v-o{left:1.5%;width:27%}
+.ki-varld.syns .ki-v-o{transform:translateY(11.8%)}
+.ki-v-fyr{right:3.5%;width:13.5%}
+.ki-varld.syns .ki-v-fyr{transform:translateY(10.4%);transition-delay:.3s}
+.ki-v-farja{left:67%;width:10.5%}
+.ki-varld.syns .ki-v-farja{transform:translateY(17.7%);transition-delay:.6s;animation:kiDrift 36s ease-in-out 2.4s infinite alternate}
+@keyframes kiDrift{to{translate:-55% 0}}
+.ki-v-masar{position:absolute;left:10%;top:17%;width:9%;opacity:0;transition:opacity 1.2s .8s;animation:kiSvav 7s ease-in-out infinite alternate}
+.ki-v-masar.tva{left:auto;right:19%;top:27%;width:6%;animation-duration:9s}
+.ki-varld.syns .ki-v-masar{opacity:1}
+@keyframes kiSvav{to{translate:14px -8px}}
+.ki-skyltar{position:absolute;inset:0;z-index:3;pointer-events:none}
+.ki-skylt{position:absolute;display:inline-flex;align-items:center;gap:7px;font:400 15px/1 'Playfair Display',Georgia,serif;color:#1b57a0 !important;background:#fff;border-radius:19px 16px 18px 15px;padding:9px 14px 9px 11px;text-decoration:none !important;white-space:nowrap;box-shadow:0 6px 18px rgba(13,36,64,.16);opacity:0;visibility:hidden;transform:translateY(8px) rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s .5s}
+.ki-skyltar.syns .ki-skylt{opacity:1;visibility:visible;pointer-events:auto;transform:rotate(var(--r,0deg));transition:opacity .5s,transform .5s cubic-bezier(.2,1.4,.4,1),box-shadow .3s,visibility 0s}
+.ki-skyltar.syns .ki-skylt:hover,.ki-skyltar.syns .ki-skylt:focus-visible{transform:translateY(-3px) rotate(0deg);box-shadow:0 10px 24px rgba(13,36,64,.26);transition-delay:0s !important}
+.ki-skylt i{width:8px;height:8px;border-radius:50%;background:#c8642a;animation:kiPuls 2.4s ease-out infinite}
+@keyframes kiPuls{0%{box-shadow:0 0 0 0 rgba(200,100,42,.55)}70%,100%{box-shadow:0 0 0 9px rgba(200,100,42,0)}}
+.ki-s-oar{left:6.5%;top:37%;--r:-3deg}
+.ki-s-boende{left:14.5%;top:45%;--r:2deg}
+.ki-s-krogar{left:21%;top:55%;--r:-2deg}
+.ki-s-segla{left:56.5%;top:35.5%;--r:2deg}
+.ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
+.ki-s-karta{left:86%;top:34%;--r:3deg}
+@media (prefers-reduced-motion:reduce){.ki-skylt i,.ki-v-masar,.ki-varld.syns .ki-v-farja{animation:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
+@media (max-width:860px){.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
+.ki-skylt{font-size:12.5px;padding:7px 10px 7px 8px;gap:5px}
+.ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
+.ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-segla{top:auto;bottom:132px;--r:0deg}
+.ki-s-boende{left:3%}.ki-s-krogar{left:26%}.ki-s-farjor{left:48.5%}.ki-s-segla{left:auto;right:3%}}
+@media (max-width:560px){.ki-skylt{font-size:11.5px;padding:6px 8px 6px 7px}.ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-segla{bottom:136px}}
 `
