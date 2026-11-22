@@ -5534,7 +5534,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
-  "smaadalaro": [
+  "smadalaro": [
     {
       "url": "https://www.haninge.se/uppleva-och-gora/idrott-och-friluftsliv/utomhusaktiviteter/",
       "org": "haninge.se",
@@ -5792,7 +5792,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
-  "adelsjo": [
+  "adelso": [
     {
       "url": "https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/",
       "org": "raa.se",
@@ -6056,7 +6056,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
-  "ormsko": [
+  "ormskar": [
     {
       "url": "https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html",
       "org": "Länsstyrelsen Stockholm",
@@ -6095,7 +6095,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
-  "graskar": [
+  "grasko": [
     {
       "url": "https://www.lansstyrelsen.se/download/18.1b1d393819324610c37487ba/1732515932045/Sk%C3%A4rg%C3%A5rdsfakta%20%E2%80%93%20Grafiska%20kartor%202019.pdf",
       "org": "Länsstyrelsen",
@@ -8692,7 +8692,7 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "myndighet": false
     }
   ],
-  "visingo": [
+  "visingso": [
     {
       "url": "https://www.jonkoping.se/trafik--stadsplanering/planarbete-och-samhallsbyggnad/kommundelsutveckling/visingso-kommundelsutveckling",
       "org": "jonkoping.se",

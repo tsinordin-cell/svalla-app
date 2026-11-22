@@ -16,7 +16,7 @@ import { cronBehorig } from '@/lib/cronAuth'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { sendPushToUsers } from '@/lib/push-server'
 import { notifyWithRetry } from '@/lib/notifyWithRetry'
-import { ALL_ISLANDS } from '@/app/o/island-data'
+import { oNamn } from '@/lib/oNamn'
 
 export const dynamic = 'force-dynamic'
 export const maxDuration = 300
@@ -33,7 +33,6 @@ async function handle(req: Request) {
   const svc = getAdminClient()
 
   // Slå upp ö-namn för slugs
-  const islandNameBySlug = new Map(ALL_ISLANDS.map(i => [i.slug, i.name]))
 
   // Senaste 25 timmars besök
   const since = new Date(Date.now() - 25 * 60 * 60 * 1000).toISOString()
@@ -105,7 +104,7 @@ async function handle(req: Request) {
 
   for (const v of visits) {
     processed++
-    const islandName = islandNameBySlug.get(v.island_slug) ?? v.island_slug
+    const islandName = oNamn(v.island_slug)
     const username = visitorByName.get(v.user_id) ?? 'Någon du följer'
 
     const followerIds = followersByUserId.get(v.user_id) ?? []

@@ -190,3 +190,11 @@ export function islandsForCategory(slug: string): Island[] {
   // 2026-10-21: bara öar — fastlandsorterna och Kosterhavet (nationalpark) räknades förut med i "X öar".
   return OAR.filter(cat.filter)
 }
+
+// 2026-11-22 (beslut 4, Toms ja): Birka och Adelsö ligger i Mälaren, inte i
+// skärgården (Länsstyrelsen Stockholm: Björkö naturreservat "ligger på Björkö
+// i Mälaren"; båda har regionLabel 'Mälaren'). De listades under Mellersta.
+// Region i datan är oförändrad, så kategorier som Dagstur från Stockholm och
+// komma-dit-sidornas Stockholmsregler gäller som förut; bara listningen flyttas.
+export const gruppFor = (i: Island, grupper: Record<string, unknown>): string =>
+  i.regionLabel === 'Mälaren' ? 'malaren' : i.region in grupper ? i.region : 'mellersta'

@@ -110,7 +110,7 @@ export const SCB_OAR: Record<string, ScbO> = {
     "byggnader": 87832,
     "bostadsbyggnader": 30133
   },
-  "graskar": {
+  "grasko": {
     "scbNamn": "Gräskö",
     "kommun": "Norrtälje",
     "folkbokforda": 24,
@@ -320,7 +320,7 @@ export const SCB_OAR: Record<string, ScbO> = {
     "byggnader": 1354,
     "bostadsbyggnader": 479
   },
-  "visingo": {
+  "visingso": {
     "scbNamn": "Visingsö",
     "kommun": "Jönköping",
     "folkbokforda": 716,
