@@ -8,6 +8,11 @@
 import Link from 'next/link'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
+import IntroV2 from './Intro'
+import dynamic from 'next/dynamic'
+
+// Startsidans egen animering (samma komponent som på svalla.se), laddas först när man går in
+const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), { ssr: false, loading: () => null })
 
 export type KO = { slug: string; namn: string; lat: number; lng: number; omrade: 'stockholm' | 'vast' }
 export type KBild = { url: string; fotograf: string; licens: string } | null
@@ -189,6 +194,40 @@ function Intro({ onamn }: { onamn: string[] }) {
         })}
         <button type="button" className="kr-hoppa" onClick={() => hoppa(SLUT)}>Hoppa över</button>
       </div>
+    </div>
+  )
+}
+
+/* Efter "Gå in på Svalla": havet har fyllt bilden, det glider upp med banden i kölvattnet och startsidans egen animering tar över. */
+function StartHero() {
+  // Samma säsongsregel som startsidan: vinter 13 november till och med februari
+  const [variant] = useState<1 | 6>(() => { const nu = new Date(), m = nu.getMonth(); return m === 11 || m <= 1 || (m === 10 && nu.getDate() >= 13) ? 6 : 1 })
+  return (
+    <div className="kr-scen kr-start">
+      <div className="kr-start-bg"><HeroAnimation variant={variant} /></div>
+      <div className="kr-start-inne">
+        <h3>Planera din<br /><em>skärgårdsvistelse</em></h3>
+        <p>Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
+        <Link href="/" className="kr-start-knapp">Till startsidan</Link>
+      </div>
+      <div className="kr-start-hav" />
+      <svg className="kr-band-svg" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+        {BAND.map((f, i) => (
+          <path key={f} className="kr-bandet kr-bandet2" style={{ animationDelay: `${120 + i * 70}ms` }} d="M -260 640 Q 500 120 1260 640" stroke={f} strokeWidth="150" fill="none" />
+        ))}
+      </svg>
+    </div>
+  )
+}
+
+/* Introt version 2 (WebGL2, egen fil) och vidare in till startsidans animering. */
+function IntroDel() {
+  const [inne, setInne] = useState(false)
+  if (!inne) return <IntroV2 efter={() => setInne(true)} />
+  return (
+    <div className="kr-intro-v2">
+      <StartHero />
+      <button type="button" className="kr-spela kr-igen2" onClick={() => setInne(false)}>Spela introt igen</button>
     </div>
   )
 }
@@ -584,8 +623,8 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
         <nav className="kr-index" aria-label="Innehåll">{DELAR.map(([id, n], i) => <a key={id} href={`#${id}`}><span>{i + 1}</span>{n}</a>)}</nav>
       </section>
 
-      <Del nr="1" id="intro" rubrik="Introt: prickarna blir ett hav" forebild={<><a href="https://plastichuman.org/" target="_blank" rel="noopener noreferrer">plastichuman.org</a> och tidslinjen hos <a href="https://www.hoverstat.es/features/xk-studio/" target="_blank" rel="noopener noreferrer">XK Studio</a></>} varfor="Vit skärm, blå målarprickar som flyter ihop till ett hav, och Svallas segelbåt kommer seglande med två personer ombord. Gå in leder vidare till startsidan med bandet. Tidslinjen visar att det är kort, och man kan alltid hoppa över.">
-        <Intro onamn={onamn} />
+      <Del nr="1" id="intro" rubrik="Introt: prickarna blir ett hav" forebild={<><a href="https://plastichuman.org/" target="_blank" rel="noopener noreferrer">plastichuman.org</a> och tidslinjen hos <a href="https://www.hoverstat.es/features/xk-studio/" target="_blank" rel="noopener noreferrer">XK Studio</a></>} varfor="Version 2, byggd i WebGL2 i full skärpa. Tusentals partiklar blir bläck som formar Sverige, sedan Svallas segelbåt med två personer ombord, och flyter ut till ett hav. Ett vätskefält under ytan krusar kanten hela tiden. Båten glider ner i havet och texten inverterar det där den korsar. Ljudet är en lugn havsbris med stilla vågor och är av tills man slår på det. När man trycker på Gå in på Svalla stiger havet och fyller bilden, banden sveper förbi och startsidans egen animering tar över.">
+        <IntroDel />
       </Del>
       <Del nr="2" id="fragan" rubrik="Frågan vid dörren" forebild={<>välkomstskärmen på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En lekfull fråga med två svar innan man kommer in. Frågan byts varje gång och båda svaren leder vidare. Kan visas efter introt eller i stället för det.">
         <Fragan />
@@ -643,6 +682,18 @@ const CSS = `
 .kr-spela{position:absolute;right:16px;bottom:16px;z-index:5;border:1px solid rgba(255,255,255,.5);background:rgba(13,36,64,.55);color:#fff;font:inherit;font-size:13px;font-weight:600;border-radius:999px;padding:8px 14px;cursor:pointer;backdrop-filter:blur(6px)}
 .kr-spela.mork{position:static;background:${NAVY};border:none}
 .kr-goo{position:absolute;inset:0;width:100%;height:100%}
+.kr-intro-v2{position:relative}
+.kr-igen2{bottom:16px;right:16px}
+.kr-start{background:#1b57a0}
+.kr-start-bg{position:absolute;inset:0;background:linear-gradient(to bottom,#3d94d4 0%,#b0dcf2 58%,#2488c0 58%,#0a2e5a 100%)}
+.kr-start-inne{position:absolute;left:0;right:0;top:9%;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;animation:krOrd .9s .8s cubic-bezier(.2,.8,.2,1) both}
+.kr-start-inne h3{font-family:'Playfair Display',Georgia,serif;font-weight:900;font-size:clamp(28px,4.6vw,58px);line-height:1.06;color:#fff;letter-spacing:-.02em;text-shadow:0 2px 24px rgba(5,15,30,.6);margin:0}
+.kr-start-inne h3 em{color:#f0a866}
+.kr-start-inne p{font-size:clamp(13px,1.5vw,16px);font-weight:300;color:rgba(255,255,255,.88);margin:10px 0 0;text-shadow:0 1px 10px rgba(5,15,30,.55)}
+.kr-start-knapp{margin-top:16px;display:inline-block;background:#b5591a;color:#fff !important;font-weight:700;font-size:14px;border-radius:999px;padding:11px 22px;text-decoration:none}
+.kr-start-hav{position:absolute;left:-6%;right:-6%;top:0;height:128%;z-index:3;background:#1b57a0;border-radius:0 0 50% 50%/0 0 20% 20%;animation:krHavUpp 1.25s .12s cubic-bezier(.7,0,.25,1) forwards}
+@keyframes krHavUpp{to{transform:translateY(-112%)}}
+.kr-bandet2{animation-duration:1.55s}
 .kr-intro-over{position:absolute;inset:0;z-index:8}
 .kr-intro-over .kr-scen{position:absolute;inset:0;aspect-ratio:auto;min-height:0;border-radius:0;box-shadow:none}
 .kr-intro-over .kr-band>.kr-spela{display:none}
