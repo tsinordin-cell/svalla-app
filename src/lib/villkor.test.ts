@@ -1,18 +1,23 @@
 import { describe, it, expect } from 'vitest'
-import { operatorRad, OPERATOR_NAMN, OPERATOR_ORGNR } from './villkor'
+import { operatorRad, ANSVARIG } from './villkor'
 
 describe('operatorRad', () => {
-  it('visar ingenting förrän båda fälten är ifyllda', () => {
-    expect(operatorRad(null, null)).toBeNull()
-    expect(operatorRad('Exempel AB', null)).toBeNull()
-    expect(operatorRad(null, '000000-0000')).toBeNull()
+  it('visar ingenting utan uppgifter', () => {
+    expect(operatorRad(null)).toBeNull()
+    expect(operatorRad({ typ: 'bolag', namn: 'Exempel AB', orgNr: ' ' })).toBeNull()
+    expect(operatorRad({ typ: 'personer', namn: [' '] })).toBeNull()
   })
-  it('bygger raden när båda finns', () => {
-    expect(operatorRad('Exempel AB', '000000-0000'))
+  it('bolag', () => {
+    expect(operatorRad({ typ: 'bolag', namn: 'Exempel AB', orgNr: '000000-0000' }))
       .toBe('Svalla drivs av Exempel AB, organisationsnummer 000000-0000.')
   })
-  it('inga påhittade uppgifter i koden ännu', () => {
-    expect(OPERATOR_NAMN).toBeNull()
-    expect(OPERATOR_ORGNR).toBeNull()
+  it('en eller flera privatpersoner', () => {
+    expect(operatorRad({ typ: 'personer', namn: ['Anna Exempel'] }))
+      .toBe('Svalla drivs av Anna Exempel som privatperson.')
+    expect(operatorRad({ typ: 'personer', namn: ['Anna Exempel', 'Bo Exempel'] }))
+      .toBe('Svalla drivs av Anna Exempel och Bo Exempel som privatpersoner.')
+  })
+  it('inga påhittade uppgifter i koden', () => {
+    expect(ANSVARIG).toBeNull()
   })
 })

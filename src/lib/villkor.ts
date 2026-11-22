@@ -16,11 +16,33 @@ export function arGiltigVillkorsversion(v: string | null | undefined): v is stri
  * från Tom och Max (bolagsnamn och organisationsnummer). Gissa aldrig: så
  * länge värdet är null visas raden inte i produktion.
  */
-export const OPERATOR_NAMN: string | null = null
-export const OPERATOR_ORGNR: string | null = null
+/**
+ * Vem som ansvarar för Svalla (App Store 1.2 och GDPR art. 13 kräver en namngiven ansvarig).
+ * Fyll bara i uppgifter som Tom eller Max har gett. Tills dess är det null och
+ * ingen rad visas på svalla.se.
+ *   Bolag:         { typ: 'bolag', namn: '…', orgNr: '…' }
+ *   Privatpersoner: { typ: 'personer', namn: ['…'] }  (en eller flera)
+ */
+export type Ansvarig =
+  | { typ: 'bolag'; namn: string; orgNr: string }
+  | { typ: 'personer'; namn: string[] }
 
-/** Raden om vem som driver Svalla, eller null om uppgifterna saknas. */
-export function operatorRad(namn: string | null = OPERATOR_NAMN, orgNr: string | null = OPERATOR_ORGNR): string | null {
-  if (!namn || !orgNr) return null
-  return `Svalla drivs av ${namn}, organisationsnummer ${orgNr}.`
+export const ANSVARIG: Ansvarig | null = null
+
+function listaNamn(namn: string[]): string {
+  if (namn.length <= 1) return namn[0] ?? ''
+  return `${namn.slice(0, -1).join(', ')} och ${namn[namn.length - 1]}`
+}
+
+/** Raden om vem som driver Svalla, eller null om uppgifter saknas. */
+export function operatorRad(ansvarig: Ansvarig | null = ANSVARIG): string | null {
+  if (!ansvarig) return null
+  if (ansvarig.typ === 'bolag') {
+    const namn = ansvarig.namn.trim(), orgNr = ansvarig.orgNr.trim()
+    if (!namn || !orgNr) return null
+    return `Svalla drivs av ${namn}, organisationsnummer ${orgNr}.`
+  }
+  const namn = ansvarig.namn.map(n => n.trim()).filter(Boolean)
+  if (namn.length === 0) return null
+  return `Svalla drivs av ${listaNamn(namn)} som ${namn.length === 1 ? 'privatperson' : 'privatpersoner'}.`
 }
