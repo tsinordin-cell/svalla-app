@@ -18,7 +18,7 @@ import { ISLAND_COORDS } from '@/lib/islandCoords'
  */
 export const metadata: Metadata = {
   title: { absolute: 'Vi vill ha med er på Svalla | För hotell i skärgården' },
-  description: 'Skärgården börjar här, på Svalla. Så här skulle ert hotell synas, och det kostar ingenting att vara med.',
+  description: 'Skärgården börjar på Svalla. Så här skulle ert hotell synas, och det kostar ingenting att vara med.',
   robots: { index: false, follow: false },
 }
 
@@ -78,7 +78,7 @@ export default function HotellSida() {
         <div className="ht-hero-inre">
           <small>Till er som driver hotell i skärgården</small>
           <h1>Vi vill ha med er på Svalla</h1>
-          <p>Skärgården börjar här, på Svalla. Öarna, båtarna, krogarna och boendena på ett ställe, där resan planeras innan någon har packat väskan. Ert hotell hör hemma här, och det kostar ingenting att vara med.</p>
+          <p>Skärgården börjar på Svalla. Öarna, båtarna, krogarna och boendena på ett ställe, där resan planeras innan någon har packat väskan. Ert hotell hör hemma här, och det kostar ingenting att vara med.</p>
           <div className="ht-knappar">
             <a className="ht-knapp" href={MAILTO}>Ja, vi vill vara med</a>
             <a className="ht-knapp ljus" href="#er-sida">Se hur det skulle se ut</a>
