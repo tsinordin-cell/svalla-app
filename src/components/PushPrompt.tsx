@@ -104,12 +104,16 @@ export default function PushPrompt() {
 
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{ fontSize: 14, fontWeight: 600, color: '#fff', margin: '0 0 4px' }}>
-          {done ? 'Notiser aktiverade' : 'Missa inga turer i närheten'}
+          {done ? 'Notiser aktiverade' : 'Slå på notiser'}
         </p>
         {!done && (
           <>
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', margin: '0 0 10px', lineHeight: 1.4 }}>
-              Få en notis när dina följare loggar nya turer.
+              {/* Tidigare: "när dina följare loggar nya turer" och "turer i närheten".
+                  Ingen sådan notis skickas. Det som skickas (notisRegler.ts,
+                  forum, besök): gillningar, kommentarer, omnämnanden, taggningar,
+                  meddelanden, nya följare och forumsvar. Granskningen 2026-11-22. */}
+              Få en notis när någon gillar eller kommenterar din tur, skriver till dig eller börjar följa dig.
             </p>
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={enable} disabled={loading} style={{

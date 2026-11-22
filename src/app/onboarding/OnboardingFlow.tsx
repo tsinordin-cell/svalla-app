@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
 import { rangordnaForslag } from '@/lib/rangordnaForslag'
 import { DEPARTURES } from '@/lib/planner-client'
+import { IconCompass } from '@/components/icons/SvallaIcons'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /onboarding — Premium skärgårds-tour
@@ -577,6 +578,18 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
 
   useEffect(() => { track('onboarding_started', { step: 1 }) }, [])
 
+  // Guiden räknas som klar när slutskärmen visas, inte först när man trycker en
+  // knapp där. Annars kom hela guiden tillbaka för den som stängde appen på
+  // slutskärmen (granskningen 2026-11-22). Följningarna sparas fortfarande i finish().
+  const klarMarkerad = useRef(false)
+  useEffect(() => {
+    if (step !== 'done' || klarMarkerad.current) return
+    klarMarkerad.current = true
+    // .then() krävs: frågan skickas först när den awaitas eller får en then.
+    supabase.from('users').update({ onboarded_at: new Date().toISOString() }).eq('id', userId).is('onboarded_at', null)
+      .then(({ error }) => { if (error) klarMarkerad.current = false })
+  }, [step, supabase, userId])
+
   const goTo = (next: Step) => { setAnimKey(k => k + 1); setStep(next); track('onboarding_step', { step: stepIdx(next) + 1 }) }
   const goBack = () => {
     const idx = stepIdx(step)
@@ -1138,15 +1151,17 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           textTransform: 'uppercase', letterSpacing: '0.14em',
           textAlign: 'center', marginBottom: 10,
         }}>Eller utforska direkt</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, width: '100%', marginBottom: 8 }}>
+        {/* Fem genvägar: 3 + 2 centrerade i stället för ett rutnät med ett tomt hål. */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, width: '100%', marginBottom: 8 }}>
           {[
             { label: 'Flödet', path: '/feed', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
-            { label: 'Utforska', path: '/upptack', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
+            { label: 'Utforska', path: '/upptack', icon: <IconCompass size={20} strokeWidth={1.6} style={{ color: 'rgba(245,244,239,0.8)' }} /> },
             { label: 'Forum', path: '/forum', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
             { label: 'Logga tur', path: '/logga', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> },
             { label: 'Profil', path: '/profil', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
           ].map(({ label, path, icon }) => (
             <button key={path} onClick={() => finish(path)} disabled={saving} style={{
+              flex: '0 0 calc((100% - 16px) / 3)', boxSizing: 'border-box',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7,
               padding: '12px 8px', borderRadius: 14,
               border: '1px solid rgba(255,255,255,0.10)',
