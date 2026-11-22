@@ -4,10 +4,24 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import { sendEmail } from '@/lib/email'
 import { arSegment } from '@/lib/mejlsegment'
 import { stadaKampanj } from '@/lib/kampanj'
+import { checkRateLimit } from '@/lib/rateLimit'
+import { logger } from '@/lib/logger'
+import {
+  PRENUMERATION_PER_IP_OCH_TIMME, stadaKalla, stadaPreferenser, valkomstTillaten,
+} from '@/lib/prenumeration'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 export async function POST(request: Request) {
+  // Gräns per IP (granskning 2026-11-22, se lib/prenumeration.ts). Rutten är
+  // öppen och varje ny adress får ett mejl.
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
+    ?? request.headers.get('x-real-ip')
+    ?? 'unknown'
+  if (!(await checkRateLimit(`subscribe:${ip}`, PRENUMERATION_PER_IP_OCH_TIMME, 60 * 60 * 1000))) {
+    return NextResponse.json({ error: 'För många försök. Vänta en stund.' }, { status: 429 })
+  }
+
   let body: unknown
   try {
     body = await request.json()
@@ -42,11 +56,13 @@ export async function POST(request: Request) {
   const service = getAdminClient()
   const { error, data: insertedRows } = await service.from('email_subscribers').insert({
     email: normalizedEmail,
-    source: source ?? 'unknown',
+    // Bara formulärnamn och de två kända valen sparas (lib/prenumeration.ts);
+    // tidigare sparades godtycklig JSON ur anropet.
+    source: stadaKalla(source),
     // Kampanjlänk (?k=) som besökaren kom via, se lib/kampanj.ts. Segment
     // bara om besökaren själv valt ett (lib/mejlsegment.ts).
     preferences: (() => {
-      const bas = preferences ?? { weekly_tips: true, season_alerts: true }
+      const bas = stadaPreferenser(preferences)
       const k = stadaKampanj(kampanj)
       return {
         ...bas,
@@ -86,8 +102,21 @@ export async function POST(request: Request) {
     }
   }
 
-  // Skicka välkomstmail till NYA prenumeranter (inte vid dubbletter)
+  // Skicka välkomstmail till NYA prenumeranter (inte vid dubbletter), och högst
+  // VALKOMST_PER_TIMME per timme för hela sajten. Resend skickar också
+  // bekräftelse- och återställningsmejlen; en flod av välkomstmejl får inte
+  // tömma dagskvoten för dem. Prenumerationen sparas ändå.
+  let valkomstOk = true
   if (!isDuplicate && insertedRows && insertedRows.length > 0) {
+    const { count, error: raknaFel } = await service
+      .from('email_log')
+      .select('id', { count: 'exact', head: true })
+      .eq('template', 'newsletter_welcome')
+      .gte('sent_at', new Date(Date.now() - 60 * 60 * 1000).toISOString())
+    valkomstOk = !raknaFel && valkomstTillaten(count)
+    if (!valkomstOk) logger.warn('subscribe', 'välkomstmejl hoppat över: timgränsen nådd eller räkningen misslyckades', { count, fel: raknaFel?.message })
+  }
+  if (valkomstOk && !isDuplicate && insertedRows && insertedRows.length > 0) {
     try {
       const mailResult = await sendEmail({
         template: 'newsletter_welcome',

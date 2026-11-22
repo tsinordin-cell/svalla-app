@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { createServerSupabaseClient } from '@/lib/supabase-server'
+import { adminRad } from '@/lib/adminRad'
 
 export const metadata: Metadata = {
   title: { absolute: 'Rutt-kvalitet: Admin · Svalla' },
@@ -54,6 +57,15 @@ const QUALITY_LABEL: Record<MetricRow['quality'], string> = {
 }
 
 export default async function AdminRoutesPage() {
+  // Samma kontroll som de andra adminsidorna (granskning 2026-11-22). Sidan
+  // låg bara bakom lösenordsspärren i middleware och läste ändå med
+  // tjänsteklienten.
+  const supabase = await createServerSupabaseClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/logga-in?next=/admin/routes')
+  const { data: userRow } = await adminRad(supabase)
+  if (!userRow?.is_admin) redirect('/feed')
+
   const admin = getAdminClient()
 
   const since = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()
