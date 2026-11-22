@@ -31,6 +31,9 @@ export default function EmailSignup({
   const [error, setError] = useState<string | null>(null)
   const [sparadAdress, setSparadAdress] = useState('')
   const [segment, setSegment] = useState<Mejlsegment | null>(null)
+  // Dubbel bekräftelse (2026-11-22): servern svarar bekrafta: true när adressen
+  // först ska bekräftas via länken i mejlet.
+  const [masteBekrafta, setMasteBekrafta] = useState(false)
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -49,6 +52,8 @@ export default function EmailSignup({
         setStatus('error')
         return
       }
+      const svar = await res.json().catch(() => ({})) as { bekrafta?: boolean }
+      setMasteBekrafta(svar.bekrafta === true)
       setStatus('success')
       setSparadAdress(email)
       setEmail('')
@@ -97,7 +102,14 @@ export default function EmailSignup({
           ...style,
         }}
       >
-        <div>Tack, adressen är sparad.</div>
+        {masteBekrafta ? (
+          <>
+            <div>Nästan klart: titta i din inkorg.</div>
+            <div style={{ fontWeight: 500, marginTop: 6 }}>Vi har skickat en länk till {sparadAdress}. Tryck på den så är du med.</div>
+          </>
+        ) : (
+          <div>Tack, adressen är sparad.</div>
+        )}
         {segment ? (
           <div style={{ fontWeight: 500, marginTop: 6 }}>Noterat. Då anpassar vi utskicken efter det.</div>
         ) : (

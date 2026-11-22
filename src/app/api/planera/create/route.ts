@@ -3,6 +3,7 @@ import { createServerSupabaseClient as createClient } from '@/lib/supabase-serve
 import type { Interest } from '@/lib/planner'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
+import { nyAnsprakNyckel, ansprakHash } from '@/lib/ruttAnsprak'
 // TODO: wrap handlers with withSentrySimple(handler, 'planera/create') — se src/lib/api-handler.ts
 
 const VALID_INTERESTS: Interest[] = ['krog', 'bastu', 'bad', 'brygga', 'natur', 'bensin']
@@ -41,6 +42,8 @@ export async function POST(req: NextRequest) {
     // utloggad får inte läsa raden efteråt (rutter listas bara av ägaren,
     // 2026-11-20), så insert med .select() skulle nekas.
     const nyttId = crypto.randomUUID()
+    // Utloggad: en anspråksnyckel som bara skaparen får (lib/ruttAnsprak.ts).
+    const ansprak = session?.user.id ? null : nyAnsprakNyckel()
     const { error: dbError } = await supabase
       .from('planned_routes')
       .insert({
@@ -54,6 +57,7 @@ export async function POST(req: NextRequest) {
         end_lng:    endLng,
         interests,
         status:     'published',
+        ansprak_hash: ansprak ? ansprakHash(ansprak) : null,
       })
     const data = dbError ? null : { id: nyttId }
 
@@ -66,7 +70,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Kunde inte spara rutten' }, { status: 500 })
     }
 
-    return NextResponse.json({ id: data.id })
+    return NextResponse.json(ansprak ? { id: data.id, ansprak } : { id: data.id })
   } catch (err) {
     logger.error('planera-create', 'unhandled exception', { error: String(err) })
     return NextResponse.json({ error: 'Serverfel' }, { status: 500 })

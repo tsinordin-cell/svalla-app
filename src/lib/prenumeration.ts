@@ -34,3 +34,42 @@ export function stadaPreferenser(preferences: unknown): { weekly_tips: boolean; 
 export function valkomstTillaten(skickadeSenasteTimmen: number | null | undefined): boolean {
   return (skickadeSenasteTimmen ?? 0) < VALKOMST_PER_TIMME
 }
+
+// ── Dubbel bekräftelse (Toms ja 2026-11-22) ─────────────────────────────────
+// Tidigare blev varje anmäld adress bekräftad direkt, så vem som helst kunde
+// anmäla någon annans adress till månadsbrevet. Nu bekräftas adressen via en
+// signerad länk (samma nyckel som avregistreringslänkarna, annat syfte i
+// meddelandet). Undantag: inloggad användare vars kontoadress redan är
+// bekräftad och som anmäler just den adressen.
+import { createHmac, timingSafeEqual } from 'node:crypto'
+import { kodaEpost, avkodaEpost, normaliseraEpost } from './avregistrering'
+
+export const BEKRAFTA_SIDA = 'https://svalla.se/nyhetsbrev/bekrafta'
+
+export function bekraftaToken(email: string, secret: string): string {
+  return createHmac('sha256', secret).update(`prenumeration:v1:${normaliseraEpost(email)}`).digest('base64url')
+}
+
+/** Länken i bekräftelsemejlet. null utan nyckel (då skickas inget mejl). */
+export function bekraftaLank(email: string, secret: string | undefined): string | null {
+  if (!secret) return null
+  return `${BEKRAFTA_SIDA}?e=${kodaEpost(email)}&t=${bekraftaToken(email, secret)}`
+}
+
+/** Adressen om länkens parametrar är äkta, annars null. */
+export function tolkaBekraftelse(e: unknown, t: unknown, secret: string | undefined): string | null {
+  if (typeof e !== 'string' || typeof t !== 'string' || !secret) return null
+  const email = avkodaEpost(e)
+  if (!email) return null
+  const vantad = Buffer.from(bekraftaToken(email, secret))
+  const given = Buffer.from(t)
+  return vantad.length === given.length && timingSafeEqual(vantad, given) ? email : null
+}
+
+/** Är adressen redan bevisad: inloggad, kontoadressen bekräftad och samma adress? */
+export function adressRedanBekraftad(
+  user: { email?: string | null; email_confirmed_at?: string | null } | null | undefined,
+  email: string,
+): boolean {
+  return !!user?.email && !!user.email_confirmed_at && normaliseraEpost(user.email) === normaliseraEpost(email)
+}

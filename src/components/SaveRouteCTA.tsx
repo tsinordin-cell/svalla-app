@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Icon from '@/components/Icon'
+import { hamtaAnsprak, glomAnsprak } from '@/lib/ruttAnsprakKlient'
 
 type Props = {
   routeId: string
@@ -24,28 +25,37 @@ type Props = {
  *
  * Plus: läser ?claim=1 från URL — om query-paramet finns OCH user är
  * inloggad → POST automatic claim (efter login-redirect).
+ *
+ * Fall 2 och 3 visas bara i webbläsaren som skapade rutten: där finns
+ * anspråksnyckeln (lib/ruttAnsprakKlient.ts, granskning 2026-11-22). Andra
+ * som har länken kan inte göra rutten till sin.
  */
 export default function SaveRouteCTA({ routeId, hasOwner, isLoggedIn, ownsRoute }: Props) {
   const searchParams = useSearchParams()
   const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
   const [showToast, setShowToast] = useState(false)
+  // undefined = inte läst än (localStorage finns bara i webbläsaren)
+  const [nyckel, setNyckel] = useState<string | null | undefined>(undefined)
+  useEffect(() => { setNyckel(hamtaAnsprak(routeId)) }, [routeId])
 
   // Auto-claim om ?claim=1 + inloggad + rutten saknar ägare
   useEffect(() => {
     if (searchParams.get('claim') !== '1') return
     if (!isLoggedIn || hasOwner) return
+    if (!nyckel) return
     if (status !== 'idle') return
 
     setStatus('saving')
     fetch('/api/planera/claim', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ routeId }),
+      body: JSON.stringify({ routeId, nyckel }),
     })
       .then(r => r.json())
       .then(data => {
         if (data.ok) {
+          glomAnsprak(routeId)
           setStatus('saved')
           setShowToast(true)
           // Rensa query och refresha så Mina rutter inkluderar den
@@ -58,7 +68,7 @@ export default function SaveRouteCTA({ routeId, hasOwner, isLoggedIn, ownsRoute 
         }
       })
       .catch(() => setStatus('error'))
-  }, [searchParams, isLoggedIn, hasOwner, routeId, router, status])
+  }, [searchParams, isLoggedIn, hasOwner, routeId, router, status, nyckel])
 
   async function handleClaim() {
     if (status === 'saving' || status === 'saved') return
@@ -67,10 +77,11 @@ export default function SaveRouteCTA({ routeId, hasOwner, isLoggedIn, ownsRoute 
       const res = await fetch('/api/planera/claim', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ routeId }),
+        body: JSON.stringify({ routeId, nyckel }),
       })
       const data = await res.json()
       if (data.ok) {
+        glomAnsprak(routeId)
         setStatus('saved')
         setShowToast(true)
         setTimeout(() => router.refresh(), 1800)
@@ -84,6 +95,9 @@ export default function SaveRouteCTA({ routeId, hasOwner, isLoggedIn, ownsRoute 
 
   // Fall 4: rutten ägs av någon annan
   if (hasOwner && !ownsRoute) return null
+
+  // Rutt utan ägare som den här webbläsaren inte skapade: inget att spara.
+  if (!hasOwner && !nyckel && status !== 'saved') return null
 
   // Toast — visas både för auto-claim och manuell
   const toast = showToast ? (

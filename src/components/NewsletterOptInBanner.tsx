@@ -30,7 +30,7 @@ function lasLagrat(): Lagrat | null {
 }
 
 export default function NewsletterOptInBanner() {
-  const [lage, setLage] = useState<'dold' | 'fraga' | 'skickar' | 'tack'>('dold')
+  const [lage, setLage] = useState<'dold' | 'fraga' | 'skickar' | 'tack' | 'bekrafta'>('dold')
   const [email, setEmail] = useState<string | null>(null)
 
   useEffect(() => {
@@ -65,7 +65,9 @@ export default function NewsletterOptInBanner() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, source: 'app-fraga', preferences: { weekly_tips: true, season_alerts: true } }),
       })
-      setLage(res.ok ? 'tack' : 'fraga')
+      const svar = res.ok ? await res.json().catch(() => ({})) as { bekrafta?: boolean } : null
+      // Kontots adress obekräftad: servern skickar en bekräftelselänk (2026-11-22).
+      setLage(!res.ok ? 'fraga' : svar?.bekrafta ? 'bekrafta' : 'tack')
     } catch {
       setLage('fraga')
     }
@@ -98,13 +100,17 @@ export default function NewsletterOptInBanner() {
           </svg>
         </div>
         <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.3 }}>
-          {lage === 'tack' ? 'Tack, du får månadsbrevet' : 'Vill du ha månadsbrevet?'}
+          {lage === 'tack' ? 'Tack, du får månadsbrevet' : lage === 'bekrafta' ? 'Titta i inkorgen och bekräfta via länken' : 'Vill du ha månadsbrevet?'}
         </div>
       </div>
 
       {lage === 'tack' ? (
         <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
           Nästa brev kommer första tisdagen i månaden. Avsluta när du vill via länken i brevet.
+        </p>
+      ) : lage === 'bekrafta' ? (
+        <p style={{ margin: '10px 0 0', fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
+          Vi har skickat en länk till {email}. Tryck på den så är du med.
         </p>
       ) : (
         <>
