@@ -24,15 +24,19 @@ import { ogSida } from '@/lib/og-standard'
 // - Birka och Adelsö från Mellersta till egen grupp Mälaren: Länsstyrelsen
 //   Stockholm, Björkö naturreservat "ligger på Björkö i Mälaren"; Lantmäteriet,
 //   Björkö i Ekerö. Adelsöfärjan går från Ekerö (SL).
+// - Norrpada från Mellersta till Norra (2026-11-22, Toms ja): Skärgårdsstiftelsen,
+//   https://skargardsstiftelsen.se/omraden/norrpada/ — "tillsammans bildar ett av
+//   norra skärgårdens mest omtyckta båtområden" (läst 2026-11-22); Länsstyrelsen
+//   Stockholm: "15 kilometer sydost om Kapellskär", "Kommun: Norrtälje". Så står
+//   den redan på /oar och på ösidan.
+// - Fjäderholmarna, Vaxholm, Rindö och Resarö från Innerskärgården till Mellersta,
+//   Svenska Högarna från Mellersta till Norra (2026-11-22, Toms val "Följ
+//   ösidorna"). OBS: ingen myndighets- eller operatörskälla placerar dessa fem i
+//   norra/mellersta/innerskärgården (sökt hos Länsstyrelsen, Skärgårdsstiftelsen,
+//   Waxholmsbolaget, Blidösundsbolaget, Vaxholms stad, Norrtälje kommun). Fliken
+//   följer bara öarnas egna sidor och /oar. Svenska Högarna: Länsstyrelsen säger
+//   "ögrupp i Norrtälje kommun" och "ytterskärgård", inget mer.
 const ISLAND_SECTIONS = [
-  {
-    id: 'inner',
-    label: 'Innerskärgården',
-    color: 'var(--sea)',
-    bg: 'rgba(30,92,130,0.07)',
-    description: 'De närmaste öarna: lätta att nå, perfekta för en dag.',
-    slugs: ['fjaderholmarna', 'vaxholm', 'rindo', 'resaro'],
-  },
   {
     id: 'mellersta',
     label: 'Mellersta skärgården',
@@ -40,10 +44,11 @@ const ISLAND_SECTIONS = [
     bg: 'rgba(10,123,140,0.07)',
     description: 'Det klassiska skärgårdslivet: Sandhamn, Möja och öarna däremellan.',
     slugs: [
+      'fjaderholmarna', 'vaxholm', 'rindo', 'resaro',
       'sandhamn', 'moja', 'grinda', 'finnhamn', 'ljustero', 'gallno', 'ingmarso',
       'namdo', 'svartso', 'runmaro', 'husaro', 'bullero', 'vindo', 'ingaro',
-      'hasselo', 'svenska-hogarna', 'ekno', 'ormskar', 'langviksskaret', 'langskar',
-      'norrpada', 'storholmen', 'storskar'],
+      'hasselo', 'ekno', 'ormskar', 'langviksskaret', 'langskar',
+      'storholmen', 'storskar'],
   },
   {
     id: 'södra',
@@ -63,7 +68,7 @@ const ISLAND_SECTIONS = [
     description: 'Orörda öar, höga klippor och en av Europas ovanligaste mötesplatser.',
     slugs: [
       'arholma', 'furusund', 'blido', 'norrora', 'fejan', 'rodloga', 'singo',
-      'lido', 'graddo', 'vaddo', 'yxlan', 'grasko'],
+      'lido', 'graddo', 'vaddo', 'yxlan', 'grasko', 'norrpada', 'svenska-hogarna'],
   },
   {
     id: 'malaren',
