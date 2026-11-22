@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
@@ -145,8 +146,8 @@ export default function SegelrutterPage() {
  }
  return (
  <>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumbJsonLd) }} />
  <CategoryLanding
  heroGradient={['#1e5c82', '#2d7d8a']}
  eyebrow="Segelrutter"

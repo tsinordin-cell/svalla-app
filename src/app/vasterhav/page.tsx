@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import RegionOar from '@/components/RegionOar'
@@ -107,8 +108,8 @@ export default function VasterhavetPage() {
  }
  return (
  <>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumbJsonLd) }} />
  <CategoryLanding
  heroGradient={['#1a5276', '#2471a3']}
  eyebrow="Västerhavet"

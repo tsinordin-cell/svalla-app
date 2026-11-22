@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import RegionNav from '@/components/RegionNav'
 import { byggRegionNavEtiketter } from '@/lib/region-nav'
@@ -118,8 +119,8 @@ export default function GotlandPage() {
  }
  return (
  <>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumbJsonLd) }} />
  <CategoryLanding
   regionNav={<RegionNav data={byggRegionNavEtiketter("Gotland", ["Gotland"], 'gotland')} />}
  heroGradient={['#8b5e3c', '#b07d52']}

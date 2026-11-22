@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
@@ -150,10 +151,10 @@ export default async function FarjorPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(speakableJsonLd) }} />
       {ferryTripsJsonLd.map((schema, i) => (
-        <script key={`ferry-trip-${i}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+        <script key={`ferry-trip-${i}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(schema) }} />
       ))}
       {/* HERO */}
       <SidHuvud />

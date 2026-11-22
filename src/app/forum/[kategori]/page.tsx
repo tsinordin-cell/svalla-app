@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCategoryById, getThreadsByCategory, formatForumDate } from '@/lib/forum'
@@ -101,7 +102,7 @@ export default async function ForumKategoriPage({ params }: Props) {
  background: 'var(--bg)',
  paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
  }}>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }} />
  {/* Header */}
  <div style={{
  background: 'linear-gradient(160deg, var(--sea) 0%, #0d8fa3 100%)',

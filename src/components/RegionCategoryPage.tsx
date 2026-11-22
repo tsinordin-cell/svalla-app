@@ -2,6 +2,7 @@
  * Generisk SEO-sida för (region, kategori) — t.ex. /goteborg/krogar.
  * Server-renderad så Google indexerar full innehåll.
  */
+import { serializeForScript } from '@/lib/serializeForScript'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -176,7 +177,7 @@ export default async function RegionCategoryPage({
     <div style={{ maxWidth: 1200, margin: '0 auto', padding: '32px 16px 96px' }}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(itemListJsonLd) }}
       />
 
       {/* Breadcrumb */}

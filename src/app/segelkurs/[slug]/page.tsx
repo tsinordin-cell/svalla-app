@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -74,9 +75,9 @@ export default async function SegelkursSlugPage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
-      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />}
-      {courseSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      {faqSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqSchema) }} />}
+      {courseSchema && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(courseSchema) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumb) }} />
 
       {/* Header */}
       <div style={{ background: 'var(--grad-sea-hero)', padding: '0 20px 48px', paddingTop: 'calc(env(safe-area-inset-top, 0px) + 16px)' }}>

@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import React from 'react'
@@ -295,12 +296,12 @@ export default function VandringPage() {
       <Script
         id="faq-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }}
       />
       <Script
         id="itemlist-jsonld"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(itemListJsonLd) }}
       />
 
       <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>

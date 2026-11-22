@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import SidHuvud from '@/components/SidHuvud'
@@ -51,7 +52,7 @@ export default function GuiderPage() {
       <SidHuvud />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(itemListSchema) }}
       />
       <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
         <GuideHero
