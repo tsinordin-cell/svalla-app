@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 type Del = { titel: string; text: string; href: string; status: string }
 
 const DELAR: Del[] = [
+  { titel: 'Startscenen', text: 'Ett alternativ till startsidans animering i samma stil som introt. Havet stiger, båten seglar in och en skärgård växer fram med knappar till öar, boende, krogar, turplanering, färjor, karta och aktiviteter. Ön, fyren och färjan är påhittade.', href: '/ideer/kreativ#scen', status: 'Ny · Förhandsvisning' },
   { titel: 'Startsidan', text: 'Sexton idéer för startsidans övriga delar, med förebild och motivering vid varje.', href: '/ideer', status: 'Förhandsvisning' },
   { titel: 'Erbjudanden och förmåner', text: 'Tretton sätt att visa förmåner och erbjudanden hos Svallas partner. Allt är exempel.', href: '/ideer/erbjudanden', status: 'Förhandsvisning' },
   { titel: 'Verksamhetssidan', text: 'Allt som kan finnas på en verksamhetssida, att slå av och på med telefonen bredvid. Här finns också Claes idéer om partnerkonto, partnerbrev, Svalla Bas och Premium och en kampanj inför säsongen.', href: '/ideer/verksamhet', status: 'Förhandsvisning' },
