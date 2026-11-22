@@ -77,13 +77,38 @@ const securityHeaders = [
       "base-uri 'self'",   // hindra base-tag-injektion som omdirigerar relativa URL:er
       "form-action 'self' https://checkout.stripe.com https://billing.stripe.com",
       // Stripe-domäner tillagda för checkout/portal.
+      // Sentry: o4511271467483136.ingest.de.sentry.io är projektets riktiga
+      // mottagare (EU-regionen, läst ur Sentrys DSN-lista 2026-11-22). Tidigare
+      // stod en platshållare här (o4508000000000000.ingest.sentry.io).
+      // OBS: Sentry i webbläsaren startar i dag inte alls — sentry.client.config.ts
+      // laddas bara via withSentryConfig eller instrumentation-client.ts, och
+      // ingen av dem används. Rättningen här gör att det fungerar den dag det kopplas in.
       // wss://*.supabase.co KRÄVS separat — Safari/WebKit mappar INTE https:// → wss://
       // (Chrome gör det, därav att desktop fungerar men iOS kraschar med SecurityError).
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4508000000000000.ingest.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org https://us.i.posthog.com https://us-assets.i.posthog.com",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4511271467483136.ingest.de.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org https://us.i.posthog.com https://us-assets.i.posthog.com",
       "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
       "frame-ancestors 'self'",
       "upgrade-insecure-requests",
+      // Inbäddade händelsekoder (onclick=, onerror=, onload= …) får aldrig köras
+      // (2026-11-22). Det är den vanligaste vägen för XSS via inskjuten HTML,
+      // t.ex. <img src=x onerror=…>. Sajten använder inga sådana: uppmätt 0 på
+      // live-/oar, och de enda i källkoden (7 FAQ-knappar i LandingPageClient)
+      // är omskrivna till addEventListener. 'unsafe-inline' i script-src kan
+      // inte tas bort utan nonce, och nonce kräver att varje sida renderas
+      // dynamiskt (Next.js-dokumentationen) — det skulle stänga av cachen på
+      // ca 158 av 202 sidor. Därför den här mellanvägen.
+      "script-src-attr 'none'",
+      // CSP-brott loggas i Vercel-loggarna via /api/csp-rapport, så att de
+      // syns i stället för att gissas. report-to läses av Chrome/Safari,
+      // report-uri av Firefox.
+      'report-uri /api/csp-rapport',
+      'report-to csp',
     ].join('; '),
+  },
+  {
+    // Rapportmottagare för 'report-to csp' ovan (Reporting API).
+    key: 'Reporting-Endpoints',
+    value: 'csp="/api/csp-rapport"',
   },
 ]
 
