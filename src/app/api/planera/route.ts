@@ -52,6 +52,8 @@ export async function POST(req: NextRequest) {
     const { data: places, error: placesErr } = await supabase
       .from('restaurants')
       .select('id, name, latitude, longitude, type, categories, tags, island')
+      // Dolda platser (hidden_at) föreslås inte som stopp (granskning 2026-11-22).
+      .is('hidden_at', null)
       // 2026-09-28: var 300, men tabellen har 699 platser — mer än hälften kunde
       // aldrig bli stopp. 1000 är Supabases tak per anrop; höj om tabellen växer förbi.
       .limit(1000)

@@ -27,6 +27,7 @@ import { checkRateLimit } from '@/lib/rateLimit'
 import { logger } from '@/lib/logger'
 import { passagerLangsRutt, tillKlient } from '@/lib/farbaraPassager'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { ruttCacheNyckel, dbCacheGaller, UUID_RE } from '@/lib/ruttCache'
 
 /**
  * Logga rutt-beräkning till route_metrics. Best-effort, blockerar aldrig svaret.
@@ -68,9 +69,7 @@ type CachedRoute = {
 }
 const _routeCache = new Map<string, CachedRoute>()
 
-function cacheKey(slat: number, slng: number, elat: number, elng: number): string {
-  return `${slat.toFixed(4)},${slng.toFixed(4)}→${elat.toFixed(4)},${elng.toFixed(4)}`
-}
+const cacheKey = ruttCacheNyckel
 
 // ── Handler ────────────────────────────────────────────────────────────────
 
@@ -240,16 +239,25 @@ export async function POST(req: NextRequest) {
 
     // 2. DB-cache hit (persistent över cold-starts, 2026-05-23 routing safety layer P2)
     // Bara om routeId angetts — annars vet vi inte vilken planned_routes-rad att läsa.
-    if (routeId && typeof routeId === 'string') {
+    // Och bara om anropets koordinater är ruttens egna (granskning 2026-11-22,
+    // se lib/ruttCache.ts): annars kunde vem som helst med ruttens id läsa
+    // och skriva över dess cachade väg.
+    let dbCacheTillaten = false
+    if (routeId && typeof routeId === 'string' && UUID_RE.test(routeId)) {
       try {
         const admin = getAdminClient()
         const { data: dbCached } = await admin
           .from('planned_routes')
-          .select('cached_path, cached_quality, cached_validated, cached_at')
+          .select('start_lat, start_lng, end_lat, end_lng, cached_path, cached_quality, cached_validated, cached_at')
           .eq('id', routeId)
           .maybeSingle()
 
-        if (dbCached?.cached_path && dbCached?.cached_quality && dbCached?.cached_at) {
+        dbCacheTillaten = dbCacheGaller(key, dbCached)
+        if (!dbCacheTillaten && dbCached) {
+          logger.warn('route-calculate', 'routeId med andra koordinater än ruttens: databascachen används inte', { routeId })
+        }
+
+        if (dbCacheTillaten && dbCached?.cached_path && dbCached?.cached_quality && dbCached?.cached_at) {
           const dbQuality = dbCached.cached_quality as RouteQuality
           // Validera att DB-quality är aktuell — om legacy 'straight' ligger där,
           // ignorera cache (kommer beräknas om och uppdateras till unavailable).
@@ -344,9 +352,10 @@ export async function POST(req: NextRequest) {
     // Cacha resultatet i memory (även null-path så vi inte gör om grid-A* på samma par)
     _routeCache.set(key, { path: finalPath, quality: finalQuality, validated, crossesAt })
 
-    // Cacha i DB om routeId angetts (persistent över cold-starts).
+    // Cacha i DB om routeId angetts (persistent över cold-starts) och
+    // koordinaterna är ruttens egna (dbCacheTillaten, se steg 2).
     // Best-effort, icke-blockerande — failar fetch ändå returneras svaret.
-    if (routeId && typeof routeId === 'string') {
+    if (dbCacheTillaten && routeId && typeof routeId === 'string') {
       try {
         const admin = getAdminClient()
         admin.from('planned_routes')

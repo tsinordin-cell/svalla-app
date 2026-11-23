@@ -54,6 +54,26 @@ export default function FeedbackWidget() {
     }
   }, [open])
 
+  // Telefon: knappen göms när man skrollar nedåt och kommer tillbaka när man
+  // skrollar uppåt, som klockorna i Nav.tsx. Annars låg den över text i
+  // listor, t.ex. "2 turer" i topplistan (500 px, 22 nov 2026). Själva
+  // döljandet gäller bara under 640 px, se .fb-flytande--dold i globals.css.
+  const [dold, setDold] = useState(false)
+  useEffect(() => {
+    setDold(false)
+    let senast = window.scrollY, ack = 0
+    const onScroll = () => {
+      const y = window.scrollY, d = y - senast
+      senast = y
+      if (y < 24) { ack = 0; setDold(false); return }
+      ack = (ack > 0) === (d > 0) ? ack + d : d
+      if (ack > 24) setDold(true)
+      else if (ack < -12) setDold(false)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [pathname])
+
   // Stäng med Escape
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
@@ -120,7 +140,7 @@ export default function FeedbackWidget() {
       {!UTAN_FLYTANDE_KNAPP.some(p => pathname === p || pathname?.startsWith(p + '/')) && <button
         onClick={() => setOpen(true)}
         aria-label="Skicka feedback eller tips till Svalla"
-        className="fb-flytande"
+        className={dold ? 'fb-flytande fb-flytande--dold' : 'fb-flytande'}
         style={{
           position:   'fixed',
           bottom:     'calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 14px)',

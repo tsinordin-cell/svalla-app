@@ -5,6 +5,8 @@ import { getIsland } from '@/app/o/island-data'
 import type { Metadata } from 'next'
 import Icon from '@/components/Icon'
 import { ogO } from '@/lib/og-standard'
+import { arRedaktionellt } from '@/lib/redaktionellt'
+import RedaktionellEtikett from '@/components/RedaktionellEtikett'
 
 export const revalidate = 60
 
@@ -224,8 +226,9 @@ export default async function IslandForumPage({ params }: Props) {
                 </div>
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
                   {thread.author && (
-                    <span style={{ fontSize: 12, color: 'var(--txt3)' }}>
+                    <span style={{ fontSize: 12, color: 'var(--txt3)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                       {thread.author.username}
+                      {arRedaktionellt(thread.user_id) && <RedaktionellEtikett />}
                     </span>
                   )}
                   <span style={{ fontSize: 12, color: 'var(--txt3)' }}>

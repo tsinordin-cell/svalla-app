@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import SidHuvud from '@/components/SidHuvud'
@@ -6,7 +7,7 @@ import EmailSignup from '@/components/EmailSignup'
 import PublicFooter from '@/components/PublicFooter'
 import Icon, { type IconName } from '@/components/Icon'
 import { ALL_ISLANDS, OAR, ANTAL_OAR, type Island } from '../o/island-data'
-import { OAR_CATEGORIES, islandsForCategory } from './oar-categories'
+import { OAR_CATEGORIES, islandsForCategory, gruppFor } from './oar-categories'
 import IslandThumb from '@/components/IslandThumb'
 import { OBILDER } from '@/app/o/obilder.generated'
 import { commonsThumb } from '@/lib/commonsBild'
@@ -43,6 +44,8 @@ const REGION_LABELS: Record<string, string> = {
   bohuslan: 'Bohuslän',
   goteborg: 'Göteborgs skärgård',
   ovriga: 'Övriga Sverige',
+  malaren: 'Mälaren',
+  sormland: 'Sörmlands skärgård',
 }
 
 const REGION_TAGLINES: Record<string, string> = {
@@ -52,6 +55,8 @@ const REGION_TAGLINES: Record<string, string> = {
   bohuslan: 'Västkusten: Marstrand, Smögen, Kosterhavet.',
   goteborg: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt.',
   ovriga: 'Höga Kusten, Gotland, Öland och mer, Sverige bortom Stockholmsskärgården.',
+  malaren: 'Birka och Adelsö: öarna i Mälaren, väster om Stockholm.',
+  sormland: 'Askö, Hartsö, Ringsö, Sävö och fler öar i Södermanlands skärgård.',
 }
 
 // 2026-10-21: regionlistorna visar alla sidor i regionen (öar, fastlandsorter och
@@ -71,9 +76,9 @@ function ovrigt(items: Island[]): string {
 
 export default function OarIndexPage() {
   // Gruppera per region för listvy
-  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], bohuslan: [], goteborg: [], ovriga: [] }
+  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], malaren: [], sormland: [], bohuslan: [], goteborg: [], ovriga: [] }
   for (const i of ALL_ISLANDS) {
-    const region = i.region in grouped ? i.region : 'mellersta'
+    const region = gruppFor(i, grouped)
     const bucket = grouped[region]
     if (bucket) bucket.push(i)
   }
@@ -90,7 +95,7 @@ export default function OarIndexPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeForScript({
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: 'Alla öar i skärgården',
@@ -259,20 +264,22 @@ export default function OarIndexPage() {
               </Link>
             ))}
           </div>
-          <Link
-            href="/oar/barnvanliga"
+          {/* Länken hette "Alla kategorier" men ledde till Barnvänliga. Nu leder
+              den till översikten över alla öar längre ner (beslut 5, 2026-11-22). */}
+          <a
+            href="#alla-oar"
             style={{
               display: 'inline-block', marginTop: 14,
               fontSize: 13, color: 'var(--sea)', fontWeight: 600,
               textDecoration: 'none',
             }}
           >
-            Alla kategorier →
-          </Link>
+            Se alla {ANTAL_OAR} öar ↓
+          </a>
         </section>
 
         {/* Alla öar grupperade per region */}
-        <section style={{ marginBottom: 48 }}>
+        <section id="alla-oar" style={{ marginBottom: 48, scrollMarginTop: 16 }}>
           <h2 style={{
             fontSize: 28, fontWeight: 700,
             color: 'var(--txt)', margin: '0 0 8px',
@@ -294,7 +301,7 @@ export default function OarIndexPage() {
           */}
           <OarSnabbfilter total={ANTAL_OAR} />
           <nav aria-label="Hoppa till region" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
-            {(['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const)
+            {(['norra', 'mellersta', 'södra', 'malaren', 'sormland', 'bohuslan', 'goteborg', 'ovriga'] as const)
               .filter(region => (grouped[region] ?? []).length > 0)
               .map(region => (
                 <a
@@ -312,7 +319,7 @@ export default function OarIndexPage() {
               ))}
           </nav>
 
-          {(['norra', 'mellersta', 'södra', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
+          {(['norra', 'mellersta', 'södra', 'malaren', 'sormland', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (

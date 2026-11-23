@@ -41,7 +41,7 @@ export const ACTIVITIES: Record<ActivityType, ActivityMeta> = {
     bestSeason: 'April till oktober. Maj till juni och september är klart bäst (mindre folk, lagom temperatur).',
     level: 'Lätt till medel. De flesta lederna går på grusvägar utan stora höjdskillnader.',
     matchers: ['cykling', 'cykel', 'cykl', 'mtb'],   // 'leder' borttaget 2026-10-20: matchade vandringsleder och gav falska cykelsidor (t.ex. Hanö)
-    featured: ['uto', 'svartso', 'singo', 'runmaro', 'vaddo', 'ljustero', 'adelsjo', 'resaro', 'vindo', 'galo'],
+    featured: ['uto', 'svartso', 'singo', 'runmaro', 'vaddo', 'ljustero', 'adelso', 'resaro', 'vindo', 'galo'],
   },
   bada: {
     slug: 'bada',

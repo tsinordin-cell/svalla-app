@@ -139,6 +139,9 @@ const SS_CSS = `
 .ss-exempel button:hover{background:var(--sea,#1e5c82)}
 .ss-karta{margin:0;max-width:none}
 .ss-karta .ss-rad{box-shadow:0 10px 30px rgba(0,0,0,.28);border-color:transparent}
+/* Kartans ruta är vit även i mörkt läge; utan detta blev både texten och platshållaren ljusblå på vitt. */
+[data-theme="dark"] .ss-karta .ss-rad input{color:#192830!important;-webkit-text-fill-color:#192830}
+[data-theme="dark"] .ss-karta .ss-rad input::placeholder{color:#5c6c73!important;-webkit-text-fill-color:#5c6c73;opacity:1}
 .ss-karta .ss-lista{top:auto;bottom:70px;max-height:min(420px,60vh);overflow-y:auto}
 @media (max-width:640px){.ss-rad{padding:6px 6px 6px 14px}.ss-rad input{font-size:16px}.ss-knapp{height:42px;padding:0 18px}.ss-under{display:none}.ss-karta .ss-lupp{display:none}.ss-karta .ss-rad input{font-size:15px}.ss-karta .ss-knapp{padding:0 16px}}
 `

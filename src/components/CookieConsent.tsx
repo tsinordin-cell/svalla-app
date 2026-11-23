@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import { COOKIE_NYCKEL } from '@/lib/forstaRutor'
 
-const STORAGE_KEY = 'svalla_cookie_consent'
+// Samma nyckel som turordningen för rutorna läser (forstaRutor.ts).
+const STORAGE_KEY = COOKIE_NYCKEL
 
 type ConsentValue = 'accepted' | 'necessary'
 

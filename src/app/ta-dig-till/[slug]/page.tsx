@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -129,10 +130,10 @@ export default async function TaDigTillPage({ params }: Props) {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
       {/* JSON-LD */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howTo) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(howTo) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumb) }} />
       {busTrips.map((bt, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', ...bt }) }} />
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript({ '@context': 'https://schema.org', ...bt }) }} />
       ))}
 
       {/* Header */}

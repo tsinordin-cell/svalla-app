@@ -79,7 +79,7 @@ export const DAG_HUBS: DagHub[] = [
   {
     slug: 'dalaro', label: 'Dalarö', name: 'Dalarö',
     originIds: [], keywords: ['dalarö'],
-    extra: ['orno', 'fjardlang', 'uto', 'kymmendo', 'smaadalaro'],
+    extra: ['orno', 'fjardlang', 'uto', 'kymmendo', 'smadalaro'],
   },
   {
     slug: 'norra', label: 'Norrtälje', name: 'Norrtälje (Simpnäs, Räfsnäs, Furusund)',

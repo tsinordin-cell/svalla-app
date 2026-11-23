@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
@@ -68,7 +69,7 @@ export default async function DagSlugPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeForScript({
             '@context': 'https://schema.org',
             '@type': 'TouristTrip',
             name: `Dagstur till ${plan.name}`,
@@ -99,7 +100,7 @@ export default async function DagSlugPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeForScript({
             '@context': 'https://schema.org',
             '@type': 'WebPage',
             name: `Dagstur till ${plan.name}`,
@@ -114,7 +115,7 @@ export default async function DagSlugPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeForScript({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
             mainEntity: [
@@ -135,7 +136,7 @@ export default async function DagSlugPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeForScript({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [

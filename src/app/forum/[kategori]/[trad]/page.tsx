@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import { notFound } from 'next/navigation'
 import { forbyggUrval } from '@/lib/forbygge'
 import Link from 'next/link'
@@ -5,6 +6,8 @@ import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { ForumViewerProvider } from './ForumViewer'
 import ForumPostList, { PostHeader } from './ForumPostList'
+import { arRedaktionellt } from '@/lib/redaktionellt'
+import RedaktionellEtikett from '@/components/RedaktionellEtikett'
 import ViewerGate from '@/components/ViewerGate'
 import { getThreadById, getPostsByThread, getCategoryById, formatForumDate } from '@/lib/forum'
 import ForumReplyForm from './ForumReplyForm'
@@ -231,9 +234,12 @@ export default async function ForumTradPage({ params }: Props) {
     datePublished: thread.created_at,
     url: `https://svalla.se/forum/${kategori}/${trad}`,
     inLanguage: 'sv',
-    author: thread.author?.username
-      ? { '@type': 'Person', name: thread.author.username }
-      : undefined,
+    // Startinlägg (lib/redaktionellt.ts) anges som skrivna av Svalla, inte av en person.
+    author: arRedaktionellt(thread.user_id)
+      ? { '@type': 'Organization', name: 'Svalla', url: 'https://svalla.se' }
+      : thread.author?.username
+        ? { '@type': 'Person', name: thread.author.username }
+        : undefined,
     interactionStatistic: {
       '@type': 'InteractionCounter',
       interactionType: 'https://schema.org/ReplyAction',
@@ -301,9 +307,9 @@ export default async function ForumTradPage({ params }: Props) {
       background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 32px)',
     }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }} />
       {productJsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(productJsonLd) }} />
       )}
 
       {/* ── Header ── */}
@@ -399,6 +405,7 @@ export default async function ForumTradPage({ params }: Props) {
               <span style={{ fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.95)' }}>
                 {thread.author.username}
               </span>
+              {arRedaktionellt(thread.user_id) && <RedaktionellEtikett ljus />}
             </Link>
           ) : (
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -499,6 +506,7 @@ export default async function ForumTradPage({ params }: Props) {
               avatar={thread.author?.avatar ?? null}
               date={thread.created_at}
               isOP
+              redaktionellt={arRedaktionellt(thread.user_id)}
             />
             <div style={{
               fontSize: 15,

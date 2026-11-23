@@ -5,9 +5,7 @@ import FeedTabs from '@/components/FeedTabs'
 import StoriesStrip from '@/components/StoriesStrip'
 import LoppisFeedBanner from '@/components/LoppisFeedBanner'
 import NewsletterOptInBanner from '@/components/NewsletterOptInBanner'
-import SvallaLogo from '@/components/SvallaLogo'
-import NotificationBell from '@/components/NotificationBell'
-import MessageBell from '@/components/MessageBell'
+import AppTopBar from '@/components/AppTopBar'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
@@ -18,8 +16,6 @@ import Icon from '@/components/Icon'
 import SilentBoundary from '@/components/SilentBoundary'
 import FeedWeatherRow from '@/components/FeedWeatherRow'
 import SuggestedUsers from '@/components/SuggestedUsers'
-import { IconSearch } from '@/components/ui/icons'
-import { Home } from '@/components/icons/LucideIcons'
 import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 import { getViewerId } from '@/lib/authClaims'
@@ -197,37 +193,9 @@ export default async function FeedPage(
  background: 'linear-gradient(180deg, #e9d9c4 0%, #e4dfd1 25%, #dbe6e7 55%, var(--bg) 100%)',
  backgroundAttachment: 'local',
  }}>
- {/* ── Header ── */}
- <header style={{
- display: 'flex', alignItems: 'center', gap: 10,
- padding: '13px 16px 11px',
- background: 'rgba(255,255,255,0.55)',
- backdropFilter: 'saturate(1.4) blur(20px)', WebkitBackdropFilter: 'saturate(1.4) blur(20px)',
- borderBottom: '1px solid rgba(22,45,58,0.06)',
- position: 'sticky', top: 0, zIndex: 50,
- }}>
- <span className="feed-header-logo"><SvallaLogo height={26} color="var(--sea)" /></span>
- <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
- <Link href="/" aria-label="Till startsidan" style={{
- width: 38, height: 38, borderRadius: '50%',
- background: 'rgba(22,45,58,0.06)',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- flexShrink: 0,
- }}>
- <Home size={18} />
- </Link>
- <Link href="/sok" aria-label="Sök" style={{
- width: 38, height: 38, borderRadius: '50%',
- background: 'rgba(22,45,58,0.06)',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- flexShrink: 0,
- }}>
- <IconSearch size={18} stroke={2} color="var(--sea)" />
- </Link>
- <SilentBoundary><MessageBell /></SilentBoundary>
- <SilentBoundary><NotificationBell /></SilentBoundary>
- </div>
- </header>
+ {/* ── Header ── 2026-11-23 (menyförslaget): gemensam topprad. Huset till startsidan
+     är borta; loggan går till flödet. Från 1024 px döljs raden, sidomenyn har allt. */}
+ <AppTopBar bakgrund="rgba(255,255,255,0.55)" doljPaDesktop />
 
  {/* ── Greeting ── */}
  {feedUsername && (
@@ -263,9 +231,6 @@ export default async function FeedPage(
  {/* Vinterläge nov–mars: vintertrafik, planera sommaren, Thorkel (VinterIFlodet) */}
  <VinterIFlodet />
 
- {/* Loppis-banner: visas en gång per användare, dismissible */}
- <LoppisFeedBanner />
-
  {SAFE && (
  <div role="status" style={{
  background: 'rgba(201,110,42,0.12)',
@@ -290,13 +255,12 @@ export default async function FeedPage(
  display: 'flex', alignItems: 'center', gap: 14,
  boxShadow: '0 4px 20px rgba(30,92,130,0.25)',
  }}>
- <div style={{ fontSize: 28, flexShrink: 0 }}> </div>
  <div>
  <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', lineHeight: 1.2 }}>
- {thisWeek.length} turer loggades senaste veckan
+ {thisWeek.length} {thisWeek.length === 1 ? 'tur' : 'turer'} loggades senaste veckan
  </div>
  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', marginTop: 2 }}>
- {uniqueUsers} seglare · {uniquePlaces} unika platser
+ {uniqueUsers} seglare · {uniquePlaces} {uniquePlaces === 1 ? 'unik plats' : 'unika platser'}
  </div>
  </div>
  </div>

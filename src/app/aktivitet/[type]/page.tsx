@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import React from 'react'
@@ -109,9 +110,9 @@ export default async function ActivityTypePage({ params }: Props) {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionPage) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
-      {itemList && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemList) }} />}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(collectionPage) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumb) }} />
+      {itemList && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(itemList) }} />}
       <SidHuvud />
 
       <header style={{

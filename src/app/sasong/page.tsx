@@ -1,6 +1,7 @@
 /**
  * /sasong — Säsongs-listsida. Visar 4 säsonger som klickbara kort.
  */
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { SEASONS } from './sasong-data'
@@ -36,7 +37,7 @@ export default function SasongIndex() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(itemListSchema) }} />
 
       <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
 

@@ -64,10 +64,13 @@ export default function ForstaBesok() {
   const [lage, setLage] = useState<Lage>('dold')
   const [steg, setSteg] = useState(0)
   const [svar, setSvar] = useState<Profil>({})
+  // Mobil (Tom 2026-11-22: rutan tog för mycket plats): börjar som en smal rad som fälls ut vid tryck.
+  const [liten, setLiten] = useState(false)
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined
     let avbruten = false
+    let taBort: (() => void) | undefined
     try {
       if (localStorage.getItem(KONTO_KLICK) === 'konto') return
       if (sessionStorage.getItem(VISAD_SESSION)) return
@@ -84,15 +87,26 @@ export default function ForstaBesok() {
         const visa = () => {
           if (avbruten) return
           if (!localStorage.getItem('svalla_cookie_consent')) { timer = setTimeout(visa, 5000); return }
+          // Tom 2026-11-22: rutan ska inte möta besökaren direkt. Den visas först när man
+          // skrollat ner en bit (en halv skärmhöjd) och har haft sidan öppen en stund.
+          if (window.scrollY < window.innerHeight * 0.5) {
+            const vidSkroll = () => {
+              if (window.scrollY >= window.innerHeight * 0.5) { window.removeEventListener('scroll', vidSkroll); visa() }
+            }
+            window.addEventListener('scroll', vidSkroll, { passive: true })
+            taBort = () => window.removeEventListener('scroll', vidSkroll)
+            return
+          }
           sessionStorage.setItem(VISAD_SESSION, '1')
+          setLiten(window.matchMedia('(max-width:600px)').matches)
           const p = lasProfil()
           if (p) { setSvar(p); setLage('tillbaka') } else setLage('halsning')
           track('forsta_besok', { steg: 'visad' })
         }
-        if (visningar >= 2) visa(); else timer = setTimeout(visa, 10000)
+        timer = setTimeout(visa, visningar >= 2 ? 4000 : 10000)
       }).catch(() => {})
     } catch { /* privat läge: visa inget */ }
-    return () => { avbruten = true; if (timer) clearTimeout(timer) }
+    return () => { avbruten = true; if (timer) clearTimeout(timer); taBort?.() }
   }, [path])
 
   const stang = (steg: 'nej' | 'klar') => { track('forsta_besok', { steg }); setLage('dold') }
@@ -108,6 +122,27 @@ export default function ForstaBesok() {
   const kontoLank = `/logga-in?mode=ny&returnTo=${encodeURIComponent(path || '/')}`
 
   if (lage === 'dold') return null
+  if (liten) {
+    return (
+      <div className="fb-ruta fb-liten-ruta" role="dialog" aria-label="Thorkel, Svallas skärgårdsguide">
+        <button type="button" className="fb-oppna" onClick={() => { setLiten(false); track('forsta_besok', { steg: 'oppnad' }) }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/thorkel-avatar.svg" alt="" width={32} height={32} />
+          <span>{lage === 'tillbaka' ? 'Thorkel har tips utifrån dina svar' : 'Thorkel vill hjälpa dig hitta rätt'}</span>
+        </button>
+        <button type="button" className="fb-stang fb-stang-liten" aria-label="Stäng" onClick={() => stang('nej')}>×</button>
+        <style>{`
+          .fb-liten-ruta{position:fixed;left:12px;right:84px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9000;background:#fff;border-radius:999px;padding:6px 40px 6px 6px;box-shadow:0 10px 30px rgba(7,26,44,.22);animation:fbIn .35s ease-out}
+          /* Ovanför bottenmenyn där den finns, annars låg rutan över Utforska, Planera, Logga tur och Flöde (500 px, 22 nov 2026). */
+          body.has-app-nav .fb-liten-ruta{bottom:calc(var(--nav-h) + 12px + env(safe-area-inset-bottom,0px))}
+          @keyframes fbIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+          .fb-oppna{display:flex;align-items:center;gap:10px;width:100%;background:none;border:0;padding:0;cursor:pointer;text-align:left;font-size:13.5px;font-weight:700;color:#1e5c82;font-family:inherit}
+          .fb-oppna img{border-radius:50%;flex-shrink:0}
+          .fb-stang-liten{position:absolute;top:50%;right:12px;transform:translateY(-50%);background:none;border:0;font-size:22px;line-height:1;color:#8ea7b1;cursor:pointer}
+        `}</style>
+      </div>
+    )
+  }
   const fraga = FRAGOR[steg]
   const tips = (lage === 'klar' || lage === 'tillbaka') ? tipsFor(svar) : []
   return (
@@ -152,6 +187,7 @@ export default function ForstaBesok() {
       )}
       <style>{`
         .fb-ruta{position:fixed;left:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:9000;width:min(360px,calc(100vw - 32px));background:#fff;border-radius:18px;padding:16px 16px 14px;box-shadow:0 18px 50px rgba(7,26,44,.28);color:#162d3a;animation:fbIn .35s ease-out}
+        body.has-app-nav .fb-ruta{bottom:calc(var(--nav-h) + 16px + env(safe-area-inset-bottom,0px))}
         @keyframes fbIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
         .fb-stang{position:absolute;top:8px;right:10px;background:none;border:0;font-size:22px;line-height:1;color:#8ea7b1;cursor:pointer}
         .fb-topp{display:flex;align-items:center;gap:10px;margin-bottom:8px}

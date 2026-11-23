@@ -141,7 +141,7 @@ function LoggaChoice() {
               </div>
               <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 6 }}>Snabb-logg</div>
               <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>
-                Ladda upp en bild och ange stats manuellt. Inget GPS behövs.
+                Ladda upp en bild och fyll i distans och tid själv. Ingen GPS behövs.
               </div>
             </div>
             <div style={{ flexShrink: 0 }}>

@@ -9,7 +9,7 @@ import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
 import { logger } from '@/lib/logger'
 import { checkRateLimit } from '@/lib/rateLimit'
-import { harLosenord, farskInloggning } from '@/lib/kontoBekraftelse'
+import { harLosenord, farskInloggning, raderingBekraftad } from '@/lib/kontoBekraftelse'
 // TODO: wrap handlers with withSentrySimple(handler, 'account/delete') — se src/lib/api-handler.ts
 
 /**
@@ -54,33 +54,33 @@ export async function POST(req: NextRequest) {
   if (body.confirm !== 'RADERA') {
     return NextResponse.json({ error: 'Bekräftelse-text matchar inte' }, { status: 400 })
   }
+  // Bekräftelse (2026-11-22, lib/kontoBekraftelse.ts): en färsk inloggning
+  // räcker alltid; annars krävs rätt lösenord. Förut krävdes lösenordet av
+  // alla konton med lösenord, även när de också hade Google och nyss loggat in
+  // med det. getUser() ovan har redan låtit Supabase kontrollera beviset, så
+  // tiden i det går att lita på.
   const medLosenord = harLosenord(user.identities, user.app_metadata?.providers as string[] | undefined)
+  const { data: { session } } = await supabase.auth.getSession()
+  const nyssInloggad = farskInloggning(session?.access_token)
 
-  if (medLosenord) {
-    if (typeof body.password !== 'string' || body.password.length < 6) {
-      return NextResponse.json({ error: 'Lösenord krävs' }, { status: 400 })
-    }
+  let losenordRatt = false
+  if (!nyssInloggad && medLosenord && typeof body.password === 'string' && body.password.length >= 6 && user.email) {
     // Verifiera lösenord genom att försöka logga in (bypass session-hijack)
-    if (user.email) {
-      const { error: signInError } = await supabase.auth.signInWithPassword({
-        email: user.email,
-        password: body.password,
-      })
-      if (signInError) {
-        return NextResponse.json({ error: 'Fel lösenord' }, { status: 401 })
-      }
+    const { error: signInError } = await supabase.auth.signInWithPassword({
+      email: user.email,
+      password: body.password,
+    })
+    if (signInError) {
+      return NextResponse.json({ error: 'Fel lösenord' }, { status: 401 })
     }
-  } else {
-    // Konto utan lösenord (Google): inloggningen ska vara färsk. getUser()
-    // ovan har redan låtit Supabase kontrollera beviset, så tiden i det går
-    // att lita på.
-    const { data: { session } } = await supabase.auth.getSession()
-    if (!farskInloggning(session?.access_token)) {
-      return NextResponse.json(
-        { error: 'Logga in igen för att bekräfta. Bekräftelsen gäller i tio minuter.', kravNyInloggning: true },
-        { status: 401 },
-      )
-    }
+    losenordRatt = true
+  }
+
+  if (!raderingBekraftad({ nyssInloggad, medLosenord, losenordRatt })) {
+    return NextResponse.json(
+      { error: 'Bekräfta att det är du: logga in igen eller skriv ditt lösenord.', kravNyInloggning: true },
+      { status: 401 },
+    )
   }
 
   const userId = user.id

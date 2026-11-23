@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
 import { ogSida } from '@/lib/og-standard'
@@ -34,7 +35,7 @@ export default function SommarPage() {
   }
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumb) }} />
       <CategoryLanding
         heroGradient={['#1a4a5e', '#2d9a6e']}
         eyebrow="Säsongsguide"

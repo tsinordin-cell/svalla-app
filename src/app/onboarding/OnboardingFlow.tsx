@@ -1,10 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { arInbyggdApp } from '@/lib/forstaRutor'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
+import { rangordnaForslag } from '@/lib/rangordnaForslag'
 import { DEPARTURES } from '@/lib/planner-client'
+import { IconCompass } from '@/components/icons/SvallaIcons'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /onboarding — Premium skärgårds-tour
@@ -30,6 +33,7 @@ interface Suggestion {
   vessel_model: string | null
   home_port: string | null
   boat_type?: string | null
+  van?: boolean
 }
 
 interface Props {
@@ -411,7 +415,7 @@ const BOAT_OPTIONS = [
   { value: 'Segelbåt', label: 'Segelbåt',     Icon: SailboatIcon, desc: 'Kryss och slör mellan öarna' },
   { value: 'Motorbåt', label: 'Motorbåt',     Icon: MotorboatIcon, desc: 'Snabb genom skärgården' },
   { value: 'Kajak',    label: 'Kajak / SUP',  Icon: KayakIcon, desc: 'Nära vattnet och tystnaden' },
-  { value: 'Charter',  label: 'Utan egen båt', Icon: CharterIcon, desc: 'Hyr, åk med, eller besätter' },
+  { value: 'Charter',  label: 'Utan egen båt', Icon: CharterIcon, desc: 'Hyr, åker med eller mönstrar på' },
 ]
 
 /** "åkersberga" → "Åkersberga"; "  Vaxholm " → "Vaxholm". Högst 60 tecken. */
@@ -537,7 +541,7 @@ const PRIMARY_BTN = (disabled = false): React.CSSProperties => ({
   background: disabled
     ? 'rgba(255,255,255,0.08)'
     : 'linear-gradient(135deg, #1e5c82 0%, #2d7d8a 50%, #65b8c8 100%)',
-  color: disabled ? 'rgba(255,255,255,0.30)' : '#fff',
+  color: disabled ? 'rgba(255,255,255,0.55)' : '#fff',
   fontSize: 15, fontWeight: 700, letterSpacing: '0.02em',
   boxShadow: disabled ? 'none' : '0 8px 28px rgba(45,125,138,0.40)',
   transition: 'all 0.2s',
@@ -567,8 +571,28 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   const [followIds, setFollowIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  // Spårning med skärmen avstängd finns bara i den inbyggda appen (tracker.ts).
+  const [inbyggdApp, setInbyggdApp] = useState(false)
+  useEffect(() => { setInbyggdApp(arInbyggdApp()) }, [])
+  // Förslagen ordnas efter valen i guiden (samma hemmahamn, sedan båttyp).
+  const sorteradeForslag = useMemo(
+    () => rangordnaForslag(suggestions, normaliseraHamn(homePort), boatType),
+    [suggestions, homePort, boatType],
+  )
 
   useEffect(() => { track('onboarding_started', { step: 1 }) }, [])
+
+  // Guiden räknas som klar när slutskärmen visas, inte först när man trycker en
+  // knapp där. Annars kom hela guiden tillbaka för den som stängde appen på
+  // slutskärmen (granskningen 2026-11-22). Följningarna sparas fortfarande i finish().
+  const klarMarkerad = useRef(false)
+  useEffect(() => {
+    if (step !== 'done' || klarMarkerad.current) return
+    klarMarkerad.current = true
+    // .then() krävs: frågan skickas först när den awaitas eller får en then.
+    supabase.from('users').update({ onboarded_at: new Date().toISOString() }).eq('id', userId).is('onboarded_at', null)
+      .then(({ error }) => { if (error) klarMarkerad.current = false })
+  }, [step, supabase, userId])
 
   const goTo = (next: Step) => { setAnimKey(k => k + 1); setStep(next); track('onboarding_step', { step: stepIdx(next) + 1 }) }
   const goBack = () => {
@@ -715,7 +739,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         <h2 style={HEADING}>Logga dina turer</h2>
         <p style={SUBTITLE}>
           Spåra rutten med GPS direkt från telefonen. Distans, tid, fart och rutt
-          sparas automatiskt, som ett digitalt loggbok-uppslag.
+          sparas automatiskt, som ett digitalt loggboksuppslag.
         </p>
         <ChartRouteIllustration/>
         <NavHint label="Logga"/>
@@ -723,7 +747,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 20,
           flexWrap: 'wrap',
         }}>
-          {['GPS i bakgrunden', 'Foto från turen', 'Pinnar-rating'].map(b => (
+          {[inbyggdApp ? 'GPS i bakgrunden' : 'GPS-spårning', 'Foto från turen', 'Betyg på turen'].map(b => (
             <span key={b} style={{
               fontSize: 11.5, fontWeight: 600, color: 'rgba(255,255,255,0.75)',
               padding: '6px 12px', borderRadius: 999,
@@ -754,7 +778,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         <h2 style={HEADING}>Pejla in skärgården</h2>
         <p style={SUBTITLE}>
           Hitta krogar, gästbryggor, bastur och bensinmackar längs hela kusten.
-          Sökbart sjökort med riktiga koordinater, inga gissningar.
+          Sökbar karta med riktiga koordinater, inga gissningar.
         </p>
         <MapMarkersIllustration/>
         <NavHint label="Utforska"/>
@@ -797,7 +821,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       <SeaBackdrop/>
       <div key={animKey} style={CARD}>
         <CompassProgress current={step}/>
-        <h2 style={HEADING}>Hitta rundt i Svalla</h2>
+        <h2 style={HEADING}>Hitta runt i Svalla</h2>
         <p style={SUBTITLE}>
           Allt du behöver finns i menyn. Här är en snabb karta.
         </p>
@@ -874,17 +898,30 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           {BOAT_OPTIONS.map(({ value, label, Icon, desc }) => {
             const active = boatType === value
             return (
-              <button key={value} onClick={() => setBoatType(value)} type="button"
+              <button key={value} onClick={() => setBoatType(value)} type="button" aria-pressed={active}
                 style={{
+                  position: 'relative',
                   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
                   padding: '16px 10px 14px', borderRadius: 14, border: 'none',
                   cursor: 'pointer', fontFamily: 'inherit',
                   background: active
                     ? 'linear-gradient(135deg, rgba(30,92,130,0.60), rgba(45,125,138,0.52))'
                     : 'rgba(255,255,255,0.06)',
-                  outline: active ? '1.5px solid rgba(165,205,225,0.55)' : '1.5px solid rgba(255,255,255,0.08)',
+                  outline: active ? '2px solid rgba(165,235,248,0.95)' : '1.5px solid rgba(255,255,255,0.08)',
                   transition: 'all 0.18s',
                 }}>
+                {/* Tydligare valt läge: bock i hörnet (granskningen 2026-11-22: valt kort syntes knappt). */}
+                {active && (
+                  <span aria-hidden style={{
+                    position: 'absolute', top: 8, right: 8, width: 20, height: 20, borderRadius: '50%',
+                    background: 'rgba(165,235,248,0.95)', color: '#0e3848',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3.5} style={{ width: 12, height: 12 }}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                )}
                 <div style={{ opacity: active ? 1 : 0.7 }}><Icon/></div>
                 <span style={{ fontSize: 13, fontWeight: 700, color: active ? '#fff' : 'rgba(255,255,255,0.72)' }}>
                   {label}
@@ -912,6 +949,16 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
             {saving ? 'Sparar…' : <>Nästa <ArrowRightIcon/></>}
           </button>
         </div>
+        {/* Steget gick inte att hoppa över; båttypen kan sättas senare på profilen. */}
+        {!boatType && (
+          <button type="button" onClick={goNext} style={{
+            display: 'block', margin: '14px auto 0', background: 'none', border: 'none',
+            color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+            fontFamily: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3,
+          }}>
+            Hoppa över, välj senare på profilen
+          </button>
+        )}
       </div>
     </>
   )
@@ -999,7 +1046,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         {suggestions.length > 0 && (
           <>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 22 }}>
-              {suggestions.slice(0, 3).map(s => {
+              {sorteradeForslag.slice(0, 3).map(s => {
                 const isFollowing = followIds.has(s.id)
                 return (
                   <button key={s.id} onClick={() => toggleFollow(s.id)} type="button"
@@ -1108,15 +1155,17 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           textTransform: 'uppercase', letterSpacing: '0.14em',
           textAlign: 'center', marginBottom: 10,
         }}>Eller utforska direkt</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, width: '100%', marginBottom: 8 }}>
+        {/* Fem genvägar: 3 + 2 centrerade i stället för ett rutnät med ett tomt hål. */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, width: '100%', marginBottom: 8 }}>
           {[
             { label: 'Flödet', path: '/feed', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
-            { label: 'Utforska', path: '/upptack', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> },
+            { label: 'Utforska', path: '/upptack', icon: <IconCompass size={20} strokeWidth={1.6} style={{ color: 'rgba(245,244,239,0.8)' }} /> },
             { label: 'Forum', path: '/forum', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
             { label: 'Logga tur', path: '/logga', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> },
             { label: 'Profil', path: '/profil', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
           ].map(({ label, path, icon }) => (
             <button key={path} onClick={() => finish(path)} disabled={saving} style={{
+              flex: '0 0 calc((100% - 16px) / 3)', boxSizing: 'border-box',
               display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7,
               padding: '12px 8px', borderRadius: 14,
               border: '1px solid rgba(255,255,255,0.10)',

@@ -558,7 +558,7 @@ export default async function PublicProfilePage({
  Säsongsrecap {wrappedYear}
  </div>
  <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.5px', lineHeight: 1.1 }}>
- {wrappedTrips.length} turer · {wrappedDist.toFixed(0)} nm
+ {wrappedTrips.length} {wrappedTrips.length === 1 ? 'tur' : 'turer'} · {wrappedDist.toFixed(0)} nm
  </div>
  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', marginTop: 6, display: 'flex', alignItems: 'center', gap: 4 }}>
  Se helårssummeringen

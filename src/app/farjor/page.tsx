@@ -1,8 +1,9 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import Link from 'next/link'
 import PublicFooter from '@/components/PublicFooter'
-import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats } from '@/lib/ferries'
+import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, visaBryggnamn } from '@/lib/ferries'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { ogSida } from '@/lib/og-standard'
 
@@ -150,10 +151,10 @@ export default async function FarjorPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(speakableJsonLd) }} />
       {ferryTripsJsonLd.map((schema, i) => (
-        <script key={`ferry-trip-${i}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+        <script key={`ferry-trip-${i}`} type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(schema) }} />
       ))}
       {/* HERO */}
       <SidHuvud />
@@ -302,7 +303,7 @@ export default async function FarjorPage() {
                         {d.arrival && <span style={{ fontWeight: 400, color: 'var(--txt3)' }}>{' till '}{d.arrival}</span>}
                       </div>
                       <div style={{ fontSize: 12, color: 'var(--txt2)', textAlign: 'right' }}>
-                        {d.to}
+                        {visaBryggnamn(d.to)}
                         {d.changes ? <span style={{ color: 'var(--txt3)' }}> · {d.changes} byte{d.changes > 1 ? 'n' : ''}</span> : null}
                       </div>
                     </div>

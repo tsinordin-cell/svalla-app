@@ -4,6 +4,7 @@
 // client components — det failar prerendering med "Event handlers cannot
 // be passed to Client Component props". Hela /o/[slug]/* var brutet i prod
 // pga detta tills vi flyttade hit.
+import { serializeForScript } from '@/lib/serializeForScript'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 
@@ -61,7 +62,7 @@ export default function Breadcrumb({ items, marginBottom = 12, ariaLabel = 'Brö
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }}
       />
       <nav
         aria-label={ariaLabel}

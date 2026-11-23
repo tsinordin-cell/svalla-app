@@ -37,7 +37,12 @@ export default function SynlighetVaxel({
     <button
       type="button"
       onClick={() => onChange(!privat)}
-      aria-pressed={privat}
+      // Växeln står för "synlig": på (blågrön) när turen syns för alla, av när
+      // den är privat. Tidigare var det tvärtom, så en publik tur såg avstängd ut
+      // bredvid texten "Synlig för alla" (granskningen 2026-11-22).
+      role="switch"
+      aria-checked={!privat}
+      aria-label={flera ? 'Synliga för alla' : 'Synlig för alla'}
       className="w-full rounded-2xl press-feedback"
       style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -58,12 +63,12 @@ export default function SynlighetVaxel({
         aria-hidden="true"
         style={{
           flexShrink: 0, width: 46, height: 26, borderRadius: 13, position: 'relative',
-          background: privat ? 'var(--sea)' : 'rgba(10,123,140,0.18)',
+          background: !privat ? 'var(--sea)' : 'rgba(10,123,140,0.18)',
           transition: 'background 0.15s ease',
         }}
       >
         <span style={{
-          position: 'absolute', top: 3, left: privat ? 23 : 3,
+          position: 'absolute', top: 3, left: !privat ? 23 : 3,
           width: 20, height: 20, borderRadius: '50%', background: '#fff',
           boxShadow: '0 1px 3px rgba(0,0,0,0.25)', transition: 'left 0.15s ease',
         }} />

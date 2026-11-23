@@ -1,4 +1,5 @@
 'use client'
+import { serializeForScript } from '@/lib/serializeForScript'
 import { useEffect, Suspense } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
@@ -7,6 +8,7 @@ import { TreSatt, JustNu, VadVillDuKanna, FragaThorkel, GuidePaVattnet, type Sta
 import MegaMeny from '@/components/MegaMeny'
 import { menyHtmlDator, mittSvallaHtmlDator, menyHtmlMobil } from '@/lib/meny'
 import JulkalenderSkylt from '@/components/JulkalenderSkylt'
+import StartMobil from '@/components/StartMobil'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import dynamic from 'next/dynamic'
@@ -455,7 +457,9 @@ a.dest-island:hover{background:rgba(255,255,255,.28);color:#fff}
     hamnade rubriken rakt ovanpå den. vh-baserad padding följer solen på
     alla skärmhöjder. */
  .hero-top{padding-top:22vh}
- .hero-bottom{top:auto;bottom:4vh}
+ /* Valen slutar ovanför den flytande Tipsa oss-knappen (FeedbackWidget: bottom + 37 px + 12 px luft).
+    Med bottom:4vh låg knappen över "Hitta på kartan" (mätt 2026-11-21). */
+ .hero-bottom{top:auto;bottom:calc(var(--nav-h, 0px) + var(--cta-h, 0px) + env(safe-area-inset-bottom, 0px) + 63px)}
  .hero-eyebrow{margin-bottom:18px;font-size:11px;padding:5px 12px;margin-top:8px}
  .hero-title{font-size:clamp(28px,8.5vw,40px);margin-bottom:14px}
  .hero-sub{font-size:13.5px;margin:10px auto 18px}
@@ -1204,7 +1208,13 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  }
  if (photoMap && Object.keys(photoMap).length > 0) {
    applyLpPhotos(photoMap)
- } else {
+ } else if (document.querySelector('[data-lp-photo]')) {
+   // 2026-11-22 (beslut 6, färre Google-anrop): hämta bara när sidan har kort
+   // som kan visa fotona. Sedan 2026-11-21 skickar page.tsx ingen photoMap och
+   // korten med data-lp-photo visas inte, men varje besök hämtade ändå
+   // /api/landing-photos, och den routen gör upp till 19 Text Search-anrop.
+   // MÄTT 2026-11-22: Vercel-loggen visar 429 "SearchTextRequest per day"
+   // från just den routen.
    fetch('/api/landing-photos')
      .then(r => r.ok ? r.json() : null)
      .catch(() => null)
@@ -1280,7 +1290,7 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
 
  return (
  <>
- {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${JSON.stringify(photoMap)}` }} />}
+ {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${serializeForScript(photoMap)}` }} />}
  <div style={{ position: 'relative' }}>
  {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
  <div style={{
@@ -1349,6 +1359,8 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  {slutHtml && <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: slutHtml }} />}
  {/* Julkalendern: litet paket med skylt uppe till vänster i himlen, 1–24 december */}
  <JulkalenderSkylt />
+ {/* Max och Thomas 2026-11-22: startsidans form i mobilen, se StartMobil.tsx */}
+ <StartMobil />
  </div>
  </>
  )

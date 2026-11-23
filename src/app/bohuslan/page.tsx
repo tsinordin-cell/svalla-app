@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import CategoryLanding, { type LandingItem } from '@/components/CategoryLanding'
@@ -122,8 +123,8 @@ export default function BohuslanPage() {
  }
  return (
  <>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqJsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumbJsonLd) }} />
  <CategoryLanding
  regionNav={<RegionNav data={byggRegionNav('Bohuslän', BOHUSLAN_ISLANDS.map(o => o.slug), ['bohuslan-skargard-guide', 'smogen-guide', 'marstrand-guide', 'hummersafari-bohuslan', 'midsommar-bohuslan', 'gotland-vs-bohuslan'])} />}
  heroGradient={['#2d6a4f', '#3a8a65']}

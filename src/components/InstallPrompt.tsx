@@ -1,6 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import { arInbyggdApp, efterCookievalOchTid, paRutsida } from '@/lib/forstaRutor'
+import { useForstaRuta } from '@/lib/useForstaRuta'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
@@ -8,7 +10,6 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 // Visa bara install-prompten på app-sidor
-const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
 const BESOK = 'svalla-besok'
 const RAKNAD_I_SESSIONEN = 'svalla-besok-raknad'
@@ -54,14 +55,16 @@ function harAvbojt(): boolean {
 }
 
 export default function InstallPrompt() {
-  const [show, setShow] = useState(false)
+  // Om rutan syns avgör turordningen i forstaRutor.ts.
+  const [redo, setRedo] = useState(false)
   const [isIOS, setIsIOS] = useState(false)
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
   const pathname = usePathname()
 
   useEffect(() => {
     const standalone = window.matchMedia('(display-mode: standalone)').matches
-    if (standalone || harAvbojt()) return
+    // I den inbyggda appen är Svalla redan installerat (granskningen 2026-11-22).
+    if (standalone || arInbyggdApp() || harAvbojt()) return
 
     // Andra besöket, inte det första. Se raknaBesok().
     if (raknaBesok() < 2) return
@@ -69,23 +72,26 @@ export default function InstallPrompt() {
     const ios = /iphone|ipad|ipod/i.test(navigator.userAgent)
 
     if (ios) {
-      const t = setTimeout(() => { setIsIOS(true); setShow(true) }, 8000)
-      return () => clearTimeout(t)
+      setIsIOS(true)
+      return efterCookievalOchTid(8000, () => setRedo(true))
     }
 
     // Android / Chrome — fånga beforeinstallprompt
-    let timer: ReturnType<typeof setTimeout> | null = null
+    let sluta: (() => void) | null = null
     const handler = (e: Event) => {
       e.preventDefault()
       setDeferredPrompt(e as BeforeInstallPromptEvent)
-      timer = setTimeout(() => setShow(true), 5000)
+      sluta?.()
+      sluta = efterCookievalOchTid(5000, () => setRedo(true))
     }
     window.addEventListener('beforeinstallprompt', handler)
     return () => {
       window.removeEventListener('beforeinstallprompt', handler)
-      if (timer) clearTimeout(timer)
+      sluta?.()
     }
   }, [])
+
+  const [show, lamnaPlatsen] = useForstaRuta('installera', redo, paRutsida(pathname))
 
   function dismiss() {
     /*
@@ -94,7 +100,8 @@ export default function InstallPrompt() {
       som tackat nej ska slippa frågan.
     */
     try { window.localStorage.setItem(AVBOJT, '1') } catch { /* privat läge */ }
-    setShow(false)
+    setRedo(false)
+    lamnaPlatsen()
   }
 
   async function installAndroid() {
@@ -102,15 +109,17 @@ export default function InstallPrompt() {
     deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice
     if (outcome === 'accepted') { try { window.localStorage.setItem(AVBOJT, '1') } catch { /* privat läge */ } }
-    setShow(false)
+    setRedo(false)
+    lamnaPlatsen()
     setDeferredPrompt(null)
   }
 
   if (!show) return null
-  if (!APP_PATHS.some(p => pathname?.startsWith(p))) return null
 
   return (
-    <div style={{
+    // .install-prompt: på dator (>=1024px) nedre högra hörnet, som notisrutan,
+    // i stället för en remsa över hela bredden som la sig över sidomenyn.
+    <div className="install-prompt" style={{
       position: 'fixed',
       bottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 12px)',
       left: 12, right: 12, zIndex: 9999,
@@ -138,7 +147,14 @@ export default function InstallPrompt() {
         {isIOS ? (
           <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.4 }}>
             Tryck på{' '}
-            <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '1px 5px', fontSize: 13 }}>⎋</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '1px 5px', fontSize: 12, verticalAlign: 'middle' }}>
+              {/* Safaris Dela-symbol: en ruta med en pil uppåt */}
+              <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 1v8M3.2 3.6 6 1l2.8 2.6"/>
+                <path d="M4 5.6H2.2a1 1 0 0 0-1 1v5.2a1 1 0 0 0 1 1h7.6a1 1 0 0 0 1-1V6.6a1 1 0 0 0-1-1H8"/>
+              </svg>
+              Dela
+            </span>
             {' '}och välj <strong style={{ color: 'rgba(255,255,255,0.85)' }}>&quot;Lägg till på hemskärmen&quot;</strong>
           </p>
         ) : (

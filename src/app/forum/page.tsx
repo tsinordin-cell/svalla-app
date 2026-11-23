@@ -1,7 +1,10 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import Link from 'next/link'
 import { getForumCategories } from '@/lib/forum'
 import type { Metadata } from 'next'
 import Icon from '@/components/Icon'
+import AppTopBar from '@/components/AppTopBar'
+import FlodeFlikar from '@/components/FlodeFlikar'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { emojiToIcon } from '@/lib/iconMap'
 import { ogSida } from '@/lib/og-standard'
@@ -50,11 +53,14 @@ export default async function ForumPage() {
  background: 'var(--bg)',
  paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
  }}>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }} />
+ {/* 2026-11-23 (menyförslaget): samma topprad som Flöde. Forum hade ingen
+     sök-, meddelande- eller notisknapp alls. */}
+ <AppTopBar doljPaDesktop />
  {/* Header */}
  <div style={{
  background: 'linear-gradient(160deg, var(--sea) 0%, #0d8fa3 100%)',
- padding: 'calc(env(safe-area-inset-top, 0px) + 20px) 20px 28px',
+ padding: '20px 20px 28px',
  color: '#fff',
  }}>
  <h1 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 4px', letterSpacing: '-0.3px' }}>
@@ -65,15 +71,8 @@ export default async function ForumPage() {
  </p>
  </div>
 
- {/* Flöde / Forum tab-rad */}
- <div style={{ display: 'flex', borderBottom: '1.5px solid rgba(10,123,140,0.08)', background: 'var(--white)' }}>
- <Link href="/feed" prefetch={false} style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--txt3)', textDecoration: 'none', display: 'block' }}>
- Flöde
- </Link>
- <div style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--sea)', borderBottom: '2px solid var(--sea)', marginBottom: -1.5 }}>
- Forum
- </div>
- </div>
+ {/* Flöde / Forum / Topplista (menyförslaget 2026-11-23) */}
+ <FlodeFlikar aktiv="forum" bakgrund="var(--white)" />
 
  {/* CTA — ny tråd + sök */}
  <div style={{ padding: '16px 16px 0', display: 'flex', gap: 10 }}>
@@ -273,7 +272,7 @@ export default async function ForumPage() {
  {cat.thread_count}
  </div>
  <div style={{ fontSize: 11, color: 'var(--txt3)' }}>
- trådar
+ {cat.thread_count === 1 ? 'tråd' : 'trådar'}
  </div>
  </>
  ) : (

@@ -20,7 +20,7 @@ export type EmailTemplate =
   | 'welcome' | 'day7' | 'season_open' | 'season_close' | 'weather_tip'
   | 'newsletter_welcome' | 'day3_newsletter' | 'day14_newsletter' | 'day30_newsletter'
   | 'manadsbrev' | 'day60' | 'day90' | 'saved_island' | 'weekly_island'
-  | 'julkalender'
+  | 'julkalender' | 'prenumeration_bekrafta'
 
 type Frontmatter = {
   trigger?: string

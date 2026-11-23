@@ -3,6 +3,7 @@
  *
  * Grupperar per region för bättre översikt. ItemList Schema.
  */
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ALL_ISLANDS } from '../o/island-data'
@@ -59,7 +60,7 @@ export default function TaDigTillIndex() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+        dangerouslySetInnerHTML={{ __html: serializeForScript(itemListSchema) }}
       />
 
       <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>

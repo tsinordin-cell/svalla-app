@@ -79,7 +79,7 @@ export default async function OnboardingPage() {
     van = (data as Forslag | null) ?? null
   }
 
-  const suggestions: Forslag[] = [...(van ? [van] : []), ...medTurer.filter(s => s.id !== van?.id)]
+  const suggestions: (Forslag & { van?: boolean })[] = [...(van ? [{ ...van, van: true }] : []), ...medTurer.filter(s => s.id !== van?.id)]
 
   return (
     <div style={{
@@ -118,6 +118,7 @@ export default async function OnboardingPage() {
             vessel_model: s.vessel_model ?? null,
             home_port: s.home_port ?? null,
             boat_type: s.boat_type ?? null,
+            van: s.van === true,
           }))}
         />
       </div>

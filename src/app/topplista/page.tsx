@@ -2,6 +2,8 @@ import { decimal } from '@/lib/gps'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import Image from 'next/image'
+import AppTopBar from '@/components/AppTopBar'
+import FlodeFlikar from '@/components/FlodeFlikar'
 import type { Metadata } from 'next'
 import { ogSida } from '@/lib/og-standard'
 
@@ -16,7 +18,7 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Topplista',
-  description: 'Veckans och alltidens bästa skärgårdsseglare. Se vem som seglat mest nautiska mil på Svalla.',
+  description: 'Veckans och genom tidernas bästa skärgårdsseglare. Se vem som seglat mest nautiska mil på Svalla.',
   openGraph: {
     images: ogSida('https://svalla.se/topplista'),
     title: 'Topplista | Svalla',
@@ -80,6 +82,7 @@ export default async function ToplistaPage() {
   }
   const weekTopNM = Object.entries(weekByNM)
     .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))
+    .filter(r => r.nm > 0)
     .sort((a, b) => b.nm - a.nm)
     .slice(0, 10)
 
@@ -94,6 +97,7 @@ export default async function ToplistaPage() {
   }
   const monthTopNM = Object.entries(monthByNM)
     .map(([uid, v]) => ({ uid, ...getUser(uid), ...v }))
+    .filter(r => r.nm > 0)
     .sort((a, b) => b.nm - a.nm)
     .slice(0, 10)
 
@@ -122,7 +126,10 @@ export default async function ToplistaPage() {
     avgSpeed:     v.avgSpeedCount > 0 ? v.avgSpeedSum / v.avgSpeedCount : 0,
   }))
 
-  const allTopNM     = [...allUsers].sort((a, b) => b.nm - a.nm).slice(0, 10)
+  // Bara den som loggat distans hamnar på NM-listorna. Granskningen 2026-11-22:
+  // alla rader visade 0 NM (manuella turer utan distans), och en lista där
+  // alla har noll rangordnar ingenting.
+  const allTopNM     = [...allUsers].filter(u => u.nm > 0).sort((a, b) => b.nm - a.nm).slice(0, 10)
   const allTopCount  = [...allUsers].sort((a, b) => b.count - a.count).slice(0, 10)
   const allTopMagic  = [...allUsers].filter(u => u.magic > 0).sort((a, b) => b.magic - a.magic).slice(0, 10)
   const allTopSpeed  = [...allUsers].filter(u => u.maxSpeed > 0).sort((a, b) => b.maxSpeed - a.maxSpeed).slice(0, 10)
@@ -135,25 +142,11 @@ export default async function ToplistaPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)' }}>
 
-      {/* ── Header ── */}
-      <header style={{
-        padding: '12px 16px',
-        background: 'var(--header-bg, var(--glass-96))',
-        backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(10,123,140,0.10)',
-        position: 'sticky', top: 0, zIndex: 50,
-        display: 'flex', alignItems: 'center', gap: 10,
-      }}>
-        <Link href="/feed" prefetch={false} style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </Link>
-        <div>
-          <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Topplista</h1>
-          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0 }}>Veckans &amp; alltidens bästa seglare</p>
-        </div>
-      </header>
+      {/* ── Header ── 2026-11-23 (menyförslaget): gemensam topprad och flikarna
+          Flöde · Forum · Topplista. Förut fanns bara en tillbakapil till flödet,
+          och sidan gick inte att nå från menyn. */}
+      <AppTopBar titel="Topplista" undertitel="Veckans och genom tidernas bästa seglare" huvudrubrik />
+      <FlodeFlikar aktiv="topplista" bakgrund="var(--white)" />
 
       <div style={{ maxWidth: 560, margin: '0 auto', padding: '14px 14px' }}>
 
@@ -188,7 +181,7 @@ export default async function ToplistaPage() {
           subtitle="Senaste 7 dagarna"
           rows={weekTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${decimal(v)} NM`}
-          emptyText="Ingen har loggat denna vecka än"
+          emptyText="Ingen har loggat distans denna vecka än"
           accentColor="#c96e2a"
         />
 
@@ -198,26 +191,26 @@ export default async function ToplistaPage() {
           subtitle="Senaste 30 dagarna"
           rows={monthTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}${r.magic > 0 ? ` · ${r.magic} magiska` : ''}` }))}
           formatValue={v => `${decimal(v)} NM`}
-          emptyText="Ingen har loggat denna månad än"
+          emptyText="Ingen har loggat distans denna månad än"
           accentColor="#2d7d8a"
         />
 
         {/* ── Alltime topp: NM ── */}
         <LeaderboardSection
-          title="Alltime: Nautiska mil"
+          title="Genom tiderna: Nautiska mil"
           subtitle="Totalt seglat"
           rows={allTopNM.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.nm, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
           formatValue={v => `${v.toFixed(0)} NM`}
-          emptyText="Inga turer loggade"
+          emptyText="Ingen har loggat distans än. Fyll i distansen när du loggar en tur, så hamnar du här."
           accentColor="#1e5c82"
         />
 
         {/* ── Alltime topp: antal turer ── */}
         <LeaderboardSection
-          title="Alltime: Flest turer"
+          title="Genom tiderna: Flest turer"
           subtitle="Antal loggade turer"
           rows={allTopCount.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.count, secondaryLabel: `${r.nm.toFixed(0)} NM` }))}
-          formatValue={v => `${v} turer`}
+          formatValue={v => `${v} ${v === 1 ? 'tur' : 'turer'}`}
           emptyText="Inga turer loggade"
           accentColor="#2a9d5c"
         />
@@ -225,7 +218,7 @@ export default async function ToplistaPage() {
         {/* ── Magic trips leaderboard ── */}
         {allTopMagic.length > 0 && (
           <LeaderboardSection
-            title="Alltime: Magiska turer"
+            title="Genom tiderna: Magiska turer"
             subtitle="Flest magiska turer"
             rows={allTopMagic.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.magic, secondaryLabel: `${r.nm.toFixed(0)} NM totalt` }))}
             formatValue={v => `×${v} magiska`}
@@ -237,7 +230,7 @@ export default async function ToplistaPage() {
         {/* ── Speed leaderboard ── */}
         {allTopSpeed.length > 0 && (
           <LeaderboardSection
-            title="Alltime: Toppfart"
+            title="Genom tiderna: Toppfart"
             subtitle="Högsta uppmätta hastighet"
             rows={allTopSpeed.map(r => ({ uid: r.uid, username: r.username, avatar: r.avatar, value: r.maxSpeed, secondaryLabel: `${r.count} ${r.count === 1 ? 'tur' : 'turer'}` }))}
             formatValue={v => `${decimal(v)} kn`}

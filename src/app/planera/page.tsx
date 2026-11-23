@@ -6,12 +6,14 @@ import type { ScoredStop } from '@/lib/planner'
 import MyRoutesList from './MyRoutesList'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import Icon from '@/components/Icon'
+import AppTopBar from '@/components/AppTopBar'
 import WeatherPillServer from '@/components/WeatherPillServer'
 import { ogSida } from '@/lib/og-standard'
+import { ISLAND_COORDS } from '@/lib/islandCoords'
 
 export const metadata: Metadata = {
   title: 'Planera din skärgårdsrutt',
-  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastun, bryggor och naturupplevelser.',
+  description: 'Välj start, mål och intressen. Svalla hittar de bästa stoppen längs din rutt: krogar, bastur, bryggor och naturupplevelser.',
   openGraph: {
     images: ogSida('https://svalla.se/planera'),
     title: 'Planera din skärgårdsrutt | Svalla',
@@ -22,6 +24,13 @@ export const metadata: Metadata = {
 }
 
 export const dynamic = 'force-dynamic'
+
+/**
+ * Vädret på Planera gällde förut en punkt utan namn (59.32, 18.20). Nu en
+ * namngiven ort ur islandCoords, så man vet var vädret gäller. Vaxholm är
+ * porten till innerskärgården, dit de flesta rutter börjar.
+ */
+const VADERORT = ISLAND_COORDS.find(o => o.slug === 'vaxholm') ?? { name: 'Vaxholm', lat: 59.4022, lng: 18.3520 }
 
 type PlannedRoute = {
   id: string
@@ -52,7 +61,7 @@ export default async function PlaneraPage() {
     <PlaneraVy
       inloggad={!!session}
       myRoutes={myRoutes}
-      vader={<WeatherPillServer lat={59.32} lng={18.20} />}
+      vader={<WeatherPillServer lat={VADERORT.lat} lng={VADERORT.lng} plats={VADERORT.name} />}
     />
   )
 }
@@ -71,8 +80,13 @@ function PlaneraVy({
       minHeight: '100dvh', background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
     }}>
-      {/* Delade flikar: Planera / Rutter / Öar / Färjor */}
-      <div role="tablist" style={{
+      {/* 2026-11-23 (menyförslaget): samma topprad som övriga huvudsidor. Planera
+          saknade sök-, meddelande- och notisknapp. */}
+      <AppTopBar titel="Planera" />
+
+      {/* Delade flikar: Planera / Rutter / Öar / Färjor. Länkar till egna sidor,
+          så en navigering med aria-current, som på /rutter (granskningen 2026-11-22). */}
+      <nav aria-label="Vy" style={{
         display: 'flex', gap: 0, padding: '0 16px',
         background: 'var(--glass-96)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
@@ -83,7 +97,7 @@ function PlaneraVy({
           { label: 'Öar',     href: '/rutter?vy=oar',    active: false },
           { label: 'Färjor',  href: '/rutter?vy=farjor', active: false },
         ]).map(t => (
-          <Link key={t.href} href={t.href} role="tab" aria-selected={t.active} style={{
+          <Link key={t.href} href={t.href} aria-current={t.active ? 'page' : undefined} style={{
             flex: 1, textAlign: 'center', padding: '12px 0 10px',
             fontSize: 14, fontWeight: t.active ? 700 : 600,
             color: t.active ? 'var(--sea)' : 'var(--txt3)',
@@ -93,13 +107,12 @@ function PlaneraVy({
             marginBottom: -1,
           }}>{t.label}</Link>
         ))}
-      </div>
+      </nav>
 
       {/* Hero */}
       <div style={{
         background: 'var(--grad-sea)',
         padding: '16px 16px 28px',
-        paddingTop: 'calc(16px + env(safe-area-inset-top, 0px))',
       }}>
         <div className="planera-innehall">
           <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>
@@ -109,7 +122,7 @@ function PlaneraVy({
             Planera din skärgårdsrutt
           </h1>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.72)', margin: '0 0 20px', lineHeight: 1.55 }}>
-            Välj start, mål och intressen. Vi hittar krogar, bastun och bryggor längs vägen.
+            Välj start, mål och intressen. Vi hittar krogar, bastur och bryggor längs vägen.
           </p>
           <Link href="/planera/ny" className="planera-ny-rutt" style={{
             display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -218,17 +231,11 @@ function PlaneraVy({
               <Icon name="map" size={32} stroke={1.6} />
             </div>
             <p style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 6px' }}>Inga rutter ännu</p>
-            <p className="planera-sekundar" style={{ fontSize: 13, color: 'var(--txt3)', margin: '0 0 20px' }}>
-              Planera din första skärgårdsrutt och se vilka stopp som passar.
+            {/* Knappen "Planera din första rutt" togs bort: heron har redan
+                "Planera ny rutt" till samma sida (beslut 9, 2026-11-22). */}
+            <p className="planera-sekundar" style={{ fontSize: 13, color: 'var(--txt3)', margin: 0 }}>
+              Tryck på Planera ny rutt ovan för att se vilka stopp som passar din första skärgårdsrutt.
             </p>
-            <Link href="/planera/ny" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8,
-              padding: '12px 28px', borderRadius: 50,
-              background: 'var(--grad-sea)', color: '#fff', fontSize: 14, fontWeight: 700, textDecoration: 'none',
-            }}>
-              <Icon name="map" size={15} stroke={2} />
-              Planera din första rutt
-            </Link>
           </div>
         )}
 
@@ -265,7 +272,7 @@ function PlaneraVy({
           </span>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Utforska utvalda turer</div>
-            <div className="planera-sekundar" style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med waypoints, svårighetsgrad och tips.</div>
+            <div className="planera-sekundar" style={{ fontSize: 12, color: 'var(--txt3)' }}>Redaktionella rutter med vägpunkter, svårighetsgrad och tips.</div>
           </div>
           <Link href="/rutter" className="planera-chip" style={{
             fontSize: 12, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none',

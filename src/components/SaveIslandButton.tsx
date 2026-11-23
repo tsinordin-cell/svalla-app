@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { setPendingAction, takePendingAction } from '@/lib/pendingAction'
+import { slugVarianter } from '@/lib/gamlaSlugs'
 
 interface Props {
   islandSlug: string
@@ -37,7 +38,8 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
         .from('saved_islands')
         .select('id')
         .eq('user_id', user.id)
-        .eq('island_slug', islandSlug)
+        .in('island_slug', slugVarianter(islandSlug))
+        .limit(1)
         .maybeSingle()
       if (data) { setSaved(true); takePendingAction('save_island', islandSlug); return }
       // Kom hon hit från "Spara ön" → skapa konto → tillbaka? Då sparar vi nu,
@@ -70,7 +72,7 @@ export default function SaveIslandButton({ islandSlug, islandName, variant = 'pi
         .from('saved_islands')
         .delete()
         .eq('user_id', userId)
-        .eq('island_slug', islandSlug)
+        .in('island_slug', slugVarianter(islandSlug))
       setSaved(false)
     } else {
       await supabase.from('saved_islands').insert({

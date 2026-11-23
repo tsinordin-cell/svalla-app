@@ -8,6 +8,8 @@ import ForumSortTabs from './ForumSortTabs'
 import { useForumViewer } from './ForumViewer'
 import { renderForumBody } from '@/lib/forum-render'
 import { formatForumDate } from '@/lib/forum-utils'
+import { arRedaktionellt } from '@/lib/redaktionellt'
+import RedaktionellEtikett from '@/components/RedaktionellEtikett'
 import type { ForumSort } from '@/lib/forum'
 
 /**
@@ -39,9 +41,11 @@ export type PostData = {
 }
 
 export function PostHeader({
-  username, avatar, date, isOP, index, postId,
+  username, avatar, date, isOP, index, postId, redaktionellt,
 }: {
   username: string
+  /** Forumets startinlägg (lib/redaktionellt.ts) */
+  redaktionellt?: boolean
   avatar: string | null
   date: string
   isOP?: boolean
@@ -82,6 +86,7 @@ export function PostHeader({
       <div style={{ flex: 1 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
           <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)' }}>{username}</span>
+          {redaktionellt && <RedaktionellEtikett />}
           {isOP && (
             <span style={{
               fontSize: 10, fontWeight: 700, color: '#fff',
@@ -186,6 +191,7 @@ export default function ForumPostList({
               <PostHeader
                 username={post.author?.username ?? 'Okänd'}
                 avatar={post.author?.avatar ?? null}
+                redaktionellt={arRedaktionellt(post.user_id)}
                 date={post.created_at}
                 index={i + 1}
                 postId={post.id}

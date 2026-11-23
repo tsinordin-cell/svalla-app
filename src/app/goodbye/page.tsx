@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SvallaSegel } from '@/components/SvallaLogo'
 
 export const metadata: Metadata = {
   title: 'Hej då',
@@ -18,11 +19,10 @@ export default function GoodbyePage() {
         textAlign: 'center',
         color: '#fff',
       }}>
-        <svg width={56} height={56} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: 24, opacity: 0.85 }}>
-          <path d="M3 18c2 1 4 1.5 9 1.5s7-.5 9-1.5"/>
-          <path d="M12 3v15"/>
-          <path d="M12 5l6 10H6z"/>
-        </svg>
+        {/* Svallas segel ur loggan, utan text, centrerat (Tom 2026-11-22). */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
+          <SvallaSegel size={64} color="#ffffff" />
+        </div>
         <h1 style={{
           fontFamily: "'Playfair Display', serif",
           fontSize: 36, fontWeight: 800,

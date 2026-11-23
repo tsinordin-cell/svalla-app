@@ -207,7 +207,7 @@ const HANDPLOCKADE = {
   'pater-noster': '150810-1 Pater Noster Marstrand.JPG',
   rindo: 'Oskar Fredrikson - panoramio.jpg',
   singo: 'NZ7 0575 (52270337265).jpg',
-  smaadalaro: 'Smådalarö, 2016z.jpg',
+  smadalaro: 'Smådalarö, 2016z.jpg',
   uto: 'Utö Rävstaviken September 2012 02.jpg',
   // 2026-11-17: Gräsö och Örskär, nya ösidor. Bägge bilderna granskade med ögonen: inga människor.
   graso: 'Gräsö1801.jpg',

@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import SidHuvud from '@/components/SidHuvud'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -77,8 +78,8 @@ const relatedGuides = GUIDES.filter(g => g.topics?.includes('segelkurs'))
 export default function SegelkursPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 80 }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(breadcrumb) }} />
 
       <SidHuvud />
       {/* Header */}

@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { OAR, ANTAL_OAR, GAMLA_SLUGS, getIsland } from '@/app/o/island-data'
 import { ISLAND_COORDS } from '@/lib/islandCoords'
+import { OAR_CATEGORIES } from '@/app/oar/oar-categories'
 import Icon from '@/components/Icon'
 
 export const metadata: Metadata = {
@@ -153,7 +154,9 @@ export default async function MinSkargardPage() {
             fontSize: 36, fontWeight: 700, margin: '0 0 8px',
             fontFamily: "'Playfair Display', Georgia, serif",
           }}>
-            Hej {user.user_metadata?.username || user.email?.split('@')[0] || 'seglare'}
+            {/* 2026-11-22: föll tillbaka på början av e-postadressen när aliaset saknades.
+                E-posten ska inte synas (samma regel som i Nav.tsx). Aliaset från users-raden först. */}
+            Hej {profileUsername || user.user_metadata?.username || 'seglare'}
           </h1>
           <p style={{ fontSize: 16, opacity: 0.85, maxWidth: 540, margin: 0 }}>
             Här är din skärgårds-resa. Spara öar du vill besöka. Logga öar du har varit på.
@@ -493,7 +496,8 @@ export default async function MinSkargardPage() {
             <Link href="/oar" style={toolCardStyle('#0a7b8c')}>
               <ToolIcon name="map" color="#0a7b8c" />
               <div style={toolLabelStyle}>Hitta din ö</div>
-              <div style={toolDescStyle}>10 kategorier: barnvänliga, lyx, lugn</div>
+              {/* 2026-11-22: "lyx" och "lugn" finns inte bland kategorierna. Antalet räknas nu. */}
+              <div style={toolDescStyle}>{OAR_CATEGORIES.length} kategorier: barnvänliga, utan bil, segling</div>
             </Link>
 
             <Link href="/jamfor" style={toolCardStyle('#c96e2a')}>

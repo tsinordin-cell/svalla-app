@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import EmailSignup from '@/components/EmailSignup'
@@ -510,14 +511,14 @@ export default function OstlistanPage() {
         <script
           key={list.id}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildItemListSchema(list)) }}
+          dangerouslySetInnerHTML={{ __html: serializeForScript(buildItemListSchema(list)) }}
         />
       ))}
 
       {/* BreadcrumbList */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        dangerouslySetInnerHTML={{ __html: serializeForScript({
           '@context': 'https://schema.org',
           '@type': 'BreadcrumbList',
           itemListElement: [

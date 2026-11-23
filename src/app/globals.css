@@ -932,6 +932,26 @@ img {
   display: none;
 }
 
+/* ── 2026-11-23 (menyförslaget): sidomenyns extra rader och toppradens knappar ──
+   Sök, Meddelanden och Notiser finns i sidomenyn bara från 1024 px. Under det
+   ligger de i toppraden (AppTopBar) eller i den fasta raden uppe till höger. */
+.nav-desktop-extra {
+  display: none;
+}
+.nav-raknare {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--acc-knapp, #b5591a);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 /* ── Tooltip / inline badge fade ── */
 @keyframes badgePop {
   0%   { transform: scale(0.7); opacity: 0; }
@@ -1067,6 +1087,27 @@ img {
   }
   .nav-fab-wrap:active .nav-fab-desktop {
     transform: scale(0.98);
+  }
+  /* 2026-11-23 (menyförslaget): Logga tur först i sidomenyn, sedan flikarna,
+     sedan Sök, Meddelanden och Notiser. Ikonraden uppe till höger behövs inte här. */
+  .nav-fab-wrap { order: -1; }
+  .nav-tab-ikon {
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+  }
+  .nav-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(10,123,140,0.08);
+  }
+  .nav-klockor,
+  .app-topbar-atgarder,
+  .app-topbar--dold-desktop {
+    display: none !important;
   }
   /* Profile tab pushed to bottom of sidebar */
   .nav-inner > :last-child {
@@ -1425,4 +1466,35 @@ img {
 @media (max-width: 640px) {
   .fb-flytande { padding: 0 !important; width: 37px; height: 37px; justify-content: center; }
   .fb-flytande .fb-flytande-text { display: none; }
+  /* Göms vid skroll nedåt (FeedbackWidget.tsx), så den inte ligger över text. */
+  .fb-flytande { transition: transform .2s ease, opacity .2s ease, visibility .2s !important; }
+  .fb-flytande--dold { transform: translateY(calc(100% + 24px)); opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+/* Medan notis- eller installrutan syns ligger den över "Tipsa oss" i samma
+   hörn (granskningen 2026-11-22). Knappen göms tills rutan stängs; klassen
+   sätts i useForstaRuta.ts. */
+body.underkantsruta-oppen .fb-flytande {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Notisrutan (PushPrompt) och installrutan (InstallPrompt) på dator: nedre
+   högra hörnet, inte under eller över sidomenyn.
+   Inline-stilen sätter left/right: 12 för mobil, därav !important här. */
+@media (min-width: 1024px) {
+  .push-prompt, .install-prompt {
+    left: auto !important;
+    right: 24px !important;
+    bottom: 24px !important;
+    width: 400px;
+  }
+}
+
+/* Sökningens filterchips: på telefon skrollas raden med fingret, på dator
+   finns ingen synlig skrollist, så de sista chipsen gick inte att nå.
+   Granskningen 2026-11-22. */
+@media (min-width: 768px) {
+  .sok-filter { flex-wrap: wrap; overflow-x: visible !important; row-gap: 6px; }
 }

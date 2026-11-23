@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import type { Metadata, Viewport } from 'next'
 import { Playfair_Display } from 'next/font/google'
 import { Suspense } from 'react'
@@ -131,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeForScript({
               '@context': 'https://schema.org',
               '@type': 'Organization',
               '@id': 'https://svalla.se/#organization',
@@ -157,7 +158,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: serializeForScript({
               '@context': 'https://schema.org',
               '@type': 'WebSite',
               '@id': 'https://svalla.se/#website',

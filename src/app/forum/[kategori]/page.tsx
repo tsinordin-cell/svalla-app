@@ -1,3 +1,4 @@
+import { serializeForScript } from '@/lib/serializeForScript'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getCategoryById, getThreadsByCategory, formatForumDate } from '@/lib/forum'
@@ -6,6 +7,8 @@ import Icon, { type IconName } from '@/components/Icon'
 import { STATIC_CATEGORIES } from '@/lib/forum-categories'
 import LoppisGrid, { type ThreadWithListing } from './LoppisGrid'
 import { ogSida } from '@/lib/og-standard'
+import { arRedaktionellt } from '@/lib/redaktionellt'
+import RedaktionellEtikett from '@/components/RedaktionellEtikett'
 
 function CategoryIcon({ iconName }: { iconName: IconName }) {
  return <Icon name={iconName} size={18} stroke={1.85} />
@@ -99,7 +102,7 @@ export default async function ForumKategoriPage({ params }: Props) {
  background: 'var(--bg)',
  paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)',
  }}>
- <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+ <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }} />
  {/* Header */}
  <div style={{
  background: 'linear-gradient(160deg, var(--sea) 0%, #0d8fa3 100%)',
@@ -228,6 +231,7 @@ export default async function ForumKategoriPage({ params }: Props) {
  <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
  <AvatarMini username={thread.author.username} avatar={thread.author.avatar} />
  {thread.author.username}
+ {arRedaktionellt(thread.user_id) && <RedaktionellEtikett />}
  </span>
  )}
  <span>·</span>
