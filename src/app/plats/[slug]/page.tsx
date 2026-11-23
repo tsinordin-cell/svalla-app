@@ -175,7 +175,9 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
 
  <BackButton fallback="/upptack" />
 
- <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 16px 20px', zIndex: 5 }}>
+ <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '16px 0 20px', zIndex: 5 }}>
+ {/* Samma spalt som innehållet nedanför, så att namnet linjerar med texten på dator. */}
+ <div className="plats-innehall" style={{ margin: '0 auto', padding: '0 16px' }}>
  {typeInfo && (
  <div style={{
  display: 'inline-flex', alignItems: 'center', gap: 5,
@@ -197,6 +199,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  {subtitle}
  </p>
  )}
+ </div>
  </div>
  </div>
 
