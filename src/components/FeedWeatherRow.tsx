@@ -3,13 +3,15 @@ import { decimal } from '@/lib/gps'
 import { useEffect, useState } from 'react'
 import {
   fetchWeatherAt, fetchPlaceName, weatherDesc, windDirLabel,
-  type WeatherPoint,
+  STANDARD_VADERPUNKT, type WeatherPoint,
 } from '@/lib/weatherGrid'
 import { emojiToIcon } from '@/lib/iconMap'
 import Icon from '@/components/Icon'
 
-const FALLBACK_LAT = 59.32
-const FALLBACK_LNG = 18.50
+// Utan GPS: samma punkt som Utforska-kartans startvy, så att siffrorna stämmer
+// överens mellan Flöde och Utforska (fixlistan nr 6, 2026-11-23).
+const FALLBACK_LAT = STANDARD_VADERPUNKT.lat
+const FALLBACK_LNG = STANDARD_VADERPUNKT.lng
 
 export default function FeedWeatherRow() {
   const [data,  setData]  = useState<WeatherPoint | null>(null)

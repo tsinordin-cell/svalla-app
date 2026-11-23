@@ -27,6 +27,7 @@ import { kartytaFor } from '@/lib/kartvy'
 import { tagPlatssvar } from './platsdata'
 import { hamtaLeaflet } from './leaflet'
 import { WeatherPill } from '@/components/MapCornerPills'
+import { STANDARD_VADERPUNKT } from '@/lib/weatherGrid'
 import { track } from '@/lib/analytics-events'
 import AppTopBar from '@/components/AppTopBar'
 
@@ -220,7 +221,8 @@ function pinHtml(color: string, iconSvg: string, isActive = false): string {
 }
 
 // ── Initial map view (Stockholms skärgård som default) ───────────────────
-const INITIAL_CENTER: [number, number] = [59.35, 18.95]
+// Samma punkt som flödets väderrad använder utan GPS (STANDARD_VADERPUNKT).
+const INITIAL_CENTER: [number, number] = [STANDARD_VADERPUNKT.lat, STANDARD_VADERPUNKT.lng]
 const INITIAL_ZOOM = 10
 
 /** Kartans vy för en region, eller startvyn för "Alla". */

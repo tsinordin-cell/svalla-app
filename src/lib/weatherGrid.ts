@@ -15,6 +15,13 @@ export interface WeatherPoint {
  isDay: number // 0 eller 1
 }
 
+// ── Standardpunkt för väder ──────────────────────────────────────────────────
+// 2026-11-23 (fixlistan nr 6): Flödet (utan GPS) och Utforska-kartans startvy
+// visade väder för två olika punkter, ~25 km isär, som båda fick ortnamnet
+// "VÄRMDÖ". Samma namn med olika siffror såg ut som ett fel. Nu används samma
+// punkt på båda ställena: mitten av Utforska-kartans startvy.
+export const STANDARD_VADERPUNKT = { lat: 59.35, lng: 18.95 } as const
+
 // ── Grid-storlek per zoomnivå ────────────────────────────────────────────────
 // Tätt där användaren zoomar in, glest när man ser hela landet.
 // Värdena är empiriskt valda så det alltid blir ~20-80 punkter i vyn.
