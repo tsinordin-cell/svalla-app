@@ -241,8 +241,10 @@ void main(){
   if (genom > .5) { fr = 0.; fb = 0.; }
   float a = kant(fr + havF, th);
   float b = kant(fb, th);
-  float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * .3).a;
-  tx = smoothstep(.45, .55, tx + (kf - .5) * .1) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
+  // Startscenen: texten samplas utan vätskefältets krusning och utan korn i kanten, så att SVALLA blir skarp (Max 2026-11-23). Introt i del 1 är oförändrat.
+  float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * (genom > .5 ? 0. : .3)).a;
+  float tw = fwidth(tx) * .6 + .002;
+  tx = (genom > .5 ? smoothstep(.5 - tw, .5 + tw, tx) : smoothstep(.45, .55, tx + (kf - .5) * .1)) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
   float ink = a;
   ink = max(ink, b); // båten smälter ihop med havet, inget vitt under den
   ink = mix(ink, 1. - ink, tx);
@@ -739,7 +741,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       {varld && (
         <div className={visT >= 9800 ? 'ki-varld syns' : 'ki-varld'} aria-hidden="true">
           {/* Ön med midsommarstång och flagga, ångbåten som pustar rök, fyren och bastuflotten (Max 2026-11-22) */}
-          {/* Ön med västkusthusen ligger bakom, så att färjan och bastuflotten hamnar framför (Max 2026-11-23) */}
+          {/* Ön med västkusthusen ligger bakom. Bastun står på klippan vid öns högra kant, med en stege ner i vattnet, och ångbåten åker fram och tillbaka genom bilden (Max 2026-11-23) */}
           <div className="ki-v ki-v-vastkust">
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-vastkust.webp" alt="" />
@@ -760,7 +762,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
           <div className="ki-v ki-v-bastu">
             <span className="ki-rok ki-rok-bastu" aria-hidden="true"><i /><i /><i /></span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-v-bild" src="/kreativ/scen-bastuflotte.webp" alt="" />
+          <img className="ki-v-bild" src="/kreativ/scen-bastu-klippa.webp" alt="" />
           </div>
           <div className="ki-v ki-v-fyr">{/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /></div>
@@ -877,10 +879,10 @@ const CSS = `
 .ki-v-stang{position:absolute;left:60.9%;bottom:23.3%;width:13.7%;height:auto;transform-origin:50% 100%;animation:kiVaj 5s ease-in-out infinite alternate}
 .ki-v-flagga{position:absolute;left:38.5%;bottom:28%;width:9.5%;height:auto;transform-origin:5% 100%;animation:kiVaj 3.4s ease-in-out infinite alternate}
 @keyframes kiVaj{from{rotate:-1.2deg}to{rotate:1.2deg}}
-.ki-v-bastu{left:73.5%;width:8.5%}
-.ki-varld.syns .ki-v-bastu{transform:translateY(6.6%);transition-delay:.45s}
+.ki-v-bastu{left:74.5%;width:8.5%}
+.ki-varld.syns .ki-v-bastu{transform:translateY(10%);transition-delay:.45s}
 .ki-rok{position:absolute;left:40%;top:1%;width:24%;height:60%;pointer-events:none}
-.ki-rok-bastu{left:63%;top:-6%;width:18%}
+.ki-rok-bastu{left:52%;top:-3%;width:16%}
 .ki-rok i{position:absolute;left:0;bottom:0;width:100%;aspect-ratio:1;border-radius:50%;background:#e9eef6;opacity:0;animation:kiRok 4.2s ease-out infinite}
 .ki-rok i:nth-child(2){animation-delay:1.05s}.ki-rok i:nth-child(3){animation-delay:2.1s}.ki-rok i:nth-child(4){animation-delay:3.15s}
 .ki-rok-bastu i{background:#f2efe8;animation-duration:5s}
@@ -903,9 +905,10 @@ const CSS = `
 .ki-varld.syns .ki-v-o{transform:translateY(11.8%)}
 .ki-v-fyr{right:3.5%;width:13.5%}
 .ki-varld.syns .ki-v-fyr{transform:translateY(10.4%);transition-delay:.3s}
-.ki-v-farja{left:60%;width:12.5%}
-.ki-varld.syns .ki-v-farja{transform:translateY(13.5%);transition-delay:.6s;animation:kiDrift 36s ease-in-out 2.4s infinite alternate}
-@keyframes kiDrift{to{translate:-55% 0}}
+.ki-v-farja{left:60%;width:8.5%}
+/* Ångbåten åker från höger till vänster ut ur bilden, kommer tillbaka från vänster åt höger och vänder alltid fören åt det håll den åker */
+.ki-varld.syns .ki-v-farja{transform:translateY(13.5%);transition-delay:.6s;animation:kiFarja 60s linear 2.4s infinite}
+@keyframes kiFarja{0%{left:60%;scale:-1 1}30%{left:-14%;scale:-1 1}31%{left:-14%;scale:1 1}80%{left:106%;scale:1 1}81%{left:106%;scale:-1 1}100%{left:60%;scale:-1 1}}
 .ki-v-masar{position:absolute;left:10%;top:17%;width:9%;opacity:0;transition:opacity 1.2s .8s;animation:kiSvav 7s ease-in-out infinite alternate}
 .ki-v-masar.tva{left:auto;right:19%;top:27%;width:6%;animation-duration:9s}
 .ki-varld.syns .ki-v-masar{opacity:1}
@@ -938,7 +941,7 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:clamp(150px,34%,240px);left:50%;margin-left:calc(clamp(150px,34%,240px) / -2);bottom:0}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:clamp(150px,34%,240px);left:50%;margin-left:calc(clamp(150px,34%,240px) / -2);bottom:0}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:70%;width:14%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:16px;padding:11px 18px 11px 14px}
