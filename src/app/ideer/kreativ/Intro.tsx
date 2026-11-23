@@ -483,7 +483,8 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       const ritaSverige = (c: CanvasRenderingContext2D) => { for (const ring of SVERIGE) { c.beginPath(); ring.forEach((p, j) => { const px = p[0] * k * sk + ox, py = -p[1] * sk + oy; if (j) c.lineTo(px, py); else c.moveTo(px, py) }); c.closePath(); c.fill() } }
       const sve = provForm(W, H, N, ritaSverige, r)
       // Båten
-      const bw = Math.min(W * (W < 700 ? 0.58 : 0.3), H * 0.5), bh = (bw * BAT_H) / BAT_B
+      // Startscenen i mobilen: båten en tredjedel mindre så att knapparna får plats bredvid seglen (Max 2026-11-23). Introt i del 1 är oförändrat.
+      const bw = Math.min(W * (W < 700 ? (varld ? 0.39 : 0.58) : 0.3), H * 0.5), bh = (bw * BAT_H) / BAT_B
       batRuta = { bw, bh }
       const bat = provForm(W, H, N, c => ritaBat(c, (W - bw) / 2, (H - bh) / 2, bw), r)
       // Formmasken i full upplösning: röd kanal Sverige, grön kanal båten (utan armen, den ritas i shadern)
@@ -941,13 +942,14 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:clamp(150px,34%,240px);left:50%;margin-left:calc(clamp(150px,34%,240px) / -2);bottom:0}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
-.ki-cta{font-size:16px;padding:11px 18px 11px 14px}
-.ki-s-planera,.ki-s-samarbete{left:50%;right:auto;--x:-50%;--r:0deg}.ki-s-planera{top:68%}.ki-s-samarbete{top:79%}.ki-s-samarbete::before{left:20px;right:auto}
+.ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
+/* Mobilen: knapparna på var sin sida om seglen som på datorn, men mindre (Max 2026-11-23) */
+.ki-s-planera{left:52%;right:auto;top:45%;--r:2deg}.ki-s-samarbete{left:auto;right:52%;top:45%;--r:-2deg}.ki-s-samarbete::before{left:auto;right:14px}
 .ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-gora{top:84%;--r:0deg}
 .ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
-@media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-cta{font-size:15px;padding:10px 17px 10px 15px}
-.ki-skyltar .ki-s-planera{top:64%}.ki-skyltar .ki-s-samarbete{top:76%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
+@media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-cta{font-size:10.5px;padding:5px 8px 5px 7px}
+.ki-skyltar .ki-s-planera,.ki-skyltar .ki-s-samarbete{top:46%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
 `
