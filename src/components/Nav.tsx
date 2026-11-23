@@ -7,9 +7,9 @@ import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
 import SvallaLogo from '@/components/SvallaLogo'
-import { IconHelm, IconRoute, IconHome, IconUser, IconPlus } from '@/components/ui/icons'
-import { IconCompass } from '@/components/icons/SvallaIcons'
-import { Home } from '@/components/icons/LucideIcons'
+import Icon from '@/components/Icon'
+import { TOPPKNAPP_STIL } from '@/components/toppradStil'
+import { countUnreadMessages } from '@/lib/dm'
 import { prefetchFor as prefetchUtloggad } from '@/lib/inloggningsrutter'
 import { visaGlobalaKlockor } from '@/lib/klockor'
 
@@ -17,6 +17,7 @@ export default function Nav() {
   const path = usePathname()
   const [username, setUsername] = useState<string | null>(null)
   const [avatar,   setAvatar]   = useState<string | null>(null)
+  const [userId,   setUserId]   = useState<string | null>(null)
   const channelRef = useRef<ReturnType<ReturnType<typeof createClient>['channel']> | null>(null)
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function Nav() {
       if (!session) {
         setUsername(null)
         setAvatar(null)
+        setUserId(null)
         if (channelRef.current) { supabase.removeChannel(channelRef.current); channelRef.current = null }
         return
       }
@@ -54,6 +56,7 @@ export default function Nav() {
             }
           })
       }
+      setUserId(session.user.id)
       hamtaProfil(0)
     })
 
@@ -102,6 +105,27 @@ export default function Nav() {
     return () => document.body.classList.remove('has-app-nav')
   }, [showNav])
 
+  // 2026-11-23 (menyförslaget): på desktop (från 1024 px) ligger Meddelanden och
+  // Notiser i sidomenyn med räknare, i stället för ikonraden uppe till höger.
+  // Räknarna hämtas bara på desktop och när sidan byts, inte i realtid; ikonerna
+  // i topprader på mobil har kvar sin egen realtidsräkning.
+  const [olastaMedd, setOlastaMedd] = useState(0)
+  const [olastaNotiser, setOlastaNotiser] = useState(0)
+  useEffect(() => {
+    if (!userId || !showNav) return
+    if (typeof window === 'undefined' || !window.matchMedia('(min-width: 1024px)').matches) return
+    let aktiv = true
+    const supabase = createClient()
+    countUnreadMessages(supabase, userId).then(n => { if (aktiv) setOlastaMedd(n) }).catch(() => {})
+    supabase
+      .from('notifications')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', userId)
+      .eq('read', false)
+      .then(({ count }) => { if (aktiv) setOlastaNotiser(count ?? 0) })
+    return () => { aktiv = false }
+  }, [userId, showNav, path])
+
   // Beräknas här (före early return) så att hooks alltid körs i samma ordning.
   const klockorAktiva = visaGlobalaKlockor(path, username !== null)
   // Klockorna göms när man skrollar nedåt och kommer tillbaka när man skrollar
@@ -131,16 +155,17 @@ export default function Nav() {
       exact: false,
       matchPaths: ['/upptack'],
       icon: (active: boolean) => (
-        <IconCompass size={22} strokeWidth={active ? 2 : 1.75} />
+        <Icon name="compass" size={22} stroke={active ? 2.2 : 1.75} />
       ),
     },
     {
       href: '/planera',
       label: 'Planera',
       exact: false,
-      matchPaths: ['/planera'],
+      // Rutter är en flik inne i Planera (Planera, Rutter, Öar, Färjor).
+      matchPaths: ['/planera', '/rutter'],
       icon: (active: boolean) => (
-        <IconRoute size={22} stroke={active ? 2 : 1.75} />
+        <Icon name="route" size={22} stroke={active ? 2.2 : 1.75} />
       ),
     },
     { href: '/logga', label: '', fab: true },
@@ -148,8 +173,10 @@ export default function Nav() {
       href: '/feed',
       label: 'Flöde',
       exact: false,
+      // Forum och Topplista är flikar inne i Flöde (menyförslaget 2026-11-23).
+      matchPaths: ['/feed', '/forum', '/topplista'],
       icon: (active: boolean) => (
-        <IconHome size={22} stroke={active ? 2 : 1.75} />
+        <Icon name="home" size={22} stroke={active ? 2.2 : 1.75} />
       ),
     },
     {
@@ -179,7 +206,7 @@ export default function Nav() {
               }
             </div>
           ) : (
-            <IconUser size={22} stroke={active ? 2 : 1.75} />
+            <Icon name="user" size={22} stroke={active ? 2.2 : 1.75} />
           )}
           {/* Online dot when logged in */}
           {username && (
@@ -211,28 +238,19 @@ export default function Nav() {
   return (
     <>
       {showGlobalBell && (
-        <div style={{
-          position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 10px)', right: 14, zIndex: 901,
-          display: 'flex', gap: 6, alignItems: 'center',
+        <div className="nav-klockor" style={{
+          position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 8px)', right: 12, zIndex: 901,
+          display: 'flex', gap: 4, alignItems: 'center',
           transform: klockorDolda ? 'translateY(-72px)' : 'translateY(0)',
           opacity: klockorDolda ? 0 : 1,
           transition: 'transform 0.22s ease, opacity 0.18s ease',
           pointerEvents: klockorDolda ? 'none' : 'auto',
         }}>
-          {/* 2026-11-22 (beslut 3): hemikonen går till flödet, appens hem för en inloggad.
-              Ikonerna visas bara för inloggade (visaGlobalaKlockor). Loggan går fortfarande till startsidan. */}
-          <Link
-            href="/feed"
-            aria-label="Till flödet"
-            style={{
-              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-              width: 36, height: 36, borderRadius: '50%',
-              background: 'var(--teal-15)', color: 'var(--sea)',
-              textDecoration: 'none',
-              flexShrink: 0,
-            }}
-          >
-            <Home size={18} />
+          {/* 2026-11-23 (menyförslaget): sök i stället för huset. Huset ledde till flödet
+              (beslut 3) men såg ut som en länk till startsidan. Samma knappar som i AppTopBar.
+              Hela raden döljs från 1024 px, där sidomenyn har Sök, Meddelanden och Notiser. */}
+          <Link href="/sok" aria-label="Sök" className="press-feedback" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
+            <Icon name="search" size={20} stroke={2} />
           </Link>
           <MessageBell />
           <NotificationBell />
@@ -256,16 +274,50 @@ export default function Nav() {
       WebkitBackfaceVisibility: 'hidden',
       backfaceVisibility: 'hidden',
     }}>
-      {/* Desktop: SVALLA-logotyp längst upp i sidebaren — länk till startsidan */}
+      {/* Desktop: SVALLA-logotyp längst upp i sidebaren. 2026-11-23 (menyförslaget):
+          inloggad går den till flödet, appens hem. Utloggad går den till startsidan. */}
       <div className="nav-logo-wrap">
-        <Link href="/" aria-label="Till startsidan" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+        <Link href={username !== null ? '/feed' : '/'} aria-label={username !== null ? 'Svalla, till flödet' : 'Till startsidan'} style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
           <SvallaLogo height={24} color="var(--sea)" />
         </Link>
       </div>
 
       {/* Tab-lista — row på mobil/tablet, column på desktop via CSS */}
       <div className="nav-inner" style={{ display: 'flex', alignItems: 'stretch', width: '100%', maxWidth: 640 }}>
-      {tabs.map((tab) => {
+      {[...tabs.slice(0, -1), 'desktop-extra' as const, tabs[tabs.length - 1]!].map((tab) => {
+        // 2026-11-23 (menyförslaget): Sök, Meddelanden och Notiser i sidomenyn på
+        // desktop, med räknare. Raden finns bara från 1024 px (nav-desktop-extra i
+        // globals.css); på mobil ligger de i toppraden. Profilen ligger kvar sist.
+        if (tab === 'desktop-extra') {
+          const rader: { href: string; label: string; ikon: 'search' | 'messageCircle' | 'bell'; antal: number; inloggad: boolean }[] = [
+            { href: '/sok', label: 'Sök', ikon: 'search', antal: 0, inloggad: false },
+            { href: '/meddelanden', label: 'Meddelanden', ikon: 'messageCircle', antal: olastaMedd, inloggad: true },
+            { href: '/notiser', label: 'Notiser', ikon: 'bell', antal: olastaNotiser, inloggad: true },
+          ]
+          return (
+            <div key="desktop-extra" className="nav-desktop-extra">
+              {rader.filter(r => !r.inloggad || username !== null).map(r => {
+                const aktiv = path === r.href || path.startsWith(r.href + '/')
+                return (
+                  <Link key={r.href} href={r.href} aria-current={aktiv ? 'page' : undefined}
+                    aria-label={r.antal > 0 ? `${r.label}, ${r.antal} olästa` : r.label}
+                    className="nav-tab-link press-feedback"
+                    style={{
+                      display: 'flex', alignItems: 'center', textDecoration: 'none', position: 'relative',
+                      color: aktiv ? 'var(--sea)' : 'var(--txt3)', minHeight: 44,
+                    }}>
+                    <Icon name={r.ikon} size={20} stroke={aktiv ? 2.2 : 1.75} />
+                    <span style={{ flex: 1 }}>{r.label}</span>
+                    {r.antal > 0 && (
+                      <span className="nav-raknare">{r.antal > 99 ? '99+' : r.antal}</span>
+                    )}
+                    {aktiv && <span className="nav-active-bar" style={{ background: 'var(--sea)' }} />}
+                  </Link>
+                )
+              })}
+            </div>
+          )
+        }
         const active = tab.exact
           ? path === tab.href
           : (tab.matchPaths ?? [tab.href]).some(p => path.startsWith(p))
@@ -281,11 +333,11 @@ export default function Nav() {
               style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}
             >
               <span className="nav-fab-mobile">
-                <IconPlus size={22} stroke={2.4} color="white" />
+                <Icon name="plus" size={22} stroke={2.4} style={{ color: '#fff' }} />
               </span>
               <span className="nav-fab-label">Logga tur</span>
               <span className="nav-fab-desktop">
-                <IconPlus size={18} stroke={2.2} color="white" />
+                <Icon name="plus" size={18} stroke={2.2} style={{ color: '#fff' }} />
                 Logga tur
               </span>
             </Link>
@@ -300,21 +352,30 @@ export default function Nav() {
               flex: 1, display: 'flex', flexDirection: 'column',
               alignItems: 'center', justifyContent: 'center', gap: 2,
               textDecoration: 'none',
-              color: active ? 'var(--teal, #0a7b8c)' : 'var(--txt3)',
-              fontSize: 11, fontWeight: active ? 600 : 500,
+              // 2026-11-23 (menyförslaget): aktiv flik i --sea (8,0:1 mot vitt) med fet text
+              // och tonad bakgrund bakom ikonen. Förut --teal (4,4:1) och halvfet.
+              color: active ? 'var(--sea)' : 'var(--txt3)',
+              fontSize: 11, fontWeight: active ? 700 : 500,
               position: 'relative',
               WebkitTapHighlightColor: 'transparent',
               minHeight: 44,
             }}>
-            {tab.icon?.(active)}
+            <span className="nav-tab-ikon" style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              width: 52, height: 30, borderRadius: 15,
+              background: active ? 'var(--teal-12)' : 'transparent',
+              transition: 'background 0.14s ease',
+            }}>
+              {tab.icon?.(active)}
+            </span>
             <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 64 }}>
               {tab.label}
             </span>
             {active && (
               <span className="nav-active-bar" style={{
-                position: 'absolute', top: 6, left: '50%',
+                position: 'absolute', top: 0, left: '50%',
                 transform: 'translateX(-50%)',
-                background: 'var(--teal, #0a7b8c)', width: 20, height: 3, borderRadius: 2,
+                background: 'var(--sea)', width: 24, height: 3, borderRadius: '0 0 2px 2px',
               }} />
             )}
           </Link>

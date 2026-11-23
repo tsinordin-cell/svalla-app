@@ -6,6 +6,7 @@ import type { ScoredStop } from '@/lib/planner'
 import MyRoutesList from './MyRoutesList'
 import ThorkelAvatar from '@/components/thorkel/ThorkelAvatar'
 import Icon from '@/components/Icon'
+import AppTopBar from '@/components/AppTopBar'
 import WeatherPillServer from '@/components/WeatherPillServer'
 import { ogSida } from '@/lib/og-standard'
 import { ISLAND_COORDS } from '@/lib/islandCoords'
@@ -79,6 +80,10 @@ function PlaneraVy({
       minHeight: '100dvh', background: 'var(--bg)',
       paddingBottom: 'calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 24px)',
     }}>
+      {/* 2026-11-23 (menyförslaget): samma topprad som övriga huvudsidor. Planera
+          saknade sök-, meddelande- och notisknapp. */}
+      <AppTopBar titel="Planera" />
+
       {/* Delade flikar: Planera / Rutter / Öar / Färjor. Länkar till egna sidor,
           så en navigering med aria-current, som på /rutter (granskningen 2026-11-22). */}
       <nav aria-label="Vy" style={{
@@ -108,7 +113,6 @@ function PlaneraVy({
       <div style={{
         background: 'var(--grad-sea)',
         padding: '16px 16px 28px',
-        paddingTop: 'calc(16px + env(safe-area-inset-top, 0px))',
       }}>
         <div className="planera-innehall">
           <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.65)', marginBottom: 6 }}>

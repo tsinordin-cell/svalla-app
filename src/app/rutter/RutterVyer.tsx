@@ -20,8 +20,7 @@
 import { useEffect, useState, type MouseEvent, type ReactNode } from 'react'
 import Link from 'next/link'
 import type { Tour } from '@/lib/supabase'
-import NotificationBell from '@/components/NotificationBell'
-import MessageBell from '@/components/MessageBell'
+import { TopBarAtgarder } from '@/components/AppTopBar'
 import EmptyState from '@/components/EmptyState'
 import { categoryColor as categoryColorTokens } from '@/lib/tokens'
 
@@ -220,9 +219,9 @@ export default function RutterVyer({
                 : `${filtered.length} ${filtered.length === 1 ? 'tur' : 'turer'} · Sverige`}
           </p>
         </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <MessageBell />
-          <NotificationBell />
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {/* 2026-11-23 (menyförslaget): samma knappar som AppTopBar, med sök. */}
+          <TopBarAtgarder />
           <Link href="/guide" prefetch={false} style={{
             display: 'flex', alignItems: 'center', gap: 5,
             padding: '8px 14px', borderRadius: 20,
