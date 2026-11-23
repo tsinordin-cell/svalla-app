@@ -45,6 +45,7 @@ const REGION_LABELS: Record<string, string> = {
   goteborg: 'Göteborgs skärgård',
   ovriga: 'Övriga Sverige',
   malaren: 'Mälaren',
+  sormland: 'Sörmlands skärgård',
 }
 
 const REGION_TAGLINES: Record<string, string> = {
@@ -55,6 +56,7 @@ const REGION_TAGLINES: Record<string, string> = {
   goteborg: 'Brännö, Styrsö, Vrångö och Donsö i söder, Öckerö och Rörö i norr och Vinga, Göteborgs västligaste punkt.',
   ovriga: 'Höga Kusten, Gotland, Öland och mer, Sverige bortom Stockholmsskärgården.',
   malaren: 'Birka och Adelsö: öarna i Mälaren, väster om Stockholm.',
+  sormland: 'Askö, Hartsö, Ringsö, Sävö och fler öar i Södermanlands skärgård.',
 }
 
 // 2026-10-21: regionlistorna visar alla sidor i regionen (öar, fastlandsorter och
@@ -74,7 +76,7 @@ function ovrigt(items: Island[]): string {
 
 export default function OarIndexPage() {
   // Gruppera per region för listvy
-  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], malaren: [], bohuslan: [], goteborg: [], ovriga: [] }
+  const grouped: Record<string, Island[]> = { norra: [], mellersta: [], södra: [], malaren: [], sormland: [], bohuslan: [], goteborg: [], ovriga: [] }
   for (const i of ALL_ISLANDS) {
     const region = gruppFor(i, grouped)
     const bucket = grouped[region]
@@ -299,7 +301,7 @@ export default function OarIndexPage() {
           */}
           <OarSnabbfilter total={ANTAL_OAR} />
           <nav aria-label="Hoppa till region" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
-            {(['norra', 'mellersta', 'södra', 'malaren', 'bohuslan', 'goteborg', 'ovriga'] as const)
+            {(['norra', 'mellersta', 'södra', 'malaren', 'sormland', 'bohuslan', 'goteborg', 'ovriga'] as const)
               .filter(region => (grouped[region] ?? []).length > 0)
               .map(region => (
                 <a
@@ -317,7 +319,7 @@ export default function OarIndexPage() {
               ))}
           </nav>
 
-          {(['norra', 'mellersta', 'södra', 'malaren', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
+          {(['norra', 'mellersta', 'södra', 'malaren', 'sormland', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (

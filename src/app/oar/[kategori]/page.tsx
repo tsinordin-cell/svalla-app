@@ -45,6 +45,7 @@ const REGION_LABELS: Record<string, string> = {
   goteborg: 'Göteborgs skärgård',
   ovriga: 'Övriga Sverige',
   malaren: 'Mälaren',
+  sormland: 'Sörmlands skärgård',
 }
 
 export default async function OarCategoryPage({ params }: Props) {
@@ -55,7 +56,7 @@ export default async function OarCategoryPage({ params }: Props) {
   const islands = islandsForCategory(kategori)
 
   // Gruppera per region
-  const grouped: Record<string, typeof islands> = { norra: [], mellersta: [], södra: [], malaren: [], bohuslan: [], goteborg: [], ovriga: [] }
+  const grouped: Record<string, typeof islands> = { norra: [], mellersta: [], södra: [], malaren: [], sormland: [], bohuslan: [], goteborg: [], ovriga: [] }
   for (const i of islands) {
     const region = gruppFor(i, grouped)
     const bucket = grouped[region]
@@ -122,7 +123,7 @@ export default async function OarCategoryPage({ params }: Props) {
             Vi hittade inga öar för denna kategori, säg till om någon saknas.
           </div>
         ) : (
-          (['norra', 'mellersta', 'södra', 'malaren', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
+          (['norra', 'mellersta', 'södra', 'malaren', 'sormland', 'bohuslan', 'goteborg', 'ovriga'] as const).map(region => {
             const items = grouped[region] ?? []
             if (items.length === 0) return null
             return (

@@ -196,5 +196,12 @@ export function islandsForCategory(slug: string): Island[] {
 // i Mälaren"; båda har regionLabel 'Mälaren'). De listades under Mellersta.
 // Region i datan är oförändrad, så kategorier som Dagstur från Stockholm och
 // komma-dit-sidornas Stockholmsregler gäller som förut; bara listningen flyttas.
+// 2026-11-23 (Toms ja): öarna med regionLabel 'Sörmlands skärgård' (Askö, Hartsö,
+// Ringsö, Sävö, Stendörren, Kråmö, Fågelskär) får egen grupp i stället för
+// Övriga Sverige. Alla sju har Länsstyrelsen Södermanlands reservatsidor som
+// källa, t.ex. "Askö är en stor ö i Södermanlands skärgård" och "Ringsö är den
+// största ön i Nyköpings skärgård". Region i datan är oförändrad.
 export const gruppFor = (i: Island, grupper: Record<string, unknown>): string =>
-  i.regionLabel === 'Mälaren' ? 'malaren' : i.region in grupper ? i.region : 'mellersta'
+  i.regionLabel === 'Mälaren' ? 'malaren'
+    : i.regionLabel === 'Sörmlands skärgård' && 'sormland' in grupper ? 'sormland'
+    : i.region in grupper ? i.region : 'mellersta'
