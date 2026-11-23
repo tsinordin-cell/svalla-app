@@ -742,7 +742,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       {varld && (
         <div className={visT >= 9800 ? 'ki-varld syns' : 'ki-varld'} aria-hidden="true">
           {/* Ön med midsommarstång och flagga, ångbåten som pustar rök, fyren och bastuflotten (Max 2026-11-22) */}
-          {/* Ön med västkusthusen ligger bakom. Bastun står på klippan vid öns högra kant, med en stege ner i vattnet, och ångbåten åker fram och tillbaka genom bilden (Max 2026-11-23) */}
+          {/* Ön med västkusthusen ligger bakom. Bastun står på klippan vid öns högra kant, med en stege ner i vattnet, och ångbåten åker från höger till vänster genom bilden, om och om igen (Max 2026-11-23) */}
           <div className="ki-v ki-v-vastkust">
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-vastkust.webp" alt="" />
@@ -907,9 +907,9 @@ const CSS = `
 .ki-v-fyr{right:3.5%;width:13.5%}
 .ki-varld.syns .ki-v-fyr{transform:translateY(10.4%);transition-delay:.3s}
 .ki-v-farja{left:60%;width:8.5%}
-/* Ångbåten åker från höger till vänster ut ur bilden, kommer tillbaka från vänster åt höger och vänder alltid fören åt det håll den åker */
-.ki-varld.syns .ki-v-farja{transform:translateY(13.5%);transition-delay:.6s;animation:kiFarja 60s linear 2.4s infinite}
-@keyframes kiFarja{0%{left:60%;scale:-1 1}30%{left:-14%;scale:-1 1}31%{left:-14%;scale:1 1}80%{left:106%;scale:1 1}81%{left:106%;scale:-1 1}100%{left:60%;scale:-1 1}}
+/* Ångbåten åker bara från höger till vänster: ut ur bilden till vänster och in igen från höger. Halva farten mot förut, ett varv tar 58 s (Max 2026-11-23) */
+.ki-varld.syns .ki-v-farja{transform:translateY(13.5%);transition-delay:.6s;scale:-1 1;animation:kiFarja 58s linear 2.4s infinite}
+@keyframes kiFarja{0%{left:60%}61.6%{left:-14%}61.7%{left:106%}100%{left:60%}}
 .ki-v-masar{position:absolute;left:10%;top:17%;width:9%;opacity:0;transition:opacity 1.2s .8s;animation:kiSvav 7s ease-in-out infinite alternate}
 .ki-v-masar.tva{left:auto;right:19%;top:27%;width:6%;animation-duration:9s}
 .ki-varld.syns .ki-v-masar{opacity:1}
