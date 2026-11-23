@@ -56,7 +56,7 @@ export default async function ForumPage() {
  <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeForScript(jsonLd) }} />
  {/* 2026-11-23 (menyförslaget): samma topprad som Flöde. Forum hade ingen
      sök-, meddelande- eller notisknapp alls. */}
- <AppTopBar />
+ <AppTopBar doljPaDesktop />
  {/* Header */}
  <div style={{
  background: 'linear-gradient(160deg, var(--sea) 0%, #0d8fa3 100%)',

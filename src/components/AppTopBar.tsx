@@ -1,11 +1,11 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
-import SvallaLogo from '@/components/SvallaLogo'
 import MessageBell from '@/components/MessageBell'
 import NotificationBell from '@/components/NotificationBell'
 import SilentBoundary from '@/components/SilentBoundary'
 import Icon from '@/components/Icon'
 import { TOPPKNAPP_STIL } from '@/components/toppradStil'
+import ToppradLogga from '@/components/ToppradLogga'
 
 /**
  * Appens topprad, samma på huvudsidorna (menyförslaget, Toms ja 2026-11-23).
@@ -14,7 +14,7 @@ import { TOPPKNAPP_STIL } from '@/components/toppradStil'
  * Utforska saknade meddelanden och notiser, och ett hus ledde till
  * marknadssajten på Flöde och Profil.
  *
- * Till vänster: loggan (till Flöde) på Flöde, annars sidans namn.
+ * Till vänster: loggan (till Flöde, eller startsidan utloggad), annars sidans namn.
  * Till höger: sök, meddelanden och notiser. På Profil byts sök mot kugghjulet.
  *
  * Från 1024 px finns sök, meddelanden och notiser i sidomenyn, så knapparna
@@ -28,6 +28,7 @@ export default function AppTopBar({
   doljPaDesktop = false,
   sticky = true,
   bakgrund,
+  huvudrubrik = false,
 }: {
   /** Sidans namn. Utan titel visas loggan som länk till Flöde. */
   titel?: ReactNode
@@ -41,7 +42,10 @@ export default function AppTopBar({
   sticky?: boolean
   /** Bakgrund om sidan har en egen ton bakom raden (Flödets gradient). */
   bakgrund?: string
+  /** Titeln blir sidans h1. Bara där sidan saknar en egen h1 (Topplista). */
+  huvudrubrik?: boolean
 }) {
+  const Rubrik = huvudrubrik ? 'h1' : 'p'
   return (
     <header
       className={`app-topbar${doljPaDesktop ? ' app-topbar--dold-desktop' : ''}`}
@@ -58,20 +62,18 @@ export default function AppTopBar({
       <div style={{ minWidth: 0, flex: 1 }}>
         {titel ? (
           <>
-            <h1 className="app-topbar-titel" style={{
+            <Rubrik className="app-topbar-titel" style={{
               fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0,
               overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
             }}>
               {titel}
-            </h1>
+            </Rubrik>
             {undertitel && (
               <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>{undertitel}</p>
             )}
           </>
         ) : (
-          <Link href="/feed" aria-label="Svalla, till flödet" className="app-topbar-logga" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 44 }}>
-            <SvallaLogo height={26} color="var(--sea)" />
-          </Link>
+          <ToppradLogga />
         )}
       </div>
       <TopBarAtgarder variant={variant} />
