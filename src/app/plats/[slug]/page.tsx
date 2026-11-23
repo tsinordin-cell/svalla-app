@@ -8,6 +8,8 @@ import Icon from '@/components/Icon'
 import PlatsMapClient from './PlatsMapClient'
 import SaveButton from './SaveButton'
 import PlaceRecentVisitors from '@/components/PlaceRecentVisitors'
+import PlatsHeroBild from './PlatsHeroBild'
+import { regionEtikett } from '@/lib/regionEtikett'
 
 const VISA_SASONG = false as boolean
 
@@ -145,26 +147,22 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  const googleHero = googlePhotoRef
    ? `/api/places/photo/${Buffer.from(googlePhotoRef, 'utf-8').toString('base64url')}?w=1600`
    : null
- const heroImage = googleHero ?? (p.images && p.images.length > 0 ? p.images[0] : p.image_url)
+ // Google först, egen bild som reserv: Google nekar nyckeln sedan 2026-11
+ // (403), och utan reserv visade toppen en trasig bild. Se PlatsHeroBild.
+ const heroKallor = [googleHero, p.images?.[0] ?? null, p.image_url]
+   .filter((u, i, alla): u is string => !!u && alla.indexOf(u) === i)
  const typeInfo = p.type ? (TYPE_CONFIG[p.type] ?? null) : null
  const facilities = (p.facilities ?? []).filter(f => FACILITY_MAP[f])
  const tags = p.tags ?? []
  const bestFor = p.best_for ?? []
- const subtitle = [p.island, p.archipelago_region ? regionLabel(p.archipelago_region) : null].filter(Boolean).join(' · ')
+ const subtitle = [p.island, regionEtikett(p.archipelago_region)].filter(Boolean).join(' · ')
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px)' }}>
 
  {/* ── Hero ── */}
  <div style={{ position: 'relative', height: 300, background: 'var(--sea)', overflow: 'hidden' }}>
- {heroImage && (
- // eslint-disable-next-line @next/next/no-img-element
- <img
- src={heroImage}
- alt={p.name}
- style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
- />
- )}
+ <PlatsHeroBild kallor={heroKallor} alt={p.name} />
  <div style={{
  position: 'absolute', inset: 0,
  background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.62) 100%)',
@@ -481,20 +479,6 @@ function ctaStyle(bg: string): React.CSSProperties {
  fontSize: 13, fontWeight: 600, textDecoration: 'none',
  boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
  }
-}
-
-function regionLabel(r: string): string {
- const map: Record<string, string> = {
- inner: 'Inre skärgården',
- north: 'Norra skärgården',
- south: 'Södra skärgården',
- outer: 'Yttre skärgården',
- gotland: 'Gotland',
- blekinge: 'Blekinge',
- bohuslan: 'Bohuslän',
- west: 'Västkusten',
- }
- return map[r] ?? r
 }
 
 function seasonLabel(s: string): string {
