@@ -515,7 +515,7 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
         <Partnersida foton={foton} />
       </Del>
 
-      <Del nr="7" id="scen" rubrik="Startscenen: alternativ till startsidans animering" forebild={<>startbilden på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="Samma stil som introt i del 1, tänkt som startbild. Havet stiger, båten seglar in och en ö med stuga och brygga, en fyr och en färja växer fram. På dem sitter knappar som leder till öar, boende, krogar, turplaneringen, färjor, kartan och aktiviteter. Ön, fyren och färjan är påhittade och föreställer ingen verklig plats.">
+      <Del nr="7" id="scen" rubrik="Startscenen: alternativ till startsidans animering" forebild={<>startbilden på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="Samma stil som introt i del 1, tänkt som startbild. Havet stiger, båten seglar in och en ö med stuga och brygga, en fyr och en färja växer fram. På var sida om båten sitter en knapp: en till turplaneringen och en för den som vill samarbeta med Svalla. Öarna, boendet, krogarna och kartan finns redan i menyn ovanför, så de upprepas inte här. I förgrunden går en krabba på en kobbe. Ön, fyren och färjan är påhittade och föreställer ingen verklig plats.">
         <ScenDel />
       </Del>
 

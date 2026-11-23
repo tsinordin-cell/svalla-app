@@ -336,25 +336,12 @@ function skapaLjud() {
   }
 }
 
-/* Vägarna in från startscenen. Alla leder till sidor som finns på Svalla. */
+/* Vägarna in från startscenen. Öar, boende, krogar, färjor, karta och aktiviteter finns redan i menyn ovanför,
+   så scenen har bara två skyltar, en på var sida om båten (Max 2026-11-23). Båda leder till sidor som finns på Svalla. */
 const SKYLTAR = [
-  { id: 'oar', namn: 'Hitta din ö', href: '/oar' },
-  { id: 'boende', namn: 'Boende', href: '/boende' },
-  { id: 'krogar', namn: 'Krogar', href: '/krogar-och-mat' },
+  { id: 'samarbete', namn: 'Intresserad av samarbete?', href: '/partner' },
   { id: 'planera', namn: 'Planera din tur', href: '/planera-tur' },
-  { id: 'farjor', namn: 'Färjor', href: '/farjor' },
-  { id: 'karta', namn: 'Karta', href: '/karta' },
-  { id: 'gora', namn: 'Aktiviteter', href: '/aktiviteter' },
 ] as const
-// Små tecknade ikoner till skyltarna, i samma bläckstil som scenen (Max 2026-11-22: knapparna kändes för enkla)
-const IKON: Record<string, string> = {
-  oar: 'M2.5 18.5c3.5-3 15.5-3 19 0M8 15.8V7M8 7l-3.5 5h7zM8 4.5l-2.5 3.5h5zM15 16.5c1-2.5 4-2.5 5 0',
-  boende: 'M4 11l8-6.5 8 6.5M6 9.5V20h12V9.5M10 20v-5h4v5',
-  krogar: 'M7 3v18M4.5 3v5a2.5 2.5 0 005 0V3M17 21V3c-2.5 1.5-3.5 5-3.5 8h3.5',
-  farjor: 'M2.5 15h19l-3.5 5H6zM6 15v-5h12v5M9 10V6.5h4V10M8.5 12.5h1M12 12.5h1M15.5 12.5h1',
-  karta: 'M3 6.5l6-2.5 6 2.5 6-2.5v13.5L15 20l-6-2.5L3 20zM9 4v13.5M15 6.5V20',
-  gora: 'M5 19L19 5M16.5 3.5l4 4-2.5 1.5-3-3zM3.5 16.5l4 4-3 1-2-2z',
-}
 // Startscenen hoppar över prickarna och Sverige och börjar när havet stiger (beslut Max 2026-11-22)
 const VSTART = 6000
 
@@ -785,9 +772,15 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       {varld && <canvas ref={rokRef} className="ki-rokduk" aria-hidden="true" />}
       {varld && (
         <div className={visT >= 9800 ? 'ki-fram syns' : 'ki-fram'} aria-hidden="true">
-          {/* Kobben med skylten i förgrunden (Max 2026-11-23) */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-f-kobbe" src="/kreativ/scen-kobbe.webp" alt="" />
+          {/* Kobben i förgrunden, bara stenen, och en krabba som går fram och tillbaka på den (Max 2026-11-23) */}
+          <div className="ki-f-kobbe">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-f-sten" src="/kreativ/scen-sten.webp" alt="" />
+            <span className="ki-krabba">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/kreativ/scen-krabba.webp" alt="" />
+            </span>
+          </div>
         </div>
       )}
       {varld && (
@@ -810,7 +803,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       {varld && (
         <nav className={visT >= 10900 && !gar ? 'ki-skyltar syns' : 'ki-skyltar'} aria-label="Vägar in i Svalla">
           {SKYLTAR.map((s, i) => (
-            <a key={s.id} href={s.href} className={'ki-skylt ki-s-' + s.id} style={{ transitionDelay: i * 110 + 'ms' }}>{s.id !== 'planera' && <svg className="ki-ik" viewBox="0 0 24 24" aria-hidden="true"><path d={IKON[s.id]} /></svg>}<span>{s.namn}</span></a>
+            <a key={s.id} href={s.href} className={'ki-skylt ki-cta ki-s-' + s.id} style={{ transitionDelay: i * 110 + 'ms' }}><span>{s.namn}</span></a>
           ))}
         </nav>
       )}
@@ -845,8 +838,14 @@ const CSS = `
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .ki-fram{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 1s .8s}
 .ki-fram.syns{opacity:1}
-.ki-f-kobbe{position:absolute;left:1.5%;bottom:0;width:14%;height:auto;transform:translateY(35%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
+.ki-f-kobbe{position:absolute;left:1.5%;bottom:0;width:17%;aspect-ratio:520/140;transform:translateY(60%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
 .ki-fram.syns .ki-f-kobbe{transform:translateY(0)}
+.ki-f-sten{position:absolute;inset:0;width:100%;height:100%}
+/* Krabban följer stenens rundade ovansida och lutar med den. Fötterna är punkten den vrids kring. */
+.ki-krabba{position:absolute;left:50%;top:16%;width:17%;transform:translate(-50%,-94%);transform-origin:50% 100%;animation:kiKrabba 11s ease-in-out infinite alternate}
+.ki-krabba img{display:block;width:100%;height:auto;animation:kiTrippa .2s steps(2) infinite}
+@keyframes kiKrabba{0%,6%{left:24%;top:35%;transform:translate(-50%,-94%) rotate(-15deg)}25%{left:37%;top:22%;transform:translate(-50%,-94%) rotate(-9deg)}45%,55%{left:50%;top:16%;transform:translate(-50%,-94%) rotate(0)}75%{left:63%;top:21%;transform:translate(-50%,-94%) rotate(9deg)}94%,100%{left:76%;top:33%;transform:translate(-50%,-94%) rotate(15deg)}}
+@keyframes kiTrippa{0%{transform:translateY(0)}100%{transform:translateY(-4%)}}
 .ki-v-vastkust{left:61%;width:20%}
 .ki-varld.syns .ki-v-vastkust{transform:translateY(9%);transition-delay:.15s}
 .ki-topp{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:10px;z-index:3}
@@ -925,23 +924,27 @@ const CSS = `
 .ki-s-oar{left:6.5%;top:37%;--r:-3deg}
 .ki-s-boende{left:14.5%;top:45%;--r:2deg}
 .ki-s-krogar{left:21%;top:55%;--r:-2deg}
-.ki-s-planera{left:56.5%;top:35%;--r:2deg;font-size:18px;padding:11px 18px 11px 17px;background:#c8642a;color:#fbf7ee !important}
-.ki-skyltar.syns .ki-s-planera:hover,.ki-skyltar.syns .ki-s-planera:focus-visible{background-color:#d5733a}
-.ki-s-planera::after{content:'→';margin-left:3px;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
-.ki-s-planera:hover::after{transform:translateX(4px)}
+.ki-cta{font-size:18px;padding:11px 18px 11px 17px;background:#c8642a;color:#fbf7ee !important}
+.ki-skyltar.syns .ki-cta:hover,.ki-skyltar.syns .ki-cta:focus-visible{background-color:#d5733a}
+.ki-cta::after{content:'→';margin-left:3px;transition:transform .3s cubic-bezier(.2,1.4,.4,1)}
+.ki-cta:hover::after{transform:translateX(4px)}
+.ki-s-planera{left:56.5%;top:35%;--r:2deg}
+.ki-s-samarbete{left:auto;right:56.5%;top:35%;--r:-2deg}
+.ki-s-samarbete::before{left:auto;right:20px}
 .ki-s-gora{left:19.5%;top:19%;--r:2deg}
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:clamp(96px,16%,124px);left:50%;margin-left:calc(clamp(96px,16%,124px) / -2);bottom:0}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:clamp(150px,34%,240px);left:50%;margin-left:calc(clamp(150px,34%,240px) / -2);bottom:0}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
-.ki-s-planera{left:50%;top:71%;--x:-50%;--r:0deg;font-size:16px;padding:11px 18px 11px 14px}
+.ki-cta{font-size:16px;padding:11px 18px 11px 14px}
+.ki-s-planera,.ki-s-samarbete{left:50%;right:auto;--x:-50%;--r:0deg}.ki-s-planera{top:68%}.ki-s-samarbete{top:79%}.ki-s-samarbete::before{left:20px;right:auto}
 .ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-gora{top:84%;--r:0deg}
 .ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
-@media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-s-planera{font-size:15px;padding:10px 17px 10px 15px}
-.ki-skyltar .ki-s-planera{top:67%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
+@media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-cta{font-size:15px;padding:10px 17px 10px 15px}
+.ki-skyltar .ki-s-planera{top:64%}.ki-skyltar .ki-s-samarbete{top:76%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
 `
