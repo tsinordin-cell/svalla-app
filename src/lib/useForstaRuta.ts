@@ -23,6 +23,14 @@ export function useForstaRuta(namn: RutNamn, redo: boolean, paRattSida: boolean)
     if (!syns && taRuta(namn)) setSyns(true)
   }, [namn, redo, paRattSida, syns, ledigVarv])
 
+  // Medan en ruta syns täcker den den flytande knappen "Tipsa oss" i samma
+  // hörn. Klassen gömmer knappen tills rutan stängs (globals.css).
+  useEffect(() => {
+    if (!syns) return
+    document.body.classList.add('underkantsruta-oppen')
+    return () => document.body.classList.remove('underkantsruta-oppen')
+  }, [syns])
+
   // Lämna platsen om komponenten försvinner medan rutan syns.
   useEffect(() => () => slappRuta(namn), [namn])
 

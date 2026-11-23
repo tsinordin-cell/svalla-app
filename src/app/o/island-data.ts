@@ -7510,7 +7510,7 @@ export const ISLANDS: Island[] = [
     restaurants: [],
     // KÄLLA: https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/ata-i-parken — "Det finns ingen matservering eller butik i nationalparken. Om du har med dig egen matsäck kan du äta den vid någon av de i ordningsgjorda rastplatserna eller i raststugan vid bryggan på Bullerö." (läst 2026-09-27); https://battaxi.se/ws/media-library/7b372fb2cec21735246ff04363d12e1f/bullerolinjen-tidtabell-ht-26-inkl-5-sept.pdf — "Samtliga avgångar måste förbokas!" (läst 2026-09-27); https://www.lansstyrelsen.se/stockholm/besoksmal/nationalparker/namdoskargardens-nationalpark.html — "Din hund ska alltid vara kopplad."; "Du får endast elda på anvisade platser eller i grill på ben." (läst 2026-09-27); https://www.sverigesnationalparker.se/sv/upptack-nationalparkerna/namdoskargardens-nationalpark/besok-parken/service-i-parken — "I Bullerö hamn finns kärl för hushållssopor. Vänligen ta med förpackningar, pant och glas till fastlandet" (läst 2026-09-27). Jaktstugans öppettider gick inte att belägga.
     tips: ['Förboka Bullerölinjen, alla avgångar måste bokas i förväg.', 'Det finns ingen matservering eller butik i nationalparken. Ta med matsäck och ät vid en rastplats eller i raststugan vid bryggan.', 'Hunden ska vara kopplad och eld får bara göras på anvisade platser eller i grill på ben. Ta med förpackningar, pant och glas hem till fastlandet.'],
-    related: ['namdo', 'langviksskaret', 'ormsko'],
+    related: ['namdo', 'langviksskaret', 'ormskar'],
     tags: ['nationalpark', 'liljefors', 'konsthistoria', 'ytterskärgård', 'mellersta'],
     // KÄLLA: https://geodata.naturvardsverket.se/handlingar/rest/dokument/1031975 — "Naturkonstnären Bruno Liljefors ägde Bulleröarkipelagen under en period i början av 1900-talet och sålde år 1923 ögruppen till finansmannen Torsten Kreuger. När Kreuger år 1967 avyttrade Bulleröarkipelagen valde han att sälja till staten, med en önskan om att området skulle bevaras för framtiden och inte exploateras."; "Liljefors lät år 1909 bygga den jaktstuga som än idag står kvar"; "Jaktstugan nyttjades under andra världskriget som logement" (läst 2026-09-27). «Köpte Bullerö 1908» och «invigdes på ön» gick inte att belägga.
     did_you_know: 'Bruno Liljefors ägde Bulleröarkipelagen i början av 1900-talet och lät 1909 bygga jaktstugan, som under andra världskriget användes som logement och i dag rymmer nationalparkens utställning. 1923 sålde han ögruppen till finansmannen Torsten Kreuger, och när Kreuger 1967 sålde vidare valde han staten, med en önskan om att området skulle bevaras och inte exploateras.',
@@ -7599,7 +7599,7 @@ export const ISLANDS: Island[] = [
     },
   },
   {
-    slug: 'smaadalaro',
+    slug: 'smadalaro',
     name: 'Smådalarö',
     region: 'södra',
     regionLabel: 'Södra skärgården',
@@ -7810,7 +7810,7 @@ export const ISLANDS: Island[] = [
 
   },
   {
-    slug: 'adelsjo',
+    slug: 'adelso',
     name: 'Adelsö',
     region: 'mellersta',
     regionLabel: 'Mälaren',
@@ -8165,7 +8165,7 @@ export const ISLANDS: Island[] = [
     did_you_know: 'Föreningen som sköter Hasselö brygga bildades 1948 med 23 medlemmar. När bryggan byggdes om 1985 fick den en ny konstruktion: bryggdäcket vilar som ett jättelikt lock på ett rör och lyftes på plats av jättekranen Lodbrok.',
   },
   {
-    slug: 'ormsko',
+    slug: 'ormskar',
     name: 'Ormskär',
     region: 'mellersta',
     regionLabel: 'Mellersta skärgården',
@@ -8252,7 +8252,7 @@ export const ISLANDS: Island[] = [
     did_you_know: 'På Storskär i Norrpada, utanför själva reservatet, samlas Pelarorden vart tredje år. Orden grundades 1882 och har haft medlemmar som Albert Engström, Evert Taube, Vilhelm Moberg och Roland Svensson.',
   },
   {
-    slug: 'graskar',
+    slug: 'grasko',
     name: 'Gräskö',
     region: 'norra',
     regionLabel: 'Norra skärgården',
@@ -9934,7 +9934,7 @@ export const ISLANDS: Island[] = [
       // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Ja, du får ta med dig egen medhavd mat till Birka", "utanför museet finns bord och bänkar under tak", "Vid gästhamnen och bredvid museet finns grillar att låna, ta med egen kol. Vänligen notera att det råder eldningsförbud på övriga delar av ön." (läst 2026-09-27)
       'Egen matsäck går bra: utanför museet finns bord och bänkar under tak, och vid gästhamnen och museet finns grillar att låna (ta med kol). På resten av ön är det eldningsförbud.',
     ],
-    related: ['adelsjo', 'vaxholm', 'sandhamn'],
+    related: ['adelso', 'vaxholm', 'sandhamn'],
     tags: ['historia', 'UNESCO', 'vikingar', 'arkeologi', 'familjer', 'dagsutflykt', 'dagstur', 'mälaren', 'Mälaren'],
     insiderTips: [
       // KÄLLA: https://www.stromma.com/globalassets/sweden/stockholm/product_timetables/02_excursions/2026/birka_tidtabell_stockholm_webb.pdf — "* Endast förbokning", "Hovgården*" (läst 2026-09-27); https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/birka-vikingastaden/ — "Välj avgång från Hovgården om du vill ha en kort båtresa till Birka (ca 15 min)", "Tänk på att Hovgården nås med bilfärja" (läst 2026-09-27). Stod att man från Adelsö tar «den lokala färjan» och slipper guiden – Strömma säljer bara paket med guidning, även från Hovgården.
@@ -11090,7 +11090,7 @@ export const ISLANDS: Island[] = [
   },
   // ─── VISINGSÖ ────────────────────────────────────────────────────────────
   {
-    slug: 'visingo',
+    slug: 'visingso',
     name: 'Visingsö',
     region: 'ovriga',
     regionLabel: 'Vättern',
@@ -11841,10 +11841,8 @@ export const ALL_ISLANDS: Island[] = [...ISLANDS, ...(BOHUSLAN_ISLANDS as Island
 export const OAR: Island[] = ALL_ISLANDS.filter(i => (i.slag ?? 'ö') === 'ö')
 export const ANTAL_OAR = OAR.length
 
-/** Gamla adresser som pekar på en sammanslagen post. Sparade och besökta öar i databasen kan bära den gamla sluggen. */
-export const GAMLA_SLUGS: Record<string, string> = {
-  bjorko: 'birka', // 2026-10-21: Björkö (Birka) och Birka var samma ö
-}
+import { GAMLA_SLUGS } from '@/lib/gamlaSlugs'
+export { GAMLA_SLUGS, slugVarianter } from '@/lib/gamlaSlugs'
 
 export function getIsland(slug: string): Island | undefined {
   const s = GAMLA_SLUGS[slug] ?? slug

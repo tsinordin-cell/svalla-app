@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
-import { arInbyggdApp, efterCookievalOchTid } from '@/lib/forstaRutor'
+import { arInbyggdApp, efterCookievalOchTid, paRutsida } from '@/lib/forstaRutor'
 import { useForstaRuta } from '@/lib/useForstaRuta'
 
 interface BeforeInstallPromptEvent extends Event {
@@ -10,7 +10,6 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 // Visa bara install-prompten på app-sidor
-const APP_PATHS = ['/platser', '/rutter', '/logga', '/feed', '/profil', '/spara', '/sok', '/tur/', '/u/', '/topplista', '/o/']
 
 const BESOK = 'svalla-besok'
 const RAKNAD_I_SESSIONEN = 'svalla-besok-raknad'
@@ -92,7 +91,7 @@ export default function InstallPrompt() {
     }
   }, [])
 
-  const [show, lamnaPlatsen] = useForstaRuta('installera', redo, APP_PATHS.some(p => pathname?.startsWith(p)))
+  const [show, lamnaPlatsen] = useForstaRuta('installera', redo, paRutsida(pathname))
 
   function dismiss() {
     /*
@@ -118,7 +117,9 @@ export default function InstallPrompt() {
   if (!show) return null
 
   return (
-    <div style={{
+    // .install-prompt: på dator (>=1024px) nedre högra hörnet, som notisrutan,
+    // i stället för en remsa över hela bredden som la sig över sidomenyn.
+    <div className="install-prompt" style={{
       position: 'fixed',
       bottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 12px)',
       left: 12, right: 12, zIndex: 9999,
@@ -146,7 +147,14 @@ export default function InstallPrompt() {
         {isIOS ? (
           <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.4 }}>
             Tryck på{' '}
-            <span style={{ background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '1px 5px', fontSize: 13 }}>⎋</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, background: 'rgba(255,255,255,0.15)', borderRadius: 4, padding: '1px 5px', fontSize: 12, verticalAlign: 'middle' }}>
+              {/* Safaris Dela-symbol: en ruta med en pil uppåt */}
+              <svg width="12" height="14" viewBox="0 0 12 14" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 1v8M3.2 3.6 6 1l2.8 2.6"/>
+                <path d="M4 5.6H2.2a1 1 0 0 0-1 1v5.2a1 1 0 0 0 1 1h7.6a1 1 0 0 0 1-1V6.6a1 1 0 0 0-1-1H8"/>
+              </svg>
+              Dela
+            </span>
             {' '}och välj <strong style={{ color: 'rgba(255,255,255,0.85)' }}>&quot;Lägg till på hemskärmen&quot;</strong>
           </p>
         ) : (

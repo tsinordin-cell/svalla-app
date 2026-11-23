@@ -12,6 +12,7 @@
  */
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { flikTangent } from '@/lib/flikTangenter'
 import { KARTA_VIEWBOX, SVERIGE_LAN, SVERIGE_SJOAR, NORRLANDSKUST, NORRLANDSKUST_KLIPP, type KartZon } from '@/lib/sverigekarta'
 
 type Del = {
@@ -81,7 +82,7 @@ export default function RegionKarta() {
       <div className="rk-text">
         <div className="rk-flikar" role="tablist" aria-label="Delar av Sverige">
           {DELAR.map((x, j) => (
-            <button key={x.id} type="button" role="tab" aria-selected={j === i} className={j === i ? 'pa' : undefined} onClick={() => setI(j)}>{x.namn}</button>
+            <button key={x.id} type="button" role="tab" aria-selected={j === i} tabIndex={j === i ? 0 : -1} className={j === i ? 'pa' : undefined} onClick={() => setI(j)} onKeyDown={e => flikTangent(e, j, DELAR.length, setI)}>{x.namn}</button>
           ))}
         </div>
         <div className="rk-rad">

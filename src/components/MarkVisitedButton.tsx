@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
 import { setPendingAction, takePendingAction } from '@/lib/pendingAction'
+import { slugVarianter } from '@/lib/gamlaSlugs'
 
 interface Props {
   islandSlug: string
@@ -32,7 +33,8 @@ export default function MarkVisitedButton({ islandSlug, islandName, variant = 'h
         .from('visited_islands')
         .select('id')
         .eq('user_id', user.id)
-        .eq('island_slug', islandSlug)
+        .in('island_slug', slugVarianter(islandSlug))
+        .limit(1)
         .maybeSingle()
       if (data) { setVisited(true); takePendingAction('mark_visited', islandSlug); return }
       // Klickade hon "Jag har varit här" som utloggad och kom tillbaka inloggad?

@@ -8,6 +8,7 @@ import { analytics } from '@/lib/analytics'
 import { track } from '@/lib/analytics-events'
 import Link from 'next/link'
 import Image from 'next/image'
+import Icon, { type IconName } from '@/components/Icon'
 import { O_SOK } from '@/lib/oSok'
 import { OBILDER } from '../o/obilder.generated'
 import { commonsThumb } from '@/lib/commonsBild'
@@ -27,8 +28,13 @@ type Result = {
  href: string
 }
 
-const TYPE_LABEL: Record<ResultType, string> = { tur: 'Logg', rutt: 'Rutt', plats: 'Plats', seglare: 'Seglare', hashtag: 'Tagg', o: 'Ö', aktivitet: 'Aktivitet' }
-const TYPE_EMOJI: Record<ResultType, string> = { tur: '', rutt: '️', plats: '', seglare: '👤', hashtag: '#', o: '', aktivitet: '✦' }
+// Granskningen 2026-11-22: rubrikerna stod i singular ("Ö · 3", "Plats · 8"),
+// tomläget blev "Inga logg hittades" och emoji-kartan hade tomma värden och ett
+// ensamt variant-tecken som gav ett osynligt tecken före "Rutt". Nu: etikett i
+// singular på märket, plural i rubriker och tomlägen, och riktiga ikoner.
+const TYPE_LABEL: Record<ResultType, string> = { tur: 'Tur', rutt: 'Rutt', plats: 'Plats', seglare: 'Seglare', hashtag: 'Tagg', o: 'Ö', aktivitet: 'Aktivitet' }
+const TYPE_PLURAL: Record<ResultType, string> = { tur: 'Turer', rutt: 'Rutter', plats: 'Platser', seglare: 'Seglare', hashtag: 'Taggar', o: 'Öar', aktivitet: 'Aktiviteter' }
+const TYPE_ICON: Record<ResultType, IconName | null> = { tur: 'sailboat', rutt: 'navigation', plats: 'pin', seglare: 'user', hashtag: null, o: 'island', aktivitet: 'sparkles' }
 const TYPE_COLOR: Record<ResultType, string> = {
  tur: 'rgba(30,92,130,0.09)',
  rutt: 'rgba(34,197,94,0.10)',
@@ -46,12 +52,12 @@ const HASHTAG_HINTS = ['#sandhamn', '#skärgård', '#segling', '#magisk', '#soln
 const FILTER_TABS: { value: FilterTab; label: string }[] = [
  { value: 'alla', label: 'Alla' },
  { value: 'o', label: 'Öar' },
- { value: 'aktivitet', label: '✦ Aktiviteter' },
- { value: 'seglare', label: '👤 Seglare' },
+ { value: 'aktivitet', label: 'Aktiviteter' },
+ { value: 'seglare', label: 'Seglare' },
  { value: 'tur', label: 'Turer' },
  { value: 'plats', label: 'Platser' },
  { value: 'rutt', label: 'Rutter' },
- { value: 'hashtag', label: '# Taggar' },
+ { value: 'hashtag', label: 'Taggar' },
 ]
 
 // Extrahera hashtags från en text (max 20 tecken per tagg, ASCII + nordiska)
@@ -391,14 +397,15 @@ function SokPageInner() {
  background: 'none', border: 'none', cursor: 'pointer', padding: 4,
  color: 'var(--txt3)', fontSize: 16, lineHeight: 1,
  WebkitTapHighlightColor: 'transparent',
- }}>✕</button>
+ }}><Icon name="x" size={16} stroke={2} /></button>
  )}
  </div>
  </div>
 
  {/* ── Filter tabs (only when results exist) ── */}
+ {/* sok-filter: på dator bryts raden i stället för att skrollas i sidled (globals.css), annars klipptes Rutter och Taggar utan synlig skrollist. */}
  {results.length > 0 && !loading && (
- <div style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingTop: 10, maxWidth: 520, margin: '0 auto', scrollbarWidth: 'none' }}>
+ <div className="sok-filter" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingTop: 10, maxWidth: 520, margin: '0 auto', scrollbarWidth: 'none' }}>
  {FILTER_TABS.map(tab => (
  <button
  key={tab.value}
@@ -523,8 +530,9 @@ function SokPageInner() {
  background: 'none', border: 'none', cursor: 'pointer', padding: '8px',
  color: 'var(--txt3)', fontSize: 14, lineHeight: 1, flexShrink: 0,
  WebkitTapHighlightColor: 'transparent',
+ display: 'flex', alignItems: 'center',
  }}
- >✕</button>
+ ><Icon name="x" size={14} stroke={2} /></button>
  </div>
  ))}
  </div>
@@ -546,9 +554,10 @@ function SokPageInner() {
  background: 'var(--white)', border: '1.5px solid rgba(10,123,140,0.15)',
  fontSize: 13, color: 'var(--sea)', cursor: 'pointer', fontWeight: 600,
  WebkitTapHighlightColor: 'transparent',
+ display: 'inline-flex', alignItems: 'center', gap: 5,
  }}
  >
- 📍 {hint}
+ <Icon name="pin" size={13} stroke={2} />{hint}
  </button>
  ))}
  </div>
@@ -589,7 +598,7 @@ function SokPageInner() {
  {/* ── No results ── */}
  {searched && !loading && results.length === 0 && (
  <div style={{ textAlign: 'center', padding: '60px 0' }}>
- <div style={{ fontSize: 40, marginBottom: 12 }}> </div>
+ <div style={{ marginBottom: 12, color: 'var(--txt3)', display: 'flex', justifyContent: 'center' }}><Icon name="binoculars" size={36} /></div>
  <p style={{ fontSize: 14, color: 'var(--txt3)', marginBottom: 16 }}>Inga resultat för &ldquo;{query}&rdquo;</p>
  <p style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.5 }}>
  Prova att söka på en plats, ett användarnamn eller ett fartygsnamn
@@ -602,8 +611,8 @@ function SokPageInner() {
  <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
  {grouped.map(({ type, items }) => (
  <section key={type}>
- <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8 }}>
- {TYPE_EMOJI[type]} {TYPE_LABEL[type]} · {items.length}
+ <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 5 }}>
+ {TYPE_ICON[type] && <Icon name={TYPE_ICON[type]!} size={12} stroke={2} />}{TYPE_PLURAL[type]} · {items.length}
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
  {items.map(r => <ResultRow key={`${r.type}-${r.id}`} r={r} />)}
@@ -627,7 +636,7 @@ function SokPageInner() {
  {activeTab !== 'alla' && !loading && searched && filtered.length === 0 && results.length > 0 && (
  <div style={{ textAlign: 'center', padding: '40px 0' }}>
  <p style={{ fontSize: 13, color: 'var(--txt3)' }}>
- Inga {TYPE_LABEL[activeTab as ResultType].toLowerCase()} hittades för &ldquo;{query}&rdquo;
+ Inga {TYPE_PLURAL[activeTab as ResultType].toLowerCase()} hittades för &ldquo;{query}&rdquo;
  </p>
  <button onClick={() => setActiveTab('alla')} style={{
  marginTop: 12, padding: '8px 20px', borderRadius: 12, border: 'none',
@@ -647,6 +656,8 @@ function SokPageInner() {
 }
 
 function ResultRow({ r }: { r: Result }) {
+ // Bild som inte gick att ladda (t.ex. när Googles bildkvot är slut): visa typens ikon i stället för en tom ruta.
+ const [bildTrasig, setBildTrasig] = useState(false)
  return (
  <Link href={r.href} style={{ textDecoration: 'none' }}>
  <div style={{
@@ -668,11 +679,13 @@ function ResultRow({ r }: { r: Result }) {
  overflow: 'hidden',
  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
  }}>
- {r.image
- ? <Image src={r.image} alt="" width={46} height={46} unoptimized={r.image.includes('wikimedia.org')} onError={e => { e.currentTarget.style.visibility = 'hidden' }} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
+ {r.image && !bildTrasig
+ ? <Image src={r.image} alt="" width={46} height={46} unoptimized={r.image.includes('wikimedia.org')} onError={() => setBildTrasig(true)} style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
  : r.type === 'seglare'
  ? <span style={{ fontSize: 18, fontWeight: 600, color: '#fff' }}>{r.title[0]?.toUpperCase()}</span>
- : TYPE_EMOJI[r.type]
+ : TYPE_ICON[r.type]
+ ? <span style={{ color: TYPE_TEXT[r.type], display: 'flex' }}><Icon name={TYPE_ICON[r.type]!} size={20} /></span>
+ : <span style={{ fontSize: 18, fontWeight: 700, color: TYPE_TEXT[r.type] }}>#</span>
  }
  </div>
 

@@ -53,7 +53,7 @@ const ITEMS: LandingItem[] = [
     title: 'Adelsö',
     // KÄLLA: https://www.raa.se/evenemang-och-upplevelser/upplev-kulturarvet/varldsarv-i-sverige/alla-varldsarv-i-sverige/birka-och-hovgarden/ — "På Adelsö, på andra sidan fjärden, ligger Hovgården där kungen bodde." (läst 2026-09-27); https://www.raa.se/app/uploads/2023/06/Beslut-Adels%C3%B6-Bj%C3%B6rk%C3%B6-Birka-AB21-RA%C3%84-2021-1675.pdf — "Adelsö kyrka från 1100-talet och ruinen av Alsnö" (läst 2026-09-27)
     description: 'Hovgården, där kungen bodde, och en kyrka från 1100-talet. Granne med Birka på andra sidan fjärden.',
-    href: '/o/adelsjo',
+    href: '/o/adelso',
   },
   {
     icon: '📍',

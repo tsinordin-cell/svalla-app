@@ -24,7 +24,7 @@ describe('visaGlobalaKlockor', () => {
   })
 
   it('döljs på sidor med egna klockor och i meddelanden', () => {
-    for (const p of ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/thomas', '/sok', '/upptack', '/upptack/abc', '/meddelanden', '/meddelanden/42']) {
+    for (const p of ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/thomas', '/sok', '/upptack', '/upptack/abc', '/insikter', '/meddelanden', '/meddelanden/42']) {
       expect(visaGlobalaKlockor(p, true), p).toBe(false)
     }
   })

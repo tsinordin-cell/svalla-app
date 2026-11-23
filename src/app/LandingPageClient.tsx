@@ -1209,7 +1209,13 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  }
  if (photoMap && Object.keys(photoMap).length > 0) {
    applyLpPhotos(photoMap)
- } else {
+ } else if (document.querySelector('[data-lp-photo]')) {
+   // 2026-11-22 (beslut 6, färre Google-anrop): hämta bara när sidan har kort
+   // som kan visa fotona. Sedan 2026-11-21 skickar page.tsx ingen photoMap och
+   // korten med data-lp-photo visas inte, men varje besök hämtade ändå
+   // /api/landing-photos, och den routen gör upp till 19 Text Search-anrop.
+   // MÄTT 2026-11-22: Vercel-loggen visar 429 "SearchTextRequest per day"
+   // från just den routen.
    fetch('/api/landing-photos')
      .then(r => r.ok ? r.json() : null)
      .catch(() => null)

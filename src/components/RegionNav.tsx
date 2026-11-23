@@ -6,6 +6,7 @@
  * Tomt visas ärligt, besökaren skickas aldrig till en annan region.
  */
 import { useState } from 'react'
+import { flikTangent } from '@/lib/flikTangenter'
 import type { OmradeBild } from './OmradesVal'
 import { RadKort, Fotokrediter, ListRubrik, KORT_CSS, kortFotograf, type KortIkon } from './SvallaKort'
 
@@ -49,6 +50,8 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
   )
   const visadeOar = data.oar.slice(0, max(6))
 
+  const flikVal = VAL.filter(v => v !== 'Guider' || data.guider.length > 0)
+
   return (
     <section className="rn" aria-labelledby="rn-rubrik">
       <style>{KORT_CSS + RN_CSS}</style>
@@ -56,9 +59,9 @@ export default function RegionNav({ data }: { data: RegionNavData }) {
         <span className="sk-etikett">Allt på Svalla</span>
         <h2 id="rn-rubrik">{data.namn}</h2>
         <p className="rn-ingress">Öar, guider, gästhamnar, krogar och boende i regionen. Välj vad du letar efter.</p>
-        <div className="sk-val" role="tablist">
-          {VAL.filter(v => v !== 'Guider' || data.guider.length > 0).map(v => (
-            <button key={v} type="button" role="tab" aria-selected={val === v} className={val === v ? 'pa' : undefined} onClick={() => setVal(v)}>
+        <div className="sk-val" role="tablist" aria-label="Välj vad du letar efter">
+          {flikVal.map((v, j) => (
+            <button key={v} type="button" role="tab" aria-selected={val === v} tabIndex={val === v ? 0 : -1} className={val === v ? 'pa' : undefined} onClick={() => setVal(v)} onKeyDown={e => flikTangent(e, j, flikVal.length, n => setVal(flikVal[n]!))}>
               {v} · {antal[v]}
             </button>
           ))}

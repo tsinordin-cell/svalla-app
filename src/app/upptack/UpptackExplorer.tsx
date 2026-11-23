@@ -28,6 +28,7 @@ import { tagPlatssvar } from './platsdata'
 import { hamtaLeaflet } from './leaflet'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { track } from '@/lib/analytics-events'
+import AppTopBar from '@/components/AppTopBar'
 
 // ── Types ────────────────────────────────────────────────────────────────
 interface Poi {
@@ -799,9 +800,28 @@ export default function UpptackExplorer() {
     }, 850)
   }, [])
 
+  // 2026-11-23 (menyförslaget): toppraden och upx-header mäts, så att kartans och
+  // listans höjd på mobil räknas från den verkliga höjden. Förut stod en gissning
+  // (130 px) som reserv, och variabeln sattes aldrig.
+  const shellRef = useRef<HTMLDivElement>(null)
+  const toppRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const shell = shellRef.current, topp = toppRef.current
+    if (!shell || !topp || typeof ResizeObserver === 'undefined') return
+    const satt = () => shell.style.setProperty('--upx-header-h', `${Math.round(topp.getBoundingClientRect().height)}px`)
+    satt()
+    const ro = new ResizeObserver(satt)
+    ro.observe(topp)
+    return () => ro.disconnect()
+  }, [])
+
   // ── Render ──────────────────────────────────────────────────────────────
   return (
-    <div className="upx-shell">
+    <div className="upx-shell" ref={shellRef}>
+      <div ref={toppRef} style={{ flexShrink: 0 }}>
+      {/* Samma topprad som övriga huvudsidor (menyförslaget 2026-11-23). Från 1024 px
+          döljs den; sidomenyn har sök, meddelanden och notiser. */}
+      <AppTopBar titel="Utforska" sticky={false} doljPaDesktop />
       {/* Header med region-toggle + filter-dropdown + sök */}
       <header className="upx-header">
         {/* Region-toggle pills */}
@@ -857,6 +877,7 @@ export default function UpptackExplorer() {
           )}
         </div>
       </header>
+      </div>
 
       {/* Mobile-tabs */}
       <div className="upx-mob-tabs">
@@ -1045,10 +1066,8 @@ export default function UpptackExplorer() {
           border-bottom: 1px solid rgba(10, 123, 140, 0.08);
           z-index: 10;
         }
-        /* På mobil måste chips lämna plats åt Nav-bells (notif + meddelanden) i top-right */
-        @media (max-width: 900px) {
-          .upx-header { padding-right: 84px; }
-        }
+        /* 2026-11-23: platsen för de fasta ikonerna uppe till höger (84 px) behövs inte
+           längre. Ikonerna ligger i toppraden ovanför (AppTopBar). */
         /* Region-toggle pills — horisontell scroll-bar ovanför kategori-filter */
         .upx-regions-bar {
           display: flex;
@@ -1431,7 +1450,7 @@ export default function UpptackExplorer() {
             /* Mobile: kartan tar full höjd; listan blir ett bottom-sheet ovanpå */
             display: block;
             position: relative;
-            height: calc(100vh - var(--upx-header-h, 130px) - var(--nav-h, 64px));
+            height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px));
           }
 
           /* Karta = full höjd bakom sheet */
@@ -1469,7 +1488,7 @@ export default function UpptackExplorer() {
           /* Snap-points: cyclas via handle-knappen */
           .upx-split.sheet-min  .upx-list { height: 92px; }
           .upx-split.sheet-half .upx-list { height: 50vh; }
-          .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 130px) - var(--nav-h, 64px) - 24px); }
+          .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px) - 24px); }
 
           /* När minimerat: göm scrollande innehåll så bara handle + count syns */
           .upx-split.sheet-min .upx-list > *:not(.upx-sheet-handle):not(.upx-list-meta) {
@@ -1512,8 +1531,6 @@ export default function UpptackExplorer() {
           .upx-card-img { width: 72px; height: 60px; }
           .upx-card-title { font-size: 13.5px; }
           .upx-card-desc { -webkit-line-clamp: 1; }
-          /* Plats för Nav-bells (notifs+meddelanden) i top-right */
-          .upx-header { padding-right: 84px; }
           /* Mindre kart-knappar på mobil — flytta upp ovanför sheet (sheet-min) */
           .upx-locate { width: 36px; height: 36px; bottom: 104px; left: 12px; }
           /* 104px lyfter pillret ovanför bottom-sheet i sheet-min-läget, men

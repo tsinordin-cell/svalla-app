@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { arInbyggdApp } from '@/lib/forstaRutor'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
@@ -570,6 +571,9 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
   const [followIds, setFollowIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
+  // Spårning med skärmen avstängd finns bara i den inbyggda appen (tracker.ts).
+  const [inbyggdApp, setInbyggdApp] = useState(false)
+  useEffect(() => { setInbyggdApp(arInbyggdApp()) }, [])
   // Förslagen ordnas efter valen i guiden (samma hemmahamn, sedan båttyp).
   const sorteradeForslag = useMemo(
     () => rangordnaForslag(suggestions, normaliseraHamn(homePort), boatType),
@@ -743,7 +747,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
           display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 20,
           flexWrap: 'wrap',
         }}>
-          {['GPS i bakgrunden', 'Foto från turen', 'Betyg på turen'].map(b => (
+          {[inbyggdApp ? 'GPS i bakgrunden' : 'GPS-spårning', 'Foto från turen', 'Betyg på turen'].map(b => (
             <span key={b} style={{
               fontSize: 11.5, fontWeight: 600, color: 'rgba(255,255,255,0.75)',
               padding: '6px 12px', borderRadius: 999,
