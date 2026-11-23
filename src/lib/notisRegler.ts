@@ -149,7 +149,7 @@ export async function bedomNotis(
       if (!foljning) return { ok: false, status: 403, fel: 'Ingen följning' }
       rad.reference_id = foljning
       const namn = await aktorNamn()
-      push = { title: 'Ny följare', body: `${namn} börjar följa dig`, url: `/u/${encodeURIComponent(namn)}` }
+      push = { title: 'Ny följare', body: `${namn} började följa dig`, url: `/u/${encodeURIComponent(namn)}` }
       break
     }
     case 'tag': {

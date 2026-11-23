@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { ACTIVITY_LIST } from '@/app/aktivitet/activity-data'
-import { foldSok, valjOar, aktivitetMatchar, hashtagMatchar } from './sok-traff'
+import { foldSok, valjOar, aktivitetMatchar, hashtagMatchar, delaOrd, ordFilter, oMatchar } from './sok-traff'
 
 describe('foldSok', () => {
   it('jämnar ut åäö och versaler', () => {
@@ -66,5 +66,29 @@ describe('aktivitet och hashtag', () => {
     expect(hashtagMatchar('#skärgård', 'skärgård')).toBe(true)
     expect(hashtagMatchar('#sandhamn', 'sand')).toBe(true)
     expect(hashtagMatchar('#sand', 'xqzzyplonk')).toBe(false)
+  })
+})
+
+describe('flera sökord (granskningen 2026-11-23)', () => {
+  it('delar på mellanslag, tar bort dubbletter och slutar efter fem ord', () => {
+    expect(delaOrd('  gästhamn   Utö ')).toEqual(['gästhamn', 'Utö'])
+    expect(delaOrd('Utö utö')).toEqual(['Utö'])
+    expect(delaOrd('a b c d e f g')).toHaveLength(5)
+    expect(delaOrd('')).toEqual([])
+  })
+
+  it('ger ett or-filter per ord, så att alla ord måste träffa', () => {
+    expect(ordFilter(['name', 'island'], ['gästhamn', 'Utö'])).toEqual([
+      'name.ilike.%gästhamn%,island.ilike.%gästhamn%',
+      'name.ilike.%Utö%,island.ilike.%Utö%',
+    ])
+    expect(ordFilter(['name'], ['Utö'])).toEqual(['name.ilike.%Utö%'])
+  })
+
+  it('en ö träffar när varje ord finns i något fält, inte bara hela frasen', () => {
+    const o = { slug: 'uto', name: 'Utö', regionLabel: 'Södra skärgården', tagline: 'Gruvor och gästhamn', tags: [] as string[] }
+    expect(oMatchar(o, 'gästhamn Utö')).toBe(true)
+    expect(oMatchar(o, 'Utö')).toBe(true)
+    expect(oMatchar(o, 'gästhamn Grinda')).toBe(false)
   })
 })

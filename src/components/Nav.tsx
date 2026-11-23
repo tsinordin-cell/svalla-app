@@ -18,6 +18,10 @@ export default function Nav() {
   const [username, setUsername] = useState<string | null>(null)
   const [avatar,   setAvatar]   = useState<string | null>(null)
   const [userId,   setUserId]   = useState<string | null>(null)
+  // 2026-11-23 (Toms ja, slutrapport omgång 2): innan sessionen är läst visade
+  // sidomenyn "Profil" och loggan pekade på startsidan, även för inloggade.
+  // authKand blir sann när onAuthStateChange har svarat första gången.
+  const [authKand, setAuthKand] = useState(false)
   const channelRef = useRef<ReturnType<ReturnType<typeof createClient>['channel']> | null>(null)
 
   useEffect(() => {
@@ -26,6 +30,7 @@ export default function Nav() {
     // onAuthStateChange firar INITIAL_SESSION på mount + alla senare auth-ändringar.
     // Räcker ensamt — tidigare fanns även en getUser()-gren som gjorde samma users-query.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_, session) => {
+      setAuthKand(true)
       if (!session) {
         setUsername(null)
         setAvatar(null)
@@ -122,6 +127,8 @@ export default function Nav() {
       .select('id', { count: 'exact', head: true })
       .eq('user_id', userId)
       .eq('read', false)
+      // Tom 2026-11-23: meddelanden har egen ikon med räknare, så de visas inte bland notiserna.
+      .neq('type', 'message')
       .then(({ count }) => { if (aktiv) setOlastaNotiser(count ?? 0) })
     return () => { aktiv = false }
   }, [userId, showNav, path])
@@ -147,6 +154,11 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [klockorAktiva, path])
   if (!showNav) return null
+
+  // Inloggad så fort sessionen finns, utan att vänta på aliaset från users-tabellen.
+  const inloggad = userId !== null
+  // Profilfliken väntar tills vi vet om någon är inloggad och, i så fall, vad aliaset är.
+  const profilVantar = !authKand || (inloggad && username === null)
 
   const tabs = [
     {
@@ -277,7 +289,7 @@ export default function Nav() {
       {/* Desktop: SVALLA-logotyp längst upp i sidebaren. 2026-11-23 (menyförslaget):
           inloggad går den till flödet, appens hem. Utloggad går den till startsidan. */}
       <div className="nav-logo-wrap">
-        <Link href={username !== null ? '/feed' : '/'} aria-label={username !== null ? 'Svalla, till flödet' : 'Till startsidan'} style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
+        <Link href={inloggad ? '/feed' : '/'} aria-label={inloggad ? 'Svalla, till flödet' : 'Till startsidan'} style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>
           <SvallaLogo height={24} color="var(--sea)" />
         </Link>
       </div>
@@ -296,7 +308,7 @@ export default function Nav() {
           ]
           return (
             <div key="desktop-extra" className="nav-desktop-extra">
-              {rader.filter(r => !r.inloggad || username !== null).map(r => {
+              {rader.filter(r => !r.inloggad || inloggad).map(r => {
                 const aktiv = path === r.href || path.startsWith(r.href + '/')
                 return (
                   <Link key={r.href} href={r.href} aria-current={aktiv ? 'page' : undefined}
@@ -368,7 +380,9 @@ export default function Nav() {
             }}>
               {tab.icon?.(active)}
             </span>
-            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 64 }}>
+            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 64,
+              // Profiltexten döljs tills vi vet vem som är inloggad, så att "Profil" inte blinkar förbi.
+              visibility: tab.href === '/profil' && profilVantar ? 'hidden' : undefined }}>
               {tab.label}
             </span>
             {active && (

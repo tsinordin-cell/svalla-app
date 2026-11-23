@@ -582,7 +582,9 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
 function SegTab({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
     <button
+      type="button"
       onClick={onClick}
+      aria-pressed={active}
       style={{
         flex: 1, height: '100%',
         border: 'none', cursor: 'pointer',

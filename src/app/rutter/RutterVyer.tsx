@@ -211,7 +211,7 @@ export default function RutterVyer({
           </h1>
           <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
             {vy === 'oar'
-              ? `${antalOar} öar`
+              ? `${antalOar} öar · Stockholm, Mälaren och Sörmland`
               : vy === 'farjor'
                 ? `${antalFarjelinjer} linjer · Waxholmsbolaget & Cinderella`
               : isFiltered

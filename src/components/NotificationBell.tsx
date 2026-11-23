@@ -22,7 +22,7 @@ type Notif = {
 const TYPE_LABEL: Record<string, string> = {
  like: 'gillade din tur',
  comment: 'kommenterade din tur',
- follow: 'börjar följa dig',
+ follow: 'började följa dig',
  tag: 'taggade dig i en tur',
  mention: 'nämnde dig',
  forum_reply: 'svarade i din forumtråd',
@@ -84,6 +84,8 @@ export default function NotificationBell() {
  .from('notifications')
  .select('id, type, read, created_at, trip_id, reference_id, related_island_slug, actor_id')
  .eq('user_id', uid)
+ // Tom 2026-11-23: meddelanden har egen ikon med räknare, så de visas inte bland notiserna.
+ .neq('type', 'message')
  .order('created_at', { ascending: false })
  .limit(20)
 

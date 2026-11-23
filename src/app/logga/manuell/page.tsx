@@ -12,6 +12,7 @@ import DatumTidFalt from '@/components/DatumTidFalt'
 import SynlighetVaxel from '@/components/SynlighetVaxel'
 import { turbildNamn } from '@/lib/turbildNamn'
 import { oarForPlats, kortPlats } from '@/lib/loggade-oar'
+import { kontrolleraLogg } from '@/lib/loggKontroll'
 
 type TaggedUser = { id: string; username: string; avatar: string | null }
 
@@ -269,6 +270,8 @@ function ManuellForm() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!file || !location.trim()) return
+    const fel = kontrolleraLogg(distance, duration, startedAtLocal, endedAtLocal)
+    if (fel) { setErr(fel.text); return }
     setLoading(true); setErr('')
 
     try {
@@ -389,7 +392,8 @@ function ManuellForm() {
     }
   }
 
-  const canSubmit = !!file && !!location.trim() && !loading
+  const loggFel = kontrolleraLogg(distance, duration, startedAtLocal, endedAtLocal)
+  const canSubmit = !!file && !!location.trim() && !loading && !loggFel
 
   // Block render until auth resolved — prevents flash + premature file picker
   if (authLoading) return null
@@ -662,6 +666,9 @@ function ManuellForm() {
                 </div>
               ))}
             </div>
+            {loggFel?.falt === 'tider' && (
+              <p role="alert" style={{ fontSize: 12, color: 'var(--red)', margin: '6px 0 0' }}>{loggFel.text}</p>
+            )}
           </div>
 
           {/* ── Pinnar rating ── */}
@@ -675,6 +682,7 @@ function ManuellForm() {
                   key={p.value}
                   type="button"
                   onClick={() => setPinnar(pinnar === p.value ? null : p.value)}
+                  aria-pressed={pinnar === p.value}
                   style={{
                     flex: 1, padding: '10px 4px', borderRadius: 14, border: 'none',
                     background: pinnar === p.value ? 'var(--grad-sea)' : 'rgba(10,123,140,0.07)',
@@ -846,6 +854,8 @@ function ManuellForm() {
                 <label htmlFor={id} style={{ fontSize: 11, color: 'var(--txt3)', display: 'block', marginBottom: 4 }}>{label}</label>
                 <input id={id} type="number" inputMode="decimal" step={step} min="0" placeholder="0"
                   value={value} onChange={e => set(e.target.value)}
+                  aria-invalid={(id === 'manuell-distans' && loggFel?.falt === 'distans') || (id === 'manuell-tid' && loggFel?.falt === 'tid') || undefined}
+                  aria-describedby={(id === 'manuell-distans' && loggFel?.falt === 'distans') || (id === 'manuell-tid' && loggFel?.falt === 'tid') ? 'logg-falt-fel' : undefined}
                   style={{
                     width: '100%', padding: '10px 12px', borderRadius: 12,
                     border: '1.5px solid rgba(10,123,140,0.15)',
@@ -855,6 +865,9 @@ function ManuellForm() {
               </div>
             ))}
           </div>
+          {(loggFel?.falt === 'distans' || loggFel?.falt === 'tid') && (
+            <p id="logg-falt-fel" role="alert" style={{ fontSize: 12, color: 'var(--red)', margin: '-6px 0 0' }}>{loggFel.text}</p>
+          )}
 
           {/* ── Mer info (collapsible) ── */}
           <button
@@ -957,7 +970,7 @@ function ManuellForm() {
             transition: 'all 0.2s',
           }}
         >
-          {loading ? 'Sparar…' : !file ? 'Välj bild först' : !location.trim() ? 'Ange plats' : 'Kasta loss →'}
+          {loading ? 'Sparar…' : !file ? 'Välj bild först' : !location.trim() ? 'Ange plats' : loggFel ? 'Rätta fälten' : 'Kasta loss →'}
         </button>
       </div>
     </div>
