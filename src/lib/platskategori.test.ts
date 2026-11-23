@@ -1,0 +1,34 @@
+import { describe, it, expect } from 'vitest'
+import { platsKategori } from './platskategori'
+
+describe('platsKategori', () => {
+  it('låter typen restaurang vinna över hamnstopp-etiketten', () => {
+    expect(platsKategori({ name: 'Finnhamns Krog', type: 'restaurant', categories: ['restaurant', 'harbor_stop'] })).toBe('krog')
+  })
+  it('låter typen kafé vinna över ordet gästhamn i beskrivningen', () => {
+    expect(platsKategori({ type: 'cafe', categories: ['cafe'], description: 'Nära gästhamnen' })).toBe('krog')
+  })
+  it('visar gästhamn som gästhamn även om beskrivningen nämner diesel', () => {
+    expect(platsKategori({ type: 'harbor', categories: ['gasthamn'], description: 'Diesel finns vid bryggan' })).toBe('hamn')
+  })
+  it('visar krog med drivmedel som krog', () => {
+    expect(platsKategori({ type: 'restaurant', categories: ['restaurant', 'fuel'] })).toBe('krog')
+  })
+  it('visar värdshus med hotelletikett som boende', () => {
+    expect(platsKategori({ type: 'restaurant', categories: ['restaurant', 'accommodation', 'hotel'] })).toBe('boende')
+  })
+  it('visar sevärdhet med kaféetikett som annat', () => {
+    expect(platsKategori({ name: 'Långe Erik', type: 'attraction', categories: ['cafe'] })).toBe('annat')
+  })
+  it('behåller badplats för naturreservat', () => {
+    expect(platsKategori({ name: 'Naturreservat', type: 'nature', categories: ['beach'] })).toBe('bad')
+  })
+  it('gissar från etiketter när typ saknas', () => {
+    expect(platsKategori({ type: null, categories: ['harbor_stop'] })).toBe('hamn')
+    expect(platsKategori({ type: null, categories: [] })).toBe('annat')
+  })
+  it('bastu och bensin efter typ', () => {
+    expect(platsKategori({ type: 'sauna' })).toBe('bastu')
+    expect(platsKategori({ type: 'fuel_station' })).toBe('bensin')
+  })
+})

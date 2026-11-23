@@ -17,26 +17,14 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { hamtaLeaflet } from '@/app/upptack/leaflet'
 import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import SnabbSok, { hamtaSokindex, type Post } from './SnabbSok'
+import { platsKategori } from '@/lib/platskategori'
 
 type Poi = { id: string; name: string; latitude: number; longitude: number; type: string | null; categories: string[] | null; description: string | null; image_url: string | null; slug: string | null; island: string | null }
 type Kat = 'o' | 'krog' | 'hamn' | 'naturhamn' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'annat'
 type Punkt = { id: string; namn: string; lat: number; lng: number; kat: Kat; under: string; bild?: string; href?: string }
 
-/** Samma indelning som /upptack (UpptackExplorer.categorize), plus öarna. */
-function kategori(p: Poi): Kat {
-  const c = (p.categories ?? []).map(x => x.toLowerCase())
-  const t = (p.type ?? '').toLowerCase()
-  const n = (p.name ?? '').toLowerCase()
-  const d = (p.description ?? '').toLowerCase()
-  if (t === 'sauna' || t === 'bastu' || c.some(x => x === 'sauna' || x === 'bastu') || n.includes('bastu') || n.includes('sauna')) return 'bastu'
-  if (t === 'fuel' || t === 'fuel_station' || c.includes('fuel') || c.includes('bransle') || d.includes('bensin') || d.includes('diesel') || d.includes('drivmedel')) return 'bensin'
-  if (c.some(x => ['accommodation', 'hotel', 'hostel', 'cabin', 'bnb', 'pension'].includes(x)) || ['hotel', 'hostel', 'cabin', 'camping', 'pension'].includes(t)) return 'boende'
-  if (c.some(x => ['guest_harbor', 'harbor_stop', 'marina'].includes(x)) || t === 'harbor' || t === 'marina' || d.includes('gästhamn') || d.includes('marina')) return 'hamn'
-  if (t === 'nature_harbor' || t === 'anchorage' || c.some(x => x === 'nature_harbor' || x === 'anchorage')) return 'naturhamn'
-  if (['restaurant', 'bar', 'cafe', 'kafe'].includes(t) || c.some(x => ['restaurant', 'cafe', 'bar'].includes(x))) return 'krog'
-  if (['beach', 'bad', 'strand'].includes(t) || c.some(x => ['beach', 'bad', 'strand', 'badplats'].includes(x)) || n.includes('badplats') || n.includes('strand') || d.includes('badplats')) return 'bad'
-  return 'annat'
-}
+/** Samma indelning som /upptack (src/lib/platskategori.ts), plus öarna. */
+const kategori = (p: Poi): Kat => platsKategori(p)
 
 const KAT: Record<Kat, { namn: string; farg: string; ikon: string }> = {
   o:         { namn: 'Öar',         farg: '#1e5c82', ikon: '<path d="M2 19h20"/><path d="M4 19c1-4 4-7 8-7s7 3 8 7"/><path d="M12 12V5"/><path d="M12 5c-2-1-4-.5-5 1 2-.5 3.5 0 5 1 1.5-1 3-1.5 5-1-1-1.5-3-2-5-1Z"/>' },
