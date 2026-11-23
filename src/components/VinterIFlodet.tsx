@@ -49,13 +49,18 @@ export default function VinterIFlodet({ manad = new Date().getMonth() + 1 }: { m
       <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
         I vinter
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      {/* Mobil (under 768 px): korten ligger i en rad man sveper i, så att
+          första turen hamnar högre upp. Allt innehåll är kvar. Från 768 px
+          ligger de under varandra som förut. Layouten står i globals.css
+          (.vinter-rad, .vinter-kort). */}
+      <div className="vinter-rad">
         {RADER.map(r => (
           <Link
             key={r.href}
             href={r.href}
+            className="vinter-kort"
             style={{
-              display: 'flex', alignItems: 'center', gap: 12,
+              alignItems: 'center', gap: 12,
               padding: '12px 14px', borderRadius: 14,
               background: 'var(--surface)',
               border: '1px solid var(--teal-12)',
