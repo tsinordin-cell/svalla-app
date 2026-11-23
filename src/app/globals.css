@@ -1273,6 +1273,34 @@ img {
    2026-11-15. Sedan 3 sept är bas-lagret OSM:s ljusa tiles även i mörkt tema (map-tiles.ts),
    och filtret blekte då ur alla kartor i mörkt tema (sett i spårningsvyn). */
 
+/* ── Vinterblocket i flödet (VinterIFlodet) ──
+   2026-11-23: på mobil låg tre kort under varandra (cirka 270 px) innan
+   första turen. Under 768 px blir de en rad man sveper i, med nästa kort
+   synligt i kanten. Från 768 px under varandra som förut. */
+.vinter-rad {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.vinter-kort { display: flex; }
+@media (max-width: 767px) {
+  .vinter-rad {
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin: 0 -16px;
+    padding: 0 16px;
+    scroll-padding-inline: 16px;
+  }
+  .vinter-rad::-webkit-scrollbar { display: none; }
+  .vinter-kort {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+}
+
 /* ── Feed desktop layout ── */
 .feed-layout-wrap {
   max-width: 640px;

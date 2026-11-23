@@ -38,38 +38,40 @@ export default function LoppisFeedBanner() {
       style={{
         position: 'relative',
         margin: '0 0 14px',
-        padding: '14px 16px 14px 18px',
+        // 2026-11-23: lägre banner (cirka 100 → 70 px) så att första turen
+        // hamnar högre upp på mobil. Samma text och länk som förut.
+        padding: '10px 12px 10px 14px',
         borderRadius: 16,
         background: 'linear-gradient(135deg, rgba(10,123,140,0.10), rgba(201,110,42,0.10))',
         border: '1px solid rgba(10,123,140,0.20)',
-        display: 'flex', alignItems: 'center', gap: 14,
+        display: 'flex', alignItems: 'center', gap: 12,
         animation: 'svalla-loppis-fadein 0.4s ease-out',
       }}
     >
       <div style={{
-        width: 44, height: 44, borderRadius: 12, flexShrink: 0,
+        width: 36, height: 36, borderRadius: 10, flexShrink: 0,
         background: 'linear-gradient(135deg, var(--sea), var(--acc, #c96e2a))',
         color: '#fff',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         boxShadow: '0 4px 12px rgba(10,123,140,0.25)',
       }}>
-        <svg width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+        <svg width={19} height={19} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
           <circle cx="8.5" cy="8.5" r="1.5" />
           <polyline points="21 15 16 10 5 21" />
         </svg>
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: 5,
-          fontSize: 10, fontWeight: 800, color: 'var(--acc, #c96e2a)',
-          letterSpacing: '0.6px', textTransform: 'uppercase',
-          marginBottom: 2,
-        }}>
-          <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--acc, #c96e2a)' }} />
-          Nytt
-        </div>
-        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2, lineHeight: 1.3 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 1, lineHeight: 1.3 }}>
+          <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: 4,
+            fontSize: 10, fontWeight: 800, color: 'var(--acc, #c96e2a)',
+            letterSpacing: '0.6px', textTransform: 'uppercase',
+            marginRight: 6, verticalAlign: '1px',
+          }}>
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--acc, #c96e2a)' }} />
+            Nytt
+          </span>
           Loppis & köp/sälj är öppet
         </div>
         <Link
