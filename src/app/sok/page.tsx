@@ -13,8 +13,15 @@ import { O_SOK } from '@/lib/oSok'
 import { OBILDER } from '../o/obilder.generated'
 import { commonsThumb } from '@/lib/commonsBild'
 import { ACTIVITY_LIST } from '../aktivitet/activity-data'
-import { valjOar, aktivitetMatchar, hashtagMatchar } from '@/lib/sok-traff'
+import { valjOar, aktivitetMatchar, hashtagMatchar, delaOrd, ordFilter } from '@/lib/sok-traff'
 import { utf8TillBas64url } from '@/lib/bas64url'
+
+/** Lägger ett or-filter per sökord på frågan, så att alla ord måste träffa (2026-11-23). */
+function medOrd<Q extends { or: (filters: string) => Q }>(q: Q, kolumner: readonly string[], ord: readonly string[]): Q {
+ let r = q
+ for (const f of ordFilter(kolumner, ord)) r = r.or(f)
+ return r
+}
 
 type ResultType = 'tur' | 'rutt' | 'plats' | 'seglare' | 'hashtag' | 'o' | 'aktivitet'
 type FilterTab = 'alla' | ResultType
@@ -166,7 +173,8 @@ function SokPageInner() {
  // Sanitera söktermen. Strippa PostgREST-specialtecken för att undvika query injection.
  const safe = q.replace(/[()%_,]/g, '').trim().slice(0, 100)
  if (!safe) { setResults([]); setSearched(true); return }
- const pattern = `%${safe}%`
+ // Varje ord för sig, så att "gästhamn Utö" hittar "Gästhamn Sandudden Utö" (2026-11-23).
+ const ord = delaOrd(safe)
 
  // Hashtag-läge: query börjar med # → sök bara trips som matchar taggen i caption
  const isHashtagQuery = safe.startsWith('#')
@@ -176,43 +184,37 @@ function SokPageInner() {
  type AnyRes<T> = { data: T[] | null }
  const empty = <T,>(): Promise<AnyRes<T>> => Promise.resolve({ data: [] as T[] })
 
- const tripsPromise = supabase
+ const tripsBas = supabase
  .from('trips')
  .select('id, location_name, caption, boat_type, image, created_at')
  .is('deleted_at', null) // mjukraderade turer ska inte hittas (länkkontroll 2026-09-03)
- .or(
- hashtagPattern
- ? `caption.ilike.${hashtagPattern}`
- : `location_name.ilike.${pattern},caption.ilike.${pattern},boat_type.ilike.${pattern}`,
- )
+ const tripsPromise = (hashtagPattern
+ ? tripsBas.or(`caption.ilike.${hashtagPattern}`)
+ : medOrd(tripsBas, ['location_name', 'caption', 'boat_type'], ord))
  .limit(20) as unknown as Promise<AnyRes<{ id: string; location_name: string | null; caption: string | null; boat_type: string | null; image: string | null; created_at: string }>>
 
  const toursPromise = isHashtagQuery
  ? empty<{ id: string; title: string; usp: string | null; start_location: string; destination: string }>()
- : (supabase
+ : (medOrd(supabase
  .from('tours')
- .select('id, title, usp, start_location, destination')
- .or(`title.ilike.${pattern},start_location.ilike.${pattern},destination.ilike.${pattern}`)
+ .select('id, title, usp, start_location, destination'), ['title', 'start_location', 'destination'], ord)
  .limit(8) as unknown as Promise<AnyRes<{ id: string; title: string; usp: string | null; start_location: string; destination: string }>>)
 
  const placesPromise = isHashtagQuery
  ? empty<{ id: string; name: string; island: string | null; image_url: string | null; google_photo_refs: { reference: string }[] | null }>()
- : (supabase
+ : (medOrd(supabase
  .from('restaurants')
- .select('id, name, island, image_url, google_photo_refs')
- .or(`name.ilike.${pattern},island.ilike.${pattern}`)
+ .select('id, name, island, image_url, google_photo_refs'), ['name', 'island'], ord)
  .limit(8) as unknown as Promise<AnyRes<{ id: string; name: string; island: string | null; image_url: string | null; google_photo_refs: { reference: string }[] | null }>>)
 
  type UserRow = { id: string; username: string; avatar: string | null; home_port: string | null; sailing_region: string | null; nationality: string | null; vessel_model: string | null; vessel_name: string | null; vessel_type: string | null }
  const usersPromise = isHashtagQuery
  ? empty<UserRow>()
- : (supabase
+ : (medOrd(supabase
  // users_publik: sökningen träffar bara fält som personen valt att visa (2026-11-20).
  .from('users_publik')
- .select('id, username, avatar, home_port, sailing_region, nationality, vessel_model, vessel_name, vessel_type')
- .or(
- `username.ilike.${pattern},vessel_model.ilike.${pattern},vessel_name.ilike.${pattern},vessel_type.ilike.${pattern},home_port.ilike.${pattern}`,
- )
+ .select('id, username, avatar, home_port, sailing_region, nationality, vessel_model, vessel_name, vessel_type'),
+ ['username', 'vessel_model', 'vessel_name', 'vessel_type', 'home_port'], ord)
  .limit(10) as unknown as Promise<AnyRes<UserRow>>)
 
  const hashtagTripsPromise = isHashtagQuery

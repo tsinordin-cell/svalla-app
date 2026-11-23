@@ -142,7 +142,9 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
           <Pill
             active={boatFilter !== 'alla'}
             onClick={() => setShowBoatSheet(true)}
-            aria-label="Filtrera båttyp"
+            aria-label={boatFilter === 'alla' ? 'Filtrera båttyp' : `Filtrera båttyp, vald: ${activeBoat.label}`}
+            aria-pressed={undefined}
+            aria-haspopup="dialog"
           >
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
               {boatFilter !== 'alla' && activeBoat.icon}
@@ -189,6 +191,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
                 <button
                   key={f.value}
                   onClick={() => { setBoatFilter(f.value); setShowBoatSheet(false) }}
+                  aria-pressed={boatFilter === f.value}
                   style={{
                     padding: '9px 16px', borderRadius: 22,
                     border: `1.5px solid ${boatFilter === f.value ? 'var(--sea)' : 'rgba(10,123,140,0.15)'}`,
