@@ -27,7 +27,8 @@ export type Ansvarig =
   | { typ: 'bolag'; namn: string; orgNr: string }
   | { typ: 'personer'; namn: string[] }
 
-export const ANSVARIG: Ansvarig | null = null
+// Tom valde 2026-11-23 att han och Max står som privatpersoner tills bolaget finns.
+export const ANSVARIG: Ansvarig | null = { typ: 'personer', namn: ['Thomas Nordin', 'Max Bornehed'] }
 
 function listaNamn(namn: string[]): string {
   if (namn.length <= 1) return namn[0] ?? ''

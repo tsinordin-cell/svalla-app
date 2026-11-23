@@ -17,7 +17,7 @@ describe('operatorRad', () => {
     expect(operatorRad({ typ: 'personer', namn: ['Anna Exempel', 'Bo Exempel'] }))
       .toBe('Svalla drivs av Anna Exempel och Bo Exempel som privatpersoner.')
   })
-  it('inga påhittade uppgifter i koden', () => {
-    expect(ANSVARIG).toBeNull()
+  it('Thomas och Max står som ansvariga tills bolaget finns', () => {
+    expect(operatorRad(ANSVARIG)).toBe('Svalla drivs av Thomas Nordin och Max Bornehed som privatpersoner.')
   })
 })
