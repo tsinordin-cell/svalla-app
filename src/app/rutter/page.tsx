@@ -5,6 +5,10 @@ import type { Metadata } from 'next'
 import { ISLANDS, ANTAL_OAR } from '@/app/o/island-data'
 import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, visaBryggnamn, type FerryRoute } from '@/lib/ferries'
 import RutterVyer from './RutterVyer'
+import { OBILDER } from '@/app/o/obilder.generated'
+import { commonsThumb } from '@/lib/commonsBild'
+import IslandThumb from '@/components/IslandThumb'
+import Bildkallor from '@/components/Bildkallor'
 import { ogSida } from '@/lib/og-standard'
 
 // ── Öar-sektioner (matchar /oar) ──────────────────────────────────────────
@@ -52,7 +56,11 @@ const ISLAND_SECTIONS = [
       'sandhamn', 'moja', 'grinda', 'finnhamn', 'ljustero', 'gallno', 'ingmarso',
       'namdo', 'svartso', 'runmaro', 'husaro', 'bullero', 'vindo', 'ingaro',
       'hasselo', 'ekno', 'ormskar', 'langviksskaret', 'langskar',
-      'storholmen', 'storskar'],
+      'storholmen', 'storskar',
+      // Saknades i fliken fast öarna har egna sidor (mätt 2026-11-23).
+      // Tynningö står som 'norra' i island-data men ligger i Vaxholms stad
+      // som Vaxholm, Rindö och Resarö ovan, så den hör till samma grupp här.
+      'djuro', 'tynningo'],
   },
   {
     id: 'södra',
@@ -62,7 +70,8 @@ const ISLAND_SECTIONS = [
     description: 'Vilda klippor, öppet hav och Utö. Den dramatiska södra skärgården.',
     slugs: [
       'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'galo', 'toro',
-      'fjardlang', 'smadalaro', 'morko', 'musko', 'kymmendo', 'huvudskar'],
+      'fjardlang', 'smadalaro', 'morko', 'musko', 'kymmendo', 'huvudskar',
+      'yttre-garden'],
   },
   {
     id: 'norra',
@@ -72,7 +81,8 @@ const ISLAND_SECTIONS = [
     description: 'Orörda öar, höga klippor och en av Europas ovanligaste mötesplatser.',
     slugs: [
       'arholma', 'furusund', 'blido', 'norrora', 'fejan', 'rodloga', 'singo',
-      'lido', 'graddo', 'vaddo', 'yxlan', 'grasko', 'norrpada', 'svenska-hogarna'],
+      'lido', 'graddo', 'vaddo', 'yxlan', 'grasko', 'norrpada', 'svenska-hogarna',
+      'svartloga'],
   },
   {
     id: 'malaren',
@@ -351,19 +361,17 @@ function IslandsView() {
                     border: '1px solid rgba(10,123,140,0.08)',
                     boxShadow: '0 1px 3px rgba(0,45,60,0.05)',
                   }}>
-                  <div style={{
-                    flexShrink: 0, width: 40, height: 40,
-                    background: section.bg, borderRadius: 10,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: section.color,
-                  }}>
-                    <svg viewBox="0 0 24 24" width={22} height={22} fill="none"
-                      stroke="currentColor" strokeWidth={1.8}
-                      strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                  </div>
+                  {/* Samma miniatyr som på /oar: öns Commons-foto, annars
+                      en ritad vinjett. Tidigare fick alla kort samma grå nål. */}
+                  {OBILDER[island.slug] ? (
+                    <div style={{
+                      width: 64, height: 48, flexShrink: 0,
+                      borderRadius: 8, overflow: 'hidden',
+                      background: `url('${commonsThumb(OBILDER[island.slug]!.url, 250)}') center/cover, linear-gradient(135deg, #1e5c82, #2d7d8a)`,
+                    }} aria-hidden="true" />
+                  ) : (
+                    <IslandThumb slug={island.slug} region={island.region} width={64} height={48} />
+                  )}
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{
                       fontSize: 14, fontWeight: 700, color: 'var(--txt)',
@@ -392,6 +400,13 @@ function IslandsView() {
           </section>
         )
       })}
+      {/* Fotograf och licens måste anges för Commons-bilderna (CC BY/BY-SA). */}
+      <div style={{ paddingTop: 20 }}>
+        <Bildkallor
+          slugs={ISLAND_SECTIONS.flatMap(sec => sec.slugs)}
+          namn={Object.fromEntries(ISLAND_SECTIONS.flatMap(sec => sec.slugs).map(sl => [sl, islandBySlug[sl]?.name ?? sl]))}
+        />
+      </div>
     </div>
   )
 }
