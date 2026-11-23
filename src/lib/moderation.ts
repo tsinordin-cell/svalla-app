@@ -77,6 +77,24 @@ export function filterText(text: string): FilterResult {
   return { flagged: matched.length > 0, matchedWords: matched }
 }
 
+/**
+ * Allvarligt innehåll: hatord och uppmaningar till självskada eller våld.
+ * Träff gör att ett foruminlägg hålls i granskningskön tills en admin godkänt
+ * det. Vanliga svordomar (fan, skit, jävla) räknas inte hit, så att vardagligt
+ * språk inte stoppar seriösa inlägg.
+ */
+const ALLVARLIGA: RegExp[] = [
+  /\b(neger|negrer|nigger|niggers|faggot|faggots)\b/i,
+  /\bkill\s+your?self\b/i,
+  /ta\s+livet\s+av\s+dig/i,
+  /döda\s+dig/i,
+  /\b(rape|våldta)/i,
+]
+
+export function arAllvarligtInnehall(...texter: Array<string | null | undefined>): boolean {
+  return texter.some(t => !!t && ALLVARLIGA.some(p => p.test(t)))
+}
+
 // ─── CRUD ────────────────────────────────────────────────────────────────────
 
 /**

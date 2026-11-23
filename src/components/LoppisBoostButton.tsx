@@ -4,7 +4,8 @@
  * Visas i ägar-vyn när annonsen INTE redan är boostad. När den är boostad
  * visas en "Boostad till YYYY-MM-DD"-pill istället.
  */
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { arIIosApp } from '@/lib/appInloggning'
 
 interface Props {
   threadId: string
@@ -15,6 +16,10 @@ interface Props {
 export default function LoppisBoostButton({ threadId, boostedUntil }: Props) {
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState('')
+  // App Store-riktlinje 3.1.1: boost är ett digitalt köp och får inte säljas
+  // via Stripe i iOS-appen. Knappen visas inte där.
+  const [iIosApp, setIIosApp] = useState(false)
+  useEffect(() => { arIIosApp().then(setIIosApp) }, [])
 
   const isBoosted = boostedUntil && new Date(boostedUntil).getTime() > Date.now()
 
@@ -62,6 +67,8 @@ export default function LoppisBoostButton({ threadId, boostedUntil }: Props) {
       </div>
     )
   }
+
+  if (iIosApp) return null
 
   return (
     <>

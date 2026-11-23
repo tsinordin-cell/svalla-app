@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
+import { startaGoogleInloggning } from '@/lib/appInloggning'
 
 type Props = {
   /** Har kontot ett lösenord? */
@@ -35,12 +36,12 @@ export default function DeleteAccountForm({ medLosenord, medGoogle, nyssInloggad
   async function loggaInIgen() {
     setError('')
     setOppnarGoogle(true)
-    const tillbaka = new URL(`${location.origin}/auth/callback`)
-    tillbaka.searchParams.set('next', '/profil/installningar/radera')
-    const { error: fel } = await createClient().auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: tillbaka.toString(), queryParams: { prompt: 'select_account' } },
+    // I appen går vägen via Safari, se lib/appInloggning.ts.
+    const { error: fel, iApp } = await startaGoogleInloggning(createClient(), {
+      next: '/profil/installningar/radera',
+      queryParams: { prompt: 'select_account' },
     })
+    if (iApp && !fel) setTimeout(() => setOppnarGoogle(false), 4000)
     if (fel) {
       setError('Det gick inte att öppna Google. Försök igen.')
       setOppnarGoogle(false)

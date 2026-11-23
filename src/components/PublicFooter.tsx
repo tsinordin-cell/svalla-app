@@ -111,6 +111,7 @@ export default function PublicFooter() {
               { href: '/blogg', label: 'Bloggen' },
               { href: '/nyhetsbrev', label: 'Nyhetsbrevet' },
               { href: '/integritetspolicy', label: 'Integritetspolicy' },
+              { href: '/anvandarvillkor', label: 'Användarvillkor' },
             ]}
           />
         </div>
@@ -143,6 +144,9 @@ export default function PublicFooter() {
             </a>
             <Link href="/integritetspolicy" style={{ color: 'inherit', textDecoration: 'none' }}>
               Integritet
+            </Link>
+            <Link href="/anvandarvillkor" style={{ color: 'inherit', textDecoration: 'none' }}>
+              Villkor
             </Link>
             <Link href="/faq" style={{ color: 'inherit', textDecoration: 'none' }}>
               FAQ

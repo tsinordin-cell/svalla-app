@@ -6,6 +6,9 @@ import SvallaLogo from '@/components/SvallaLogo'
 import { validateUsername, deriveUsername } from '@/lib/username'
 import { bekraftelseMal } from '@/lib/epostbekraftelse'
 import KollaInkorgen, { SkickaBekraftelseIgen } from '@/components/BekraftaEpost'
+import { startaGoogleInloggning, startaOAuthInloggning, appleInloggningPa } from '@/lib/appInloggning'
+import AppleInloggningKnapp from '@/components/AppleInloggningKnapp'
+import { VILLKOR_VERSION, VILLKOR_SOKVAG } from '@/lib/villkor'
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
@@ -42,13 +45,16 @@ function LoginContent() {
   // mode=ny → externa besökare/oautentiserade redirectar → visa "Skapa konto" direkt
   const [isNew,        setIsNew]        = useState(sp.get('mode') === 'ny')
   const [loading,      setLoading]      = useState(false)
-  const [oauthLoading, setOauthLoading] = useState<'google' | null>(null)
+  const [oauthLoading, setOauthLoading] = useState<'google' | 'apple' | null>(null)
   const [err,          setErr]          = useState('')
   const [msg,          setMsg]          = useState('')
   const [showPwd,      setShowPwd]      = useState(false)
   // Månadsbrevet: frivilligt och INTE förkryssat (marknadsföringslagen 19 §,
   // samtycke i förväg). Bara kontot räcker inte för att få nyhetsbrev.
   const [nyhetsbrev,   setNyhetsbrev]   = useState(false)
+  // Användarvillkoren (2026-11-22): måste godkännas för att skapa konto.
+  // App Store-riktlinje 1.2 kräver villkor för appar med användarinnehåll.
+  const [villkorOk,    setVillkorOk]    = useState(false)
   // E-postbekräftelse (2026-11-21): adressen som väntar på att bekräftas,
   // och om inloggningen nekades för att adressen inte är bekräftad.
   const [vantarPa,     setVantarPa]     = useState('')
@@ -72,17 +78,25 @@ function LoginContent() {
   /* ── OAuth ── */
   async function signInWithGoogle() {
     setOauthLoading('google'); setErr('')
-    // redirectTo måste peka på /auth/callback — den routen växlar koden mot
-    // en session och redirectar sedan vidare till "next" (returnTo eller /feed).
-    const callbackUrl = new URL(`${location.origin}/auth/callback`)
-    callbackUrl.searchParams.set('next', returnTo)
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: callbackUrl.toString(),
-        queryParams: { access_type: 'offline', prompt: 'consent' },
-      },
+    // redirectTo pekar på /auth/callback, som växlar koden mot en session och
+    // redirectar vidare till "next". I appen går vägen via Safari, se
+    // lib/appInloggning.ts.
+    const { error, iApp } = await startaGoogleInloggning(supabase, {
+      next: returnTo,
+      villkor: VILLKOR_VERSION,
+      queryParams: { access_type: 'offline', prompt: 'consent' },
     })
+    if (iApp && !error) setTimeout(() => setOauthLoading(null), 4000)
+    if (error) { setErr(mapAuthError(error.message)); setOauthLoading(null) }
+  }
+
+  async function signInWithApple() {
+    setOauthLoading('apple'); setErr('')
+    const { error, iApp } = await startaOAuthInloggning(supabase, 'apple', {
+      next: returnTo,
+      villkor: VILLKOR_VERSION,
+    })
+    if (iApp && !error) setTimeout(() => setOauthLoading(null), 4000)
     if (error) { setErr(mapAuthError(error.message)); setOauthLoading(null) }
   }
 
@@ -93,6 +107,7 @@ function LoginContent() {
 
     try {
       if (isNew) {
+        if (!villkorOk) { setErr('Du behöver godkänna användarvillkoren för att skapa ett konto.'); return }
         // Username validerades ALDRIG här tidigare — en hel e-postadress kunde
         // bli username och hamna publikt indexerad. Se src/lib/username.ts.
         if (username.trim()) {
@@ -104,7 +119,10 @@ function LoginContent() {
         const { data, error } = await supabase.auth.signUp({
           email, password,
           // Länken i bekräftelsemejlet leder hit efteråt, se lib/epostbekraftelse.ts
-          options: { data: { username: newUsername }, emailRedirectTo: mal },
+          options: {
+            data: { username: newUsername, villkor_version: VILLKOR_VERSION, villkor_godkanda: new Date().toISOString() },
+            emailRedirectTo: mal,
+          },
         })
         if (error) { setErr(mapAuthError(error.message)); return }
         if (data.user) {
@@ -284,6 +302,11 @@ function LoginContent() {
             </svg>
             {oauthLoading === 'google' ? 'Ansluter…' : 'Fortsätt med Google'}
           </button>
+          <AppleInloggningKnapp onClick={() => signInWithApple()} laddar={oauthLoading === 'apple'} disabled={!!oauthLoading} />
+          <p style={{ fontSize: 12, color: 'var(--txt3)', textAlign: 'center', margin: '-8px 0 16px', lineHeight: 1.5 }}>
+            Skapas ett nytt konto med {appleInloggningPa() ? 'Google eller Apple' : 'Google'} godkänner du{' '}
+            <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600, textDecoration: 'none' }}>användarvillkoren</a>.
+          </p>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
             <div style={{ flex: 1, height: 1, background: 'rgba(10,123,140,0.12)' }} />
@@ -333,6 +356,24 @@ function LoginContent() {
                 }
               </button>
             </div>
+            {isNew && (
+              <label htmlFor="villkor" style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13, lineHeight: 1.5, color: 'var(--txt2)', cursor: 'pointer', padding: '2px 2px 0' }}>
+                <input
+                  id="villkor"
+                  type="checkbox"
+                  required
+                  checked={villkorOk}
+                  onChange={e => setVillkorOk(e.target.checked)}
+                  style={{ marginTop: 3, width: 16, height: 16, flexShrink: 0 }}
+                />
+                <span>
+                  Jag godkänner Svallas{' '}
+                  <a href={VILLKOR_SOKVAG} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>användarvillkor</a>
+                  {' '}och har läst{' '}
+                  <a href="/integritetspolicy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--sea)', fontWeight: 600 }}>integritetspolicyn</a>.
+                </span>
+              </label>
+            )}
             {isNew && (
               <label htmlFor="nyhetsbrev" style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: 13, lineHeight: 1.5, color: 'var(--txt2)', cursor: 'pointer', padding: '2px 2px 0' }}>
                 <input

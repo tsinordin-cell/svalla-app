@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import SidHuvud from '@/components/SidHuvud'
 import PublicFooter from '@/components/PublicFooter'
+import { operatorRad } from '@/lib/villkor'
 
 export const metadata: Metadata = {
   title: 'Integritetspolicy',
@@ -27,6 +28,7 @@ export default function IntegritetspolicyPage() {
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18, marginTop: 0 }}>1. Personuppgiftsansvarig</h2>
           <p>Svalla (svalla.se) är personuppgiftsansvarig för behandlingen av dina personuppgifter. Kontakta oss på <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a> vid frågor.</p>
+          {operatorRad() && <p>{operatorRad()}</p>}
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>2. Vilka uppgifter vi samlar in</h2>
           <p>Vi samlar in följande uppgifter när du skapar ett konto eller använder Svalla:</p>

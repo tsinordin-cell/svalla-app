@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { getAdminClient } from '@/lib/supabase-admin'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { getUserForumPostCount } from '@/lib/forum'
+import { arAllvarligtInnehall } from '@/lib/moderation'
 import { sendPushToUsers } from '@/lib/push-server'
 import { extractMentions } from '@/lib/forum-mentions'
 import { hittaOmnamnda } from '@/lib/omnamnanden'
@@ -53,7 +54,8 @@ export async function POST(req: NextRequest) {
 
     // Spam-kö: om användaren har färre än 3 godkända inlägg totalt
     const approvedCount = await getUserForumPostCount(user.id)
-    const inSpamQueue   = approvedCount < 3
+    // Allvarligt innehåll (hatord, uppmaning till självskada eller våld) granskas alltid först
+    const inSpamQueue   = approvedCount < 3 || arAllvarligtInnehall(trimBody)
 
     const { data: post, error: insertError } = await supabase
       .from('forum_posts')
