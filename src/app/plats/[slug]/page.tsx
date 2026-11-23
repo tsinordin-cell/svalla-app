@@ -8,7 +8,10 @@ import Icon from '@/components/Icon'
 import PlatsMapClient from './PlatsMapClient'
 import SaveButton from './SaveButton'
 import PlaceRecentVisitors from '@/components/PlaceRecentVisitors'
-import PlatsHeroBild from './PlatsHeroBild'
+import PlatsHeroBild, { type OReserv } from './PlatsHeroBild'
+import { ALL_ISLANDS } from '@/app/o/island-data'
+import { OBILDER } from '@/app/o/obilder.generated'
+import { commonsThumb } from '@/lib/commonsBild'
 import { regionEtikett } from '@/lib/regionEtikett'
 
 const VISA_SASONG = false as boolean
@@ -147,10 +150,12 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  const googleHero = googlePhotoRef
    ? `/api/places/photo/${Buffer.from(googlePhotoRef, 'utf-8').toString('base64url')}?w=1600`
    : null
- // Google först, egen bild som reserv: Google nekar nyckeln sedan 2026-11
- // (403), och utan reserv visade toppen en trasig bild. Se PlatsHeroBild.
+ // Google först, platsens egna foton som reserv, sedan öns foto. Google
+ // nekar nyckeln sedan 2026-11 (403), och utan reserv visade toppen en
+ // trasig bild. Stockfoton visas aldrig som platsen. Se PlatsHeroBild.
  const heroKallor = [googleHero, p.images?.[0] ?? null, p.image_url]
-   .filter((u, i, alla): u is string => !!u && alla.indexOf(u) === i)
+   .filter((u, i, alla): u is string => !!u && !arStockfoto(u) && alla.indexOf(u) === i)
+ const heroReserv = oReserv(p.island)
  const typeInfo = p.type ? (TYPE_CONFIG[p.type] ?? null) : null
  const facilities = (p.facilities ?? []).filter(f => FACILITY_MAP[f])
  const tags = p.tags ?? []
@@ -162,7 +167,7 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
 
  {/* ── Hero ── */}
  <div style={{ position: 'relative', height: 300, background: 'var(--sea)', overflow: 'hidden' }}>
- <PlatsHeroBild kallor={heroKallor} alt={p.name} />
+ <PlatsHeroBild kallor={heroKallor} alt={p.name} reserv={heroReserv} />
  <div style={{
  position: 'absolute', inset: 0,
  background: 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, transparent 40%, rgba(0,0,0,0.62) 100%)',
@@ -479,6 +484,28 @@ function ctaStyle(bg: string): React.CSSProperties {
  fontSize: 13, fontWeight: 600, textDecoration: 'none',
  boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
  }
+}
+
+// Stockfoton (Unsplash) ligger som image_url på 203 platser (mätt
+// 2026-11-23, 26 olika bilder). De föreställer inte platsen.
+function arStockfoto(url: string): boolean {
+  try { return /(^|\.)unsplash\.com$/.test(new URL(url).hostname) } catch { return false }
+}
+
+function normaliseraNamn(s: string): string {
+  return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim()
+}
+
+// Öns Commons-foto när platsen saknar ett eget. Bara när namnet träffar
+// exakt en ö som har foto och namngiven fotograf.
+function oReserv(island: string | null): OReserv | null {
+  if (!island) return null
+  const namn = normaliseraNamn(island)
+  const traffar = ALL_ISLANDS.filter(i => normaliseraNamn(i.name) === namn)
+  const o = traffar.length === 1 ? traffar[0] : undefined
+  const b = o ? OBILDER[o.slug] : undefined
+  if (!o || !b || !b.fotograf) return null
+  return { url: commonsThumb(b.url, 1280), oNamn: o.name, fotograf: b.fotograf, licens: b.licens, licensUrl: b.licensUrl, kalla: b.kalla }
 }
 
 function seasonLabel(s: string): string {
