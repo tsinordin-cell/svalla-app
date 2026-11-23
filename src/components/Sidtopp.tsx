@@ -13,7 +13,7 @@
  * Sidor som själva visar SidHuvud ska inte stå här (då blir det två menyer): /guider, /guider/…,
  * /resetips/…, /dag/… och /aktivitet/[typ] har SidHuvud. /aktivitet/kajak är en egen sida utan.
  *
- * Inte här, medvetet: app-sidorna (Nav.tsx APP_PATHS: /forum, /upptack, /sok, /topplista, /rutter,
+ * Inte här, medvetet: app-sidorna (Nav.tsx APP_PATHS: /forum, /upptack, /plats/…, /sok, /topplista, /rutter,
  * /planera, /insikter …). /insikter stod här till 2026-11-22 och fick då två menyer (beslut 3). De har appens flikrad i botten. /guide (Thorkel) har eget sidhuvud med tillbaka.
  *
  * Matchning på segmentgräns som i Nav.tsx: poster som slutar på `/` är prefix.

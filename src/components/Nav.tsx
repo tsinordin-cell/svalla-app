@@ -76,7 +76,9 @@ export default function Nav() {
   // /min-skargard är bara för inloggade men saknade den; /insikter hade i stället
   // startsidans meny och två tillbakaknappar. /check-in är gömd (404) och står inte här. /onboarding står medvetet
   // utanför: ett flöde man ska gå igenom utan att ledas bort.
-  const APP_PATHS = ['/platser', '/rutter', '/feed', '/profil', '/spara', '/sparade', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide/', '/forum', '/loppis', '/insikter', '/min-skargard']
+  // 2026-11-23 (Toms ja, fixlistan nr 7): platssidorna /plats/[slug] hade bara en tillbakapil,
+  // ingen meny på mobil eller dator. De hör till Utforska och får samma meny som /upptack.
+  const APP_PATHS = ['/platser', '/plats/', '/rutter', '/feed', '/profil', '/spara', '/sparade', '/sok', '/tur/', '/u/', '/topplista', '/notiser', '/tagg/', '/upptack', '/planera', '/guide/', '/forum', '/loppis', '/insikter', '/min-skargard']
   const EXACT_PATHS = ['/logga', '/meddelanden']
 
   /**
@@ -165,7 +167,7 @@ export default function Nav() {
       href: '/upptack',
       label: 'Utforska',
       exact: false,
-      matchPaths: ['/upptack'],
+      matchPaths: ['/upptack', '/plats/'],
       icon: (active: boolean) => (
         <Icon name="compass" size={22} stroke={active ? 2.2 : 1.75} />
       ),
