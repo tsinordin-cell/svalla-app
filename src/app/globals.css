@@ -973,6 +973,11 @@ img {
   }
 }
 
+/* Platssidan /plats/[slug]: innehållsspalten. 520 px som förut upp till 1023 px,
+   bredare på dator där sidomenyn tar 220 px och spalten annars blev smal mitt i en tom yta. */
+.plats-innehall { max-width: 520px; }
+@media (min-width: 1024px) { .plats-innehall { max-width: 760px; } }
+
 /* ── Desktop nav — left sidebar ≥1024px ── */
 @media (min-width: 1024px) {
   /* Ingen bottom-nav på desktop → nollställ nav-h */

@@ -200,7 +200,8 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  </div>
  </div>
 
- <div style={{ maxWidth: 520, margin: '0 auto', padding: '20px 16px' }}>
+ {/* Bredare spalt på dator (globals.css .plats-innehall), 520 px som förut på mobil. */}
+ <div className="plats-innehall" style={{ margin: '0 auto', padding: '20px 16px' }}>
 
  {/* Action-row: spara plats */}
  <div style={{ display: 'flex', gap: 8, marginBottom: 22, flexWrap: 'wrap' }}>
