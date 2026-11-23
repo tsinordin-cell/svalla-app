@@ -373,7 +373,7 @@ export const OBILDER: Record<string, Obild> = {
     "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Vind%C3%B6_hamn_01.jpg"
   },
-  "smaadalaro": {
+  "smadalaro": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Sm%C3%A5dalar%C3%B6%2C_2016z.jpg/1280px-Sm%C3%A5dalar%C3%B6%2C_2016z.jpg",
     "bredd": 1200,
     "hojd": 872,
@@ -393,7 +393,7 @@ export const OBILDER: Record<string, Obild> = {
     "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Arbottna,_Bruksholmen,_2017.jpg"
   },
-  "adelsjo": {
+  "adelso": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Kungsh%C3%B6garna_Adels%C3%B6_48_4_September_2013_04.jpg/1280px-Kungsh%C3%B6garna_Adels%C3%B6_48_4_September_2013_04.jpg",
     "bredd": 1200,
     "hojd": 801,
@@ -443,7 +443,7 @@ export const OBILDER: Record<string, Obild> = {
     "licensUrl": "https://creativecommons.org/licenses/by/2.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:DIMG_9996_(5891696241).jpg"
   },
-  "ormsko": {
+  "ormskar": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Ormsk%C3%A4rs_kummel.jpg/1280px-Ormsk%C3%A4rs_kummel.jpg",
     "bredd": 1200,
     "hojd": 900,
@@ -463,7 +463,7 @@ export const OBILDER: Record<string, Obild> = {
     "licensUrl": "https://creativecommons.org/licenses/by-sa/4.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Norrpada_pelarorden_4.jpg"
   },
-  "graskar": {
+  "grasko": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Gr%C3%A4sk%C3%B6huset.jpg/1280px-Gr%C3%A4sk%C3%B6huset.jpg",
     "bredd": 1200,
     "hojd": 798,
@@ -633,7 +633,7 @@ export const OBILDER: Record<string, Obild> = {
     "licensUrl": "https://creativecommons.org/licenses/by-sa/3.0",
     "kalla": "https://commons.wikimedia.org/wiki/File:Svartl%C3%B6ga,_sj%C3%B6bodar.jpg"
   },
-  "visingo": {
+  "visingso": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Brahekyrkan_view01.jpg/1280px-Brahekyrkan_view01.jpg",
     "bredd": 1200,
     "hojd": 1037,

@@ -113,7 +113,10 @@ export default function PlaneraNyClient() {
 
  function HarborButton({ d }: { d: Departure }) {
    const isSelected = selected?.id === d.id
-   const isDisabled = d.id === disabledId
+   // Granskningen 2026-11-23: hamnar utan sjöförbindelse gick att välja och gav
+   // en rutt som inte kan ritas. De syns kvar, med märket, men går inte att välja.
+   const utanSjoväg = isLandlocked(d)
+   const isDisabled = d.id === disabledId || utanSjoväg
    const km = fromDep && !isDisabled
      ? Math.round(haversineKm(fromDep.lat, fromDep.lng, d.lat, d.lng))
      : null
@@ -122,7 +125,7 @@ export default function PlaneraNyClient() {
    //   sluss  — sträckan är farbar, men slussning går inte att rita som sjöled
    //   insjö  — ingen farbar förbindelse till skärgården alls
    const märke: { text: string; ikon: 'info' | 'warning' } | null =
-     isLandlocked(d) ? { text: 'Ingen sjöförbindelse', ikon: 'warning' }
+     utanSjoväg ? { text: 'Ingen sjöförbindelse', ikon: 'warning' }
      : fromDep && !isDisabled && requiresLock(fromDep, d) ? { text: 'Slussning krävs', ikon: 'info' }
      : null
 
@@ -131,6 +134,7 @@ export default function PlaneraNyClient() {
        key={d.id}
        onClick={() => !isDisabled && onSelect(d)}
        disabled={isDisabled}
+       aria-pressed={isSelected}
        style={{
          padding: '12px 14px', borderRadius: 14,
          border: isSelected ? 'none' : '1px solid rgba(10,123,140,0.12)',
@@ -240,6 +244,7 @@ export default function PlaneraNyClient() {
  else if (step === 'end') setStep('start')
  else if (step === 'interests') setStep('end')
  }}
+ aria-label={step === 'start' ? 'Tillbaka till Planera' : 'Föregående steg'}
  style={{ width: 34, height: 34, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
  >
  <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 16, height: 16 }}>
@@ -315,6 +320,7 @@ export default function PlaneraNyClient() {
  <button
  onClick={() => { setStartDep(endDep); setEndDep(startDep) }}
  title="Byt riktning"
+ aria-label="Byt riktning"
  style={{ flexShrink: 0, width: 30, height: 30, borderRadius: '50%', border: '1px solid rgba(10,123,140,0.15)', background: 'var(--bg)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
  >
  <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 14, height: 14 }}>
@@ -335,6 +341,7 @@ export default function PlaneraNyClient() {
  <button
  key={i.value}
  onClick={() => toggleInterest(i.value)}
+ aria-pressed={interests.includes(i.value)}
  style={{
  padding: '14px', borderRadius: 14, cursor: 'pointer', textAlign: 'left',
  border: interests.includes(i.value) ? 'none' : '1px solid rgba(10,123,140,0.12)',

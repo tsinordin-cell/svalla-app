@@ -14,7 +14,7 @@
  * /resetips/…, /dag/… och /aktivitet/[typ] har SidHuvud. /aktivitet/kajak är en egen sida utan.
  *
  * Inte här, medvetet: app-sidorna (Nav.tsx APP_PATHS: /forum, /upptack, /sok, /topplista, /rutter,
- * /planera …). De har appens flikrad i botten. /guide (Thorkel) har eget sidhuvud med tillbaka.
+ * /planera, /insikter …). /insikter stod här till 2026-11-22 och fick då två menyer (beslut 3). De har appens flikrad i botten. /guide (Thorkel) har eget sidhuvud med tillbaka.
  *
  * Matchning på segmentgräns som i Nav.tsx: poster som slutar på `/` är prefix.
  * Ny publik sida utan eget sidhuvud: lägg till den här.
@@ -29,7 +29,7 @@ import TillbakaRad from '@/components/TillbakaRad'
 const MENY = [
   '/ai-guide', '/dag', '/helgturer', '/hyra-bat', '/oppet-nu', '/sasong', '/statistik', '/ta-dig-till',
   '/teambuilding', '/upplevelser', '/goteborg', '/goteborg/', '/bohuslan/',
-  '/aktivitet/kajak', '/aland/aventyr', '/gotland/aventyr', '/oland/aventyr', '/insikter', '/jamfor', '/ostlistan',
+  '/aktivitet/kajak', '/aland/aventyr', '/gotland/aventyr', '/oland/aventyr', '/jamfor', '/ostlistan',
   '/sasong/', '/segelkurs/', '/hyra-bat/', '/teambuilding/',
 ]
 // Sidor som redan har en egen tillbakalänk högst upp (t.ex. "← Aktiviteter"): ingen extra rad där.

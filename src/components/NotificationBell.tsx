@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { timeAgoShort } from '@/lib/utils'
 import Icon, { type IconName } from '@/components/Icon'
 import { oNamn } from '@/lib/oNamn'
+import { RAKNARE_STIL, TOPPKNAPP_STIL } from '@/components/toppradStil'
 
 type Notif = {
  id: string
@@ -21,7 +22,7 @@ type Notif = {
 const TYPE_LABEL: Record<string, string> = {
  like: 'gillade din tur',
  comment: 'kommenterade din tur',
- follow: 'börjar följa dig',
+ follow: 'började följa dig',
  tag: 'taggade dig i en tur',
  mention: 'nämnde dig',
  forum_reply: 'svarade i din forumtråd',
@@ -83,6 +84,8 @@ export default function NotificationBell() {
  .from('notifications')
  .select('id, type, read, created_at, trip_id, reference_id, related_island_slug, actor_id')
  .eq('user_id', uid)
+ // Tom 2026-11-23: meddelanden har egen ikon med räknare, så de visas inte bland notiserna.
+ .neq('type', 'message')
  .order('created_at', { ascending: false })
  .limit(20)
 
@@ -192,27 +195,14 @@ export default function NotificationBell() {
  aria-label={unread > 0 ? `${unread} olästa notiser` : 'Notiser'}
  aria-expanded={open}
  className="press-feedback"
- style={{
- width: 38, height: 38, borderRadius: '50%',
- background: 'rgba(10,123,140,0.08)',
- border: 'none', cursor: 'pointer',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- position: 'relative', flexShrink: 0,
- }}
+ style={{ ...TOPPKNAPP_STIL, border: 'none', cursor: 'pointer' }}
  >
- <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
- <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
- </svg>
+ {/* 2026-11-23 (menyförslaget): Lucides klocka från Icon.tsx, 44 px tryckyta, räknare 11 px. */}
+ <Icon name="bell" size={20} stroke={2} />
  {unread > 0 && (
- <div style={{
- position: 'absolute', top: 4, right: 4,
- width: 16, height: 16, borderRadius: '50%',
- background: 'var(--acc-knapp)', border: '2px solid var(--bg)',
- display: 'flex', alignItems: 'center', justifyContent: 'center',
- fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
- }}>
+ <span style={RAKNARE_STIL}>
  {unread > 9 ? '9+' : unread}
- </div>
+ </span>
  )}
  </button>
 

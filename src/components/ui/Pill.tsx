@@ -45,6 +45,8 @@ const Pill: React.FC<PillProps> = ({ active = false, children, style, className,
   return (
     <button
       type="button"
+      // Granskningen 2026-11-23: skärmläsare fick inte veta vilket filter som var valt.
+      aria-pressed={active}
       className={className}
       style={{
         ...base,

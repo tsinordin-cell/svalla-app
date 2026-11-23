@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import NotificationBell from '@/components/NotificationBell'
 import { createClient, getViewer } from '@/lib/supabase'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
@@ -242,6 +243,11 @@ export default function MeddelandenPage() {
             }}>
               Meddelanden
             </h1>
+            {/* 2026-11-23 (menyförslaget): notiserna nås härifrån också, som på övriga
+                huvudsidor. Döljs från 1024 px där sidomenyn har Notiser. */}
+            <div className="app-topbar-atgarder" style={{ display: 'flex' }}>
+              <NotificationBell />
+            </div>
             {/* Nytt meddelande pill */}
             <Link href="/meddelanden/ny" style={{
               display: 'flex', alignItems: 'center', gap: 6,
@@ -576,7 +582,9 @@ function ConvRow({ c, me, isLast }: { c: ConvRow; me: string; isLast: boolean })
 function SegTab({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
     <button
+      type="button"
       onClick={onClick}
+      aria-pressed={active}
       style={{
         flex: 1, height: '100%',
         border: 'none', cursor: 'pointer',

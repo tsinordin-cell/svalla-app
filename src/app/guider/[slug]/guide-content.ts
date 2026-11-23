@@ -6065,7 +6065,7 @@ export function getGuideContent(slug: string): string {
 <!-- KÄLLA: https://www.haninge.se/uppleva-och-gora/besok-och-upplev-haninge/platser-att-besoka/dalaro/ — "Dalarö är en charmig skärgårdsort och en populär utgångspunkt för att upptäcka Haninges öar." (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.sfv.se/vara-fastigheter/sverige/stockholms-lan/fastningar/dalaro-skans/ — "Dalarö har genom flera århundraden varit en viktig försvarsposition för det södra inloppet mot Stockholm." (läst 2026-09-28) -->
 <!-- KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — "839 Rudsjöterrassen–Dalarö (–Smådalarö)"; "Endast vissa turer." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Dalarö ligger i Haninge kommun vid det södra inloppet till Stockholm. Haninge kommun beskriver Dalarö som en utgångspunkt för att upptäcka Haninges öar, till exempel <a href="/o/orno">Ornö</a>, <a href="/o/uto">Utö</a> och Fjärdlång. Buss 839 fortsätter på vissa turer från Dalarö till <a href="/o/smaadalaro">Smådalarö</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Dalarö ligger i Haninge kommun vid det södra inloppet till Stockholm. Haninge kommun beskriver Dalarö som en utgångspunkt för att upptäcka Haninges öar, till exempel <a href="/o/orno">Ornö</a>, <a href="/o/uto">Utö</a> och Fjärdlång. Buss 839 fortsätter på vissa turer från Dalarö till <a href="/o/smadalaro">Smådalarö</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Hur tar man sig till Dalarö från Stockholm?</h2>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Buss 839 och 869 med SL</h3>
@@ -10143,7 +10143,7 @@ Nästa år, 2027, blir den första onsdagen i augusti den 4 augusti. Tänk på a
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Nyårspaket 2026"; "Meny kommer inom kort." (läst 2026-11-02) -->
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "Övernattning"; "Nyårsdrink med tilltugg i Bloms Bar"; "Fyrarätters nyårssmiddag"; "Eldkorgar & ljushow"; "Ett glas mousserande vid 12-slaget"; "Vickning i Bloms bar"; "Frukostbuffé" (läst 2026-09-28) -->
 <!-- KÄLLA: https://www.smadalarogard.se/erbjudanden/sasongens-paket/nyarspaket/ — "vi bjuder på en stämningsfull ljusshow med utsikt mot Hemviken"; "Adress Smådalarö Gård AB, 137 70 Dalarö" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smådalarö Gård Hotell &amp; Spa utanför <a href="/o/dalaro">Dalarö</a> har publicerat ett nyårspaket för nyår 2026. I paketet ingår enligt hotellet övernattning, nyårsdrink med tilltugg i Bloms Bar, en fyrarätters nyårsmiddag, eldkorgar och en ljusshow med utsikt mot Hemviken, ett glas mousserande vid tolvslaget, vickning och frukostbuffé. Menyn var ännu inte publicerad i början av november 2026, hotellet skriver att den kommer inom kort. Läs mer om ön på <a href="/o/smaadalaro">Smådalarö</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smådalarö Gård Hotell &amp; Spa utanför <a href="/o/dalaro">Dalarö</a> har publicerat ett nyårspaket för nyår 2026. I paketet ingår enligt hotellet övernattning, nyårsdrink med tilltugg i Bloms Bar, en fyrarätters nyårsmiddag, eldkorgar och en ljusshow med utsikt mot Hemviken, ett glas mousserande vid tolvslaget, vickning och frukostbuffé. Menyn var ännu inte publicerad i början av november 2026, hotellet skriver att den kommer inom kort. Läs mer om ön på <a href="/o/smadalaro">Smådalarö</a>.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Marholmen i Roslagen: bokningen för nyår 2026 är öppen</h3>
 <!-- KÄLLA: https://marholmen.se/nyarsfirande/ — "BOKNINGEN ÄR ÖPPEN!"; "ge 2027 en magisk start" (läst 2026-11-02) -->
@@ -12318,7 +12318,7 @@ Läs mer i <a href="/guider/ostronstangning-bohuslan">guiden om ostron i Bohusl�
 <!-- KÄLLA: https://www.smadalarogard.se/hotellet/aktiviteter/traning/yoga/ — "Träningen utförs i vår Yoga Shala Minerva eller ute på spaverandan när vädret tillåter."; "Hos oss är både hotellgäster och besökande välkomna att delta på vår yoga."; "För att garantera din plats på ett av våra yogapass måste du förboka din plats"; "Välkommen på vår Yin Yoga på söndagar" (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Vill du ha yoga utan att boka ett helt retreat har Smådalarö Gård yogapass i sin yogasal Shala Minerva, eller ute på spaverandan när vädret tillåter. Både hotellgäster och besökare får vara med, men du måste förboka din plats. Hotellet har yinyoga på söndagar.</p>
 <!-- KÄLLA: https://smadalarogard.se/hotellet/kontakt-hitta-hit/ — "Du når oss med buss 839 som går från Haninge Centrum hela vägen till vår grind."; "Med bil når du Smådalarö Gård Hotell & Spa på 50 min från Stockholm city." (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Smådalarö Gård går buss 839 från Haninge centrum ända fram till grinden. Med bil tar det enligt hotellet 50 minuter från Stockholm city. Mer om området finns på sidan om <a href="/o/smaadalaro">Smådalarö</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Till Smådalarö Gård går buss 839 från Haninge centrum ända fram till grinden. Med bil tar det enligt hotellet 50 minuter från Stockholm city. Mer om området finns på sidan om <a href="/o/smadalaro">Smådalarö</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Spa i Stockholms skärgård</h2>
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smådalarö Gård</h3>
@@ -20302,7 +20302,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Smådalarö Gård: vegetarisk varmrätt</h3>
 <!-- KÄLLA: https://www.smadalarogard.se/restauranger/brasserie-branneri/middagsmeny/ — "Brasserie & Bränneri är ett skärgårdsbrasserie som serverar mat och dryck efter säsong."; "vi samarbetar med flera gårdar i närområdet"; "Vår vegetariska varmrätt med svenska baljväxter, karljohansvamp, shiitake, brysselkål & brynt grädde" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/smaadalaro">Smådalarö</a> serverar Smådalarö Gårds Brasserie &amp; Bränneri mat efter säsong och samarbetar med gårdar i närområdet. Middagsmenyn har en vegetarisk varmrätt med svenska baljväxter, karljohansvamp, shiitake och brysselkål. Den serveras med brynt grädde och är alltså vegetarisk men inte vegansk.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">På <a href="/o/smadalaro">Smådalarö</a> serverar Smådalarö Gårds Brasserie &amp; Bränneri mat efter säsong och samarbetar med gårdar i närområdet. Middagsmenyn har en vegetarisk varmrätt med svenska baljväxter, karljohansvamp, shiitake och brysselkål. Den serveras med brynt grädde och är alltså vegetarisk men inte vegansk.</p>
 
 <h3 style="font-size:18px;font-weight:700;color:var(--sea);margin:20px 0 10px">Rökeriet på Fjäderholmarna: veganskt julbord</h3>
 <!-- KÄLLA: https://www.rokeriet-fjaderholmarna.se/julbord — "Vi erbjuder även vegetariska och veganska alternativ"; "Julbordet hålls från 20 november till 20 december 2026" (läst 2026-09-28) -->
@@ -21064,7 +21064,7 @@ och midsommardagen lördag 20 juni. Mer om firandet i <a href="/guider/midsommar
 <!-- KÄLLA: https://www.smadalarogard.se/spa/ — "3 olika bastur - ångbastu, torrbastu & ett sanarium"; "Entré till spa bokas med slottider om tre timmar:"; "*På lördagar kan daggäster endast boka 08.00-11.00, övriga tider är reserverade för våra hotellgäster." (läst 2026-09-28) -->
 <p style="font-size:16px;line-height:1.8;color:var(--txt2)">Smådalarö Gård Hotell &amp; Spa har tre bastur i spaet: ångbastu, torrbastu och ett sanarium. Entrén bokas i pass om tre timmar, och på lördagar kan daggäster bara boka det första passet på dagen. Tiderna står på smadalarogard.se.</p>
 <!-- KÄLLA: https://www.smadalarogard.se/hotellet/kontakt-hitta-hit/ — "Du når oss med buss 839 som går från Haninge Centrum hela vägen till vår grind."; "Anländer du med båt finns möjlighet att lägga till i vår Gästhamn" (läst 2026-09-28) -->
-<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Buss 839 går från Haninge centrum till Smådalarö Gårds grind, och den som kommer med båt kan lägga till i gårdens gästhamn. Se <a href="/o/smaadalaro">Smådalarö</a>.</p>
+<p style="font-size:16px;line-height:1.8;color:var(--txt2)">Buss 839 går från Haninge centrum till Smådalarö Gårds grind, och den som kommer med båt kan lägga till i gårdens gästhamn. Se <a href="/o/smadalaro">Smådalarö</a>.</p>
 
 <h2 style="font-size:22px;font-weight:800;color:var(--sea);margin:32px 0 16px">Bastuflotte i skärgården: flottar att hyra</h2>
 

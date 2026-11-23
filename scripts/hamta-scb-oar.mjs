@@ -39,7 +39,7 @@ const KOPPLING = {
   fejan: ['0188Q112', 'Norrtälje'],
   gallno: ['0120Q107', 'Värmdö'],
   gotland: ['0980Q101', 'Gotland'],
-  graskar: ['0188Q106', 'Norrtälje'],
+  grasko: ['0188Q106', 'Norrtälje'],
   grinda: ['0120Q115', 'Värmdö'],
   gullholmen: ['1421Q105', 'Orust'],
   hano: ['1083Q101', 'Sölvesborg'],
@@ -69,7 +69,7 @@ const KOPPLING = {
   ulvon: ['2284Q101', 'Örnsköldsvik', 'Norra Ulvön'],
   uto: ['0136Q102', 'Haninge'],
   ven: ['1282Q101', 'Landskrona'],
-  visingo: ['0680Q101', 'Jönköping'],
+  visingso: ['0680Q101', 'Jönköping'],
   vrango: ['1480Q105', 'Göteborg'],
   yxlan: ['0188Q102', 'Norrtälje'],
 }

@@ -522,7 +522,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Buss från Slussen ända fram. Vindö nås över broar via Värmdö.',
   },
-  smaadalaro: {
+  smadalaro: {
     // 88 min, 1 byten, uppmätt 2026-08-05
     destStopId: '740020173', destStopName: 'Smådalarö',
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
@@ -534,7 +534,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
     note: 'Pendeltåg till Ösmo och buss genom Muskötunneln.',
   },
-  adelsjo: {
+  adelso: {
     // 108 min, 2 byten, uppmätt 2026-08-05
     destStopId: '740070750', destStopName: 'Lilla Stenby Norrängsvägen',
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
@@ -633,7 +633,7 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',
     note: 'Buss från Slussen ända fram. Djurö nås över broar via Värmdö.',
   },
-  graskar: {
+  grasko: {
     // Uppmätt 2026-09-28 med /api/transit/stop-lookup: Gräskö brygga ligger 564 m från
     // Lantmäteriets ortnamnspunkt. Provresa från Stockholm: buss 676 och 634 via
     // Norrtälje, sista biten med färja linje 28. Tidigare stod ön felaktigt som
@@ -715,7 +715,7 @@ export const ISLAND_NO_TRANSIT: Record<string, string> = {
   'svenska-hogarna': 'ingen hållplats inom 5 km',
   'huvudskar': 'ingen hållplats inom 5 km',
   'hasselo': 'närmaste hållplats (Lökholmen, 4865 m) kunde inte knytas till ön',
-  'ormsko': 'närmaste hållplats (Kalkberget (Nämdö) brygga, 2969 m) kunde inte knytas till ön',
+  'ormskar': 'närmaste hållplats (Kalkberget (Nämdö) brygga, 2969 m) kunde inte knytas till ön',
   'norrpada': 'ingen hållplats inom 5 km',
   'langviksskaret': 'ingen hållplats inom 5 km',
   'storholmen': 'närmaste hållplats (Långvik (Runmarö) brygga, 2752 m) kunde inte knytas till ön',

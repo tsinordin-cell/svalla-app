@@ -2,21 +2,45 @@ import { createPublicSupabaseClient } from '@/lib/supabase-server'
 import type { Tour } from '@/lib/supabase'
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { ISLANDS } from '@/app/o/island-data'
+import { ISLANDS, ANTAL_OAR } from '@/app/o/island-data'
 import { SEED_FERRY_ROUTES, fetchDeparturesResult, operatorWebbplats, visaBryggnamn, type FerryRoute } from '@/lib/ferries'
 import RutterVyer from './RutterVyer'
 import { ogSida } from '@/lib/og-standard'
 
 // ── Öar-sektioner (matchar /oar) ──────────────────────────────────────────
+// 2026-11-22 (beslut 4, Toms ja): listorna följer nu öarnas region i
+// island-data, som /oar redan använder, och källorna där:
+// - Kymmendö till Södra: ön ligger i Haninge kommun (haninge.se, Kymmendö), och
+//   /oar och ösidan har den redan under Södra ("i södra skärgården").
+// - Huvudskär till Södra: Skärgårdsstiftelsen, "en ögrupp i Stockholms södra
+//   skärgård" (skargardsstiftelsen.se/omraden/, läst 2026-11-22).
+// - Grinda och Finnhamn från Innerskärgården till Mellersta: Skärgårdsstiftelsen,
+//   "Stora Kalholmen ligger mellan Finnhamn och Möja i den mellersta skärgården"
+//   (samma sida); ösidorna säger mellanskärgården.
+// - Långviksskär från Södra till Mellersta: Länsstyrelsen Stockholm, reservatet
+//   "ligger i Värmdö kommuns ytterskärgård". Långskär från Norra till Mellersta:
+//   Naturvårdsverket, Natura 2000-området Bullerö-Bytta omfattar Bullerö, Långskär
+//   och Långviksskär, och Bullerö står redan under Mellersta.
+// - Birka och Adelsö från Mellersta till egen grupp Mälaren: Länsstyrelsen
+//   Stockholm, Björkö naturreservat "ligger på Björkö i Mälaren"; Lantmäteriet,
+//   Björkö i Ekerö. Adelsöfärjan går från Ekerö (SL).
+// - Norrpada från Mellersta till Norra (2026-11-22, Toms ja): Skärgårdsstiftelsen,
+//   https://skargardsstiftelsen.se/omraden/norrpada/ — "tillsammans bildar ett av
+//   norra skärgårdens mest omtyckta båtområden" (läst 2026-11-22); Länsstyrelsen
+//   Stockholm: "15 kilometer sydost om Kapellskär", "Kommun: Norrtälje". Så står
+//   den redan på /oar och på ösidan.
+// - Fjäderholmarna, Vaxholm, Rindö och Resarö från Innerskärgården till Mellersta,
+//   Svenska Högarna från Mellersta till Norra (2026-11-22, Toms val "Följ
+//   ösidorna"). OBS: ingen myndighets- eller operatörskälla placerar dessa fem i
+//   norra/mellersta/innerskärgården (sökt hos Länsstyrelsen, Skärgårdsstiftelsen,
+//   Waxholmsbolaget, Blidösundsbolaget, Vaxholms stad, Norrtälje kommun). Fliken
+//   följer bara öarnas egna sidor och /oar. Svenska Högarna: Länsstyrelsen säger
+//   "ögrupp i Norrtälje kommun" och "ytterskärgård", inget mer.
+// - Askö från Södra till egen grupp Sörmlands skärgård (2026-11-23, Toms ja):
+//   Länsstyrelsen Södermanland, https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html
+//   — "Askö är en stor ö i Södermanlands skärgård.", "Kommun: Trosa" (läst
+//   2026-09-27, källan står redan på ösidan). Ön ligger utanför Stockholms län.
 const ISLAND_SECTIONS = [
-  {
-    id: 'inner',
-    label: 'Innerskärgården',
-    color: 'var(--sea)',
-    bg: 'rgba(30,92,130,0.07)',
-    description: 'De närmaste öarna: lätta att nå, perfekta för en dag.',
-    slugs: ['fjaderholmarna', 'vaxholm', 'grinda', 'finnhamn', 'rindo', 'resaro'],
-  },
   {
     id: 'mellersta',
     label: 'Mellersta skärgården',
@@ -24,11 +48,11 @@ const ISLAND_SECTIONS = [
     bg: 'rgba(10,123,140,0.07)',
     description: 'Det klassiska skärgårdslivet: Sandhamn, Möja och öarna däremellan.',
     slugs: [
-      'sandhamn', 'moja', 'ljustero', 'gallno', 'ingmarso', 'namdo', 'svartso',
-      'runmaro', 'husaro', 'kymmendo', 'bullero', 'vindo', 'ingaro', 'hasselo',
-      'svenska-hogarna', 'huvudskar', 'ekno', 'ormsko', 'norrpada',
-      'storholmen', 'storskar',
-      'birka', 'adelsjo'], // 2026-10-21: bjorko → birka (sammanslagen)
+      'fjaderholmarna', 'vaxholm', 'rindo', 'resaro',
+      'sandhamn', 'moja', 'grinda', 'finnhamn', 'ljustero', 'gallno', 'ingmarso',
+      'namdo', 'svartso', 'runmaro', 'husaro', 'bullero', 'vindo', 'ingaro',
+      'hasselo', 'ekno', 'ormskar', 'langviksskaret', 'langskar',
+      'storholmen', 'storskar'],
   },
   {
     id: 'södra',
@@ -37,8 +61,8 @@ const ISLAND_SECTIONS = [
     bg: 'rgba(42,110,80,0.07)',
     description: 'Vilda klippor, öppet hav och Utö. Den dramatiska södra skärgården.',
     slugs: [
-      'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'asko', 'galo', 'toro',
-      'fjardlang', 'smaadalaro', 'morko', 'musko', 'langviksskaret'],
+      'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'galo', 'toro',
+      'fjardlang', 'smadalaro', 'morko', 'musko', 'kymmendo', 'huvudskar'],
   },
   {
     id: 'norra',
@@ -48,8 +72,23 @@ const ISLAND_SECTIONS = [
     description: 'Orörda öar, höga klippor och en av Europas ovanligaste mötesplatser.',
     slugs: [
       'arholma', 'furusund', 'blido', 'norrora', 'fejan', 'rodloga', 'singo',
-      'lido', 'graddo', 'vaddo', 'yxlan', 'graskar',
-      'langskar'],
+      'lido', 'graddo', 'vaddo', 'yxlan', 'grasko', 'norrpada', 'svenska-hogarna'],
+  },
+  {
+    id: 'malaren',
+    label: 'Mälaren',
+    color: 'var(--sea)',
+    bg: 'rgba(30,92,130,0.07)',
+    description: 'Birka och Adelsö: öarna i Mälaren, väster om Stockholm.',
+    slugs: ['birka', 'adelso'],
+  },
+  {
+    id: 'sormland',
+    label: 'Sörmlands skärgård',
+    color: 'var(--sea)',
+    bg: 'rgba(30,92,130,0.07)',
+    description: 'Askö i Trosa kommun, i Södermanlands skärgård.',
+    slugs: ['asko'],
   }]
 
 const islandBySlug = Object.fromEntries(ISLANDS.map(i => [i.slug, i]))
@@ -255,6 +294,17 @@ async function FerriesView() {
 function IslandsView() {
   return (
     <div style={{ maxWidth: 960, margin: '0 auto', padding: '12px 16px 100px' }}>
+      {/* Granskningen 2026-11-23: fliken sa 55 öar och /oar 134 utan förklaring.
+          Fliken visar Stockholms skärgård, Mälaren och Sörmland; /oar hela landet. */}
+      <Link href="/oar" prefetch={false} style={{
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
+        marginTop: 12, padding: '12px 14px', borderRadius: 14, textDecoration: 'none',
+        background: 'rgba(10,123,140,0.07)', color: 'var(--sea)', fontSize: 13, fontWeight: 600,
+        minHeight: 44,
+      }}>
+        <span>Här visas öarna runt Stockholm, i Mälaren och i Sörmland. Alla {ANTAL_OAR} öar i Sverige finns på Öar.</span>
+        <span aria-hidden="true">→</span>
+      </Link>
       {ISLAND_SECTIONS.map(section => {
         const islands = section.slugs.map(s => islandBySlug[s]).filter((x): x is NonNullable<typeof x> => !!x)
         if (!islands.length) return null

@@ -12,7 +12,9 @@
  * 2026-10-26: /tur/[id] har dela- och mer-knapparna i samma hörn; klockorna låg
  * ovanpå dem och över texten när man skrollade.
  */
-export const SIDOR_MED_EGNA_KLOCKOR = ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/', '/sok', '/upptack']
+// 2026-11-22: /insikter har Dela-knappen i samma hörn, så ikonerna skulle ligga ovanpå den.
+// 2026-11-23 (menyförslaget): /topplista har nu toppraden AppTopBar med samma knappar.
+export const SIDOR_MED_EGNA_KLOCKOR = ['/feed', '/rutter', '/platser', '/profil', '/forum', '/u/', '/sok', '/upptack', '/insikter', '/topplista']
 
 function matchar(path: string, p: string): boolean {
   return p.endsWith('/') ? path.startsWith(p) : path === p || path.startsWith(p + '/')

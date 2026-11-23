@@ -52,7 +52,7 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'svenska-hogarna',   name: 'Svenska Högarna',   lat: 59.4431, lng: 19.5024, radiusKm: 2.5 },
   { slug: 'huvudskar',         name: 'Huvudskär',         lat: 58.9630, lng: 18.5683, radiusKm: 2.0 },
   { slug: 'ekno',              name: 'Eknö',              lat: 59.3087, lng: 18.8676, radiusKm: 2.0 },
-  { slug: 'ormsko',            name: 'Ormskär',           lat: 59.1701, lng: 18.7509, radiusKm: 1.5 },
+  { slug: 'ormskar',            name: 'Ormskär',           lat: 59.1701, lng: 18.7509, radiusKm: 1.5 },
   { slug: 'norrpada',          name: 'Norrpada',          lat: 59.6544, lng: 19.2748, radiusKm: 1.5 },
   { slug: 'storholmen',        name: 'Storholmen',        lat: 59.2803, lng: 18.8090, radiusKm: 1.5 },
   // RÄTTAD 2026-09-28. Låg på 59.6075, 19.2519 vid Rödlöga, 24 km fel. Länsstyrelsen:
@@ -66,7 +66,7 @@ export const ISLAND_COORDS: IslandCoord[] = [
   // 59.3254, 17.5615. Nominatim ger 59.3256, 17.5664 för samma ö — källorna
   // skiljer 280 m, vilket ryms i radien.
   { slug: 'birka',             name: 'Birka',             lat: 59.3254, lng: 17.5615, radiusKm: 2.0 }, // 2026-10-21: hette bjorko/Björkö; posten är ihopslagen med Birka
-  { slug: 'adelsjo',           name: 'Adelsö',            lat: 59.3768, lng: 17.5006, radiusKm: 2.0 },
+  { slug: 'adelso',           name: 'Adelsö',            lat: 59.3768, lng: 17.5006, radiusKm: 2.0 },
 
   // ── Södra skärgården ─────────────────────────────────────────────────────
   { slug: 'uto',               name: 'Utö',               lat: 58.9375, lng: 18.2562, radiusKm: 3.0 },
@@ -78,7 +78,7 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'galo',              name: 'Galö',              lat: 59.0884, lng: 18.2664, radiusKm: 2.0 },
   { slug: 'toro',              name: 'Torö',              lat: 58.8246, lng: 17.8414, radiusKm: 3.0 },
   { slug: 'fjardlang',         name: 'Fjärdlång',         lat: 59.0463, lng: 18.5226, radiusKm: 2.0 },
-  { slug: 'smaadalaro',        name: 'Smådalarö',         lat: 59.1662, lng: 18.4525, radiusKm: 2.0 },
+  { slug: 'smadalaro',        name: 'Smådalarö',         lat: 59.1662, lng: 18.4525, radiusKm: 2.0 },
   { slug: 'morko',             name: 'Mörkö',             lat: 58.9847, lng: 17.6597, radiusKm: 3.5 },
   { slug: 'musko',             name: 'Muskö',             lat: 58.9958, lng: 18.1149, radiusKm: 3.5 },
   // RÄTTAD 2026-08-05. Låg på 59.3200, 18.9900. Overpass hittar 127 öar inom
@@ -101,10 +101,10 @@ export const ISLAND_COORDS: IslandCoord[] = [
   { slug: 'vaddo',             name: 'Väddö',             lat: 60.0037, lng: 18.8310, radiusKm: 5.0 },
   { slug: 'yxlan',             name: 'Yxlan',             lat: 59.6167, lng: 18.8532, radiusKm: 2.5 },
   // RÄTTAD 2026-09-28. Raden hette "Gräskar" och låg på 59.4811, 18.9993 vid Möja,
-  // 22 km fel, men ösidan /o/graskar handlar om Gräskö i Norrtälje kommun.
+  // 22 km fel, men ösidan /o/grasko handlar om Gräskö i Norrtälje kommun.
   // Lantmäteriets ortnamn "Gräskö" (Norrtälje) SWEREF99 TM 6622776/726531 = 59.6812, 19.0243;
   // Trafiklabs hållplats Gräskö brygga ligger 564 m därifrån.
-  { slug: 'graskar',           name: 'Gräskö',            lat: 59.6812, lng: 19.0243, radiusKm: 2.0 },
+  { slug: 'grasko',           name: 'Gräskö',            lat: 59.6812, lng: 19.0243, radiusKm: 2.0 },
   // RÄTTAD 2026-09-28. Låg på 59.7065, 19.4005 i Norrtäljes ytterskärgård, 65 km fel.
   // Ösidan handlar om Långskärs naturreservat i Värmdö kommun (Länsstyrelsen).
   // Lantmäteriets ortnamn "Långskär" (Värmdö) SWEREF99 TM 6566842/720013 = 59.1835, 18.8514,

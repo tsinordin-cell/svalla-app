@@ -18,7 +18,7 @@ export const STAGES: Stage[] = [
   { n: 0, name: 'Grunden', value: 'Bygget', tagline: 'Produkten, innehållet och faktan på plats.' },
   { n: 1, name: 'Bevis', value: '1 MSEK', tagline: 'Någon betalar. Någon läser varje månad.' },
   { n: 2, name: 'Fäste', value: '3 MSEK', tagline: 'Återkommande intäkt och bevisad tillväxt.' },
-  { n: 3, name: 'Marknadsledare', value: '5 MSEK', tagline: 'Sveriges samlade skärgårdssida. Exit 2028 till 2029.' },
+  { n: 3, name: 'Marknadsledare', value: '5 MSEK', tagline: 'Skärgården börjar här. Exit 2028 till 2029.' },
 ]
 
 export const EXIT_GOAL = { range: '3 till 5 MSEK', year: '2028 till 2029' }

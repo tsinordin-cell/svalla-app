@@ -932,6 +932,26 @@ img {
   display: none;
 }
 
+/* ── 2026-11-23 (menyförslaget): sidomenyns extra rader och toppradens knappar ──
+   Sök, Meddelanden och Notiser finns i sidomenyn bara från 1024 px. Under det
+   ligger de i toppraden (AppTopBar) eller i den fasta raden uppe till höger. */
+.nav-desktop-extra {
+  display: none;
+}
+.nav-raknare {
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--acc-knapp, #b5591a);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
 /* ── Tooltip / inline badge fade ── */
 @keyframes badgePop {
   0%   { transform: scale(0.7); opacity: 0; }
@@ -1067,6 +1087,27 @@ img {
   }
   .nav-fab-wrap:active .nav-fab-desktop {
     transform: scale(0.98);
+  }
+  /* 2026-11-23 (menyförslaget): Logga tur först i sidomenyn, sedan flikarna,
+     sedan Sök, Meddelanden och Notiser. Ikonraden uppe till höger behövs inte här. */
+  .nav-fab-wrap { order: -1; }
+  .nav-tab-ikon {
+    width: auto !important;
+    height: auto !important;
+    background: transparent !important;
+  }
+  .nav-desktop-extra {
+    display: flex !important;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(10,123,140,0.08);
+  }
+  .nav-klockor,
+  .app-topbar-atgarder,
+  .app-topbar--dold-desktop {
+    display: none !important;
   }
   /* Profile tab pushed to bottom of sidebar */
   .nav-inner > :last-child {

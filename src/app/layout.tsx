@@ -32,7 +32,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Svalla | Sveriges samlade skärgårdssida',
+    default: 'Svalla | Skärgården börjar här',
     template: '%s | Svalla',
   },
   // Meta description = "underrubriken" under titeln i Googles resultat. PR #173
@@ -52,20 +52,20 @@ export const metadata: Metadata = {
     locale: 'sv_SE',
     url: 'https://svalla.se',
     siteName: 'Svalla',
-    title: 'Svalla | Sveriges samlade skärgårdssida',
+    title: 'Svalla | Skärgården börjar här',
     description: 'Allt om svenska öar: öprofiler, restauranger, aktiviteter och ruttplanering för skärgårdsresan.',
     images: [
       {
         url: '/opengraph-image',
         width: 1200,
         height: 630,
-        alt: 'Svalla | Sveriges samlade skärgårdssida',
+        alt: 'Svalla | Skärgården börjar här',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Svalla | Sveriges samlade skärgårdssida',
+    title: 'Svalla | Skärgården börjar här',
     description: 'Allt om svenska öar: öprofiler, restauranger, aktiviteter och ruttplanering för skärgårdsresan.',
     images: ['/opengraph-image'],
   },
@@ -141,7 +141,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               alternateName: 'Svalla.se',
               url: 'https://svalla.se',
               logo: 'https://svalla.se/icon-512.png',
-              description: 'Sveriges samlade skärgårdssida. Öar, restauranger, hamnar, båttider och ruttplanering längs hela kusten, från Bohuslän till Höga kusten.',
+              description: 'Skärgården börjar här. Öar, restauranger, hamnar, båttider och ruttplanering längs hela kusten, från Bohuslän till Höga kusten.',
               foundingDate: '2025',
               areaServed: { '@type': 'Country', name: 'Sweden' },
               inLanguage: 'sv-SE',
@@ -165,7 +165,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               '@id': 'https://svalla.se/#website',
               url: 'https://svalla.se',
               name: 'Svalla',
-              description: 'Sveriges samlade skärgårdssida',
+              description: 'Skärgården börjar här',
               publisher: { '@id': 'https://svalla.se/#organization' },
               potentialAction: {
                 '@type': 'SearchAction',

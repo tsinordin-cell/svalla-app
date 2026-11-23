@@ -1,4 +1,5 @@
 'use client'
+import FlodeFlikar from '@/components/FlodeFlikar'
 import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
 import Link from 'next/link'
 import { Sparkles } from '@/components/icons/LucideIcons'
@@ -119,15 +120,8 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
 
   return (
     <>
-      {/* ── Flöde / Forum tab-rad ── */}
-      <div style={{ display: 'flex', borderBottom: '1.5px solid rgba(10,123,140,0.08)', marginBottom: 16 }}>
-        <div style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--sea)', borderBottom: '2px solid var(--sea)', marginBottom: -1.5 }}>
-          Flöde
-        </div>
-        <Link href="/forum" style={{ flex: 1, textAlign: 'center', padding: '11px 8px 9px', fontSize: 13, fontWeight: 700, color: 'var(--txt3)', textDecoration: 'none', display: 'block' }}>
-          Forum
-        </Link>
-      </div>
+      {/* ── Flöde / Forum / Topplista ── (menyförslaget 2026-11-23) */}
+      <FlodeFlikar aktiv="flode" marginBottom={16} />
 
       {/* ── Filters — sort pills + en båttyp-chip som öppnar sheet ── */}
       <div style={{ marginBottom: 16 }}>
@@ -148,7 +142,9 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
           <Pill
             active={boatFilter !== 'alla'}
             onClick={() => setShowBoatSheet(true)}
-            aria-label="Filtrera båttyp"
+            aria-label={boatFilter === 'alla' ? 'Filtrera båttyp' : `Filtrera båttyp, vald: ${activeBoat.label}`}
+            aria-pressed={undefined}
+            aria-haspopup="dialog"
           >
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
               {boatFilter !== 'alla' && activeBoat.icon}
@@ -195,6 +191,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
                 <button
                   key={f.value}
                   onClick={() => { setBoatFilter(f.value); setShowBoatSheet(false) }}
+                  aria-pressed={boatFilter === f.value}
                   style={{
                     padding: '9px 16px', borderRadius: 22,
                     border: `1.5px solid ${boatFilter === f.value ? 'var(--sea)' : 'rgba(10,123,140,0.15)'}`,

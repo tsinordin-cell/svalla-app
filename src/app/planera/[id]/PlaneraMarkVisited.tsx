@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase'
 import { analytics } from '@/lib/analytics'
 import { setPendingAction, takePendingAction } from '@/lib/pendingAction'
 import Icon from '@/components/Icon'
+import { GAMLA_SLUGS, slugVarianter } from '@/lib/gamlaSlugs'
 
 /**
  * "Markera öarna som besökta" (2026-09-28, ruttplanerarens nästa steg).
@@ -46,8 +47,8 @@ export default function PlaneraMarkVisited({ routeId, slugs, names }: { routeId:
       // Alla redan besökta? Visa det i stället för knappen.
       const { data } = await supabase
         .from('visited_islands').select('island_slug')
-        .eq('user_id', user.id).in('island_slug', slugs)
-      const have = new Set((data ?? []).map(r => r.island_slug as string))
+        .eq('user_id', user.id).in('island_slug', slugs.flatMap(slugVarianter))
+      const have = new Set((data ?? []).map(r => { const s = r.island_slug as string; return GAMLA_SLUGS[s] ?? s }))
       if (slugs.every(s => have.has(s))) { setState('done'); takePendingAction('mark_route_visited', routeId); return }
       // Kom hon tillbaka från registreringen? Då gör vi det hon tryckte på.
       if (takePendingAction('mark_route_visited', routeId)) await markAll(user.id)

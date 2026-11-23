@@ -9,6 +9,8 @@
  * bygget om en ö läggs till, tas bort eller byter namn utan att listan följer
  * med. Uppdatera då raden här för hand.
  */
+import { GAMLA_SLUGS } from './gamlaSlugs'
+
 export const O_NAMN: Readonly<Record<string, string>> = {
   "sandhamn": "Sandhamn",
   "uto": "Utö",
@@ -91,18 +93,18 @@ export const O_NAMN: Readonly<Record<string, string>> = {
   "kymmendo": "Kymmendö",
   "bullero": "Bullerö",
   "vindo": "Vindö",
-  "smaadalaro": "Smådalarö",
+  "smadalaro": "Smådalarö",
   "morko": "Mörkö",
   "musko": "Muskö",
-  "adelsjo": "Adelsö",
+  "adelso": "Adelsö",
   "ingaro": "Ingarö",
   "svenska-hogarna": "Svenska Högarna",
   "huvudskar": "Huvudskär",
   "ekno": "Eknö",
   "hasselo": "Hasselö",
-  "ormsko": "Ormskär",
+  "ormskar": "Ormskär",
   "norrpada": "Norrpada",
-  "graskar": "Gräskö",
+  "grasko": "Gräskö",
   "langviksskaret": "Långviksskär",
   "storholmen": "Storholmen",
   "langskar": "Långskär",
@@ -130,7 +132,7 @@ export const O_NAMN: Readonly<Record<string, string>> = {
   "trysunda": "Trysunda",
   "hano": "Hanö",
   "svartloga": "Svartlöga",
-  "visingo": "Visingsö",
+  "visingso": "Visingsö",
   "ven": "Ven",
   "tjaro": "Tjärö",
   "ockero": "Öckerö",
@@ -158,5 +160,5 @@ export const O_NAMN: Readonly<Record<string, string>> = {
 
 /** Önamnet för en slug, eller sluggen själv om ön är okänd. */
 export function oNamn(slug: string): string {
-  return O_NAMN[slug] ?? slug
+  return O_NAMN[GAMLA_SLUGS[slug] ?? slug] ?? slug
 }

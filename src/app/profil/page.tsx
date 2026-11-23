@@ -7,69 +7,16 @@ import type { Trip, User } from '@/lib/supabase'
 import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from '@/components/Toast'
-import NotificationBell from '@/components/NotificationBell'
-import MessageBell from '@/components/MessageBell'
-import { useTheme, type Theme, type Lang } from '@/components/ThemeProvider'
+import AppTopBar from '@/components/AppTopBar'
 import { ACHIEVEMENTS, computeUnlocked, calcStreak } from '@/lib/achievements'
 import { validateUsername } from '@/lib/username'
 import EmptyState from '@/components/EmptyState'
 import { isProEnabled } from '@/lib/pro'
 import FollowListButton from '@/components/FollowListSheet'
 import ProfileForumSubscriptions from '@/components/ProfileForumSubscriptions'
-import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy, Home, Sun, Moon, SunMoon } from '@/components/icons/LucideIcons'
+import { Camera, Pencil, Flame, Eye, Globe, Lock, Award, Sparkles, FolderOpen, MessageCircle, BarChart2, Trophy } from '@/components/icons/LucideIcons'
 import { IconAnchor, IconCompass, IconSailboat } from '@/components/icons/SvallaIcons'
 import Icon from '@/components/Icon'
-import LogoutConfirm from '@/components/LogoutConfirm'
-
-// ── Settings ─────────────────────────────────────────────────────────────────
-function SettingsSection() {
-  const { theme, setTheme, lang, setLang } = useTheme()
-  const pill = (active: boolean): React.CSSProperties => ({
-    padding: '8px 16px', borderRadius: 20, cursor: 'pointer', border: 'none',
-    fontFamily: 'inherit', fontSize: 13, fontWeight: active ? 600 : 500,
-    transition: 'all 0.15s',
-    background: active ? 'var(--grad-sea)' : 'rgba(10,123,140,0.07)',
-    color: active ? '#fff' : 'var(--txt2)',
-    boxShadow: active ? '0 2px 8px rgba(30,92,130,0.25)' : 'none',
-  })
-  const themes = [
-    { val: 'auto'  as Theme, label: 'Auto',  icon: <SunMoon size={13} /> },
-    { val: 'light' as Theme, label: 'Ljust',  icon: <Sun size={13} /> },
-    { val: 'dark'  as Theme, label: 'Mörkt',  icon: <Moon size={13} /> },
-  ]
-  const langs: { val: Lang; label: string; flag: string }[] = [
-    { val: 'sv', label: 'Svenska', flag: '🇸🇪' },
-    { val: 'en', label: 'English', flag: '🇬🇧' },
-  ]
-  return (
-    <div style={{ background: 'var(--white)', borderRadius: 18, padding: '18px 16px', marginTop: 12, boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-      <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 14 }}>Inställningar</div>
-      <div style={{ marginBottom: 14 }}>
-        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Tema</p>
-        <div style={{ display: 'flex', gap: 6 }}>
-          {themes.map(t => (
-            <button key={t.val} onClick={() => setTheme(t.val)} style={pill(theme === t.val)}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>{t.icon} {t.label}</span>
-            </button>
-          ))}
-        </div>
-      </div>
-      <div>
-        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: '0 0 8px' }}>Språk</p>
-        <div style={{ display: 'flex', gap: 6 }}>
-          {langs.map(l => <button key={l.val} onClick={() => setLang(l.val)} style={pill(lang === l.val)}>{l.flag} {l.label}</button>)}
-        </div>
-      </div>
-      {/* Radera konto: sidan fanns men saknade länk (granskningen 2026-11-19). */}
-      <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid rgba(10,123,140,0.10)' }}>
-        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--txt)', margin: '0 0 4px' }}>Konto</p>
-        <Link href="/profil/installningar/radera" style={{ display: 'inline-flex', alignItems: 'center', minHeight: 44, fontSize: 13, color: 'var(--txt2)', textDecoration: 'underline' }}>
-          Radera mitt konto
-        </Link>
-      </div>
-    </div>
-  )
-}
 
 // ── Edit sheet ────────────────────────────────────────────────────────────────
 const VESSEL_TYPES = ['Segelbåt', 'Motorbåt', 'RIB', 'Katamaran', 'Segeljolle', 'Kajak', 'SUP', 'Annat']
@@ -332,8 +279,6 @@ export default function ProfilPage() {
   const [editing,        setEditing]        = useState(false)
   const [followersCount, setFollowersCount] = useState(0)
   const [followingCount, setFollowingCount] = useState(0)
-  const [signOutOpen,    setSignOutOpen]    = useState(false)
-  const [signingOut,     setSigningOut]     = useState(false)
   const [showAllBadges,  setShowAllBadges]  = useState(false)
 
   useEffect(() => {
@@ -358,12 +303,6 @@ export default function ProfilPage() {
     }
     load()
   }, []) // eslint-disable-line
-
-  async function performSignOut() {
-    setSigningOut(true)
-    await supabase.auth.signOut()
-    router.push('/logga-in')
-  }
 
   if (loading) {
     return (
@@ -402,36 +341,10 @@ export default function ProfilPage() {
         <EditSheet user={user} onClose={() => setEditing(false)} onSaved={updated => { setUser(updated); setEditing(false) }} />
       )}
 
-      <LogoutConfirm
-        open={signOutOpen}
-        busy={signingOut}
-        onCancel={() => { if (!signingOut) setSignOutOpen(false) }}
-        onConfirm={performSignOut}
-      />
-
-      {/* ── Sticky header ── */}
-      <header style={{
-        display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px',
-        background: 'var(--header-bg, var(--glass-96))',
-        backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(10,123,140,0.10)',
-        position: 'sticky', top: 0, zIndex: 50,
-      }}>
-        <span style={{ fontSize: 17, fontWeight: 600, color: 'var(--sea)' }}>{user?.username ?? 'Profil'}</span>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
-          <MessageBell />
-          <NotificationBell />
-          <button onClick={() => setEditing(true)} style={{ background: 'rgba(10,123,140,0.08)', border: 'none', fontSize: 12, color: 'var(--sea)', cursor: 'pointer', fontWeight: 600, padding: '7px 14px', borderRadius: 20, display: 'inline-flex', alignItems: 'center', gap: 5 }}>
-            <Pencil size={12} /> Redigera
-          </button>
-          <Link href="/" aria-label="Till startsidan" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 34, height: 34, borderRadius: '50%', background: 'rgba(10,123,140,0.10)', color: 'var(--sea)', textDecoration: 'none', flexShrink: 0 }}>
-            <Home size={16} />
-          </Link>
-          <button onClick={() => setSignOutOpen(true)} style={{ background: 'none', border: 'none', fontSize: 12, color: 'var(--txt3)', cursor: 'pointer', fontWeight: 600, padding: '7px 8px' }}>
-            Logga ut
-          </button>
-        </div>
-      </header>
+      {/* ── Sticky header ── 2026-11-23 (menyförslaget): gemensam topprad. Kugghjulet
+          leder till /profil/installningar med tema, språk, konto och Logga ut.
+          Redigera ligger nu vid avataren. Huset till startsidan är borta. */}
+      <AppTopBar titel={user?.username ?? 'Profil'} variant="profil" />
 
       {/* ── Cover hero ── */}
       <div style={{
@@ -476,6 +389,11 @@ export default function ProfilPage() {
                 <span style={{ fontSize: 9, fontWeight: 600, color: 'rgba(255,255,255,0.75)' }}>v</span>
               </div>
             )}
+            {user && (
+              <button onClick={() => setEditing(true)} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 5, minHeight: 32 }}>
+                <Pencil size={12} /> Redigera
+              </button>
+            )}
             {user?.username && (
               <Link href={`/u/${encodeURIComponent(user.username)}`} style={{ padding: '6px 12px', borderRadius: 12, border: '1.5px solid rgba(10,123,140,0.2)', background: 'var(--white)', fontSize: 12, color: 'var(--sea)', fontWeight: 700, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 5 }}>
                 <Eye size={12} /> Min sida
@@ -497,7 +415,7 @@ export default function ProfilPage() {
             {u?.nationality && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px' }}>{u.nationality}</span>}
             {u?.vessel_type && !u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><IconSailboat size={12} /> {u.vessel_type}</span>}
             {u?.vessel_name && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><IconSailboat size={12} /> {u.vessel_name}{u.vessel_model ? ` · ${u.vessel_model}` : ''}</span>}
-            {u?.home_port && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Home size={12} /> {u.home_port}</span>}
+            {u?.home_port && <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--txt2)', background: 'rgba(10,123,140,0.07)', borderRadius: 20, padding: '4px 10px', display: 'inline-flex', alignItems: 'center', gap: 4 }}><Icon name="anchor" size={12} stroke={2} /> {u.home_port}</span>}
           </div>
         </div>
 
@@ -907,8 +825,23 @@ export default function ProfilPage() {
         {/* ── Trådar du följer ── */}
         {user?.id && <ProfileForumSubscriptions userId={user.id} />}
 
-        {/* ── Settings ── */}
-        <SettingsSection />
+        {/* ── Inställningar ── 2026-11-23 (menyförslaget): tema, språk, konto och
+            Logga ut ligger på /profil/installningar, bakom kugghjulet i toppraden.
+            Raden här gör att de går att hitta även utan att känna igen kugghjulet. */}
+        <Link href="/profil/installningar" style={{
+          display: 'flex', alignItems: 'center', gap: 12, marginTop: 12, padding: '14px 16px', minHeight: 56,
+          background: 'var(--white)', borderRadius: 18, boxShadow: '0 1px 8px rgba(0,45,60,0.07)',
+          textDecoration: 'none', color: 'var(--txt)',
+        }}>
+          <span style={{ width: 36, height: 36, borderRadius: 12, background: 'var(--teal-12)', color: 'var(--sea)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+            <Icon name="settings" size={18} stroke={2} />
+          </span>
+          <span style={{ flex: 1, minWidth: 0 }}>
+            <span style={{ display: 'block', fontSize: 14, fontWeight: 600 }}>Inställningar</span>
+            <span style={{ display: 'block', fontSize: 12, color: 'var(--txt3)', marginTop: 2 }}>Tema, språk, konto och Logga ut</span>
+          </span>
+          <Icon name="chevronRight" size={18} stroke={2} style={{ color: 'var(--txt3)' }} />
+        </Link>
       </div>
     </div>
   )
