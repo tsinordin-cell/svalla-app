@@ -20,7 +20,7 @@ import SnabbSok, { hamtaSokindex, type Post } from './SnabbSok'
 import { platsKategori } from '@/lib/platskategori'
 
 type Poi = { id: string; name: string; latitude: number; longitude: number; type: string | null; categories: string[] | null; description: string | null; image_url: string | null; slug: string | null; island: string | null }
-type Kat = 'o' | 'krog' | 'hamn' | 'naturhamn' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'annat'
+type Kat = 'o' | 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'annat'
 type Punkt = { id: string; namn: string; lat: number; lng: number; kat: Kat; under: string; bild?: string; href?: string }
 
 /** Samma indelning som /upptack (src/lib/platskategori.ts), plus öarna. */
@@ -29,6 +29,7 @@ const kategori = (p: Poi): Kat => platsKategori(p)
 const KAT: Record<Kat, { namn: string; farg: string; ikon: string }> = {
   o:         { namn: 'Öar',         farg: '#1e5c82', ikon: '<path d="M2 19h20"/><path d="M4 19c1-4 4-7 8-7s7 3 8 7"/><path d="M12 12V5"/><path d="M12 5c-2-1-4-.5-5 1 2-.5 3.5 0 5 1 1.5-1 3-1.5 5-1-1-1.5-3-2-5-1Z"/>' },
   krog:      { namn: 'Krogar och caféer', farg: '#c96e2a', ikon: '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>' },
+  butik:     { namn: 'Butiker',     farg: '#b42318', ikon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>' },
   hamn:      { namn: 'Gästhamnar',  farg: '#1d4ed8', ikon: '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>' },
   naturhamn: { namn: 'Naturhamnar', farg: '#0a7b3c', ikon: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>' },
   boende:    { namn: 'Boende',      farg: '#6d28d9', ikon: '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>' },
@@ -37,7 +38,7 @@ const KAT: Record<Kat, { namn: string; farg: string; ikon: string }> = {
   bensin:    { namn: 'Sjömackar',   farg: '#525252', ikon: '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>' },
   annat:     { namn: 'Övrigt',      farg: '#0891b2', ikon: '<path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>' },
 }
-const ORDNING: Kat[] = ['o', 'krog', 'hamn', 'naturhamn', 'boende', 'bad', 'bastu', 'bensin', 'annat']
+const ORDNING: Kat[] = ['o', 'krog', 'butik', 'hamn', 'naturhamn', 'boende', 'bad', 'bastu', 'bensin', 'annat']
 
 const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!))
 const ikonSvg = (k: Kat, farg: string, storlek: number) =>
