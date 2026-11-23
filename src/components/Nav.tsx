@@ -122,6 +122,8 @@ export default function Nav() {
       .select('id', { count: 'exact', head: true })
       .eq('user_id', userId)
       .eq('read', false)
+      // Tom 2026-11-23: meddelanden har egen ikon med räknare, så de visas inte bland notiserna.
+      .neq('type', 'message')
       .then(({ count }) => { if (aktiv) setOlastaNotiser(count ?? 0) })
     return () => { aktiv = false }
   }, [userId, showNav, path])
