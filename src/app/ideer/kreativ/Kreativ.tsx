@@ -55,14 +55,14 @@ function Segelbat({ farg = NAVY, skrov, vinka = true }: { farg?: string; skrov?:
   )
 }
 
-function Del({ nr, id, rubrik, forebild, varfor, children }: { nr: string; id: string; rubrik: string; forebild: React.ReactNode; varfor: string; children: React.ReactNode }) {
+function Del({ nr, id, rubrik, forebild, varfor, children }: { nr: string; id: string; rubrik: string; forebild?: React.ReactNode; varfor: string; children: React.ReactNode }) {
   return (
     <section className="kr-del" id={id}>
       <div className="kr-skylt">
         <span className="kr-nr">{nr}</span>
         <div>
           <h2>{rubrik}</h2>
-          <p className="kr-fore">Förebild: {forebild}</p>
+          {forebild && <p className="kr-fore">Förebild: {forebild}</p>}
           <p className="kr-varfor">{varfor}</p>
         </div>
       </div>
@@ -515,7 +515,7 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
         <Partnersida foton={foton} />
       </Del>
 
-      <Del nr="7" id="scen" rubrik="Startscenen: alternativ till startsidans animering" forebild={<>startbilden på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="Samma stil som introt i del 1, tänkt som startbild. Havet stiger, båten seglar in och en ö med stuga och brygga, en fyr och en färja växer fram. På var sida om båten sitter en knapp: en till turplaneringen och en för den som vill samarbeta med Svalla. Öarna, boendet, krogarna och kartan finns redan i menyn ovanför, så de upprepas inte här. I förgrunden går en krabba på en kobbe. Ön, fyren och färjan är påhittade och föreställer ingen verklig plats.">
+      <Del nr="7" id="scen" rubrik="Startscenen: alternativ till startsidans animering" varfor="Samma stil som introt i del 1, tänkt som startbild. Havet stiger, båten seglar in och en ö med stuga och brygga, en fyr och en färja växer fram. På var sida om båten sitter en knapp: en till turplaneringen och en för den som vill samarbeta med Svalla. Öarna, boendet, krogarna och kartan finns redan i menyn ovanför, så de upprepas inte här. I förgrunden går en krabba på en kobbe. Ön, fyren och färjan är påhittade och föreställer ingen verklig plats.">
         <ScenDel />
       </Del>
 
