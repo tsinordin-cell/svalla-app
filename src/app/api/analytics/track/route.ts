@@ -51,6 +51,9 @@ const KNOWN_EVENTS = new Set([
   'julkalender_klick', 'julkalender_lucka_visad', 'julkalender_lucka_oppnad', 'julkalender_delad',
   // Nytt 2026-11-16: frågor till Thorkel (längd och sida, ingen text)
   'thorkel_fraga',
+  // Nytt 2026-11-23: Thorkels välkomstruta och startsidans Thorkel (ForstaBesok,
+  // ThorkelHero). Skickades sedan 2026-11-15 men avvisades här, så inget sparades.
+  'forsta_besok',
 ])
 
 const MAX_PROPS_BYTES = 4096

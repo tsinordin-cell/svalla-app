@@ -69,7 +69,7 @@ export default function IslandNavAuth({ islandSlug }: { islandSlug: string }) {
           "Har redan konto? Logga in". */}
       {/* prefetch={false}: ösidorna ska inte förladda inloggningssidan för
           varje utloggad besökare, de flesta klickar aldrig på länkarna. */}
-      <Link href={`/logga-in?returnTo=${returnTo}`} className="o-nav-login" prefetch={false} style={{
+      <Link href={`/logga-in?returnTo=${returnTo}&mode=login`} className="o-nav-login" prefetch={false} style={{
         color: 'rgba(255,255,255,0.85)', fontSize: 12, fontWeight: 600, textDecoration: 'none', whiteSpace: 'nowrap',
       }}>
         Logga in

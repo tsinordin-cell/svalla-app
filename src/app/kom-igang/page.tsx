@@ -11,6 +11,8 @@ import KollaInkorgen from '@/components/BekraftaEpost'
 import { startaGoogleInloggning, startaOAuthInloggning, appleInloggningPa } from '@/lib/appInloggning'
 import AppleInloggningKnapp from '@/components/AppleInloggningKnapp'
 import { VILLKOR_VERSION, VILLKOR_SOKVAG } from '@/lib/villkor'
+import { track } from '@/lib/analytics-events'
+import { sattHarKontoKaka } from '@/lib/kontoLage'
 
 /* ─────────────────────────────────────────────────────────────────────────────
  /kom-igang — Premium onboarding flow
@@ -224,6 +226,10 @@ function KomIgangInner() {
  if (error) { setErr(swErr(error.message)); setLoading(false); return }
 
  if (data.user) {
+ // Webbläsaren har nu ett konto (lib/kontoLage.ts). identities tom = adressen
+ // fanns redan; då räknas ingen ny registrering.
+ sattHarKontoKaka()
+ if ((data.user.identities?.length ?? 1) > 0) track('user_signup', { method: 'email', fran: '/kom-igang' })
  await supabase.from('users').upsert({
  id: data.user.id,
  username: derivedUsername,

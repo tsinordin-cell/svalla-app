@@ -9,6 +9,8 @@ import KollaInkorgen, { SkickaBekraftelseIgen } from '@/components/BekraftaEpost
 import { startaGoogleInloggning, startaOAuthInloggning, appleInloggningPa } from '@/lib/appInloggning'
 import AppleInloggningKnapp from '@/components/AppleInloggningKnapp'
 import { VILLKOR_VERSION, VILLKOR_SOKVAG } from '@/lib/villkor'
+import { track } from '@/lib/analytics-events'
+import { startlage, harHaftKonto, kaknamnIWebblasaren, skapaKontoRad, franSokvag, sattHarKontoKaka } from '@/lib/kontoLage'
 
 const inputStyle: React.CSSProperties = {
   width: '100%', padding: '14px 16px', borderRadius: 14, boxSizing: 'border-box',
@@ -42,8 +44,14 @@ function LoginContent() {
   const [email,        setEmail]        = useState('')
   const [password,     setPassword]     = useState('')
   const [username,     setUsername]     = useState('')
-  // mode=ny → externa besökare/oautentiserade redirectar → visa "Skapa konto" direkt
-  const [isNew,        setIsNew]        = useState(sp.get('mode') === 'ny')
+  // Skapa konto eller Logga in först? Se lib/kontoLage.ts (2026-11-23): en
+  // webbläsare som aldrig haft ett konto och kommer från en knapp (returnTo,
+  // t.ex. Spara eller Thorkel) får "Skapa konto". Sidan renderas bara i
+  // webbläsaren (useSearchParams + Suspense), så kakorna går att läsa här.
+  const [isNew,        setIsNew]        = useState(() => startlage(
+    { mode: sp.get('mode'), existing: sp.get('existing'), returnTo: rawReturnTo },
+    harHaftKonto(kaknamnIWebblasaren()),
+  ) === 'ny')
   const [loading,      setLoading]      = useState(false)
   const [oauthLoading, setOauthLoading] = useState<'google' | 'apple' | null>(null)
   const [err,          setErr]          = useState('')
@@ -126,6 +134,14 @@ function LoginContent() {
         })
         if (error) { setErr(mapAuthError(error.message)); return }
         if (data.user) {
+          // Webbläsaren har nu ett konto: nästa besök på /logga-in visar inloggning.
+          sattHarKontoKaka()
+          // identities tom = adressen fanns redan (Supabase svarar då utan fel
+          // för att inte avslöja konton). Räkna bara riktigt nya konton.
+          if ((data.user.identities?.length ?? 1) > 0) {
+            const fran = franSokvag(rawReturnTo)
+            track('user_signup', { method: 'email', ...(fran ? { fran } : {}) })
+          }
           // Icke-blockerande — databasen har trigger för detta
           supabase.from('users').upsert({
             id:       data.user.id,
@@ -172,6 +188,7 @@ function LoginContent() {
           }
           return
         }
+        sattHarKontoKaka()
         // Icke-blockerande — trigger hanterar users-raden. Säkerställer bara att
         // raden finns: ignoreDuplicates, annars skrev varje inloggning över ett
         // användarnamn som ändrats i profilen (revision 2026-10-02).
@@ -254,7 +271,7 @@ function LoginContent() {
         </div>
 
         <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', margin: 0, fontWeight: 500, letterSpacing: '0.3px' }}>
-          {isNew ? 'Skapa konto och börja logga turer' : 'Din skärgårdslogg i fickan'}
+          {isNew ? skapaKontoRad(rawReturnTo) : 'Din skärgårdslogg i fickan'}
         </p>
 
         {/* Horisont-linje */}
