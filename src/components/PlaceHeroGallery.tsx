@@ -4,7 +4,8 @@
  *
  * - Visar 2-3 bilder samtidigt på desktop, ~1 på mobile
  * - Native scroll-snap för smooth swipe (mouse wheel + touch fungerar utan JS)
- * - Pilar för pek-och-klick navigation (scrollar 1 bild i taget)
+ * - Pilar för pek-och-klick navigation (scrollar 1 bild i taget), på dator
+ *   bara när musen är över bilderna, på pekskärm inte alls
  * - Pilar göms när vi nått första/sista bilden
  * - Ingen border-radius på bilderna — sömlös rad
  *
@@ -107,7 +108,7 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', background: 'var(--bg)' }}>
+    <div className="phg" style={{ position: 'relative', width: '100%', background: 'var(--bg)' }}>
       {/* Carousel-scroller */}
       <div
         ref={scrollerRef}
@@ -162,10 +163,10 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
           type="button"
           aria-label="Föregående bild"
           onClick={() => scrollByOne(-1)}
-          className="phg-arrow phg-arrow--left"
+          className="bild-knapp phg-arrow phg-arrow--left"
         >
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
-            stroke="var(--txt)" strokeWidth={2.4}
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth={2.4}
             strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <polyline points="15 18 9 12 15 6"/>
           </svg>
@@ -176,31 +177,20 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
           type="button"
           aria-label="Nästa bild"
           onClick={() => scrollByOne(1)}
-          className="phg-arrow phg-arrow--right"
+          className="bild-knapp phg-arrow phg-arrow--right"
         >
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none"
-            stroke="var(--txt)" strokeWidth={2.4}
+          <svg viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth={2.4}
             strokeLinecap="round" strokeLinejoin="round" aria-hidden>
             <polyline points="9 18 15 12 9 6"/>
           </svg>
         </button>
       )}
 
-      {/* Räknare nere till höger på första bilden */}
+      {/* Räknare nere till höger. Liten, och på mobil ovanför infokortet
+          (kortet lyfts 28 px upp över bilden och dolde räknaren förut). */}
       {photos.length > 1 && (
-        <div style={{
-          position: 'absolute',
-          right: 14, bottom: 14,
-          padding: '6px 12px',
-          borderRadius: 999,
-          background: 'rgba(0,0,0,0.55)',
-          backdropFilter: 'blur(8px)',
-          color: '#fff',
-          fontSize: 12,
-          fontWeight: 700,
-          letterSpacing: '0.02em',
-          pointerEvents: 'none',
-        }}>
+        <div className="phg-raknare">
           {photos.length} bilder
         </div>
       )}
@@ -232,34 +222,40 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
           }
         }
 
-        .phg-arrow {
+        /* Pilarna har samma stil som övriga bildknappar (.bild-knapp).
+           På dator syns de bara när musen är över bilderna. På pekskärm
+           göms de: där sveper man, och nästa bild sticker fram i kanten. */
+        .phg .phg-arrow {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          background: rgba(255,255,255,0.95);
-          border: none;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          box-shadow: 0 4px 16px rgba(0,30,45,0.20);
-          transition: transform 120ms ease, background 120ms ease;
           z-index: 3;
+          opacity: 0;
         }
-        .phg-arrow:hover {
-          background: #fff;
-          transform: translateY(-50%) scale(1.06);
+        .phg:hover .phg-arrow,
+        .phg-arrow:focus-visible { opacity: 1; }
+        .phg .phg-arrow--left  { left: 14px; }
+        .phg .phg-arrow--right { right: 14px; }
+        @media (hover: none) {
+          .phg .phg-arrow { display: none; }
         }
-        .phg-arrow--left  { left: 14px; }
-        .phg-arrow--right { right: 14px; }
 
+        .phg-raknare {
+          position: absolute;
+          right: 14px; bottom: 14px;
+          padding: 3px 9px;
+          border-radius: 999px;
+          background: rgba(0, 30, 45, 0.52);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          color: #fff;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
+          pointer-events: none;
+        }
         @media (max-width: 719px) {
-          .phg-arrow { width: 38px; height: 38px; }
-          .phg-arrow--left  { left: 10px; }
-          .phg-arrow--right { right: 10px; }
+          .phg-raknare { bottom: 40px; }
         }
       `}</style>
     </div>

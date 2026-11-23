@@ -978,6 +978,28 @@ img {
 .plats-innehall { max-width: 520px; }
 @media (min-width: 1024px) { .plats-innehall { max-width: 760px; } }
 
+/* ── Runda knappar ovanpå bilder (platssidans bildgalleri) ──
+   2026-11-23 (Tom: "kladdigt ... klumpigt"): tillbaka, dela, spara och bildpilar
+   hade fyra olika stilar. Nu en stil: lika stora runda, halvgenomskinligt mörka
+   knappar med vit ikon. */
+.bild-knapp {
+  width: 40px; height: 40px; padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0, 30, 45, 0.52);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 120ms ease, opacity 150ms ease;
+}
+.bild-knapp:hover { background: rgba(0, 30, 45, 0.72); }
+.bild-knapp:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.bild-knapp svg { width: 18px; height: 18px; }
+
 /* ── Desktop nav — left sidebar ≥1024px ── */
 @media (min-width: 1024px) {
   /* Ingen bottom-nav på desktop → nollställ nav-h */
