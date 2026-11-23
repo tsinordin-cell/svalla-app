@@ -843,7 +843,7 @@ const CSS = `
 .ki-scen{position:relative;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(13,36,64,.14);aspect-ratio:16/9;min-height:380px;touch-action:pan-y}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
-.ki-fram{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity 1s .8s}
+.ki-fram{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 1s .8s}
 .ki-fram.syns{opacity:1}
 .ki-f-kobbe{position:absolute;left:1.5%;bottom:0;width:14%;height:auto;transform:translateY(35%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
 .ki-fram.syns .ki-f-kobbe{transform:translateY(0)}
