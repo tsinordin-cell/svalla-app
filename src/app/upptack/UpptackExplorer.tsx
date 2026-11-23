@@ -628,6 +628,35 @@ export default function UpptackExplorer() {
     return () => { cancelled = true }
   }, [pois, isAllMode, activeCats, query, kartaKlar])
 
+  // ── Sök: flytta kartan till träffarna om ingen syns ───────────────────
+  // Utan detta ser en sökning på t.ex. "Utö" ut som en tom karta när träffen
+  // ligger utanför vyn. Bara när söket ändras, aldrig när användaren panorerar.
+  useEffect(() => {
+    const q = query.trim().toLowerCase()
+    if (!q || !kartaKlar) return
+    const id = setTimeout(async () => {
+      const map = mapRef.current as {
+        getBounds?: () => { contains: (ll: [number, number]) => boolean }
+        fitBounds?: (b: unknown, opts?: object) => void
+      } | null
+      if (!map?.getBounds || !map.fitBounds) return
+      const traffar = pois.filter(p => {
+        if (!isAllMode && !activeCats.has(categorize(p))) return false
+        const hay = `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
+        return hay.includes(q)
+      })
+      if (traffar.length === 0) return
+      const vy = map.getBounds()
+      if (traffar.some(p => vy.contains([p.latitude, p.longitude]))) return
+      const L = await hamtaLeaflet()
+      map.fitBounds(
+        L.latLngBounds(traffar.map(p => [p.latitude, p.longitude] as [number, number])),
+        { padding: [48, 48], maxZoom: 13, animate: true },
+      )
+    }, 450)
+    return () => clearTimeout(id)
+  }, [query, pois, isAllMode, activeCats, kartaKlar])
+
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
   // aktiva markörens icon mot den med ringen runt — och återställer den
