@@ -9,7 +9,7 @@
  * krogar, kaféer och barer under Gästhamnar (t.ex. Finnhamns Krog) och 8
  * gästhamnar under Bensin, mätt i tabellen restaurants samma dag.
  */
-export type PlatsKategori = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'annat'
+export type PlatsKategori = 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'annat'
 
 export interface PlatsForKategori {
   name?: string | null
@@ -30,7 +30,13 @@ export function platsKategori(p: PlatsForKategori): PlatsKategori {
   if (t === 'fuel' || t === 'fuel_station') return 'bensin'
   if (['hotel', 'hostel', 'cabin', 'camping', 'pension'].includes(t)) return 'boende'
   // Krogar och hamnar med rum (t.ex. värdshus) visas som boende, som förut.
-  if (['restaurant', 'bar', 'cafe', 'kafe'].includes(t)) return harBoende ? 'boende' : 'krog'
+  if (['restaurant', 'bar', 'cafe', 'kafe'].includes(t)) {
+    if (harBoende) return 'boende'
+    // Butiker (lanthandel, livsmedelsbutik) har typen café eller restaurang
+    // men etiketten "shop", som platssidan visar som Butik.
+    if (cats.includes('shop')) return 'butik'
+    return 'krog'
+  }
   if (t === 'harbor' || t === 'marina') return harBoende ? 'boende' : 'hamn'
   if (t === 'nature_harbor' || t === 'anchorage') return 'naturhamn'
   if (['beach', 'bad', 'strand'].includes(t)) return 'bad'

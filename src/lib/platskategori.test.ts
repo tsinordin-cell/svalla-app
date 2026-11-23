@@ -31,4 +31,13 @@ describe('platsKategori', () => {
     expect(platsKategori({ type: 'sauna' })).toBe('bastu')
     expect(platsKategori({ type: 'fuel_station' })).toBe('bensin')
   })
+  it('visar café med etiketten shop som butik', () => {
+    expect(platsKategori({ name: 'Coop Ingmarsö', type: 'cafe', categories: ['cafe', 'provisions', 'kiosk', 'shop'] })).toBe('butik')
+  })
+  it('café med proviant men utan shop förblir krog', () => {
+    expect(platsKategori({ name: 'Grinda Lanthandel & Café', type: 'cafe', categories: ['cafe', 'provisions'] })).toBe('krog')
+  })
+  it('bensinstation med shop förblir bensin', () => {
+    expect(platsKategori({ name: 'Fjällbacka Bensinstation', type: 'fuel_station', categories: ['fuel', 'shop'] })).toBe('bensin')
+  })
 })

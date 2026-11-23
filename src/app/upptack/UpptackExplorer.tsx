@@ -61,6 +61,7 @@ const categorize = (p: Poi): Category => platsKategori(p)
 
 const CATEGORY_META: Record<Category, { label: string; color: string }> = {
   krog:       { label: 'Krogar',      color: '#c96e2a' },
+  butik:      { label: 'Butiker',     color: '#b42318' },
   hamn:       { label: 'Gästhamnar',  color: '#1d4ed8' },
   naturhamn:  { label: 'Naturhamnar', color: '#0a7b3c' },
   bastu:      { label: 'Bastu',       color: '#9d174d' },
@@ -76,6 +77,8 @@ const CATEGORY_META: Record<Category, { label: string; color: string }> = {
 const CATEGORY_ICONS: Record<Category, string> = {
   // utensils — bestick (kniv + gaffel)
   krog:      '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  // shopping-bag — kasse (Lucide)
+  butik:     '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
   // anchor — ankare
   hamn:      '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
   // tree-pine — gran (klassisk skärgårds-symbol)
@@ -96,6 +99,7 @@ const CATEGORY_ICONS: Record<Category, string> = {
 const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
   { id: 'all',       label: 'Allt' },
   { id: 'krog',      label: 'Krogar' },
+  { id: 'butik',     label: 'Butiker' },
   { id: 'hamn',      label: 'Hamnar' },
   { id: 'naturhamn', label: 'Naturhamnar' },
   { id: 'boende',    label: 'Boende' },
@@ -198,7 +202,7 @@ export default function UpptackExplorer() {
   const [activeCats, setActiveCats] = useState<Set<Category>>(() => {
     const raw = searchParams.get('typ')
     if (!raw || raw === 'all') return new Set()
-    const validCats: Set<Category> = new Set(['krog', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'bad', 'annat'])
+    const validCats: Set<Category> = new Set(['krog', 'butik', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'bad', 'annat'])
     const result = new Set<Category>()
     for (const part of raw.split(',')) {
       const t = part.trim() as Category
@@ -377,7 +381,7 @@ export default function UpptackExplorer() {
   const categoryCounts = useMemo(() => {
     const q = query.trim().toLowerCase()
     const counts: Record<'all' | Category, number> = {
-      all: 0, krog: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, bad: 0, annat: 0,
+      all: 0, krog: 0, butik: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, bad: 0, annat: 0,
     }
     for (const p of pois) {
       // Region-filter
