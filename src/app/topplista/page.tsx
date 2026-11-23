@@ -2,6 +2,8 @@ import { decimal } from '@/lib/gps'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import Link from 'next/link'
 import Image from 'next/image'
+import AppTopBar from '@/components/AppTopBar'
+import FlodeFlikar from '@/components/FlodeFlikar'
 import type { Metadata } from 'next'
 import { ogSida } from '@/lib/og-standard'
 
@@ -140,25 +142,11 @@ export default async function ToplistaPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)' }}>
 
-      {/* ── Header ── */}
-      <header style={{
-        padding: '12px 16px',
-        background: 'var(--header-bg, var(--glass-96))',
-        backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(10,123,140,0.10)',
-        position: 'sticky', top: 0, zIndex: 50,
-        display: 'flex', alignItems: 'center', gap: 10,
-      }}>
-        <Link href="/feed" prefetch={false} style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(10,123,140,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </Link>
-        <div>
-          <h1 style={{ fontSize: 18, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>Topplista</h1>
-          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: 0 }}>Veckans och genom tidernas bästa seglare</p>
-        </div>
-      </header>
+      {/* ── Header ── 2026-11-23 (menyförslaget): gemensam topprad och flikarna
+          Flöde · Forum · Topplista. Förut fanns bara en tillbakapil till flödet,
+          och sidan gick inte att nå från menyn. */}
+      <AppTopBar titel="Topplista" undertitel="Veckans och genom tidernas bästa seglare" />
+      <FlodeFlikar aktiv="topplista" bakgrund="var(--white)" />
 
       <div style={{ maxWidth: 560, margin: '0 auto', padding: '14px 14px' }}>
 

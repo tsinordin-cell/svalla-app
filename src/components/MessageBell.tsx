@@ -3,6 +3,8 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { createClient, getViewer } from '@/lib/supabase'
 import { countUnreadMessages } from '@/lib/dm'
+import Icon from '@/components/Icon'
+import { RAKNARE_STIL, TOPPKNAPP_STIL } from '@/components/toppradStil'
 
 /**
  * DM-ikon för header. Visar kuvert + badge med oläst-räknare.
@@ -66,28 +68,16 @@ export default function MessageBell() {
     <Link
       href="/meddelanden"
       aria-label={unread > 0 ? `${unread} olästa meddelanden` : 'Meddelanden'}
-      style={{
-        width: 38, height: 38, borderRadius: '50%',
-        background: 'rgba(10,123,140,0.08)',
-        border: 'none', cursor: 'pointer',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        position: 'relative', flexShrink: 0,
-        textDecoration: 'none',
-      }}
+      className="press-feedback"
+      style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}
     >
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2} style={{ width: 18, height: 18 }}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
-      </svg>
+      {/* 2026-11-23 (menyförslaget): ikonen från Icon.tsx (Lucide) i stället för en egen
+          inritad bubbla, och 44 px tryckyta. Räknaren har 11 px text, var 9 px. */}
+      <Icon name="messageCircle" size={20} stroke={2} />
       {unread > 0 && (
-        <div style={{
-          position: 'absolute', top: 4, right: 4,
-          width: 16, height: 16, borderRadius: '50%',
-          background: 'var(--acc-knapp)', border: '2px solid var(--bg)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontSize: 9, fontWeight: 600, color: '#fff', lineHeight: 1,
-        }}>
+        <span style={RAKNARE_STIL}>
           {unread > 9 ? '9+' : unread}
-        </div>
+        </span>
       )}
     </Link>
   )
