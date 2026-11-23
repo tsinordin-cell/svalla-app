@@ -231,6 +231,14 @@ export default function UpptackExplorer() {
   }
   const isAllMode = activeCats.size === 0
   const [query, setQuery] = useState(() => searchParams.get('q') ?? '')
+  // Mobil: förstoringsglaset i toppraden öppnar sökfältet här, som filtrerar
+  // kartan och listan på namn (i stället för att gå till sajtens stora sök).
+  const [sokOppen, setSokOppen] = useState(false)
+  const sokInputRef = useRef<HTMLInputElement>(null)
+  const oppnaSok = useCallback(() => {
+    setSokOppen(true)
+    requestAnimationFrame(() => sokInputRef.current?.focus())
+  }, [])
 
   // Region-filter state — sparas i URL som ?region=stockholm
   const [selectedRegion, setSelectedRegion] = useState<RegionKey | 'all'>(() => {
@@ -779,7 +787,7 @@ export default function UpptackExplorer() {
       <div ref={toppRef} style={{ flexShrink: 0 }}>
       {/* Samma topprad som övriga huvudsidor (menyförslaget 2026-11-23). Från 1024 px
           döljs den; sidomenyn har sök, meddelanden och notiser. */}
-      <AppTopBar titel="Utforska" sticky={false} doljPaDesktop />
+      <AppTopBar titel="Utforska" sticky={false} doljPaDesktop onSok={oppnaSok} />
       {/* Header med region-toggle + filter-dropdown + sök */}
       <header className="upx-header">
         {/* En rad (2026-11-23, mer karta): kategorifiltret först, regionerna
@@ -828,18 +836,29 @@ export default function UpptackExplorer() {
         </div>
         </div>
 
-        {/* Mobil: sökfältet döljs (sök via förstoringsglaset i toppraden) men
-            visas om en sökning redan är aktiv, t.ex. från en länk med ?q=, så
-            att den går att se och rensa. */}
-        <div className={`upx-search ${query ? 'has-query' : ''}`}>
+        {/* Mobil: sökfältet döljs tills förstoringsglaset i toppraden öppnar
+            det. Det visas också om en sökning redan är aktiv, t.ex. från en
+            länk med ?q=, så att den går att se och rensa. Tomt och utan fokus
+            stängs det igen. */}
+        <div className={`upx-search ${query || sokOppen ? 'has-query' : ''}`}>
           <input
-            type="text"
+            ref={sokInputRef}
+            type="search"
+            enterKeyHint="search"
             placeholder="Sök plats, ö eller hamn…"
+            aria-label="Sök plats, ö eller hamn på kartan"
             value={query}
             onChange={e => setQuery(e.target.value)}
+            onBlur={() => { if (!query) setSokOppen(false) }}
           />
-          {query && (
-            <button type="button" className="upx-clear" onClick={() => setQuery('')} aria-label="Rensa">×</button>
+          {(query || sokOppen) && (
+            <button
+              type="button"
+              className="upx-clear"
+              onMouseDown={e => e.preventDefault()}
+              onClick={() => { setQuery(''); setSokOppen(false) }}
+              aria-label="Rensa och stäng sök"
+            >×</button>
           )}
         </div>
       </header>
@@ -1102,6 +1121,8 @@ export default function UpptackExplorer() {
           outline: none;
           transition: 0.15s;
         }
+        .upx-search input { -webkit-appearance: none; appearance: none; }
+        .upx-search input::-webkit-search-cancel-button { display: none; }
         .upx-search input:focus {
           background: var(--white);
           border-color: var(--sea, #1e5c82);
