@@ -163,7 +163,7 @@ function Intro({ onamn }: { onamn: string[] }) {
       )}
       <div className={visaText ? 'kr-intro-text syns' : 'kr-intro-text'}>
         <SvallaLogo height={34} color={NAVY} />
-        <span>Sveriges samlade skärgårdssida</span>
+        <span>Skärgården börjar här</span>
       </div>
       {visaIn && (
         <div className="kr-intro-in">
@@ -259,7 +259,7 @@ function Bandet({ onamn }: { onamn: string[] }) {
         ))}
         <div className="kr-band-ord">
           <b>Svalla</b>
-          <span>Sveriges samlade skärgårdssida</span>
+          <span>Skärgården börjar här</span>
         </div>
       </div>
       <svg className="kr-band-svg" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">

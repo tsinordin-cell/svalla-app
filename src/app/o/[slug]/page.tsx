@@ -1481,7 +1481,7 @@ export default async function IslandPage({ params }: Props) {
  <SvallaLogo height={22} color="rgba(255,255,255,0.7)" />
  </Link>
  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.7)', margin: 0 }}>
- Sveriges samlade skärgårdssida
+ Skärgården börjar här
  </p>
  </div>
  </div>

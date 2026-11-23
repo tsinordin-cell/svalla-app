@@ -608,6 +608,7 @@ __MOB_NAV__ </nav>
 
 <section class="hero" style="background:transparent">
  <div class="hero-top">
+<div class="hero-eyebrow"><span class="hero-eyebrow-dot"></span>Skärgården börjar här</div>
 <h1 class="hero-title">
  Planera din<br>
  <em>skärgårdsvistelse</em>
