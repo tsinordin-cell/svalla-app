@@ -32,6 +32,7 @@ import { useEffect } from 'react'
 import { createClient, getViewer } from '@/lib/supabase'
 import { hasAnalyticsConsent } from '@/components/CookieConsent'
 import { laddaPostHog, posthogOmLaddad } from '@/lib/posthogLaddare'
+import { rapporteraNyRegistrering } from '@/lib/nyRegistrering'
 
 /**
  * Tar bort PostHog-spår som satts innan samtycke krävdes (före 2026-10-02).
@@ -99,6 +100,10 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
       avregistrera = () => subscription.unsubscribe()
     }
 
+    // Ny registrering via Google/Apple (markerad av /auth/callback): skickas
+    // här, bara med samtycke. Se lib/nyRegistrering.ts.
+    rapporteraNyRegistrering()
+
     if (hasAnalyticsConsent()) {
       void starta()
     } else {
@@ -109,6 +114,7 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
       const val = (e as CustomEvent<{ value?: string }>).detail?.value
       if (val === 'accepted') {
         void starta()
+        rapporteraNyRegistrering()
         laddaPostHog().then(posthog => {
           if (!posthog) return
           posthog.opt_in_capturing()

@@ -102,7 +102,7 @@ export default async function LuckSida({ params, searchParams }: Props) {
                 Skapa ett gratis konto och öppna luckan →
               </JulkalenderLoggaIn>
               <div className="jk-litet" style={{ marginTop: 6 }}>
-                Har du redan konto? <Link href={`/logga-in?returnTo=/julkalender/${lucka.dag}`} style={{ color: 'inherit', textDecoration: 'underline' }}>Logga in</Link>
+                Har du redan konto? <Link href={`/logga-in?returnTo=/julkalender/${lucka.dag}&mode=login`} style={{ color: 'inherit', textDecoration: 'underline' }}>Logga in</Link>
               </div>
             </div>
           )}

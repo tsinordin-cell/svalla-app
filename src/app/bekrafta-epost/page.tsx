@@ -82,7 +82,7 @@ function Bekrafta() {
               <p style={{ fontSize: 14, color: 'var(--txt3)', lineHeight: 1.6, margin: '0 0 24px' }}>
                 Har du redan bekräftat kan du logga in direkt. Annars loggar du in med din e-post och ditt lösenord, så kan du skicka en ny länk därifrån.
               </p>
-              <Link href={`/logga-in?returnTo=${encodeURIComponent(nasta)}`} className="press-feedback" style={{
+              <Link href={`/logga-in?returnTo=${encodeURIComponent(nasta)}&mode=login`} className="press-feedback" style={{
                 display: 'block', width: '100%', boxSizing: 'border-box', padding: '15px 0', borderRadius: 16,
                 background: 'var(--grad-sea)', color: '#fff', fontWeight: 600, fontSize: 16, textDecoration: 'none',
                 boxShadow: '0 4px 20px rgba(30,92,130,0.35)',

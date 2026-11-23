@@ -2,6 +2,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
 import { verifyAdminToken } from '@/lib/adminToken'
 import { getViewerId } from '@/lib/authClaims'
+import { HAR_KONTO_KAKA, harHaftKonto } from '@/lib/kontoLage'
 
 // Defense-in-depth: middleware-baserad auth-gate. Varje page har också egen
 // auth-check, men listan här fångar om någon framtida sida glömmer redirect.
@@ -13,8 +14,8 @@ const PROTECTED_ROUTES = [
 
 // Routes som har en publik version för utloggade besökare —
 // de redirectar till den publika sidan istället för /logga-in.
-/** Sätts när en webbläsare haft en inloggad session; styr om /logga-in öppnar inloggning eller registrering. Ingen personuppgift. */
-const HAR_KONTO_KAKA = 'svalla_har_konto'
+// HAR_KONTO_KAKA: sätts när en webbläsare haft en inloggad session; styr om
+// /logga-in öppnar inloggning eller registrering. Ingen personuppgift. Se lib/kontoLage.ts.
 
 const PUBLIC_FALLBACK: Record<string, string> = {
   '/rutter': '/oar',
@@ -262,7 +263,8 @@ export async function middleware(request: NextRequest) {
     // webbläsare som redan haft ett konto inloggat: när sessionen gått ut
     // möttes den av "Välj ett alias" (sett 2026-11-17). Kakan HAR_KONTO sätts
     // nedan vid varje autentiserat anrop och lever ett år.
-    if (!request.cookies.get(HAR_KONTO_KAKA)) url.searchParams.set('mode', 'ny')
+    // 2026-11-23: en Supabase-sessionskaka räknas också (lib/kontoLage.ts).
+    if (!harHaftKonto(request.cookies.getAll().map(c => c.name))) url.searchParams.set('mode', 'ny')
     return NextResponse.redirect(url)
   }
 

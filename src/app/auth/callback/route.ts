@@ -3,6 +3,7 @@ import { cookies } from 'next/headers'
 import { NextResponse, type NextRequest } from 'next/server'
 import { appensTillbakaLank, sakerNasta } from '@/lib/appInloggning'
 import { arGiltigVillkorsversion } from '@/lib/villkor'
+import { HAR_KONTO_KAKA, NY_REGISTRERING_KAKA, franSokvag } from '@/lib/kontoLage'
 
 /**
  * Sidan Safari visar när Google-inloggningen startades i appen: skickar
@@ -66,6 +67,7 @@ export async function GET(request: NextRequest) {
     const { error } = await supabase.auth.exchangeCodeForSession(code)
 
     if (!error) {
+      let nyRegistrering: string | null = null
       // Trigga välkomstmail för nyligen skapade konton (icke-blockerande, fail-silent).
       // post-signup-endpointen är idempotent och rate-limitad (1/dygn) + verifierar 5-min-fönster.
       try {
@@ -75,6 +77,12 @@ export async function GET(request: NextRequest) {
         // e-postregistreringen sätter), om den inte redan finns.
         const villkor = searchParams.get('villkor')
         const nyttKonto = !!user && (Date.now() - new Date(user.created_at).getTime()) < 5 * 60_000
+        // Kontotratten (2026-11-23): markera ny registrering så att nästa sida
+        // kan skicka user_signup med samtycke (lib/nyRegistrering.ts).
+        if (user && nyttKonto) {
+          const provider = user.app_metadata?.provider === 'apple' ? 'apple' : user.app_metadata?.provider === 'google' ? 'google' : 'oauth'
+          nyRegistrering = `${provider}|${franSokvag(sakerNasta(next)) ?? ''}`
+        }
         if (user && nyttKonto && arGiltigVillkorsversion(villkor) && !user.user_metadata?.villkor_version) {
           await supabase.auth.updateUser({
             data: { villkor_version: villkor, villkor_godkanda: new Date().toISOString() },
@@ -97,7 +105,13 @@ export async function GET(request: NextRequest) {
 
       // Säkerhetskontroll: tillåt bara interna sökvägar
       const safeNext = sakerNasta(next)
-      return NextResponse.redirect(`${origin}${safeNext}`)
+      const svar = NextResponse.redirect(`${origin}${safeNext}`)
+      // Webbläsaren har nu ett konto: /logga-in visar inloggning nästa gång.
+      svar.cookies.set(HAR_KONTO_KAKA, '1', { maxAge: 60 * 60 * 24 * 365, path: '/', sameSite: 'lax', secure: true })
+      if (nyRegistrering) {
+        svar.cookies.set(NY_REGISTRERING_KAKA, encodeURIComponent(nyRegistrering), { maxAge: 60 * 60, path: '/', sameSite: 'lax', secure: true })
+      }
+      return svar
     }
 
     console.error('[auth/callback] exchangeCodeForSession error:', error.message)

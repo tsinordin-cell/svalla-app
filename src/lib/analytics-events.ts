@@ -23,7 +23,8 @@ import { hasAnalyticsConsent } from '@/components/CookieConsent'
 
 export type SvallaEvent =
   // Auth & signup
-  | { name: 'user_signup'; props: { method: 'email' | 'oauth'; provider?: string } }
+  // fran = sökvägen besökaren var på väg till (returnTo), utan query. Visar vilken knapp som gav kontot.
+  | { name: 'user_signup'; props: { method: 'email' | 'oauth'; provider?: string; fran?: string } }
   | { name: 'user_login';  props: { method: 'email' | 'oauth' } }
   | { name: 'user_logout'; props: Record<string, never> }
   | { name: 'account_deleted'; props: Record<string, never> }
