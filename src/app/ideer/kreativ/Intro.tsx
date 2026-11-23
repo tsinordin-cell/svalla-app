@@ -62,6 +62,23 @@ const BAT_B = 26, BAT_H = 25, BAT_DX = 4, BAT_DY = -1
    och täcker båtens ruta plus två enheter marginal i sidled, alltså 30 × 25 enheter med 36 punkter per enhet.
    Underarmen är ett eget lager som vinkar kring armbågen. Saknas bilderna ritas den gamla bläckbåten. */
 const MALAD = { bat: '/kreativ/intro-bat.webp', arm: '/kreativ/intro-arm.webp', pe: 36, armRuta: [250, 395, 74, 153] as const, armbage: [268.24, 530.28] as const }
+/* Startscenen (del 7): Thorkel i stället för killen i randig tröja (Max 2026-11-23). Huvudet är sajtens Thorkel, kroppen båtens egen figur.
+   Pipan sitter i vänster hand: en bildremsa med 12 rutor där armen lyfter pipan från relingen till munnen. Koordinater i båtbildens punkter. */
+const THORKEL = {
+  bat: '/kreativ/thorkel-bat-v.webp', arm: '/kreativ/thorkel-arm-v.webp', pipa: '/kreativ/thorkel-pipa.webp', ruta: [40, 455, 170, 225] as const, n: 12,
+  skal: [[96, 638], [94.7, 635.1], [91.8, 627], [88.7, 614.6], [87, 598.7], [88, 580.3], [92.1, 560.4], [99.2, 540.4], [108, 521.8], [117, 506.3], [123.8, 495.7], [126.5, 491.8]] as const,
+  mun: [166, 496] as const,
+}
+// Pipans rytm i sekunder: vilar, lyfter, blossar, sänker och blåser ut röken
+const PIPA = { period: 7.5, lyft: 3.2, upp: 0.6, hall: 1.2, ned: 0.7 }
+function pipRuta(s: number): number {
+  const c = s % PIPA.period, n = THORKEL.n - 1, e = (p: number) => p * p * (3 - 2 * p)
+  if (c < PIPA.lyft) return 0
+  if (c < PIPA.lyft + PIPA.upp) return Math.round(n * e((c - PIPA.lyft) / PIPA.upp))
+  if (c < PIPA.lyft + PIPA.upp + PIPA.hall) return n
+  if (c < PIPA.lyft + PIPA.upp + PIPA.hall + PIPA.ned) return Math.round(n * (1 - e((c - PIPA.lyft - PIPA.upp - PIPA.hall) / PIPA.ned)))
+  return 0
+}
 const ARM = { axel: [-0.39, 16.16] as const, armbage: [1.11, 14.73] as const, hand: [1.24, 12.85] as const, r: 0.375 }
 /* En sittande person i Svallas tvåfärgade bläckstil: randig tröja med polokrage, ljust ansikte med öga, näsa och leende.
    Den ena har stickad mössa med tofs, den andra sjömansmössa och hästsvans. Vitt görs genom att skära hål i det blå. */
@@ -169,7 +186,7 @@ const FS_BILD = `#version 300 es
 precision highp float;
 uniform sampler2D den; uniform sampler2D vel; uniform sampler2D korn; uniform sampler2D txt; uniform sampler2D form;
 uniform vec2 res; uniform float t; uniform float hav; uniform float vag; uniform float txtA; uniform vec3 bla; uniform vec3 drops[7];
-uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform float bxo; uniform sampler2D batT; uniform sampler2D armT; uniform vec4 batR; uniform vec4 armQ; uniform vec2 armE; uniform float armV; uniform float malad; uniform float genom; uniform vec4 arm; uniform vec4 armU; uniform float armR;
+uniform vec2 stage; uniform float sveS; uniform float batS; uniform vec2 piv; uniform float ang; uniform float by; uniform float bxo; uniform sampler2D batT; uniform sampler2D armT; uniform vec4 batR; uniform vec4 armQ; uniform vec2 armE; uniform float armV; uniform float malad; uniform float genom; uniform vec4 arm; uniform vec4 armU; uniform float armR; uniform sampler2D pipT; uniform vec4 pipQ; uniform float pipF; uniform float pipN;
 in vec2 uv; out vec4 o;
 vec4 mjuk(vec2 p){ vec2 e = 1.1 / vec2(textureSize(form, 0));
   return texture(form, p) * .4 + (texture(form, p + e) + texture(form, p - e) + texture(form, p + vec2(e.x, -e.y)) + texture(form, p - vec2(e.x, -e.y))) * .15; }
@@ -205,6 +222,10 @@ void main(){
   vec2 ar = lp2 - armE; float ca = cos(armV), sa = sin(armV);
   vec2 au = (armE + vec2(ar.x * ca + ar.y * sa, -ar.x * sa + ar.y * ca) - armQ.xy) / armQ.zw;
   vec4 ac = texture(armT, au) * step(0., au.x) * step(au.x, 1.) * step(0., au.y) * step(au.y, 1.);
+  // Thorkels vänsterarm med pipan (bara i startscenen): rätt ruta ur bildremsan
+  vec2 pu = (lp2 - pipQ.xy) / pipQ.zw;
+  vec4 pc = pipN > .5 ? texture(pipT, vec2((pipF + clamp(pu.x, 0., 1.)) / pipN, pu.y)) * step(0., pu.x) * step(pu.x, 1.) * step(0., pu.y) * step(pu.y, 1.) : vec4(0.);
+  bc = pc + bc * (1. - pc.a);
   bc = (ac + bc * (1. - ac.a)) * malad * batS;
   if (batS > 0. && malad < .5) { m2 = mjuk(lp / stage).g; float u1 = armR / .3; float ad = min(min(seg(lp, armU.xy, armU.zw), seg(lp, arm.xy, arm.zw) + armR * .1), length(lp - arm.zw) - armR * .2);
     vec2 fd = normalize(arm.zw - arm.xy);
@@ -341,6 +362,7 @@ const VSTART = 6000
 export default function Intro({ efter, varld = false }: { efter?: () => void; varld?: boolean }) {
   const scen = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
+  const rokRef = useRef<HTMLCanvasElement>(null)
   const tid = useRef(varld ? VSTART : 0)
   const start = useRef(0)
   const [visT, setVisT] = useState(0)
@@ -407,7 +429,10 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       im.src = src
       return tex
     }
-    const batTex = laddaBild(MALAD.bat), armTex = laddaBild(MALAD.arm)
+    const batTex = laddaBild(varld ? THORKEL.bat : MALAD.bat), armTex = laddaBild(varld ? THORKEL.arm : MALAD.arm), pipTex = varld ? laddaBild(THORKEL.pipa) : armTex
+    // Röken ur pipan och munnen ritas på en egen duk ovanpå, i samma läge som båten
+    const rok: { x: number; y: number; vx: number; vy: number; r: number; t0: number; liv: number }[] = []
+    let rokSpawn = 0, sistaBlas = -1
     let batRuta = { bw: 0, bh: 0 }
 
     const bygg = () => {
@@ -645,7 +670,36 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
         gl.uniform1f(u(pBild, 'armR'), ARM.r * kk)
         // Målad båt: rutan, underarmens ruta, armbågen och vinkningen
         const pk = kk / MALAD.pe, vx = bx - 2 * kk
-        bind('batT', 5, batTex); bind('armT', 6, armTex)
+        bind('batT', 5, batTex); bind('armT', 6, armTex); bind('pipT', 7, pipTex)
+        const pf = varld && !minskad ? pipRuta(sek) : 0
+        gl.uniform4f(u(pBild, 'pipQ'), vx + THORKEL.ruta[0] * pk, byy + THORKEL.ruta[1] * pk, THORKEL.ruta[2] * pk, THORKEL.ruta[3] * pk)
+        gl.uniform1f(u(pBild, 'pipF'), pf); gl.uniform1f(u(pBild, 'pipN'), varld ? THORKEL.n : 0)
+        const rc = rokRef.current
+        if (varld && rc) {
+          if (rc.width !== Math.round(W * DPR) || rc.height !== Math.round(H * DPR)) { rc.width = Math.round(W * DPR); rc.height = Math.round(H * DPR) }
+          const cx = rc.getContext('2d')
+          if (cx) {
+            const an = vink * eSen, cs = Math.cos(an), sn = Math.sin(an), oy = malY * batNer + bob * eSen
+            // båtbildens punkt till skärmen (samma omvandling som i skuggningen, baklänges)
+            const till = (bx2: number, by2: number) => { const lx = vx + bx2 * pk - pivX, ly = byy + by2 * pk - pivY; return [lx * cs - ly * sn + batIn + pivX, lx * sn + ly * cs + oy + pivY] as const }
+            const nuS = nu / 1000, c7 = sek % PIPA.period, blas = PIPA.lyft + PIPA.upp + PIPA.hall + 0.1
+            if (!minskad && T > 9000) {
+              if (nuS - rokSpawn > 0.22) { rokSpawn = nuS; const [x0, y0] = till(...(THORKEL.skal[pf] as unknown as [number, number])); rok.push({ x: x0, y: y0, vx: 0.15 * kk, vy: -0.75 * kk, r: 0.1 * kk, t0: nuS, liv: 2.6 }) }
+              const cyk = Math.floor(sek / PIPA.period)
+              if (c7 > blas && c7 < blas + 0.9 && Math.floor(c7 * 14) !== sistaBlas) { sistaBlas = Math.floor(c7 * 14); const [mx, my] = till(THORKEL.mun[0], THORKEL.mun[1]); rok.push({ x: mx, y: my, vx: (0.9 + Math.random() * 0.4) * kk, vy: (-0.35 - Math.random() * 0.3) * kk, r: (0.16 + Math.random() * 0.08) * kk, t0: nuS, liv: 2.2 }) }
+              void cyk
+            }
+            cx.setTransform(DPR, 0, 0, DPR, 0, 0); cx.clearRect(0, 0, W, H)
+            for (let i = rok.length - 1; i >= 0; i--) {
+              const p = rok[i]!, al = (nuS - p.t0) / p.liv
+              if (al >= 1) { rok.splice(i, 1); continue }
+              p.x += (p.vx + Math.sin((nuS + i) * 2.1) * 0.12 * kk) * dt; p.y += p.vy * dt; p.vx *= 0.995
+              const r = p.r * (1 + 2.2 * al), a = 0.6 * (1 - al) * Math.min(1, al * 6)
+              cx.beginPath(); cx.arc(p.x, p.y, r, 0, Math.PI * 2)
+              cx.fillStyle = `rgba(238,242,248,${a})`; cx.fill(); cx.lineWidth = 1.4; cx.strokeStyle = `rgba(31,90,168,${a * 0.35})`; cx.stroke()
+            }
+          }
+        }
         gl.uniform4f(u(pBild, 'batR'), vx, byy, 30 * kk, 25 * kk)
         gl.uniform4f(u(pBild, 'armQ'), vx + MALAD.armRuta[0] * pk, byy + MALAD.armRuta[1] * pk, MALAD.armRuta[2] * pk, MALAD.armRuta[3] * pk)
         gl.uniform2f(u(pBild, 'armE'), vx + MALAD.armbage[0] * pk, byy + MALAD.armbage[1] * pk)
@@ -697,6 +751,11 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       {varld && (
         <div className={visT >= 9800 ? 'ki-varld syns' : 'ki-varld'} aria-hidden="true">
           {/* Ön med midsommarstång och flagga, ångbåten som pustar rök, fyren och bastuflotten (Max 2026-11-22) */}
+          {/* Ön med västkusthusen ligger bakom, så att färjan och bastuflotten hamnar framför (Max 2026-11-23) */}
+          <div className="ki-v ki-v-vastkust">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-v-bild" src="/kreativ/scen-vastkust.webp" alt="" />
+          </div>
           <div className="ki-v ki-v-o">
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-o.webp" alt="" />
@@ -721,7 +780,15 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
           <svg className="ki-v-masar tva" viewBox="0 0 60 30" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M4 20 Q16 6 28 18 Q40 4 56 16" /></svg>
         </div>
       )}
-      <canvas ref={canvas} className="ki-canvas" aria-label={varld ? 'Startscenen: havet stiger, Svallas segelbåt seglar in och en skärgård växer fram.' : 'Introt: blå prickar blir Sverige, sedan Svallas segelbåt och till sist ett hav.'} />
+      <canvas ref={canvas} className="ki-canvas" aria-label={varld ? 'Startscenen: havet stiger, Svallas segelbåt med Thorkel seglar in och en skärgård växer fram.' : 'Introt: blå prickar blir Sverige, sedan Svallas segelbåt och till sist ett hav.'} />
+      {varld && <canvas ref={rokRef} className="ki-rokduk" aria-hidden="true" />}
+      {varld && (
+        <div className={visT >= 9800 ? 'ki-fram syns' : 'ki-fram'} aria-hidden="true">
+          {/* Kobben med skylten i förgrunden (Max 2026-11-23) */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="ki-f-kobbe" src="/kreativ/scen-kobbe.webp" alt="" />
+        </div>
+      )}
       {varld && (
         <div className={visT >= 9800 ? 'ki-djup syns' : 'ki-djup'} aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -774,6 +841,13 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
 const CSS = `
 .ki-scen{position:relative;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(13,36,64,.14);aspect-ratio:16/9;min-height:380px;touch-action:pan-y}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.ki-fram{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity 1s .8s}
+.ki-fram.syns{opacity:1}
+.ki-f-kobbe{position:absolute;left:1.5%;bottom:2%;width:15%;height:auto;transform:translateY(35%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
+.ki-fram.syns .ki-f-kobbe{transform:translateY(0)}
+.ki-v-vastkust{left:61%;width:20%}
+.ki-varld.syns .ki-v-vastkust{transform:translateY(9%);transition-delay:.15s}
 .ki-topp{position:absolute;top:14px;right:14px;display:flex;align-items:center;gap:10px;z-index:3}
 .ki-tips{font:700 10.5px/1 Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1b57a0;background:#fff;border:1.5px solid #1b57a0;border-radius:999px;padding:7px 11px;opacity:0;transform:translateY(-4px);transition:opacity 1.1s,transform 1.1s}
 .ki-tips.syns{opacity:1;transform:none}
@@ -861,7 +935,7 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-vastkust{left:46%;width:34%}.ki-f-kobbe{width:24%;left:1%;bottom:22%}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-s-planera{left:50%;top:71%;--x:-50%;--r:0deg;font-size:16px;padding:11px 18px 11px 14px}
