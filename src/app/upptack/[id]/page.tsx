@@ -512,64 +512,40 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      alt={`${r.name}${typeLabel ? ': ' + typeLabel : ''}${r.island ? ' på ' + r.island : ''}`}
    />
 
-   {/* Back button — over carousel.
-       Stilskild från carousel-pilarna (vita rundlar) genom mörk bakgrund
-       + text "Utforska", så det är tydligt att man LÄMNAR sidan istället
-       för att bläddra i bilder. Pekar till /upptack — den centrala
-       upptäckts-vyn för platser. */}
+   {/* Knappar ovanpå bilden: tillbaka till vänster, dela + spara till höger.
+       2026-11-23 (Tom: "kladdigt ... klumpigt"): förut fyra olika stilar
+       (mörk pill med text, blå pill "Dela", vit rundel, vita pilar). Nu en
+       stil för alla: lika stora runda, halvgenomskinligt mörka knappar med
+       vit ikon (.bild-knapp i globals.css). */}
    <Link
      href="/upptack"
      aria-label="Tillbaka till Utforska"
+     title="Tillbaka till Utforska"
+     className="bild-knapp"
      style={{
        position: 'absolute', top: 'calc(14px + env(safe-area-inset-top, 0px))', left: 14,
-       height: 38, padding: '0 14px 0 10px',
-       borderRadius: 999,
-       display: 'inline-flex', alignItems: 'center', gap: 6,
-       background: 'rgba(0, 30, 45, 0.78)',
-       color: '#fff',
-       textDecoration: 'none',
-       backdropFilter: 'blur(10px)',
-       WebkitBackdropFilter: 'blur(10px)',
-       boxShadow: '0 4px 16px rgba(0,30,45,0.30)',
-       fontSize: 13,
-       fontWeight: 700,
-       letterSpacing: '-0.01em',
        zIndex: 4,
      }}
    >
-     <svg viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth={2.4} style={{ width: 18, height: 18 }}>
+     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} aria-hidden>
        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
      </svg>
-     <span>Utforska</span>
    </Link>
 
-   {/* Top-right action stack: dela + bookmark — bägge i vita glasmorf-rundlar */}
    <div style={{
      position: 'absolute', top: 'calc(14px + env(safe-area-inset-top, 0px))', right: 14,
      display: 'flex', alignItems: 'center', gap: 8,
      zIndex: 4,
    }}>
-     <div style={{
-       background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
-       borderRadius: '50%',
-       boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
-     }}>
-       <ShareButton
-         title={r.name}
-         description={r.description ?? `${typeLabel ?? 'Plats'} på ${r.island ?? 'skärgården'}`}
-         url={`https://svalla.se/upptack/${canonicalPath}`}
-         surface="upptack_detail"
-         entityId={r.id}
-         variant="ljus"
-       />
-     </div>
-     <div style={{
-       background: 'rgba(255,255,255,0.92)', backdropFilter: 'blur(8px)',
-       borderRadius: '50%',
-       boxShadow: '0 2px 10px rgba(0,30,45,0.18)',
-     }}>
-       <BookmarkButton restaurantId={r.id} />
-     </div>
+     <ShareButton
+       title={r.name}
+       description={r.description ?? `${typeLabel ?? 'Plats'} på ${r.island ?? 'skärgården'}`}
+       url={`https://svalla.se/upptack/${canonicalPath}`}
+       surface="upptack_detail"
+       entityId={r.id}
+       variant="bild"
+     />
+     <BookmarkButton restaurantId={r.id} variant="bild" />
    </div>
  </div>
 

@@ -6,9 +6,11 @@ import { track } from '@/lib/analytics-events'
 interface Props {
   restaurantId?: string
   routeId?: string
+  /** 'bild': rund knapp ovanpå en bild, samma stil som dela/tillbaka (.bild-knapp). */
+  variant?: 'standard' | 'bild'
 }
 
-export default function BookmarkButton({ restaurantId, routeId }: Props) {
+export default function BookmarkButton({ restaurantId, routeId, variant = 'standard' }: Props) {
   const supabase = useRef(createClient()).current
   const [saved,   setSaved]   = useState(false)
   const [userId,  setUserId]  = useState<string | null>(null)
@@ -59,6 +61,22 @@ export default function BookmarkButton({ restaurantId, routeId }: Props) {
   }
 
   if (!userId) return null
+
+  if (variant === 'bild') {
+    return (
+      <button
+        onClick={e => { e.preventDefault(); e.stopPropagation(); toggle() }}
+        aria-label={saved ? 'Ta bort bokmärke' : 'Spara'}
+        aria-pressed={saved}
+        title={saved ? 'Sparad' : 'Spara'}
+        className="bild-knapp press-feedback"
+      >
+        <svg viewBox="0 0 24 24" fill={saved ? '#f0a35e' : 'none'} stroke={saved ? '#f0a35e' : 'currentColor'} strokeWidth={2.2} aria-hidden>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+        </svg>
+      </button>
+    )
+  }
 
   return (
     <button

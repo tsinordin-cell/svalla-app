@@ -29,8 +29,10 @@ interface Props {
    * 'mork' (standard): vit text på glas — för mörka ytor som öarnas hero.
    * 'ljus': havsblå text — för ljusa ytor. Revision 2026-10-02: knappen låg
    * vit på vit botten på alla plats- och guidesidor och syntes inte.
+   * 'bild': bara ikon, rund knapp i samma stil som övriga knappar på en bild
+   * (klassen .bild-knapp). Revision 2026-11-23 (Tom).
    */
-  variant?: 'mork' | 'ljus'
+  variant?: 'mork' | 'ljus' | 'bild'
   /** Text på knappen. Standard "Dela". */
   etikett?: string
 }
@@ -81,8 +83,30 @@ export default function ShareButton({ title, description, url, surface = 'place'
     }
   }
 
+  const ikon = (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
+      stroke="currentColor" strokeWidth={2.4}
+      strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+      <polyline points="16 6 12 2 8 6"/>
+      <line x1="12" y1="2" x2="12" y2="15"/>
+    </svg>
+  )
+
   return (
     <>
+      {variant === 'bild' ? (
+        <button
+          type="button"
+          onClick={handleShare}
+          aria-label={`Dela ${title}`}
+          title="Dela"
+          className="bild-knapp"
+          style={{ opacity: pressed ? 0.75 : 1 }}
+        >
+          {ikon}
+        </button>
+      ) : (
       <button
         type="button"
         onClick={handleShare}
@@ -107,15 +131,10 @@ export default function ShareButton({ title, description, url, surface = 'place'
           opacity: pressed ? 0.75 : 1,
         }}
       >
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none"
-          stroke="currentColor" strokeWidth={2.4}
-          strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-          <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
-          <polyline points="16 6 12 2 8 6"/>
-          <line x1="12" y1="2" x2="12" y2="15"/>
-        </svg>
+        {ikon}
         {etikett}
       </button>
+      )}
 
       {/* Toast — fixed bottom center, fade in/out */}
       {toast && (
