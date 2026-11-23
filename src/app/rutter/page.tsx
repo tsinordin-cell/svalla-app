@@ -36,6 +36,10 @@ import { ogSida } from '@/lib/og-standard'
 //   Waxholmsbolaget, Blidösundsbolaget, Vaxholms stad, Norrtälje kommun). Fliken
 //   följer bara öarnas egna sidor och /oar. Svenska Högarna: Länsstyrelsen säger
 //   "ögrupp i Norrtälje kommun" och "ytterskärgård", inget mer.
+// - Askö från Södra till egen grupp Sörmlands skärgård (2026-11-23, Toms ja):
+//   Länsstyrelsen Södermanland, https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html
+//   — "Askö är en stor ö i Södermanlands skärgård.", "Kommun: Trosa" (läst
+//   2026-09-27, källan står redan på ösidan). Ön ligger utanför Stockholms län.
 const ISLAND_SECTIONS = [
   {
     id: 'mellersta',
@@ -57,7 +61,7 @@ const ISLAND_SECTIONS = [
     bg: 'rgba(42,110,80,0.07)',
     description: 'Vilda klippor, öppet hav och Utö. Den dramatiska södra skärgården.',
     slugs: [
-      'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'asko', 'galo', 'toro',
+      'uto', 'dalaro', 'orno', 'landsort', 'nattaro', 'galo', 'toro',
       'fjardlang', 'smadalaro', 'morko', 'musko', 'kymmendo', 'huvudskar'],
   },
   {
@@ -77,6 +81,14 @@ const ISLAND_SECTIONS = [
     bg: 'rgba(30,92,130,0.07)',
     description: 'Birka och Adelsö: öarna i Mälaren, väster om Stockholm.',
     slugs: ['birka', 'adelso'],
+  },
+  {
+    id: 'sormland',
+    label: 'Sörmlands skärgård',
+    color: 'var(--sea)',
+    bg: 'rgba(30,92,130,0.07)',
+    description: 'Askö i Trosa kommun, i Södermanlands skärgård.',
+    slugs: ['asko'],
   }]
 
 const islandBySlug = Object.fromEntries(ISLANDS.map(i => [i.slug, i]))
