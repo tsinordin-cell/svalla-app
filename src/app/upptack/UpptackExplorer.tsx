@@ -640,11 +640,13 @@ export default function UpptackExplorer() {
         fitBounds?: (b: unknown, opts?: object) => void
       } | null
       if (!map?.getBounds || !map.fitBounds) return
-      const traffar = pois.filter(p => {
-        if (!isAllMode && !activeCats.has(categorize(p))) return false
-        const hay = `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
-        return hay.includes(q)
-      })
+      const iKategori = pois.filter(p => isAllMode || activeCats.has(categorize(p)))
+      // Namn och ö först: en plats som bara nämner "Utö" i sin beskrivning
+      // ska inte dra ut kartan över halva Sverige.
+      const iNamn = iKategori.filter(p => `${p.name ?? ''} ${p.island ?? ''}`.toLowerCase().includes(q))
+      const traffar = iNamn.length > 0
+        ? iNamn
+        : iKategori.filter(p => `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase().includes(q))
       if (traffar.length === 0) return
       const vy = map.getBounds()
       if (traffar.some(p => vy.contains([p.latitude, p.longitude]))) return
