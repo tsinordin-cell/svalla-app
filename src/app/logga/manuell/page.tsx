@@ -269,7 +269,7 @@ function ManuellForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!file || !location.trim()) return
+    if (!location.trim()) return
     const fel = kontrolleraLogg(distance, duration, startedAtLocal, endedAtLocal)
     if (fel) { setErr(fel.text); return }
     setLoading(true); setErr('')
@@ -285,14 +285,17 @@ function ManuellForm() {
         email:    user.email ?? '',
       }, { onConflict: 'id', ignoreDuplicates: true })
 
-      const path = turbildNamn(user.id, file.name)
-
-      const { data: upload, error: upErr } = await supabase.storage
-        .from('trips')
-        .upload(path, file, { upsert: false })
-      if (upErr || !upload) { setErr('Kunde inte ladda upp bilden. Försök igen.'); setLoading(false); return }
-
-      const { data: { publicUrl } } = supabase.storage.from('trips').getPublicUrl(upload.path)
+      // Bilden är valfri: utan bild sparas turen med image = null,
+      // precis som GPS-turer utan foto.
+      let publicUrl: string | null = null
+      if (file) {
+        const path = turbildNamn(user.id, file.name)
+        const { data: upload, error: upErr } = await supabase.storage
+          .from('trips')
+          .upload(path, file, { upsert: false })
+        if (upErr || !upload) { setErr('Kunde inte ladda upp bilden. Försök igen.'); setLoading(false); return }
+        publicUrl = supabase.storage.from('trips').getPublicUrl(upload.path).data.publicUrl
+      }
 
       // Ladda upp extra bilder parallellt
       let extraUrls: string[] = []
@@ -393,7 +396,7 @@ function ManuellForm() {
   }
 
   const loggFel = kontrolleraLogg(distance, duration, startedAtLocal, endedAtLocal)
-  const canSubmit = !!file && !!location.trim() && !loading && !loggFel
+  const canSubmit = !!location.trim() && !loading && !loggFel
 
   // Block render until auth resolved — prevents flash + premature file picker
   if (authLoading) return null
@@ -558,8 +561,8 @@ function ManuellForm() {
                 <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
                 <circle cx="12" cy="13" r="4"/>
               </svg>
-              <span style={{ fontSize: 14, color: 'var(--txt3)', fontWeight: 600 }}>Tryck för att välja bild</span>
-              <span style={{ fontSize: 11, color: 'var(--txt3)' }}>Bild krävs för att logga</span>
+              <span style={{ fontSize: 14, color: 'var(--txt3)', fontWeight: 600 }}>Tryck för att lägga till en bild</span>
+              <span style={{ fontSize: 11, color: 'var(--txt3)' }}>Valfritt, du kan logga turen utan bild</span>
             </div>
           )}
           {preview && (
@@ -970,7 +973,7 @@ function ManuellForm() {
             transition: 'all 0.2s',
           }}
         >
-          {loading ? 'Sparar…' : !file ? 'Välj bild först' : !location.trim() ? 'Ange plats' : loggFel ? 'Rätta fälten' : 'Kasta loss →'}
+          {loading ? 'Sparar…' : !location.trim() ? 'Ange plats' : loggFel ? 'Rätta fälten' : 'Kasta loss →'}
         </button>
       </div>
     </div>

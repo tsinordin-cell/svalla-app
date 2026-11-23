@@ -22,7 +22,7 @@ const TYPE_PLACEHOLDERS: Record<FeedbackType, string> = {
 
 /**
  * Sidor där den flytande knappen "Tipsa oss" låg över sidans egen fasta knapprad
- * nertill (Snabb-logg: "Välj bild först"/"Logga tur"; loggningens klarskärm).
+ * nertill (Snabb-logg: "Kasta loss"/"Logga tur"; loggningens klarskärm).
  * Sett 2026-10-26 i 430 px. Formuläret går fortfarande att öppna via
  * händelsen svalla:openFeedback.
  */
