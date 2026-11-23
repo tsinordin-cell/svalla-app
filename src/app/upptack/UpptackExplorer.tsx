@@ -273,13 +273,14 @@ export default function UpptackExplorer() {
 
   // ── Mobile bottom-sheet state ─────────────────────────────────────────────
   // 3 snap-points: 'min' (bara handle synlig), 'half' (~halva skärmen),
-  // 'full' (täcker nästan hela kartan). Default 'half'.
-  // Klick på handle cyclar: half → full → min → half...
+  // 'full' (täcker nästan hela kartan). Default 'min' sedan 2026-11-23 (Tom: mer
+  // karta). Ny nyckel upx-sheet2 så att alla börjar minimerat en gång.
+  // Klick på handle cyclar: min → half → full → min...
   type SheetState = 'min' | 'half' | 'full'
-  const [sheetState, setSheetState] = useState<SheetState>('half')
+  const [sheetState, setSheetState] = useState<SheetState>('min')
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const saved = window.localStorage.getItem('upx-sheet') as SheetState | null
+    const saved = window.localStorage.getItem('upx-sheet2') as SheetState | null
     if (saved && (saved === 'min' || saved === 'half' || saved === 'full')) {
       setSheetState(saved)
     }
@@ -287,7 +288,7 @@ export default function UpptackExplorer() {
   function cycleSheet() {
     setSheetState(prev => {
       const next: SheetState = prev === 'half' ? 'full' : prev === 'full' ? 'min' : 'half'
-      if (typeof window !== 'undefined') window.localStorage.setItem('upx-sheet', next)
+      if (typeof window !== 'undefined') window.localStorage.setItem('upx-sheet2', next)
       // Leaflet behöver veta att kartans höjd ändrats
       setTimeout(() => {
         const m = mapRef.current as { invalidateSize?: () => void } | null
@@ -781,6 +782,17 @@ export default function UpptackExplorer() {
       <AppTopBar titel="Utforska" sticky={false} doljPaDesktop />
       {/* Header med region-toggle + filter-dropdown + sök */}
       <header className="upx-header">
+        {/* En rad (2026-11-23, mer karta): kategorifiltret först, regionerna
+            scrollar bredvid. Filtret ligger utanför den scrollande raden så att
+            dess meny inte klipps. */}
+        <div className="upx-filterrow">
+        <FilterDropdown
+          chips={FILTER_CHIPS}
+          counts={categoryCounts}
+          activeIds={activeCats}
+          onToggle={toggleCat}
+          onClear={clearCats}
+        />
         {/* Region-toggle pills */}
         <div className="upx-regions-bar">
           <button
@@ -814,15 +826,12 @@ export default function UpptackExplorer() {
             )
           })}
         </div>
+        </div>
 
-        <FilterDropdown
-          chips={FILTER_CHIPS}
-          counts={categoryCounts}
-          activeIds={activeCats}
-          onToggle={toggleCat}
-          onClear={clearCats}
-        />
-        <div className="upx-search">
+        {/* Mobil: sökfältet döljs (sök via förstoringsglaset i toppraden) men
+            visas om en sökning redan är aktiv, t.ex. från en länk med ?q=, så
+            att den går att se och rensa. */}
+        <div className={`upx-search ${query ? 'has-query' : ''}`}>
           <input
             type="text"
             placeholder="Sök plats, ö eller hamn…"
@@ -1025,7 +1034,19 @@ export default function UpptackExplorer() {
         }
         /* 2026-11-23: platsen för de fasta ikonerna uppe till höger (84 px) behövs inte
            längre. Ikonerna ligger i toppraden ovanför (AppTopBar). */
-        /* Region-toggle pills — horisontell scroll-bar ovanför kategori-filter */
+        .upx-filterrow {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          min-width: 0;
+        }
+        .upx-filterrow .upx-regions-bar {
+          flex: 1;
+          min-width: 0;
+          margin: 0 -18px 0 0;
+          padding-left: 0;
+        }
+        /* Region-toggle pills — horisontell scroll-bar bredvid kategori-filtret */
         .upx-regions-bar {
           display: flex;
           gap: 8px;
@@ -1403,6 +1424,8 @@ export default function UpptackExplorer() {
         }
         @media (max-width: 900px) {
           .upx-mob-tabs { display: none !important; }
+          .upx-search:not(.has-query) { display: none; }
+          .upx-header { padding-top: 10px; padding-bottom: 10px; }
           .upx-split {
             /* Mobile: kartan tar full höjd; listan blir ett bottom-sheet ovanpå */
             display: block;
@@ -1443,7 +1466,7 @@ export default function UpptackExplorer() {
           }
 
           /* Snap-points: cyclas via handle-knappen */
-          .upx-split.sheet-min  .upx-list { height: 92px; }
+          .upx-split.sheet-min  .upx-list { height: 64px; padding-bottom: 8px; }
           .upx-split.sheet-half .upx-list { height: 50vh; }
           .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px) - 24px); }
 
@@ -1451,7 +1474,8 @@ export default function UpptackExplorer() {
           .upx-split.sheet-min .upx-list > *:not(.upx-sheet-handle):not(.upx-list-meta) {
             display: none !important;
           }
-          .upx-split.sheet-min .upx-list-meta { padding-top: 4px; }
+          .upx-split.sheet-min .upx-list-meta { padding-top: 0; }
+          .upx-split.sheet-min .upx-sheet-handle { height: 20px; margin: 4px 0 0; }
 
           /* Drag-handle */
           .upx-sheet-handle {
@@ -1489,11 +1513,11 @@ export default function UpptackExplorer() {
           .upx-card-title { font-size: 13.5px; }
           .upx-card-desc { -webkit-line-clamp: 1; }
           /* Mindre kart-knappar på mobil — flytta upp ovanför sheet (sheet-min) */
-          .upx-locate { width: 36px; height: 36px; bottom: 104px; left: 12px; }
-          /* 104px lyfter pillret ovanför bottom-sheet i sheet-min-läget, men
+          .upx-locate { width: 36px; height: 36px; bottom: 76px; left: 12px; }
+          /* 76px lyfter pillret ovanför bottom-sheet i sheet-min-läget (64px), men
              på mobil ligger "Tipsa oss"-knappen högre än så (--nav-h är 64px
              här mot 0 på desktop). max() tar det som råkar vara högst. */
-          .upx-weather-wrap { bottom: max(104px, calc(var(--fb-top) + 10px)); right: 12px; }
+          .upx-weather-wrap { bottom: max(76px, calc(var(--fb-top) + 10px)); right: 12px; }
           .upx-split.sheet-half .upx-locate,
           .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); }
           .upx-split.sheet-full .upx-locate,
