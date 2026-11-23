@@ -359,11 +359,22 @@ export default function UpptackExplorer() {
     return () => { cancelled = true }
   }, [])
 
+  // ── Sökträffar: EN regel för lista, antal, pinnar och kartflytt ─────────
+  // Namn och ö först. Bara om inget namn matchar faller vi tillbaka på
+  // beskrivningen (t.ex. "pizza"). Då visar listan, siffran och kartan
+  // alltid samma platser.
+  const sokTraffar = useMemo(() => {
+    const q = query.trim().toLowerCase()
+    if (!q) return null
+    const iNamn = pois.filter(p => `${p.name ?? ''} ${p.island ?? ''}`.toLowerCase().includes(q))
+    if (iNamn.length > 0) return new Set(iNamn)
+    return new Set(pois.filter(p => `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase().includes(q)))
+  }, [pois, query])
+
   // ── Filtrerad lista (region + kategori + sök + bounds) ──────────────────────────
   // Listan följer kartans bounds AUTOMATISKT — så fort användaren panorerar
   // eller zoomar uppdateras vad som visas i listan.
   const filteredPois = useMemo(() => {
-    const q = query.trim().toLowerCase()
     return pois.filter(p => {
       // Region-filter
       if (selectedRegion !== 'all') {
@@ -371,10 +382,7 @@ export default function UpptackExplorer() {
       }
       // Multi-select: tomt set = visa allt; annars måste platsens kategori finnas i set
       if (!isAllMode && !activeCats.has(categorize(p))) return false
-      if (q) {
-        const hay = `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
-        if (!hay.includes(q)) return false
-      }
+      if (sokTraffar && !sokTraffar.has(p)) return false
       if (bounds) {
         if (
           p.latitude < bounds.swLat || p.latitude > bounds.neLat ||
@@ -383,12 +391,11 @@ export default function UpptackExplorer() {
       }
       return true
     })
-  }, [pois, selectedRegion, isAllMode, activeCats, query, bounds])
+  }, [pois, selectedRegion, isAllMode, activeCats, sokTraffar, bounds])
 
   // Antal POIs per kategori (för chip-labels) — räknas på pois som matchar
   // region + sök + bounds, oavsett vald kategori
   const categoryCounts = useMemo(() => {
-    const q = query.trim().toLowerCase()
     const counts: Record<'all' | Category, number> = {
       all: 0, krog: 0, butik: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, bad: 0, annat: 0,
     }
@@ -397,10 +404,7 @@ export default function UpptackExplorer() {
       if (selectedRegion !== 'all') {
         if (upptackRegion(p) !== selectedRegion) continue
       }
-      if (q) {
-        const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
-        if (!hay.includes(q)) continue
-      }
+      if (sokTraffar && !sokTraffar.has(p)) continue
       if (bounds) {
         if (
           p.latitude < bounds.swLat || p.latitude > bounds.neLat ||
@@ -411,7 +415,7 @@ export default function UpptackExplorer() {
       counts[categorize(p)]++
     }
     return counts
-  }, [pois, selectedRegion, query, bounds])
+  }, [pois, selectedRegion, sokTraffar, bounds])
 
   // ── URL-sync (debounced så vi inte spammar history) ────────────────────
   // Multi-select: ?typ=krog,hamn  (alfabetisk för deterministisk URL)
@@ -580,10 +584,7 @@ export default function UpptackExplorer() {
       // gör det omöjligt att se vad som finns i intilliggande områden.
       const visiblePois = pois.filter(p => {
         if (!isAllMode && !activeCats.has(categorize(p))) return false
-        if (query.trim()) {
-          const hay = `${p.name} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase()
-          if (!hay.includes(query.trim().toLowerCase())) return false
-        }
+        if (sokTraffar && !sokTraffar.has(p)) return false
         return true
       })
 
@@ -626,27 +627,21 @@ export default function UpptackExplorer() {
       cluster.addLayers(newMarkers)
     })()
     return () => { cancelled = true }
-  }, [pois, isAllMode, activeCats, query, kartaKlar])
+  }, [pois, isAllMode, activeCats, sokTraffar, kartaKlar])
 
   // ── Sök: flytta kartan till träffarna om ingen syns ───────────────────
   // Utan detta ser en sökning på t.ex. "Utö" ut som en tom karta när träffen
   // ligger utanför vyn. Bara när söket ändras, aldrig när användaren panorerar.
   useEffect(() => {
-    const q = query.trim().toLowerCase()
-    if (!q || !kartaKlar) return
+    if (!sokTraffar || !kartaKlar) return
     const id = setTimeout(async () => {
       const map = mapRef.current as {
         getBounds?: () => { contains: (ll: [number, number]) => boolean }
         fitBounds?: (b: unknown, opts?: object) => void
       } | null
       if (!map?.getBounds || !map.fitBounds) return
-      const iKategori = pois.filter(p => isAllMode || activeCats.has(categorize(p)))
-      // Namn och ö först: en plats som bara nämner "Utö" i sin beskrivning
-      // ska inte dra ut kartan över halva Sverige.
-      const iNamn = iKategori.filter(p => `${p.name ?? ''} ${p.island ?? ''}`.toLowerCase().includes(q))
-      const traffar = iNamn.length > 0
-        ? iNamn
-        : iKategori.filter(p => `${p.name ?? ''} ${p.island ?? ''} ${p.description ?? ''}`.toLowerCase().includes(q))
+      // Samma träffar som listan och pinnarna (sokTraffar), inom valda kategorier.
+      const traffar = pois.filter(p => sokTraffar.has(p) && (isAllMode || activeCats.has(categorize(p))))
       if (traffar.length === 0) return
       const vy = map.getBounds()
       if (traffar.some(p => vy.contains([p.latitude, p.longitude]))) return
@@ -657,7 +652,7 @@ export default function UpptackExplorer() {
       )
     }, 450)
     return () => clearTimeout(id)
-  }, [query, pois, isAllMode, activeCats, kartaKlar])
+  }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar])
 
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
@@ -892,6 +887,12 @@ export default function UpptackExplorer() {
             >×</button>
           )}
         </div>
+        {/* Mobil: vägen till sajtens söksida finns kvar, med sökordet med sig. */}
+        {query.trim() && (
+          <Link href={`/sok?q=${encodeURIComponent(query.trim())}`} className="upx-sok-hela">
+            Sök efter ”{query.trim()}” på hela Svalla →
+          </Link>
+        )}
       </header>
       </div>
 
@@ -1178,6 +1179,7 @@ export default function UpptackExplorer() {
           justify-content: center;
         }
         .upx-clear:hover { background: rgba(0, 0, 0, 0.12); color: var(--txt); }
+        .upx-sok-hela { display: none; }
 
         .upx-mob-tabs {
           display: none;
@@ -1477,6 +1479,18 @@ export default function UpptackExplorer() {
         @media (max-width: 900px) {
           .upx-mob-tabs { display: none !important; }
           .upx-search:not(.has-query) { display: none; }
+          .upx-sok-hela {
+            display: block;
+            margin-top: 6px;
+            padding: 4px 2px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--sea, #1e5c82);
+            text-decoration: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
           .upx-header { padding-top: 10px; padding-bottom: 10px; }
           .upx-split {
             /* Mobile: kartan tar full höjd; listan blir ett bottom-sheet ovanpå */
