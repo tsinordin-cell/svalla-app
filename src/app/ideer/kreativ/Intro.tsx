@@ -66,7 +66,7 @@ const MALAD = { bat: '/kreativ/intro-bat.webp', arm: '/kreativ/intro-arm.webp', 
    Pipan sitter i vänster hand: en bildremsa med 12 rutor där armen lyfter pipan från relingen till munnen. Koordinater i båtbildens punkter. */
 const THORKEL = {
   bat: '/kreativ/thorkel-bat-v.webp', arm: '/kreativ/thorkel-arm-v.webp', pipa: '/kreativ/thorkel-pipa.webp', ruta: [40, 455, 170, 225] as const, n: 12,
-  skal: [[96, 638], [94.7, 635.1], [91.8, 627], [88.7, 614.6], [87, 598.7], [88, 580.3], [92.1, 560.4], [99.2, 540.4], [108, 521.8], [117, 506.3], [123.8, 495.7], [126.5, 491.8]] as const,
+  skal: [[96, 638], [97.2, 635.8], [100.4, 629.6], [104.8, 619.4], [109.7, 605.5], [114.5, 588.1], [118.6, 568.3], [121.9, 547.1], [124.1, 526.6], [125.6, 508.9], [126.3, 496.4], [126.5, 491.8]] as const,
   mun: [166, 496] as const,
 }
 // Pipans rytm i sekunder: vilar, lyfter, blossar, sänker och blåser ut röken
@@ -437,7 +437,8 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
 
     const bygg = () => {
       DPR = Math.min(2, window.devicePixelRatio || 1)
-      W = el.clientWidth; H = el.clientHeight
+      // aldrig noll: en dold eller ännu inte utlagd scen ger annars en tom duk som kraschar sidan
+      W = Math.max(8, el.clientWidth); H = Math.max(8, el.clientHeight)
       cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR)
       const hw = Math.max(2, Math.round(cv.width / 2)), hh = Math.max(2, Math.round(cv.height / 2))
       dens = malYta(gl, hw, hh); sudd1 = malYta(gl, hw, hh); sudd2 = malYta(gl, hw, hh)
@@ -844,7 +845,7 @@ const CSS = `
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .ki-fram{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity 1s .8s}
 .ki-fram.syns{opacity:1}
-.ki-f-kobbe{position:absolute;left:1.5%;bottom:2%;width:15%;height:auto;transform:translateY(35%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
+.ki-f-kobbe{position:absolute;left:1.5%;bottom:0;width:14%;height:auto;transform:translateY(35%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
 .ki-fram.syns .ki-f-kobbe{transform:translateY(0)}
 .ki-v-vastkust{left:61%;width:20%}
 .ki-varld.syns .ki-v-vastkust{transform:translateY(9%);transition-delay:.15s}
@@ -935,7 +936,7 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:46%;width:34%}.ki-f-kobbe{width:24%;left:1%;bottom:22%}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:max(18%,118px);left:1%;bottom:0}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:60%;width:17%}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-s-planera{left:50%;top:71%;--x:-50%;--r:0deg;font-size:16px;padding:11px 18px 11px 14px}
