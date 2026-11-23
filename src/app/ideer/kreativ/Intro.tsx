@@ -838,11 +838,11 @@ const CSS = `
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .ki-fram{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 1s .8s}
 .ki-fram.syns{opacity:1}
-.ki-f-kobbe{position:absolute;left:1.5%;bottom:0;width:17%;aspect-ratio:520/140;transform:translateY(60%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
+.ki-f-kobbe{position:absolute;left:1.5%;bottom:0;width:20%;aspect-ratio:520/140;transform:translateY(60%);transition:transform 1.5s cubic-bezier(.2,.8,.2,1) .8s}
 .ki-fram.syns .ki-f-kobbe{transform:translateY(0)}
 .ki-f-sten{position:absolute;inset:0;width:100%;height:100%}
 /* Krabban följer stenens rundade ovansida och lutar med den. Fötterna är punkten den vrids kring. */
-.ki-krabba{position:absolute;left:50%;top:16%;width:17%;transform:translate(-50%,-94%);transform-origin:50% 100%;animation:kiKrabba 11s ease-in-out infinite alternate}
+.ki-krabba{position:absolute;left:50%;top:16%;width:24%;transform:translate(-50%,-94%);transform-origin:50% 100%;animation:kiKrabba 11s ease-in-out infinite alternate}
 .ki-krabba img{display:block;width:100%;height:auto;animation:kiTrippa .2s steps(2) infinite}
 @keyframes kiKrabba{0%,6%{left:24%;top:35%;transform:translate(-50%,-94%) rotate(-15deg)}25%{left:37%;top:22%;transform:translate(-50%,-94%) rotate(-9deg)}45%,55%{left:50%;top:16%;transform:translate(-50%,-94%) rotate(0)}75%{left:63%;top:21%;transform:translate(-50%,-94%) rotate(9deg)}94%,100%{left:76%;top:33%;transform:translate(-50%,-94%) rotate(15deg)}}
 @keyframes kiTrippa{0%{transform:translateY(0)}100%{transform:translateY(-4%)}}
