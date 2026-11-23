@@ -30,6 +30,7 @@ import { WeatherPill } from '@/components/MapCornerPills'
 import { STANDARD_VADERPUNKT } from '@/lib/weatherGrid'
 import { track } from '@/lib/analytics-events'
 import AppTopBar from '@/components/AppTopBar'
+import { platsKategori, type PlatsKategori } from '@/lib/platskategori'
 
 // ── Types ────────────────────────────────────────────────────────────────
 interface Poi {
@@ -47,7 +48,7 @@ interface Poi {
   endast_medlemmar?: boolean
 }
 
-type Category = 'krog' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'annat'
+type Category = PlatsKategori
 type RegionKey = 'stockholm' | 'goteborg' | 'bohuslan' | 'aland' | 'oland' | 'gotland'
 
 interface Bounds {
@@ -55,58 +56,8 @@ interface Bounds {
 }
 
 // ── Kategori-mapper ──────────────────────────────────────────────────────
-function categorize(p: Poi): Category {
-  const cats = (p.categories ?? []).map(c => c.toLowerCase())
-  const t = (p.type ?? '').toLowerCase()
-  const n = (p.name ?? '').toLowerCase()
-  const d = (p.description ?? '').toLowerCase()
-
-  if (
-    t === 'sauna' || t === 'bastu' ||
-    cats.some(c => ['sauna', 'bastu'].includes(c)) ||
-    n.includes('bastu') || n.includes('sauna')
-  ) return 'bastu'
-
-  if (
-    t === 'fuel' || t === 'fuel_station' ||
-    cats.includes('fuel') || cats.includes('bransle') ||
-    d.includes('bensin') || d.includes('diesel') || d.includes('drivmedel')
-  ) return 'bensin'
-
-  // Boende: hotell, vandrarhem, B&B, stugor, camping, pensionat
-  // Måste komma FÖRE hamn-kategorisering eftersom vissa boenden ligger på
-  // gästhamnar (t.ex. STF-anläggningar) och vi vill att de hamnar i boende.
-  if (
-    cats.some(c => ['accommodation', 'hotel', 'hostel', 'cabin', 'bnb', 'pension'].includes(c)) ||
-    t === 'hotel' || t === 'hostel' || t === 'cabin' || t === 'camping' || t === 'pension'
-  ) return 'boende'
-
-  if (
-    cats.some(c => ['guest_harbor', 'harbor_stop', 'marina'].includes(c)) ||
-    t === 'harbor' || t === 'marina' ||
-    d.includes('gästhamn') || d.includes('marina')
-  ) return 'hamn'
-
-  if (
-    t === 'nature_harbor' || t === 'anchorage' ||
-    cats.some(c => c === 'nature_harbor' || c === 'anchorage')
-  ) return 'naturhamn'
-
-  if (
-    t === 'restaurant' || t === 'bar' || t === 'cafe' || t === 'kafe' ||
-    cats.some(c => ['restaurant', 'cafe', 'bar'].includes(c))
-  ) return 'krog'
-
-  // Bad / strand — egen kategori med parasoll-ikon istället för "Annat"
-  if (
-    t === 'beach' || t === 'bad' || t === 'strand' ||
-    cats.some(c => ['beach', 'bad', 'strand', 'badplats'].includes(c)) ||
-    n.includes('badplats') || n.includes('strand') ||
-    d.includes('badplats')
-  ) return 'bad'
-
-  return 'annat'
-}
+// Platsens egen typ avgör först, se src/lib/platskategori.ts.
+const categorize = (p: Poi): Category => platsKategori(p)
 
 const CATEGORY_META: Record<Category, { label: string; color: string }> = {
   krog:       { label: 'Krogar',      color: '#c96e2a' },
