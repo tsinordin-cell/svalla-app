@@ -1000,6 +1000,18 @@ img {
 .bild-knapp:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 .bild-knapp svg { width: 18px; height: 18px; }
 
+/* Logga tur (2026-11-24): tipset om att spåra med telefonen visas bara på dator. */
+.logga-mobiltips { display: none; }
+.logga-bricka-sand { background: rgba(214,160,90,0.16); color: #8a5a1c; }
+[data-theme="dark"] .logga-bricka-sand { background: rgba(245,199,126,0.14); color: #f5c77e; }
+@media (min-width: 1024px) {
+  .logga-mobiltips { display: block; }
+  /* Sidomenyns Logga tur-knapp syns som vald när man står på /logga. */
+  .nav-fab-wrap[aria-current="page"] .nav-fab-desktop {
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--sea);
+  }
+}
+
 /* ── Desktop nav — left sidebar ≥1024px ── */
 @media (min-width: 1024px) {
   /* Ingen bottom-nav på desktop → nollställ nav-h */

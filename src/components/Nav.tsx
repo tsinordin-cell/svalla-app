@@ -343,6 +343,7 @@ export default function Nav() {
               href={tab.href}
               prefetch={prefetchFor(tab.href)}
               aria-label="Logga tur"
+              aria-current={path === tab.href ? 'page' : undefined}
               className="press-feedback nav-fab-wrap"
               style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}
             >
