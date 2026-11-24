@@ -759,6 +759,30 @@ img {
   transition: transform 80ms ease;
 }
 
+/* Toppradens knappar (toppradStil.ts): cirkeln är 36 px, tryckytan 44 px. */
+.toppknapp::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+}
+
+/* Toppraden glider undan vid skroll nedåt (ToppradGom.tsx). Bara på mobil;
+   från 1024 px är raden dold eller står still. */
+.app-topbar {
+  transition: transform 0.22s ease;
+}
+@media (max-width: 1023px) {
+  .app-topbar--gomd {
+    transform: translateY(-100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .app-topbar {
+    transition: none;
+  }
+}
+
 /* ── Focus visible (keyboard nav) ── */
 :focus-visible {
   outline: 2.5px solid var(--sea);

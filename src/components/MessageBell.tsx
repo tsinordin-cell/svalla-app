@@ -68,12 +68,12 @@ export default function MessageBell() {
     <Link
       href="/meddelanden"
       aria-label={unread > 0 ? `${unread} olästa meddelanden` : 'Meddelanden'}
-      className="press-feedback"
+      className="press-feedback toppknapp"
       style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}
     >
       {/* 2026-11-23 (menyförslaget): ikonen från Icon.tsx (Lucide) i stället för en egen
           inritad bubbla, och 44 px tryckyta. Räknaren har 11 px text, var 9 px. */}
-      <Icon name="messageCircle" size={20} stroke={2} />
+      <Icon name="messageCircle" size={18} stroke={2} />
       {unread > 0 && (
         <span style={RAKNARE_STIL}>
           {unread > 9 ? '9+' : unread}

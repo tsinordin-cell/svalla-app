@@ -25,9 +25,9 @@ export default function ToppradLogga() {
       href={inloggad ? '/feed' : '/'}
       aria-label={inloggad ? 'Svalla, till flödet' : 'Svalla, till startsidan'}
       className="app-topbar-logga"
-      style={{ display: 'inline-flex', alignItems: 'center', minHeight: 44 }}
+      style={{ display: 'inline-flex', alignItems: 'center', minHeight: 36 }}
     >
-      <SvallaLogo height={26} color="var(--sea)" />
+      <SvallaLogo height={24} color="var(--sea)" />
     </Link>
   )
 }
