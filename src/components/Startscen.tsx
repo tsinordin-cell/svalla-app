@@ -527,7 +527,8 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       const sve = provForm(W, H, N, ritaSverige, r)
       // Båten
       // Startscenen i mobilen: båten en tredjedel mindre så att knapparna får plats bredvid seglen (Max 2026-11-23). Introt i del 1 är oförändrat.
-      const bw = Math.min(W * (W < 700 ? (varld ? 0.39 : 0.58) : 0.3), H * 0.5), bh = (bw * BAT_H) / BAT_B
+      // Startscenen: båten med Thorkel och tjejen högst 42 % av scenhöjden, så att den följer med när heron blir lägre (Max 2026-11-24)
+      const bw = Math.min(W * (W < 700 ? (varld ? 0.39 : 0.58) : 0.3), H * (varld ? 0.42 : 0.5)), bh = (bw * BAT_H) / BAT_B
       batRuta = { bw, bh }
       const bat = provForm(W, H, N, c => ritaBat(c, (W - bw) / 2, (H - bh) / 2, bw), r)
       // Formmasken i full upplösning: röd kanal Sverige, grön kanal båten (utan armen, den ritas i shadern)
