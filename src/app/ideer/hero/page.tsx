@@ -18,6 +18,8 @@ const HF_CSS = `
 /* Max 2026-11-24: hela animeringen ska synas under menyn utan att man scrollar, och loggan bara en gång (i menyn) */
 @media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:540px}}
 @media (min-width:1101px){.hf-scen .ki-scen{height:calc(100svh - 68px)}}
+/* Liggande telefon: hela scenen ryms på en skärmhöjd och skyltarna står vid sidorna av båten, så att de inte täcker figurerna */
+@media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
 .hf-scen .ki-logga{display:none}
 /* Max och Thomas 2026-11-24: ljus krämvit meny i samma ton som himlen, marinblå text och logga, i stället för den mörkblå toningen */
 .hf .mm{background:#efe7d6;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
