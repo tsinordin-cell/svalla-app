@@ -45,8 +45,9 @@ const START_CSS = `
 /* Liggande telefon: hela scenen på en skärmhöjd och skyltarna vid sidorna av båten */
 @media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
 .hf-scen .ki-logga{display:none}
-/* Menyn ligger nu ovanför scenen i stället för över den. Mellan 600 och 1365 px hamnade julkalenderns paket
+/* Menyn ligger nu ovanför scenen i stället för över den. Upp till 1365 px hamnade julkalenderns paket
    över menyns nederkant, så där flyttas det ner under menyn. Paketet i sig är oförändrat. */
+@media (max-width:599px){.lp-start .julskylt{top:74px}}
 @media (min-width:600px) and (max-width:1365px){.lp-start .julskylt{top:80px}}
 /* Julkalenderns paket ligger uppe till vänster, så Spela igen och Hoppa över står under ljudknappen till höger */
 .hf-scen .ki-styr,.hf-scen .ki-styr.ljus{left:auto;right:14px;top:52px}
