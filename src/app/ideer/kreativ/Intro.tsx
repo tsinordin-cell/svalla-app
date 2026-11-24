@@ -909,12 +909,6 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       {varld && (
         <div className={visT >= 9800 ? 'ki-fram syns' : 'ki-fram'} aria-hidden="true">
           {/* Kobben i förgrunden, bara stenen, och en krabba som går fram och tillbaka på den (Max 2026-11-23) */}
-          {/* En gammal sjömanskista i faluröd färg på botten, locket på glänt och några silvermynt som glimmar lite (Max 2026-11-24) */}
-          <div className="ki-skatt">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/kreativ/scen-sjomanskista.webp" alt="" />
-            <i className="ki-glimt g1" /><i className="ki-glimt g2" />
-          </div>
           <div className="ki-f-kobbe">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="ki-f-sten" src="/kreativ/scen-sten.webp" alt="" />
@@ -1014,13 +1008,6 @@ const CSS = `
 .ki-varld.syns .ki-ejdrar{opacity:1}
 .ki-ejdrar img{position:absolute;left:0;top:0;height:auto;opacity:0;transform-origin:50% 80%;will-change:transform}
 .ki-ejder{width:3.4%}.ki-unge{width:1.7%}
-/* Skattkistan på botten */
-.ki-skatt{position:absolute;left:62%;bottom:1%;width:5%;transform:translateY(40%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1) 1s}
-.ki-fram.syns .ki-skatt{transform:translateY(0)}
-.ki-skatt img{display:block;width:100%;height:auto}
-.ki-glimt{position:absolute;width:9%;aspect-ratio:1;opacity:0;background:linear-gradient(90deg,transparent 44%,#f4f6f8 44% 56%,transparent 56%),linear-gradient(0deg,transparent 44%,#f4f6f8 44% 56%,transparent 56%);border-radius:50%;animation:kiGlimt 5.2s ease-in-out infinite}
-.ki-glimt.g1{left:34%;top:39%;width:8%}.ki-glimt.g2{left:56%;top:36%;width:7%;animation-delay:-2.1s}
-@keyframes kiGlimt{0%,70%,100%{opacity:0;transform:scale(.3) rotate(0)}82%{opacity:1;transform:scale(1) rotate(45deg)}}
 .ki-v-eka{position:absolute;left:70%;bottom:7.5%;width:13%;height:auto;transform-origin:50% 80%;animation:kiEka 6s ease-in-out infinite alternate}
 @keyframes kiEka{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(5%) rotate(1.2deg)}}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
@@ -1031,7 +1018,7 @@ const CSS = `
 .ki-fram.syns .ki-f-kobbe{transform:translateY(0)}
 .ki-f-sten{position:absolute;inset:0;width:100%;height:100%}
 /* Krabban följer stenens rundade ovansida och lutar med den. Fötterna är punkten den vrids kring. */
-.ki-krabba{position:absolute;left:50%;top:16%;width:24%;transform:translate(-50%,-94%);transform-origin:50% 100%;animation:kiKrabba 18s ease-in-out infinite alternate}
+.ki-krabba{position:absolute;left:50%;top:16%;width:12%;transform:translate(-50%,-94%);transform-origin:50% 100%;animation:kiKrabba 18s ease-in-out infinite alternate}
 .ki-krabba img{display:block;width:100%;height:auto;animation:kiTrippa .32s steps(2) infinite}
 @keyframes kiKrabba{0%,6%{left:24%;top:35%;transform:translate(-50%,-94%) rotate(-15deg)}25%{left:37%;top:22%;transform:translate(-50%,-94%) rotate(-9deg)}45%,55%{left:50%;top:16%;transform:translate(-50%,-94%) rotate(0)}75%{left:63%;top:21%;transform:translate(-50%,-94%) rotate(9deg)}94%,100%{left:76%;top:33%;transform:translate(-50%,-94%) rotate(15deg)}}
 @keyframes kiTrippa{0%{transform:translateY(0)}100%{transform:translateY(-4%)}}
@@ -1139,10 +1126,10 @@ const CSS = `
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-glimt,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu::after{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}.ki-skatt{left:64%;width:13%}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu::after{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
