@@ -1001,7 +1001,7 @@ const CSS = `
 /* Grönskan (på tuvor), ekan och ejdrarna */
 .ki-tuva{position:absolute;height:auto;pointer-events:none}
 .ki-tuva-o1{left:30%;bottom:27%;width:12%}
-.ki-tuva-o2{left:58%;bottom:26%;width:11%;transform:scaleX(-1)}
+.ki-tuva-o2{left:56.5%;bottom:22.5%;width:11%;transform:scaleX(-1)}
 .ki-tuva-v1{left:19%;bottom:38.5%;width:10%}
 .ki-tuva-v2{left:50%;bottom:39%;width:9%;transform:scaleX(-1)}
 .ki-ejdrar{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.5s 1s}
