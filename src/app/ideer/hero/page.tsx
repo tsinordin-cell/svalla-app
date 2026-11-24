@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 const HF_CSS = `
 .hf{min-height:100vh;background:#fff}
 .hf-scen .ki-scen{border-radius:0;box-shadow:none}
+/* Max 2026-11-24: hela animeringen ska synas under menyn utan att man scrollar, och loggan bara en gång (i menyn) */
+@media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:540px}}
+.hf-scen .ki-logga{display:none}
 `
 
 export default function HeroForhandsvisning() {
