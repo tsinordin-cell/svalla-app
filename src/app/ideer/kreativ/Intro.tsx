@@ -997,8 +997,8 @@ const CSS = `
 .ki-namn{position:absolute;left:0;bottom:2px;height:14px}
 .ki-namn button{position:absolute;transform:translateX(-50%);border:none;background:none;padding:2px 0;cursor:pointer;font:700 10px/1 Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--f);opacity:.55;transition:opacity .3s,color .6s}
 .ki-namn button.pa{opacity:1}
-.ki-styr{position:absolute;right:16px;bottom:18px;display:flex;gap:8px;z-index:3;--f:#1b57a0}
-.ki-styr.ljus{--f:#fff}
+/* Uppe till vänster, mitt emot ljudknappen, så att knapparna inte krockar med Tipsa oss nere till höger */
+.ki-styr,.ki-styr.ljus{position:absolute;left:16px;top:14px;display:flex;gap:8px;z-index:3;--f:#1b57a0}
 .ki-styr button{border:1.5px solid var(--f);background:none;color:var(--f);font:700 12px/1 Inter,system-ui,sans-serif;border-radius:999px;padding:8px 12px;cursor:pointer;transition:color .6s,border-color .6s}
 .ki-reserv{display:flex;align-items:flex-start;justify-content:center}
 .ki-reserv-hav{position:absolute;left:0;right:0;bottom:0;height:40%;background:#1b57a0}
