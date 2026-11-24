@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 import { track } from '@/lib/analytics-events'
 
-export default function FollowButton({ targetUserId, darkBg = false, hideCount = false }: { targetUserId: string; darkBg?: boolean; hideCount?: boolean }) {
+export default function FollowButton({ targetUserId, darkBg = false, hideCount = false, stacked = false }: { targetUserId: string; darkBg?: boolean; hideCount?: boolean; stacked?: boolean }) {
  const supabase = useRef(createClient()).current
  const [myId, setMyId] = useState<string | null>(null)
  const [following, setFollowing] = useState(false)
@@ -65,7 +65,11 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  if (myId === targetUserId) return null
 
  return (
- <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+ // stacked: knappen över hela bredden och antalet under, för smala kort där
+ // "1 följare" annars bröts på två rader bredvid knappen (granskningen 2026-11-23).
+ <div style={stacked
+ ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%' }
+ : { display: 'flex', alignItems: 'center', gap: 10 }}>
  <button
  onClick={toggle}
  disabled={loading || !myId}
@@ -73,7 +77,8 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  aria-pressed={following}
  className="press-feedback"
  style={{
- padding: '10px 24px', borderRadius: 20, cursor: myId ? 'pointer' : 'default',
+ padding: stacked ? '8px 12px' : '10px 24px', borderRadius: 20, cursor: myId ? 'pointer' : 'default',
+ width: stacked ? '100%' : undefined,
  fontSize: 13, fontWeight: 700, transition: 'all .15s',
  ...(following
  ? darkBg
@@ -87,7 +92,7 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  </button>
  {count > 0 && !hideCount && (
  <span style={{
- fontSize: 12, fontWeight: 600,
+ fontSize: stacked ? 11 : 12, fontWeight: 600, whiteSpace: 'nowrap',
  color: darkBg ? 'rgba(255,255,255,0.75)' : 'var(--txt3)',
  }}>
  {count} följare
