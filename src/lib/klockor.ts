@@ -38,6 +38,9 @@ export function visaGlobalaKlockor(path: string, inloggad: boolean): boolean {
   // 2026-11-19: /planera har flikraden Planera, Rutter, Öar, Färjor överst, och
   // ikonerna låg ovanpå fliken Färjor på telefon. /planera/ny har ingen flikrad.
   if (path === '/planera' || path === '/planera/') return false
+  // 2026-11-25: /logga har toppraden AppTopBar med samma knappar. Undersidorna
+  // (/logga/manuell) har den inte och behåller de flytande.
+  if (path === '/logga' || path === '/logga/') return false
   if (arTursida(path)) return false
   return true
 }

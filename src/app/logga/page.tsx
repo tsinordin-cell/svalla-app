@@ -3,7 +3,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import { createClient, getViewer } from '@/lib/supabase'
 import Icon from '@/components/Icon'
-import SvallaLogo from '@/components/SvallaLogo'
+import AppTopBar from '@/components/AppTopBar'
 import { track } from '@/lib/analytics-events'
 
 function LoggaChoice() {
@@ -25,40 +25,19 @@ function LoggaChoice() {
 
   return (
     // 2026-11-24 (fixlistan nr 9, version 6, Toms styrning): samma ljusa bakgrund som övriga
-    // sidor, men det levande från förra sidan är kvar: SVALLA-loggan, grön LIVE GPS-bricka,
+    // sidor, men det levande från förra sidan är kvar: grön LIVE GPS-bricka (loggan står i toppraden sedan 2026-11-25),
     // varm SNABB-LOGG-bricka (sand/bärnsten som passar havsblått), stora ikoner och kort
     // med djup. Spåra live-kortet har förra sidans havsgradient, så det sticker ut även i
     // mörkt läge. Wifi-ikonen är en GPS-pil. All text klarar WCAG AA (4,5:1).
     <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 88px)' }}>
 
-      {/* Header */}
-      <header style={{
-        display: 'flex', alignItems: 'center', gap: 12,
-        padding: '14px 16px',
-      }}>
-        <button
-          onClick={() => router.back()}
-          aria-label="Gå tillbaka"
-          className="press-feedback"
-          style={{
-            width: 38, height: 38, borderRadius: '50%',
-            background: 'var(--sea-08)',
-            border: 'none', cursor: 'pointer',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <span style={{ color: 'var(--txt2)', fontSize: 14, fontWeight: 600 }}>Logga tur</span>
-      </header>
+      {/* 2026-11-25 (Tom): samma topprad som Planera (loggan, sök, meddelanden, notiser)
+          i stället för tillbakapil och sidnamn. Bottenmenyn finns kvar för att gå vidare.
+          Den stora loggan i sidan är borttagen: toppraden har den redan. */}
+      <AppTopBar doljPaDesktop />
 
       {/* Hero text */}
       <div style={{ padding: '20px 20px 28px', textAlign: 'center' }}>
-        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center' }}>
-          <SvallaLogo height={52} color="var(--sea)" />
-        </div>
         <h1 style={{
           fontSize: 28, fontWeight: 700, color: 'var(--txt)',
           margin: '0 0 8px', lineHeight: 1.15,
