@@ -28,6 +28,8 @@ function LoggaChoice() {
     // levande behålls. SVALLA-loggan kvar (nu i havsblått), Spåra live är ett fyllt
     // havsblått kort med vit text och stora ikoner som förr. Ändrat: GPS-pil i stället
     // för wifi-ikon, och en rad på dator om att spårningen görs med telefonen.
+    // Version 4 (Toms ja): havsblått är enda accent, ingen orange. Snabb-logg har ljusblå ton,
+    // rubrikerna --sea-d, grönt bara i live-pricken. Vit text på GPS-kortet klarar 4,5:1 i båda lägena.
     <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 88px)' }}>
 
       {/* Header */}
@@ -59,7 +61,7 @@ function LoggaChoice() {
           <SvallaLogo height={52} color="var(--sea)" />
         </div>
         <h1 style={{
-          fontSize: 28, fontWeight: 700, color: 'var(--txt)',
+          fontSize: 28, fontWeight: 700, color: 'var(--sea-d)',
           margin: '0 0 8px', lineHeight: 1.15,
         }}>
           Hur vill du logga?
@@ -97,11 +99,11 @@ function LoggaChoice() {
                 <span style={{ fontSize: 11, fontWeight: 700, color: '#ffffff', letterSpacing: '0.5px' }}>LIVE GPS</span>
               </div>
               <div style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', marginBottom: 6 }}>Spåra live</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.82)', lineHeight: 1.5 }}>
+              <div style={{ fontSize: 13, color: '#ffffff', lineHeight: 1.5 }}>
                 GPS loggar rutten automatiskt. Se karta, hastighet och stopp när turen är klar.
               </div>
               {/* Bara på dator (≥1024 px): spårningen görs med telefonen ute på sjön. */}
-              <div className="logga-mobiltips" style={{ fontSize: 12, color: 'rgba(255,255,255,0.68)', lineHeight: 1.5, marginTop: 8 }}>
+              <div className="logga-mobiltips" style={{ fontSize: 12, color: '#ffffff', lineHeight: 1.5, marginTop: 8, fontStyle: 'italic' }}>
                 Gjord för mobilen. Öppna Svalla i telefonen när du ska ut på sjön.
               </div>
             </div>
@@ -126,8 +128,8 @@ function LoggaChoice() {
           className="press-feedback"
           style={{
             width: '100%', borderRadius: 22, padding: '22px 20px',
-            background: 'var(--white)',
-            border: '1.5px solid var(--sea-10)',
+            background: 'linear-gradient(var(--sea-08), var(--sea-08)), var(--white)',
+            border: '1.5px solid var(--sea-15)',
             boxShadow: '0 6px 22px rgba(0,30,50,0.10)',
             cursor: 'pointer', textAlign: 'left',
             WebkitTapHighlightColor: 'transparent',
@@ -138,17 +140,17 @@ function LoggaChoice() {
             <div style={{ flex: 1 }}>
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
-                background: 'var(--acc-10)', borderRadius: 20,
+                background: 'var(--sea-12)', borderRadius: 20,
                 padding: '4px 10px', marginBottom: 10,
               }}>
-                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--acc-text)', letterSpacing: '0.5px' }}>SNABB-LOGG</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--sea)', letterSpacing: '0.5px' }}>SNABB-LOGG</span>
               </div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>Snabb-logg</div>
+              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea-d)', marginBottom: 6 }}>Snabb-logg</div>
               <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
                 Fyll i plats, distans och tid själv, med eller utan bild. Ingen GPS behövs.
               </div>
             </div>
-            <div style={{ flexShrink: 0, color: 'var(--acc-text)', display: 'flex' }}>
+            <div style={{ flexShrink: 0, color: 'var(--sea)', display: 'flex' }}>
               <Icon name="camera" size={36} stroke={1.75} />
             </div>
           </div>
