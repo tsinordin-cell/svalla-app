@@ -918,7 +918,7 @@ const CSS = `
 .ki-gras-o2{left:61%;bottom:27.5%;width:10%}
 .ki-gras-v1{left:14%;bottom:35%;width:14%}
 .ki-gras-v2{left:79%;bottom:34.5%;width:12%;transform:scaleX(-1)}
-.ki-v-eka{position:absolute;left:70%;bottom:1%;width:13%;height:auto;transform-origin:50% 80%;animation:kiEka 6s ease-in-out infinite alternate}
+.ki-v-eka{position:absolute;left:70%;bottom:7.5%;width:13%;height:auto;transform-origin:50% 80%;animation:kiEka 6s ease-in-out infinite alternate}
 @keyframes kiEka{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(5%) rotate(1.2deg)}}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
