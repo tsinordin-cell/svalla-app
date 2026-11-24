@@ -40,7 +40,11 @@ const START_CSS = `
 /* div i stället för section: startsidans stilmall ger alla section 100 px och 40 px utfyllnad */
 .hf-scen{position:relative;z-index:1;background:#efe7d6}
 .hf-scen .ki-scen{border-radius:0;box-shadow:none}
-@media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:clamp(460px,64svh,640px);min-height:0}}
+/* Max 2026-11-24: hela rutan under heron (Tre sätt att ta sig ut) ska synas utan att man scrollar.
+   Heron får det som blir över av skärmhöjden när menyn (68 px) och rutan (cirka 350 px) är borträknade, minst 380 och högst 640 px. */
+@media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:clamp(380px,calc(100svh - 418px),640px);min-height:0}}
+/* Thorkels frågeruta lite lägre och mindre, så att den inte täcker skylten Intresserad av samarbete i den lägre heron */
+.lp-start .th{bottom:12px;scale:.86;transform-origin:left bottom}
 @media (max-width:860px) and (orientation:portrait){.hf-scen .ki-scen{aspect-ratio:1/1}}
 /* Liggande telefon: hela scenen på en skärmhöjd och skyltarna vid sidorna av båten */
 @media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
