@@ -502,7 +502,7 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
       <Del nr="2" id="karta" rubrik="Levande karta: segla, plocka plast och ta medaljen" forebild={<>Route 66-kartan av Ohsson Studio</>} varfor="Tryck på en ö så seglar båten till dess brygga, runt allt som ligger emellan och aldrig över land. Rutten ritas fram som en streckad linje. Längs kusten flyter tio plastpåsar. Plocka alla och få en medalj, öst och väst var för sig.">
         <Karta oar={oar} />
       </Del>
-      <Del nr="3" id="fragan" rubrik="Frågan vid dörren" forebild={<>välkomstskärmen på <a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En lekfull fråga med två svar innan man kommer in. Frågan byts varje gång och båda svaren leder vidare. Kan visas efter introt eller i stället för det.">
+      <Del nr="3" id="fragan" rubrik="Frågan vid dörren" varfor="En lekfull fråga med två svar innan man kommer in. Frågan byts varje gång och båda svaren leder vidare. Kan visas efter introt eller i stället för det.">
         <Fragan />
       </Del>
       <Del nr="4" id="halsbricka" rubrik="Halsbrickan på partnersidan" forebild={<><a href="https://www.awwwards.com/inspiration/studio-pass-lanyard-carter-ogunsola" target="_blank" rel="noopener noreferrer">Studio pass lanyard på Awwwards</a></>} varfor="Passerkortet faller ner från toppen när partnerns sida öppnas, gungar till ro och går att dra i. Skriv in ett namn och se kortet ändras, så kan en verksamhet se sitt eget.">
@@ -511,7 +511,7 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
       <Del nr="5" id="bandet" rubrik="Startsidan: bandet som vecklas ut" forebild={<><a href="https://www.awwwards.com/inspiration/page-transition-sweet-tape" target="_blank" rel="noopener noreferrer">Sweet Tape på Awwwards</a></>} varfor="Band i Svallas färger sveper över skärmen och avslöjar Svalla, med riktiga ö-namn runt omkring. Kan också användas när man byter sida.">
         <Bandet onamn={onamn} />
       </Del>
-      <Del nr="6" id="partner" rubrik="Partnersida i Svallastil" forebild={<><a href="https://stayveluwe.com/" target="_blank" rel="noopener noreferrer">stayveluwe.com</a></>} varfor="En levande skärgårdsscen i lager som rör sig när man för musen, dag och natt, penseldragen knapp och erbjudanden i vågiga ramar med öarnas riktiga foton.">
+      <Del nr="6" id="partner" rubrik="Partnersida i Svallastil" varfor="En levande skärgårdsscen i lager som rör sig när man för musen, dag och natt, penseldragen knapp och erbjudanden i vågiga ramar med öarnas riktiga foton.">
         <Partnersida foton={foton} />
       </Del>
 
@@ -523,7 +523,7 @@ export default function Kreativ({ oar, foton, onamn }: { oar: KO[]; foton: KFoto
         <h2>Vad som behövs för att göra det på riktigt</h2>
         <ul>
           <li><b>Introt:</b> visas bara första besöket, alltid med Hoppa över, och aldrig för den som valt minskad rörelse i telefonen.</li>
-          <li><b>Bilderna:</b> riktigt måleriska illustrationer som på stayveluwe kräver en illustratör eller ett bildverktyg. Här är scenen ritad i kod.</li>
+          <li><b>Bilderna:</b> riktigt måleriska illustrationer kräver en illustratör eller ett bildverktyg. Här är scenen ritad i kod.</li>
           <li><b>Halsbrickan:</b> namnet hämtas från partnerns uppgifter när avtal finns.</li>
           <li><b>Kartan:</b> riktiga kustlinjer från OpenStreetMap, fler regioner som Höga kusten, och ett beslut om vad medaljen ska ge. Premiumprofilen finns inte än.</li>
         </ul>
