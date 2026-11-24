@@ -1593,9 +1593,9 @@ body.underkantsruta-oppen .fb-flytande {
 /* Max 2026-11-24: färgerna ska hänga ihop med sandtonen från startsidan.
    Sidhuvuden med den blå havstoningen blir sand med marinblå text, och menyn blir ljus på alla undersidor.
    Startsidans meny (mm-start) och mörkt läge är oförändrade. Menyns typsnitt rörs inte. */
-html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero)"],[style*="#1e5c82 0%, #2d7d8a 100%"]){background:#efe7d6!important;color:#0a2540}
-html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero)"],[style*="#1e5c82 0%, #2d7d8a 100%"]) :is(h1,h2,h3,p,span,small,li,div,a:not([style*="background"])){color:#0a2540!important;text-shadow:none!important}
-html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero)"],[style*="#1e5c82 0%, #2d7d8a 100%"]) :is(span,a,div)[style*="rgba(255"]{background:rgba(10,37,64,.07)!important;border-color:rgba(10,37,64,.14)!important}
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"]){background:#efe7d6!important;color:#0a2540}
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"]) :is(h1,h2,h3,p,span,small,li,div,a:not([style*="background"])){color:#0a2540!important;text-shadow:none!important}
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"]) :is(span,a,div)[style*="rgba(255"]{background:rgba(10,37,64,.07)!important;border-color:rgba(10,37,64,.14)!important}
 html:not([data-theme="dark"]) .mm:not(.mm-start){background:#efe7d6;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
 html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-logga svg [fill="#ffffff"]{fill:#0a2540}
 html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-logga svg [stroke="#ffffff"]{stroke:#0a2540}
