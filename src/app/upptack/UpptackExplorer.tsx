@@ -262,6 +262,18 @@ export default function UpptackExplorer() {
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>(() => ({
     lat: startVyRef.current.center[0], lng: startVyRef.current.center[1],
   }))
+  const mapCenterRef = useRef(mapCenter)
+  mapCenterRef.current = mapCenter
+  // Under en sökning står vädret kvar på platsen det visade före sökningen.
+  // Annars följer det kartans mitt, som efter en bred sökning ("bastu") kan
+  // hamna långt utanför skärgården. Släpps när du själv flyttar kartan.
+  const [vaderLas, setVaderLas] = useState<{ lat: number; lng: number } | null>(null)
+  const vaderLasRef = useRef(vaderLas)
+  vaderLasRef.current = vaderLas
+  // Kartan flyttas av sökningen (true) eller av dig (false). Används för att
+  // inte zooma om, och för att släppa vädret, när du själv flyttat kartan.
+  const autoFlyttRef = useRef(false)
+  const anvandarFlyttatRef = useRef(false)
 
   // GPS-state — "Visa min plats"
   const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
@@ -297,14 +309,18 @@ export default function UpptackExplorer() {
     setSheetState(prev => {
       const next: SheetState = prev === 'half' ? 'full' : prev === 'full' ? 'min' : 'half'
       if (typeof window !== 'undefined') window.localStorage.setItem('upx-sheet2', next)
-      // Leaflet behöver veta att kartans höjd ändrats
-      setTimeout(() => {
-        const m = mapRef.current as { invalidateSize?: () => void } | null
-        m?.invalidateSize?.()
-      }, 320)
       return next
     })
   }
+  // Kartans höjd följer listans läge (halvöppen lista = lägre karta), även när
+  // läget läses in från förra besöket. Leaflet behöver då veta den nya storleken.
+  useEffect(() => {
+    const id = setTimeout(() => {
+      const m = mapRef.current as { invalidateSize?: () => void } | null
+      m?.invalidateSize?.()
+    }, 320)
+    return () => clearTimeout(id)
+  }, [sheetState])
 
   // Refs
   const mapDivRef = useRef<HTMLDivElement>(null)
@@ -535,6 +551,12 @@ export default function UpptackExplorer() {
       }
       map.on('moveend', updateBounds)
       map.on('zoomend', updateBounds)
+      map.on('movestart', () => {
+        if (autoFlyttRef.current) return
+        anvandarFlyttatRef.current = true
+        if (vaderLasRef.current) setVaderLas(null)
+      })
+      map.on('moveend', () => { autoFlyttRef.current = false })
       updateBounds()
 
       mapRef.current = map
@@ -635,8 +657,15 @@ export default function UpptackExplorer() {
   // som råkar ligga i vyn, fast Svalla har fler. Bara när sökningen ändras,
   // aldrig när användaren själv panorerar efteråt.
   const senastZoomadRef = useRef<string>('')
+  const senastSokRef = useRef<string>('')
+  // Vädret: lås på platsen före sökningen, släpp när sökningen rensas.
+  const sokAktiv = !!sokTraffar
   useEffect(() => {
-    if (!sokTraffar) { senastZoomadRef.current = ''; return }
+    if (!sokAktiv) { if (vaderLasRef.current) setVaderLas(null); return }
+    if (!vaderLasRef.current) setVaderLas(mapCenterRef.current)
+  }, [sokAktiv, query])
+  useEffect(() => {
+    if (!sokTraffar) { senastZoomadRef.current = ''; senastSokRef.current = ''; return }
     if (!kartaKlar) return
     const id = setTimeout(async () => {
       const map = mapRef.current as {
@@ -647,17 +676,43 @@ export default function UpptackExplorer() {
       // Samma träffar som listan och pinnarna (sokTraffar), inom valda kategorier.
       const traffar = pois.filter(p => sokTraffar.has(p) && (isAllMode || activeCats.has(categorize(p))))
       if (traffar.length === 0) return
-      const nyckel = `${query.trim().toLowerCase()}|${isAllMode ? 'alla' : [...activeCats].sort().join(',')}|${traffar.length}`
+      // Mobil: listan ligger ovanpå kartans nedre del. Helskärmslistan döljer
+      // kartan, så där zoomar vi inte (det görs när listan fälls ned igen).
+      const mobil = typeof window !== 'undefined' && window.matchMedia('(max-width: 900px)').matches
+      if (mobil && sheetState === 'full') return
+      const sokNyckel = `${query.trim().toLowerCase()}|${isAllMode ? 'alla' : [...activeCats].sort().join(',')}|${traffar.length}`
+      const nyckel = `${sokNyckel}|${mobil ? sheetState : 'dator'}`
       if (senastZoomadRef.current === nyckel) return
+      const nySokning = senastSokRef.current !== sokNyckel
+      if (nySokning) {
+        anvandarFlyttatRef.current = false
+      } else if (anvandarFlyttatRef.current) {
+        // Bara listans läge ändrades, och du har själv flyttat kartan: stå kvar.
+        return
+      }
       senastZoomadRef.current = nyckel
+      senastSokRef.current = sokNyckel
+      // Hur mycket av kartans nederkant listan täcker, så att träffarna hamnar
+      // i den synliga delen ovanför listan och inte under den.
+      let tacktNere = 0
+      const behallare = (map as { getContainer?: () => HTMLElement }).getContainer?.()
+      if (mobil && behallare) {
+        const lista = behallare.closest('.upx-split')?.querySelector('.upx-list')
+        if (lista) {
+          tacktNere = Math.max(0, behallare.getBoundingClientRect().bottom - lista.getBoundingClientRect().top)
+        }
+      }
       const L = await hamtaLeaflet()
+      autoFlyttRef.current = true
       map.fitBounds(
         L.latLngBounds(traffar.map(p => [p.latitude, p.longitude] as [number, number])),
-        { padding: [48, 48], maxZoom: 13, animate: true },
+        { paddingTopLeft: [48, 48], paddingBottomRight: [48, 48 + tacktNere], maxZoom: 13, animate: true },
       )
+      // Om kartan redan stod rätt kommer ingen moveend; släpp flaggan ändå.
+      setTimeout(() => { autoFlyttRef.current = false }, 1200)
     }, 450)
     return () => clearTimeout(id)
-  }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query])
+  }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query, sheetState])
 
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
@@ -969,7 +1024,8 @@ export default function UpptackExplorer() {
               {sokTraffar && sokTraffar.size === 0 ? (
                 <>
                   <p>Ingen plats på kartan matchar ”{query.trim()}”.</p>
-                  <Link href={`/sok?q=${encodeURIComponent(query.trim())}`} className="upx-empty-cta">
+                  {/* Mobil har redan raden under sökrutan, så knappen visas bara på dator. */}
+                  <Link href={`/sok?q=${encodeURIComponent(query.trim())}`} className="upx-empty-cta upx-empty-cta-dator">
                     Sök på hela Svalla
                   </Link>
                 </>
@@ -1074,7 +1130,7 @@ export default function UpptackExplorer() {
 
           {/* Vädervisare — top-left på kartan */}
           <div className="upx-weather-wrap">
-            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
+            <WeatherPill lat={(vaderLas ?? mapCenter).lat} lng={(vaderLas ?? mapCenter).lng} />
           </div>
         </div>
       </div>
@@ -1493,6 +1549,7 @@ export default function UpptackExplorer() {
         @media (max-width: 900px) {
           .upx-mob-tabs { display: none !important; }
           .upx-search:not(.has-query) { display: none; }
+          .upx-empty-cta-dator { display: none; }
           .upx-sok-hela {
             display: block;
             margin-top: 6px;
@@ -1548,6 +1605,11 @@ export default function UpptackExplorer() {
           /* Snap-points: cyclas via handle-knappen */
           .upx-split.sheet-min  .upx-list { height: 64px; padding-bottom: 8px; }
           .upx-split.sheet-half .upx-list { height: 50vh; }
+          /* Halvöppen lista: kartan slutar strax under listans överkant, så att
+             kartans mitt är mitten av det du ser. Annars zoomar + och − mot en
+             punkt under listan, och vädret visar platsen som listan döljer. */
+          .upx-map { transition: height 280ms cubic-bezier(0.32, 0.72, 0, 1); }
+          .upx-split.sheet-half .upx-map { height: calc(100% - 50vh + 24px); }
           .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px) - 24px); }
 
           /* När minimerat: göm scrollande innehåll så bara handle + count syns */
