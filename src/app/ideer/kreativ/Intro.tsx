@@ -747,7 +747,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
   }
 
   return (
-    <div className={gar ? 'ki-scen ki-gar' : 'ki-scen'} ref={scen}>
+    <div className={(gar ? 'ki-scen ki-gar' : 'ki-scen') + (varld ? ' ki-scen-varld' : '')} ref={scen}>
       {varld && (
         <div className={visT >= 9800 ? 'ki-varld syns' : 'ki-varld'} aria-hidden="true">
           {/* En varm målad sol uppe i vänstra hörnet (Max 2026-11-24) */}
@@ -853,6 +853,8 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
 
 const CSS = `
 .ki-scen{position:relative;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(13,36,64,.14);aspect-ratio:16/9;min-height:380px;touch-action:pan-y}
+/* Startscenen: varm krämvit himmel i stället för kritvit, så att den inte bländar mot det mörkblå havet (Max 2026-11-24) */
+.ki-scen-varld{background:#f7f2e8}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .ki-fram{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 1s .8s}
