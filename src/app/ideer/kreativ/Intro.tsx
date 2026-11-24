@@ -1096,7 +1096,7 @@ const CSS = `
 .ki-s-boende,.ki-s-krogar,.ki-s-farjor,.ki-s-gora{top:84%;--r:0deg}
 .ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
 @media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-cta{font-size:10.5px;padding:5px 8px 5px 7px}
-.ki-skyltar .ki-s-planera,.ki-skyltar .ki-s-samarbete{top:46%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
+.ki-skyltar .ki-s-planera,.ki-skyltar .ki-s-samarbete{top:42.5%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
 /* Loggan: uppe till vänster på himlen, i mobilen nere till vänster på havet där knapparna inte sitter */
 .ki-logga{position:absolute;left:22px;top:20px;z-index:4;display:flex;align-items:center;gap:8px;color:#0a2540;pointer-events:none}
 .ki-logga svg{height:26px;width:auto}
