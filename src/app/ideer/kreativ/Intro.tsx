@@ -397,6 +397,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
 
     let W = 0, H = 0, DPR = 1, N = 0, NB = 0
     const ejdPx = new Uint8Array(4 * 256), ejdY: number[] = []
+    const mobilMq = window.matchMedia('(max-width:860px)') // ejdrarna syns inte i mobilen, så där läses inga pixlar
     let dens = malYta(gl, 2, 2), sudd1 = malYta(gl, 2, 2), sudd2 = malYta(gl, 2, 2)
     let flA = malYta(gl, 2, 2), flB = malYta(gl, 2, 2)
     let data = new Float32Array(0)
@@ -732,7 +733,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       // Ejdrarna simmar sakta framåt och ligger alltid på vattenytan (Max 2026-11-24). Vågformeln ger ett första läge,
       // sedan läses den riktiga ytan av ur den nyss ritade bilden (en smal pixelkolumn per fågel), så att de aldrig hamnar under ytan.
       const ejd = ejdRef.current
-      if (varld && ejd) {
+      if (varld && ejd && !mobilMq.matches) {
         const vagA = 0.4 + 0.6 * ease((T - 5800) / 1500), tvv = sek * 0.5
         const yta = (px: number) => { const xq = px / H; return (havNiva + (Math.sin(xq * 3.1 + tvv * 1.05) * 0.011 + Math.sin(xq * 7.7 - tvv * 1.6) * 0.0055) * vagA) * H }
         const span = W * 0.42, start = W * 1.04, fart = W * 0.0042
@@ -984,7 +985,7 @@ const CSS = `
 .ki-gar .ki-nav,.ki-gar .ki-styr,.ki-gar .ki-topp{opacity:0;pointer-events:none;transition:opacity .25s}
 .ki-ljud{font:700 11px/1 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#1b57a0;border:none;border-radius:999px;padding:8px 13px;cursor:pointer}
 /* Ingen ljudknapp och inget tips om ljud på mobilen (Max 2026-11-24) */
-@media (max-width:860px){.ki-ljud,.ki-tips{display:none}}
+@media (max-width:860px){.ki-ljud,.ki-tips,.ki-styr{display:none}}
 .ki-in{position:absolute;left:0;right:0;bottom:88px;display:flex;justify-content:center;z-index:3;animation:kiUpp .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes kiUpp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .ki-knapp{font:400 19px/1 'Playfair Display',Georgia,serif;color:#1b57a0;background:#fff;border:none;border-radius:999px;padding:15px 30px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.18);transition:transform .25s}
@@ -1086,7 +1087,7 @@ const CSS = `
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
 /* Mobilen: bara båten, havet, fåglarna och ångbåten som går i bakgrunden. Hellre mindre än mer (Max 2026-11-24). */
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:24%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-o,.ki-v-vastkust,.ki-v-fyr,.ki-v-bastu,.ki-ejdrar,.ki-djup,.ki-varld .ki-v-sol{display:none}.ki-v-bastu::after{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:13%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-o,.ki-v-vastkust,.ki-v-fyr,.ki-v-bastu,.ki-ejdrar,.ki-djup,.ki-varld .ki-v-sol{display:none}.ki-v-bastu::after{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
