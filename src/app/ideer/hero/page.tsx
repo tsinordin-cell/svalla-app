@@ -41,31 +41,17 @@ const HF_CSS = `
 .hf .mm-liten:hover{color:#0a2540}
 .hf .mm-mob-sok{color:#0a2540}
 .hf .mm-mob-knapp{background:rgba(10,37,64,.06);border-color:rgba(10,37,64,.25);color:#0a2540}
-.hf-tider{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:center;padding:18px 16px 28px;font:600 13px/1.2 Inter,system-ui,sans-serif;color:#0a2540}
-.hf-tider span{opacity:.7;margin-right:4px}
-.hf-tider a{color:#0a2540;text-decoration:none;border:1.5px solid rgba(10,37,64,.25);border-radius:999px;padding:7px 13px}
-.hf-tider a.vald{background:#0a2540;color:#efe7d6;border-color:#0a2540}
 `
 
-type Tid = 'morgon' | 'dag' | 'kvall' | 'natt'
-const TIDER: { id: Tid; namn: string }[] = [{ id: 'morgon', namn: 'Morgon' }, { id: 'dag', namn: 'Dag' }, { id: 'kvall', namn: 'Kväll' }, { id: 'natt', namn: 'Sommarnatt' }]
-
-/* Bara i förhandsvisningen: knappar för att se scenen i olika tider på dygnet. Utan val följer scenen klockan i Sverige. */
-export default async function HeroForhandsvisning({ searchParams }: { searchParams: Promise<{ tid?: string }> }) {
-  const sp = await searchParams
-  const tid = TIDER.find(t => t.id === sp.tid)?.id
+/* Max 2026-11-24: scenen visar alltid dagen, i stället för att skifta med klockan */
+export default function HeroForhandsvisning() {
   return (
     <main className="hf">
       <style>{HF_CSS}</style>
       <MegaMeny />
       <div className="hf-scen">
-        <Intro varld dygn={tid} />
+        <Intro varld dygn="dag" />
       </div>
-      <nav className="hf-tider" aria-label="Visa tid på dygnet (förhandsvisning)">
-        <span>Förhandsvisning, tid på dygnet:</span>
-        <a href="/ideer/hero" className={!tid ? 'vald' : ''}>Nu</a>
-        {TIDER.map(t => <a key={t.id} href={'/ideer/hero?tid=' + t.id} className={tid === t.id ? 'vald' : ''}>{t.namn}</a>)}
-      </nav>
     </main>
   )
 }
