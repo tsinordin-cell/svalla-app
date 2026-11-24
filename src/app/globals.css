@@ -1002,6 +1002,8 @@ img {
 
 /* Logga tur (2026-11-24): tipset om att spåra med telefonen visas bara på dator. */
 .logga-mobiltips { display: none; }
+.logga-bricka-sand { background: rgba(214,160,90,0.16); color: #8a5a1c; }
+[data-theme="dark"] .logga-bricka-sand { background: rgba(245,199,126,0.14); color: #f5c77e; }
 @media (min-width: 1024px) {
   .logga-mobiltips { display: block; }
   /* Sidomenyns Logga tur-knapp syns som vald när man står på /logga. */
