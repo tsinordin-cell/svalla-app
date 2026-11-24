@@ -763,7 +763,7 @@ img {
 .toppknapp::after {
   content: '';
   position: absolute;
-  inset: -5px;
+  inset: -2px 0;
   border-radius: 50%;
 }
 

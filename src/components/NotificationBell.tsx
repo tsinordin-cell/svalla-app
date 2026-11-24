@@ -198,7 +198,7 @@ export default function NotificationBell() {
  style={{ ...TOPPKNAPP_STIL, border: 'none', cursor: 'pointer' }}
  >
  {/* 2026-11-23 (menyförslaget): Lucides klocka från Icon.tsx, 44 px tryckyta, räknare 11 px. */}
- <Icon name="bell" size={16} stroke={2} />
+ <Icon name="bell" size={22} stroke={2} />
  {unread > 0 && (
  <span style={RAKNARE_STIL}>
  {unread > 9 ? '9+' : unread}

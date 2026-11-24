@@ -12,8 +12,8 @@ import type { CSSProperties } from 'react'
  * stå med minst 10 px mellanrum.
  */
 export const TOPPKNAPP_STIL: CSSProperties = {
-  width: 32, height: 32, borderRadius: '50%',
-  background: 'var(--teal-12)',
+  width: 40, height: 40, borderRadius: '50%',
+  background: 'transparent',
   color: 'var(--sea)',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
   position: 'relative', flexShrink: 0,
@@ -22,7 +22,7 @@ export const TOPPKNAPP_STIL: CSSProperties = {
 
 /** Räknaren på meddelanden och notiser. Text 11 px (var 9 px), vit på --acc-knapp. */
 export const RAKNARE_STIL: CSSProperties = {
-  position: 'absolute', top: -5, right: -5,
+  position: 'absolute', top: 1, right: 0,
   minWidth: 18, height: 18, padding: '0 4px', borderRadius: 9,
   background: 'var(--acc-knapp)', border: '2px solid var(--bg)',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
