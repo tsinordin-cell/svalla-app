@@ -30,9 +30,17 @@ describe('visaGlobalaKlockor', () => {
   })
 
   it('visas på vanliga sidor', () => {
-    for (const p of ['/', '/oar', '/o/grinda', '/utflykt', '/logga', '/min-skargard', '/planerare']) {
+    for (const p of ['/', '/oar', '/o/grinda', '/utflykt', '/logga/manuell', '/min-skargard', '/planerare']) {
       expect(visaGlobalaKlockor(p, true), p).toBe(true)
     }
+  })
+})
+
+describe('visaGlobalaKlockor på /logga', () => {
+  it('döljs på /logga (toppraden har knapparna) men inte på undersidorna', () => {
+    expect(visaGlobalaKlockor('/logga', true)).toBe(false)
+    expect(visaGlobalaKlockor('/logga/', true)).toBe(false)
+    expect(visaGlobalaKlockor('/logga/manuell', true)).toBe(true)
   })
 })
 
