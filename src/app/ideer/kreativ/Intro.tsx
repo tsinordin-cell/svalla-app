@@ -442,6 +442,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
     const txtTex = gl.createTexture()!
 
     let W = 0, H = 0, DPR = 1, N = 0, NB = 0
+    const ejdPx = new Uint8Array(4 * 256), ejdY: number[] = []
     let dens = malYta(gl, 2, 2), sudd1 = malYta(gl, 2, 2), sudd2 = malYta(gl, 2, 2)
     let flA = malYta(gl, 2, 2), flB = malYta(gl, 2, 2)
     let data = new Float32Array(0)
@@ -643,25 +644,6 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       const batY = (H - batRuta.bh) / 2
       const malY = vattenlinje - batRuta.bh * 0.8 - batY
       const pivX = W / 2, pivY = H / 2 + batRuta.bh * 0.3
-      // Ejdrarna: samma vågformel som i bildshadern (utan det lilla bruset), så att de ligger på ytan och guppar med vågorna
-      const ejd = ejdRef.current
-      if (varld && ejd) {
-        const vagA = 0.4 + 0.6 * ease((T - 5800) / 1500), tvv = sek * 0.5
-        const yta = (px: number) => { const xq = px / H; return (havNiva + (Math.sin(xq * 3.1 + tvv * 1.05) * 0.011 + Math.sin(xq * 7.7 - tvv * 1.6) * 0.0055) * vagA) * H }
-        const span = W * 0.42, start = W * 1.04, fart = W * 0.0042
-        for (let k = 0; k < ejd.children.length; k++) {
-          const el = ejd.children[k] as HTMLElement
-          const w = el.offsetWidth, h = el.offsetHeight
-          const efter = k === 0 ? 0 : W * 0.006 + k * W * 0.017
-          const pos = (((sek * fart + W * 0.12 - efter) % span) + span) % span
-          const x = start - pos, cx = x + w / 2, y = yta(cx)
-          const lut = Math.atan2(yta(cx + 4) - yta(cx - 4), 8)
-          const djup = k === 0 ? 0.8 : 0.84
-          const gupp = Math.sin(sek * 1.9 + k * 1.7) * h * 0.025
-          el.style.transform = `translate(${x.toFixed(1)}px, ${(y - h * djup + gupp).toFixed(1)}px) rotate(${lut.toFixed(3)}rad)`
-          el.style.opacity = String(klamp(Math.min(pos, span - pos) / (span * 0.1)))
-        }
-      }
 
       const f = fran, A = attr
       for (let i = 0; i < N; i++) {
@@ -793,6 +775,39 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       if (varld) for (let i = 0; i < dr.length; i++) dr[i] = 0
       gl.uniform3fv(u(pBild, 'drops'), dr)
       gl.drawArrays(gl.TRIANGLES, 0, 3)
+      // Ejdrarna simmar sakta framåt och ligger alltid på vattenytan (Max 2026-11-24). Vågformeln ger ett första läge,
+      // sedan läses den riktiga ytan av ur den nyss ritade bilden (en smal pixelkolumn per fågel), så att de aldrig hamnar under ytan.
+      const ejd = ejdRef.current
+      if (varld && ejd) {
+        const vagA = 0.4 + 0.6 * ease((T - 5800) / 1500), tvv = sek * 0.5
+        const yta = (px: number) => { const xq = px / H; return (havNiva + (Math.sin(xq * 3.1 + tvv * 1.05) * 0.011 + Math.sin(xq * 7.7 - tvv * 1.6) * 0.0055) * vagA) * H }
+        const span = W * 0.42, start = W * 1.04, fart = W * 0.0042
+        const fonster = Math.min(256, Math.round(36 * DPR)), cw = cv.width, ch = cv.height
+        for (let k = 0; k < ejd.children.length; k++) {
+          const el = ejd.children[k] as HTMLElement
+          const w = el.offsetWidth, h = el.offsetHeight
+          const efter = k === 0 ? 0 : W * 0.006 + k * W * 0.017
+          const pos = (((sek * fart + W * 0.12 - efter) % span) + span) % span
+          const x = start - pos, cx = x + w / 2
+          let y = yta(cx)
+          const kx = Math.round(cx * DPR)
+          if (kx >= 0 && kx < cw) {
+            const topp = Math.max(0, Math.round((y * DPR) - fonster / 2)), n = Math.min(fonster, ch - topp)
+            if (n > 4) {
+              gl.readPixels(kx, ch - topp - n, 1, n, gl.RGBA, gl.UNSIGNED_BYTE, ejdPx)
+              // Raderna kommer nerifrån och upp. Leta uppifrån efter första raden som är hav (täckande).
+              for (let r = n - 1; r >= 0; r--) { if (ejdPx[r * 4 + 3]! > 140) { y = (topp + (n - 1 - r)) / DPR; break } }
+            }
+          }
+          const fore = ejdY[k]
+          y = fore === undefined ? y : fore + (y - fore) * 0.35
+          ejdY[k] = y
+          const lut = Math.atan2(yta(cx + 4) - yta(cx - 4), 8)
+          const djup = k === 0 ? 0.74 : 0.76
+          el.style.transform = `translate(${x.toFixed(1)}px, ${(y - h * djup).toFixed(1)}px) rotate(${lut.toFixed(3)}rad)`
+          el.style.opacity = String(klamp(Math.min(pos, span - pos) / (span * 0.1)))
+        }
+      }
       if (Math.round(nu / 33) % 2 === 0) { setVisT(T); setNavPos({ x: nv.x, svans: nv.svans, hav: havNiva, bredd: navB }) }
       raf = requestAnimationFrame(ruta)
     }
