@@ -262,6 +262,18 @@ export default function UpptackExplorer() {
   const [mapCenter, setMapCenter] = useState<{ lat: number; lng: number }>(() => ({
     lat: startVyRef.current.center[0], lng: startVyRef.current.center[1],
   }))
+  const mapCenterRef = useRef(mapCenter)
+  mapCenterRef.current = mapCenter
+  // Under en sökning står vädret kvar på platsen det visade före sökningen.
+  // Annars följer det kartans mitt, som efter en bred sökning ("bastu") kan
+  // hamna långt utanför skärgården. Släpps när du själv flyttar kartan.
+  const [vaderLas, setVaderLas] = useState<{ lat: number; lng: number } | null>(null)
+  const vaderLasRef = useRef(vaderLas)
+  vaderLasRef.current = vaderLas
+  // Kartan flyttas av sökningen (true) eller av dig (false). Används för att
+  // inte zooma om, och för att släppa vädret, när du själv flyttat kartan.
+  const autoFlyttRef = useRef(false)
+  const anvandarFlyttatRef = useRef(false)
 
   // GPS-state — "Visa min plats"
   const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
@@ -535,6 +547,12 @@ export default function UpptackExplorer() {
       }
       map.on('moveend', updateBounds)
       map.on('zoomend', updateBounds)
+      map.on('movestart', () => {
+        if (autoFlyttRef.current) return
+        anvandarFlyttatRef.current = true
+        if (vaderLasRef.current) setVaderLas(null)
+      })
+      map.on('moveend', () => { autoFlyttRef.current = false })
       updateBounds()
 
       mapRef.current = map
@@ -635,8 +653,15 @@ export default function UpptackExplorer() {
   // som råkar ligga i vyn, fast Svalla har fler. Bara när sökningen ändras,
   // aldrig när användaren själv panorerar efteråt.
   const senastZoomadRef = useRef<string>('')
+  const senastSokRef = useRef<string>('')
+  // Vädret: lås på platsen före sökningen, släpp när sökningen rensas.
+  const sokAktiv = !!sokTraffar
   useEffect(() => {
-    if (!sokTraffar) { senastZoomadRef.current = ''; return }
+    if (!sokAktiv) { if (vaderLasRef.current) setVaderLas(null); return }
+    if (!vaderLasRef.current) setVaderLas(mapCenterRef.current)
+  }, [sokAktiv, query])
+  useEffect(() => {
+    if (!sokTraffar) { senastZoomadRef.current = ''; senastSokRef.current = ''; return }
     if (!kartaKlar) return
     const id = setTimeout(async () => {
       const map = mapRef.current as {
@@ -651,9 +676,18 @@ export default function UpptackExplorer() {
       // kartan, så där zoomar vi inte (det görs när listan fälls ned igen).
       const mobil = typeof window !== 'undefined' && window.matchMedia('(max-width: 900px)').matches
       if (mobil && sheetState === 'full') return
-      const nyckel = `${query.trim().toLowerCase()}|${isAllMode ? 'alla' : [...activeCats].sort().join(',')}|${traffar.length}|${mobil ? sheetState : 'dator'}`
+      const sokNyckel = `${query.trim().toLowerCase()}|${isAllMode ? 'alla' : [...activeCats].sort().join(',')}|${traffar.length}`
+      const nyckel = `${sokNyckel}|${mobil ? sheetState : 'dator'}`
       if (senastZoomadRef.current === nyckel) return
+      const nySokning = senastSokRef.current !== sokNyckel
+      if (nySokning) {
+        anvandarFlyttatRef.current = false
+      } else if (anvandarFlyttatRef.current) {
+        // Bara listans läge ändrades, och du har själv flyttat kartan: stå kvar.
+        return
+      }
       senastZoomadRef.current = nyckel
+      senastSokRef.current = sokNyckel
       // Hur mycket av kartans nederkant listan täcker, så att träffarna hamnar
       // i den synliga delen ovanför listan och inte under den.
       let tacktNere = 0
@@ -665,10 +699,13 @@ export default function UpptackExplorer() {
         }
       }
       const L = await hamtaLeaflet()
+      autoFlyttRef.current = true
       map.fitBounds(
         L.latLngBounds(traffar.map(p => [p.latitude, p.longitude] as [number, number])),
         { paddingTopLeft: [48, 48], paddingBottomRight: [48, 48 + tacktNere], maxZoom: 13, animate: true },
       )
+      // Om kartan redan stod rätt kommer ingen moveend; släpp flaggan ändå.
+      setTimeout(() => { autoFlyttRef.current = false }, 1200)
     }, 450)
     return () => clearTimeout(id)
   }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query, sheetState])
@@ -1089,7 +1126,7 @@ export default function UpptackExplorer() {
 
           {/* Vädervisare — top-left på kartan */}
           <div className="upx-weather-wrap">
-            <WeatherPill lat={mapCenter.lat} lng={mapCenter.lng} />
+            <WeatherPill lat={(vaderLas ?? mapCenter).lat} lng={(vaderLas ?? mapCenter).lng} />
           </div>
         </div>
       </div>
