@@ -28,6 +28,7 @@ import { tagPlatssvar } from './platsdata'
 import { hamtaLeaflet } from './leaflet'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { STANDARD_VADERPUNKT } from '@/lib/weatherGrid'
+import { samladVaderpunkt } from '@/lib/samladVaderpunkt'
 import { track } from '@/lib/analytics-events'
 import AppTopBar from '@/components/AppTopBar'
 import { platsKategori, type PlatsKategori } from '@/lib/platskategori'
@@ -264,9 +265,10 @@ export default function UpptackExplorer() {
   }))
   const mapCenterRef = useRef(mapCenter)
   mapCenterRef.current = mapCenter
-  // Under en sökning står vädret kvar på platsen det visade före sökningen.
-  // Annars följer det kartans mitt, som efter en bred sökning ("bastu") kan
-  // hamna långt utanför skärgården. Släpps när du själv flyttar kartan.
+  // Under en sökning visar vädret platsen där träffarna ligger, eller, för en
+  // utspridd sökning ("bastu"), platsen det visade före sökningen. Annars
+  // följer det kartans mitt, som efter en bred sökning kan hamna långt utanför
+  // skärgården. Släpps när du själv flyttar kartan.
   const [vaderLas, setVaderLas] = useState<{ lat: number; lng: number } | null>(null)
   const vaderLasRef = useRef(vaderLas)
   vaderLasRef.current = vaderLas
@@ -658,12 +660,17 @@ export default function UpptackExplorer() {
   // aldrig när användaren själv panorerar efteråt.
   const senastZoomadRef = useRef<string>('')
   const senastSokRef = useRef<string>('')
-  // Vädret: lås på platsen före sökningen, släpp när sökningen rensas.
-  const sokAktiv = !!sokTraffar
+  // Vädret under en sökning: ligger träffarna samlat (en ö, en ort) visas
+  // vädret där. Annars står det kvar på platsen före sökningen. Släpps när
+  // sökningen rensas. Körs om när platserna laddats, så att en direktlänk som
+  // /upptack?q=Utö inte fastnar på startvyns väder.
   useEffect(() => {
-    if (!sokAktiv) { if (vaderLasRef.current) setVaderLas(null); return }
+    if (!sokTraffar) { if (vaderLasRef.current) setVaderLas(null); return }
+    const traffar = pois.filter(p => sokTraffar.has(p) && (isAllMode || activeCats.has(categorize(p))))
+    const samlad = samladVaderpunkt(traffar)
+    if (samlad) { setVaderLas(samlad); return }
     if (!vaderLasRef.current) setVaderLas(mapCenterRef.current)
-  }, [sokAktiv, query])
+  }, [sokTraffar, pois, isAllMode, activeCats])
   useEffect(() => {
     if (!sokTraffar) { senastZoomadRef.current = ''; senastSokRef.current = ''; return }
     if (!kartaKlar) return
