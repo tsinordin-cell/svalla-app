@@ -11,6 +11,8 @@ import { useEffect, useRef, useState } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
 
 const BLA = [0.106, 0.341, 0.627] // #1b57a0
+// Startscenen: mjukare och lite ljusare blå i havet och SVALLA, så att kontrasten mot himlen inte bländar (Max 2026-11-24)
+const BLA_VARLD = [0.267, 0.447, 0.671] // #4472ab
 const SLUT = 11800
 const NAV_KANT = 34 // så att första och sista etiketten inte klipps
 const SCENER = [
@@ -651,7 +653,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       bind('den', 0, sudd2.tex); bind('vel', 1, flA.tex); bind('korn', 2, korn); bind('txt', 3, txtTex)
       gl.uniform2f(u(pBild, 'res'), cv.width, cv.height); gl.uniform1f(u(pBild, 't'), sek)
       gl.uniform1f(u(pBild, 'hav'), havNiva); gl.uniform1f(u(pBild, 'vag'), 0.4 + 0.6 * ease((T - 5800) / 1500))
-      gl.uniform1f(u(pBild, 'txtA'), ease((T - 8300) / 1700)); gl.uniform3f(u(pBild, 'bla'), BLA[0]!, BLA[1]!, BLA[2]!)
+      gl.uniform1f(u(pBild, 'txtA'), ease((T - 8300) / 1700)); gl.uniform3f(u(pBild, 'bla'), (varld ? BLA_VARLD : BLA)[0]!, (varld ? BLA_VARLD : BLA)[1]!, (varld ? BLA_VARLD : BLA)[2]!)
       // Formmasken och båtens läge (samma rörelse som partiklarna), armen vinkar
       bind('form', 4, formTex)
       gl.uniform2f(u(pBild, 'stage'), W, H)
@@ -854,7 +856,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
 const CSS = `
 .ki-scen{position:relative;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(13,36,64,.14);aspect-ratio:16/9;min-height:380px;touch-action:pan-y}
 /* Startscenen: varm krämvit himmel i stället för kritvit, så att den inte bländar mot det mörkblå havet (Max 2026-11-24) */
-.ki-scen-varld{background:#f7f2e8}
+.ki-scen-varld{background:#efe7d6}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .ki-fram{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 1s .8s}
@@ -892,8 +894,8 @@ const CSS = `
 .ki-reserv-hav{position:absolute;left:0;right:0;bottom:0;height:40%;background:#1b57a0}
 .ki-reserv p{margin-top:18%;font:700 13px Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#1b57a0}
 .ki-varld{position:absolute;inset:0;pointer-events:none}
-.ki-varld .ki-v-sol{position:absolute;left:4.5%;top:9%;width:8.5%;opacity:0;transform:translateY(40%);transition:opacity 1.4s,transform 2.4s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 26px rgba(247,190,90,.6))}
-.ki-varld.syns .ki-v-sol{opacity:1;transform:none;animation:kiSol 90s linear infinite}
+.ki-varld .ki-v-sol{position:absolute;left:4.5%;top:9%;width:7%;opacity:0;transform:translateY(40%);transition:opacity 1.4s,transform 2.4s cubic-bezier(.2,.8,.2,1);filter:saturate(.78) brightness(.97)}
+.ki-varld.syns .ki-v-sol{opacity:.92;transform:none}
 @keyframes kiSol{to{rotate:360deg}}
 .ki-varld .ki-v{position:absolute;bottom:36%;opacity:0;transform:translateY(75%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1),opacity .5s}
 .ki-varld.syns .ki-v{opacity:1}
@@ -968,7 +970,7 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:15%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
