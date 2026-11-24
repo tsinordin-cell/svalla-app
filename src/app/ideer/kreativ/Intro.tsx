@@ -755,12 +755,13 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
           const form = yta(cx)
           return Math.abs(y - form) > H * 0.025 ? form : y
         }
-        // Ångbåten följer också den riktiga ytan, annars sväljer vågorna skrovet i mobilen där båten är liten (Max 2026-11-24)
+        // Ångbåten gungar mjukt med vågornas rörelse, annars sväljer vågorna skrovet i mobilen där båten är liten (Max 2026-11-24).
+        // Bara vågformeln, ingen pixelavläsning: Thorkels båt ligger i samma bild och fick ångbåten att hoppa när den passerade bakom.
         const farja = farjaRef.current
         if (farja && farja.offsetWidth > 0) {
           const fr = farja.getBoundingClientRect(), cr = cv.getBoundingClientRect()
           const cx = (fr.left + fr.right) / 2 - cr.left
-          let y = lasYta(cx)
+          let y = yta(cx)
           farjaY = farjaY === undefined ? y : farjaY + (y - farjaY) * 0.35
           y = farjaY
           const lut = Math.atan2(yta(cx + 6) - yta(cx - 6), 12)
