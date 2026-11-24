@@ -450,6 +450,22 @@ export default function ProfilPage() {
           )}
         </div>
 
+        {/* ── Första turen ──
+            Nya konton utan turer: uppmaningen låg längst ner under märkena och
+            syntes inte utan att scrolla (granskningen 2026-11-22, fixlistan nr 10).
+            Nu står den direkt under siffrorna. Med turer ligger rutnätet kvar längst ner. */}
+        {trips.length === 0 && (
+          <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)', marginBottom: 16 }}>
+            <EmptyState
+              icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
+              title="Inga turer ännu"
+              body="Logga din första tur och börja bygga din historia till havs."
+              cta={{ label: 'Logga en tur', href: '/logga' }}
+              marginTop={0}
+            />
+          </div>
+        )}
+
         {/* ── Shortcuts: Sparade platser + Mina rutter ── */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 16 }}>
           <Link href="/sparade" style={{
@@ -572,29 +588,33 @@ export default function ProfilPage() {
                 {badgesToShow.map(a => {
                   const unlocked = unlockedAch.includes(a)
                   return (
-                    <div key={a.id} title={`${a.label}, ${a.desc}`} style={{
+                    <div key={a.id} title={`${a.label}, ${a.desc}`} aria-label={`${a.label}, ${unlocked ? 'upplåst' : 'låst'}`} style={{
                       display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                       gap: 4, padding: '9px 4px 7px',
                       borderRadius: 14,
-                      background: unlocked ? 'rgba(10,123,140,0.06)' : 'rgba(0,0,0,0.03)',
-                      border: `1.5px solid ${unlocked ? 'rgba(10,123,140,0.16)' : 'rgba(0,0,0,0.06)'}`,
-                      // 0,38 gjorde låsta märken nästan osynliga mot den ljusa bakgrunden (granskningen 2026-11-22).
-                      opacity: unlocked ? 1 : 0.6,
-                      filter: unlocked ? 'none' : 'grayscale(1)',
+                      // Fixlistan nr 10: låsta märken var gråa på grått med 60 % opacitet
+                      // och syntes knappt. Nu full färg på text och ikon, och låst/upplåst
+                      // skiljs med streckad ram + lås i stället för att tona ner allt.
+                      background: unlocked ? 'var(--surface-3)' : 'var(--white)',
+                      border: unlocked ? '1.5px solid var(--sea)' : '1.5px dashed var(--txt3)',
                       boxShadow: unlocked ? '0 2px 8px rgba(0,45,60,0.07)' : 'none',
                       position: 'relative',
                     }}>
-                      {unlocked && (
+                      {unlocked ? (
                         <div style={{
                           position: 'absolute', top: 5, right: 5,
-                          width: 6, height: 6, borderRadius: '50%',
+                          width: 7, height: 7, borderRadius: '50%',
                           background: 'var(--green)',
                         }} />
+                      ) : (
+                        <svg aria-hidden width={10} height={10} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" style={{ position: 'absolute', top: 5, right: 5, color: 'var(--txt3)' }}>
+                          <rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V7a4 4 0 0 1 8 0v4" />
+                        </svg>
                       )}
-                      <span aria-hidden><Icon name={a.icon} size={20} /></span>
+                      <span aria-hidden style={{ color: unlocked ? 'var(--sea)' : 'var(--txt2)', display: 'flex' }}><Icon name={a.icon} size={20} /></span>
                       <span style={{
-                        fontSize: 9, fontWeight: 600,
-                        color: unlocked ? 'var(--txt)' : 'var(--txt3)',
+                        fontSize: 10, fontWeight: 600,
+                        color: unlocked ? 'var(--txt)' : 'var(--txt2)',
                         textAlign: 'center', lineHeight: 1.3,
                         // maxWidth 56 klippte långa ord som "Saltvattenblod" till
                         // "Saltvattenblc". Avstavning på svenska (lang="sv"), och
@@ -673,16 +693,8 @@ export default function ProfilPage() {
         )}
 
         {/* ── Trip grid ── */}
+        {trips.length > 0 && (
         <div style={{ background: 'var(--white)', borderRadius: 18, overflow: 'hidden', boxShadow: '0 1px 8px rgba(0,45,60,0.07)' }}>
-          {trips.length === 0 ? (
-            <EmptyState
-              icon={<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8}><path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>}
-              title="Inga turer ännu"
-              body="Logga din första tur och börja bygga din historia till havs."
-              cta={{ label: 'Logga en tur', href: '/logga' }}
-              marginTop={0}
-            />
-          ) : (
             <>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px 10px' }}>
                 <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px' }}>Mina turer</div>
@@ -708,8 +720,8 @@ export default function ProfilPage() {
                 ))}
               </div>
             </>
-          )}
         </div>
+        )}
 
         {/* ── Svalla Wrapped CTA ──
             Visas bara när kontot har minst en tur med start i år. Wrapped-sidan
