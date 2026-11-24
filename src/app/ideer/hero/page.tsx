@@ -13,14 +13,14 @@ export const metadata: Metadata = {
 }
 
 const HF_CSS = `
-.hf{min-height:100vh;background:#f7f2e8}
+.hf{min-height:100vh;background:#efe7d6}
 .hf-scen .ki-scen{border-radius:0;box-shadow:none}
 /* Max 2026-11-24: hela animeringen ska synas under menyn utan att man scrollar, och loggan bara en gång (i menyn) */
 @media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:540px}}
 @media (min-width:1101px){.hf-scen .ki-scen{height:calc(100svh - 68px)}}
 .hf-scen .ki-logga{display:none}
 /* Max och Thomas 2026-11-24: ljus krämvit meny i samma ton som himlen, marinblå text och logga, i stället för den mörkblå toningen */
-.hf .mm{background:#f7f2e8;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
+.hf .mm{background:#efe7d6;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
 .hf .mm-logga svg [fill="#ffffff"]{fill:#0a2540}
 .hf .mm-logga svg [stroke="#ffffff"]{stroke:#0a2540}
 .hf .mm-punkt{color:rgba(10,37,64,.85)}
