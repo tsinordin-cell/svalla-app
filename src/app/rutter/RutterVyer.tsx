@@ -23,6 +23,7 @@ import type { Tour } from '@/lib/supabase'
 import { TopBarAtgarder } from '@/components/AppTopBar'
 import EmptyState from '@/components/EmptyState'
 import { categoryColor as categoryColorTokens } from '@/lib/tokens'
+import type { TurBild } from './page'
 
 type Vy = 'rutter' | 'oar' | 'farjor'
 
@@ -78,22 +79,26 @@ function durationMatch(label: string, filter: string): boolean {
   return true
 }
 
-function categoryColor(cat: string[]): { bg: string; text: string } {
-  if (cat.includes('mat'))      return categoryColorTokens.mat
-  if (cat.includes('aktiv'))    return categoryColorTokens.aktiv
-  if (cat.includes('premium'))  return categoryColorTokens.premium
-  if (cat.includes('klassisk')) return categoryColorTokens.klassisk
-  return { bg: 'rgba(10,123,140,0.08)', text: 'var(--sea)' }
-}
+// 2026-11-24 (fixlistan nr 11): etikett och färg kommer nu ur samma
+// kategori. Förut valdes färgen i ordningen mat, aktiv, premium, klassisk men
+// texten i ordningen klassisk, aktiv, mat, så två "Klassisk" fick olika färg
+// (grön för klassisk+aktiv, blå för klassisk). Ikonen visade färdsättet och
+// varierade också; färdsättet står nu i klartext på kortet i stället.
+const NEUTRAL_FARG = { bg: 'rgba(10,123,140,0.08)', text: 'var(--sea)' }
+const KATEGORIER: { varde: string; etikett: string; farg: { bg: string; text: string } }[] = [
+  { varde: 'klassisk',    etikett: 'Klassisk',         farg: categoryColorTokens.klassisk },
+  { varde: 'aktiv',       etikett: 'Aktiv',            farg: categoryColorTokens.aktiv },
+  { varde: 'mat',         etikett: 'Mat & upplevelse', farg: categoryColorTokens.mat },
+  { varde: 'weekend',     etikett: 'Weekend',          farg: NEUTRAL_FARG },
+  { varde: 'premium',     etikett: 'Premium',          farg: categoryColorTokens.premium },
+  { varde: 'mindre känd', etikett: 'Guldkorn',         farg: NEUTRAL_FARG },
+]
 
-function primaryCategory(cat: string[]): string {
-  if (cat.includes('klassisk'))    return 'Klassisk'
-  if (cat.includes('aktiv'))       return 'Aktiv'
-  if (cat.includes('mat'))         return 'Mat & upplevelse'
-  if (cat.includes('weekend'))     return 'Weekend'
-  if (cat.includes('premium'))     return 'Premium'
-  if (cat.includes('mindre känd'))  return 'Guldkorn'
-  return cat[0] ?? 'Tur'
+function huvudkategori(cat: string[]): { etikett: string; farg: { bg: string; text: string } } {
+  const k = KATEGORIER.find(k => cat.includes(k.varde))
+  if (k) return { etikett: k.etikett, farg: k.farg }
+  const forsta = cat[0]
+  return { etikett: forsta ? forsta.charAt(0).toUpperCase() + forsta.slice(1) : 'Tur', farg: NEUTRAL_FARG }
 }
 
 function transportIconKey(types: string[]): keyof typeof ICON_PATHS {
@@ -102,6 +107,21 @@ function transportIconKey(types: string[]): keyof typeof ICON_PATHS {
   if (types.includes('cykel'))      return 'bike'
   if (types.includes('till fots'))  return 'boot'
   return 'anchor'
+}
+
+/** Färdsätt i klartext: "Motorbåt, segelbåt, RIB". */
+function fardsatt(types: string[]): string {
+  const s = types.join(', ')
+  return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''
+}
+
+// Taggarna "passar för" visades som databasens råa värden (par, seglare,
+// äventyrare). Samma ord som filterknapparna ovanför kortet.
+const FOR_ETIKETT: Record<string, string> = Object.fromEntries(
+  FOR_FILTERS.filter(f => f.value !== 'alla').map(f => [f.value, f.label]),
+)
+function forEtikett(v: string): string {
+  return FOR_ETIKETT[v] ?? (v.charAt(0).toUpperCase() + v.slice(1))
 }
 
 function href(f: string, t: string) {
@@ -140,8 +160,14 @@ export default function RutterVyer({
   antalFarjelinjer,
   oar,
   farjor,
+  bilder,
+  bildkallor,
 }: {
   tours: Tour[]
+  /** Foto av turens mål (Commons), per tur-id. Saknas för turer utan ö-mål. */
+  bilder: Record<string, TurBild>
+  /** Fotograf och licens för bilderna, renderad på servern. */
+  bildkallor: ReactNode
   antalOar: number
   antalFarjelinjer: number
   /** Öar-vyn, renderad på servern (öarnas data ska inte skickas till klienten). */
@@ -216,7 +242,7 @@ export default function RutterVyer({
                 ? `${antalFarjelinjer} linjer · Waxholmsbolaget & Cinderella`
               : isFiltered
                 ? `Visar ${filtered.length} av ${tours.length} turer`
-                : `${filtered.length} ${filtered.length === 1 ? 'tur' : 'turer'} · Sverige`}
+                : `${filtered.length} ${filtered.length === 1 ? 'tur' : 'turer'} · Stockholms skärgård och Mälaren`}
           </p>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
@@ -358,12 +384,13 @@ export default function RutterVyer({
         ) : (
           filtered.map((t) => (
             <TourCard key={t.id} tour={t}
-              categoryColor={categoryColor(t.category)}
-              categoryLabel={primaryCategory(t.category)}
+              kategori={huvudkategori(t.category)}
               iconKey={transportIconKey(t.transport_types)}
+              bild={bilder[t.id]}
             />
           ))
         )}
+        {filtered.length > 0 && bildkallor}
       </div>
         </>
       )}
@@ -371,46 +398,78 @@ export default function RutterVyer({
   )
 }
 
-function TourCard({ tour: t, categoryColor: cc, categoryLabel, iconKey }: {
+function TourCard({ tour: t, kategori, iconKey, bild }: {
   tour: Tour
-  categoryColor: { bg: string; text: string }
-  categoryLabel: string
+  kategori: { etikett: string; farg: { bg: string; text: string } }
   iconKey: keyof typeof ICON_PATHS
+  bild?: TurBild
 }) {
   const foodStops = Array.isArray(t.food_stops) ? t.food_stops : []
+  const cc = kategori.farg
+  const transport = fardsatt(t.transport_types)
   return (
-    <Link href={`/rutter/${t.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 10 }}>
+    <Link href={`/rutter/${t.id}`} style={{ textDecoration: 'none', display: 'block', marginBottom: 12 }}>
       <article style={{
         background: 'var(--white)', borderRadius: 16,
         border: '1.5px solid rgba(10,123,140,0.10)',
         overflow: 'hidden',
-        boxShadow: '0 1px 4px rgba(0,45,60,0.06)',
+        boxShadow: '0 2px 10px rgba(0,45,60,0.07)',
       }}>
-        <div style={{ padding: '13px 14px 0', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8 }}>
-          <div style={{ flex: 1 }}>
+        {bild && (
+          <div style={{ position: 'relative', aspectRatio: '16 / 7', maxWidth: '100%', background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={bild.url}
+              srcSet={`${bild.url} 500w, ${bild.url2x} 960w`}
+              sizes="(max-width: 640px) 100vw, 616px"
+              alt={bild.ort}
+              loading="lazy"
+              decoding="async"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
             <span style={{
-              display: 'inline-flex', alignItems: 'center', gap: 5,
-              fontSize: 10, fontWeight: 600,
+              position: 'absolute', right: 6, bottom: 6,
+              fontSize: 10, lineHeight: 1.3, padding: '2px 7px', borderRadius: 8,
+              background: 'rgba(0,0,0,0.55)', color: '#fff',
+              maxWidth: 'calc(100% - 12px)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+            }}>
+              {bild.ort} · Foto: {bild.fotograf}, {bild.licens}
+            </span>
+          </div>
+        )}
+
+        <div style={{ padding: '12px 14px 0' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6, marginBottom: 6 }}>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center',
+              fontSize: 10, fontWeight: 700,
               padding: '3px 8px', borderRadius: 20,
               background: cc.bg, color: cc.text,
-              textTransform: 'uppercase', letterSpacing: '0.4px', marginBottom: 5,
+              textTransform: 'uppercase', letterSpacing: '0.4px',
             }}>
-              <Icon path={ICON_PATHS[iconKey]!} size={11} stroke={2} />
-              {categoryLabel}
+              {kategori.etikett}
             </span>
-            <h2 style={{ fontSize: 15, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
-              {t.title}
-            </h2>
-            <div style={{ fontSize: 12, color: 'var(--txt3)', marginBottom: 8 }}>{t.usp}</div>
+            <span style={{
+              display: 'inline-flex', alignItems: 'center', gap: 4,
+              fontSize: 11, fontWeight: 700,
+              padding: '3px 9px', borderRadius: 20,
+              background: 'rgba(10,123,140,0.08)', color: 'var(--sea)',
+              whiteSpace: 'nowrap',
+            }}>
+              <svg viewBox="0 0 24 24" width={12} height={12} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              {t.duration_label}
+            </span>
           </div>
-          <div style={{
-            flexShrink: 0, fontSize: 10, fontWeight: 700,
-            padding: '4px 9px', borderRadius: 12,
-            background: 'rgba(10,123,140,0.07)', color: 'var(--sea)',
-            textAlign: 'center', lineHeight: 1.3, maxWidth: 72,
-          }}>
-            {t.duration_label}
-          </div>
+          <h2 style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)', margin: '0 0 2px', letterSpacing: '-0.2px' }}>
+            {t.title}
+          </h2>
+          <div style={{ fontSize: 12.5, color: 'var(--txt2)', marginBottom: 6 }}>{t.usp}</div>
+          {transport && (
+            <div style={{ fontSize: 11.5, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 5, marginBottom: 8 }}>
+              <Icon path={ICON_PATHS[iconKey]!} size={13} stroke={1.9} />
+              {transport}
+            </div>
+          )}
         </div>
 
         {t.highlights.length > 0 && (
@@ -426,18 +485,18 @@ function TourCard({ tour: t, categoryColor: cc, categoryLabel, iconKey }: {
         <div style={{
           padding: '9px 14px 11px',
           borderTop: '1px solid rgba(10,123,140,0.07)',
-          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, flexWrap: 'wrap',
         }}>
-          <div style={{ fontSize: 11, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ fontSize: 11, color: 'var(--txt3)', display: 'flex', alignItems: 'center', gap: 4, minWidth: 0 }}>
             {foodStops[0] && <>
               <Icon path={ICON_PATHS.utensils!} size={12} stroke={1.9} style={{ color: 'var(--txt3)' }} />
               <span style={{ fontWeight: 600 }}>{foodStops[0].namn}</span>
             </>}
           </div>
-          <div style={{ display: 'flex', gap: 3 }}>
+          <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
             {t.best_for.slice(0, 3).map((b) => (
-              <span key={b} style={{ fontSize: 10, padding: '2px 6px', borderRadius: 10, background: 'rgba(10,123,140,0.07)', color: 'var(--sea)' }}>
-                {b}
+              <span key={b} style={{ fontSize: 10.5, fontWeight: 600, padding: '2px 7px', borderRadius: 10, background: 'rgba(10,123,140,0.07)', color: 'var(--sea)' }}>
+                {forEtikett(b)}
               </span>
             ))}
           </div>
