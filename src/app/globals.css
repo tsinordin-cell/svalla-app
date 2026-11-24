@@ -759,11 +759,11 @@ img {
   transition: transform 80ms ease;
 }
 
-/* Toppradens knappar (toppradStil.ts): cirkeln är 36 px, tryckytan 44 px. */
+/* Toppradens knappar (toppradStil.ts): cirkeln är 32 px, tryckytan 42 px. */
 .toppknapp::after {
   content: '';
   position: absolute;
-  inset: -4px;
+  inset: -5px;
   border-radius: 50%;
 }
 

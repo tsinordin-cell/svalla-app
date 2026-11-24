@@ -55,7 +55,7 @@ export default function AppTopBar({
       className={`app-topbar${doljPaDesktop ? ' app-topbar--dold-desktop' : ''}`}
       style={{
         display: 'flex', alignItems: 'center', gap: 10,
-        minHeight: 48,
+        minHeight: 44,
         padding: '6px 12px 6px 16px',
         background: bakgrund ?? 'var(--header-bg)',
         backdropFilter: 'saturate(1.4) blur(16px)', WebkitBackdropFilter: 'saturate(1.4) blur(16px)',
@@ -95,15 +95,15 @@ export default function AppTopBar({
  */
 export function TopBarAtgarder({ variant = 'standard', utanMeddelanden = false, onSok }: { variant?: 'standard' | 'profil'; utanMeddelanden?: boolean; onSok?: () => void }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
-      <div className="app-topbar-atgarder" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
+      <div className="app-topbar-atgarder" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         {variant === 'standard' && (onSok ? (
           <button type="button" onClick={onSok} aria-label="Sök på kartan" className="press-feedback toppknapp" style={{ ...TOPPKNAPP_STIL, border: 'none', padding: 0, cursor: 'pointer' }}>
-            <Icon name="search" size={18} stroke={2} />
+            <Icon name="search" size={16} stroke={2} />
           </button>
         ) : (
           <Link href="/sok" aria-label="Sök" className="press-feedback toppknapp" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
-            <Icon name="search" size={18} stroke={2} />
+            <Icon name="search" size={16} stroke={2} />
           </Link>
         ))}
         {!utanMeddelanden && <SilentBoundary><MessageBell /></SilentBoundary>}
@@ -111,7 +111,7 @@ export function TopBarAtgarder({ variant = 'standard', utanMeddelanden = false, 
       </div>
       {variant === 'profil' && (
         <Link href="/profil/installningar" aria-label="Inställningar" className="press-feedback toppknapp" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
-          <Icon name="settings" size={18} stroke={2} />
+          <Icon name="settings" size={16} stroke={2} />
         </Link>
       )}
     </div>

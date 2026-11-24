@@ -73,7 +73,7 @@ export default function MessageBell() {
     >
       {/* 2026-11-23 (menyförslaget): ikonen från Icon.tsx (Lucide) i stället för en egen
           inritad bubbla, och 44 px tryckyta. Räknaren har 11 px text, var 9 px. */}
-      <Icon name="messageCircle" size={18} stroke={2} />
+      <Icon name="messageCircle" size={16} stroke={2} />
       {unread > 0 && (
         <span style={RAKNARE_STIL}>
           {unread > 9 ? '9+' : unread}
