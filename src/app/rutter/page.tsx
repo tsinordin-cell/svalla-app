@@ -125,6 +125,45 @@ export const metadata: Metadata = {
 // MISS och private/no-store på varje besök, 0,5–2 s TTFB.
 export const revalidate = 600
 
+// 2026-11-24 (fixlistan nr 11, Toms val): turkorten får ett foto av turens
+// mål. Omslagen i tours.cover_image är stockbilder som inte visar platsen
+// (se rutter/[id]), så de används inte. I stället Commons-fotot av målön ur
+// obilder.generated.ts, samma licensierade bilder som Öar-fliken och /oar.
+// Fotograf och licens står på kortet och i Bildkällor längst ner.
+// Turer utan ö-mål (Björkviken, Nacka strand) får ingen bild.
+const TUR_MALO: Record<string, string> = {
+  'dalarö-ornö': 'orno',
+  'furusund-singö-weekend': 'singo',
+  'ingarö-kajak-rundtur': 'runmaro',
+  'norrtälje-arholma': 'arholma',
+  'nynäshamn-utö': 'uto',
+  'stavsnäs-bullerö': 'bullero',
+  'stavsnäs-grinda': 'grinda',
+  'stavsnäs-möja-rundtur': 'moja',
+  'stockholm-fjaderholmarna': 'fjaderholmarna',
+  'stockholm-sandhamn': 'sandhamn',
+  'stockholm-vaxholm': 'vaxholm',
+}
+
+export type TurBild = { url: string; url2x: string; ort: string; fotograf: string; licens: string }
+
+function turBilder(tours: Tour[]): Record<string, TurBild> {
+  const ut: Record<string, TurBild> = {}
+  for (const t of tours) {
+    const o = TUR_MALO[t.slug]
+    const b = o ? OBILDER[o] : undefined
+    if (!o || !b) continue
+    ut[t.id] = {
+      url: commonsThumb(b.url, 500),
+      url2x: commonsThumb(b.url, 960),
+      ort: islandBySlug[o]?.name ?? o,
+      fotograf: b.fotograf,
+      licens: b.licens,
+    }
+  }
+  return ut
+}
+
 export default async function RutterPage() {
   const supabase = createPublicSupabaseClient()
   const { data: tours, error } = await supabase
@@ -139,6 +178,13 @@ export default async function RutterPage() {
   return (
     <RutterVyer
       tours={(tours ?? []) as Tour[]}
+      bilder={turBilder((tours ?? []) as Tour[])}
+      bildkallor={
+        <Bildkallor
+          slugs={[...new Set(((tours ?? []) as Tour[]).flatMap(t => TUR_MALO[t.slug] ? [TUR_MALO[t.slug]!] : []))]}
+          namn={Object.fromEntries(Object.values(TUR_MALO).map(sl => [sl, islandBySlug[sl]?.name ?? sl]))}
+        />
+      }
       // Antalet som faktiskt visas i Öar-fliken, inte hela ödatan (granskningen
       // 2026-11-22: rubriken sa 126 öar medan fliken visade 55).
       antalOar={ISLAND_SECTIONS.reduce((n, s) => n + s.slugs.filter(slug => !!islandBySlug[slug]).length, 0)}
