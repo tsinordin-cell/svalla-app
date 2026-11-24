@@ -1,3 +1,4 @@
+import { kortOrtnamn } from './vaderOrtnamn'
 // Väder-/vindlayer för Upptäck-kartan.
 // Hämtar aktuell vind + temperatur från Open-Meteo i ett zoom-adaptivt rutnät
 // och exponerar rena helpers för rendering (SVG-pilar, färger, Beaufort).
@@ -324,12 +325,8 @@ export async function fetchPlaceName(
  a.municipality || a.city || a.county || data?.name || null
  if (!name) return null
 
- // Nominatim returnerar ibland långa namn ("Värmdö kommun") — korta ner
- const clean = name
- .replace(/\s+kommun$/i, '')
- .replace(/\s+län$/i, '')
- .trim()
- .toUpperCase()
+ // Nominatim returnerar ibland långa namn i genitiv ("Kungälvs kommun") — korta ner
+ const clean = kortOrtnamn(name)
 
  placeCache.set(key, { name: clean, expires: Date.now() + PLACE_TTL })
  return clean
