@@ -8,6 +8,7 @@
  * Sveriges kontur: Natural Earth 1:50m (allmän egendom), avrundad till två decimaler.
  */
 import { useEffect, useRef, useState } from 'react'
+import SvallaLogo from '@/components/SvallaLogo'
 
 const BLA = [0.106, 0.341, 0.627] // #1b57a0
 const SLUT = 11800
@@ -811,11 +812,8 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
         </nav>
       )}
       {varld && (
-        // Svallas logga (låst form enligt LOGGA.md) i hörnet av startscenen hela tiden (Max 2026-11-24)
-        <div className="ki-logga" role="img" aria-label="Svalla">
-          <svg viewBox="0 0 24 27" aria-hidden="true"><rect x="11.2" y="0.6" width="1" height="22" /><path d="M10.65 7.3V21.4H2.25Z" /><path d="M12.65 2.6L23.6 21.4H12.65Z" /><path d="M0.7 22.9Q11.6 27.1 22.6 22.9A0.6 0.6 0 0 1 22.7 24.1Q11.6 28.3 0.6 24.1A0.6 0.6 0 0 1 0.7 22.9Z" /></svg>
-          <span aria-hidden="true">SVALLA</span>
-        </div>
+        // Svallas logga i hörnet av startscenen hela tiden, samma komponent som i menyn på svalla.se (Max 2026-11-24)
+        <div className="ki-logga"><SvallaLogo height={26} color="currentColor" /></div>
       )}
       <div className="ki-topp">
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
@@ -961,7 +959,6 @@ const CSS = `
 .ki-skyltar .ki-s-planera,.ki-skyltar .ki-s-samarbete{top:46%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
 /* Loggan: uppe till vänster på himlen, i mobilen nere till vänster på havet där knapparna inte sitter */
 .ki-logga{position:absolute;left:22px;top:20px;z-index:4;display:flex;align-items:center;gap:8px;color:#0a2540;pointer-events:none}
-.ki-logga svg{height:26px;width:auto;fill:currentColor;display:block}
-.ki-logga span{font:700 15px/1 'Playfair Display',Georgia,serif;letter-spacing:.22em}
-@media (max-width:560px){.ki-logga{top:auto;bottom:14px;left:14px;gap:6px;color:#f5f4ef}.ki-logga svg{height:20px}.ki-logga span{font-size:12px}}
+.ki-logga svg{height:26px;width:auto}
+@media (max-width:560px){.ki-logga{top:auto;bottom:14px;left:14px;color:#f5f4ef}.ki-logga svg{height:20px}}
 `
