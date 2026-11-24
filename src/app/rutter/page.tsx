@@ -195,8 +195,6 @@ export default async function RutterPage() {
       }
       // Antalet som faktiskt visas i Öar-fliken, inte hela ödatan (granskningen
       // 2026-11-22: rubriken sa 126 öar medan fliken visade 55).
-      antalOar={ISLAND_SECTIONS.reduce((n, s) => n + s.slugs.filter(slug => islandBySlug[slug] && arO(islandBySlug[slug])).length, 0)}
-      antalFarjelinjer={SEED_FERRY_ROUTES.length}
       oar={<IslandsView />}
       farjor={<FerriesView />}
     />
