@@ -810,6 +810,13 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
           ))}
         </nav>
       )}
+      {varld && (
+        // Svallas logga (låst form enligt LOGGA.md) i hörnet av startscenen hela tiden (Max 2026-11-24)
+        <div className="ki-logga" role="img" aria-label="Svalla">
+          <svg viewBox="0 0 24 27" aria-hidden="true"><rect x="11.2" y="0.6" width="1" height="22" /><path d="M10.65 7.3V21.4H2.25Z" /><path d="M12.65 2.6L23.6 21.4H12.65Z" /><path d="M0.7 22.9Q11.6 27.1 22.6 22.9A0.6 0.6 0 0 1 22.7 24.1Q11.6 28.3 0.6 24.1A0.6 0.6 0 0 1 0.7 22.9Z" /></svg>
+          <span aria-hidden="true">SVALLA</span>
+        </div>
+      )}
       <div className="ki-topp">
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
         <button type="button" className="ki-ljud" onClick={vaxlaLjud} aria-pressed={ljud}>{ljud ? 'Ljud på' : 'Ljud av'}</button>
@@ -952,4 +959,9 @@ const CSS = `
 .ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
 @media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-cta{font-size:10.5px;padding:5px 8px 5px 7px}
 .ki-skyltar .ki-s-planera,.ki-skyltar .ki-s-samarbete{top:46%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
+/* Loggan: uppe till vänster på himlen, i mobilen nere till vänster på havet där knapparna inte sitter */
+.ki-logga{position:absolute;left:22px;top:20px;z-index:4;display:flex;align-items:center;gap:8px;color:#0a2540;pointer-events:none}
+.ki-logga svg{height:26px;width:auto;fill:currentColor;display:block}
+.ki-logga span{font:700 15px/1 'Playfair Display',Georgia,serif;letter-spacing:.22em}
+@media (max-width:560px){.ki-logga{top:auto;bottom:14px;left:14px;gap:6px;color:#f5f4ef}.ki-logga svg{height:20px}.ki-logga span{font-size:12px}}
 `
