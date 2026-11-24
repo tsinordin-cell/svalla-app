@@ -57,19 +57,9 @@ export default async function ForumPage() {
  {/* 2026-11-23 (menyförslaget): samma topprad som Flöde. Forum hade ingen
      sök-, meddelande- eller notisknapp alls. */}
  <AppTopBar doljPaDesktop />
- {/* Header */}
- <div style={{
- background: 'linear-gradient(160deg, var(--sea) 0%, #0d8fa3 100%)',
- padding: '20px 20px 28px',
- color: '#fff',
- }}>
- <h1 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 4px', letterSpacing: '-0.3px' }}>
- Forum
- </h1>
- <p style={{ fontSize: 14, opacity: 0.85, margin: 0 }}>
- Skärgårdsliv, teknik, tips och nyheter
- </p>
- </div>
+ {/* 2026-11-24 (Tom): rubrikrutan borttagen, flikarna säger redan var man är.
+     h1 kvar för skärmläsare och sökmotorer. */}
+ <h1 className="sr-only">Forum</h1>
 
  {/* Flöde / Forum / Topplista (menyförslaget 2026-11-23) */}
  <FlodeFlikar aktiv="forum" bakgrund="var(--white)" />

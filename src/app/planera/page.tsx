@@ -82,7 +82,8 @@ function PlaneraVy({
     }}>
       {/* 2026-11-23 (menyförslaget): samma topprad som övriga huvudsidor. Planera
           saknade sök-, meddelande- och notisknapp. */}
-      <AppTopBar titel="Planera" />
+      {/* 2026-11-24 (Tom): loggan i stället för sidnamnet, som Flöde, Forum och Topplista. */}
+      <AppTopBar doljPaDesktop />
 
       {/* Delade flikar: Planera / Rutter / Öar / Färjor. Länkar till egna sidor,
           så en navigering med aria-current, som på /rutter (granskningen 2026-11-22). */}

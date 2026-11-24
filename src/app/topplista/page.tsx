@@ -145,7 +145,10 @@ export default async function ToplistaPage() {
       {/* ── Header ── 2026-11-23 (menyförslaget): gemensam topprad och flikarna
           Flöde · Forum · Topplista. Förut fanns bara en tillbakapil till flödet,
           och sidan gick inte att nå från menyn. */}
-      <AppTopBar titel="Topplista" undertitel="Veckans och genom tidernas bästa seglare" huvudrubrik />
+      {/* 2026-11-24 (Tom): loggan i stället för rubriken, samma topprad som Flöde och Forum.
+          h1 kvar för skärmläsare och sökmotorer. */}
+      <AppTopBar doljPaDesktop />
+      <h1 className="sr-only">Topplista</h1>
       <FlodeFlikar aktiv="topplista" bakgrund="var(--white)" />
 
       <div style={{ maxWidth: 560, margin: '0 auto', padding: '14px 14px' }}>
