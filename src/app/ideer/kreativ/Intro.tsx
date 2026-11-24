@@ -353,7 +353,13 @@ const SKYLTAR = [
 const VSTART = 6000
 
 /* varld = startscenen (del 7): samma intro, men pappret är genomskinligt så att en ö, en fyr och en färja kan stiga upp bakom havet. */
-export default function Intro({ efter, varld = false }: { efter?: () => void; varld?: boolean }) {
+type Tid = 'morgon' | 'dag' | 'kvall' | 'natt'
+// Tiden i Sverige styr ljuset i startscenen (Max 2026-11-24)
+const tidAv = (d: Date): Tid => {
+  const t = Number(new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Stockholm', hour: 'numeric', hourCycle: 'h23' }).format(d))
+  return t >= 5 && t < 10 ? 'morgon' : t >= 10 && t < 17 ? 'dag' : t >= 17 && t < 21 ? 'kvall' : 'natt'
+}
+export default function Intro({ efter, varld = false, dygn }: { efter?: () => void; varld?: boolean; dygn?: Tid }) {
   const scen = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
   const rokRef = useRef<HTMLCanvasElement>(null)
@@ -369,6 +375,14 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
   const efterRef = useRef(efter)
   efterRef.current = efter
   const [gar, setGar] = useState(false)
+  const [nuTid, setNuTid] = useState<Tid>('dag')
+  useEffect(() => {
+    if (!varld) return
+    const satt = () => setNuTid(tidAv(new Date()))
+    satt(); const iv = window.setInterval(satt, 5 * 60 * 1000)
+    return () => window.clearInterval(iv)
+  }, [varld])
+  const tidNu = dygn ?? nuTid
   const nav = useRef({ x: 0, v: 0, svans: 0 })
   const [navPos, setNavPos] = useState({ x: 0, svans: 0, hav: 1.2, bredd: 600 })
 
@@ -753,7 +767,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
   }
 
   return (
-    <div className={(gar ? 'ki-scen ki-gar' : 'ki-scen') + (varld ? ' ki-scen-varld' : '')} ref={scen}>
+    <div className={(gar ? 'ki-scen ki-gar' : 'ki-scen') + (varld ? ' ki-scen-varld ki-tid-' + tidNu : '')} ref={scen}>
       {varld && (
         <div className={visT >= 9800 ? 'ki-varld syns' : 'ki-varld'} aria-hidden="true">
           {/* En varm målad sol uppe i vänstra hörnet (Max 2026-11-24) */}
@@ -764,10 +778,26 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
           <div className="ki-v ki-v-vastkust">
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-vastkust.webp" alt="" />
+            {/* Kväll och natt: samma bild med tända fönster tonar in (Max 2026-11-24) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-v-bild ki-v-kvall" src="/kreativ/scen-vastkust-kvall.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-gras ki-gras-v1" src="/kreativ/scen-gras.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-gras ki-gras-v2" src="/kreativ/scen-gras.webp" alt="" />
           </div>
           <div className="ki-v ki-v-o">
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-o.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-v-bild ki-v-kvall" src="/kreativ/scen-o-kvall.webp" alt="" />
+            {/* Lite grönt med prästkragar på klippan och en eka förtöjd vid bryggan (Max 2026-11-24) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-gras ki-gras-o1" src="/kreativ/scen-gras.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-gras ki-gras-o2" src="/kreativ/scen-gras.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-v-eka" src="/kreativ/scen-eka.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-stang" src="/kreativ/scen-midsommarstang.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -790,7 +820,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
           <img className="ki-v-bild" src="/kreativ/scen-bastu-klippa.webp" alt="" />
           </div>
           <div className="ki-v ki-v-fyr">{/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /></div>
+          <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /><span className="ki-fyrljus" /></div>
           <svg className="ki-v-masar" viewBox="0 0 120 44" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M6 24 Q20 8 32 22 Q44 6 60 20" /><path d="M74 36 Q84 26 92 35 Q100 25 112 34" /></svg>
           <svg className="ki-v-masar tva" viewBox="0 0 60 30" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M4 20 Q16 6 28 18 Q40 4 56 16" /></svg>
         </div>
@@ -867,6 +897,29 @@ const CSS = `
 .ki-scen{position:relative;border-radius:26px;overflow:hidden;background:#fff;box-shadow:0 18px 50px rgba(13,36,64,.14);aspect-ratio:16/9;min-height:380px;touch-action:pan-y}
 /* Startscenen: varm krämvit himmel i stället för kritvit, så att den inte bländar mot det mörkblå havet (Max 2026-11-24) */
 .ki-scen-varld{background:#efe7d6}
+/* Tid på dygnet (Max 2026-11-24): himlen, solen, fönstren och fyren följer klockan i Sverige. Morgon 5 till 10, dag 10 till 17, kväll 17 till 21, ljus sommarnatt 21 till 5 */
+.ki-scen-varld.ki-tid-morgon{background:linear-gradient(180deg,#e6ebe6 0%,#f0e9d8 70%)}
+.ki-scen-varld.ki-tid-kvall{background:linear-gradient(180deg,#eed7c6 0%,#f2dbc1 55%,#ecc4a3 100%)}
+.ki-scen-varld.ki-tid-natt{background:linear-gradient(180deg,#cbd0e1 0%,#dad6df 55%,#e8d8c8 100%)}
+.ki-tid-morgon .ki-varld .ki-v-sol{left:7%;top:17%}
+.ki-tid-kvall .ki-varld .ki-v-sol{left:8%;top:27%;filter:hue-rotate(-14deg) saturate(.95) brightness(.95)}
+.ki-tid-natt .ki-varld.syns .ki-v-sol{opacity:0}
+.ki-v-kvall{position:absolute;left:0;top:0;opacity:0;transition:opacity 2s}
+.ki-tid-kvall .ki-v-kvall{opacity:.55}
+.ki-tid-natt .ki-v-kvall{opacity:1}
+.ki-tid-natt .ki-v-fyr .ki-v-bild,.ki-tid-natt .ki-v-farja,.ki-tid-natt .ki-v-bastu,.ki-tid-natt .ki-v-eka,.ki-tid-natt .ki-gras{filter:brightness(.82) saturate(.9)}
+.ki-fyrljus{position:absolute;left:50%;top:18%;width:70%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,216,122,.8) 0%,rgba(255,200,105,.28) 32%,rgba(255,200,105,0) 68%);opacity:0;transition:opacity 2s;pointer-events:none}
+.ki-tid-kvall .ki-fyrljus{opacity:.45}
+.ki-tid-natt .ki-fyrljus{opacity:1;animation:kiFyr 7s ease-in-out infinite}
+@keyframes kiFyr{0%,100%{opacity:.7}50%{opacity:1}}
+/* Grönskan och ekan */
+.ki-gras{position:absolute;height:auto;pointer-events:none}
+.ki-gras-o1{left:36%;bottom:29%;width:13%}
+.ki-gras-o2{left:61%;bottom:27.5%;width:10%}
+.ki-gras-v1{left:14%;bottom:35%;width:14%}
+.ki-gras-v2{left:79%;bottom:34.5%;width:12%;transform:scaleX(-1)}
+.ki-v-eka{position:absolute;left:70%;bottom:1%;width:13%;height:auto;transform-origin:50% 80%;animation:kiEka 6s ease-in-out infinite alternate}
+@keyframes kiEka{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(5%) rotate(1.2deg)}}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
 .ki-fram{position:absolute;inset:0;pointer-events:none;z-index:3;opacity:0;transition:opacity 1s .8s}
@@ -983,7 +1036,7 @@ const CSS = `
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
 @media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}
