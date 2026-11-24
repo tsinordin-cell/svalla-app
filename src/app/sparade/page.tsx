@@ -119,7 +119,10 @@ export default async function SparadePage() {
   const rutter = bokmarken.filter(b => b.tour)
   const fel = error || bokFel
 
+  // Egen bakgrund: utan den syntes body-färgen (blågrå #f2f8fa) i stället för
+  // appens krämvita var(--bg) som övriga sidor har (granskningen 2026-11-23).
   return (
+    <div style={{ minHeight: '100dvh', background: 'var(--bg)' }}>
     <div style={{
       maxWidth: 720, margin: '0 auto',
       padding: '32px 16px calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 32px)',
@@ -283,6 +286,7 @@ export default async function SparadePage() {
           </div>
         </section>
       )}
+    </div>
     </div>
   )
 }

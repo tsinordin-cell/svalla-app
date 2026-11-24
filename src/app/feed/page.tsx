@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
@@ -22,6 +23,9 @@ import { getViewerId } from '@/lib/authClaims'
 import { timmeIStockholm } from '@/lib/svenskTid'
 
 export const dynamic = 'force-dynamic'
+
+// Fliktiteln var den generiska "Svalla | Skärgården börjar här" (granskningen 2026-11-23).
+export const metadata: Metadata = { title: 'Flöde' }
 
 // revision 2026-10-02: timmen räknas i Europe/Stockholm. Servern kör i UTC,
 // så new Date().getHours() gav "God morgon" en till två timmar för sent.

@@ -6,7 +6,13 @@ import type { Metadata } from 'next'
  * skärgårdssida" (granskningen 2026-11-22).
  */
 export const metadata: Metadata = {
-  title: 'Min profil',
+  // Mallen måste upprepas här: en layout med en vanlig titelsträng gör att
+  // rotens mall '%s | Svalla' inte når sidorna under /profil, så fliken på
+  // Inställningar hette bara "Inställningar" (granskningen 2026-11-23).
+  title: {
+    default: 'Min profil',
+    template: '%s | Svalla',
+  },
 }
 
 export default function ProfilLayout({ children }: { children: React.ReactNode }) {

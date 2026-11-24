@@ -271,7 +271,7 @@ function SuggestedUserCard({ user, myId, onDismiss }: { user: SuggestedUser; myI
       {/* Follow */}
       {myId && myId !== user.id && (
         <div style={{ width: '100%', marginTop: 2 }}>
-          <FollowButton targetUserId={user.id} />
+          <FollowButton targetUserId={user.id} stacked />
         </div>
       )}
     </div>

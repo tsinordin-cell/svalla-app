@@ -1435,12 +1435,15 @@ export default function UpptackExplorer() {
           font-size: 11px;
           color: var(--txt3);
           display: flex;
-          gap: 4px;
+          flex-wrap: wrap;
+          gap: 3px 4px;
           align-items: center;
+          min-width: 0;
         }
         .upx-card-cat { font-weight: 700; }
         .upx-card-island { color: var(--txt3); }
-        .upx-card-medlem { margin-left: 6px; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #9a4f14; background: rgba(201,110,42,0.14); border-radius: 999px; padding: 1px 7px; white-space: nowrap; }
+        /* Etiketten radbryts under kategorin när raden är full i stället för att gå ut över kortets kant (granskningen 2026-11-23). */
+        .upx-card-medlem { margin-left: 2px; font-size: 10px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--acc-d, #9e5318); background: rgba(201,110,42,0.14); border-radius: 999px; padding: 1px 7px; white-space: nowrap; max-width: 100%; }
         .upx-card-desc {
           font-size: 12px;
           color: var(--txt2);
