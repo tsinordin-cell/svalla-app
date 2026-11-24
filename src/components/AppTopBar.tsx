@@ -29,6 +29,7 @@ export default function AppTopBar({
   sticky = true,
   bakgrund,
   huvudrubrik = false,
+  onSok,
 }: {
   /** Sidans namn. Utan titel visas loggan som länk till Flöde. */
   titel?: ReactNode
@@ -44,6 +45,8 @@ export default function AppTopBar({
   bakgrund?: string
   /** Titeln blir sidans h1. Bara där sidan saknar en egen h1 (Topplista). */
   huvudrubrik?: boolean
+  /** Sidan har ett eget sök (Utforska): förstoringsglaset öppnar det i stället för /sok. */
+  onSok?: () => void
 }) {
   const Rubrik = huvudrubrik ? 'h1' : 'p'
   return (
@@ -76,7 +79,7 @@ export default function AppTopBar({
           <ToppradLogga />
         )}
       </div>
-      <TopBarAtgarder variant={variant} />
+      <TopBarAtgarder variant={variant} onSok={onSok} />
       {hoger}
     </header>
   )
@@ -86,15 +89,19 @@ export default function AppTopBar({
  * Knapparna till höger i toppraden. Används också på sidor som behåller sin
  * egen header (Rutter, Meddelanden), så att knapparna ser lika ut överallt.
  */
-export function TopBarAtgarder({ variant = 'standard', utanMeddelanden = false }: { variant?: 'standard' | 'profil'; utanMeddelanden?: boolean }) {
+export function TopBarAtgarder({ variant = 'standard', utanMeddelanden = false, onSok }: { variant?: 'standard' | 'profil'; utanMeddelanden?: boolean; onSok?: () => void }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
       <div className="app-topbar-atgarder" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-        {variant === 'standard' && (
+        {variant === 'standard' && (onSok ? (
+          <button type="button" onClick={onSok} aria-label="Sök på kartan" className="press-feedback" style={{ ...TOPPKNAPP_STIL, border: 'none', padding: 0, cursor: 'pointer' }}>
+            <Icon name="search" size={20} stroke={2} />
+          </button>
+        ) : (
           <Link href="/sok" aria-label="Sök" className="press-feedback" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
             <Icon name="search" size={20} stroke={2} />
           </Link>
-        )}
+        ))}
         {!utanMeddelanden && <SilentBoundary><MessageBell /></SilentBoundary>}
         <SilentBoundary><NotificationBell /></SilentBoundary>
       </div>
