@@ -309,14 +309,18 @@ export default function UpptackExplorer() {
     setSheetState(prev => {
       const next: SheetState = prev === 'half' ? 'full' : prev === 'full' ? 'min' : 'half'
       if (typeof window !== 'undefined') window.localStorage.setItem('upx-sheet2', next)
-      // Leaflet behöver veta att kartans höjd ändrats
-      setTimeout(() => {
-        const m = mapRef.current as { invalidateSize?: () => void } | null
-        m?.invalidateSize?.()
-      }, 320)
       return next
     })
   }
+  // Kartans höjd följer listans läge (halvöppen lista = lägre karta), även när
+  // läget läses in från förra besöket. Leaflet behöver då veta den nya storleken.
+  useEffect(() => {
+    const id = setTimeout(() => {
+      const m = mapRef.current as { invalidateSize?: () => void } | null
+      m?.invalidateSize?.()
+    }, 320)
+    return () => clearTimeout(id)
+  }, [sheetState])
 
   // Refs
   const mapDivRef = useRef<HTMLDivElement>(null)
