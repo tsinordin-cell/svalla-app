@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
-import SvallaLogo from '@/components/SvallaLogo'
+import SvallaLogo, { SvallaSegel } from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 import { TOPPKNAPP_STIL } from '@/components/toppradStil'
 import { countUnreadMessages } from '@/lib/dm'
@@ -224,7 +224,7 @@ export default function Nav() {
           )}
           {/* Online dot when logged in */}
           {username && (
-            <span style={{
+            <span className="nav-online-prick" style={{
               position: 'absolute', bottom: -1, right: -1,
               width: 8, height: 8, borderRadius: '50%',
               background: 'var(--green)',
@@ -288,6 +288,14 @@ export default function Nav() {
       WebkitBackfaceVisibility: 'hidden',
       backfaceVisibility: 'hidden',
     }}>
+      {/* 2026-11-24 (Tom valde riktning C, "Vattenlinjen"): bottenmenyns överkant är en
+          vattenlinje som reser sig i en dyning kring mittknappen. Visas bara under 1024 px
+          (globals.css); sidomenyn på dator är oförändrad. */}
+      <svg className="nav-dyning" viewBox="0 0 152 21" aria-hidden="true">
+        <path d="M0,21 C42,21 46,1 76,1 C106,1 110,21 152,21 Z" fill="var(--nav-yta)" />
+        <path d="M0,20.5 C42,20.5 46,0.5 76,0.5 C106,0.5 110,20.5 152,20.5" fill="none" stroke="var(--nav-border)" strokeWidth="1" />
+      </svg>
+
       {/* Desktop: SVALLA-logotyp längst upp i sidebaren. 2026-11-23 (menyförslaget):
           inloggad går den till flödet, appens hem. Utloggad går den till startsidan. */}
       <div className="nav-logo-wrap">
@@ -345,10 +353,14 @@ export default function Nav() {
               aria-label="Logga tur"
               aria-current={path === tab.href ? 'page' : undefined}
               className="press-feedback nav-fab-wrap"
-              style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 3 }}
+              style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, textDecoration: 'none', minHeight: 44, WebkitTapHighlightColor: 'transparent' }}
             >
-              <span className="nav-fab-mobile">
-                <Icon name="plus" size={22} stroke={2.4} style={{ color: '#fff' }} />
+              {/* Platsen är lika hög som flikarnas ikonruta (30 px), så texten under hamnar
+                  på samma rad som de andra. Cirkeln med loggans segel sticker upp ur den. */}
+              <span className="nav-fab-plats">
+                <span className="nav-fab-mobile">
+                  <SvallaSegel size={25} color="#fff" />
+                </span>
               </span>
               <span className="nav-fab-label">Logga tur</span>
               <span className="nav-fab-desktop">
@@ -361,7 +373,7 @@ export default function Nav() {
 
         return (
           <Link key={tab.href} href={tab.href} prefetch={prefetchFor(tab.href)} aria-current={active ? 'page' : undefined}
-            aria-label={`Gå till ${tab.label}`}
+            aria-label={tab.href === '/profil' ? 'Gå till din profil' : `Gå till ${tab.label}`}
             className="nav-tab-link press-feedback"
             style={{
               flex: 1, display: 'flex', flexDirection: 'column',
@@ -383,11 +395,29 @@ export default function Nav() {
             }}>
               {tab.icon?.(active)}
             </span>
-            <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 64,
-              // Profiltexten döljs tills vi vet vem som är inloggad, så att "Profil" inte blinkar förbi.
-              visibility: tab.href === '/profil' && profilVantar ? 'hidden' : undefined }}>
-              {tab.label}
-            </span>
+            {tab.href === '/profil' ? (
+              <>
+                {/* Bottenmenyn (under 1024 px) säger "Profil": namnet står på profilsidan och
+                    långa namn kapades. Sidomenyn på dator visar aliaset som förut. */}
+                <span className="nav-etikett-mobil">Profil</span>
+                <span className="nav-etikett-dator" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 64,
+                  // Aliaset döljs tills vi vet vem som är inloggad, så att "Profil" inte blinkar förbi.
+                  visibility: profilVantar ? 'hidden' : undefined }}>
+                  {tab.label}
+                </span>
+              </>
+            ) : (
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 64 }}>
+                {tab.label}
+              </span>
+            )}
+            {/* Aktiv flik i bottenmenyn: två små vågor på vattenlinjen, samma våg som i loggan. */}
+            {active && (
+              <svg className="nav-vag" viewBox="0 0 30 11" aria-hidden="true">
+                <rect x="0" y="5" width="30" height="3" fill="var(--nav-yta)" />
+                <path d="M1,6.5 Q8,-1 15,6.5 Q22,-1 29,6.5" fill="none" stroke="var(--sea)" strokeWidth="2.3" strokeLinecap="round" />
+              </svg>
+            )}
             {active && (
               <span className="nav-active-bar" style={{
                 position: 'absolute', top: 0, left: '50%',
