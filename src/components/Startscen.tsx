@@ -448,8 +448,15 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         const stor = Math.min(W * 0.11, H * 0.12)
         c.font = `700 ${stor}px ${serif}`
         const ls = c as unknown as { letterSpacing?: string }
-        if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.16}px`
-        c.fillText('SVALLA', W / 2 + stor * 0.08, H * 0.2)
+        // SVALLA med jämn luft (Oskar 2026-11-24): 0,12 em och kerning i paren S–V, V–A, A–L, L–L och L–A, en bokstav i taget
+        if ('letterSpacing' in c) ls.letterSpacing = '0px'
+        const KERN = [-0.01, -0.08, -0.03, -0.015, -0.07]
+        const bokst = 'SVALLA'.split('')
+        const steg = bokst.map((b, i) => c.measureText(b).width + (i < 5 ? stor * (0.12 + (KERN[i] ?? 0)) : 0))
+        let tx = W / 2 - steg.reduce((a, b) => a + b, 0) / 2
+        c.textAlign = 'left'
+        bokst.forEach((b, i) => { c.fillText(b, tx, H * 0.2); tx += steg[i] ?? 0 })
+        c.textAlign = 'center'
         c.font = `700 ${Math.max(10, stor * 0.17)}px ${sans}`
         if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.05}px`
         c.fillText('SKÄRGÅRDEN BÖRJAR HÄR', W / 2, H * 0.2 + stor * 0.42)
@@ -875,7 +882,10 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-bastu-klippa.webp" alt="" />
           </div>
-          <div className="ki-v ki-v-fyr">{/* eslint-disable-next-line @next/next/no-img-element */}
+          <div className="ki-v ki-v-fyr">
+          {/* En älg med skovelhorn tittar fram bakom fyren, under det orange bandet ovanför dörren (Max 2026-11-24) */}
+          <span className="ki-alg-ram" aria-hidden="true">{/* eslint-disable-next-line @next/next/no-img-element */}<img className="ki-alg" src="/kreativ/scen-alg.webp" alt="" /></span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /><span className="ki-fyrljus" />
           </div>
           {/* En ejderhona med tre ungar som simmar sakta framåt längs vattenytan och guppar med vågorna, långt från båten (Max 2026-11-24).
@@ -912,7 +922,9 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       {varld && (
         <div className={visT >= 9800 ? 'ki-djup syns' : 'ki-djup'} aria-hidden="true">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-d ki-d-orca" src="/kreativ/scen-spackhuggare.webp" alt="" />
+          {/* Späckhuggaren och en mindre unge bakom. Stjärtfenan viftar upp och ned så att de simmar framåt (Max 2026-11-24) */}
+          <div className="ki-d ki-d-orca"><img className="ki-orca-kropp" src="/kreativ/scen-spackhuggare.webp" alt="" /><img className="ki-orca-svans" src="/kreativ/scen-spackhuggare.webp" alt="" /></div>
+          <div className="ki-d ki-d-orca ki-d-unge"><img className="ki-orca-kropp" src="/kreativ/scen-spackhuggare.webp" alt="" /><img className="ki-orca-svans" src="/kreativ/scen-spackhuggare.webp" alt="" /></div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-d ki-d-f1" src="/kreativ/scen-fisk1.webp" alt="" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1066,6 +1078,16 @@ const CSS = `
 .ki-d{position:absolute;height:auto;animation:kiSimHo linear infinite}
 /* Fiskarna och späckhuggaren simmar i ungefär halva farten (Max 2026-11-24) */
 .ki-d-orca{width:15%;top:30%;animation:kiSimVa 62s linear infinite;animation-delay:-11s}
+.ki-d-orca img{display:block;width:100%;height:auto}
+.ki-orca-kropp{clip-path:inset(0 11% 0 0)}
+.ki-orca-svans{position:absolute;left:0;top:0;clip-path:inset(0 0 0 87.5%);transform-origin:88.5% 65%;animation:kiSvans 1.5s ease-in-out infinite alternate}
+.ki-d-unge{width:8.5%;top:46%;margin-left:13%}
+.ki-d-unge .ki-orca-svans{animation-duration:1.05s;animation-delay:-.4s}
+@keyframes kiSvans{from{transform:rotate(-13deg)}to{transform:rotate(13deg)}}
+/* Älgen: ramen slutar vid tornets högra kant, så att bara huvudet och hornen syns när den tittar fram till vänster */
+.ki-alg-ram{position:absolute;left:14%;width:48%;top:60%;height:40%;overflow:hidden;z-index:-1;pointer-events:none}
+.ki-alg{position:absolute;left:22%;top:16%;width:75%;height:auto;animation:kiAlg 17s ease-in-out infinite;animation-delay:4s;transform:translateX(62%)}
+@keyframes kiAlg{0%,22%{transform:translateX(62%)}32%,66%{transform:translateX(0) rotate(0deg)}44%{transform:translateX(0) rotate(-3deg)}54%{transform:translateX(0) rotate(1.5deg)}76%,100%{transform:translateX(62%)}}
 .ki-d-f1{width:6.5%;top:12%;animation-duration:40s;animation-delay:-5s}
 .ki-d-f2{width:6%;top:44%;animation-duration:32s;animation-delay:-20s}
 .ki-d-f3{width:5.5%;top:66%;animation-duration:46s;animation-delay:-32s}
@@ -1119,11 +1141,11 @@ const CSS = `
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-orca-svans,.ki-alg,.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
 /* Mobilen: allt som på datorn utom bastun, som blir trång bredvid västkusthusen. Ångbåten mindre, långt bort (Max 2026-11-24). */
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:36%;left:-3%}.ki-v-o{left:0;width:37%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:13%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu{display:none}.ki-v-bastu::after{display:none}.ki-styr,.ki-styr.ljus{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:36%;left:-3%}.ki-v-o{left:0;width:37%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:13%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-unge{width:17%;top:46%;margin-left:26%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu{display:none}.ki-v-bastu::after{display:none}.ki-styr,.ki-styr.ljus{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
