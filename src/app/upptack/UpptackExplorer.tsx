@@ -1601,6 +1601,11 @@ export default function UpptackExplorer() {
           /* Snap-points: cyclas via handle-knappen */
           .upx-split.sheet-min  .upx-list { height: 64px; padding-bottom: 8px; }
           .upx-split.sheet-half .upx-list { height: 50vh; }
+          /* Halvöppen lista: kartan slutar strax under listans överkant, så att
+             kartans mitt är mitten av det du ser. Annars zoomar + och − mot en
+             punkt under listan, och vädret visar platsen som listan döljer. */
+          .upx-map { transition: height 280ms cubic-bezier(0.32, 0.72, 0, 1); }
+          .upx-split.sheet-half .upx-map { height: calc(100% - 50vh + 24px); }
           .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px) - 24px); }
 
           /* När minimerat: göm scrollande innehåll så bara handle + count syns */
