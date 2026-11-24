@@ -1077,7 +1077,7 @@ const CSS = `
 .ki-d-orca img{display:block;width:100%;height:auto}
 .ki-orca-kropp{clip-path:inset(0 11% 0 0)}
 .ki-orca-svans{position:absolute;left:0;top:0;clip-path:inset(0 0 0 87.5%);transform-origin:88.5% 65%;animation:kiSvans 1.5s ease-in-out infinite alternate}
-.ki-d-unge{width:8.5%;top:46%;margin-left:13%}
+.ki-d-unge{width:8.5%;top:46%;margin-left:15.5%}
 .ki-d-unge .ki-orca-svans{animation-duration:1.05s;animation-delay:-.4s}
 @keyframes kiSvans{from{transform:rotate(-13deg)}to{transform:rotate(13deg)}}
 /* Älgen: ramen slutar vid tornets högra kant, så att bara huvudet och hornen syns när den tittar fram till vänster */
@@ -1141,7 +1141,7 @@ const CSS = `
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
 /* Mobilen: allt som på datorn utom bastun, som blir trång bredvid västkusthusen. Ångbåten mindre, långt bort (Max 2026-11-24). */
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:36%;left:-3%}.ki-v-o{left:0;width:37%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:13%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-unge{width:17%;top:46%;margin-left:26%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu{display:none}.ki-v-bastu::after{display:none}.ki-styr,.ki-styr.ljus{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{width:36%;left:-3%}.ki-v-o{left:0;width:37%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:13%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-unge{width:17%;top:46%;margin-left:31%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu{display:none}.ki-v-bastu::after{display:none}.ki-styr,.ki-styr.ljus{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
