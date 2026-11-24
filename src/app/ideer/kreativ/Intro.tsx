@@ -303,43 +303,74 @@ function kornTextur(gl: GL) {
   return tex
 }
 
-/* Ljud: av tills man slår på det. Bara en lugn havsbris och stilla vågor, gjort av filtrerat brus (inga ljudfiler). */
+/* Ljud: av tills man slår på det. Stilla sommarvatten som kluckar mot klippor och brygga en vindstilla dag,
+   inget vindbrus (Max 2026-11-24). Allt görs med filtrerat brus och korta toner, inga ljudfiler. */
 function skapaLjud() {
   const AC = (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)
   const ac = new AC()
-  const ut = ac.createGain(); ut.gain.value = 0; ut.connect(ac.destination)
-  // Brunt brus: mjukt och mörkt, låter som vind och hav på avstånd
+  const ut = ac.createGain(); ut.gain.value = 0
+  const mjuk = ac.createBiquadFilter(); mjuk.type = 'lowpass'; mjuk.frequency.value = 2600; mjuk.Q.value = 0.3
+  ut.connect(mjuk); mjuk.connect(ac.destination)
+  const r = Math.random
+  // Brunt brus för det stilla vattnet, vitt brus för kluckandet
   const brunt = (sek: number) => {
     const b = ac.createBuffer(1, Math.round(ac.sampleRate * sek), ac.sampleRate)
     const d = b.getChannelData(0); let s = 0
-    for (let i = 0; i < d.length; i++) { s = (s + 0.02 * (Math.random() * 2 - 1)) / 1.02; d[i] = s * 3.5 }
+    for (let i = 0; i < d.length; i++) { s = (s + 0.02 * (r() * 2 - 1)) / 1.02; d[i] = s * 3.5 }
     return b
   }
-  const kalla = (sek: number) => { const k = ac.createBufferSource(); k.buffer = brunt(sek); k.loop = true; return k }
-  // Brisen: lågpassat brus som andas långsamt
-  const vind = kalla(7), vf = ac.createBiquadFilter(); vf.type = 'lowpass'; vf.frequency.value = 420; vf.Q.value = 0.4
-  const vg = ac.createGain(); vg.gain.value = 0.16
-  const l1 = ac.createOscillator(); l1.frequency.value = 0.06; const l1g = ac.createGain(); l1g.gain.value = 0.06; l1.connect(l1g); l1g.connect(vg.gain)
-  const l2 = ac.createOscillator(); l2.frequency.value = 0.045; const l2g = ac.createGain(); l2g.gain.value = 140; l2.connect(l2g); l2g.connect(vf.frequency)
-  vind.connect(vf); vf.connect(vg); vg.connect(ut)
-  // Vågorna: en lugn dyning som sköljer in var sjunde till tionde sekund
-  const hav = kalla(9), hf = ac.createBiquadFilter(); hf.type = 'lowpass'; hf.frequency.value = 650; hf.Q.value = 0.3
-  const hg = ac.createGain(); hg.gain.value = 0.02
+  const vitt = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate)
+  { const d = vitt.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = r() * 2 - 1 }
+  // Vattnet i bakgrunden: mörkt och nästan ohörbart
+  const bas = ac.createBufferSource(); bas.buffer = brunt(9); bas.loop = true
+  const bf = ac.createBiquadFilter(); bf.type = 'lowpass'; bf.frequency.value = 300; bf.Q.value = 0.3
+  const bg = ac.createGain(); bg.gain.value = 0.05
+  bas.connect(bf); bf.connect(bg); bg.connect(ut)
+  // En mjuk dyning som sköljer in ibland
+  const hav = ac.createBufferSource(); hav.buffer = brunt(11); hav.loop = true
+  const hf = ac.createBiquadFilter(); hf.type = 'lowpass'; hf.frequency.value = 420; hf.Q.value = 0.3
+  const hg = ac.createGain(); hg.gain.value = 0.012
   hav.connect(hf); hf.connect(hg); hg.connect(ut)
-  vind.start(); hav.start(); l1.start(); l2.start()
+  bas.start(); hav.start()
   ut.gain.setTargetAtTime(0.9, ac.currentTime, 1.2)
-  let nasta = ac.currentTime + 1.5
-  const vag = () => {
-    while (nasta < ac.currentTime + 2) {
-      const n = nasta, top = 0.16 + Math.random() * 0.06
-      hg.gain.setTargetAtTime(top, n, 1.1); hg.gain.setTargetAtTime(0.02, n + 2.6, 1.6)
-      hf.frequency.setTargetAtTime(900, n, 1.1); hf.frequency.setTargetAtTime(520, n + 2.6, 1.6)
-      nasta = n + 7 + Math.random() * 3
+  // Kluck: en kort skvätt brus genom ett bandpass, som när en liten våg slår mot sten eller trä
+  const kluck = (n: number, styrka: number) => {
+    const k = ac.createBufferSource(); k.buffer = vitt
+    const f = ac.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 320 + r() * 520; f.Q.value = 1.4 + r() * 1.6
+    const g = ac.createGain(); g.gain.value = 0
+    const topp = (0.06 + r() * 0.07) * styrka, upp = 0.025 + r() * 0.03, ner = 0.18 + r() * 0.22
+    g.gain.setValueAtTime(0, n); g.gain.linearRampToValueAtTime(topp, n + upp); g.gain.exponentialRampToValueAtTime(0.0001, n + upp + ner)
+    k.connect(f); f.connect(g); g.connect(ut)
+    k.start(n, r() * 1.3, upp + ner + 0.05)
+  }
+  // Gluck: en liten luftbubbla i vattnet, en mjuk ton som stiger snabbt och dör ut
+  const gluck = (n: number, styrka: number) => {
+    const o = ac.createOscillator(); o.type = 'sine'
+    const f0 = 200 + r() * 240
+    o.frequency.setValueAtTime(f0, n); o.frequency.exponentialRampToValueAtTime(f0 * (1.7 + r() * 0.9), n + 0.06 + r() * 0.04)
+    const g = ac.createGain(); g.gain.value = 0
+    g.gain.setValueAtTime(0, n); g.gain.linearRampToValueAtTime((0.035 + r() * 0.035) * styrka, n + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, n + 0.11 + r() * 0.06)
+    o.connect(g); g.connect(ut); o.start(n); o.stop(n + 0.2)
+  }
+  let nasta = ac.currentTime + 0.8, dyning = ac.currentTime + 3
+  const planera = () => {
+    const t = ac.currentTime
+    while (nasta < t + 1.5) {
+      const s = 0.6 + r() * 0.5
+      kluck(nasta, s)
+      if (r() < 0.6) gluck(nasta + 0.03 + r() * 0.06, s)
+      if (r() < 0.3) { const e = nasta + 0.16 + r() * 0.12; kluck(e, s * 0.7); if (r() < 0.5) gluck(e + 0.03, s * 0.8) }
+      nasta += 0.6 + r() * 1.8
+    }
+    while (dyning < t + 2) {
+      const n = dyning
+      hg.gain.setTargetAtTime(0.06 + r() * 0.03, n, 1.2); hg.gain.setTargetAtTime(0.012, n + 2.4, 1.8)
+      dyning = n + 9 + r() * 5
     }
   }
-  vag(); const tick = setInterval(vag, 1000)
+  planera(); const tick = setInterval(planera, 400)
   return {
-    stang() { clearInterval(tick); ut.gain.setTargetAtTime(0, ac.currentTime, 0.3); setTimeout(() => { [vind, hav, l1, l2].forEach(k => k.stop()); ac.close() }, 900) },
+    stang() { clearInterval(tick); ut.gain.setTargetAtTime(0, ac.currentTime, 0.3); setTimeout(() => { [bas, hav].forEach(k => k.stop()); ac.close() }, 900) },
   }
 }
 
@@ -782,20 +813,20 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="ki-v-bild ki-v-kvall" src="/kreativ/scen-vastkust-kvall.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="ki-gras ki-gras-v1" src="/kreativ/scen-gras.webp" alt="" />
+            <img className="ki-tuva ki-tuva-v1" src="/kreativ/scen-tuva.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="ki-gras ki-gras-v2" src="/kreativ/scen-gras.webp" alt="" />
+            <img className="ki-tuva ki-tuva-v2" src="/kreativ/scen-tuva.webp" alt="" />
           </div>
           <div className="ki-v ki-v-o">
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-o.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="ki-v-bild ki-v-kvall" src="/kreativ/scen-o-kvall.webp" alt="" />
-            {/* Lite grönt med prästkragar på klippan och en eka förtöjd vid bryggan (Max 2026-11-24) */}
+            {/* Gräs med prästkragar på en liten tuva vid stugan, så det står på land, och en eka förtöjd vid bryggan (Max 2026-11-24) */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="ki-gras ki-gras-o1" src="/kreativ/scen-gras.webp" alt="" />
+            <img className="ki-tuva ki-tuva-o1" src="/kreativ/scen-tuva.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="ki-gras ki-gras-o2" src="/kreativ/scen-gras.webp" alt="" />
+            <img className="ki-tuva ki-tuva-o2" src="/kreativ/scen-tuva.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="ki-v-eka" src="/kreativ/scen-eka.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -820,7 +851,19 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
           <img className="ki-v-bild" src="/kreativ/scen-bastu-klippa.webp" alt="" />
           </div>
           <div className="ki-v ki-v-fyr">{/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /><span className="ki-fyrljus" /></div>
+          <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /><span className="ki-fyrljus" />
+            {/* En ejderhona med tre ungar som guppar sakta vid foten av fyrskäret, långt från båten (Max 2026-11-24) */}
+            <span className="ki-ejdrar">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="ki-ejder" src="/kreativ/scen-ejder.webp" alt="" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="ki-unge u1" src="/kreativ/scen-ejderunge.webp" alt="" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="ki-unge u2" src="/kreativ/scen-ejderunge.webp" alt="" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="ki-unge u3" src="/kreativ/scen-ejderunge.webp" alt="" />
+            </span>
+          </div>
           <svg className="ki-v-masar" viewBox="0 0 120 44" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M6 24 Q20 8 32 22 Q44 6 60 20" /><path d="M74 36 Q84 26 92 35 Q100 25 112 34" /></svg>
           <svg className="ki-v-masar tva" viewBox="0 0 60 30" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M4 20 Q16 6 28 18 Q40 4 56 16" /></svg>
         </div>
@@ -830,6 +873,12 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       {varld && (
         <div className={visT >= 9800 ? 'ki-fram syns' : 'ki-fram'} aria-hidden="true">
           {/* Kobben i förgrunden, bara stenen, och en krabba som går fram och tillbaka på den (Max 2026-11-23) */}
+          {/* En öppen skattkista med guld, pärlor och ädelstenar på botten, som glimmar lite (Max 2026-11-24) */}
+          <div className="ki-skatt">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/kreativ/scen-skattkista.webp" alt="" />
+            <i className="ki-glimt g1" /><i className="ki-glimt g2" /><i className="ki-glimt g3" />
+          </div>
           <div className="ki-f-kobbe">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="ki-f-sten" src="/kreativ/scen-sten.webp" alt="" />
@@ -907,17 +956,38 @@ const CSS = `
 .ki-v-kvall{position:absolute;left:0;top:0;opacity:0;transition:opacity 2s}
 .ki-tid-kvall .ki-v-kvall{opacity:.55}
 .ki-tid-natt .ki-v-kvall{opacity:1}
-.ki-tid-natt .ki-v-fyr .ki-v-bild,.ki-tid-natt .ki-v-farja,.ki-tid-natt .ki-v-bastu,.ki-tid-natt .ki-v-eka,.ki-tid-natt .ki-gras{filter:brightness(.82) saturate(.9)}
+.ki-tid-natt .ki-v-fyr .ki-v-bild,.ki-tid-natt .ki-v-farja,.ki-tid-natt .ki-v-bastu,.ki-tid-natt .ki-v-eka,.ki-tid-natt .ki-tuva,.ki-tid-natt .ki-ejdrar,.ki-tid-natt .ki-v-fyr::after,.ki-tid-natt .ki-v-o::after,.ki-tid-natt .ki-v-vastkust::after{filter:brightness(.82) saturate(.9)}
+.ki-tid-kvall .ki-v-o::after,.ki-tid-kvall .ki-v-vastkust::after{filter:brightness(.9)}
+/* Klipporna fortsätter ner under vattnet (spegling av klippans nederkant), så det ljusa bakom inte syns när vågorna sjunker (Max 2026-11-24) */
+.ki-v-o::after,.ki-v-vastkust::after,.ki-v-fyr::after,.ki-v-bastu::after{content:'';position:absolute;left:0;right:0;top:calc(100% - 1px);height:30%;background-repeat:no-repeat;background-size:100% auto;background-position:center bottom;transform:scaleY(-1);pointer-events:none}
+.ki-v-o::after{background-image:url(/kreativ/scen-o.webp)}
+.ki-v-vastkust::after{background-image:url(/kreativ/scen-vastkust.webp)}
+.ki-v-fyr::after{background-image:url(/kreativ/scen-fyr.webp)}
+.ki-v-bastu::after{background-image:url(/kreativ/scen-bastu-klippa.webp)}
 .ki-fyrljus{position:absolute;left:50%;top:18%;width:70%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,216,122,.8) 0%,rgba(255,200,105,.28) 32%,rgba(255,200,105,0) 68%);opacity:0;transition:opacity 2s;pointer-events:none}
 .ki-tid-kvall .ki-fyrljus{opacity:.45}
 .ki-tid-natt .ki-fyrljus{opacity:1;animation:kiFyr 7s ease-in-out infinite}
 @keyframes kiFyr{0%,100%{opacity:.7}50%{opacity:1}}
-/* Grönskan och ekan */
-.ki-gras{position:absolute;height:auto;pointer-events:none}
-.ki-gras-o1{left:36%;bottom:29%;width:13%}
-.ki-gras-o2{left:61%;bottom:27.5%;width:10%}
-.ki-gras-v1{left:14%;bottom:35%;width:14%}
-.ki-gras-v2{left:79%;bottom:34.5%;width:12%;transform:scaleX(-1)}
+/* Grönskan (på tuvor), ekan och ejdrarna */
+.ki-tuva{position:absolute;height:auto;pointer-events:none}
+.ki-tuva-o1{left:30%;bottom:27%;width:12%}
+.ki-tuva-o2{left:58%;bottom:26%;width:11%;transform:scaleX(-1)}
+.ki-tuva-v1{left:19%;bottom:38.5%;width:10%}
+.ki-tuva-v2{left:50%;bottom:39%;width:9%;transform:scaleX(-1)}
+.ki-ejdrar{position:absolute;left:4%;bottom:4.5%;width:60%;aspect-ratio:3/1;pointer-events:none;animation:kiEjdrar 80s ease-in-out infinite alternate}
+.ki-ejdrar img{position:absolute;bottom:0;height:auto;transform-origin:50% 90%}
+.ki-ejder{left:0;width:44%;animation:kiGupp 4.6s ease-in-out infinite alternate}
+.ki-unge{width:20%;animation:kiGupp 3.2s ease-in-out infinite alternate}
+.ki-unge.u1{left:47%;animation-delay:-1.1s}.ki-unge.u2{left:65%;width:18%;animation-delay:-2.3s}.ki-unge.u3{left:81%;width:19%;animation-delay:-.5s}
+@keyframes kiGupp{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(9%) rotate(2deg)}}
+@keyframes kiEjdrar{from{translate:0 0}to{translate:-22% 0}}
+/* Skattkistan på botten */
+.ki-skatt{position:absolute;left:62%;bottom:0;width:8%;transform:translateY(40%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1) 1s}
+.ki-fram.syns .ki-skatt{transform:translateY(0)}
+.ki-skatt img{display:block;width:100%;height:auto}
+.ki-glimt{position:absolute;width:9%;aspect-ratio:1;opacity:0;background:linear-gradient(90deg,transparent 44%,#fff9dc 44% 56%,transparent 56%),linear-gradient(0deg,transparent 44%,#fff9dc 44% 56%,transparent 56%);border-radius:50%;animation:kiGlimt 4.2s ease-in-out infinite}
+.ki-glimt.g1{left:30%;top:22%}.ki-glimt.g2{left:58%;top:16%;animation-delay:-1.6s}.ki-glimt.g3{left:70%;top:30%;animation-delay:-3s;width:7%}
+@keyframes kiGlimt{0%,70%,100%{opacity:0;transform:scale(.3) rotate(0)}82%{opacity:1;transform:scale(1) rotate(45deg)}}
 .ki-v-eka{position:absolute;left:70%;bottom:7.5%;width:13%;height:auto;transform-origin:50% 80%;animation:kiEka 6s ease-in-out infinite alternate}
 @keyframes kiEka{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(5%) rotate(1.2deg)}}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
@@ -1036,10 +1106,10 @@ const CSS = `
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-ejdrar,.ki-ejdrar img,.ki-glimt,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu::after{display:none}.ki-ejdrar{left:24%;width:44%}.ki-skatt{left:63%;width:20%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
