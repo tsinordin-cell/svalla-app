@@ -244,8 +244,8 @@ void main(){
   float b = kant(fb, th);
   // Startscenen: texten samplas utan vätskefältets krusning och utan korn i kanten, så att SVALLA blir skarp (Max 2026-11-23). Introt i del 1 är oförändrat.
   float tx = texture(txt, vec2(uv.x, 1. - uv.y) + disp * (genom > .5 ? 0. : .3)).a;
-  float tw = fwidth(tx) * .6 + .002;
-  tx = (genom > .5 ? smoothstep(.5 - tw, .5 + tw, tx) : smoothstep(.45, .55, tx + (kf - .5) * .1)) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
+  // Startscenen: textens egen kantutjämning från duken används rakt av, så att bokstäverna blir lika skarpa som vanlig text (Max 2026-11-24)
+  tx = (genom > .5 ? tx : smoothstep(.45, .55, tx + (kf - .5) * .1)) * smoothstep(0., .07, txtA * 1.12 - (kg * .7 + kf * .3));
   float ink = a;
   ink = max(ink, b); // båten smälter ihop med havet, inget vitt under den
   ink = mix(ink, 1. - ink, tx);
@@ -425,6 +425,29 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
     let rokSpawn = 0, sistaBlas = -1
     let batRuta = { bw: 0, bh: 0 }
 
+    // Texten: egen mask i full skärpa. Egen funktion så att den kan ritas om när typsnittet har laddats.
+    const ritaText = () => {
+        const tc = document.createElement('canvas'); tc.width = cv.width; tc.height = cv.height
+        const c = tc.getContext('2d')!
+        c.scale(DPR, DPR); c.fillStyle = '#000'; c.textAlign = 'center'; c.textBaseline = 'alphabetic'
+        // Startscenen: alltid Playfair Display, även på sidor utan .kr-rubrik (Max 2026-11-24). Introt i del 1 som förut.
+        const serif = varld ? "'Playfair Display', Georgia, serif" : getComputedStyle(document.querySelector('.kr h2') ?? document.body).fontFamily || 'Georgia, serif'
+        const sans = getComputedStyle(document.body).fontFamily || 'system-ui, sans-serif'
+        const stor = Math.min(W * 0.11, H * 0.12)
+        c.font = `700 ${stor}px ${serif}`
+        const ls = c as unknown as { letterSpacing?: string }
+        if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.16}px`
+        c.fillText('SVALLA', W / 2 + stor * 0.08, H * 0.2)
+        c.font = `700 ${Math.max(10, stor * 0.17)}px ${sans}`
+        if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.05}px`
+        c.fillText('SKÄRGÅRDEN BÖRJAR HÄR', W / 2, H * 0.2 + stor * 0.42)
+        gl.bindTexture(gl.TEXTURE_2D, txtTex)
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, tc)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+    }
+
     const bygg = () => {
       DPR = Math.min(2, window.devicePixelRatio || 1)
       // aldrig noll: en dold eller ännu inte utlagd scen ger annars en tom duk som kraschar sidan
@@ -520,29 +543,14 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       }
       gl.bindBuffer(gl.ARRAY_BUFFER, pb); gl.bufferData(gl.ARRAY_BUFFER, data.byteLength, gl.DYNAMIC_DRAW)
 
-      // Texten: egen mask i full skärpa
-      const tc = document.createElement('canvas'); tc.width = cv.width; tc.height = cv.height
-      const c = tc.getContext('2d')!
-      c.scale(DPR, DPR); c.fillStyle = '#000'; c.textAlign = 'center'; c.textBaseline = 'alphabetic'
-      const serif = getComputedStyle(document.querySelector('.kr h2') ?? document.body).fontFamily || 'Georgia, serif'
-      const sans = getComputedStyle(document.body).fontFamily || 'system-ui, sans-serif'
-      const stor = Math.min(W * 0.11, H * 0.12)
-      c.font = `700 ${stor}px ${serif}`
-      const ls = c as unknown as { letterSpacing?: string }
-      if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.16}px`
-      c.fillText('SVALLA', W / 2 + stor * 0.08, H * 0.2)
-      c.font = `700 ${Math.max(10, stor * 0.17)}px ${sans}`
-      if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.05}px`
-      c.fillText('SKÄRGÅRDEN BÖRJAR HÄR', W / 2, H * 0.2 + stor * 0.42)
-      gl.bindTexture(gl.TEXTURE_2D, txtTex)
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, tc)
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR)
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
+      ritaText()
     }
     bygg()
     let bygger = 0
     const ro = new ResizeObserver(() => { cancelAnimationFrame(bygger); bygger = requestAnimationFrame(bygg) })
+    // Rita om texten när Playfair Display har laddats, annars kan SVALLA hamna i ett reservtypsnitt
+    let lever = true
+    if (varld && document.fonts) document.fonts.load("700 64px 'Playfair Display'").then(() => { if (lever && W > 8) ritaText() }).catch(() => {})
     ro.observe(el)
 
     // Bilden reagerar inte på musen (beslut Max 2026-11-21). Vätskefältet rör sig av sig självt.
@@ -718,7 +726,7 @@ export default function Intro({ efter, varld = false }: { efter?: () => void; va
       raf = requestAnimationFrame(ruta)
     }
     raf = requestAnimationFrame(ruta)
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); }
+    return () => { lever = false; cancelAnimationFrame(raf); cancelAnimationFrame(bygger); ro.disconnect(); }
   }, [])
 
   useEffect(() => () => ljudRef.current?.stang(), [])
@@ -915,8 +923,13 @@ const CSS = `
 /* Ångbåten åker bara från höger till vänster: ut ur bilden till vänster och in igen från höger. Halva farten mot förut, ett varv tar 58 s (Max 2026-11-23) */
 .ki-varld.syns .ki-v-farja{transform:translateY(13.5%);transition-delay:.6s;scale:-1 1;animation:kiFarja 58s linear 2.4s infinite}
 @keyframes kiFarja{0%{left:60%}61.6%{left:-14%}61.7%{left:106%}100%{left:60%}}
-.ki-v-masar{position:absolute;left:10%;top:17%;width:9%;opacity:0;transition:opacity 1.2s .8s;animation:kiSvav 7s ease-in-out infinite alternate}
-.ki-v-masar.tva{left:auto;right:19%;top:27%;width:6%;animation-duration:9s}
+/* Fiskmåsarna flyger över himlen från vänster till höger och slår med vingarna (Max 2026-11-24) */
+.ki-v-masar{position:absolute;left:10%;top:17%;width:9%;opacity:0;transition:opacity 1.2s .8s;animation:kiMasFlyg 38s linear -7.2s infinite,kiSvav 3.2s ease-in-out infinite alternate}
+.ki-v-masar.tva{top:27%;width:6%;animation:kiMasFlyg 46s linear -34s infinite,kiSvav 4.1s ease-in-out infinite alternate}
+.ki-v-masar path{transform-box:fill-box;transform-origin:50% 100%;animation:kiFlax .5s ease-in-out infinite alternate}
+.ki-v-masar path:nth-child(2){animation-delay:-.25s;animation-duration:.6s}
+@keyframes kiMasFlyg{from{left:-12%}to{left:104%}}
+@keyframes kiFlax{to{transform:scaleY(.4)}}
 .ki-varld.syns .ki-v-masar{opacity:1}
 @keyframes kiSvav{to{translate:14px -8px}}
 .ki-skyltar{position:absolute;inset:0;z-index:3;pointer-events:none}
@@ -944,7 +957,7 @@ const CSS = `
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-v-flagga,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
 @media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-v-masar.tva{display:none}
