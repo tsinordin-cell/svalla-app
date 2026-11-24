@@ -45,10 +45,12 @@ const START_CSS = `
 /* Liggande telefon: hela scenen på en skärmhöjd och skyltarna vid sidorna av båten */
 @media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
 .hf-scen .ki-logga{display:none}
-/* Menyn ligger nu ovanför scenen i stället för över den. Upp till 1365 px hamnade julkalenderns paket
-   över menyns nederkant, så där flyttas det ner under menyn. Paketet i sig är oförändrat. */
+/* Julkalenderns paket står till höger i himlen, under menyn och bort från solen som står till vänster
+   (solen hör till sommaren, Max 2026-11-24). Paketet i sig är oförändrat. */
+.lp-start .julskylt{left:auto;right:14px}
 @media (max-width:599px){.lp-start .julskylt{top:74px}}
-@media (min-width:600px) and (max-width:1365px){.lp-start .julskylt{top:80px}}
+@media (min-width:600px) and (max-width:860px){.lp-start .julskylt{top:80px}}
+@media (min-width:861px){.lp-start .julskylt{top:166px;right:22px}}
 /* Julkalenderns paket ligger uppe till vänster, så Spela igen och Hoppa över står under ljudknappen till höger */
 .hf-scen .ki-styr,.hf-scen .ki-styr.ljus{left:auto;right:14px;top:52px}
 .lp-dold{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
