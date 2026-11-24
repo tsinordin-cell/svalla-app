@@ -37,6 +37,7 @@ const START_CSS = `
 .lp-start .mm-mob-sok{color:#0a2540}
 .lp-start .mm-mob-knapp{background:rgba(10,37,64,.06);border-color:rgba(10,37,64,.25);color:#0a2540}
 /* Scenen fyller skärmen under menyn, så att hela animeringen syns utan att man scrollar */
+/* div i stället för section: startsidans stilmall ger alla section 100 px och 40 px utfyllnad */
 .hf-scen{position:relative;z-index:1;background:#efe7d6}
 .hf-scen .ki-scen{border-radius:0;box-shadow:none}
 @media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:540px}}
@@ -44,6 +45,9 @@ const START_CSS = `
 /* Liggande telefon: hela scenen på en skärmhöjd och skyltarna vid sidorna av båten */
 @media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
 .hf-scen .ki-logga{display:none}
+/* Menyn ligger nu ovanför scenen i stället för över den. Mellan 600 och 1365 px hamnade julkalenderns paket
+   över menyns nederkant, så där flyttas det ner under menyn. Paketet i sig är oförändrat. */
+@media (min-width:600px) and (max-width:1365px){.lp-start .julskylt{top:80px}}
 /* Julkalenderns paket ligger uppe till vänster, så Spela igen och Hoppa över står under ljudknappen till höger */
 .hf-scen .ki-styr,.hf-scen .ki-styr.ljus{left:auto;right:14px;top:52px}
 .lp-dold{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -1314,11 +1318,11 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
   <style>{START_CSS}</style>
   <MegaMeny />
   <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: utanHero }} />
-  <section className="hf-scen" aria-labelledby="start-rubrik">
+  <div className="hf-scen">
    <h1 id="start-rubrik" className="lp-dold">Planera din skärgårdsvistelse</h1>
    <p className="lp-dold">Skärgården börjar här. Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
    <Startscen varld dygn="dag" />
-  </section>
+  </div>
  <ThorkelHero />
  <TreSatt />
  <JustNu />
