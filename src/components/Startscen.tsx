@@ -354,6 +354,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
   const rokRef = useRef<HTMLCanvasElement>(null)
   const ejdRef = useRef<HTMLSpanElement>(null)
   const farjaRef = useRef<HTMLDivElement>(null)
+  const ekaRef = useRef<HTMLImageElement>(null)
   const tid = useRef(varld ? VSTART : 0)
   const start = useRef(0)
   const [visT, setVisT] = useState(0)
@@ -757,7 +758,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
           }
           // Thorkels båt ritas i samma bild. Hamnar avläsningen längre bort än vågorna kan gå har vi träffat båten, då gäller formeln.
           const form = yta(cx)
-          return Math.abs(y - form) > H * 0.025 ? form : y
+          return Math.abs(y - form) > H * 0.012 ? form : y
         }
         // Ångbåten gungar mjukt med vågornas rörelse, annars sväljer vågorna skrovet i mobilen där båten är liten (Max 2026-11-24).
         // Bara vågformeln, ingen pixelavläsning: Thorkels båt ligger i samma bild och fick ångbåten att hoppa när den passerade bakom.
@@ -772,6 +773,14 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
           farja.style.translate = `0 ${(y - havNiva * H).toFixed(1)}px`
           farja.style.rotate = `${lut.toFixed(3)}rad`
         }
+        // Ekan vid bryggan gungar med samma vågor, i stället för i en egen takt som ibland lät vågorna svälja den (Oskar 2026-11-24)
+        const eka = ekaRef.current
+        if (eka && eka.offsetWidth > 0) {
+          const er = eka.getBoundingClientRect(), cr = cv.getBoundingClientRect()
+          const cx = (er.left + er.right) / 2 - cr.left
+          eka.style.translate = `0 ${(yta(cx) - havNiva * H).toFixed(1)}px`
+          eka.style.rotate = `${Math.atan2(yta(cx + 6) - yta(cx - 6), 12).toFixed(3)}rad`
+        }
         for (let k = 0; k < ejd.children.length; k++) {
           const el = ejd.children[k] as HTMLElement
           const w = el.offsetWidth, h = el.offsetHeight
@@ -783,7 +792,8 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
           y = fore === undefined ? y : fore + (y - fore) * 0.35
           ejdY[k] = y
           const lut = Math.atan2(yta(cx + 4) - yta(cx - 4), 8)
-          const djup = k === 0 ? 0.74 : 0.76
+          // Ligger lite högre i vattnet än förut, så att de inte försvinner i vågorna (Oskar 2026-11-24)
+          const djup = k === 0 ? 0.66 : 0.68
           el.style.transform = `translate(${x.toFixed(1)}px, ${(y - h * djup).toFixed(1)}px) rotate(${lut.toFixed(3)}rad)`
           el.style.opacity = String(klamp(Math.min(pos, span - pos) / (span * 0.1)))
         }
@@ -843,7 +853,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="ki-tuva ki-tuva-o2" src="/kreativ/scen-tuva.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="ki-v-eka" src="/kreativ/scen-eka.webp" alt="" />
+            <img className="ki-v-eka" ref={ekaRef} src="/kreativ/scen-eka.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-stang" src="/kreativ/scen-midsommarstang.webp" alt="" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -988,7 +998,7 @@ const CSS = `
 .ki-varld.syns .ki-ejdrar{opacity:1}
 .ki-ejdrar img{position:absolute;left:0;top:0;height:auto;opacity:0;transform-origin:50% 80%;will-change:transform}
 .ki-ejder{width:3.4%}.ki-unge{width:1.7%}
-.ki-v-eka{position:absolute;left:70%;bottom:7.5%;width:13%;height:auto;transform-origin:50% 80%;animation:kiEka 6s ease-in-out infinite alternate}
+.ki-v-eka{position:absolute;left:70%;bottom:7.5%;width:13%;height:auto;transform-origin:50% 80%}
 @keyframes kiEka{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(5%) rotate(1.2deg)}}
 .ki-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;}
 .ki-rokduk{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
@@ -1073,7 +1083,8 @@ const CSS = `
 .ki-v-farja{left:60%;width:8.5%}
 /* Ångbåten åker bara från höger till vänster: ut ur bilden till vänster och in igen från höger. Halva farten mot förut, ett varv tar 58 s (Max 2026-11-23) */
 .ki-varld.syns .ki-v-farja{transform:translateY(13.5%);transition-delay:.6s;scale:-1 1;animation:kiFarja 100s linear 2.4s infinite}
-@keyframes kiFarja{0%{left:60%}61.6%{left:-14%}61.7%{left:106%}100%{left:60%}}
+/* Ångbåten är osynlig den tiondels sekund den flyttas från vänster kant till höger, annars syns den flyga över skärmen (Oskar 2026-11-24) */
+@keyframes kiFarja{0%{left:60%}61.55%{opacity:1}61.6%{left:-14%;opacity:0}61.7%{left:106%;opacity:0}61.75%{opacity:1}100%{left:60%}}
 /* Fiskmåsarna flyger över himlen från vänster till höger och slår med vingarna (Max 2026-11-24) */
 .ki-v-masar{position:absolute;left:10%;top:17%;width:9%;opacity:0;transition:opacity 1.2s .8s;animation:kiMasFlyg 72s linear -13.7s infinite,kiSvav 6s ease-in-out infinite alternate}
 .ki-v-masar.tva{top:27%;width:6%;animation:kiMasFlyg 86s linear -64s infinite,kiSvav 7.4s ease-in-out infinite alternate}
