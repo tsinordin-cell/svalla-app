@@ -97,9 +97,17 @@ const ISLAND_SECTIONS = [
     label: 'Sörmlands skärgård',
     color: 'var(--sea)',
     bg: 'rgba(30,92,130,0.07)',
-    description: 'Askö i Trosa kommun, i Södermanlands skärgård.',
-    slugs: ['asko'],
+    description: 'Askö, Hartsö, Ringsö, Sävö och fler öar i Södermanlands skärgård.',
+    // 2026-11-24 (Toms ja): samma sju platser som gruppen på /oar. Alla har
+    // Länsstyrelsen Södermanlands reservatsidor som källa i island-data, t.ex.
+    // "Ringsö är den största ön i Nyköpings skärgård" och "Fågelskär är en ö som
+    // ligger cirka tre kilometer utanför Oxelösund". Stendörren är ett
+    // naturreservat (slag i island-data) och räknas inte som ö nedan.
+    slugs: ['asko', 'hartso', 'ringso', 'savo', 'stendorren', 'kramo', 'fagelskar'],
   }]
+
+// Som /oar: pillen och rubriken räknar bara öar och säger vad resten är.
+const arO = (i: { slag?: string }) => (i.slag ?? 'ö') === 'ö'
 
 const islandBySlug = Object.fromEntries(ISLANDS.map(i => [i.slug, i]))
 
@@ -187,7 +195,7 @@ export default async function RutterPage() {
       }
       // Antalet som faktiskt visas i Öar-fliken, inte hela ödatan (granskningen
       // 2026-11-22: rubriken sa 126 öar medan fliken visade 55).
-      antalOar={ISLAND_SECTIONS.reduce((n, s) => n + s.slugs.filter(slug => !!islandBySlug[slug]).length, 0)}
+      antalOar={ISLAND_SECTIONS.reduce((n, s) => n + s.slugs.filter(slug => islandBySlug[slug] && arO(islandBySlug[slug])).length, 0)}
       antalFarjelinjer={SEED_FERRY_ROUTES.length}
       oar={<IslandsView />}
       farjor={<FerriesView />}
@@ -364,6 +372,8 @@ function IslandsView() {
       {ISLAND_SECTIONS.map(section => {
         const islands = section.slugs.map(s => islandBySlug[s]).filter((x): x is NonNullable<typeof x> => !!x)
         if (!islands.length) return null
+        const antalO = islands.filter(arO).length
+        const reservat = islands.filter(i => i.slag === 'naturreservat').length
         return (
           <section key={section.id} style={{ paddingTop: 20 }}>
             <div style={{
@@ -381,7 +391,7 @@ function IslandsView() {
                     fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 10,
                     background: section.bg, color: section.color,
                   }}>
-                    {islands.length} {islands.length === 1 ? 'ö' : 'öar'}
+                    {antalO} {antalO === 1 ? 'ö' : 'öar'}{reservat ? ` + ${reservat} naturreservat` : ''}
                   </span>
                 </div>
                 <p style={{ fontSize: 12, color: 'var(--txt2)', margin: 0, lineHeight: 1.4 }}>
