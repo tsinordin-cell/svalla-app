@@ -394,6 +394,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
   const scen = useRef<HTMLDivElement>(null)
   const canvas = useRef<HTMLCanvasElement>(null)
   const rokRef = useRef<HTMLCanvasElement>(null)
+  const ejdRef = useRef<HTMLSpanElement>(null)
   const tid = useRef(varld ? VSTART : 0)
   const start = useRef(0)
   const [visT, setVisT] = useState(0)
@@ -642,6 +643,25 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       const batY = (H - batRuta.bh) / 2
       const malY = vattenlinje - batRuta.bh * 0.8 - batY
       const pivX = W / 2, pivY = H / 2 + batRuta.bh * 0.3
+      // Ejdrarna: samma vågformel som i bildshadern (utan det lilla bruset), så att de ligger på ytan och guppar med vågorna
+      const ejd = ejdRef.current
+      if (varld && ejd) {
+        const vagA = 0.4 + 0.6 * ease((T - 5800) / 1500), tvv = sek * 0.5
+        const yta = (px: number) => { const xq = px / H; return (havNiva + (Math.sin(xq * 3.1 + tvv * 1.05) * 0.011 + Math.sin(xq * 7.7 - tvv * 1.6) * 0.0055) * vagA) * H }
+        const span = W * 0.42, start = W * 1.04, fart = W * 0.0042
+        for (let k = 0; k < ejd.children.length; k++) {
+          const el = ejd.children[k] as HTMLElement
+          const w = el.offsetWidth, h = el.offsetHeight
+          const efter = k === 0 ? 0 : W * 0.006 + k * W * 0.017
+          const pos = (((sek * fart + W * 0.12 - efter) % span) + span) % span
+          const x = start - pos, cx = x + w / 2, y = yta(cx)
+          const lut = Math.atan2(yta(cx + 4) - yta(cx - 4), 8)
+          const djup = k === 0 ? 0.8 : 0.84
+          const gupp = Math.sin(sek * 1.9 + k * 1.7) * h * 0.025
+          el.style.transform = `translate(${x.toFixed(1)}px, ${(y - h * djup + gupp).toFixed(1)}px) rotate(${lut.toFixed(3)}rad)`
+          el.style.opacity = String(klamp(Math.min(pos, span - pos) / (span * 0.1)))
+        }
+      }
 
       const f = fran, A = attr
       for (let i = 0; i < N; i++) {
@@ -852,18 +872,19 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
           </div>
           <div className="ki-v ki-v-fyr">{/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-fyr.webp" alt="" /><span className="ki-fyrljus" />
-            {/* En ejderhona med tre ungar som guppar sakta vid foten av fyrskäret, långt från båten (Max 2026-11-24) */}
-            <span className="ki-ejdrar">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="ki-ejder" src="/kreativ/scen-ejder.webp" alt="" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="ki-unge u1" src="/kreativ/scen-ejderunge.webp" alt="" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="ki-unge u2" src="/kreativ/scen-ejderunge.webp" alt="" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="ki-unge u3" src="/kreativ/scen-ejderunge.webp" alt="" />
-            </span>
           </div>
+          {/* En ejderhona med tre ungar som simmar sakta framåt längs vattenytan och guppar med vågorna, långt från båten (Max 2026-11-24).
+              Läget räknas fram varje bildruta ur samma vågformel som havet, så att de alltid ligger på ytan. */}
+          <span className="ki-ejdrar" ref={ejdRef}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-ejder" src="/kreativ/scen-ejder.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-unge" src="/kreativ/scen-ejderunge.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-unge" src="/kreativ/scen-ejderunge.webp" alt="" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="ki-unge" src="/kreativ/scen-ejderunge.webp" alt="" />
+          </span>
           <svg className="ki-v-masar" viewBox="0 0 120 44" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M6 24 Q20 8 32 22 Q44 6 60 20" /><path d="M74 36 Q84 26 92 35 Q100 25 112 34" /></svg>
           <svg className="ki-v-masar tva" viewBox="0 0 60 30" fill="none" stroke="#143c78" strokeWidth="3.4" strokeLinecap="round"><path d="M4 20 Q16 6 28 18 Q40 4 56 16" /></svg>
         </div>
@@ -873,11 +894,11 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       {varld && (
         <div className={visT >= 9800 ? 'ki-fram syns' : 'ki-fram'} aria-hidden="true">
           {/* Kobben i förgrunden, bara stenen, och en krabba som går fram och tillbaka på den (Max 2026-11-23) */}
-          {/* En öppen skattkista med guld, pärlor och ädelstenar på botten, som glimmar lite (Max 2026-11-24) */}
+          {/* En gammal sjömanskista i faluröd färg på botten, locket på glänt och några silvermynt som glimmar lite (Max 2026-11-24) */}
           <div className="ki-skatt">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/kreativ/scen-skattkista.webp" alt="" />
-            <i className="ki-glimt g1" /><i className="ki-glimt g2" /><i className="ki-glimt g3" />
+            <img src="/kreativ/scen-sjomanskista.webp" alt="" />
+            <i className="ki-glimt g1" /><i className="ki-glimt g2" />
           </div>
           <div className="ki-f-kobbe">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -974,19 +995,16 @@ const CSS = `
 .ki-tuva-o2{left:58%;bottom:26%;width:11%;transform:scaleX(-1)}
 .ki-tuva-v1{left:19%;bottom:38.5%;width:10%}
 .ki-tuva-v2{left:50%;bottom:39%;width:9%;transform:scaleX(-1)}
-.ki-ejdrar{position:absolute;left:4%;bottom:4.5%;width:60%;aspect-ratio:3/1;pointer-events:none;animation:kiEjdrar 80s ease-in-out infinite alternate}
-.ki-ejdrar img{position:absolute;bottom:0;height:auto;transform-origin:50% 90%}
-.ki-ejder{left:0;width:44%;animation:kiGupp 4.6s ease-in-out infinite alternate}
-.ki-unge{width:20%;animation:kiGupp 3.2s ease-in-out infinite alternate}
-.ki-unge.u1{left:47%;animation-delay:-1.1s}.ki-unge.u2{left:65%;width:18%;animation-delay:-2.3s}.ki-unge.u3{left:81%;width:19%;animation-delay:-.5s}
-@keyframes kiGupp{from{transform:translateY(0) rotate(-2deg)}to{transform:translateY(9%) rotate(2deg)}}
-@keyframes kiEjdrar{from{translate:0 0}to{translate:-22% 0}}
+.ki-ejdrar{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.5s 1s}
+.ki-varld.syns .ki-ejdrar{opacity:1}
+.ki-ejdrar img{position:absolute;left:0;top:0;height:auto;opacity:0;transform-origin:50% 80%;will-change:transform}
+.ki-ejder{width:3.4%}.ki-unge{width:1.7%}
 /* Skattkistan på botten */
-.ki-skatt{position:absolute;left:62%;bottom:0;width:8%;transform:translateY(40%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1) 1s}
+.ki-skatt{position:absolute;left:62%;bottom:1%;width:5%;transform:translateY(40%);transition:transform 1.6s cubic-bezier(.2,.8,.2,1) 1s}
 .ki-fram.syns .ki-skatt{transform:translateY(0)}
 .ki-skatt img{display:block;width:100%;height:auto}
-.ki-glimt{position:absolute;width:9%;aspect-ratio:1;opacity:0;background:linear-gradient(90deg,transparent 44%,#fff9dc 44% 56%,transparent 56%),linear-gradient(0deg,transparent 44%,#fff9dc 44% 56%,transparent 56%);border-radius:50%;animation:kiGlimt 4.2s ease-in-out infinite}
-.ki-glimt.g1{left:30%;top:22%}.ki-glimt.g2{left:58%;top:16%;animation-delay:-1.6s}.ki-glimt.g3{left:70%;top:30%;animation-delay:-3s;width:7%}
+.ki-glimt{position:absolute;width:9%;aspect-ratio:1;opacity:0;background:linear-gradient(90deg,transparent 44%,#f4f6f8 44% 56%,transparent 56%),linear-gradient(0deg,transparent 44%,#f4f6f8 44% 56%,transparent 56%);border-radius:50%;animation:kiGlimt 5.2s ease-in-out infinite}
+.ki-glimt.g1{left:34%;top:39%;width:8%}.ki-glimt.g2{left:56%;top:36%;width:7%;animation-delay:-2.1s}
 @keyframes kiGlimt{0%,70%,100%{opacity:0;transform:scale(.3) rotate(0)}82%{opacity:1;transform:scale(1) rotate(45deg)}}
 .ki-v-eka{position:absolute;left:70%;bottom:7.5%;width:13%;height:auto;transform-origin:50% 80%;animation:kiEka 6s ease-in-out infinite alternate}
 @keyframes kiEka{from{transform:translateY(0) rotate(-1.4deg)}to{transform:translateY(5%) rotate(1.2deg)}}
@@ -1106,10 +1124,10 @@ const CSS = `
 .ki-dold{display:none}
 .ki-s-farjor{left:68.5%;top:47.5%;--r:-2deg}
 .ki-s-karta{left:86%;top:34%;--r:3deg}
-@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-ejdrar,.ki-ejdrar img,.ki-glimt,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
+@media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-glimt,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu::after{display:none}.ki-ejdrar{left:24%;width:44%}.ki-skatt{left:63%;width:20%}
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu::after{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}.ki-skatt{left:64%;width:13%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
