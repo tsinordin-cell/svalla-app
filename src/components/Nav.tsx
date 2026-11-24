@@ -254,7 +254,7 @@ export default function Nav() {
       {showGlobalBell && (
         <div className="nav-klockor" style={{
           position: 'fixed', top: 'calc(env(safe-area-inset-top, 0px) + 8px)', right: 12, zIndex: 901,
-          display: 'flex', gap: 4, alignItems: 'center',
+          display: 'flex', gap: 2, alignItems: 'center',
           transform: klockorDolda ? 'translateY(-72px)' : 'translateY(0)',
           opacity: klockorDolda ? 0 : 1,
           transition: 'transform 0.22s ease, opacity 0.18s ease',
@@ -263,8 +263,8 @@ export default function Nav() {
           {/* 2026-11-23 (menyförslaget): sök i stället för huset. Huset ledde till flödet
               (beslut 3) men såg ut som en länk till startsidan. Samma knappar som i AppTopBar.
               Hela raden döljs från 1024 px, där sidomenyn har Sök, Meddelanden och Notiser. */}
-          <Link href="/sok" aria-label="Sök" className="press-feedback" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
-            <Icon name="search" size={20} stroke={2} />
+          <Link href="/sok" aria-label="Sök" className="press-feedback toppknapp" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
+            <Icon name="search" size={22} stroke={2} />
           </Link>
           <MessageBell />
           <NotificationBell />

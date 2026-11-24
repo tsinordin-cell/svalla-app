@@ -187,18 +187,18 @@ export default function NotificationBell() {
  const right = Math.min(Math.max(12, vw - rect.right), vw - 12 - bredd)
  setPanelGeo({ top: rect.bottom + 8, right, width: bredd })
  } else {
- setPanelGeo({ top: 60, right: 12, width: bredd })
+ setPanelGeo({ top: 48, right: 12, width: bredd })
  }
  setOpen(o => !o)
  if (!open && unread > 0) markAllRead()
  }}
  aria-label={unread > 0 ? `${unread} olästa notiser` : 'Notiser'}
  aria-expanded={open}
- className="press-feedback"
+ className="press-feedback toppknapp"
  style={{ ...TOPPKNAPP_STIL, border: 'none', cursor: 'pointer' }}
  >
  {/* 2026-11-23 (menyförslaget): Lucides klocka från Icon.tsx, 44 px tryckyta, räknare 11 px. */}
- <Icon name="bell" size={20} stroke={2} />
+ <Icon name="bell" size={22} stroke={2} />
  {unread > 0 && (
  <span style={RAKNARE_STIL}>
  {unread > 9 ? '9+' : unread}

@@ -6,6 +6,7 @@ import SilentBoundary from '@/components/SilentBoundary'
 import Icon from '@/components/Icon'
 import { TOPPKNAPP_STIL } from '@/components/toppradStil'
 import ToppradLogga from '@/components/ToppradLogga'
+import ToppradGom from '@/components/ToppradGom'
 
 /**
  * Appens topprad, samma på huvudsidorna (menyförslaget, Toms ja 2026-11-23).
@@ -54,8 +55,8 @@ export default function AppTopBar({
       className={`app-topbar${doljPaDesktop ? ' app-topbar--dold-desktop' : ''}`}
       style={{
         display: 'flex', alignItems: 'center', gap: 10,
-        minHeight: 60,
-        padding: '8px 12px 8px 16px',
+        minHeight: 44,
+        padding: '2px 8px 2px 16px',
         background: bakgrund ?? 'var(--header-bg)',
         backdropFilter: 'saturate(1.4) blur(16px)', WebkitBackdropFilter: 'saturate(1.4) blur(16px)',
         borderBottom: '1px solid rgba(10,123,140,0.10)',
@@ -81,6 +82,9 @@ export default function AppTopBar({
       </div>
       <TopBarAtgarder variant={variant} onSok={onSok} />
       {hoger}
+      {/* 2026-11-25: raden glider undan när man skrollar ner och kommer tillbaka
+          när man skrollar upp. Bara där den ligger fast överst (inte kartan på Utforska). */}
+      {sticky && <ToppradGom />}
     </header>
   )
 }
@@ -91,23 +95,23 @@ export default function AppTopBar({
  */
 export function TopBarAtgarder({ variant = 'standard', utanMeddelanden = false, onSok }: { variant?: 'standard' | 'profil'; utanMeddelanden?: boolean; onSok?: () => void }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 4, flexShrink: 0 }}>
-      <div className="app-topbar-atgarder" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 2, flexShrink: 0 }}>
+      <div className="app-topbar-atgarder" style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
         {variant === 'standard' && (onSok ? (
-          <button type="button" onClick={onSok} aria-label="Sök på kartan" className="press-feedback" style={{ ...TOPPKNAPP_STIL, border: 'none', padding: 0, cursor: 'pointer' }}>
-            <Icon name="search" size={20} stroke={2} />
+          <button type="button" onClick={onSok} aria-label="Sök på kartan" className="press-feedback toppknapp" style={{ ...TOPPKNAPP_STIL, border: 'none', padding: 0, cursor: 'pointer' }}>
+            <Icon name="search" size={22} stroke={2} />
           </button>
         ) : (
-          <Link href="/sok" aria-label="Sök" className="press-feedback" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
-            <Icon name="search" size={20} stroke={2} />
+          <Link href="/sok" aria-label="Sök" className="press-feedback toppknapp" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
+            <Icon name="search" size={22} stroke={2} />
           </Link>
         ))}
         {!utanMeddelanden && <SilentBoundary><MessageBell /></SilentBoundary>}
         <SilentBoundary><NotificationBell /></SilentBoundary>
       </div>
       {variant === 'profil' && (
-        <Link href="/profil/installningar" aria-label="Inställningar" className="press-feedback" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
-          <Icon name="settings" size={20} stroke={2} />
+        <Link href="/profil/installningar" aria-label="Inställningar" className="press-feedback toppknapp" style={{ ...TOPPKNAPP_STIL, textDecoration: 'none' }}>
+          <Icon name="settings" size={22} stroke={2} />
         </Link>
       )}
     </div>
