@@ -349,6 +349,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
   const canvas = useRef<HTMLCanvasElement>(null)
   const rokRef = useRef<HTMLCanvasElement>(null)
   const ejdRef = useRef<HTMLSpanElement>(null)
+  const farjaRef = useRef<HTMLDivElement>(null)
   const tid = useRef(varld ? VSTART : 0)
   const start = useRef(0)
   const [visT, setVisT] = useState(0)
@@ -397,7 +398,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
 
     let W = 0, H = 0, DPR = 1, N = 0, NB = 0
     const ejdPx = new Uint8Array(4 * 256), ejdY: number[] = []
-    const mobilMq = window.matchMedia('(max-width:860px)') // ejdrarna syns inte i mobilen, så där läses inga pixlar
+    let farjaY: number | undefined
     let dens = malYta(gl, 2, 2), sudd1 = malYta(gl, 2, 2), sudd2 = malYta(gl, 2, 2)
     let flA = malYta(gl, 2, 2), flB = malYta(gl, 2, 2)
     let data = new Float32Array(0)
@@ -733,17 +734,13 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       // Ejdrarna simmar sakta framåt och ligger alltid på vattenytan (Max 2026-11-24). Vågformeln ger ett första läge,
       // sedan läses den riktiga ytan av ur den nyss ritade bilden (en smal pixelkolumn per fågel), så att de aldrig hamnar under ytan.
       const ejd = ejdRef.current
-      if (varld && ejd && !mobilMq.matches) {
+      if (varld && ejd) {
         const vagA = 0.4 + 0.6 * ease((T - 5800) / 1500), tvv = sek * 0.5
         const yta = (px: number) => { const xq = px / H; return (havNiva + (Math.sin(xq * 3.1 + tvv * 1.05) * 0.011 + Math.sin(xq * 7.7 - tvv * 1.6) * 0.0055) * vagA) * H }
         const span = W * 0.42, start = W * 1.04, fart = W * 0.0042
         const fonster = Math.min(256, Math.round(36 * DPR)), cw = cv.width, ch = cv.height
-        for (let k = 0; k < ejd.children.length; k++) {
-          const el = ejd.children[k] as HTMLElement
-          const w = el.offsetWidth, h = el.offsetHeight
-          const efter = k === 0 ? 0 : W * 0.006 + k * W * 0.017
-          const pos = (((sek * fart + W * 0.12 - efter) % span) + span) % span
-          const x = start - pos, cx = x + w / 2
+        // Läser av var havet faktiskt börjar i en smal pixelkolumn kring x (formeln ger startgissningen)
+        const lasYta = (cx: number) => {
           let y = yta(cx)
           const kx = Math.round(cx * DPR)
           if (kx >= 0 && kx < cw) {
@@ -754,6 +751,27 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
               for (let r = n - 1; r >= 0; r--) { if (ejdPx[r * 4 + 3]! > 140) { y = (topp + (n - 1 - r)) / DPR; break } }
             }
           }
+          return y
+        }
+        // Ångbåten följer också den riktiga ytan, annars sväljer vågorna skrovet i mobilen där båten är liten (Max 2026-11-24)
+        const farja = farjaRef.current
+        if (farja && farja.offsetWidth > 0) {
+          const fr = farja.getBoundingClientRect(), cr = cv.getBoundingClientRect()
+          const cx = (fr.left + fr.right) / 2 - cr.left
+          let y = lasYta(cx)
+          farjaY = farjaY === undefined ? y : farjaY + (y - farjaY) * 0.35
+          y = farjaY
+          const lut = Math.atan2(yta(cx + 6) - yta(cx - 6), 12)
+          farja.style.translate = `0 ${(y - havNiva * H).toFixed(1)}px`
+          farja.style.rotate = `${lut.toFixed(3)}rad`
+        }
+        for (let k = 0; k < ejd.children.length; k++) {
+          const el = ejd.children[k] as HTMLElement
+          const w = el.offsetWidth, h = el.offsetHeight
+          const efter = k === 0 ? 0 : W * 0.006 + k * W * 0.017
+          const pos = (((sek * fart + W * 0.12 - efter) % span) + span) % span
+          const x = start - pos, cx = x + w / 2
+          let y = lasYta(cx)
           const fore = ejdY[k]
           y = fore === undefined ? y : fore + (y - fore) * 0.35
           ejdY[k] = y
@@ -830,7 +848,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
             <img className="ki-flagga-duk" src="/kreativ/scen-flagga.webp" alt="" />
           </span>
           </div>
-          <div className="ki-v ki-v-farja">
+          <div className="ki-v ki-v-farja" ref={farjaRef}>
             <span className="ki-rok" aria-hidden="true"><i /><i /><i /><i /></span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="ki-v-bild" src="/kreativ/scen-angbat.webp" alt="" />
@@ -1086,8 +1104,8 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-/* Mobilen: bara båten, havet, fåglarna och ångbåten som går i bakgrunden. Hellre mindre än mer (Max 2026-11-24). */
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:13%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-o,.ki-v-vastkust,.ki-v-fyr,.ki-v-bastu,.ki-ejdrar,.ki-djup,.ki-varld .ki-v-sol{display:none}.ki-v-bastu::after{display:none}.ki-styr,.ki-styr.ljus{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
+/* Mobilen: allt som på datorn utom bastun, som blir trång bredvid västkusthusen. Ångbåten mindre, långt bort (Max 2026-11-24). */
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:13%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu{display:none}.ki-v-bastu::after{display:none}.ki-styr,.ki-styr.ljus{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
