@@ -36,12 +36,12 @@ const START_CSS = `
 .lp-start .mm-liten:hover{color:#0a2540}
 .lp-start .mm-mob-sok{color:#0a2540}
 .lp-start .mm-mob-knapp{background:rgba(10,37,64,.06);border-color:rgba(10,37,64,.25);color:#0a2540}
-/* Scenen fyller skärmen under menyn, så att hela animeringen syns utan att man scrollar */
+/* Oskar 2026-11-24: mindre hero, så att man snabbare kommer dit man ska och nästa del syns direkt */
 /* div i stället för section: startsidans stilmall ger alla section 100 px och 40 px utfyllnad */
 .hf-scen{position:relative;z-index:1;background:#efe7d6}
 .hf-scen .ki-scen{border-radius:0;box-shadow:none}
-@media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:540px}}
-@media (min-width:1101px){.hf-scen .ki-scen{height:calc(100svh - 68px)}}
+@media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:clamp(460px,64svh,640px);min-height:0}}
+@media (max-width:860px) and (orientation:portrait){.hf-scen .ki-scen{aspect-ratio:1/1}}
 /* Liggande telefon: hela scenen på en skärmhöjd och skyltarna vid sidorna av båten */
 @media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
 .hf-scen .ki-logga{display:none}
