@@ -80,9 +80,8 @@ const securityHeaders = [
       // Sentry: o4511271467483136.ingest.de.sentry.io är projektets riktiga
       // mottagare (EU-regionen, läst ur Sentrys DSN-lista 2026-11-22). Tidigare
       // stod en platshållare här (o4508000000000000.ingest.sentry.io).
-      // OBS: Sentry i webbläsaren startar i dag inte alls — sentry.client.config.ts
-      // laddas bara via withSentryConfig eller instrumentation-client.ts, och
-      // ingen av dem används. Rättningen här gör att det fungerar den dag det kopplas in.
+      // Sentry i webbläsaren skickar via vår egen /api/sentry-tunnel ('self') sedan
+      // PR 674, så Sentry-värden här är bara en reserv om tunneln skulle tas bort.
       // wss://*.supabase.co KRÄVS separat — Safari/WebKit mappar INTE https:// → wss://
       // (Chrome gör det, därav att desktop fungerar men iOS kraschar med SecurityError).
       "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4511271467483136.ingest.de.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org https://us.i.posthog.com https://us-assets.i.posthog.com",
