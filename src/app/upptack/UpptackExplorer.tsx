@@ -647,17 +647,31 @@ export default function UpptackExplorer() {
       // Samma träffar som listan och pinnarna (sokTraffar), inom valda kategorier.
       const traffar = pois.filter(p => sokTraffar.has(p) && (isAllMode || activeCats.has(categorize(p))))
       if (traffar.length === 0) return
-      const nyckel = `${query.trim().toLowerCase()}|${isAllMode ? 'alla' : [...activeCats].sort().join(',')}|${traffar.length}`
+      // Mobil: listan ligger ovanpå kartans nedre del. Helskärmslistan döljer
+      // kartan, så där zoomar vi inte (det görs när listan fälls ned igen).
+      const mobil = typeof window !== 'undefined' && window.matchMedia('(max-width: 900px)').matches
+      if (mobil && sheetState === 'full') return
+      const nyckel = `${query.trim().toLowerCase()}|${isAllMode ? 'alla' : [...activeCats].sort().join(',')}|${traffar.length}|${mobil ? sheetState : 'dator'}`
       if (senastZoomadRef.current === nyckel) return
       senastZoomadRef.current = nyckel
+      // Hur mycket av kartans nederkant listan täcker, så att träffarna hamnar
+      // i den synliga delen ovanför listan och inte under den.
+      let tacktNere = 0
+      const behallare = (map as { getContainer?: () => HTMLElement }).getContainer?.()
+      if (mobil && behallare) {
+        const lista = behallare.closest('.upx-split')?.querySelector('.upx-list')
+        if (lista) {
+          tacktNere = Math.max(0, behallare.getBoundingClientRect().bottom - lista.getBoundingClientRect().top)
+        }
+      }
       const L = await hamtaLeaflet()
       map.fitBounds(
         L.latLngBounds(traffar.map(p => [p.latitude, p.longitude] as [number, number])),
-        { padding: [48, 48], maxZoom: 13, animate: true },
+        { paddingTopLeft: [48, 48], paddingBottomRight: [48, 48 + tacktNere], maxZoom: 13, animate: true },
       )
     }, 450)
     return () => clearTimeout(id)
-  }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query])
+  }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query, sheetState])
 
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
@@ -969,7 +983,8 @@ export default function UpptackExplorer() {
               {sokTraffar && sokTraffar.size === 0 ? (
                 <>
                   <p>Ingen plats på kartan matchar ”{query.trim()}”.</p>
-                  <Link href={`/sok?q=${encodeURIComponent(query.trim())}`} className="upx-empty-cta">
+                  {/* Mobil har redan raden under sökrutan, så knappen visas bara på dator. */}
+                  <Link href={`/sok?q=${encodeURIComponent(query.trim())}`} className="upx-empty-cta upx-empty-cta-dator">
                     Sök på hela Svalla
                   </Link>
                 </>
@@ -1493,6 +1508,7 @@ export default function UpptackExplorer() {
         @media (max-width: 900px) {
           .upx-mob-tabs { display: none !important; }
           .upx-search:not(.has-query) { display: none; }
+          .upx-empty-cta-dator { display: none; }
           .upx-sok-hela {
             display: block;
             margin-top: 6px;
