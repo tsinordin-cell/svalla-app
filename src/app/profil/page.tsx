@@ -344,7 +344,8 @@ export default function ProfilPage() {
       {/* ── Sticky header ── 2026-11-23 (menyförslaget): gemensam topprad. Kugghjulet
           leder till /profil/installningar med tema, språk, konto och Logga ut.
           Redigera ligger nu vid avataren. Huset till startsidan är borta. */}
-      <AppTopBar titel={user?.username ?? 'Profil'} variant="profil" />
+      {/* 2026-11-24 (Tom): loggan i stället för sidnamnet, som Flöde, Forum och Topplista. */}
+      <AppTopBar variant="profil" doljPaDesktop />
 
       {/* ── Cover hero ── */}
       <div style={{

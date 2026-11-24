@@ -880,7 +880,8 @@ export default function UpptackExplorer() {
       <div ref={toppRef} style={{ flexShrink: 0 }}>
       {/* Samma topprad som övriga huvudsidor (menyförslaget 2026-11-23). Från 1024 px
           döljs den; sidomenyn har sök, meddelanden och notiser. */}
-      <AppTopBar titel="Utforska" sticky={false} doljPaDesktop onSok={oppnaSok} />
+      {/* 2026-11-24 (Tom): loggan i stället för sidnamnet, som Flöde, Forum och Topplista. */}
+      <AppTopBar sticky={false} doljPaDesktop onSok={oppnaSok} />
       {/* Header med region-toggle + filter-dropdown + sök */}
       <header className="upx-header">
         {/* En rad (2026-11-23, mer karta): kategorifiltret först, regionerna
