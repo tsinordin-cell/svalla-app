@@ -1,6 +1,6 @@
 'use client'
 import { serializeForScript } from '@/lib/serializeForScript'
-import { useEffect, Suspense } from 'react'
+import { useEffect } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
 import ThorkelHero from '@/components/ThorkelHero'
@@ -11,29 +11,43 @@ import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import StartMobil from '@/components/StartMobil'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
-import dynamic from 'next/dynamic'
+import Startscen from '@/components/Startscen'
 // island-data importeras INTE här (revision 2026-10-02): den drog med hela
 // ödatan till varje besökare bara för att visa antalet öar — en chunk på
 // 787 kB (235 kB gzip, drygt 40 % av startsidans JS), mätt på svalla.se
 // 2026-10-02. Talet räknas på servern (page.tsx) och skickas in.
 
-const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
- ssr: false,
- loading: () => null,
-})
-
-// Startsidans säsong (2026-11-12): vintermotiv (variant 6) 1 december till sista februari,
-// annars sommarmotivet (variant 1) precis som förut. ?sasong=vinter eller ?sasong=sommar
-// tvingar fram ett av dem, för att kunna titta i förväg.
-const startsidansVariant = (): 1 | 6 => {
- if (typeof window === 'undefined') return 1
- const val = new URLSearchParams(window.location.search).get('sasong')
- if (val === 'vinter') return 6
- if (val === 'sommar') return 1
- // Vinter 13 november till och med februari (Max 2026-11-13: starta vintern direkt, julkalendern visas redan nu)
- const nu = new Date(), m = nu.getMonth()
- return m === 11 || m <= 1 || (m === 10 && nu.getDate() >= 13) ? 6 : 1
-}
+// Max 2026-11-24: startscenen (Startscen.tsx) är heron. Den tidigare bakgrundsanimationen (HeroAnimation)
+// och HTML-heron med rubrik, sökruta och två knappar visas inte längre. Rubriken finns kvar för sökmotorer
+// och skärmläsare men syns inte, eftersom SVALLA och Skärgården börjar här står i scenen.
+const START_CSS = `
+/* Menyn ljus i samma ton som himlen, marinblå text och logga (Max och Thomas 2026-11-24) */
+.lp-start .mm{background:#efe7d6;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
+.lp-start .mm-logga svg [fill="#ffffff"]{fill:#0a2540}
+.lp-start .mm-logga svg [stroke="#ffffff"]{stroke:#0a2540}
+.lp-start .mm-punkt{color:rgba(10,37,64,.85)}
+.lp-start .mm-punkt:hover,.lp-start .mm-punkt.oppen{color:#0a2540}
+.lp-start .mm-sok{background:rgba(10,37,64,.05);border-color:rgba(10,37,64,.18);color:rgba(10,37,64,.75)}
+.lp-start .mm-sok:focus-within{background:#fff;border-color:rgba(10,37,64,.35)}
+.lp-start .mm-sok input{color:#0a2540!important}
+.lp-start .mm-sok input::placeholder{color:rgba(10,37,64,.55)}
+.lp-start .mm-sok-text{color:#0a2540}
+.lp-start .mm-liten{color:rgba(10,37,64,.75)}
+.lp-start .mm-liten:hover{color:#0a2540}
+.lp-start .mm-mob-sok{color:#0a2540}
+.lp-start .mm-mob-knapp{background:rgba(10,37,64,.06);border-color:rgba(10,37,64,.25);color:#0a2540}
+/* Scenen fyller skärmen under menyn, så att hela animeringen syns utan att man scrollar */
+.hf-scen{position:relative;z-index:1;background:#efe7d6}
+.hf-scen .ki-scen{border-radius:0;box-shadow:none}
+@media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:540px}}
+@media (min-width:1101px){.hf-scen .ki-scen{height:calc(100svh - 68px)}}
+/* Liggande telefon: hela scenen på en skärmhöjd och skyltarna vid sidorna av båten */
+@media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
+.hf-scen .ki-logga{display:none}
+/* Julkalenderns paket ligger uppe till vänster, så Spela igen och Hoppa över står under ljudknappen till höger */
+.hf-scen .ki-styr,.hf-scen .ki-styr.ljus{left:auto;right:14px;top:52px}
+.lp-dold{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+`
 
 const LANDING_CSS = `
 /* 2026-09-21: @import av Google Fonts borttagen. CSP:n (style-src 'self') blockerade den på varje
@@ -1276,6 +1290,10 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
   const iNav = heroHtml.indexOf('<nav class="lp-nav"')
   const iHeroSek = heroHtml.indexOf('<section class="hero"')
   const heroUtanMeny = iNav >= 0 && iHeroSek > iNav ? heroHtml.slice(0, iNav) + heroHtml.slice(iHeroSek) : heroHtml
+  // Startscenen ersätter HTML-heron: bara stilarna före den blir kvar
+  const iHero = heroUtanMeny.indexOf('<section class="hero"')
+  const iHeroSlut = iHero >= 0 ? heroUtanMeny.indexOf('</section>', iHero) : -1
+  const utanHero = iHeroSlut > iHero ? heroUtanMeny.slice(0, iHero) + heroUtanMeny.slice(iHeroSlut + '</section>'.length) : heroUtanMeny
  const andraHtml = iSektion >= 0 ? landingHtml.slice(iSlut) : null
   // Max 2026-11-20: förtroenderaden, Utvalda turer, Skärgårdslivet, gamla Thorkel-delen och Din guide / Sätt er krog
   // är utbytta mot React-delarna i StartDelar. Vanliga frågor, FAQ-schemat och sidfoten ligger kvar som HTML.
@@ -1292,36 +1310,15 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  return (
  <>
  {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${serializeForScript(photoMap)}` }} />}
- <div style={{ position: 'relative' }}>
- {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
- <div style={{
- position: 'absolute', top: 0, left: 0, right: 0,
- /* Exakt 100vh — canvas matchar viewport, vattenlinje vid 58% = 42% hav synligt */
- height: '100vh',
- zIndex: 0,
- overflow: 'hidden',
- pointerEvents: 'none',
- /* Platshållare tills canvasen målat: samma färgstopp som dagtemat (variant 1)
-    i HeroAnimation — himmel #3d94d4→#b0dcf2 ned till vattenlinjen på 58 %,
-    vatten #2488c0→#0a2e5a under. Var tidigare en mörkblå gradient, vilket gav
-    en mörk blixt första sekunden innan animationen tog över (kort 1780a7c6). */
- background: 'linear-gradient(to bottom, #3d94d4 0%, #60aee0 20%, #92c8f0 44%, #b0dcf2 58%, #2488c0 58%, #186aa8 72%, #104e84 86%, #0a2e5a 100%)',
- } as React.CSSProperties}>
- {/* Wrapping HeroAnimation i Suspense förhindrar att Next.js stämplar
-     BAILOUT_TO_CLIENT_SIDE_RENDERING på resten av sidan när komponenten
-     är dynamic({ssr:false}). Resten av landing-sidan SSR:as då normalt
-     och Googlebot ser hela LANDING_HTML i initial HTML — kritiskt för
-     indexering. */}
- <Suspense fallback={null}>
-   <HeroAnimation variant={startsidansVariant()} />
- </Suspense>
- </div>
- <style>{`
- /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
- .hero { position: relative; z-index: 1; background: transparent !important; }
- `}</style>
- <MegaMeny overStart />
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroUtanMeny }} />
+ <div className="lp-start" style={{ position: 'relative' }}>
+  <style>{START_CSS}</style>
+  <MegaMeny />
+  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: utanHero }} />
+  <section className="hf-scen" aria-labelledby="start-rubrik">
+   <h1 id="start-rubrik" className="lp-dold">Planera din skärgårdsvistelse</h1>
+   <p className="lp-dold">Skärgården börjar här. Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
+   <Startscen varld dygn="dag" />
+  </section>
  <ThorkelHero />
  <TreSatt />
  <JustNu />
