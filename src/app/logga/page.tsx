@@ -2,7 +2,7 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import { createClient, getViewer } from '@/lib/supabase'
-import SvallaLogo from '@/components/SvallaLogo'
+import Icon from '@/components/Icon'
 import { track } from '@/lib/analytics-events'
 
 function LoggaChoice() {
@@ -23,7 +23,13 @@ function LoggaChoice() {
   const suffix = plannedRouteId ? `?planned_route_id=${plannedRouteId}` : ''
 
   return (
-    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'linear-gradient(180deg, #0a1e2c 0%, #0d3a48 45%, #0a7b8c 100%)' }}>
+    // 2026-11-24 (Toms val, fixlistan nr 9): sidan hade ett eget mörkt havstema
+    // (#0a1e2c → #0a7b8c) som ingen annan sida har, en andra SVALLA-logga mitt i
+    // innehållet och en wifi-ikon för GPS. Inget i koden eller granskningarna
+    // sade att det mörka var gjort för solljus på sjön, och nästa steg i
+    // flödet (/logga/manuell) är ljust. Nu samma ytor som resten: var(--bg),
+    // kort i var(--white), så sidan följer också användarens ljusa/mörka läge.
+    <div style={{ minHeight: '100dvh', display: 'flex', flexDirection: 'column', background: 'var(--bg)', paddingBottom: 'calc(env(safe-area-inset-bottom, 0px) + 88px)' }}>
 
       {/* Header */}
       <header style={{
@@ -33,49 +39,46 @@ function LoggaChoice() {
         <button
           onClick={() => router.back()}
           aria-label="Gå tillbaka"
+          className="press-feedback"
           style={{
             width: 38, height: 38, borderRadius: '50%',
-            background: 'rgba(255,255,255,0.12)',
+            background: 'var(--sea-08)',
             border: 'none', cursor: 'pointer',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 18, height: 18 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
           </svg>
         </button>
-        <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: 14, fontWeight: 600 }}>Logga tur</span>
+        <span style={{ color: 'var(--txt2)', fontSize: 14, fontWeight: 600 }}>Logga tur</span>
       </header>
 
       {/* Hero text */}
-      <div style={{ padding: '24px 20px 32px', textAlign: 'center' }}>
-        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'center' }}>
-          <SvallaLogo height={52} color="#ffffff" />
-        </div>
+      <div style={{ padding: '20px 20px 28px', textAlign: 'center' }}>
         <h1 style={{
-          fontSize: 28, fontWeight: 700, color: '#fff',
+          fontSize: 28, fontWeight: 700, color: 'var(--txt)',
           margin: '0 0 8px', lineHeight: 1.15,
-          fontFamily: 'system-ui, -apple-system, sans-serif',
         }}>
           Hur vill du logga?
         </h1>
-        <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.65)', margin: 0, lineHeight: 1.5 }}>
+        <p style={{ fontSize: 14, color: 'var(--txt2)', margin: 0, lineHeight: 1.5 }}>
           Spåra live för full GPS-data, eller snabblogga i efterhand
         </p>
       </div>
 
       {/* Cards */}
-      <div style={{ padding: '0 16px', maxWidth: 480, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 12 }}>
+      <div style={{ padding: '0 16px', width: '100%', maxWidth: 480, margin: '0 auto', display: 'flex', flexDirection: 'column', gap: 12, boxSizing: 'border-box' }}>
 
         {/* GPS tracking – primary */}
         <button
           onClick={() => { track('trip_logging_started', {}); router.push(`/spara${suffix}`) }}
+          className="press-feedback"
           style={{
             width: '100%', borderRadius: 22, padding: '22px 20px',
-            background: 'linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08))',
-            backdropFilter: 'blur(16px)',
-            border: '1.5px solid rgba(255,255,255,0.22)',
-            boxShadow: '0 8px 32px rgba(0,20,35,0.25)',
+            background: 'var(--white)',
+            border: '1.5px solid var(--sea-15)',
+            boxShadow: '0 6px 24px rgba(0,45,60,0.10)',
             cursor: 'pointer', textAlign: 'left',
             WebkitTapHighlightColor: 'transparent',
             minHeight: 44,
@@ -85,29 +88,32 @@ function LoggaChoice() {
             <div style={{ flex: 1 }}>
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
-                background: 'rgba(34,197,94,0.2)', borderRadius: 20,
+                background: 'var(--ok-bg)', borderRadius: 20,
                 padding: '4px 10px', marginBottom: 10,
               }}>
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--green)', display: 'inline-block' }} />
-                <span style={{ fontSize: 11, fontWeight: 700, color: '#86efac', letterSpacing: '0.5px' }}>LIVE GPS</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--ok)', letterSpacing: '0.5px' }}>LIVE GPS</span>
               </div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Spåra live</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)', lineHeight: 1.5 }}>
+              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>Spåra live</div>
+              <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
                 GPS loggar rutten automatiskt. Se karta, hastighet och stopp när turen är klar.
               </div>
+              {/* Bara på dator (≥1024 px): spårningen görs med telefonen ute på sjön. */}
+              <div className="logga-mobiltips" style={{ fontSize: 12, color: 'var(--txt3)', lineHeight: 1.5, marginTop: 8 }}>
+                Gjord för mobilen. Öppna Svalla i telefonen när du ska ut på sjön.
+              </div>
             </div>
-            <div style={{ flexShrink: 0 }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 36, height: 36 }}>
-                <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
-                <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
-                <path d="M10.54 16.1a6 6 0 0 1 2.92 0"/>
-                <circle cx="12" cy="20" r="1" fill="rgba(255,255,255,0.8)" stroke="none"/>
-              </svg>
+            <div style={{
+              flexShrink: 0, width: 52, height: 52, borderRadius: 16,
+              background: 'var(--sea-08)', color: 'var(--sea)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <Icon name="navigation" size={26} stroke={1.9} />
             </div>
           </div>
           <div style={{
             marginTop: 16, display: 'flex', alignItems: 'center', gap: 6,
-            color: 'rgba(255,255,255,0.9)', fontSize: 13, fontWeight: 700,
+            color: 'var(--sea)', fontSize: 13, fontWeight: 700,
           }}>
             Starta spårning
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 15, height: 15 }}>
@@ -119,12 +125,12 @@ function LoggaChoice() {
         {/* Manual quick-log */}
         <button
           onClick={() => router.push(`/logga/manuell${suffix}`)}
+          className="press-feedback"
           style={{
             width: '100%', borderRadius: 22, padding: '22px 20px',
-            background: 'rgba(255,255,255,0.10)',
-            backdropFilter: 'blur(16px)',
-            border: '1.5px solid rgba(255,255,255,0.14)',
-            boxShadow: '0 4px 20px rgba(0,10,25,0.25)',
+            background: 'var(--white)',
+            border: '1.5px solid var(--sea-10)',
+            boxShadow: '0 2px 12px rgba(0,30,50,0.06)',
             cursor: 'pointer', textAlign: 'left',
             WebkitTapHighlightColor: 'transparent',
             minHeight: 44,
@@ -134,26 +140,27 @@ function LoggaChoice() {
             <div style={{ flex: 1 }}>
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
-                background: 'rgba(201,110,42,0.25)', borderRadius: 20,
+                background: 'var(--acc-10)', borderRadius: 20,
                 padding: '4px 10px', marginBottom: 10,
               }}>
-                <span style={{ fontSize: 11, fontWeight: 700, color: '#f0a060', letterSpacing: '0.5px' }}>SNABB-LOGG</span>
+                <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--acc-text)', letterSpacing: '0.5px' }}>SNABB-LOGG</span>
               </div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: 'rgba(255,255,255,0.85)', marginBottom: 6 }}>Snabb-logg</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.55)', lineHeight: 1.5 }}>
+              <div style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>Snabb-logg</div>
+              <div style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.5 }}>
                 Fyll i plats, distans och tid själv, med eller utan bild. Ingen GPS behövs.
               </div>
             </div>
-            <div style={{ flexShrink: 0 }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.65)" strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" style={{ width: 36, height: 36 }}>
-                <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-                <circle cx="12" cy="13" r="4"/>
-              </svg>
+            <div style={{
+              flexShrink: 0, width: 52, height: 52, borderRadius: 16,
+              background: 'var(--acc-10)', color: 'var(--acc-text)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}>
+              <Icon name="camera" size={26} stroke={1.9} />
             </div>
           </div>
           <div style={{
             marginTop: 16, display: 'flex', alignItems: 'center', gap: 6,
-            color: 'rgba(255,255,255,0.7)', fontSize: 13, fontWeight: 700,
+            color: 'var(--sea)', fontSize: 13, fontWeight: 700,
           }}>
             Logga utan GPS
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} style={{ width: 15, height: 15 }}>
@@ -165,7 +172,7 @@ function LoggaChoice() {
         {/* Tips */}
         <p style={{
           textAlign: 'center', fontSize: 12,
-          color: 'rgba(255,255,255,0.4)',
+          color: 'var(--txt3)',
           margin: '8px 0 0', lineHeight: 1.5,
         }}>
           Turen dyker upp i flödet och på din profil direkt efter sparning.
