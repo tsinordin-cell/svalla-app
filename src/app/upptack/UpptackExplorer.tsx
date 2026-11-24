@@ -629,11 +629,15 @@ export default function UpptackExplorer() {
     return () => { cancelled = true }
   }, [pois, isAllMode, activeCats, sokTraffar, kartaKlar])
 
-  // ── Sök: flytta kartan till träffarna om ingen syns ───────────────────
-  // Utan detta ser en sökning på t.ex. "Utö" ut som en tom karta när träffen
-  // ligger utanför vyn. Bara när söket ändras, aldrig när användaren panorerar.
+  // ── Sök: visa ALLA träffar på kartan ───────────────────────────────────
+  // Varje ny sökning (eller nytt kategorival under en sökning) zoomar kartan
+  // så att alla träffar syns. Annars visar t.ex. "bastu" bara de 1–2 bastur
+  // som råkar ligga i vyn, fast Svalla har fler. Bara när sökningen ändras,
+  // aldrig när användaren själv panorerar efteråt.
+  const senastZoomadRef = useRef<string>('')
   useEffect(() => {
-    if (!sokTraffar || !kartaKlar) return
+    if (!sokTraffar) { senastZoomadRef.current = ''; return }
+    if (!kartaKlar) return
     const id = setTimeout(async () => {
       const map = mapRef.current as {
         getBounds?: () => { contains: (ll: [number, number]) => boolean }
@@ -643,8 +647,9 @@ export default function UpptackExplorer() {
       // Samma träffar som listan och pinnarna (sokTraffar), inom valda kategorier.
       const traffar = pois.filter(p => sokTraffar.has(p) && (isAllMode || activeCats.has(categorize(p))))
       if (traffar.length === 0) return
-      const vy = map.getBounds()
-      if (traffar.some(p => vy.contains([p.latitude, p.longitude]))) return
+      const nyckel = `${query.trim().toLowerCase()}|${isAllMode ? 'alla' : [...activeCats].sort().join(',')}|${traffar.length}`
+      if (senastZoomadRef.current === nyckel) return
+      senastZoomadRef.current = nyckel
       const L = await hamtaLeaflet()
       map.fitBounds(
         L.latLngBounds(traffar.map(p => [p.latitude, p.longitude] as [number, number])),
@@ -652,7 +657,7 @@ export default function UpptackExplorer() {
       )
     }, 450)
     return () => clearTimeout(id)
-  }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar])
+  }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query])
 
   // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
   // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
@@ -961,7 +966,16 @@ export default function UpptackExplorer() {
 
           {!loading && !error && filteredPois.length === 0 && (
             <div className="upx-empty">
-              <p>Inga platser här. Panorera kartan eller justera filtret.</p>
+              {sokTraffar && sokTraffar.size === 0 ? (
+                <>
+                  <p>Ingen plats på kartan matchar ”{query.trim()}”.</p>
+                  <Link href={`/sok?q=${encodeURIComponent(query.trim())}`} className="upx-empty-cta">
+                    Sök på hela Svalla
+                  </Link>
+                </>
+              ) : (
+                <p>Inga platser här. Panorera kartan eller justera filtret.</p>
+              )}
             </div>
           )}
 
