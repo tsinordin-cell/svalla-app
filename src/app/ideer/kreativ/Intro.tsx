@@ -303,74 +303,28 @@ function kornTextur(gl: GL) {
   return tex
 }
 
-/* Ljud: av tills man slår på det. Stilla sommarvatten som kluckar mot klippor och brygga en vindstilla dag,
-   inget vindbrus (Max 2026-11-24). Allt görs med filtrerat brus och korta toner, inga ljudfiler. */
+/* Ljud: alltid avstängt tills man själv slår på det, och bara på dator (Max 2026-11-24).
+   En riktig inspelning av vågor som kluckar mot en stenstrand (kvgarlic, freesound.org/s/326097, CC0),
+   de första 65 sekunderna med mjuk övertoning så att slingan går runt utan skarv. Spelas med Web Audio för att slippa glapp. */
 function skapaLjud() {
   const AC = (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)
   const ac = new AC()
-  const ut = ac.createGain(); ut.gain.value = 0
-  const mjuk = ac.createBiquadFilter(); mjuk.type = 'lowpass'; mjuk.frequency.value = 2600; mjuk.Q.value = 0.3
-  ut.connect(mjuk); mjuk.connect(ac.destination)
-  const r = Math.random
-  // Brunt brus för det stilla vattnet, vitt brus för kluckandet
-  const brunt = (sek: number) => {
-    const b = ac.createBuffer(1, Math.round(ac.sampleRate * sek), ac.sampleRate)
-    const d = b.getChannelData(0); let s = 0
-    for (let i = 0; i < d.length; i++) { s = (s + 0.02 * (r() * 2 - 1)) / 1.02; d[i] = s * 3.5 }
-    return b
-  }
-  const vitt = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate)
-  { const d = vitt.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = r() * 2 - 1 }
-  // Vattnet i bakgrunden: mörkt och nästan ohörbart
-  const bas = ac.createBufferSource(); bas.buffer = brunt(9); bas.loop = true
-  const bf = ac.createBiquadFilter(); bf.type = 'lowpass'; bf.frequency.value = 300; bf.Q.value = 0.3
-  const bg = ac.createGain(); bg.gain.value = 0.05
-  bas.connect(bf); bf.connect(bg); bg.connect(ut)
-  // En mjuk dyning som sköljer in ibland
-  const hav = ac.createBufferSource(); hav.buffer = brunt(11); hav.loop = true
-  const hf = ac.createBiquadFilter(); hf.type = 'lowpass'; hf.frequency.value = 420; hf.Q.value = 0.3
-  const hg = ac.createGain(); hg.gain.value = 0.012
-  hav.connect(hf); hf.connect(hg); hg.connect(ut)
-  bas.start(); hav.start()
-  ut.gain.setTargetAtTime(0.9, ac.currentTime, 1.2)
-  // Kluck: en kort skvätt brus genom ett bandpass, som när en liten våg slår mot sten eller trä
-  const kluck = (n: number, styrka: number) => {
-    const k = ac.createBufferSource(); k.buffer = vitt
-    const f = ac.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 320 + r() * 520; f.Q.value = 1.4 + r() * 1.6
-    const g = ac.createGain(); g.gain.value = 0
-    const topp = (0.06 + r() * 0.07) * styrka, upp = 0.025 + r() * 0.03, ner = 0.18 + r() * 0.22
-    g.gain.setValueAtTime(0, n); g.gain.linearRampToValueAtTime(topp, n + upp); g.gain.exponentialRampToValueAtTime(0.0001, n + upp + ner)
-    k.connect(f); f.connect(g); g.connect(ut)
-    k.start(n, r() * 1.3, upp + ner + 0.05)
-  }
-  // Gluck: en liten luftbubbla i vattnet, en mjuk ton som stiger snabbt och dör ut
-  const gluck = (n: number, styrka: number) => {
-    const o = ac.createOscillator(); o.type = 'sine'
-    const f0 = 200 + r() * 240
-    o.frequency.setValueAtTime(f0, n); o.frequency.exponentialRampToValueAtTime(f0 * (1.7 + r() * 0.9), n + 0.06 + r() * 0.04)
-    const g = ac.createGain(); g.gain.value = 0
-    g.gain.setValueAtTime(0, n); g.gain.linearRampToValueAtTime((0.035 + r() * 0.035) * styrka, n + 0.008); g.gain.exponentialRampToValueAtTime(0.0001, n + 0.11 + r() * 0.06)
-    o.connect(g); g.connect(ut); o.start(n); o.stop(n + 0.2)
-  }
-  let nasta = ac.currentTime + 0.8, dyning = ac.currentTime + 3
-  const planera = () => {
-    const t = ac.currentTime
-    while (nasta < t + 1.5) {
-      const s = 0.6 + r() * 0.5
-      kluck(nasta, s)
-      if (r() < 0.6) gluck(nasta + 0.03 + r() * 0.06, s)
-      if (r() < 0.3) { const e = nasta + 0.16 + r() * 0.12; kluck(e, s * 0.7); if (r() < 0.5) gluck(e + 0.03, s * 0.8) }
-      nasta += 0.6 + r() * 1.8
-    }
-    while (dyning < t + 2) {
-      const n = dyning
-      hg.gain.setTargetAtTime(0.06 + r() * 0.03, n, 1.2); hg.gain.setTargetAtTime(0.012, n + 2.4, 1.8)
-      dyning = n + 9 + r() * 5
-    }
-  }
-  planera(); const tick = setInterval(planera, 400)
+  const ut = ac.createGain(); ut.gain.value = 0; ut.connect(ac.destination)
+  let kalla: AudioBufferSourceNode | null = null, stangd = false
+  fetch('/kreativ/hav-ljud.mp3')
+    .then(r => r.arrayBuffer())
+    .then(b => ac.decodeAudioData(b))
+    .then(buf => {
+      if (stangd) return
+      const k = ac.createBufferSource(); k.buffer = buf; k.loop = true
+      // mp3-filen har några millisekunder tystnad i början och slutet, slingan hoppar över dem
+      k.loopStart = 0.03; k.loopEnd = Math.max(1, buf.duration - 0.03)
+      k.connect(ut); k.start(0, 0.03); kalla = k
+      ut.gain.setTargetAtTime(0.85, ac.currentTime, 1.2)
+    })
+    .catch(() => {})
   return {
-    stang() { clearInterval(tick); ut.gain.setTargetAtTime(0, ac.currentTime, 0.3); setTimeout(() => { [bas, hav].forEach(k => k.stop()); ac.close() }, 900) },
+    stang() { stangd = true; ut.gain.setTargetAtTime(0, ac.currentTime, 0.3); setTimeout(() => { try { kalla?.stop() } catch {} ac.close() }, 900) },
   }
 }
 
@@ -1029,6 +983,8 @@ const CSS = `
 .ki-tips.syns{opacity:1;transform:none}
 .ki-gar .ki-nav,.ki-gar .ki-styr,.ki-gar .ki-topp{opacity:0;pointer-events:none;transition:opacity .25s}
 .ki-ljud{font:700 11px/1 Inter,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#1b57a0;border:none;border-radius:999px;padding:8px 13px;cursor:pointer}
+/* Ingen ljudknapp och inget tips om ljud på mobilen (Max 2026-11-24) */
+@media (max-width:860px){.ki-ljud,.ki-tips{display:none}}
 .ki-in{position:absolute;left:0;right:0;bottom:88px;display:flex;justify-content:center;z-index:3;animation:kiUpp .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes kiUpp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .ki-knapp{font:400 19px/1 'Playfair Display',Georgia,serif;color:#1b57a0;background:#fff;border:none;border-radius:999px;padding:15px 30px;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.18);transition:transform .25s}
@@ -1129,7 +1085,8 @@ const CSS = `
 @media (prefers-reduced-motion:reduce){.ki-varld.syns .ki-v-sol,.ki-krabba,.ki-krabba img,.ki-skylt:hover .ki-ik,.ki-v-masar,.ki-v-masar path,.ki-varld.syns .ki-v-farja,.ki-v-stang,.ki-flagga-duk,.ki-v-eka,.ki-fyrljus,.ki-rok i,.ki-d,.ki-bubbla{animation:none}.ki-rok,.ki-bubbla{display:none}}
 @media (max-width:860px){.ki-scen{aspect-ratio:4/5;min-height:0}.ki-in{bottom:96px}}
 @media (max-width:560px){.ki-topp{flex-direction:column-reverse;align-items:flex-end;gap:6px}.ki-styr,.ki-styr.ljus{top:14px;left:14px;right:auto;bottom:auto;--f:#1b57a0}.ki-styr button{font-size:11px;padding:7px 10px}.ki-in{bottom:78px}.ki-namn button{font-size:8.5px;letter-spacing:.06em}}
-@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{display:none}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-bastu::after{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
+/* Mobilen: bara båten, havet, fåglarna och ångbåten som går i bakgrunden. Hellre mindre än mer (Max 2026-11-24). */
+@media (max-width:860px){.ki-v-vastkust{left:66%;width:22%}.ki-f-kobbe{display:none}.ki-v-o{left:-22%;width:50%}.ki-v-fyr{right:-7%;width:26%}.ki-v-farja{width:24%}.ki-v-bastu{left:80%;width:9.5%;z-index:1}.ki-djup{top:68%}.ki-d-orca{width:30%}.ki-d-f1{width:12%}.ki-d-f2{width:11%}.ki-d-f3{width:10%}.ki-d-f4,.ki-d-f5{display:none}.ki-v-masar{left:6%;top:30%;width:14%}.ki-varld .ki-v-sol{left:4%;top:15%;width:12%}.ki-v-masar.tva{display:none}.ki-v-o,.ki-v-vastkust,.ki-v-fyr,.ki-v-bastu,.ki-ejdrar,.ki-djup,.ki-varld .ki-v-sol{display:none}.ki-v-bastu::after{display:none}.ki-ejder{width:6.4%}.ki-unge{width:3.2%}
 .ki-skylt{font-size:13px;padding:6px 11px 6px 8px;gap:6px;box-shadow:2px 2px 0 #143c78}.ki-ik{width:16px;height:16px}.ki-skylt::before{width:8px;height:8px;bottom:-5px;left:14px}
 .ki-s-oar{left:3%;top:41%}.ki-s-karta{left:auto;right:3%;top:38%}
 .ki-cta{font-size:12px;padding:6px 10px 6px 9px;box-shadow:2px 2px 0 #143c78}.ki-cta::after{margin-left:1px}
