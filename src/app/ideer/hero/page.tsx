@@ -21,6 +21,11 @@ const HF_CSS = `
 .hf-scen .ki-logga{display:none}
 /* Max och Thomas 2026-11-24: ljus krämvit meny i samma ton som himlen, marinblå text och logga, i stället för den mörkblå toningen */
 .hf .mm{background:#efe7d6;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
+/* Menyn i samma ton som himlen överst, så det inte blir någon skarv mellan meny och scen */
+.hf .mm{transition:background-color 1.2s ease}
+.hf:has(.ki-tid-morgon) .mm{background:#e6ebe6}
+.hf:has(.ki-tid-kvall) .mm{background:#eed7c6}
+.hf:has(.ki-tid-natt) .mm{background:#cbd0e1}
 .hf .mm-logga svg [fill="#ffffff"]{fill:#0a2540}
 .hf .mm-logga svg [stroke="#ffffff"]{stroke:#0a2540}
 .hf .mm-punkt{color:rgba(10,37,64,.85)}
