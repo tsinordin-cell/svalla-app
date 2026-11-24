@@ -5,11 +5,11 @@ import type { CSSProperties } from 'react'
  * kugghjul). 2026-11-23, menyförslaget: 44 px tryckyta som Apple och WCAG
  * rekommenderar (knapparna var 34–38 px), och samma form överallt.
  *
- * 2026-11-25 (Tom: "mindre menyer och mer app"): cirkeln är 32 px så att
- * toppraden blir 44 px hög (var 60; Tom valde variant B). Tryckytan är 42 px:
- * klassen `toppknapp` (globals.css) lägger en osynlig yta 5 px utanför cirkeln,
- * så ALLA knappar med den här stilen ska också ha className "toppknapp" och
- * stå med minst 10 px mellanrum.
+ * 2026-11-25 (Tom: "mindre menyer och mer app", variant C): ingen fylld cirkel,
+ * bara ikonen (22 px) i en genomskinlig knapp på 40 px, så att toppraden blir
+ * 44 px hög (var 60). Tryckytan är 44 px på höjden: klassen `toppknapp`
+ * (globals.css) lägger en osynlig yta 2 px över och under knappen, så ALLA
+ * knappar med den här stilen ska också ha className "toppknapp".
  */
 export const TOPPKNAPP_STIL: CSSProperties = {
   width: 40, height: 40, borderRadius: '50%',
