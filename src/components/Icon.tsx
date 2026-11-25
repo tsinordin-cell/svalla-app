@@ -170,6 +170,11 @@ const PATHS = {
 
 export type IconName = keyof typeof PATHS
 
+/** Svallas egna målade ikoner (Max och Oskar 2026-11-24): målade med samma pensel som startscenen,
+ *  marinblått bläck och orange detaljer. Ligger som bilder i public/ikoner/<namn>.webp.
+ *  Ikoner i gränssnittet (pilar, sök, kalender, karta med flera) behåller den enkla linjen. */
+const MALADE = new Set(['anchor', 'bathtub', 'beach', 'bed', 'beer', 'bike', 'binoculars', 'bird', 'castle', 'child', 'coffee', 'fire', 'fish', 'fishing', 'fuel', 'island', 'leaf', 'lifebuoy', 'mountain', 'paddle', 'sailboat', 'ship', 'shower', 'sun', 'swim', 'tent', 'tower', 'tree', 'utensils', 'walk', 'waves', 'wine'])
+
 /** Alla giltiga ikonnamn i runtime — emojiToIcon använder den för att känna
  *  igen datafält som redan innehåller ett ikonnamn istället för en emoji. */
 export const ICON_NAMES = new Set(Object.keys(PATHS))
@@ -195,6 +200,22 @@ export default function Icon({
   // databas eller content-fil som inte typchecks), fall back till tom path.
   // Annars kraschar React build med "props.dangerouslySetInnerHTML must be
   // in the form {__html: ...}" när __html är undefined.
+  if (MALADE.has(name)) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={`/ikoner/${name}.webp`}
+        width={size}
+        height={size}
+        alt={ariaLabel ?? ''}
+        aria-hidden={!ariaLabel}
+        className={className}
+        loading="lazy"
+        decoding="async"
+        style={{ flexShrink: 0, display: 'inline-block', verticalAlign: 'middle', objectFit: 'contain', ...style }}
+      />
+    )
+  }
   const path = (PATHS as Record<string, string>)[name] ?? ''
   return (
     <svg
