@@ -12,9 +12,9 @@ import { useEffect, useRef } from 'react'
  * öppen, och visas igen om något i den får tangentbordsfokus.
  *
  * Med `mal` (Flödet, 2026-11-25) sätts klassen i stället på närmaste element som
- * matchar väljaren, t.ex. blocket med toppraden och flikraden. Då mäts också
- * toppradens höjd (--topprad-h, så mycket blocket glider upp) och blockets höjd
- * (--flode-topp-h, på föräldern, så att toningen under kan gå upp bakom blocket).
+ * matchar väljaren, t.ex. blocket med toppraden och flikraden, som då glider
+ * undan i sin helhet. Blockets höjd mäts (--flode-topp-h, på föräldern, så att
+ * toningen under kan gå upp bakom blocket).
  */
 export default function ToppradGom({ mal }: { mal?: string } = {}) {
   const ref = useRef<HTMLSpanElement>(null)
@@ -27,17 +27,14 @@ export default function ToppradGom({ mal }: { mal?: string } = {}) {
 
     let ro: ResizeObserver | undefined
     if (mal) {
-      const topprad = rad.querySelector<HTMLElement>('header')
       const parent = rad.parentElement
       const mat = () => {
-        if (topprad) rad.style.setProperty('--topprad-h', `${topprad.offsetHeight}px`)
         parent?.style.setProperty('--flode-topp-h', `${rad.offsetHeight}px`)
       }
       mat()
       if (typeof ResizeObserver !== 'undefined') {
         ro = new ResizeObserver(mat)
         ro.observe(rad)
-        if (topprad) ro.observe(topprad)
       }
     }
 
