@@ -1,0 +1,12 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-25)
+ur01-k005	lag3a-N004	FEL	Registret: underlagets text ersätts med slutkodens lydelse (k012:s strykning). Ingen kodändring; Kontrollanten MÄTT att slutkoden stämmer.
+ur01-k006	lag3a-0004	FEL	Registret: underlagets text ersätts med slutkodens lydelse (hotellets parkering, k039). Ingen kodändring.
+ur01-k015	lag3a-N020	FEL	Registret: underlagets text ersätts med slutkodens två meningar (434 bara vissa turer via Stavsnäs vinterhamn, k041). Den gamla lydelsen var fel mot h434 men står inte i slutkoden.
+ur01-k023	moja-0155	FEL	Registrets KÄLLA rättas till länsmuseet (stockholmslansmuseum.se/besoksmal/moja-bockon-och-lokaon/) med Kontrollantens citat. Texten står kvar.
+ur01-k024	moja-0463	FEL	Registrets KÄLLA kompletteras med kommunens folder 2018 och markanvisningen 2023, som koden anger. Texten står kvar; ombudsuppgiften tillskrivs källorna som i koden.
+ur01-k037	lag3a-N005	FEL	Registrets KÄLLA kompletteras med h631 och Norrtälje kommuns sida om Björkö-Oren. Texten står kvar.
+ur01-k042	styrso-N032	FEL	Registrets KÄLLA rättas till OSM-relation 6429433 (Styrsö). Texten står kvar.
+ur01-k043	lag3b-N031	FEL	Registret: underlagets text ersätts med slutkodens lydelse med årtalet 2018. Ingen kodändring.
+ur01-k044	lag3a-N007	FEL	Registrets KÄLLA kompletteras med h845 och Länsstyrelsens sida om Gålö. Texten står kvar.
+ur01-s04	lag3b-N002	OK	Strykningen OK. Nytt fel (Lag 1): island-data.ts:11627, Trysundas beskrivning, har kvar «väggmålningar av Olof Gåhlin från 1711» med bara församlingen (nivå 2) som källa. Stryks i utanfor-b01.edits.json; Trysunda ösidan mäts om (Lag 3).
+övriga		OK	41 rader OK (inklusive s04); inga åtgärder utöver ovan.

@@ -1,0 +1,4 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-25)
+ur02-k039	sandhamn-0566	FEL	Ingen ändring, i linje med tidigare beslut so4s03/so4s04 (kommentaren vid island-data.ts:461): det finns toaletter på Sandhamn, men bara säsongsvis, och fältet är ett ja/nej utan säsong som inte visas på någon sida. Säsongen står i hamnens och badplatsernas texter. På Vaktens lista: visas fältet någon gång ska säsongen följa med. Registerraden får förbehållet maj till september enligt KSSS.
+ur02-s01		OK	Strykningen OK; den omskrivna texten i guide-content.ts:2266 beläggs av Lidingö stads kulturmiljöprogram enligt Kontrollanten.
+övriga		OK	48 rader OK; inga åtgärder.

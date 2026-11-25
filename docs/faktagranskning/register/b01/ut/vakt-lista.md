@@ -156,3 +156,9 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Fjäderholmslinjen: main (#592) säger att båten går från Skeppsbron i Gamla stan. Operatörens sida säger att båten på grund av ombyggnaden av Slussen avgår ca 100 meter till vänster om den tidigare platsen, och att linjen gick 1 maj till 13 september 2026. Inget P0 nu (ingen trafik före våren), men läget prövas mot operatören före nästa säsong.
 - Blå Jungfrun (main): "20 bokade" och "15 procent"; Solkust anger nu 24 och ca 20 %.
 - oSok.ts speglar öarnas tags och taglines; sju av batchens öar har fått en post för det. Kontrollera ösökningen efter publiceringen.
+
+## Tredje kontrollen, ur-01 och ur-02 (2026-11-25)
+- ur-01: 50 rader, 41 OK, 9 FEL, 0 SAKNAS, ingen P0. Alla nio FEL gäller registret (gammal lydelse eller ofullständig KÄLLA); slutkoden stämmer enligt Kontrollanten. Rättas i registret, se kontroll/ur-01.beslut.tsv.
+- ur-01 fynd (Lag 1): Trysundas beskrivning, island-data.ts:11627, har kvar «väggmålningar av Olof Gåhlin från 1711» med bara församlingen (nivå 2) som källa. Stryks; Trysunda ösidan mäts om.
+- ur-02: 50 rader, 49 OK, 1 FEL (Sandhamn toilets = true utan säsong; fältet visas inte, beslut so4s03/so4s04 står). Visas fältet någon gång ska säsongen maj till september följa med.
+- Regelbrott i ur-02: Kontrollanten skickade ett curl-anrop till Nominatim med egen user agent. Anropet gav en felsida, och raden prövades sedan i Chromium. Ingen uppgift bygger på det anropet. Rapporterat till Tom.
