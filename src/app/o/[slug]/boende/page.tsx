@@ -9,6 +9,9 @@ import { emojiToIcon } from '@/lib/iconMap'
 import IslandPlacesList from '@/components/IslandPlacesList'
 import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
 import { ogO } from '@/lib/og-standard'
+import { BOENDETYPER, BOENDE_ETIKETT, arBoendetyp, boendeINamnet } from '@/lib/platstyper'
+import { klockslagsregler, arOrt } from '@/lib/mallRegler'
+import { stryksKlockslag } from '@/lib/klockslagStrykning'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -37,8 +40,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
   return {
-    title: `Boende på ${island.name}: hotell, vandrarhem och stugor`,
-    description: `Boende på ${island.name}: hotell, värdshus, vandrarhem, stugor och camping som vi har uppgifter om, med länk till bokning.`,
+    title: `Boende på ${island.name}`,
+    description: `Boende på ${island.name} som vi har uppgifter om.`,
     keywords: [
       `${island.name.toLowerCase()} hotell`,
       `${island.name.toLowerCase()} boende`,
@@ -48,7 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       images: ogO(island.slug),
       title: `Boende på ${island.name}`,
-      description: `Hotell, vandrarhem och stugor på ${island.name}.`,
+      description: `Boende på ${island.name}.`,
       url: `https://svalla.se/o/${slug}/boende`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/boende` },
@@ -77,12 +80,22 @@ export default async function IslandAccommodationPage({ params }: Props) {
   // Pre-filtrerade sök-URL:er — affiliate-IDs läggs till vid partnerskap
   // Booking.com: lägg till &aid=AFFILIATE_ID
   // Airbnb: lägg till ?s_af=AFFILIATE_TOKEN
-  const known = new Set(island.accommodation.map(a => a.name.toLowerCase()))
+  // Krogar i ödatan vars namn säger att de har rum: på Brännö står "Brännö Värdshus & Pensionat Baggen" bland
+  // restaurangerna och accommodation är tom (full-28 k032, mall-0149; mallarnas runda 5, 2026-11-10).
+  const rumPaKrog = island.restaurants.filter(r => boendeINamnet(r.name) && !island.accommodation.some(a => a.name.toLowerCase() === r.name.toLowerCase()))
+  const known = new Set([...island.accommodation, ...rumPaKrog].map(a => a.name.toLowerCase()))
+  // Alla boendetyper, inte bara hotel: vandrarhem (hostel), stugor (cabin) och camping (Toms beslut 4), och en krog
+  // vars eget namn säger att den har rum ("Brännö Värdshus & Pensionat Baggen"). Förut stod "Vi har inga boenden
+  // registrerade" på Brännö (full-28 k032, full-19 k036, mall-0149; mallarnas runda 5, 2026-11-10). Regeln: src/lib/platstyper.ts.
   const dbStays = utanDubbletter(
-    (await getIslandPlaces(island, ['hotel'], { extraKm: 0.5 }))
+    (await getIslandPlaces(island, [...BOENDETYPER, 'restaurant', 'cafe', 'bar'], {
+      extraKm: 0.5,
+      urval: p => arBoendetyp(p.type) || boendeINamnet(p.name),
+    }))
       .filter(p => !known.has(p.name.toLowerCase())),
-    island.accommodation.map(a => a.name),
+    [...island.accommodation, ...rumPaKrog].map(a => a.name),
     island.name,
+    rumPaKrog.map(r => r.slug),
   )
 
   const bookingComUrl = `https://www.booking.com/searchresults.sv.html?ss=${encodeURIComponent(island.name)}`
@@ -107,7 +120,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
         )}
 
         {/* Boendekort */}
-        {island.accommodation.length === 0 && dbStays.length === 0 ? (
+        {island.accommodation.length === 0 && rumPaKrog.length === 0 && dbStays.length === 0 ? (
           <div style={{
             background: 'var(--white)', padding: 24, borderRadius: 14,
             border: '1px solid var(--surface-3)', fontSize: 14, color: 'var(--txt2)',
@@ -171,15 +184,38 @@ export default async function IslandAccommodationPage({ params }: Props) {
                 )}
               </div>
             ))}
+            {rumPaKrog.map(r => (
+              <div key={r.name} style={{
+                background: 'var(--white)', padding: '20px 22px', borderRadius: 14,
+                border: '1px solid var(--surface-3)',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12, marginBottom: 8 }}>
+                  <h2 style={{ fontSize: 17, fontWeight: 700, margin: 0, color: 'var(--txt)' }}>{r.name}</h2>
+                  <span style={{
+                    fontSize: 11, padding: '3px 10px', borderRadius: 999,
+                    background: 'rgba(30,92,130,0.08)', color: '#1e5c82', fontWeight: 700,
+                    whiteSpace: 'nowrap',
+                  }}>
+                    {r.type}
+                  </span>
+                </div>
+                <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.6, margin: 0 }}>
+                  {r.desc}
+                </p>
+              </div>
+            ))}
           </div>
         )}
 
         {dbStays.length > 0 && (
-          <div style={{ marginTop: island.accommodation.length > 0 ? 28 : 0 }}>
+          <div style={{ marginTop: island.accommodation.length + rumPaKrog.length > 0 ? 28 : 0 }}>
             <IslandPlacesList
               places={dbStays}
               islandName={island.name}
-              heading={island.accommodation.length > 0 ? `Fler boenden på och nära ${island.name}` : `Boende på och nära ${island.name}`}
+              heading={island.accommodation.length + rumPaKrog.length > 0 ? `Fler boenden på och nära ${island.name}` : `Boende på och nära ${island.name}`}
+              // Typen hotel står också för andra boenden i databasen (Möjas vandrarhem, en tältplats på Finnhamn),
+              // så bara de entydiga typerna får en etikett.
+              etiketter={{ hostel: BOENDE_ETIKETT.hostel, cabin: BOENDE_ETIKETT.cabin, camping: BOENDE_ETIKETT.camping }}
             />
           </div>
         )}
@@ -193,7 +229,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
             Sök och boka direkt
           </h2>
           <p style={{ fontSize: 13, color: 'var(--txt2)', margin: '0 0 14px', lineHeight: 1.55 }}>
-            Sök fler boenden hos de stora bokningssajterna:
+            Sök fler boenden på Booking.com och Airbnb:
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
             <a href={bookingComUrl} target="_blank" rel="noopener noreferrer" style={linkStyle}>
@@ -217,7 +253,8 @@ export default async function IslandAccommodationPage({ params }: Props) {
               Ta sig dit
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {island.getting_there.map(t => (
+              {/* Korten utan klockslag och "från" bara med en ort, som på ösidan (Toms beslut 10; mallarnas runda 7). */}
+              {island.getting_there.map(klockslagsregler(stryksKlockslag(slug, 'boende')).fardUtanKlockslag).map(t => (
                 <div key={t.method} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                   <div style={{
                     minWidth: 36, height: 36, borderRadius: 10,
@@ -230,7 +267,7 @@ export default async function IslandAccommodationPage({ params }: Props) {
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', marginBottom: 3 }}>
                       <span style={{ fontWeight: 600, fontSize: 14, color: 'var(--txt)' }}>{t.method}</span>
-                      {t.from && (
+                      {arOrt(t.from) && (
                         <span style={{ fontSize: 12, color: 'var(--txt3)' }}>från {t.from}</span>
                       )}
                       {t.time && (

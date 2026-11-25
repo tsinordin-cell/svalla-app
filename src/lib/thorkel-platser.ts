@@ -19,8 +19,12 @@ export type PlatsRad = {
   endast_medlemmar: boolean | null
 }
 
-/** Platstyper som Thorkel får i sin lista (kolumnen restaurants.type). */
-export const THORKEL_PLATSTYPER = ['restaurant', 'cafe', 'bar', 'sauna', 'hotel'] as const
+/**
+ * Platstyper som Thorkel får i sin lista (kolumnen restaurants.type). Vandrarhem, stugor och camping
+ * kom förut inte med (STF Utö vandrarhem har typen hostel); camping läggs till enligt Toms beslut 4
+ * (mallarnas runda 5, 2026-11-10).
+ */
+export const THORKEL_PLATSTYPER = ['restaurant', 'cafe', 'bar', 'sauna', 'hotel', 'hostel', 'cabin', 'camping'] as const
 
 const TYPNAMN: Record<string, string> = {
   restaurant: 'krog',
@@ -28,7 +32,13 @@ const TYPNAMN: Record<string, string> = {
   bar: 'bar',
   sauna: 'bastu',
   hotel: 'boende',
+  hostel: 'vandrarhem',
+  cabin: 'stugor',
+  camping: 'camping',
 }
+
+/** Boende bokas, krogar bokar man bord på. */
+const BOKAS_SOM_BOENDE = new Set(['hotel', 'hostel', 'cabin', 'camping'])
 
 /** Längsta öppettidstext som tas med per plats; resten kortas med en ellips. */
 const MAX_OPPETTIDER = 120
@@ -73,7 +83,7 @@ export function byggPlatslista(rader: PlatsRad[]): Platslista {
     const bokning = r.booking_url?.trim()
     if (bokning) {
       bokningslankar.add(bokning)
-      delar.push(`${r.type === 'hotel' ? 'Boka' : 'Boka bord'}: ${bokning}`)
+      delar.push(`${BOKAS_SOM_BOENDE.has(r.type ?? '') ? 'Boka' : 'Boka bord'}: ${bokning}`)
     }
     const oppet = r.opening_hours?.trim()
     if (oppet) delar.push(`Öppettider enligt Svalla: ${kort(oppet, MAX_OPPETTIDER)}`)

@@ -6,7 +6,7 @@ describe('svallaOar', () => {
     const t = svallaOar('Fjäd')
     expect(t[0]?.name).toBe('Fjäderholmarna')
     expect(t[0]?.svalla).toBe(true)
-    expect(parseFloat(t[0]!.lat)).toBeCloseTo(59.3333, 3)
+    expect(parseFloat(t[0]!.lat)).toBeCloseTo(59.3284, 3)
   })
   it('prefix före innehåll, och högst tre', () => {
     const t = svallaOar('ö')

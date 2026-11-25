@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import Icon from '@/components/Icon'
 import { ogSida } from '@/lib/og-standard'
+import { kajakGrad } from '@/lib/mallRegler'
 
 export const metadata: Metadata = {
   title: 'Kajak i Stockholms skärgård: guide för nybörjare och erfarna',
@@ -35,6 +36,7 @@ export const revalidate = 86400
 // Öar med kajak-uthyrning
 const kajakOar = ALL_ISLANDS.filter(i => i.activity_meta?.kajak?.rental)
 
+
 const FAQ_ITEMS = [
   {
     q: 'Kan nybörjare paddla kajak i Stockholms skärgård?',
@@ -42,7 +44,13 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Var hyr man kajak i Stockholms skärgård?',
-    a: 'Kajak hyrs vid hamnen på Sandhamn, Utö, Grinda, Vaxholm och Möja. Priset ligger på 300 till 500 kr för halvdag och 500 till 800 kr för heldag. På sommaren, boka i förväg, uthyrningen tar slut tidigt på populära dagar. Utö har störst utbud med ca 50 kajaker.',
+    // Faktagranskningen, mallarnas runda 7 (2026-11-17): priserna och "Utö har störst utbud med ca 50 kajaker" hade ingen
+    // källa och är strukna (ARBETSREGLER: inga priser utan publicerad prislista). I stället uthyrningen på Utö, Grinda och
+    // Finnhamn enligt Länsstyrelsen och verksamheterna själva:
+    // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/uto.html — "I Gruvbyn, där båtarna från Årsta brygga lägger till finns bland annat gästhamn, affär, värdshus, kajak- och cykeluthyrning" (läst 2026-11-17)
+    // KÄLLA: https://grinda.se/hamn-mack/sakerhet-service/ — "Hamnkontoret är beläget precis till höger när du kommer in till hamnen. Här får du information såsom väderleksrapporter, vad som finns på Grinda att göra samt uthyrning av kajaker" (läst 2026-11-17)
+    // KÄLLA: https://finnhamn.se/aktiviteter/ — "Vi har 11 nybörjarkajaker som är enkla och stabila. Kajakerna finns nere vid Ragnars kiosk." (läst 2026-11-17)
+    a: 'Kajak hyrs vid hamnen på Sandhamn, Utö, Grinda, Vaxholm och Möja. På sommaren, boka i förväg, uthyrningen tar slut tidigt på populära dagar. På Utö finns kajakuthyrning i Gruvbyn, där båtarna från Årsta brygga lägger till. På Grinda hyrs kajakerna ut från hamnkontoret, precis till höger när du kommer in i hamnen. På Finnhamn finns 11 nybörjarkajaker, enkla och stabila, nere vid Ragnars kiosk.',
   },
   {
     q: 'Vilken utrustning behöver man för kajak i skärgården?',
@@ -54,7 +62,8 @@ const FAQ_ITEMS = [
   },
   {
     q: 'Vad kostar det att paddla kajak i skärgården?',
-    a: 'Kajakhyrning kostar 300 till 500 kr för halvdag (4 h) och 500 till 800 kr för heldag. Guidade turer med instruktör kostar 600 till 1 200 kr per person. Många aktörer erbjuder familjepaket. Räkna också med eventuell färjebiljett till ön.',
+    // Priserna hade ingen källa och är strukna (mallarnas runda 7, 2026-11-17; ARBETSREGLER).
+    a: 'Priset sätter varje uthyrare själv, så se uthyrarens egen prislista innan du åker. Räkna också med eventuell färjebiljett till ön.',
   },
   {
     q: 'Är kajak i skärgården säkert för barn?',
@@ -215,11 +224,17 @@ export default function KajakPage() {
               }}>
                 <div style={{marginBottom: 8}} aria-hidden><Icon name="paddle" size={22} /></div>
                 <div style={{ fontWeight: 700, fontSize: 15, color: 'var(--ink)', marginBottom: 4 }}>{island.name}</div>
-                <div style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.5, marginBottom: 8 }}>
-                  {island.activity_meta?.kajak?.notes ?? 'Kajakhyrning vid hamnen.'}
-                </div>
+                {/* Ingen fast text när notes saknas: "Kajakhyrning vid hamnen." var en mallfras utan källa (mallarnas runda 5). */}
+                {island.activity_meta?.kajak?.notes && (
+                  <div style={{ fontSize: 13, color: 'var(--ink-muted)', lineHeight: 1.5, marginBottom: 8 }}>
+                    {island.activity_meta.kajak.notes}
+                  </div>
+                )}
                 <div style={{ fontSize: 12, color: 'var(--sea)', fontWeight: 600 }}>
-                  <span aria-hidden style={{ color: island.activity_meta?.kajak?.difficulty === 'lätt' ? '#2e9e5b' : island.activity_meta?.kajak?.difficulty === 'medel' ? '#d9a413' : '#c94f3d' }}>●</span> {island.activity_meta?.kajak?.difficulty === 'lätt' ? 'Lätt' : island.activity_meta?.kajak?.difficulty === 'medel' ? 'Medel' : 'Svår'} · Uthyrning: {island.activity_meta?.kajak?.rental ? 'Ja' : 'Nej'}
+                  {(() => {
+                    const grad = kajakGrad(island.activity_meta?.kajak)
+                    return grad ? <><span aria-hidden style={{ color: grad.farg }}>●</span> {grad.text} · </> : null
+                  })()}Uthyrning: {island.activity_meta?.kajak?.rental ? 'Ja' : 'Nej'}
                 </div>
               </Link>
             ))}

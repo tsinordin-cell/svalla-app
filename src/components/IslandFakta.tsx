@@ -17,7 +17,9 @@ import { SCB_OAR, SCB_OAR_KALLA } from '@/app/o/scb-oar.generated'
  */
 
 const fmt = (n: number) => n.toLocaleString('sv-SE')
-const kommunText = (k: string) => (k === 'Gotland' ? 'Region Gotland' : `${k} kommun`)
+// SCB:s kortnamn som det är: "${k} kommun" gav "Göteborg kommun" och "Österåker kommun" (2026-11-02, mall-0061).
+// Raden heter redan Kommun.
+const kommunText = (k: string) => (k === 'Gotland' ? 'Region Gotland' : k)
 
 export default function IslandFakta({ slug, islandName }: { slug: string; islandName: string }) {
   const s = SCB_OAR[slug]

@@ -20,9 +20,13 @@
 import { useEffect, useState } from 'react'
 import { vagDitText } from '@/lib/ingen-trafik'
 import { getIslandTransit, getReseplanerare } from '@/lib/transit-stops'
+import { arBatben } from '@/lib/batben'
 
 interface TripLeg {
   category: string
+  /** ResRobots trafikslag och produktklass (src/lib/trafiklab.ts); 8 och 256 är färja. */
+  catCode?: string
+  cls?: string
   operator: string | null
   line: string | null
   fromName: string
@@ -305,7 +309,9 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
 
 function TripRow({ trip, originName, destName, reseplanerareUrl }: { trip: TripSummary; originName: string; destName: string; reseplanerareUrl: string }) {
   const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'
-  const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))
+  // Färjekoden och kategorin, inte bara ordet "färja": "Färjetrafik - övrigt" (Stavsnäs båttaxi) fick ingen "· båt"
+  // (sm08-k011; mallarnas runda 10, src/lib/batben.ts).
+  const hasFerry = trip.legs.some(arBatben)
   const tripUrl = reseplanerareUrl
   const dur = formatDuration(trip.durationMin)
 

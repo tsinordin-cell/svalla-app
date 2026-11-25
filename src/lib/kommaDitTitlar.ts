@@ -28,6 +28,7 @@ export const KOMMA_DIT_TITLAR: Record<string, { titel: string; hamn: string }> =
   vrango: { titel: 'Färja till Vrångö: båt 281 från Saltholmen: hur tar man sig dit 2026', hamn: 'Saltholmen' },
   branno: { titel: 'Färja till Brännö från Saltholmen: hur tar man sig dit 2026', hamn: 'Saltholmen' },
   orno: { titel: 'Färja till Ornö från Dalarö: bilfärja och båt, hur tar man sig dit 2026', hamn: 'Dalarö' },
+  // KÄLLA: https://lidingo.se/trafik-infrastruktur/ta-dig-fram/batpendla/ — "Pendelbåtslinjen 80 trafikerar sträckan Ropsten-Nybroplan", "Vissa avgångar fortsätter från Ropsten till Storholmen." (läst 2026-10-29)
   storholmen: { titel: 'Båt till Storholmen: pendelbåt 80 från Ropsten: hur tar man sig dit 2026', hamn: 'Ropsten' },
   ingmarso: { titel: 'Båt till Ingmarsö från Strömkajen och Åsättra: hur tar man sig dit 2026', hamn: 'Åsättra' },
   bullero: { titel: 'Båt till Bullerö från Stavsnäs: Bullerölinjen, hur tar man sig dit 2026', hamn: 'Stavsnäs' },
@@ -39,7 +40,35 @@ export const KOMMA_DIT_TITLAR: Record<string, { titel: string; hamn: string }> =
   birka: { titel: 'Båt till Birka från Stockholm: hur tar man sig dit 2026', hamn: 'Stockholm' },
 }
 
-/** Gemensam titel för öar utan egen titel (oförändrad sedan tidigare). */
-export function kommaDitTitel(slug: string, namn: string): string {
-  return KOMMA_DIT_TITLAR[slug]?.titel ?? `Hur tar man sig till ${namn}? Båt, buss, färja 2026`
+/** Färdsätt som går över vattnet: båt, färja, rederi eller en namngiven båtlinje. */
+const BAT = /båt|färj|rederi|linjen|waxholmsbolaget|strömma/i
+
+/**
+ * Går färdsättet från orten själv? from börjar med ortens namn och följs inte av en bokstav ("Hamburgsund", "Grebbestad,
+ * gästhamnen"), så Hamburgsunds linfärja och Grebbestads taxibåt tar en inte dit. Flyttad hit från komma-dit/page.tsx
+ * (mall-0166 omarbete 3) för att titeln ska använda samma test (runda 10, sm07-k009).
+ */
+export function franOrten(namn: string, fran?: string): boolean {
+  const f = (fran ?? '').trim()
+  return Boolean(f && f.toLowerCase().startsWith(namn.toLowerCase()) && !/[a-zåäö]/i.test(f.charAt(namn.length)))
+}
+
+/** Har något av öns färdsätt (getting_there.method) båt eller färja? */
+export function harBat(fardsatt: string[]): boolean {
+  return fardsatt.some(m => BAT.test(m))
+}
+
+/**
+ * Gemensam titel för öar utan egen titel. "Båt, buss, färja" stod på alla sådana
+ * öar, även utan buss (Fjäderholmarna) och utan färja (2026-11-02, mall-0160–0161).
+ * "Båt" stod också på de 16 öar som nås med bil och buss över bro eller tunnel
+ * (Öland, Tjörn, Dalarö m.fl.; 2026-11-02, mall-0160–0161 omarbete).
+ */
+export function kommaDitTitel(slug: string, namn: string, fardsatt: string[] = []): string {
+  const egen = KOMMA_DIT_TITLAR[slug]?.titel
+  if (egen) return egen
+  const satt = harBat(fardsatt)
+    ? 'Båt och resväg'
+    : fardsatt.some(m => /buss/i.test(m)) && fardsatt.some(m => /bil/i.test(m)) ? 'Bil och buss' : 'Resväg'
+  return `Hur tar man sig till ${namn}? ${satt} 2026`
 }

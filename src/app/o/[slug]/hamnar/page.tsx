@@ -28,6 +28,39 @@ export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
 }
 
+/** Hamnar och bryggor ur platsdatabasen som inte redan står i öns egen lista (samma urval i titeln och på sidan). */
+async function hamnarIDatabasen(island: NonNullable<ReturnType<typeof getIsland>>) {
+  const known = new Set(island.harbors.map(h => h.name.toLowerCase()))
+  return utanDubbletter(
+    (await getIslandPlaces(island, ['harbor', 'marina', 'anchorage', 'nature_harbor', 'fuel'], { extraKm: 1 }))
+      .filter(p => !known.has(p.name.toLowerCase())),
+    island.harbors.map(h => h.name),
+    island.name,
+  )
+}
+
+/**
+ * Rubriken följer vad sidan har: "Hamnar och bryggor på X" när ön har en hamn i ödatan eller databasen, "Ankringsplatser
+ * vid X" när databasen bara har ankringsplatser på ön, "nära X" när databasen bara har hamnar utanför ön, och "X: ingen
+ * hamn registrerad" när sidan inte har någon. Förut stod "Hamnar och bryggor på X" även på öar utan hamn, som Gotska Sandön,
+ * där Naturvårdsverket skriver "Det finns ingen hamn" (Kontrollantens fynd sm04-k005; mallarnas runda 10, 2026-11-17).
+ */
+const ANKRING = new Set(['anchorage', 'nature_harbor'])
+function hamnrubriker(island: NonNullable<ReturnType<typeof getIsland>>, db: { onIsland: boolean; type: string }[]) {
+  const n = island.name
+  if (island.harbors.length > 0 || db.some(p => p.onIsland && !ANKRING.has(p.type))) {
+    return { titel: `Hamnar och bryggor på ${n}`, h1: `Hamnar på ${n}`, lista: island.harbors.length > 0 ? `Fler hamnar och bryggor på och nära ${n}` : `Hamnar och bryggor på och nära ${n}`, not: '', beskrivning: `Hamnar och bryggor på ${n}: antal platser, bränsle, dusch och el där vi har en källa för det.`, og: `Hamnar och bryggor på ${n}.` }
+  }
+  // Bara ankringsplatser på ön (Gotska Sandön: databasens "Gotska Sandön", typ anchorage).
+  if (db.some(p => p.onIsland)) {
+    return { titel: `Ankringsplatser vid ${n}`, h1: `Ankringsplatser vid ${n}`, lista: `Ankringsplatser vid ${n}`, not: `Vi har ingen gästhamn eller brygga registrerad på ${n}, bara ankringsplatser.`, beskrivning: `Vi har ingen hamn eller brygga registrerad på ${n}, bara ankringsplatser. Under Komma dit står vad som gäller för båt.`, og: `Ankringsplatser vid ${n}.` }
+  }
+  if (db.length > 0) {
+    return { titel: `Hamnar och bryggor nära ${n}`, h1: `Hamnar nära ${n}`, lista: `Hamnar och bryggor nära ${n}`, not: `Vi har ingen gästhamn registrerad på själva ${n}. Hamnarna nedan ligger nära ön.`, beskrivning: `Hamnar och bryggor nära ${n}, med avstånd fågelvägen. Vi har ingen hamn registrerad på själva ön.`, og: `Hamnar och bryggor nära ${n}.` }
+  }
+  return { titel: `${n}: ingen hamn registrerad`, h1: `${n}: ingen hamn registrerad`, lista: '', not: `Vi har inga gästhamnar registrerade på ${n}.`, beskrivning: `Vi har inga hamnar eller bryggor registrerade på ${n}. Under Komma dit står hur du tar dig dit.`, og: `Vi har inga hamnar eller bryggor registrerade på ${n}.` }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const island = getIsland(slug)
@@ -35,18 +68,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
+  const r = hamnrubriker(island, await hamnarIDatabasen(island))
   return {
-    title: `Gästhamnar på ${island.name}, bryggor och båtplatser`,
-    description: `Gästhamnar, bryggor och båtplatser på ${island.name}: antal platser, bränsle, dusch och el där hamnen själv anger det.`,
+    title: r.titel,
+    description: r.beskrivning,
     keywords: [`${island.name.toLowerCase()} gästhamn`, `${island.name.toLowerCase()} brygga`, `båt till ${island.name.toLowerCase()}`],
     openGraph: {
       images: ogO(island.slug),
-      title: `Gästhamnar på ${island.name}`,
-      description: `Gästhamnar och bryggor på ${island.name}.`,
+      title: r.titel,
+      description: r.og,
       url: `https://svalla.se/o/${slug}/hamnar`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/hamnar` },
   }
+}
+
+/**
+ * Servicemärkena står i ödatan med olika stavning ("toalett", "Toalett", "toilet", "WC"). Märket visas på svenska
+ * med versal: "✓ toilet" stod på /o/vaxholm/hamnar (full-15 utanför-4; mallarnas runda 5, 2026-11-10).
+ */
+const SERVICE_SVENSKA: Record<string, string> = { toilet: 'Toalett', toilets: 'Toalett', shower: 'Dusch', water: 'Vatten', electricity: 'El', fuel: 'Bränsle', laundry: 'Tvätt', sauna: 'Bastu' }
+function serviceEtikett(s: string): string {
+  const t = s.trim()
+  const sv = SERVICE_SVENSKA[t.toLowerCase()] ?? t
+  return /^wc$/i.test(sv) ? 'WC' : sv.charAt(0).toUpperCase() + sv.slice(1)
 }
 
 export default async function IslandHarborsPage({ params }: Props) {
@@ -54,29 +99,27 @@ export default async function IslandHarborsPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
-  const known = new Set(island.harbors.map(h => h.name.toLowerCase()))
-  const dbHarbors = utanDubbletter(
-    (await getIslandPlaces(island, ['harbor', 'marina', 'anchorage', 'nature_harbor', 'fuel'], { extraKm: 1 }))
-      .filter(p => !known.has(p.name.toLowerCase())),
-    island.harbors.map(h => h.name),
-    island.name,
-  )
+  const dbHarbors = await hamnarIDatabasen(island)
+  const rubriker = hamnrubriker(island, dbHarbors)
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <IslandSubPageHeader
         island={island}
         tab="hamnar"
-        title={`Gästhamnar på ${island.name}`}
+        title={rubriker.h1}
       />
       <Vidareklick islandSlug={island.slug} standard="hamn" />
 
       <div style={{ maxWidth: 900, margin: '24px auto 0', padding: '0 16px 60px' }}>
-        {island.harbors.length === 0 && dbHarbors.length === 0 ? (
-          <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)' }}>
-            Vi har inga gästhamnar registrerade på {island.name}.
+        {/* Utan hamn på ön säger sidan det, med länk till Komma dit (runda 10, sm04-k005). */}
+        {rubriker.not && (
+          <div style={{ background: 'var(--white)', padding: 24, borderRadius: 14, fontSize: 14, color: 'var(--txt2)', marginBottom: dbHarbors.length > 0 ? 28 : 0 }}>
+            {rubriker.not}{' '}
+            <Link href={`/o/${slug}/komma-dit`} style={{ color: 'var(--sea)' }}>Så tar du dig till {island.name} →</Link>
           </div>
-        ) : (
+        )}
+        {island.harbors.length === 0 ? null : (
           <div style={{ display: 'grid', gap: 14 }}>
             {island.harbors.map(h => (
               <div key={h.name} style={{
@@ -98,7 +141,7 @@ export default async function IslandHarborsPage({ params }: Props) {
                   )}
                   {h.service?.map(s => (
                     <span key={s} style={{ padding: '4px 10px', borderRadius: 999, background: 'var(--surface-2)', color: 'var(--txt2)' }}>
-                      ✓ {s}
+                      ✓ {serviceEtikett(s)}
                     </span>
                   ))}
                 </div>
@@ -112,7 +155,7 @@ export default async function IslandHarborsPage({ params }: Props) {
             <IslandPlacesList
               places={dbHarbors}
               islandName={island.name}
-              heading={island.harbors.length > 0 ? `Fler hamnar, bryggor och sjömackar på och nära ${island.name}` : `Hamnar, bryggor och sjömackar på och nära ${island.name}`}
+              heading={rubriker.lista}
             />
           </div>
         )}

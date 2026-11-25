@@ -14,6 +14,8 @@
  *   'forening'   Öns företagarförening eller öråd. Vet vem som är verksam på
  *                ön i år, men uppdateras oregelbundet.
  *   'register'   Kommunens näringslivsregister (UC Selekt) eller motsvarande.
+ *   'elregister' Elsäkerhetsverkets register (Kolla elföretaget), en myndighets register. Bara för elföretag,
+ *                och bara när registrets egen post anger adressen på ön (Lag 3 b, Redaktörens beslut 2026-11-17).
  *                Vet vem som har firman skriven där, inte vem som jobbar där.
  *
  * VAD KONTROLLEN AV MÖJA VISADE (2026-09-22, 13 företag mot egna sajter):
@@ -65,7 +67,7 @@ export const YRKE_ETIKETT: Record<Yrke, string> = {
 export type Verifiering = false | { av: string; datum: string }
 
 /** Hur starkt belagd posten är. Visas alltid för besökaren. */
-export type Kallniva = 'egen-sajt' | 'forening' | 'register'
+export type Kallniva = 'egen-sajt' | 'forening' | 'register' | 'elregister'
 
 export type Kalla = {
   niva: Kallniva
@@ -193,18 +195,23 @@ export const HANTVERKARE: Hantverkare[] = [
   {
     slug: 'oct-entreprenad',
     namn: 'OCT-Entreprenad Trä & Betong AB',
+    // Omarbete 2026-11-03: ort och bas är belagda med företagets egen sida Byggfirma Värmdö, så generaliseringen till Stockholms skärgård (2026-10-29) behövs inte. Ingen gatuadress på webbplatsen.
+    // KÄLLA: https://oct-entreprenad.com/byggfirma-varmdo/ — "Ditt lokala byggföretag på Värmdö", "Vi har lång erfarenhet av byggprojekt i Skärgården, med fokus på Värmdö." (läst 2026-11-03, i Chromium; sidan svarade 502 vid första försöket)
+    // KÄLLA: https://oct-entreprenad.com/kontakt/ — "Din byggfirma i Stockholms skärgård", "OCT-Entreprenad Trä & Betong AB", "Finnhamn • Fåglarö • Grinda • Gällnö" (läst 2026-11-03)
     ort: 'Värmdö',
     yrken: ['totalentreprenad', 'snickare', 'markarbete', 'betong', 'sjotransport'],
     // Inget telefonnummer angivet på företagets kontaktsida — fältet lämnas tomt.
     epost: 'info@oct-entreprenad.com',
     webb: 'https://oct-entreprenad.com',
-    orgnr: '556955-5856',
+    // orgnr borttaget 2026-11-17 (runda 10, sa02-k031): organisationsnumret står inte på företagets webbplats, och ingen tillåten källa är läst. Fältet visas inte på sajten.
+    // Möja tillagd 2026-11-07 (Lag 3 på /o/moja/hantverkare): företagets egen sida nämner Möja bland orterna där de genomför projekt.
+    // KÄLLA: https://oct-entreprenad.com/byggfirma-varmdo/ — "Det gör att vi kan planera och genomföra projekt på ett sätt som är både hållbart och effektivt för området – oavsett om du bor i Nacka, Gustavsberg, Ingarö, Djurö, Storö eller Möja." (läst 2026-11-07)
     oar: [
       'blido', 'finnhamn', 'grinda', 'gallno', 'husaro', 'ingmarso',
-      'ljustero', 'yxlan', 'angso',
+      'ljustero', 'yxlan', 'angso', 'moja',
     ],
     bas: 'Värmdö',
-    kalla: { niva: 'egen-sajt', url: 'https://oct-entreprenad.com/kontakt/', last: '2026-09-14',
+    kalla: { niva: 'egen-sajt', url: 'https://oct-entreprenad.com/kontakt/', last: '2026-11-03',
       reservation: 'Kontaktsidan visar info@ som text men länkarna pekar mot andra adresser.' },
     verifierad: false,
     noteringar:
@@ -223,11 +230,16 @@ export const HANTVERKARE: Hantverkare[] = [
     namn: 'Wallner Marin AB',
     ort: 'Södermöja',
     bas: 'Södermöja, Möja',
+    // KÄLLA: http://www.wallnermarin.se/ — "Välkommen till Wallner Marin AB på Södermöja i Stockholms skärgård." (läst 2026-11-03, över http)
+    // KÄLLA: http://www.wallnermarin.se/hus-och-fastigheter/ — "Vi har hantverkare inom alla kategorier. Ni beställer jobbet av oss och vi sköter resten." (läst 2026-11-03)
+    // KÄLLA: http://www.wallnermarin.se/battaxi-och-sjotransporter/ — "Svävare, båttaxi och sjötransporter" (läst 2026-11-03)
+    // KÄLLA: http://www.wallnermarin.se/assistans-bargnings-och-dykeriarbeten/ — "När det gäller dykning och bärgningsarbeten utför vi enklare insatser själva." (läst 2026-11-03)
+    // KÄLLA: http://www.wallnermarin.se/wallner-marin/kontakt/ — "Vår adress är Södermöja 130, 13043 Möja", "ring 0708-406 405" (läst 2026-11-03)
     yrken: ['totalentreprenad', 'snickare', 'sjotransport', 'dykare'],
     telefon: '0708-406 405',
     webb: 'http://www.wallnermarin.se',
     oar: ['moja'],
-    kalla: { niva: 'egen-sajt', url: 'http://www.wallnermarin.se', last: '2026-09-22' },
+    kalla: { niva: 'egen-sajt', url: 'http://www.wallnermarin.se', last: '2026-11-03' },
     verifierad: false,
     noteringar:
       // KÄLLA: http://www.wallnermarin.se/priser/ — egen prissida (läst 2026-09-22)
@@ -263,7 +275,8 @@ export const HANTVERKARE: Hantverkare[] = [
   },
   {
     slug: 'moja-snickarna',
-    namn: 'Möja Snickarna AB',
+    // KÄLLA: https://mojasnickarna.se — "Vi är Möja Snickarna, en lokalt baserad snickerifirma" (läst 2026-11-09)
+    namn: 'Möja Snickarna',
     ort: 'Långviksnäs, Möja',
     bas: 'Långviksnäs, Möja',
     yrken: ['snickare', 'totalentreprenad'],
@@ -280,8 +293,9 @@ export const HANTVERKARE: Hantverkare[] = [
   {
     slug: 'kyrkvikens-sjotransport',
     namn: 'Kyrkvikens Sjötransport',
-    ort: 'Bergs by, Möja',
-    bas: 'Bergs by, Möja',
+    // KÄLLA: https://kvst.se/ — "Kyrkvikens sjötransport på Möja" (läst 2026-10-29)
+    ort: 'Möja',
+    bas: 'Möja',
     yrken: ['sjotransport'],
     telefon: '070-776 68 83',
     epost: 'curre@kvst.se',
@@ -326,6 +340,55 @@ export const HANTVERKARE: Hantverkare[] = [
     verifierad: false,
     noteringar: 'Ramsmora 818, 130 43 Möja. Båttaxi för upp till 7 personer, båten Lisa. Inget pris publicerat.',
   },
+  {
+    // Lag 3 b 2026-11-17 (Möjas hantverkarsida under 95 % av main): företagets egen sida anger adress på Möja.
+    // KÄLLA: https://www.mojabattaxi.se/ — "Möja Båttaxi AB"; "Reguljära turer från Sollenkroka till Möja och Möja till Sollenkroka."; "MÖJA BERGS BY 118, 130 43 Möja"; "08-98 11 15"; "info@mojabattaxi.se"; "Charter vi tar er ut i Skärgården max 23 passagerare." (läst 2026-11-17)
+    slug: 'moja-battaxi',
+    namn: 'Möja Båttaxi AB',
+    ort: 'Bergs by, Möja',
+    bas: 'Bergs by, Möja',
+    yrken: ['sjotransport'],
+    telefon: '08-98 11 15',
+    epost: 'info@mojabattaxi.se',
+    webb: 'https://www.mojabattaxi.se',
+    oar: ['moja'],
+    kalla: { niva: 'egen-sajt', url: 'https://www.mojabattaxi.se', last: '2026-11-17' },
+    verifierad: false,
+    noteringar: 'Möja Bergs by 118, 130 43 Möja. Reguljära turer mellan Sollenkroka och Möja, mellanliggande öar trafikeras på vägen. Egen taxibåt och charter för upp till 23 passagerare.',
+  },
+  {
+    // Lag 3 b 2026-11-17 (Redaktörens beslut): elföretag med adress på Möja i Elsäkerhetsverkets register (nivå 1), sökt på orten Möja.
+    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11957896 — "Lundahls Installation AB"; "Företaget är registrerat hos Elsäkerhetsverket."; "Organisationsnummer: 559289-9891"; "lundahlsinstallation@gmail.com"; "0766287273"; "Långviknäs 252"; "13043 Möja" (läst 2026-11-17)
+    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget?query=M%C3%B6ja&searchType=city&sortOrder=az&page=1 — "Din sökning gav 3 träffar för orten:"; "Lundahls Installation AB" (läst 2026-11-17)
+    slug: 'lundahls-installation',
+    namn: 'Lundahls Installation AB',
+    ort: 'Långviknäs, Möja',
+    bas: 'Långviknäs, Möja',
+    yrken: ['elektriker'],
+    telefon: '0766287273',
+    epost: 'lundahlsinstallation@gmail.com',
+    orgnr: '559289-9891',
+    oar: ['moja'],
+    kalla: { niva: 'elregister', url: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11957896', last: '2026-11-17' },
+    behorighet: 'bekraftad',
+    behorighetKalla: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11957896',
+    verifierad: false,
+  },
+  {
+    // Lag 3 b 2026-11-17 (Redaktörens beslut): elföretag med adress på Möja i Elsäkerhetsverkets register (nivå 1), sökt på orten Möja.
+    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11093378 — "Alk,S Elservice Handelsbolag"; "Företaget är registrerat hos Elsäkerhetsverket."; "Organisationsnummer: 916637-1568"; "Möja Norrsundshage 522"; "13043 Möja" (läst 2026-11-17)
+    slug: 'alks-elservice',
+    namn: 'Alk,S Elservice Handelsbolag',
+    ort: 'Norrsundshage, Möja',
+    bas: 'Norrsundshage, Möja',
+    yrken: ['elektriker'],
+    orgnr: '916637-1568',
+    oar: ['moja'],
+    kalla: { niva: 'elregister', url: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11093378', last: '2026-11-17' },
+    behorighet: 'bekraftad',
+    behorighetKalla: 'https://elsakerhetsverket.se/kolla-elforetaget/elforetag?id=11093378',
+    verifierad: false,
+  },
   /*
    * SeaCab Möja AB — BORTTAGEN 2026-09-23 (Max).
    *
@@ -356,7 +419,11 @@ export const HANTVERKARE: Hantverkare[] = [
     webb: 'https://hhmarin.se',
     orgnr: '556711-6982',
     // Sandhamn borttagen 2026-10-20: hhmarin.se gick inte att läsa vid granskningen, så att de arbetar på Sandhamn kunde inte bekräftas.
-    oar: ['moja', 'runmaro'],
+    // Inte längre på Möja (Redaktörens beslut 2026-11-17, mallarnas runda 10; moja-0500): Möja nämns inte på företagets sida
+    // (Redaktörens läsning i Toms Chrome 2026-11-03, kontroll/oar-omk2-sidor/www.hhmarin.se.chrome-2026-11-03.txt), och
+    // 2026-11-17 gick sidan inte att läsa härifrån (certifikatfel i curl, 502 i Chromium). Ingen myndighet anger läget.
+    // Runmarö står kvar; den listningen är inte prövad i den här rundan.
+    oar: ['runmaro'],
     kalla: { niva: 'egen-sajt', url: 'https://hhmarin.se', last: '2026-09-22' },
     verifierad: false,
     noteringar:
@@ -375,7 +442,10 @@ export const HANTVERKARE: Hantverkare[] = [
     telefon: '073-999 09 74',
     epost: 'micke@delsholmen.se',
     webb: 'https://delsholmen.se',
-    oar: ['moja'],
+    // Inte längre på Möja (Kontrollantens fynd sm08-k016, moja-0508; mallarnas runda 10, 2026-11-17): företagets egen sida
+    // nämner bara Stavsuddaområdet, och listningen på Möja kom från ett register. Posten står kvar men visas på ingen ösida.
+    // KÄLLA: https://delsholmen.se/ — "Delsholmen Entreprenad AB din lokala hantverkare i stavsudda området" (läst 2026-11-17)
+    oar: [],
     kalla: { niva: 'egen-sajt', url: 'https://delsholmen.se', last: '2026-09-22' },
     verifierad: false,
     noteringar:
@@ -408,10 +478,12 @@ export const HANTVERKARE: Hantverkare[] = [
     telefon: '08-590 727 23',
     webb: 'https://www.jowael.se',
     orgnr: '556774-1250',
+    // KÄLLA: https://www.jowael.se/elektriker-skargarden/ — "Vi arbetar regelbundet på öar som Vaxholm, Värmdö, Möja, Sandhamn, Blidö, Ljusterö, Norrtälje och Östhammar", "Elektriker Möja", "Vi har en egen servicebåt som gör att vi når även de mer avlägsna öarna i både Stockholms och Roslagens skärgård." (läst 2026-11-03)
     oar: ['moja', 'vaxholm', 'blido', 'yxlan'],
     kalla: { niva: 'egen-sajt', url: 'https://www.jowael.se', last: '2026-09-22' },
     behorighet: 'bekraftad',
-    behorighetKalla: 'https://www.elsakerhetsverket.se/kollaelforetaget/foretagsregister/?foretag=11039774&sok=1',
+    // KÄLLA: https://elsakerhetsverket.se/kolla-elforetaget?query=Jowa%20Elektriska — "Jowa Elektriska AB", "556774-1250", "Din sökning gav 1 träffar" (läst 2026-11-03, i Chromium). Den tidigare direktlänken (foretag=11039774) visar bara sökformuläret.
+    behorighetKalla: 'https://elsakerhetsverket.se/kolla-elforetaget?query=Jowa%20Elektriska',
     verifierad: false,
     noteringar:
       'Registrerat elinstallationsföretag hos Elsäkerhetsverket: företaget länkar själva till sin post ' +
@@ -427,7 +499,10 @@ export const HANTVERKARE: Hantverkare[] = [
     yrken: ['batmekaniker'],
     telefon: '08-571 650 83',
     webb: 'http://anderssonsbatvarv.se',
-    oar: ['moja'],
+    // Inte längre på Möja (Redaktörens beslut 2026-11-17, mallarnas runda 10; moja-0536): startsidan, Kontakt, Hitta hit,
+    // Service och Vinter_26_27 nämner inte Möja, bara Norra Stavsudda. Posten står kvar men visas på ingen ösida.
+    // KÄLLA: http://anderssonsbatvarv.se/Kontakt.htm — "130 42 STAVSUDDA" (läst 2026-11-17)
+    oar: [],
     kalla: { niva: 'egen-sajt', url: 'http://anderssonsbatvarv.se/Kontakt.htm', last: '2026-09-22',
       reservation: 'Webbplatsen bär kvar text om att hålla avstånd på grund av smittspridning, och verkar inte ha uppdaterats sedan 2020 eller 2021.' },
     verifierad: false,

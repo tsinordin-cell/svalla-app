@@ -11,6 +11,8 @@
 
 import type { Island } from '@/app/o/island-data'
 import { SCB_OAR, SCB_OAR_KALLA } from '../app/o/scb-oar.generated'
+import { fardsattFran, klockslagsregler } from './mallRegler'
+import { aktivitetensLage, grannoarIData } from './badLage'
 
 export interface FAQ {
   q: string
@@ -19,8 +21,22 @@ export interface FAQ {
 
 function lista(namn: string[]): string {
   if (namn.length <= 1) return namn.join('')
-  return `${namn.slice(0, -1).join(', ')} och ${namn[namn.length - 1]}`
+  // Ett namn med kommatecken ("Segelsalen, Sandhamn Seglarhotell") lästes som två ställen; då skiljer semikolon
+  // (full-20 k084, mallarnas runda 5, 2026-11-10).
+  const skilje = namn.some(n => n.includes(',')) ? '; ' : ', '
+  return `${namn.slice(0, -1).join(skilje)} och ${namn[namn.length - 1]}`
 }
+
+/**
+ * Restaurang, krog eller värdshus, samma regel som restaurangsidans rubrik (restauranger/page.tsx). Barer,
+ * kaféer och dansställen svarar inte på "Finns det restaurang?": på Utö räknades Bakfickan, enligt
+ * verksamheten en nattklubb, som restaurang (full-22 k002; mallarnas runda 5, 2026-11-10).
+ */
+const RESTAURANGTYP = /restaurang|krog|värdshus|wärdshus|bistro|brasserie/i
+const DB_TYPORD: Record<string, string> = { restaurant: 'restaurang', cafe: 'kafé', bar: 'bar' }
+
+/** Regler för gästerna i hamntexten: bokning, betalning, avgift, förtöjning. */
+const HAMNREGLER = /förhandsbok|bokning|boka\b|betala|avgift|swish|förtöjning|förbjud|tillåtet/i
 
 function punkt(s: string): string {
   const t = s.trim()
@@ -49,40 +65,80 @@ export function befolkningsFaq(island: Pick<Island, 'slug' | 'name'>): FAQ | nul
 
 type FaqIsland = Pick<Island, 'slug' | 'name' | 'getting_there' | 'restaurants' | 'accommodation' | 'harbors'>
 
-export function getFaqsForIsland(island: FaqIsland): FAQ[] {
+/**
+ * dbKrogar: platsdatabasens ställen på ön (restaurant, cafe, bar), som restaurangsidan räknar dem. Förut räknade
+ * FAQ:n bara ödatan, 4 på Sandhamn mot restaurangsidans 10 (full-20 k084; mallarnas runda 5, 2026-11-10).
+ */
+export function getFaqsForIsland(island: FaqIsland, extra: { dbKrogar?: { name: string; type: string }[]; stryk?: boolean } = {}): FAQ[] {
   const ut: FAQ[] = []
+  // stryk: false på sidor där strykningen av klockslag är uppskjuten (Toms beslut 10; src/lib/klockslagStrykning.ts).
+  const { utanKlockslagsmeningar } = klockslagsregler(extra.stryk ?? true)
   const n = island.name
 
-  const resor = (island.getting_there ?? []).slice(0, 2)
+  // Alla färdsätt: slice(0, 2) tappade Waxholmsbolagets linje 2 på Fjäderholmarna,
+  // den enda båten där efter sommarsäsongen (faktagranskningen 2026-11-02, mall-0079).
+  // Utan meningar med klockslag ur datan och utan att avreseorten står två gånger (mallarnas runda 5).
+  const resor = island.getting_there ?? []
   if (resor.length) {
     ut.push({
       q: `Hur tar jag mig till ${n}?`,
-      a: resor.map(r => `${r.method}${r.from ? ` från ${r.from}` : ''}: ${punkt(r.desc)}`).join(' ')
+      a: resor.map(r => { const d = utanKlockslagsmeningar(r.desc); return `${fardsattFran(r.method, r.from)}${d ? `: ${punkt(d)}` : '.'}` }).join(' ')
         + ' Kontrollera alltid aktuella avgångar hos trafikbolaget innan du åker.',
     })
   }
 
-  const krogar = (island.restaurants ?? []).map(r => r.name)
-  if (krogar.length) {
+  // Typen inom parentes, som på restaurangkorten: Husarös enda ställe är ett kafé (mall-0080).
+  // Restaurangerna först; barer, kaféer och andra ställen för sig (mallarnas runda 5).
+  const stallen = [
+    ...(island.restaurants ?? []).map(r => ({ namn: r.name, typ: r.type ?? '' })),
+    ...(extra.dbKrogar ?? []).map(p => ({ namn: p.name, typ: DB_TYPORD[p.type] ?? '' })),
+  ]
+  const medTyp = (x: { namn: string; typ: string }) => (x.typ ? `${x.namn} (${x.typ.toLowerCase()})` : x.namn)
+  const restauranger = stallen.filter(x => RESTAURANGTYP.test(x.typ)).map(medTyp)
+  const ovriga = stallen.filter(x => !RESTAURANGTYP.test(x.typ)).map(medTyp)
+  const urval = (namn: string[], max: number) => `${lista(namn.slice(0, max))}${namn.length > max ? ` och ${namn.length - max} till` : ''}`
+  if (restauranger.length) {
     ut.push({
       q: `Finns det restaurang på ${n}?`,
-      a: `På Svalla finns ${lista(krogar.slice(0, 5))}${krogar.length > 5 ? ` och ${krogar.length - 5} till` : ''}. Öppettiderna skiljer sig mellan säsonger, så kolla ställets egen sida innan du åker.`,
+      a: `På Svalla finns ${urval(restauranger, 5)}.${ovriga.length ? ` Dessutom ${urval(ovriga, 3)}.` : ''} Kolla öppettiderna hos stället innan du åker.`,
+    })
+  } else if (ovriga.length) {
+    ut.push({
+      q: `Var kan man äta och dricka på ${n}?`,
+      a: `På Svalla finns ${urval(ovriga, 5)}. Kolla öppettiderna hos stället innan du åker.`,
     })
   }
 
-  const boende = (island.accommodation ?? []).map(a => a.name)
+  // "Ja" bara för boende på ön. Boende på en annan ö eller ort (samma lägesregel som badsidan och aktivitetssidan,
+  // aktivitetensLage) står för sig: Vindö (Djurönäset), Öckerö (Skärgårdshotellet Hönö) (Kontrollantens fynd mo01-k004;
+  // mallarnas runda 7, 2026-11-17).
+  const grannoar = grannoarIData(island)
+  const allaBoenden = island.accommodation ?? []
+  const boende = allaBoenden.filter(a => aktivitetensLage(a, n, grannoar) === 'pa').map(a => a.name)
+  const naraBoende = allaBoenden.filter(a => aktivitetensLage(a, n, grannoar) !== 'pa').map(a => a.name)
+  const fler = (namn: string[]) => `${lista(namn.slice(0, 5))}${namn.length > 5 ? ` och ${namn.length - 5} till` : ''}`
   if (boende.length) {
     ut.push({
       q: `Finns det boende på ${n}?`,
-      a: `Ja. På Svalla finns ${lista(boende.slice(0, 5))}${boende.length > 5 ? ` och ${boende.length - 5} till` : ''}.`,
+      a: `Ja. På Svalla finns ${fler(boende)}.${naraBoende.length ? ` Nära ön finns också ${fler(naraBoende)}.` : ''}`,
+    })
+  } else if (naraBoende.length) {
+    ut.push({
+      q: `Finns det boende på ${n}?`,
+      a: `På Svalla finns inget boende på själva ${n}. Nära ön finns ${fler(naraBoende)}.`,
     })
   }
 
+  // "Mer om service och regler finns under Hamnar" bara när hamnsidan har det: 27 av 85 öar har varken service,
+  // bränsle eller platsantal i hamnposterna, till exempel Landsort (full-28 k022, mall-0085; mallarnas runda 5).
   const hamnar = island.harbors ?? []
   if (hamnar.length) {
+    const service = hamnar.some(h => (h.service?.length ?? 0) > 0 || h.fuel)
+    const regler = hamnar.some(h => HAMNREGLER.test(h.desc))
+    const mer = service && regler ? ' Mer om service och regler finns under Hamnar.' : service ? ' Mer om service finns under Hamnar.' : regler ? ' Mer om regler finns under Hamnar.' : ''
     ut.push({
-      q: `Finns det gästhamn för egen båt på ${n}?`,
-      a: `${lista(hamnar.map(h => h.spots ? `${h.name} (${h.spots} platser)` : h.name))}. Mer om service och regler finns under Hamnar.`,
+      q: `Var kan jag lägga till med egen båt på ${n}?`,
+      a: `${lista(hamnar.map(h => h.spots ? `${h.name} (${h.spots} platser)` : h.name))}.${mer}`,
     })
   }
 

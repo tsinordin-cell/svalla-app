@@ -4,7 +4,7 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
 import { getHantverkareForIsland, synligaYrken, YRKE_ETIKETT, type Yrke } from '../../hantverkare-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Vidareklick from '@/components/Vidareklick'
-import HantverkarKort from '@/components/HantverkarKort'
+import HantverkarKort, { nasUtanBat } from '@/components/HantverkarKort'
 import Icon, { type IconName } from '@/components/Icon'
 import { ogO } from '@/lib/og-standard'
 
@@ -47,14 +47,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const island = getIsland(slug)
   if (!island) notFound()
 
-  const antal = getHantverkareForIsland(slug).length
+  const alla = getHantverkareForIsland(slug)
+  const antal = alla.length
   const n = island.name
+  // Frågan nämner bara det som någon post på ön täcker: "huset, bryggan, båten eller
+  // tomten" stod på alla 15 öar, men bara Möja har båtmekaniker och Utö och Ornö bara
+  // sjötransport (2026-11-02, mall-0234–0237 omarbete).
+  const OMRADE: Record<string, string> = { hus: 'huset', brygga: 'bryggan', bat: 'båten', tomt: 'tomten' }
+  const omraden = BEHOV
+    .filter(b => OMRADE[b.key] && alla.some(h => synligaYrken(h).some(y => b.yrken.includes(y))))
+    .map(b => OMRADE[b.key])
+  const fraga = omraden.length > 0
+    ? `Behöver du hjälp med ${omraden.length > 1 ? `${omraden.slice(0, -1).join(', ')} eller ${omraden[omraden.length - 1]}` : omraden[0]} på ${n}? `
+    : alla.some(h => synligaYrken(h).includes('sjotransport')) ? `Behöver du få hit folk och material till ${n}? ` : ''
 
   return {
     title: antal > 0
       ? `Hantverkare och service på ${n}: ${antal} företag`
       : `Hantverkare och service på ${n}`,
-    description: `Behöver du hjälp med huset, bryggan, båten eller tomten på ${n}? Snickare, elektriker, rörmokare och sjötransport med verksamhet på ön. Varje uppgift med källa och läsdatum.`,
+    // Yrkeslistan stod på alla ösidor, även utan poster (2026-11-02, mall-0234–0237).
+    description: antal > 0
+      ? `${fraga}${antal === 1 ? 'Ett företag som självt uppger att det arbetar' : `${antal} företag som själva uppger att de arbetar`} på ön. Varje uppgift med källa och läsdatum.`
+      // Inte "inga kontrollerade uppgifter": ösidan kan ha belagd text om hantverk (Fjäderholmarnas hantverksateljéer),
+      // och sidan listar bara företag som själva uppger att de arbetar på ön (Fjäderholmarnas Granskare; mallarnas runda 5).
+      : `Vi har inga företag registrerade som själva uppger att de arbetar på ${n}.`,
     keywords: [
       `hantverkare ${n.toLowerCase()}`, `snickare ${n.toLowerCase()}`,
       `elektriker ${n.toLowerCase()}`, `båttaxi ${n.toLowerCase()}`,
@@ -63,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       images: ogO(island.slug),
       title: `Hantverkare och service på ${n}`,
-      description: `Snickare, elektriker, rörmokare och sjötransport på ${n}.`,
+      description: antal > 0 ? `${antal} företag som själva uppger att de arbetar på ${n}.` : `Vi har inga företag registrerade som själva uppger att de arbetar på ${n}.`,
       url: `https://svalla.se/o/${slug}/hantverkare`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/hantverkare` },
@@ -104,7 +120,7 @@ export default async function IslandHantverkarePage({ params }: Props) {
             background: 'var(--white)', padding: 24, borderRadius: 14,
             fontSize: 14, color: 'var(--txt2)', lineHeight: 1.7,
           }}>
-            Vi har ännu inga kontrollerade uppgifter om hantverkare på {island.name}.
+            Vi har inga företag registrerade som själva uppger att de arbetar på {island.name}.
             {' '}Driver du ett företag här, eller vet du vem som gör vad på ön?
             {' '}Hör av dig till <a href="mailto:info@svalla.se" style={{ color: 'var(--acc-d)' }}>info@svalla.se</a>.
           </div>
@@ -122,9 +138,11 @@ export default async function IslandHantverkarePage({ params }: Props) {
                 <Icon name="info" size={17} stroke={2} />
               </span>
               <div>
-                Uppgifterna kommer från företagens egna webbplatser, öns
-                företagarförening och offentliga register. Varje post visar sin
-                källa och när vi läste den.{' '}
+                {/* "Uppgifterna" gällde också vilken ö ett företag står under, men Delsholmen Entreprenad stod på Möja
+                    efter ett register (sm08-k016; runda 10). Nu sägs vilka uppgifter som kommer från webbplatserna. */}
+                Namn, yrken och kontaktuppgifter kommer från företagens egna
+                webbplatser och, för elföretag, Elsäkerhetsverkets register.
+                Varje post visar sin källa och när vi läste den.{' '}
                 <strong>Vi kan inte garantera att en uppgift är aktuell</strong>{' '}
                , ring och bekräfta innan du beställer arbete. Svalla förmedlar
                 inga uppdrag och har ingen affärsrelation med företagen.
@@ -149,7 +167,7 @@ export default async function IslandHantverkarePage({ params }: Props) {
                   {g.poster.length} {g.poster.length === 1 ? 'företag' : 'företag'}
                 </p>
                 <ul style={{ display: 'grid', gap: 10, margin: 0, padding: 0 }}>
-                  {g.poster.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} />)}
+                  {g.poster.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} utanBat={nasUtanBat(island.getting_there, island.name)} />)}
                 </ul>
               </section>
             ))}
@@ -160,8 +178,20 @@ export default async function IslandHantverkarePage({ params }: Props) {
                   Övriga företag
                 </h2>
                 <ul style={{ display: 'grid', gap: 10, margin: 0, padding: 0 }}>
-                  {ogrupperade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} />)}
+                  {ogrupperade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={slug} utanBat={nasUtanBat(island.getting_there, island.name)} />)}
                 </ul>
+              </section>
+            )}
+
+            {/* Öns egen text om näringsliv och hantverk (fältet hantverk_text, Lag 3 b, Redaktörens beslut 2026-11-17). */}
+            {island.hantverk_text && island.hantverk_text.length > 0 && (
+              <section style={{ marginBottom: 34 }}>
+                <h2 style={{ fontSize: 19, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px' }}>
+                  Näringsliv på {island.name}
+                </h2>
+                {island.hantverk_text.map((t, i) => (
+                  <p key={i} style={{ margin: '0 0 10px', fontSize: 14.5, color: 'var(--txt2)', lineHeight: 1.7 }}>{t}</p>
+                ))}
               </section>
             )}
 
@@ -174,7 +204,7 @@ export default async function IslandHantverkarePage({ params }: Props) {
               </h2>
               <p style={{ margin: '0 0 6px', fontSize: 14.5, color: 'var(--txt2)', lineHeight: 1.65 }}>
                 Bekräfta uppgifterna, lägg till telefonnummer och beskrivning, eller
-                be oss ta bort dig. Kostnadsfritt, och du bestämmer vad som står.
+                be oss ta bort dig. Kostnadsfritt, och du kan rätta och komplettera det som står.
               </p>
               <a href="mailto:info@svalla.se" style={{ fontSize: 14.5, color: 'var(--acc-d)', fontWeight: 600 }}>
                 info@svalla.se
