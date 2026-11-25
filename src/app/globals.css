@@ -1759,3 +1759,8 @@ html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],hea
 
 /* R3. Loggan i sidfoten har samma storlek på alla sidor (28 px hög). Tidigare 22, 26 eller 28 px. */
 footer svg[aria-label="Svalla"]{height:28px!important;width:auto!important}
+
+/* F2b. Max 2026-11-25: i sand-sidhuvudena fick även textlänkar och etiketter (som bara har vit TEXT, ingen vit bakgrund)
+   en ljus ruta bakom sig, t.ex. brödsmulorna "Hem › Stockholms skärgård" och "RESTID" i faktakorten.
+   Bara element som själva hade en vit genomskinlig bakgrund ska bli ljusa kort; övriga får ingen bakgrund. */
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(span,a,div,button)[style*="rgba(255"]:not([style*="background:rgba(255"]):not([style*="background: rgba(255"]){background:transparent!important}
