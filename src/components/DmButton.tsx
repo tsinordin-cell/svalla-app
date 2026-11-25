@@ -26,9 +26,12 @@ import { createClient, getViewer } from '@/lib/supabase'
 export default function DmButton({
   targetUserId,
   targetUsername,
+  iHero = false,
 }: {
   targetUserId: string
   targetUsername: string
+  /** Rund vit knapp över profilens mörka yta (/u/[namn], 2026-11-25). */
+  iHero?: boolean
 }) {
   const supabase = useRef(createClient()).current
   const [visa, setVisa] = useState(false)
@@ -52,7 +55,8 @@ export default function DmButton({
       href={`/meddelanden/ny?to=${targetUserId}`}
       aria-label={`Skicka meddelande till ${targetUsername}`}
       title="Skicka meddelande"
-      style={{
+      className={iHero ? 'hero-rund' : undefined}
+      style={iHero ? { color: '#fff', textDecoration: 'none' } : {
         width: 38, height: 38, borderRadius: '50%',
         background: 'rgba(10,123,140,0.10)',
         color: 'var(--sea)',
@@ -63,7 +67,7 @@ export default function DmButton({
         flexShrink: 0,
       }}
     >
-      <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+      <svg width={iHero ? 19 : 17} height={iHero ? 19 : 17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
       </svg>
     </Link>

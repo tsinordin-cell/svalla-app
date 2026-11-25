@@ -10,9 +10,11 @@ import { isBlocked } from '@/lib/blocks'
 interface Props {
   targetUserId: string
   targetUsername: string
+  /** Rund vit knapp över profilens mörka yta (/u/[namn], 2026-11-25). */
+  iHero?: boolean
 }
 
-export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props) {
+export default function ProfileMoreMenu({ targetUserId, targetUsername, iHero = false }: Props) {
   const [me, setMe]               = useState<string | null>(null)
   const [open, setOpen]           = useState(false)
   const [blocked, setBlocked]     = useState(false)
@@ -37,7 +39,8 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
       <button
         onClick={() => setOpen(true)}
         aria-label="Fler alternativ"
-        style={{
+        className={iHero ? 'hero-rund' : undefined}
+        style={iHero ? undefined : {
           width: 36, height: 36, borderRadius: '50%',
           background: 'rgba(10,123,140,0.08)',
           border: '1px solid rgba(10,123,140,0.15)',
@@ -46,7 +49,7 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername }: Props)
           flexShrink: 0,
         }}
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea)' }}>
+        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: iHero ? '#fff' : 'var(--sea)' }}>
           <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
         </svg>
       </button>

@@ -267,7 +267,7 @@ export default async function PublicProfilePage({
  står redan under profilbilden. Tillbaka-knappen ligger rund över den mörka ytan
  och står kvar i hörnet när man skrollar (.flytande-tillbaka i globals.css).
  Följ, meddelande, notisval och mer-menyn (blockera, rapportera) som låg i raden
- ligger nu i raden med profilbilden. */}
+ ligger nu uppe till höger i den mörka ytan (.u-profil-hero-knappar). */}
  <BackButtonInline fallback="/feed" flytande />
 
  {/* ── Cover hero ── */}
@@ -282,6 +282,17 @@ export default async function PublicProfilePage({
  position: 'absolute', inset: 0,
  background: 'radial-gradient(ellipse 80% 80% at 60% 120%, rgba(45,125,138,0.5) 0%, transparent 60%)',
  }} />
+ {/* 2026-11-25 (Tom): "flytta ner alla ikoner till headern". Notisval,
+ meddelande, Följ och mer-menyn (blockera, rapportera) ligger uppe till
+ höger i den mörka ytan, runda som tillbaka-knappen. De följer med när man
+ skrollar; bara tillbaka-knappen står kvar i hörnet. Syns inte på ens egen
+ profil (komponenterna renderar inget där). */}
+ <div className="u-profil-hero-knappar">
+ <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} iHero />
+ <DmButton targetUserId={userRow.id} targetUsername={userRow.username} iHero />
+ <FollowButton targetUserId={userRow.id} hideCount darkBg />
+ <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} iHero />
+ </div>
  {/* Decorative wave/pattern */}
  <div style={{
  position: 'absolute', bottom: -1, left: 0, right: 0,
@@ -321,14 +332,6 @@ export default async function PublicProfilePage({
  <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>v</span>
  </div>
  )}
- {/* Knapparna som låg i den borttagna raden överst. Komponenterna visar
- ingenting på den egna profilen. */}
- <div style={{ marginLeft: 'auto', marginBottom: 2, display: 'flex', gap: 6, alignItems: 'center', flexShrink: 0 }}>
- <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
- <DmButton targetUserId={userRow.id} targetUsername={userRow.username} />
- <FollowButton targetUserId={userRow.id} hideCount />
- <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
- </div>
  </div>
 
  {/* ── Name + bio + chips ── */}
