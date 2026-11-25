@@ -212,7 +212,8 @@ export default async function FeedPage(
  <div className="feed-time-label" style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
  {getTimeLabel()}
  </div>
- <div style={{ fontSize: 32, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+ {/* 2026-11-24 (Tom): hälsningen 26 px (var 32). Tre rader som förut: tid på dygnet, hälsning, väder. */}
+ <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
  {getGreeting()}, {feedUsername}
  </div>
  </div>
