@@ -1733,7 +1733,10 @@ export default function UpptackExplorer() {
           .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); bottom: calc(50dvh + 12px); }
           .upx-split.sheet-full .upx-locate,
           .upx-split.sheet-full .upx-weather-wrap,
-          .upx-split.sheet-full .upx-sokknapp { display: none; }
+          .upx-split.sheet-full .upx-sokknapp,
+          /* Kartans + och − hamnade ovanpå listans första kort i helskärm
+             (Toms iPhone 2026-11-25). Kartan syns inte då, så knapparna gör inget. */
+          .upx-split.sheet-full .leaflet-control-zoom { display: none; }
         }
       ` }} />
     </div>
