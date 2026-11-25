@@ -641,8 +641,12 @@ export default function UpptackExplorer() {
           setHoveredId(p.id)
           // Scrolla in motsvarande kort
           const el = document.getElementById(`upptack-card-${p.id}`)
-          if (el && listScrollRef.current) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          const lista = listScrollRef.current
+          if (el && lista) {
+            // Skrolla bara listan. scrollIntoView skrollade även sidan runt om,
+            // så filterraden försvann och kartan försköts uppåt på mobil.
+            const top = el.getBoundingClientRect().top - lista.getBoundingClientRect().top + lista.scrollTop
+            lista.scrollTo({ top: top - lista.clientHeight / 2 + el.clientHeight / 2, behavior: 'smooth' })
           }
         })
         markersRef.current.set(p.id, m)
@@ -1657,6 +1661,9 @@ export default function UpptackExplorer() {
           /* Snap-points: cyclas via handle-knappen */
           .upx-split.sheet-min  .upx-list { height: 64px; padding-bottom: 8px; }
           .upx-split.sheet-half .upx-list { height: 50vh; height: 50dvh; }
+          /* Halv- och helskärm går att skrolla med fingret; handtaget står kvar överst. */
+          .upx-split.sheet-half .upx-list,
+          .upx-split.sheet-full .upx-list { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
           /* Halvöppen lista: kartan slutar strax under listans överkant, så att
              kartans mitt är mitten av det du ser. Annars zoomar + och − mot en
              punkt under listan, och vädret visar platsen som listan döljer. */
