@@ -151,3 +151,8 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Båtrutan visas nu bara på öar som gåtts igenom mot lokala förbud. 16 nya öar på main (bland annat Stora Karlsö och Utklippan) har den inte, och ska gås igenom innan den slås på.
 - Tärnudden: förbudet står inte i NFS 2014:7. Skötselplanen hänvisar till 09FS 2006:4, som inte gick att hitta på webben.
 - Västerudde strand försvinner från Sandhamns med barn-FAQ först när sandhamn.sql körs. Kontrollera efter UPDATE.
+
+## Från runda 11 (2026-11-25)
+- Fjäderholmslinjen: main (#592) säger att båten går från Skeppsbron i Gamla stan. Operatörens sida säger att båten på grund av ombyggnaden av Slussen avgår ca 100 meter till vänster om den tidigare platsen, och att linjen gick 1 maj till 13 september 2026. Inget P0 nu (ingen trafik före våren), men läget prövas mot operatören före nästa säsong.
+- Blå Jungfrun (main): "20 bokade" och "15 procent"; Solkust anger nu 24 och ca 20 %.
+- oSok.ts speglar öarnas tags och taglines; sju av batchens öar har fått en post för det. Kontrollera ösökningen efter publiceringen.
