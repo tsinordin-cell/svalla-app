@@ -841,7 +841,9 @@ img {
   left: 0;
   right: 0;
   height: env(safe-area-inset-top, 0px);
-  background: #0d2240;
+  /* Samma toning och storlek som den mörka ytan, så att bandet inte syns som en
+     egen rand när sidan ligger överst. */
+  background: linear-gradient(160deg, #0d2240 0%, #1a4a5e 50%, #0a7b8c 100%) top left / 100% calc(140px + env(safe-area-inset-top, 0px)) no-repeat;
   z-index: 59;
   pointer-events: none;
 }
