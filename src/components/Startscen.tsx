@@ -451,7 +451,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         // SVALLA med optiskt jämn luft (Max 2026-11-25): mellanrum per par S–V, V–A, A–L, L–L och L–A i em,
         // uppmätt mot bläcket i Playfair Display 700 så att alla mellanrum ser lika stora ut. En bokstav i taget.
         if ('letterSpacing' in c) ls.letterSpacing = '0px'
-        const LUFT = [0.05, -0.09, 0.04, 0.05, 0.04]
+        const LUFT = [-0.01, -0.09, 0.04, 0.05, 0.04]
         const bokst = 'SVALLA'.split('')
         const steg = bokst.map((b, i) => c.measureText(b).width + (i < 5 ? stor * (LUFT[i] ?? 0) : 0))
         let tx = W / 2 - steg.reduce((a, b) => a + b, 0) / 2
