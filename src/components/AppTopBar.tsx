@@ -7,6 +7,7 @@ import Icon from '@/components/Icon'
 import { TOPPKNAPP_STIL } from '@/components/toppradStil'
 import ToppradLogga from '@/components/ToppradLogga'
 import ToppradGom from '@/components/ToppradGom'
+import ToppradGenomskinlig from '@/components/ToppradGenomskinlig'
 
 /**
  * Appens topprad, samma på huvudsidorna (menyförslaget, Toms ja 2026-11-23).
@@ -31,6 +32,7 @@ export default function AppTopBar({
   bakgrund,
   huvudrubrik = false,
   onSok,
+  overMorkYta = false,
 }: {
   /** Sidans namn. Utan titel visas loggan som länk till Flöde. */
   titel?: ReactNode
@@ -48,11 +50,14 @@ export default function AppTopBar({
   huvudrubrik?: boolean
   /** Sidan har ett eget sök (Utforska): förstoringsglaset öppnar det i stället för /sok. */
   onSok?: () => void
+  /** Raden ligger genomskinlig med vita ikoner över sidans mörka yta (data-topprad-mork-yta)
+   *  och blir den vanliga raden när man skrollat förbi den (Profil, Tom 2026-11-25). */
+  overMorkYta?: boolean
 }) {
   const Rubrik = huvudrubrik ? 'h1' : 'p'
   return (
     <header
-      className={`app-topbar${doljPaDesktop ? ' app-topbar--dold-desktop' : ''}`}
+      className={`app-topbar${doljPaDesktop ? ' app-topbar--dold-desktop' : ''}${overMorkYta ? ' app-topbar--genomskinlig mork-yta' : ''}`}
       style={{
         display: 'flex', alignItems: 'center', gap: 10,
         minHeight: 44,
@@ -85,6 +90,7 @@ export default function AppTopBar({
       {/* 2026-11-25: raden glider undan när man skrollar ner och kommer tillbaka
           när man skrollar upp. Bara där den ligger fast överst (inte kartan på Utforska). */}
       {sticky && <ToppradGom />}
+      {overMorkYta && <ToppradGenomskinlig />}
     </header>
   )
 }

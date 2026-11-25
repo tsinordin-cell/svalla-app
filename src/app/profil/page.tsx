@@ -345,10 +345,13 @@ export default function ProfilPage() {
           leder till /profil/installningar med tema, språk, konto och Logga ut.
           Redigera ligger nu vid avataren. Huset till startsidan är borta. */}
       {/* 2026-11-24 (Tom): loggan i stället för sidnamnet, som Flöde, Forum och Topplista. */}
-      <AppTopBar variant="profil" doljPaDesktop />
+      {/* 2026-11-25 (Tom): raden ligger genomskinlig med vita ikoner över den mörka ytan
+          och blir vit när man skrollat förbi den. Ytan går upp under raden och
+          telefonens statusrad (klassen profil-hero i globals.css, bara under 1024 px). */}
+      <AppTopBar variant="profil" doljPaDesktop overMorkYta />
 
       {/* ── Cover hero ── */}
-      <div style={{
+      <div className="profil-hero" data-topprad-mork-yta="32" style={{
         height: 140,
         background: 'linear-gradient(160deg, #0d2240 0%, #1a4a5e 50%, #0a7b8c 100%)',
         position: 'relative', overflow: 'hidden',

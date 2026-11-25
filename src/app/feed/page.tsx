@@ -3,10 +3,12 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import FeedTabs from '@/components/FeedTabs'
+import FlodeFlikar from '@/components/FlodeFlikar'
 import StoriesStrip from '@/components/StoriesStrip'
 import LoppisFeedBanner from '@/components/LoppisFeedBanner'
 import NewsletterOptInBanner from '@/components/NewsletterOptInBanner'
 import AppTopBar from '@/components/AppTopBar'
+import ToppradGom from '@/components/ToppradGom'
 import AchievementFeedCard from '@/components/AchievementFeedCard'
 import RealtimeFeedBanner from '@/components/RealtimeFeedBanner'
 import FeedClientBoundary from '@/components/FeedClientBoundary'
@@ -193,13 +195,26 @@ export default async function FeedPage(
  {!SAFE && <SilentBoundary><RealtimeFeedBanner /></SilentBoundary>}
 
  {/* ── Ambient gradient — wraps header + top content ── */}
+ {/* 2026-11-25 (Tom): toppraden och flikraden i ett gemensamt block som ligger fast
+     överst under 1024 px. Vid skroll nedåt glider toppraden undan och flikraden ligger
+     kvar; vid skroll uppåt kommer toppraden tillbaka (klassen flode-topp i globals.css).
+     Blocket ligger utanför den beige ytan, annars följer det med ytan bort; toningen går
+     ändå upp bakom blocket som förut. */}
+ <div className="flode-topp">
+ {/* ── Header ── 2026-11-23 (menyförslaget): gemensam topprad. Huset till startsidan
+     är borta; loggan går till flödet. Från 1024 px döljs raden, sidomenyn har allt. */}
+ <AppTopBar bakgrund="rgba(255,255,255,0.55)" doljPaDesktop sticky={false} />
+ {/* 2026-11-24 (Tom): flikarna Flöde · Forum · Topplista direkt under toppraden, som på
+     Forum och Topplista. Förut låg de under hälsningen och vinterkorten (i FeedTabs), så
+     de bytte plats i höjdled när man gick mellan de tre sidorna. */}
+ <FlodeFlikar aktiv="flode" bakgrund="var(--white)" />
+ <ToppradGom mal=".flode-topp" />
+ </div>
+
  <div className="feed-ambient-top" style={{
  background: 'linear-gradient(180deg, #e9d9c4 0%, #e4dfd1 25%, #dbe6e7 55%, var(--bg) 100%)',
  backgroundAttachment: 'local',
  }}>
- {/* ── Header ── 2026-11-23 (menyförslaget): gemensam topprad. Huset till startsidan
-     är borta; loggan går till flödet. Från 1024 px döljs raden, sidomenyn har allt. */}
- <AppTopBar bakgrund="rgba(255,255,255,0.55)" doljPaDesktop />
 
  {/* ── Greeting ── */}
  {feedUsername && (
@@ -207,7 +222,8 @@ export default async function FeedPage(
  <div className="feed-time-label" style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
  {getTimeLabel()}
  </div>
- <div style={{ fontSize: 32, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+ {/* 2026-11-24 (Tom): hälsningen 26 px (var 32). Tre rader som förut: tid på dygnet, hälsning, väder. */}
+ <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
  {getGreeting()}, {feedUsername}
  </div>
  </div>
