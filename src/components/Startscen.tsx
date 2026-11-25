@@ -13,6 +13,7 @@
  */
 import { useEffect, useRef, useState } from 'react'
 import SvallaLogo from '@/components/SvallaLogo'
+import { ORDBILD_STOR, ORDBILD_STOR_X } from './svallaOrdbild'
 
 const BLA = [0.106, 0.341, 0.627] // #1b57a0
 // Startscenen: mjukare och lite ljusare blå i havet och SVALLA, så att kontrasten mot himlen inte bländar (Max 2026-11-24)
@@ -448,14 +449,10 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         const stor = Math.min(W * 0.11, H * 0.12)
         c.font = `700 ${stor}px ${serif}`
         const ls = c as unknown as { letterSpacing?: string }
-        // SVALLA med jämn luft (Oskar 2026-11-24): 0,12 em och kerning i paren S–V, V–A, A–L, L–L och L–A, en bokstav i taget
         if ('letterSpacing' in c) ls.letterSpacing = '0px'
-        const KERN = [-0.01, -0.08, -0.03, -0.015, -0.07]
-        const bokst = 'SVALLA'.split('')
-        const steg = bokst.map((b, i) => c.measureText(b).width + (i < 5 ? stor * (0.12 + (KERN[i] ?? 0)) : 0))
-        let tx = W / 2 - steg.reduce((a, b) => a + b, 0) / 2
-        c.textAlign = 'left'
-        bokst.forEach((b, i) => { c.fillText(b, tx, H * 0.2); tx += steg[i] ?? 0 })
+        // FÖRHANDSVISNING 2026-11-27: SVALLA som ritade former (svallaOrdbild.ts) med samma låsta mellanrum överallt
+        const k = stor / 1000, bredd = (ORDBILD_STOR_X[1] - ORDBILD_STOR_X[0]) * k
+        c.save(); c.translate(W / 2 - bredd / 2 - ORDBILD_STOR_X[0] * k, H * 0.2); c.scale(k, k); c.fill(new Path2D(ORDBILD_STOR)); c.restore()
         c.textAlign = 'center'
         c.font = `700 ${Math.max(10, stor * 0.17)}px ${sans}`
         if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.05}px`
