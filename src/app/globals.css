@@ -125,6 +125,7 @@
   --route-preview-bg: linear-gradient(135deg, rgba(14,34,56,0.06), rgba(30,92,130,0.08));
   /* ── Nav tokens ── */
   --nav-bg:     rgba(255,255,255,0.86);
+  --nav-yta:    #fffdf8;   /* bottenmenyns heltäckande yta (2026-11-24) */
   --nav-border: rgba(10,123,140,0.10);
   --nav-shadow: 0 -1px 0 rgba(10,123,140,0.06), 0 -4px 28px rgba(0,45,60,0.07);
   /* ── Footer ── */
@@ -295,6 +296,7 @@ img {
   --footer-bg:  #050a14;
   /* ── Nav tokens — dark ── */
   --nav-bg:     rgba(6,14,22,0.96);
+  --nav-yta:    #07111a;
   --nav-border: rgba(74,184,212,0.10);
   --nav-shadow: 0 -1px 0 rgba(74,184,212,0.08), 0 -4px 28px rgba(0,0,0,0.22);
   /* ── Design uplift tokens — dark overrides ── */
@@ -922,35 +924,96 @@ img {
 }
 
 /* ── Nav FAB — två varianter: mobil cirkel, desktop full-width pill ── */
+/* 2026-11-24 (riktning C, "Vattenlinjen"): cirkel i appens sjöblå med loggans segel,
+   utan glans. Den sticker upp ur menyn och står i dyningen (.nav-dyning). Vald sida
+   (/logga) visas med en ring och fet text. Syns bara under 1024 px. */
+.nav-fab-plats {
+  display: block;
+  position: relative;
+  width: 52px;
+  height: 30px;
+}
 .nav-fab-mobile {
+  position: absolute;
+  top: -23px;
+  left: 50%;
+  margin-left: -23px;
   width: 46px;
   height: 46px;
-  border-radius: 15px;
-  background: linear-gradient(180deg, #0fa0b4 0%, #0a7b8c 55%, #075e6d 100%);
+  border-radius: 50%;
+  background: var(--sea-knapp);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 16px rgba(10, 123, 140, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  position: relative;
-  overflow: hidden;
-  margin-top: -10px;
+  box-shadow: 0 5px 14px rgba(20, 63, 92, 0.28);
+  transition: box-shadow 0.16s ease;
 }
-.nav-fab-mobile::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 4px;
-  right: 4px;
-  height: 38%;
-  border-radius: 16px 16px 0 0;
-  background: rgba(255, 255, 255, 0.18);
-  pointer-events: none;
+.nav-fab-wrap[aria-current="page"] .nav-fab-mobile {
+  box-shadow: 0 0 0 3px var(--nav-yta), 0 0 0 5px var(--sea);
 }
 .nav-fab-label {
   font-size: 11px;
-  font-weight: 600;
-  color: var(--ink-muted, #6a8a96);
-  letter-spacing: 0.02em;
+  font-weight: 500;
+  color: var(--txt3);
+}
+.nav-fab-wrap[aria-current="page"] .nav-fab-label {
+  font-weight: 700;
+  color: var(--sea);
+}
+/* Delar som bara finns i bottenmenyn (visas i mediefrågan nedan). */
+.nav-dyning,
+.nav-vag,
+.nav-etikett-mobil {
+  display: none;
+}
+@media (max-width: 1023px) {
+  /* Heltäckande varmvit yta: dyningen ritas i samma färg, och en genomskinlig
+     meny med oskärpa hade fått en annan ton än den. */
+  /* Mörkt tema har en allmän regel för allt med oskärpa (rgba(9,21,35,0.90)); den
+     andra väljaren här vinner över den. */
+  .svalla-nav,
+  [data-theme="dark"] .svalla-nav {
+    background: var(--nav-yta) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .nav-dyning {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: -21px;
+    margin-left: -76px;
+    width: 152px;
+    height: 21px;
+    pointer-events: none;
+  }
+  /* En signal för aktiv flik (vågen) i stället för tre (streck, platta, fet text). */
+  .nav-tab-ikon { background: transparent !important; }
+  .nav-active-bar { display: none !important; }
+  .nav-vag {
+    display: block;
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    margin-left: -15px;
+    width: 30px;
+    height: 11px;
+    pointer-events: none;
+  }
+  .nav-etikett-mobil { display: inline; }
+  .nav-etikett-dator { display: none; }
+  /* Pricken sa bara att man är inloggad hos sig själv. */
+  .nav-online-prick { display: none; }
+}
+@media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
+  .nav-vag { animation: navVag 0.18s ease-out; }
+}
+@keyframes navVag {
+  from { opacity: 0; transform: scaleX(0.4); }
+}
+@media (min-width: 1024px) {
+  /* Sidomenyn har sin egen Logga tur-knapp; platsen för cirkeln ska inte ta höjd där. */
+  .nav-fab-plats { display: none; }
 }
 .nav-fab-desktop {
   display: none;
