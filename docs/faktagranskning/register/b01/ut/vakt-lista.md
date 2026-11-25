@@ -162,3 +162,6 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - ur-01 fynd (Lag 1): Trysundas beskrivning, island-data.ts:11627, har kvar «väggmålningar av Olof Gåhlin från 1711» med bara församlingen (nivå 2) som källa. Stryks; Trysunda ösidan mäts om.
 - ur-02: 50 rader, 49 OK, 1 FEL (Sandhamn toilets = true utan säsong; fältet visas inte, beslut so4s03/so4s04 står). Visas fältet någon gång ska säsongen maj till september följa med.
 - Regelbrott i ur-02: Kontrollanten skickade ett curl-anrop till Nominatim med egen user agent. Anropet gav en felsida, och raden prövades sedan i Chromium. Ingen uppgift bygger på det anropet. Rapporterat till Tom.
+- ub-01: 30 texter, 20 OK, 9 FEL, 1 SAKNAS (löst av Redaktören i Toms Chrome). Donsö-fynden (k003, k025, k026) avgörs av Toms beslut 7; namn, telefon och läge byts tillsammans.
+- ub-02: 29 texter, 24 OK, 4 FEL, 1 SAKNAS. Strömmas webb säger ca 15 min Hovgården–Birka, tabellen 30 min; texten följer tabellen. Pröva igen före säsongen 2027.
+- Rättelserunda 12 startad 2026-11-25 med 21 punkter (redaktor/rattelser-mopp3.tsv). Sedan omkontroll av de ändrade raderna.
