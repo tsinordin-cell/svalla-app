@@ -641,8 +641,12 @@ export default function UpptackExplorer() {
           setHoveredId(p.id)
           // Scrolla in motsvarande kort
           const el = document.getElementById(`upptack-card-${p.id}`)
-          if (el && listScrollRef.current) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          const lista = listScrollRef.current
+          if (el && lista) {
+            // Skrolla bara listan. scrollIntoView skrollade även sidan runt om,
+            // så filterraden försvann och kartan försköts uppåt på mobil.
+            const top = el.getBoundingClientRect().top - lista.getBoundingClientRect().top + lista.scrollTop
+            lista.scrollTo({ top: top - lista.clientHeight / 2 + el.clientHeight / 2, behavior: 'smooth' })
           }
         })
         markersRef.current.set(p.id, m)
@@ -1617,6 +1621,9 @@ export default function UpptackExplorer() {
             display: block;
             position: relative;
             height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px));
+            /* dvh = den synliga höjden. 100vh räknar på iPhone med Safaris adressfält,
+               så listan blev högre än skärmen och handtaget hamnade utanför. */
+            height: calc(100dvh - var(--upx-header-h, 190px) - var(--nav-h, 64px));
           }
 
           /* Karta = full höjd bakom sheet */
@@ -1653,13 +1660,18 @@ export default function UpptackExplorer() {
 
           /* Snap-points: cyclas via handle-knappen */
           .upx-split.sheet-min  .upx-list { height: 64px; padding-bottom: 8px; }
-          .upx-split.sheet-half .upx-list { height: 50vh; }
+          .upx-split.sheet-half .upx-list { height: 50vh; height: 50dvh; }
+          /* Halv- och helskärm går att skrolla med fingret; handtaget står kvar överst. */
+          .upx-split.sheet-half .upx-list,
+          .upx-split.sheet-full .upx-list { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
           /* Halvöppen lista: kartan slutar strax under listans överkant, så att
              kartans mitt är mitten av det du ser. Annars zoomar + och − mot en
              punkt under listan, och vädret visar platsen som listan döljer. */
           .upx-map { transition: height 280ms cubic-bezier(0.32, 0.72, 0, 1); }
-          .upx-split.sheet-half .upx-map { height: calc(100% - 50vh + 24px); }
-          .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px) - 24px); }
+          .upx-split.sheet-half .upx-map { height: calc(100% - 50vh + 24px); height: calc(100% - 50dvh + 24px); }
+          /* Helskärm räknas från listans egen ruta, inte skärmen: överkanten kan
+             då aldrig hamna ovanför filterraden, hur webbläsaren än räknar höjd. */
+          .upx-split.sheet-full .upx-list { height: calc(100% - 24px); }
 
           /* När minimerat: göm scrollande innehåll så bara handle + count syns */
           .upx-split.sheet-min .upx-list > *:not(.upx-sheet-handle):not(.upx-list-meta) {
@@ -1681,6 +1693,14 @@ export default function UpptackExplorer() {
             margin: 4px 0 2px;
             cursor: pointer;
             touch-action: manipulation;
+            /* Handtaget står kvar överst även om listan skrollats, t.ex. när ett
+               tryck på en kartnål skrollar fram kortet. Annars kommer man inte
+               tillbaka till kartan. */
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            flex-shrink: 0;
+            background: var(--white, #fff);
           }
           .upx-sheet-grip {
             display: block;
@@ -1710,7 +1730,7 @@ export default function UpptackExplorer() {
              här mot 0 på desktop). max() tar det som råkar vara högst. */
           .upx-weather-wrap { bottom: max(76px, calc(var(--fb-top) + 10px)); right: 12px; }
           .upx-split.sheet-half .upx-locate,
-          .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); }
+          .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); bottom: calc(50dvh + 12px); }
           .upx-split.sheet-full .upx-locate,
           .upx-split.sheet-full .upx-weather-wrap,
           .upx-split.sheet-full .upx-sokknapp { display: none; }
