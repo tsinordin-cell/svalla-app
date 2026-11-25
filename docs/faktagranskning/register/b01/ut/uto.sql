@@ -43,11 +43,11 @@ update restaurants set description = 'Gruvbryggan är den mest trafikerade av Wa
 -- FÖRE: 'Lilla Haket & Ninas Bod är ett kafé i Gruvbyn på Utö, Haninge kommun.'
 update restaurants set description = 'Platsen ligger vid Bygatan i Gruvbyn på Utö, Haninge kommun. I Gruvbyn finns enligt Skärgårdsstiftelsen bland annat gästhamn, turistbyrå, livsmedelsbutik och bageri.', updated_at = now() where slug = 'lilla-haket-ninas-bod' and description = 'Lilla Haket & Ninas Bod är ett kafé i Gruvbyn på Utö, Haninge kommun.';
 
--- lilla-haket-ninas-bod.name — uto-0401 (runda 11, sr03-k005; Redaktörens beslut: ta bort namnet eller belägg det med verksamheten)
--- Rättad 2026-11-25: namnet «Lilla Haket & Ninas Bod» står bara i OpenStreetMap, som bara belägger läge. Ingen sida från verksamheten hittades i dag heller (sökt 2026-11-25; bara en restaurangguide, som är förbjuden som källa). Namnet ersätts med läget, som OpenStreetMap får belägga. Sluggen ändras inte (adressen /upptack/lilla-haket-ninas-bod står kvar).
+-- lilla-haket-ninas-bod.hidden_at — uto-0401 (runda 12, ub01-k016; Redaktörens beslut 2026-11-25: posten döljs i stället för att byta namn)
+-- Rättad 2026-11-25 (runda 12): runda 11 bytte namnet mot adressen «Bygatan i Gruvbyn». En adress som namn gör posten missvisande (ub01-k016). Namnet «Lilla Haket & Ninas Bod» står bara i OpenStreetMap, som bara belägger läge, och inget namn är belagt av verksamheten eller en myndighet (sökt 2026-11-17 och 2026-11-25). Posten döljs; inget raderas, och namn och slug står kvar. Satsen körs bara efter Toms ja (uto.tom.md).
 -- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9698715&lon=18.3247173&format=jsonv2&zoom=18&addressdetails=1&accept-language=sv — ""road":"Bygatan","hamlet":"Gruvbyn","municipality":"Haninge kommun"" (läst 2026-10-29; läge, inte namn)
--- FÖRE: 'Lilla Haket & Ninas Bod'
-update restaurants set name = 'Bygatan i Gruvbyn', updated_at = now() where slug = 'lilla-haket-ninas-bod' and name = 'Lilla Haket & Ninas Bod';
+-- FÖRE: hidden_at = null, hidden_reason = null, name = 'Lilla Haket & Ninas Bod'
+update restaurants set hidden_at = now(), hidden_reason = 'Inget namn är belagt av verksamheten eller en myndighet (faktagranskning batch 01, uto-0401, ub01-k016)', updated_at = now() where slug = 'lilla-haket-ninas-bod' and hidden_at is null;
 
 -- bakgarden-uto.description — uto-0420, uto-0421, uto-0422 (OBELAGD: källan explorearchipelago.com omdirigerar till skargardsstiftelsen.se); namnet: uto.tom.md
 -- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9699&lon=18.3255&format=jsonv2&zoom=18&addressdetails=1&accept-language=sv — ""hamlet":"Gruvbyn","municipality":"Haninge kommun"" (läst 2026-10-29)
