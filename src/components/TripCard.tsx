@@ -9,6 +9,7 @@ import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
 import TripShareModal from './TripShareModal'
+import TurBildvisare from './TurBildvisare'
 import ShareTripModal from './ShareTripModal'
 import Icon from '@/components/Icon'
 import RouteMapSVG from './RouteMapSVG'
@@ -640,8 +641,25 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         <ShareTripModal trip={trip} onClose={() => setShowShareDM(false)} />
       )}
 
-      {/* Lightbox — portal till document.body för att undvika transform-stacking-context */}
-      {lightbox && createPortal(
+      {/* Bilder: helskärmsvisaren (2026-11-24). Kartan har kvar rutan nedan. */}
+      {lightbox === 'photo' && allPhotos.length > 0 && (
+        <TurBildvisare
+          bilder={allPhotos}
+          start={photoIdx}
+          onByt={setPhotoIdx}
+          onStang={() => setLightbox(null)}
+          namn={username}
+          rad={[timeAgoKompakt(trip.created_at), trip.location_name].filter(Boolean).join(' · ')}
+          tal={[
+            trip.distance >= 0.1 ? `${trip.distance.toFixed(1).replace('.', ',')} NM` : null,
+            (trip.duration ?? 0) > 0 ? formatDurationMin(trip.duration) : null,
+          ].filter(Boolean) as string[]}
+          text={caption || null}
+        />
+      )}
+
+      {/* Kartan i en ruta — portal till document.body för att undvika transform-stacking-context */}
+      {lightbox === 'map' && createPortal(
         <>
           <style>{`
             @keyframes _lb_fade { from { opacity:0 } to { opacity:1 } }
@@ -699,66 +717,6 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
-
-              {/* Photo */}
-              {lightbox === 'photo' && (
-                <>
-                  <div
-                    className="lb-scroll"
-                    ref={el => { if (el) el.scrollLeft = photoIdx * el.clientWidth }}
-                    onScroll={e => {
-                      const el = e.currentTarget
-                      const idx = Math.round(el.scrollLeft / el.clientWidth)
-                      if (idx !== photoIdx) setPhotoIdx(idx)
-                    }}
-                    style={{
-                      flex: 1,
-                      overflowX: 'auto', overflowY: 'hidden',
-                      scrollSnapType: 'x mandatory',
-                      display: 'flex',
-                      WebkitOverflowScrolling: 'touch',
-                      minHeight: 0,
-                    }}
-                  >
-                    {allPhotos.map((src, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          flexShrink: 0, width: '100%', height: '100%',
-                          scrollSnapAlign: 'start',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          background: '#000',
-                          minHeight: 280,
-                        }}
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={src}
-                          alt=""
-                          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {allPhotos.length > 1 && (
-                    <div style={{
-                      padding: '10px 0',
-                      display: 'flex', justifyContent: 'center', gap: 6,
-                      background: 'rgb(8,20,38)',
-                    }}>
-                      {allPhotos.map((_, i) => (
-                        <div key={i} style={{
-                          height: 5,
-                          width: i === photoIdx ? 16 : 5,
-                          borderRadius: 3,
-                          background: i === photoIdx ? '#fff' : 'rgba(255,255,255,0.30)',
-                          transition: 'width 0.2s ease',
-                        }} />
-                      ))}
-                    </div>
-                  )}
-                </>
-              )}
 
               {/* Map */}
               {lightbox === 'map' && routePoints && (
