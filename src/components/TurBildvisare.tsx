@@ -79,6 +79,10 @@ export default function TurBildvisare({
       aria-label={`Bild ${i + 1} av ${bilder.length} från ${namn}s tur`}
       className="tbv"
       style={{ position: 'fixed', inset: 0, zIndex: 2000, background: `rgba(5,11,18,${0.96 * tona})`, overflow: 'hidden', touchAction: 'pinch-zoom' }}
+      // Klick i en portal bubblar ändå upp genom React-trädet till turkortet, som då
+      // öppnar tursidan. Uppmätt live 2026-11-24: tryck utanför bilden stängde visaren
+      // OCH bytte sida. Därför stannar alla klick här.
+      onClick={e => e.stopPropagation()}
       onTouchStart={e => {
         // Två fingrar = nyp för att zooma (webbläsarens egen zoom). Då ska inget dras.
         if (e.touches.length > 1) { tryck.current = null; setDrag(0); return }
