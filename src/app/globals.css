@@ -812,8 +812,8 @@ img {
   top: calc(env(safe-area-inset-top, 0px) + 12px);
   left: 14px;
   z-index: 60;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background: rgba(10, 30, 50, 0.45);
@@ -834,7 +834,7 @@ img {
 }
 /* Profilsidan /u/[namn] (2026-11-25, Tom): notisval, meddelande, Följ och mer-menyn
    ligger uppe till höger i den mörka ytan, runda som tillbaka-knappen.
-   De följer med sidan när man skrollar. */
+   De följer med sidan när man skrollar. 44 px är minsta tryckyta enligt Apple. */
 .u-profil-hero-knappar {
   position: absolute;
   z-index: 2;
@@ -845,8 +845,8 @@ img {
   align-items: center;
 }
 .hero-rund {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.22);
   background: rgba(10, 30, 50, 0.45);
@@ -863,7 +863,7 @@ img {
 }
 /* Följ-knappen har sin stil inline; här får den samma höjd som de runda. */
 .u-profil-hero-knappar button.press-feedback {
-  height: 40px;
+  height: 44px;
   padding: 0 20px !important;
 }
 
