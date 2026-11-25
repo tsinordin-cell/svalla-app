@@ -1,0 +1,4 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-25)
+ur04-k002	lag3a-N019	FEL	Godtas. Meningen om allemansrätten stryks (utfyllnad), och så gör meningen om att vi inte hittat någon uppgift om begränsat tillträde. Den är ingen belagd uppgift, och marken ägs av Fortifikationsverket. Texten är ny i batchen och står inte på sajten, så det finns ingen P0 i produktion. Rättad av Redaktören i lag3-a.edits.json post 22 (runda 14, bara strykningar); prövas av en Kontrollant i ub-05.
+ur04-k004	uto-0401	FEL	Väntat. Posten döljs först när uto.sql körs efter Toms ja. Vakten prövar raden i produktion efter körningen.
+övriga		OK	4 rader OK; ub-04 1 rad OK.

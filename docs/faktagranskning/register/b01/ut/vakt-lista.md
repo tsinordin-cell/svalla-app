@@ -167,3 +167,11 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - Rättelserunda 12 startad 2026-11-25 med 21 punkter (redaktor/rattelser-mopp3.tsv). Sedan omkontroll av de ändrade raderna.
 - Fjärde kontrollen (2026-11-25): ur-03 25 OK, 6 FEL; ub-03 8 OK, 3 FEL; 0 SAKNAS, ingen P0. ub-03:s tre FEL gällde poster som en senare post skriver över (slutkodens text OK). artefakter.py ska hoppa över överskrivna poster. Dykarbaren: sidan anger säsong maj till september men tider från 11 juni.
 - Rättelserunda 13 startad med 6 punkter (redaktor/rattelser-mopp4.tsv): Möjas mening om varvsnäringen stryks (utfyllnad), Yttre Gårdens «närmast» stryks, fyra registerrader.
+
+## Vakten (2026-11-25)
+- Femte kontrollen: ur-04 4 OK, 2 FEL; ub-04 1 OK; ub-05 1 FEL. Rättat i runda 14 (bara strykningar på Yttre Gården): allemansrättsmeningen (utfyllnad), «inte hittat någon uppgift om begränsat tillträde» och «inte hittat någon brygga» (OSM visar sex bryggor). Slutlig text = ub-05:s text minus strykningen (MÄTT, strängjämförelse).
+- Yttre Gårdens tips på main: «inga publicerade förbud … Därför gäller allemansrätten». Marken ägs av Fortifikationsverket; skyddsobjekt publiceras inte i lista (Länsstyrelsen). Ingen nivå 1-källa visar ett förbud, så ingen P0, men texten bör prövas i nästa batch.
+- Slutkopia svalla-slut6 (main 0672f0b, som är dagens main): 351 poster, prebuild 0, tsc 0, verify-claims 0, vitest 997/997.
+- Lag 3 (MÄTT, lag3_10.py): 1 296 sidor, 0 under 95 % av main, lägst 98,0 % (Ljusterö och Vrångö ösidor). Med databasändringarna inlagda i mätdatabasen: samma utfall.
+- faktaregister --mat med färsk platsexport efter databasändringarna (simulerad): tre BRIST, alla förklarade. dog_friendly på Utö och Vaxholm är struket (obelagt, visas inte: inget i src läser fältet). Husarös platstext 265 mot 349: fyra platser på Finnhamn (109 ord) räknas inte längre med Toms radie 1,5 km; Husarös egna platser gick från 240 till 265 ord.
+- Databasen: 113 satser, 110 träffar exakt sina rader (SELECT 2026-11-25), 3 redan gjorda (P0 3 november). Grinda södra bryggans villkor rättat till dagens text. PUB Alma och Glassigaste döljs enligt Toms beslut 6 (ingen bekräftelse före PR). Underlag: ut/databasandringar-b01.md.

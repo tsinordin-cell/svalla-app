@@ -165,12 +165,14 @@ update restaurants set hidden_at = now(), hidden_reason = 'Dubblett av Trouville
 -- PUB Alma (register: sandhamn-0410–0416) och Sandhamns Glassigaste Ställe (register: sandhamn-0403–0409): ingen tillåten källa hittad
 -- 2026-11-09 (sökt efter egen webbplats, Instagram och kommunens sidor; bara restaurangguider, som är förbjudna som källa).
 -- Körs bara om ingen har bekräftat posten före batch 01:s PR (Toms beslut 6). Redaktören avgör.
--- update restaurants set hidden_at = now(), hidden_reason = 'Ingen tillåten källa bekräftar att puben finns (Toms beslut 6, faktagranskning b01)'
---   where slug = 'pub-alma-sandhamn' and hidden_at is null;
+-- Redaktörens beslut 2026-11-25 (Toms beslut 6): ingen har bekräftat posten före batchens PR, så satsen körs.
+update restaurants set hidden_at = now(), hidden_reason = 'Ingen tillåten källa bekräftar att puben finns (Toms beslut 6, faktagranskning b01)'
+  where slug = 'pub-alma-sandhamn' and hidden_at is null;
 
 -- Körs bara om ingen har bekräftat posten före batch 01:s PR (Toms beslut 6). Redaktören avgör.
--- update restaurants set hidden_at = now(), hidden_reason = 'Ingen tillåten källa bekräftar att glasscaféet finns (Toms beslut 6, faktagranskning b01)'
---   where slug = 'sandhamns-glassigaste-stalle' and hidden_at is null;
+-- Redaktörens beslut 2026-11-25 (Toms beslut 6): ingen har bekräftat posten före batchens PR, så satsen körs.
+update restaurants set hidden_at = now(), hidden_reason = 'Ingen tillåten källa bekräftar att glasscaféet finns (Toms beslut 6, faktagranskning b01)'
+  where slug = 'sandhamns-glassigaste-stalle' and hidden_at is null;
 
 -- ════════════════════════════════════════════════════════════════════════
 -- OMARBETE 4B (Granskaren/Skribenten 2026-11-10)
