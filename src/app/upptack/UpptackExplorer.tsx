@@ -26,11 +26,11 @@ import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import { kartytaFor } from '@/lib/kartvy'
 import { tagPlatssvar } from './platsdata'
 import { hamtaLeaflet } from './leaflet'
+import Icon from '@/components/Icon'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { STANDARD_VADERPUNKT } from '@/lib/weatherGrid'
 import { samladVaderpunkt } from '@/lib/samladVaderpunkt'
 import { track } from '@/lib/analytics-events'
-import AppTopBar from '@/components/AppTopBar'
 import { platsKategori, type PlatsKategori } from '@/lib/platskategori'
 
 // ── Types ────────────────────────────────────────────────────────────────
@@ -878,10 +878,10 @@ export default function UpptackExplorer() {
   return (
     <div className="upx-shell" ref={shellRef}>
       <div ref={toppRef} style={{ flexShrink: 0 }}>
-      {/* Samma topprad som övriga huvudsidor (menyförslaget 2026-11-23). Från 1024 px
-          döljs den; sidomenyn har sök, meddelanden och notiser. */}
-      {/* 2026-11-24 (Tom): loggan i stället för sidnamnet, som Flöde, Forum och Topplista. */}
-      <AppTopBar sticky={false} doljPaDesktop onSok={oppnaSok} />
+      {/* 2026-11-25 (Tom): ingen topprad här, så att kartan får mer höjd. Sök ligger
+          som en rund knapp på kartan (upx-sokknapp). Meddelanden och notiser nås via
+          Profil i bottenmenyn, som får en prick när något är oläst (Nav.tsx). Från
+          1024 px har sidomenyn sök, meddelanden och notiser som förut. */}
       {/* Header med region-toggle + filter-dropdown + sök */}
       <header className="upx-header">
         {/* En rad (2026-11-23, mer karta): kategorifiltret först, regionerna
@@ -1112,6 +1112,18 @@ export default function UpptackExplorer() {
             </button>
           )}
 
+          {/* Sök på kartan (mobil): rund knapp överst till höger, ovanför + och −.
+              Öppnar sökfältet i rubriken, som filtrerar kartan och listan på namn.
+              Över 900 px står sökfältet alltid framme och knappen döljs. */}
+          <button
+            type="button"
+            className="upx-sokknapp"
+            onClick={oppnaSok}
+            aria-label="Sök plats, ö eller hamn på kartan"
+          >
+            <Icon name="search" size={20} stroke={2} />
+          </button>
+
           {/* "Visa min plats" — bottom-left på kartan */}
           <button
             type="button"
@@ -1161,8 +1173,8 @@ export default function UpptackExplorer() {
           border-bottom: 1px solid rgba(10, 123, 140, 0.08);
           z-index: 10;
         }
-        /* 2026-11-23: platsen för de fasta ikonerna uppe till höger (84 px) behövs inte
-           längre. Ikonerna ligger i toppraden ovanför (AppTopBar). */
+        /* 2026-11-25: ingen topprad ovanför längre (Tom). Sök finns på kartan,
+           meddelanden och notiser via Profil i bottenmenyn. */
         .upx-filterrow {
           display: flex;
           align-items: center;
@@ -1499,6 +1511,9 @@ export default function UpptackExplorer() {
           background: #b8d4dc;
         }
 
+        /* Sökknappen på kartan (2026-11-25). Bara på mobil, se mediefrågan nedan. */
+        .upx-sokknapp { display: none; }
+
         /* Locate-knapp — bottom-left på kartan */
         .upx-locate {
           position: absolute;
@@ -1560,6 +1575,29 @@ export default function UpptackExplorer() {
         @media (max-width: 900px) {
           .upx-mob-tabs { display: none !important; }
           .upx-search:not(.has-query) { display: none; }
+          /* Rund sökknapp, 44 px tryckyta, i samma vita stil som + och −.
+             Leaflets +/− flyttas ner under den så att kartknapparna står i en kolumn. */
+          .upx-sokknapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 600;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--white, #fff);
+            color: var(--sea, #1e5c82);
+            border: 1px solid rgba(10, 123, 140, 0.15);
+            box-shadow: 0 4px 14px rgba(10, 30, 50, 0.15);
+            cursor: pointer;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+          }
+          .upx-sokknapp:active { background: var(--sea, #1e5c82); color: #fff; }
+          .upx-map .leaflet-top.leaflet-right { top: 54px; }
           .upx-empty-cta-dator { display: none; }
           .upx-sok-hela {
             display: block;
@@ -1674,7 +1712,8 @@ export default function UpptackExplorer() {
           .upx-split.sheet-half .upx-locate,
           .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); }
           .upx-split.sheet-full .upx-locate,
-          .upx-split.sheet-full .upx-weather-wrap { display: none; }
+          .upx-split.sheet-full .upx-weather-wrap,
+          .upx-split.sheet-full .upx-sokknapp { display: none; }
         }
       ` }} />
     </div>

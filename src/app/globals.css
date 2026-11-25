@@ -1097,7 +1097,8 @@ img {
 /* Delar som bara finns i bottenmenyn (visas i mediefrågan nedan). */
 .nav-dyning,
 .nav-vag,
-.nav-etikett-mobil {
+.nav-etikett-mobil,
+.nav-olast-prick {
   display: none;
 }
 @media (max-width: 1023px) {
@@ -1138,6 +1139,21 @@ img {
   .nav-etikett-dator { display: none; }
   /* Pricken sa bara att man är inloggad hos sig själv. */
   .nav-online-prick { display: none; }
+  /* 2026-11-25 (Tom): olästa notiser eller meddelanden. Samma orange som räknarna
+     på klockorna, med en kant i menyns färg så att den syns mot profilbilden. */
+  .nav-olast-prick {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--acc-knapp, #b5591a);
+    border: 2px solid var(--nav-yta);
+    box-sizing: content-box;
+    pointer-events: none;
+  }
 }
 @media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
   .nav-vag { animation: navVag 0.18s ease-out; }
