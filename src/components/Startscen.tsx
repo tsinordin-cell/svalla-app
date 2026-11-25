@@ -567,7 +567,12 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
     }
     bygg()
     let bygger = 0
-    const ro = new ResizeObserver(() => { cancelAnimationFrame(bygger); bygger = requestAnimationFrame(bygg) })
+    // Bygg om först när storleken har slutat ändras. Medan fönstret dras sträcks den gamla duken med CSS,
+    // annars byggs alla masker och texturer om varje bildruta och heron hackar (Max 2026-11-25).
+    const ro = new ResizeObserver(() => {
+      if (Math.max(8, el.clientWidth) === W && Math.max(8, el.clientHeight) === H) return
+      clearTimeout(bygger); bygger = window.setTimeout(bygg, 180)
+    })
     // Rita om texten när Playfair Display har laddats, annars kan SVALLA hamna i ett reservtypsnitt
     let lever = true
     if (varld && document.fonts) document.fonts.load("700 64px 'Playfair Display'").then(() => { if (lever && W > 8) ritaText() }).catch(() => {})
@@ -810,7 +815,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       raf = requestAnimationFrame(ruta)
     }
     raf = requestAnimationFrame(ruta)
-    return () => { lever = false; cancelAnimationFrame(raf); cancelAnimationFrame(bygger); ro.disconnect(); }
+    return () => { lever = false; cancelAnimationFrame(raf); clearTimeout(bygger); ro.disconnect(); }
   }, [])
 
   useEffect(() => () => ljudRef.current?.stang(), [])
