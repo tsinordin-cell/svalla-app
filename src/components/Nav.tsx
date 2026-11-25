@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
-import SvallaLogo, { SvallaSegel } from '@/components/SvallaLogo'
+import SvallaLogo from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 import { TOPPKNAPP_STIL } from '@/components/toppradStil'
 import { countUnreadMessages } from '@/lib/dm'
@@ -356,10 +356,12 @@ export default function Nav() {
               style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 2, textDecoration: 'none', minHeight: 44, WebkitTapHighlightColor: 'transparent' }}
             >
               {/* Platsen är lika hög som flikarnas ikonruta (30 px), så texten under hamnar
-                  på samma rad som de andra. Cirkeln med loggans segel sticker upp ur den. */}
+                  på samma rad som de andra. Cirkeln sticker upp ur den.
+                  Plus, inte loggans segel: seglet betyder redan Segling och Sandhamn på
+                  samma skärmar (forumet), och loggan står i toppraden. */}
               <span className="nav-fab-plats">
                 <span className="nav-fab-mobile">
-                  <SvallaSegel size={25} color="#fff" />
+                  <Icon name="plus" size={22} stroke={2.4} style={{ color: '#fff' }} />
                 </span>
               </span>
               <span className="nav-fab-label">Logga tur</span>
@@ -411,11 +413,12 @@ export default function Nav() {
                 {tab.label}
               </span>
             )}
-            {/* Aktiv flik i bottenmenyn: två små vågor på vattenlinjen, samma våg som i loggan. */}
+            {/* Aktiv flik i bottenmenyn: en krusning på vattenlinjen, samma våg som i loggan.
+                Låg (drygt 2 px) så att den läses som en del av linjen, inte som något ovanför ikonen. */}
             {active && (
               <svg className="nav-vag" viewBox="0 0 30 11" aria-hidden="true">
                 <rect x="0" y="5" width="30" height="3" fill="var(--nav-yta)" />
-                <path d="M1,6.5 Q8,-1 15,6.5 Q22,-1 29,6.5" fill="none" stroke="var(--sea)" strokeWidth="2.3" strokeLinecap="round" />
+                <path d="M1,6.5 Q8,2 15,6.5 Q22,2 29,6.5" fill="none" stroke="var(--sea)" strokeWidth="2" strokeLinecap="round" />
               </svg>
             )}
             {active && (

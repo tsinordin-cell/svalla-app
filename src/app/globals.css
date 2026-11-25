@@ -924,7 +924,7 @@ img {
 }
 
 /* ── Nav FAB — två varianter: mobil cirkel, desktop full-width pill ── */
-/* 2026-11-24 (riktning C, "Vattenlinjen"): cirkel i appens sjöblå med loggans segel,
+/* 2026-11-24 (riktning C, "Vattenlinjen"): cirkel i appens sjöblå med ett plus,
    utan glans. Den sticker upp ur menyn och står i dyningen (.nav-dyning). Vald sida
    (/logga) visas med en ring och fet text. Syns bara under 1024 px. */
 .nav-fab-plats {
