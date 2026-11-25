@@ -165,6 +165,7 @@ const PATHS = {
   lifebuoy:     '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.6"/><path d="m5.6 5.6 3.9 3.9"/><path d="m14.5 14.5 3.9 3.9"/><path d="m18.4 5.6-3.9 3.9"/><path d="m9.5 14.5-3.9 3.9"/>',
   plane:        '<path d="M17.8 19.2 16 11l3.5-3.5a2.1 2.1 0 0 0-3-3L13 8 4.8 6.2a1 1 0 0 0-1 1.6l5.4 4-2.4 3.2-2.6-.6a.8.8 0 0 0-.8 1.3l2.6 2.6a.8.8 0 0 0 1.3-.2l.6-2.6 3.2-2.4 4 5.4a1 1 0 0 0 1.6-1z"/>',
   train:        '<rect x="4" y="3" width="16" height="13" rx="2"/><path d="M4 10h16"/><circle cx="8.5" cy="13" r=".8"/><circle cx="15.5" cy="13" r=".8"/><path d="m6 21 2-3"/><path d="m18 21-2-3"/><path d="M7 21h10"/>',
+  tag:          '<path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>',
   wine:         '<path d="M8 3h8l-.7 6.2a3.4 3.4 0 0 1-6.6 0z"/><path d="M12 12.6V20"/><path d="M8.5 20h7"/>',
 } as const
 
@@ -173,7 +174,9 @@ export type IconName = keyof typeof PATHS
 /** Svallas egna målade ikoner (Max och Oskar 2026-11-24): målade med samma pensel som startscenen,
  *  marinblått bläck och orange detaljer. Ligger som bilder i public/ikoner/<namn>.webp.
  *  Ikoner i gränssnittet (pilar, sök, kalender, karta med flera) behåller den enkla linjen. */
-const MALADE = new Set(['anchor', 'bathtub', 'beach', 'bed', 'beer', 'bike', 'binoculars', 'bird', 'castle', 'child', 'coffee', 'fire', 'fish', 'fishing', 'fuel', 'island', 'leaf', 'lifebuoy', 'mountain', 'paddle', 'sailboat', 'ship', 'shower', 'sun', 'swim', 'tent', 'tower', 'tree', 'utensils', 'walk', 'waves', 'wine'])
+const MALADE = new Set(['anchor', 'bathtub', 'beach', 'bed', 'beer', 'bike', 'binoculars', 'bird', 'castle', 'child', 'cloud', 'coffee', 'compass', 'fire', 'fish', 'fishing', 'fog', 'fuel', 'island', 'leaf', 'lifebuoy', 'map', 'mountain', 'navigation', 'paddle', 'pin', 'rain', 'sailboat', 'ship', 'shower', 'snow', 'sun', 'swim', 'tag', 'tent', 'tower', 'tree', 'utensils', 'walk', 'waves', 'wind', 'wine', 'wrench'])
+// 2026-11-25 (Thomas): vind, skiftnyckel, kompass, navigering, nål, karta, prislapp, moln, regn, snö och dimma målade,
+// så att forumets kategorier, flödets vinterkort och vädret på ösidorna inte blandar målade och linjeritade ikoner.
 
 /** Alla giltiga ikonnamn i runtime — emojiToIcon använder den för att känna
  *  igen datafält som redan innehåller ett ikonnamn istället för en emoji. */
