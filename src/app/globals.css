@@ -903,8 +903,10 @@ img {
     top: 0;
     transition: transform 0.22s ease;
   }
+  /* 4 px extra: den aktiva flikens understrykning sticker ut en halv pixel under
+     blocket och syntes annars som en tunn linje överst. */
   .flode-topp.app-topbar--gomd {
-    transform: translateY(-100%);
+    transform: translateY(calc(-100% - 4px));
   }
   /* TESTGREN: gamla beteendet via ?fore=1 */
   .flode-topp.test-fore.app-topbar--gomd {
