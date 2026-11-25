@@ -606,7 +606,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* Om ön */}
  <section style={{ marginBottom: 36 }}>
- <SectionHeader icon="book" title={`Om ${island.name}`} />
+ <SectionHeader icon="island" title={`Om ${island.name}`} />
  {/* Fyra stycken syns, resten bakom "Läs hela texten". Mätt 2026-09-19: 18 stycken
      / 3 435 px på Grinda i telefonbredd. Inget innehåll tas bort — se Hopfallbart. */}
  <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -648,7 +648,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Aktiviteter */}
  {island.activities.length > 0 && (
  <section style={{ marginBottom: 52 }}>
- <SectionHeader icon="target" title="Se & Göra" />
+ <SectionHeader icon="tower" title="Se & Göra" />
  <div style={{
  display: 'grid',
  gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
@@ -874,7 +874,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Ta sig dit */}
  {island.getting_there.length > 0 && (
  <section data-vidareklick="resa" style={{ marginBottom: 52 }}>
- <SectionHeader icon="map" title="Ta sig dit" />
+ <SectionHeader icon="ship" title="Ta sig dit" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
  {island.getting_there.map(t => (
  <div key={t.method} style={{
@@ -1034,7 +1034,7 @@ export default async function IslandPage({ params }: Props) {
  if (matchingActivities.length === 0) return null
  return (
  <section style={{ marginBottom: 36 }}>
- <SectionHeader icon="sparkles" title="Vad du kan göra här" />
+ <SectionHeader icon="paddle" title="Vad du kan göra här" />
  <div style={{
  display: 'flex', flexWrap: 'wrap', gap: 8,
  }}>
@@ -1073,7 +1073,7 @@ export default async function IslandPage({ params }: Props) {
         background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
        }}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><path d="M2 12h20M2 12c3-4 5-4 8 0s5 4 8 0M2 18h20M2 18c3-4 5-4 8 0s5 4 8 0"/></svg>
+        <Icon name="beach" size={28} />
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Bad &amp; stränder</div>
@@ -1094,7 +1094,7 @@ export default async function IslandPage({ params }: Props) {
         background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
        }}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><path d="M12 19V5m0 0l-7 7m7-7 7 7"/></svg>
+        <Icon name="ship" size={28} />
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Komma dit</div>
@@ -1115,7 +1115,7 @@ export default async function IslandPage({ params }: Props) {
         background: 'rgba(45,125,138,0.10)', color: 'var(--sea)',
         display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
        }}>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" style={{ width: 20, height: 20 }}><circle cx="12" cy="8" r="4"/><path d="M6 20v-2a6 6 0 0 1 12 0v2"/></svg>
+        <Icon name="child" size={28} />
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Med barn</div>
@@ -1183,7 +1183,7 @@ export default async function IslandPage({ params }: Props) {
    {/* Related islands */}
  {relatedIslands.length > 0 && (
  <section style={{ marginBottom: 0 }}>
- <SectionHeader icon="pin" title="Besök också" />
+ <SectionHeader icon="sailboat" title="Besök också" />
  <div style={{
  display: 'grid',
  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
@@ -1473,7 +1473,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* ── FOOTER ──────────────────────────────────────────────── */}
  <div style={{
- background: '#192830',   // fast mörk – var(--txt) blir ljus i mörkt tema och texten försvann (revision P2-4)
+ background: '#0a2540',   // fast mörk – var(--txt) blir ljus i mörkt tema och texten försvann (revision P2-4). Max 2026-11-25: samma marinblå som övriga sidfötter
  padding: '28px 24px',
  textAlign: 'center',
  }}>
