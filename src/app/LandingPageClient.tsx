@@ -643,7 +643,7 @@ __MOB_NAV__ </nav>
  </p>
  </div>
  <div class="hero-bottom">
- <form class="hero-search" role="search" action="/sok" method="get" onsubmit="event.preventDefault();var q=document.getElementById('heroSearchInput').value.trim();location.href='/sok'+(q?'?q='+encodeURIComponent(q):'')">
+ <form class="hero-search" role="search" action="/sok" method="get">
  <input type="search" name="q" enterkeyhint="search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Sök ö, krog eller hamn" placeholder="Sök ö, krog eller hamn…" id="heroSearchInput"/>
  <button type="submit">Sök</button>
  </form>
@@ -892,32 +892,32 @@ __MOB_NAV__ </nav>
   </div>
   <div class="faq-list">
    <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">Vilken ö passar barnfamiljer bäst?<span class="faq-icon">+</span></button>
+    <button class="faq-q">Vilken ö passar barnfamiljer bäst?<span class="faq-icon">+</span></button>
     <div class="faq-a"><div class="faq-a-inner">Grinda och Vaxholm är toppalternativen: sandstränder, lugnt vatten och bra restauranger. Fjäderholmarna är perfekt för de allra minsta, bara 25 minuter med båt från Strandvägen. Utö i söder har en lång sandstrand och cykelleder som passar hela familjen.</div></div>
    </div>
    <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">Hur lång tid tar båten till Sandhamn?<span class="faq-icon">+</span></button>
+    <button class="faq-q">Hur lång tid tar båten till Sandhamn?<span class="faq-icon">+</span></button>
     <div class="faq-a"><div class="faq-a-inner">Cinderellabåten går från Strandvägen kajplats 14, inte Strömkajen, som är Waxholmsbolagets kaj, och tar 2 timmar 30 minuter till Sandhamn under säsongen 30 april till 27 september. Snabbast året runt: buss 433 eller 434 från Slussen till Stavsnäs vinterhamn (48 till 59 minuter) och sedan Sandhamnslinjen på 30 minuter. Totalt drygt 1 timme 20 minuter med bra anslutning.</div></div>
    </div>
    <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">Kan man tälta i skärgården?<span class="faq-icon">+</span></button>
+    <button class="faq-q">Kan man tälta i skärgården?<span class="faq-icon">+</span></button>
     <div class="faq-a"><div class="faq-a-inner">Ja, allemansrätten ger rätt att tälta i naturen i upp till 1 till 2 nätter på samma plats. Håll minst 150 meter avstånd från närmaste bostad och lämna naturen som du fann den. Under torrperioder kan eldningsförbud gälla. Kontrollera alltid MSB:s webbplats innan.</div></div>
    </div>
    <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">Vad är det bästa alternativet till Sandhamn?<span class="faq-icon">+</span></button>
+    <button class="faq-q">Vad är det bästa alternativet till Sandhamn?<span class="faq-icon">+</span></button>
     <div class="faq-a"><div class="faq-a-inner">Grinda är det populäraste alternativet: kortare båttid (1,5 timmar), lika vacker och utan turisttrycket. Utö i söder är perfekt för de som vill ha mer natur och cykling. Möja är ett dolt alternativ för den som söker äkta skärgårdsstämning utan bryggrestauranger.</div></div>
    </div>
    <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">Vilken månad är bäst att besöka skärgården?<span class="faq-icon">+</span></button>
+    <button class="faq-q">Vilken månad är bäst att besöka skärgården?<span class="faq-icon">+</span></button>
     <div class="faq-a"><div class="faq-a-inner">Juli är peak-säsong med varmast vatten (runt 20°C) men också mest folk. Juni och tidig augusti är lika vackra men lugnare. September till oktober rekommenderas för vandrare: höstfärger, inga köer och öppna krogar. Maj till juni har de längsta dagarna och det klaraste vattnet.</div></div>
    </div>
    <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">Hur mycket kostar en dagstur till Fjäderholmarna?<span class="faq-icon">+</span></button>
+    <button class="faq-q">Hur mycket kostar en dagstur till Fjäderholmarna?<span class="faq-icon">+</span></button>
     <!-- KÄLLA: operatörernas namn och avgångsplatser verifierade 2026-08-12. Priserna borttagna — Strömmas sida är en JS-app som inte gick att avläsa, och tredjepartssiffror duger inte. Tidigare påstods 175–220 kr ENKEL; tredjepartskällor anger ~185 kr TUR OCH RETUR, så vårt påstående var sannolikt dubbelt för dyrt. Det gamla rådet "ta SL-buss 80 till Lidingö och fika billigare på ön" var nonsens — Fjäderholmarna nås inte via Lidingö. -->
 <div class="faq-a"><div class="faq-a-inner">Två rederier kör: Strömma från Strandvägen och Fjäderholmslinjen från Skeppsbron i Gamla stan, se aktuellt biljettpris hos respektive. Överfarten är skärgårdens kortaste, runt 25 minuter. Vad dagen kostar styrs mest av restaurangvalet: medhavd matsäck gör den billig, lunch på krogen gör den till en riktig utflykt.</div></div>
    </div>
    <div class="faq-item">
-    <button class="faq-q" onclick="toggleFaq(this)">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
+    <button class="faq-q">Måste man ha egen båt för att använda Svalla?<span class="faq-icon">+</span></button>
     <div class="faq-a"><div class="faq-a-inner">Absolut inte. Svalla är byggt för alla: oavsett om du reser med Waxholmsbåten, Cinderellabåten, pendeltåg + färja eller bil. <a href="/utflykt">Dagsplaneraren</a> visar öar som nås med kollektivtrafik från din startpunkt, med restid och båttider för dagen. Ingen båt krävs, någonsin.</div></div>
    </div>
   </div>
@@ -966,14 +966,6 @@ __MOB_NAV__ </nav>
     {"@type":"Question","name":"Vilken månad är bäst att besöka skärgården?","acceptedAnswer":{"@type":"Answer","text":"Juli är peak-säsong med varmast vatten men mest folk. September till oktober är bäst för vandrare, höstfärger och inga köer."}},
     {"@type":"Question","name":"Hur mycket kostar en dagstur till Fjäderholmarna?","acceptedAnswer":{"@type":"Answer","text":"Överfarten är skärgårdens kortaste och biljetten bokas hos rederiet, se deras aktuella pris. Vad dagen kostar styrs mest av restaurangvalet: med medhavd matsäck blir det billigt, med lunch på krogen blir det en riktig utflykt."}}
   ]
-}
-</script>
-<script>
-function toggleFaq(btn){
-  var item=btn.parentElement;
-  var isOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(function(el){el.classList.remove('open')});
-  if(!isOpen) item.classList.add('open');
 }
 </script>
 
@@ -1115,6 +1107,32 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  }
  document.addEventListener('click', onLinkClick)
  document.addEventListener('pointerover', onLinkHover, { passive: true })
+
+ // FAQ-dragspelet. Tidigare onclick="toggleFaq(this)" i HTML-strängen plus ett
+ // <script> som definierade toggleFaq. Två fel med det: CSP:n blockerar
+ // inbäddade händelsekoder (script-src-attr 'none', 2026-11-22), och skriptet
+ // kördes aldrig vid klientnavigering hit (innerHTML kör inga skript), så
+ // knapparna gjorde ingenting då. Samma beteende som förut: en fråga öppen åt gången.
+ const onFaqClick = (e: MouseEvent) => {
+   const btn = (e.target as HTMLElement | null)?.closest('.faq-q')
+   const item = btn?.parentElement
+   if (!btn || !item?.classList.contains('faq-item')) return
+   const varOppen = item.classList.contains('open')
+   document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'))
+   if (!varOppen) item.classList.add('open')
+ }
+ document.addEventListener('click', onFaqClick)
+ // Hero-sökningen. Tidigare inbäddad onsubmit, som CSP:n nu blockerar
+ // (script-src-attr 'none'). Utan JS skickar formuläret ändå GET /sok?q=…
+ const onHeroSubmit = (e: SubmitEvent) => {
+   const form = e.target as HTMLElement | null
+   if (!form?.classList?.contains('hero-search')) return
+   e.preventDefault()
+   const input = document.getElementById('heroSearchInput') as HTMLInputElement | null
+   const q = (input?.value ?? '').trim()
+   router.push('/sok' + (q ? '?q=' + encodeURIComponent(q) : ''))
+ }
+ document.addEventListener('submit', onHeroSubmit)
 
 
  // Nav-styling sköts via CSS — inga inline-overrides
@@ -1276,6 +1294,8 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  clearTimeout(fallback)
  window.removeEventListener('scroll', handleScroll)
  document.removeEventListener('click', onLinkClick)
+ document.removeEventListener('click', onFaqClick)
+ document.removeEventListener('submit', onHeroSubmit)
  document.removeEventListener('pointerover', onLinkHover)
  observer.disconnect()
  bildObserver?.disconnect()

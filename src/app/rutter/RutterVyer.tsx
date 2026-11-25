@@ -20,7 +20,7 @@
 import { useEffect, useState, type MouseEvent, type ReactNode } from 'react'
 import Link from 'next/link'
 import type { Tour } from '@/lib/supabase'
-import { TopBarAtgarder } from '@/components/AppTopBar'
+import AppTopBar from '@/components/AppTopBar'
 import EmptyState from '@/components/EmptyState'
 import { categoryColor as categoryColorTokens } from '@/lib/tokens'
 import type { TurBild } from './page'
@@ -156,8 +156,6 @@ function arVanligtKlick(e: MouseEvent<HTMLAnchorElement>): boolean {
 
 export default function RutterVyer({
   tours,
-  antalOar,
-  antalFarjelinjer,
   oar,
   farjor,
   bilder,
@@ -168,8 +166,6 @@ export default function RutterVyer({
   bilder: Record<string, TurBild>
   /** Fotograf och licens för bilderna, renderad på servern. */
   bildkallor: ReactNode
-  antalOar: number
-  antalFarjelinjer: number
   /** Öar-vyn, renderad på servern (öarnas data ska inte skickas till klienten). */
   oar: ReactNode
   /** Färjor-vyn, renderad på servern vid sidans generering. */
@@ -220,46 +216,12 @@ export default function RutterVyer({
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
-      {/* Header */}
-      <header style={{
-        padding: '14px 16px 10px',
-        background: 'var(--glass-96)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(10,123,140,0.10)',
-        boxShadow: '0 2px 12px rgba(0,45,60,0.05)',
-        position: 'sticky', top: 0, zIndex: 50,
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-      }}>
-        <div>
-          <h1 style={{ fontSize: 20, fontWeight: 700, color: 'var(--sea)', margin: 0 }}>
-            {vy === 'oar' ? 'Öar' : vy === 'farjor' ? 'Färjor' : 'Rutter'}
-          </h1>
-          <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '2px 0 0', fontWeight: 500 }}>
-            {vy === 'oar'
-              ? `${antalOar} öar · Stockholm, Mälaren och Sörmland`
-              : vy === 'farjor'
-                ? `${antalFarjelinjer} linjer · Waxholmsbolaget & Cinderella`
-              : isFiltered
-                ? `Visar ${filtered.length} av ${tours.length} turer`
-                : `${filtered.length} ${filtered.length === 1 ? 'tur' : 'turer'} · Stockholms skärgård och Mälaren`}
-          </p>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-          {/* 2026-11-23 (menyförslaget): samma knappar som AppTopBar, med sök. */}
-          <TopBarAtgarder />
-          <Link href="/guide" prefetch={false} style={{
-            display: 'flex', alignItems: 'center', gap: 5,
-            padding: '8px 14px', borderRadius: 20,
-            background: 'var(--grad-sea)',
-            color: '#fff', fontSize: 12, fontWeight: 700,
-            textDecoration: 'none',
-            boxShadow: '0 2px 8px rgba(30,92,130,0.3)',
-          }}>
-            Thorkel
-          </Link>
-        </div>
-      </header>
+      {/* 2026-11-25 (Tom): samma topprad som Planera (loggan, sök, meddelanden,
+          notiser). Före: egen rad med sidnamn, antal och Thorkel-knapp. Thorkel
+          nås från Planera-fliken och menyn. Sidnamnet är kvar som h1 för
+          skärmläsare och sökmotorer; antalet vid filtrering står ovanför listan. */}
+      <AppTopBar doljPaDesktop />
+      <h1 className="sr-only">{vy === 'oar' ? 'Öar' : vy === 'farjor' ? 'Färjor' : 'Rutter'}</h1>
 
       {/* Vy-toggle: Planera / Rutter / Öar / Färjor.
           Granskningen 2026-11-22: raden var märkt som flikar (tablist) men
@@ -379,6 +341,11 @@ export default function RutterVyer({
 
       {/* Tour list */}
       <div style={{ padding: '10px 12px 100px', maxWidth: 640, margin: '0 auto' }}>
+        {isFiltered && filtered.length > 0 && (
+          <p role="status" style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 4px 8px', fontWeight: 500 }}>
+            Visar {filtered.length} av {tours.length} turer
+          </p>
+        )}
         {filtered.length === 0 ? (
           <RutterEmptyState onReset={() => { setFor('alla'); setTid('alla'); synkaUrl('/rutter') }} />
         ) : (

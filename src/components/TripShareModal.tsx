@@ -4,13 +4,14 @@ import { createPortal } from 'react-dom'
 import { createClient } from '@/lib/supabase'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { toast } from '@/components/Toast'
+import { IconShare } from '@/components/ui/icons'
 import { forvaldStil, stil as stilFor, tillgangligaStilar, BILD_VERSION, type StilId } from '@/lib/dela-klistermarken'
 
 interface Props {
  tripId: string
  title: string
  url: string
- variant?: 'icon' | 'pill'
+ variant?: 'icon' | 'pill' | 'rad'
  hasPhoto?: boolean
  hasRoute?: boolean
  /** Finns distans, tid eller fart att visa? Annars inget Tal-klistermärke (2026-10-26). */
@@ -212,6 +213,17 @@ export default function TripShareModal({ tripId, title, url, variant = 'icon', h
  <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
  </svg>
  Dela
+ </button>
+ ) : variant === 'rad' ? (
+ // 2026-11-24 (Tom): i turkortets knapprad. Samma storlek och ton som hjärtat och
+ // pratbubblan bredvid, utan den mörka cirkeln (den är gjord för att ligga över foton).
+ // Dela-symbolen är den vanliga: pil upp ur en låda.
+ <button onClick={handleOpen} className="press-feedback" aria-label="Dela tur" style={{
+ background: 'none', border: 'none', cursor: 'pointer', padding: '4px 6px',
+ color: 'var(--ink-soft, #8ea7b1)', display: 'flex', alignItems: 'center',
+ WebkitTapHighlightColor: 'transparent', flexShrink: 0,
+ }}>
+ <IconShare size={22} stroke={1.75} />
  </button>
  ) : (
  <button onClick={handleOpen} className="press-feedback" aria-label="Dela tur" style={{
