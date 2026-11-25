@@ -1,0 +1,12 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-25)
+ub01-k003	styrso-0410,styrso-0306	FEL	Ingen ändring. Toms beslut 7 (styrso.tom.md punkt 2): posten donso-hamnkrog byter namn till Isbolaget Hotell & Restaurang (styrso.sql). Efter bytet påstår posten inte längre att något heter Donsö Hamnkrog; namn, telefon och läge är Isbolagets, och alla är belagda av Isbolagets egen sida och OSM. Det sajten visar i dag är main före bytet. Kontrollanten ser inte beslutsfilerna, så fyndet är rimligt. Satserna körs bara tillsammans (namn, telefon, läge), efter Toms ja.
+ub01-k025		FEL	Som k003.
+ub01-k026		FEL	Som k003.
+ub01-k016	uto-0401	FEL	Godtas. Ett namn som är en adress gör posten missvisande. Namnbytet i uto.sql ersätts med att posten döljs (hidden_at), med skälet att inget namn är belagt. Redaktörens rekommendation till Tom ändras i uto.tom.md; satsen körs bara efter Toms ja.
+ub01-k014	sandhamn-N023	FEL	Godtas. Säsongen skrivs med årtal: säsongen 2026 hade Dykarbaren öppet maj till september, enligt sin egen sida (som k019).
+ub01-k024	sandhamn-0066,sandhamn-0067,sandhamn-0070,sandhamn-0078,sandhamn-0062,sandhamn-0063,sandhamn-0064,sandhamn-0065,sandhamn-0068,sandhamn-0069,sandhamn-0071,sandhamn-0072,sandhamn-0073,sandhamn-0074,sandhamn-0075,sandhamn-0076,sandhamn-0077,sandhamn-0079,sandhamn-0080	FEL	Som k014 (bestReason).
+ub01-k023	styrso-0010	FEL	Godtas. Invånartalet får årtalet (2020, enligt SCB) i texten, eller ersätts med ett aktuellt tal ur SCB:s tätortsstatistik om Skribenten hittar det.
+ub01-k027	storholmen-0130,storholmen-0132,storholmen-0171,storholmen-0172,storholmen-0173,storholmen-0174,storholmen-0175,storholmen-0176	FEL	Registret: underlagets text ersätts med slutkodens lydelse. Isundantaget och de 15 cyklarna tillskrivs Lidingö stad i texten. Skribenten kontrollerar att de gör det.
+ub01-k029	styrso-0177,styrso-0178,styrso-0179	FEL	Registret: underlagets text ersätts med slutkodens lydelse. Ingen kodändring.
+ub01-k008	moja-0466,moja-0468,moja-0469	SAKNAS	Löst: Redaktören läste sidan i Toms Chrome 2026-11-25 (ub-01-sidor/redaktor-facebook-MojaUppOchNer-2026-11-25.txt): «Hop on/hop off på Möja. Berg-Långvik-Berg tur och retur», senaste inlägget 8 augusti 2026 (inom 12 månader, nivå 2). Sträckan är belagd; resten av visitmoja enligt Kontrollanten. Ingen ändring.
+övriga		OK	20 rader OK.
