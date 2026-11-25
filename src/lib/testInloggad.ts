@@ -73,7 +73,8 @@ export async function simuleraNotch(): Promise<void> {
   const bar = document.createElement('div')
   bar.setAttribute('aria-hidden', 'true')
   bar.style.cssText = `position:fixed;inset:0 0 auto 0;height:${n}px;z-index:2147483647;pointer-events:none;font:600 16px -apple-system,system-ui,sans-serif;color:#fff;mix-blend-mode:difference`
-  bar.innerHTML = `<span style="position:absolute;left:34px;top:${Math.round(n / 2) - 9}px">9:41</span><span style="position:absolute;right:30px;top:${Math.round(n / 2) - 9}px">●●● 100%</span>`
+  // Klockan och batteriet ritas som vita block på sina platser i statusraden.
+  bar.innerHTML = `<span style="position:absolute;left:36px;top:${Math.round(n / 2) - 8}px;width:44px;height:16px;border-radius:4px;background:#fff"></span><span style="position:absolute;right:28px;top:${Math.round(n / 2) - 7}px;width:70px;height:14px;border-radius:4px;background:#fff"></span>`
   const o = document.createElement('div')
   o.setAttribute('aria-hidden', 'true')
   o.style.cssText = `position:fixed;left:50%;top:11px;width:126px;height:37px;margin-left:-63px;border-radius:20px;background:#000;z-index:2147483647;pointer-events:none`
