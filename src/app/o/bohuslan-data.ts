@@ -154,7 +154,15 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: https://www.marstrandsgasthamn.se/sv/Gasthamn — "Det råder badförbud i hamnområdet" (läst 2026-09-27)
     activity_meta: {
       bad: {
-        beaches: [],
+        beaches: [
+          // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Promenad runt Marstrandsön.
+          // Barnvänlig: Havs- och vattenmyndigheten anger barnbad. Marstrand strandverket är den enda badplatsen på Marstrand i HaV:s lista för Kungälv (omkontroll 2026-11-03, badkomp-marstrand-N001).
+          // KÄLLA: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Välkommen till Barnbadet på Marstrandsön", "Sandstrand: Ja", "Badstegar: Ja", "Trampolin: Ja", "Toalett: Ja", "Tillgänglighetsanpassad för personer med funktionsvariation: Nej", "Marstrands badplats ligger på sydsidan av Marstrandsön, cirka 400 meter från färjeläget. Det finns parkeringar på Koön, 100-1000 meter från färjan. Tänk på att det ofta är fullt på de närmsta parkeringarna under högsäsongen.", "Hamngatan, Marstrandsön" (läst 2026-11-03)
+          // KÄLLA: https://www.kungalv.se/kultur--fritid/bada/marstrands-badplats/ — "Alla badstegar sätts ut varje år i mitten av maj månad.", "Det finns däremot några stegar utsatta runt Marstrandsön som ligger i året runt.", "1 badstege på södra Marstrandsön", "1 badstege på norra Marstrandsön", "1 badtrappa och 1 badramp på Hedvigsholmen" (läst 2026-11-03)
+          // KÄLLA: https://www.kungalv.se/kultur--fritid/bada/ — "Marstrands badplats", "Tänk på att det inte är tillåtet med hundar, hästar eller andra djur på kommunala badplatser.", "Vattenprover tas regelbundet på alla kommunala badplatser." (läst 2026-11-03)
+          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-kungalvs-kommun/marstrand-strandverket.html — "Marstrand strandverket är en badplats i Kungälvs kommun.", "Badstege, barnbad, hoppmöjlighet" (läst 2026-11-03 i Chromium)
+          { name: 'Barnbadet på Marstrandsön', type: 'sandstrand', child_friendly: true, desc: 'Kommunal badplats med sandstrand på sydsidan av Marstrandsön i Kungälvs kommun, cirka 400 meter från färjeläget. Det finns badstegar, trampolin och toalett, men badplatsen är inte tillgänglighetsanpassad. Hundar och andra djur är inte tillåtna på badplatsen.', directions: 'Vid Hamngatan på Marstrandsön. Parkering finns på Koön, 100 till 1 000 meter från färjan; de närmaste platserna är ofta fulla under högsäsongen.', insider_tip: 'Badstegarna runt ön sätts ut i mitten av maj, men en på södra och en på norra Marstrandsön ligger kvar året runt, liksom en badtrappa och en badramp på Hedvigsholmen.' },
+        ],
         note: 'Turistrådet Västsverige beskriver Marstrand som en ö med massor av varma klippor som passar för salta bad. I gästhamnens område är det badförbud.',
       },
     },
@@ -289,6 +297,19 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // Månader: gästhamnens taxeperioder (hög v27–31, mellan v25–26 och v32–37) och servicehus 1 apr–31 okt; krogar som Göstas har öppet året om.
       months: ['limited','limited','limited','open','open','open','peak','open','open','open','limited','limited'],
     },
+    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Soteleden.
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Badplatsen Sandö på Smögen", "Sandstrand med bryggor, badstegar och handikapptrappa. Omklädningsrum, toalett och handikapptoalett. Där finns också gillplats och parkering." (läst 2026-11-03)
+          // KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Det finns cirka 20 större kommunala badplatser.", "inte får ha hunden med dig när du uppehåller dig på ordnad badplats.", "Smögen - Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03 i Chromium)
+          // KÄLLA: https://www.sotenas.se/download/18.4238e10118c6050f88a47254/1703149528362/G%C3%A4llande%20lokala%20ordningsf%C3%B6reskrifter%20KF%202022-03-23%20Lst%202022-05-02.pdf — "Allmänna lokala ordningsföreskrifter för Sotenäs kommun", "Hundar ska hållas kopplade på begravningsplatser och badplatser vilka är angivna i § 3 i", "Under tiden f r om 1 maj t o m 30 sept får hundar inte vistas på i § 3 i dessa föreskrifter", "Smögen – Sandö, Vallevik och herr- och dambadet vid Makrillviken" (läst 2026-11-03)
+          { name: 'Sandö', type: 'sandstrand', desc: 'Kommunal badplats på Smögen i Sotenäs kommun, med sandstrand, bryggor, badstegar och handikapptrappa. Det finns omklädningsrum, toalett och handikapptoalett, grillplats och parkering.', insider_tip: 'Enligt Sotenäs kommuns lokala ordningsföreskrifter får hundar inte vistas på Sandö, Vallevik och herr- och dambadet vid Makrillviken från 1 maj till 30 september. Resten av året ska hunden vara kopplad där.' },
+          // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/smogen — "Herr- och dambadet, Makrillviken", "Klippor med bryggor och badstegar. Omklädningsrum och toalett i vandrarhemmet." (läst 2026-11-03)
+          { name: 'Herr- och dambadet vid Makrillviken', type: 'klippbad', desc: 'Kommunal badplats vid Makrillviken på Smögen i Sotenäs kommun: klippor med bryggor och badstegar. Omklädningsrum och toalett finns i vandrarhemmet.' },
+        ],
+      },
+    },
   },
   {
     slug: 'lysekil',
@@ -306,9 +327,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: Länsstyrelsen Västra Götaland, naturreservatet Gullmarn — bekräftar "en äkta tröskelfjord", största djup cirka 125 meter nära Alsbäck en mil från mynningen, tröskel på omkring 45 meters djup, djurarter i djupbassängen som saknas i fjorden i övrigt, bildat 1983, ca 16 499 hektar, förvaltas av Västkuststiftelsen — https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/gullmarn.html (läst 2026-09-16)
       'Lysekil ligger på Stångenäsets sydspets och blickar ut över Gullmarsfjorden, som Länsstyrelsen beskriver som en äkta tröskelfjord. Största djupet är cirka 125 meter och ligger nära Alsbäck, en mil från mynningen, medan tröskeln vid mynningen ligger på omkring 45 meters djup. Många av djurarterna i djupbassängen finns inte i fjorden i övrigt, vissa påträffas annars bara på stora djup i Skagerrak och i arktiska vatten. Naturreservatet Gullmarn bildades 1983, omfattar cirka 16 499 hektar och förvaltas av Västkuststiftelsen.',
       // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Stångehuvud utgör den sydligaste utlöparen av det bohuslänska granitområdet"; "former och tydliga isräfflor är karaktäristiska för området"; "Här och var randas granitklipporna av pegmatitgångar"; "Flera stigpassager går genom smala klyftor och förbi grottliknande bildningar"; "fina möjligheter till bad och fritidsfiske utefter klippstranden i väster"; "promenader på stigar som gjorts lättgångna med prydligt anordnade trappor och spänger"; "Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin"; "Donationen tillkom i en tid då stenindustrin stod på sin höjdpunkt och huvudsyftet var att undanta ett naturskönt område från stentäkt"; "detta parti ligger kvar nästan exakt som det lämnades när täktverksamheten upphörde"; "Bildat: 1983 Areal: cirka 48 hektar Naturvårdsförvaltare: Lysekils kommun och Kungliga Vetenskapsakademin" (läst 2026-09-27)
-      // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — "hans fru Calla Curman har blivit känd som Stångehuvuds räddare efter att ha köpt och donerat området, som numera är naturreservat" (läst 2026-09-27)
+      // Rättad 2026-11-17 (Lag 3 b, punkt 4, samma fel som guiden): att Calla Curman köpte och donerade marken stod bara hos Västsverige (nivå 3), och historia kräver nivå 1. Struket; Länsstyrelsen: donationsmark som ägs av Kungliga Vetenskapsakademin. Kompensation: reservatets föreskrifter.
       // Rättat 2026-09-27: stod att Vetenskapsakademien skänkte marken. Akademien äger den; det var Calla Curman som köpte och donerade området. Stod också 'broar' (källan: spänger).
-      'Stångehuvud vid stadens södra kant är naturreservat sedan 1983 och omfattar cirka 48 hektar. Det är den sydligaste utlöparen av det bohuslänska granitområdet. Marken köptes och donerades av Calla Curman och ägs i dag av Kungliga Vetenskapsakademien, som förvaltar reservatet tillsammans med Lysekils kommun. Donationen kom till när stenindustrin stod på sin höjdpunkt, för att rädda området från stenbrytning. Karaktäristiskt är rundhällarna med slipade, mjuka former och tydliga isräfflor, här och var genomdragna av pegmatitgångar. På Galleberget i norr syns spår av tidigare brytning. Den delen har av kulturhistoriska skäl lämnats nästan precis som den var när stenbrytningen upphörde. Stigarna går genom smala klyftor och förbi grottliknande bildningar och är gjorda lättgångna med trappor och spänger, och längs klippstranden i väster finns bad och fritidsfiske.',
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin."; "tälta eller ställa upp husvagn"; "medföra ej kopplad hund"; "göra upp eld på annat sätt än av förvaltaren anvisade platser" (läst 2026-11-17)
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Stångehuvuds naturreservat är beläget på yttersta spetsen av Stångenäset. Lysekils stadsbebyggelse når fram till gränsen."; "Donationen tillkom i en tid då stenindustrin stod på sin höjdpunkt och huvudsyftet var att undanta ett naturskönt område från stentäkt." (läst 2026-11-25, i Chromium) Runda 11 (sb05-k024): «vid stadens södra kant» ersatt med källans läge; donationens syfte med källans grad.
+      'Stångehuvud på yttersta spetsen av Stångenäset, där Lysekils stadsbebyggelse når fram till reservatets gräns, är naturreservat sedan 1983 och omfattar cirka 48 hektar. Det är den sydligaste utlöparen av det bohuslänska granitområdet. Marken är donationsmark och ägs av Kungliga Vetenskapsakademien, som förvaltar reservatet tillsammans med Lysekils kommun. Donationen kom till när stenindustrin stod på sin höjdpunkt, och huvudsyftet var att undanta ett naturskönt område från stentäkt. Karaktäristiskt är rundhällarna med slipade, mjuka former och tydliga isräfflor, här och var genomdragna av pegmatitgångar. På Galleberget i norr syns spår av tidigare brytning. Den delen har av kulturhistoriska skäl lämnats nästan precis som den var när stenbrytningen upphörde. Stigarna går genom smala klyftor och förbi grottliknande bildningar och är gjorda lättgångna med trappor och spänger, och längs klippstranden i väster finns bad och fritidsfiske. I reservatet får du inte tälta eller ställa upp husvagn, hunden ska vara kopplad och du får bara elda på platser som förvaltaren anvisat.',
       // KÄLLA: https://www.havetshus.se/om-havets-hus/ — "Havets Hus grundades 1993"; "Varje år stiftar närmare 80 000 besökare bekantskap med hundratals fascinerande arter" (läst 2026-09-27)
       // KÄLLA: https://www.havetshus.se/akvariet/om-akvariet/ — "När du stiger in i Havets Hus omges du snart av 25 akvarier"; "Se hälleflundror, rockor och havsaborrar simma ovanför ditt huvud i tunnelakvariet"; "Våra akvarier förses hela tiden med kallt, färskt havsvatten från 32 meters djup" (läst 2026-09-27)
       // KÄLLA: https://www.havetshus.se/akvariet/djuren/ — "Över 250 fascinerande arter finns i Havets Hus"; "Alla djur, alger och växter i våra akvarier lever också i det salta Västerhavet utanför Havets Hus" (läst 2026-09-27)
@@ -402,11 +425,21 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Lysekils tätort Pinnevik"; "På flera av badplatserna finns vinterstegar" (läst 2026-09-27)
       'Pinnevik är en av kommunens badplatser i centrala Lysekil och har vinterstege.',
     ],
+    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under "Tips om …".
+    insiderTips: [
+      // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "På flera av badplatserna finns vinterstegar för den som vill bada även under årets kallare månader."; "Lysekils tätort"; "Pinnevik"; "Norra Hamnen"; "Rinkenäs"; "Fridhem"; "Stångholmesund"; "Kallbadhuset och Trampen" (läst 2026-11-17)
+      'På flera av Lysekils kommuns badplatser finns vinterstegar för den som vill bada även under årets kallare månader. I Lysekils tätort gäller det Pinnevik, Norra Hamnen, Rinkenäs, Fridhem, Stångholmesund och Kallbadhuset och Trampen.',
+    ],
     related: ['fiskebackskil', 'grundsund', 'kosterhavet'],
     tags: ['badort', 'akvarium', 'vandring', 'familjer'],
-    // KÄLLA: https://www.vastsverige.com/lysekil/produkter/lysekil/ — "hans fru Calla Curman har blivit känd som Stångehuvuds räddare efter att ha köpt och donerat området, som numera är naturreservat" (läst 2026-09-27)
-    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin"; "huvudsyftet var att undanta ett naturskönt område från stentäkt"; "detta parti ligger kvar nästan exakt som det lämnades när täktverksamheten upphörde" (läst 2026-09-27)
-    did_you_know: 'Stångehuvuds slipade klippor räddades av en donation: Calla Curman köpte området och donerade det för att det inte skulle brytas bort, och marken ägs i dag av Kungliga Vetenskapsakademien. På Galleberget i reservatets norra del har spåren efter brytningen medvetet lämnats nästan precis som de var när stenbrytningen upphörde.',
+    // Rättad 2026-11-17 (runda 10, sa04-k028): att Calla Curman köpte och donerade området stod bara hos Västsverige (nivå 3), och historia kräver nivå 1. Texten följer nu Länsstyrelsen.
+    // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/stangehuvud.html — "Området utgör donationsmark som ägs av Kungliga Vetenskapsakademin. Donationen tillkom i en tid då stenindustrin stod på sin höjdpunkt och huvudsyftet var att undanta ett naturskönt område från stentäkt."; "Som kontrast till de välbevarade klipporna i söder står Galleberget, där täktverksamhet tidigare har bedrivits. Detta utgör norra delen av reservatet."; "Här har av kulturhistoriska skäl inga efterbehandlingsarbeten vidtagits och detta parti ligger kvar nästan exakt som det lämnades när täktverksamheten upphörde." (läst 2026-11-17) Runda 11 (sr01-k031): «syftet» rättat till källans «huvudsyftet».
+    did_you_know: 'Stångehuvud är donationsmark som ägs av Kungliga Vetenskapsakademin. Donationen kom till när stenindustrin stod på sin höjdpunkt, och huvudsyftet var att undanta ett naturskönt område från stentäkt. Som kontrast till de välbevarade klipporna i söder har det tidigare brutits sten på Galleberget i reservatets norra del, och där har man av kulturhistoriska skäl inte gjort några efterbehandlingar, så partiet ligger kvar nästan exakt som det lämnades när täktverksamheten upphörde.',
+    activity_meta: {
+      // Badkompensation utanför batch 01 2026-11-17 (mall-0198): badnot om Gullmarsbaden och kommunens badplatser.
+      // KÄLLA: https://www.lysekil.se/uppleva-och-gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser — "Lysekil har tre kommunala badplatser där våra fyrfotade kompisar får bada. Badplatserna är spridda över kommunen och utmärkta med skyltar."; "Gullmarsbaden östra, Lysekil"; "Under högsäsongen har vi daglig tillsyn på våra större badplatser." (läst 2026-11-17)
+      bad: { beaches: [], note: 'Lysekils kommun har tre kommunala badplatser där hundar får bada, utmärkta med skyltar, och en av dem är Gullmarsbaden östra i Lysekil. Under högsäsongen har kommunen daglig tillsyn på de större badplatserna.' },
+    },
     // Rättat 2026-09-27: stod öppet maj–september och 'off' januari–april. Havets Hus, hotellen och passagerarfärjan är öppna året runt. bestReason (lugna stränder i juni, badvarmt i september) och parkeringsvarningen saknade källa.
     seasonal: {
       // KÄLLA: https://www.havetshus.se/besok-oss/oppettider/ — "2/1 – 14/6 Dagligen kl 10-16"; "15/6 – 16/8 Dagligen kl 10-18" (läst 2026-09-27)
@@ -629,6 +662,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     // KÄLLA: https://www.vastsverige.com/tanum/produkter/grebbestad/?site=145 — "beläget i ett område med omkring 600 hällristningsplatser", "hällristningar från 1700 f.Kr. till 300 f.Kr." (läst 2026-09-27)
     // KÄLLA: https://www.vitlyckemuseum.se/ — "Vitlycke museum - porten till världsarvet", "Vi är en del av Västra Götalandsregionens kulturförvaltning" (läst 2026-09-27)
     tips: ['Plocka inte ostron på egen hand. Det är markägaren som har rätt att skörda. Boka hellre en ostronsafari eller ostronprovning.', 'Till Tjurpannan kan du åka buss från Grebbestad till Saltviks camping, som gränsar till reservatet; med bil finns en större parkering vid Långeby. Hunden ska vara kopplad.', 'Vitlycke museum, porten till världsarvet Tanums hällristningar, drivs av Västra Götalandsregionens kulturförvaltning. Världsarvet ligger i ett område med omkring 600 hällristningsplatser, med ristningar från 1700 till 300 f.Kr.'],
+    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under "Tips om …".
+    insiderTips: [
+      // KÄLLA: https://www.tanum.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.7664b4813898b7df9845725.html — "På badplatserna vid Badberget i Fjällbacka, Tanum Strand strax söder om Grebbestad, Östad samt Edsviksbadet finns handikappramper som underlättar för rörelsehindrade att kunna njuta av sköna bad." (läst 2026-11-17)
+      'Vid badplatsen Tanum Strand strax söder om Grebbestad finns en handikappramp som gör det lättare för rörelsehindrade att bada.',
+    ],
     related: ['fjallbacka', 'kosterhavet', 'hamburgsund'],
     tags: ['ostron', 'fiskeläge', 'klippvandring', 'sommardestination'],
     // KÄLLA: https://www.tanum.se/upplevagora/ostronmeckat.4.2f5857cf188b9cbe7f0aa484.html — "90 procent av Sveriges ostron kommer från Tanums kommun", "Ostronet ska antingen ha handplockats av dykare eller fiskats av fiskare med håv", "Ostrea Edulis plockas när de är som minst 3-4 år gamla", "Sedan maj 2023 är dessa ostron också ursprungsskyddade av EU" (läst 2026-09-27)
@@ -646,6 +684,18 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       warning: 'Ostronskörden har uppehåll i juli och augusti, kommer du för ostronens skull är september och framåt rätt tid.',
       // Månader: vastsverige anger året-runt-puls; högsäsong jul–aug då TanumStrands hamnservice är bemannad, ostron sep–midsommar.
       months: ['limited','limited','limited','limited','open','open','peak','peak','open','open','limited','limited'],
+    },
+    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Gästhamnarna.
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/grebbestad.html — "Grebbestad är en badplats i Tanums kommun", "2025: ★★★ Utmärkt kvalitet", "2024: ★★ Bra kvalitet", "2023: ★★ Bra kvalitet", "Grus/sandbotten", "Stor gräsmatta som klipps mycket regelbundet.", "Tillsyn två eller fler gånger i veckan under badsäsong.", "Badbrygga finns vid badplatsen." (läst 2026-11-03 i Chromium; uppgifterna laddas med JavaScript)
+          { name: 'Grebbestads badplats', type: 'brygga', desc: 'Badplats i Grebbestad i Tanums kommun, med badbrygga, grus- och sandbotten och en stor gräsmatta. Under badsäsongen är det tillsyn två eller fler gånger i veckan. Havs- och vattenmyndigheten klassade badvattnet som utmärkt 2025 och bra 2023 och 2024.' },
+          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/tanum-strand.html — "Tanum Strand är en badplats i Tanums kommun", "Berg och grus/sandbotten", "Berg och stor gräsmatta som klipps mycket regelbundet.", "Badbrygga och flyflotte finns vid badplatsen." (läst 2026-11-03 i Chromium; uppgifterna laddas med JavaScript)
+          // KÄLLA: https://www.tanum.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.7664b4813898b7df9845725.html — "På badplatserna vid Badberget i Fjällbacka, Tanum Strand strax söder om Grebbestad, Östad samt Edsviksbadet finns handikappramper" (läst 2026-11-03)
+          { name: 'Tanum Strand', type: 'brygga', desc: 'Badplats vid Tanum Strand strax söder om Grebbestad i Tanums kommun, med badbrygga, flytflotte och handikappramp. Här finns berg och en stor gräsmatta, och botten är berg, grus och sand.' },
+        ],
+      },
     },
   },
   {
@@ -754,8 +804,20 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     ],
     related: ['grebbestad', 'kosterhavet', 'hamburgsund'],
     tags: ['kriminalromaner', 'klippvandring', 'pittoreskt', 'ingrid bergman'],
-    // KÄLLA: Turistrådet Västsverige (vastsverige.com), Vetteberget/Kungsklyftan — tidigare namnet Ramneklovan, namnet Kungsklyftan efter Oscar II:s besök 1887 och kungens signatur på bergväggen vid norra ingången — https://www.vastsverige.com/tanum/produkter/vettebergetkungsklyftan/ (läst 2026-09-16)
-    did_you_know: 'Kungsklyftan hette förr Ramneklovan. Namnet Kungsklyftan kommer av att Oscar II besökte platsen 1887 och signerade bergväggen vid klyftans norra ingång.',
+    // Rättad 2026-11-17 (runda 10, sa04-k026): Oscar II:s besök 1887 och namnteckningen stod bara hos Turistrådet Västsverige (nivå 3), och historia kräver nivå 1. Texten följer nu Tanums kommun.
+    // KÄLLA: https://www.tanum.se/kommunpolitik/kommunfakta/kommunenshistoria/ortsinformation/fjallbacka.4.7664b4813898b7df98459f8.html — "Ramneklovan eller Kungsklyftan, vars klippblock är fastkilade mellan Stora och Lilla Vetteberget, är en 200 meter lång spricka i granitberget. Klovan når man från hamnområdet."; "Den svenska fiskkonserven ansjovis har sitt ursprung i Fjällbacka."; "Tidigt under 1800-talet blev Fjällbacka en populär badort." (läst 2026-11-17)
+    did_you_know: 'Kungsklyftan, som också kallas Ramneklovan, är en 200 meter lång spricka i granitberget mellan Stora och Lilla Vetteberget, med fastkilade klippblock, och du når den från hamnområdet. Enligt Tanums kommun har fiskkonserven ansjovis sitt ursprung i Fjällbacka, och redan tidigt under 1800-talet blev orten en populär badort.',
+    activity_meta: {
+      // Badkompensation utanför batch 01 2026-11-17 (mall-0198): Tanums kommuns två badplatser i Fjällbacka, ur Havs- och vattenmyndighetens Badplatsen.
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/badberget.html — "Badberget är ett EU-bad."; "Strax utanför Fjällbacka centrum finns Badbergets badplats. Badplatsen är tillgänglighetsanpassad med ramp och ett stort bord tillgängligt för rullstolar och barnvagnar. Bada ifrån stranden eller bryggan. Här finns wc."; "Badbrygga och flyflotte finns vid badplatsen."; "Tillsyn två eller fler gånger i veckan under badsäsong." (läst 2026-11-17, i Chromium)
+          { name: 'Badbergets badplats', type: 'brygga', desc: 'EU-bad strax utanför Fjällbacka centrum. Du badar från stranden eller bryggan, och där finns badbrygga, flytflotte och toalett. Badplatsen är tillgänglighetsanpassad med ramp och ett stort bord som går att använda från rullstol och med barnvagn. Kommunen har tillsyn två eller fler gånger i veckan under badsäsongen.' },
+          // KÄLLA: https://www.havochvatten.se/badplatser-och-badvatten/kommuner/badplatser-i-tanums-kommun/badholmen.html — "Badholmens badplats finns mitt i centrala Fjällbacka med närheten till Vetteberget och Kungsklyftan."; "Du kan välja att bada ifrån klippor, trampolin eller hopptorn. Här finns toaletter. Ingen parkering i närheten." (läst 2026-11-17, i Chromium)
+          { name: 'Badholmens badplats', type: 'trampolinbad', desc: 'Badplats mitt i centrala Fjällbacka, nära Vetteberget och Kungsklyftan. Du badar från klippor, trampolin eller hopptorn, och det finns toaletter. Det finns ingen parkering i närheten.' },
+        ],
+      },
+    },
     // Rättat 2026-09-27: stod öppet juni–september och 'off' januari–maj, men ca 950 personer bor här året runt och vandrarhemmet har öppet året runt. bestReason ('hela byn i blomning', 'autentisk fiskebystämning') och varningen om inställda båtturer saknade källa.
     seasonal: {
       // KÄLLA: https://gasthamnsbolaget.se/boende-i-bohuslan/badholmens-vandrarhem/ — "Öppet året runt"; "Vandrarhemmets café är öppet hela sommaren" (läst 2026-09-27)
@@ -1336,6 +1398,17 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       bestReason: 'Gästhamnen har personal alla dagar vecka 25 till 33, och sommartid går regelbundna badturer från Kungshamn till Hållöarkipelagen.',
       months: ['off','off','off','off','off','open','peak','peak','open','limited','off','off'],
     },
+    // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Nordens Ark.
+    activity_meta: {
+      bad: {
+        beaches: [
+          // KÄLLA: https://www.sotenas.se/uppleva--gora/idrott-motion-och-friluftsliv/friluftsliv-och-motion/badplatser-hundbad/kungshamn — "Fisketångens badplats i Kungshamn", "Klippbad med sandstrand. Bryggor med badstegar. Handikappramp, omklädningsrum, toalett och handikapptoalett.", "finns också en liten parkering", "Vill du hitta din egen vrå så går du ut på pontonbryggan som leder till", "Klövvholmen!" (läst 2026-11-03)
+          // KÄLLA: https://www.sotenas.se/upplevagora/idrottmotionochfriluftsliv/friluftslivochmotion/badplatser.4.6a5776e415ae3419826ea424.html — "Det finns cirka 20 större kommunala badplatser.", "inte får ha hunden med dig när du uppehåller dig på ordnad badplats.", "Kungshamn - Fisketången, Stenbogen och Ramnerer" (läst 2026-11-03 i Chromium)
+          // KÄLLA: https://www.sotenas.se/download/18.4238e10118c6050f88a47254/1703149528362/G%C3%A4llande%20lokala%20ordningsf%C3%B6reskrifter%20KF%202022-03-23%20Lst%202022-05-02.pdf — "Allmänna lokala ordningsföreskrifter för Sotenäs kommun", "Hundar ska hållas kopplade på begravningsplatser och badplatser vilka är angivna i § 3 i", "Under tiden f r om 1 maj t o m 30 sept får hundar inte vistas på i § 3 i dessa föreskrifter", "Kungshamn – Fisketången, Stenbogen och Ramnerer" (läst 2026-11-03)
+          { name: 'Fisketången', type: 'klippbad', desc: 'Kommunal badplats i Kungshamn i Sotenäs kommun: klippbad med sandstrand och bryggor med badstegar. Det finns handikappramp, omklädningsrum, toalett och handikapptoalett, och en liten parkering.', insider_tip: 'Pontonbryggan leder ut till Klövvholmen, där du kan hitta en egen vrå. Enligt Sotenäs kommuns lokala ordningsföreskrifter får hundar inte vistas på Fisketången, Stenbogen och Ramnerer från 1 maj till 30 september. Resten av året ska hunden vara kopplad där.' },
+        ],
+      },
+    },
   },
   {
     slug: 'pater-noster',
@@ -1702,7 +1775,10 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     },
     activity_meta: {
       // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "Prova vid Skottarn, Gullholmsbaden, Grindebacken eller Härmanö huvud. Du kan också bada från Ångbåtsbryggan på Gullholmen och det finns flera badstegar på klipporna väster om kyrkan." (läst 2026-09-27)
-      bad: { beaches: ['Skottarn', 'Gullholmsbaden', 'Grindebacken', 'Härmanö huvud', 'Ångbåtsbryggan på Gullholmen', 'Badstegar på klipporna väster om kyrkan'] },
+      // Rättad 2026-11-07 (mall-N004 omarbete 4): Härmanö huvud ligger på grannön Härmanö, inte på Gullholmen; badsidan visar den som nära.
+      // KÄLLA: https://www.lansstyrelsen.se/vastra-gotaland/besoksmal/naturreservat/harmano.html — "Stig till Härmanö huvud"; "Stigen leder vidare till Härmanö huvud, med badplats och utkiksplats."; "Det finns fina uppmärkta stigar på Härmanö" (läst 2026-11-07)
+      // KÄLLA: https://www.bohuslansmuseum.se/kunskapsbanken_bohuslans_historia/gullholmen/ — "Ön ligger skyddad mellan huvudön Orust ett stycke åt öster och den större Hermanö alldeles intill." (läst 2026-11-07)
+      bad: { beaches: ['Skottarn', 'Gullholmsbaden', 'Grindebacken', 'Härmanö huvud på grannön Härmanö', 'Ångbåtsbryggan på Gullholmen', 'Badstegar på klipporna väster om kyrkan'] },
     },
   },
 
@@ -1829,7 +1905,15 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     ],
     related: ['tjorn', 'orust', 'marstrand'],
     tags: ['mat', 'skaldjur', 'historia', 'bastu', 'romantisk', 'bohuslän'],
-    insiderTips: [],
+    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under "Tips om …".
+    insiderTips: [
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Badplatsen ligger strax efter bron på Koholmens östra sida. Parkeringsplats finns till höger efter bron och härifrån är det 100 meter till badet."; "Badplatsen har betongbrygga, en liten sandstrand, klippor, badbrygga och toaletter."; "Badplatsen är inte tillgänglighetsanpassad." (läst 2026-11-17)
+      'Klädesholmens badplats ligger strax efter bron på Koholmens östra sida, 100 meter från parkeringen till höger efter bron. Där finns betongbrygga, badbrygga, en liten sandstrand, klippor och toaletter, men badplatsen är inte tillgänglighetsanpassad.',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola." (läst 2026-11-17)
+      'Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola.',
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/turism-och-sevardheter/oar-runt-tjorn — "Sedan 1972 firas Samhällets dag den första lördagen i juli månad med mängder av aktiviteter och gemensam sillunch."; "Senast uppdaterad 16 februari 2023" (läst 2026-11-25) Runda 11 (sb05-k022): sidan är från 2023, så året står i texten.
+      'Enligt Tjörns kommuns sida, senast uppdaterad 2023, firas Samhällets dag på Klädesholmen den första lördagen i juli sedan 1972, med aktiviteter och en gemensam sillunch.',
+    ],
     dog_friendly: true,
     // KÄLLA: https://www.saltosill.se/fragor-svar/ — "Kopplade, Nära sin ägare, Under uppsikt" — hundrum kan förbokas, hundar tillåtna i restaurangens övre del men inte inomhus under julbord, påsk- och midsommarbuffé; hundar kan läggas längs uteserveringen (läst 2026-09-27)
     dog_notes: 'Salt & Sill har hundrum som förbokas. I restaurangens övre del är hundar välkomna om de är kopplade och hålls nära ägaren, dock inte inomhus under julbord, påsk- och midsommarbuffé. Hundar kan också följa med på uteserveringen.',
@@ -1845,7 +1929,14 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       camping: false,
     },
     activity_meta: {
-      bad: { beaches: [] },
+      bad: {
+        beaches: [
+          // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Sillebua.
+          // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Badplatsen ligger strax efter bron på Koholmens östra sida.", "Om Klädesholmens badplats", "Badplatsen har betongbrygga, en liten sandstrand, klippor, badbrygga och toaletter.", "Badplatsen är inte tillgänglighetsanpassad.", "Badplatsen sköts sommartid av Klädesholmens intresseförening, som också anordnar simskola.", "Parkeringsplats finns till höger efter bron och härifrån är det 100 meter till badet.", "Med buss: Hållplats Klädesholmen östra." (läst 2026-11-03)
+          // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada — "Hund får inte vistas på: Badplats eller lekplats." (läst 2026-11-03)
+          { name: 'Klädesholmens badplats', type: 'sandstrand', desc: 'Badplats på Klädesholmen i Tjörns kommun, strax efter bron på Koholmens östra sida. Här finns betongbrygga, badbrygga, en liten sandstrand, klippor och toaletter. Badplatsen är inte tillgänglighetsanpassad och sköts sommartid av Klädesholmens intresseförening, som också håller simskola.', directions: 'Parkering till höger efter bron, 100 meter från badet. Busshållplats: Klädesholmen östra.', insider_tip: 'Hundar får inte vistas på badplatsen.' },
+        ],
+      },
     },
     seasonal: {
       // KÄLLA: https://kladesholmenvh.se/gasthamn/ — "– Restaurang och hotell öppet året runt" (läst 2026-09-27)
@@ -2086,6 +2177,11 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
       // KÄLLA: https://www.dyron.se/se-gora/vandra/ — "Farleden till Wallhamn och Stenungsund går alldeles söder om Dyrön, så chansen att få se stora fartyg passera bara något hundratal meter från dig är stor." (läst 2026-09-27)
       'Farleden till Wallhamn och Stenungsund går alldeles söder om ön, så från lederna ser man ofta stora fartyg passera på nära håll.',
     ],
+    // Lag 3 b 2026-11-17: med barn-sidan blev tunnare än 95 % av main (mallarnas barnurval, sm05-k003). insiderTips visas bara där, under "Tips om …".
+    insiderTips: [
+      // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn."; "Toalett finns vid småbåtshamnen."; "Badplatsen är delvis tillgänglighetsanpassad med en bred trappa svagt sluttande ner i vattnet."; "Badplatsen sköts sommartid av Dyröns samhällsförening, som också anordnar simskola." (läst 2026-11-17)
+      'Dyröns badplats cirka 300 meter öster om färjeläget sköts sommartid av Dyröns samhällsförening, som också anordnar simskola. Den är delvis tillgänglighetsanpassad med en bred trappa som sluttar svagt ner i vattnet, och toalett finns vid småbåtshamnen.',
+    ],
     related: ['astol', 'kladesholmen', 'tjorn'],
     tags: ['bilfritt', 'klippor', 'natur', 'bohuslän', 'vandring'],
     // KÄLLA: https://www.dyron.se/om-dyron/historia/ — "Oscar II invigde den efterlängtade Nordhamnen, som är den första hamnen i Sverige som byggts med statsunderstöd, den 2 september 1902", "Dyrön hade emellertid ingen hamn utan jordbruk och boskapsskötsel var fortfarande huvudnäring på ön" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder — "Det friköptes år 1743 av bönderna Anders Nilsson och Jon Jonsson Green för 43 daler silvermynt, och då fick de även den obebodda holmen Åstol." (läst 2026-09-27)
@@ -2094,8 +2190,17 @@ export const BOHUSLAN_ISLANDS: BohuslanIsland[] = [
     dog_notes: 'Hunden får följa med på Västtrafiks färja i koppel, bur eller väska och ska vara på styrbordssidan. Enligt Tjörns ordningsstadga ska hundar hållas kopplade på offentliga platser där människor samlas och får inte vistas på badplatser eller lekplatser, och 1 mars till 20 augusti får hunden inte springa lös i skog och mark.',
     amenities: { restaurant: true, shop: true, accommodation: true, beach: true, camping: false },
     activity_meta: {
-      // KÄLLA: https://www.dyron.se/se-gora/badplatser/ — "I Nordhamnen ligger en badplats med pontonbrygga och sandstrand", "Sydhamnens badplats heter Hala", "hoppa och dyka från trampolin, klippor och 3-meterstornet" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder — "På öns östra sida finns det längs vandringen en fin sandstrand där man kan rasta och bada" (läst 2026-09-27)
-      bad: { beaches: ['Nordhamnens badplats med pontonbrygga och sandstrand', 'Hala vid Sydhamnen med trampolin och 3-meterstorn', 'Sandstrand på öns östra sida längs gula leden'] },
+      // KÄLLA: https://www.dyron.se/se-gora/badplatser/ — "I Nordhamnen ligger en badplats med pontonbrygga och sandstrand" ; https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/vandra/dyrons-vandringsleder — "På öns östra sida finns det längs vandringen en fin sandstrand där man kan rasta och bada" (läst 2026-09-27)
+      bad: {
+        beaches: [
+          'Nordhamnens badplats med pontonbrygga och sandstrand',
+          'Sandstrand på öns östra sida längs gula leden',
+          // Badkompensation 2026-11-03 (mall-0198): badsidan förlorade kortet Vandring. Hala vid Sydhamnen fanns bara hos
+          // Dyröns samhällsförening, inte hos kommunen eller HaV; ersatt med kommunens badplats (omkontroll, badkomp-dyron-N001).
+          // KÄLLA: https://www.tjorn.se/kultur-fritid-och-turism/natur-och-friluftsliv/bada/badplatser — "Dyröns badplats ligger cirka 300 meter österut från färjeläget och Dyröns norra hamn.", "Dyröns badplats har en liten sandstrand, badbryggor och klippor. Toalett finns vid småbåtshamnen.", "Badplatsen är delvis tillgänglighetsanpassad med en bred trappa svagt sluttande ner i vattnet.", "Badplatsen sköts sommartid av Dyröns samhällsförening, som också anordnar simskola.", "Med buss: Hållplats, Rönnängs brygga – färja vidare till Dyröns norra hamn.", "Parkeringsmöjligheterna i Rönnäng är begränsade och besökare hänvisas sommartid till parkeringen vid Tjörns ishall (ca 20 min promenad till färjan)." (läst 2026-11-03 i Chromium)
+          { name: 'Dyröns badplats', type: 'sandstrand', desc: 'Badplats i Tjörns kommun, cirka 300 meter öster om färjeläget och Dyröns norra hamn, med en liten sandstrand, badbryggor och klippor. Badplatsen är delvis tillgänglighetsanpassad med en bred trappa som sluttar svagt ner i vattnet, och toalett finns vid småbåtshamnen. Dyröns samhällsförening sköter badplatsen sommartid och håller simskola.', directions: 'Färjan från Rönnängs brygga går till Dyröns norra hamn. Parkeringen i Rönnäng är begränsad, och sommartid hänvisas besökare till parkeringen vid Tjörns ishall, cirka 20 minuters promenad från färjan.' },
+        ],
+      },
     },
   },
 ]

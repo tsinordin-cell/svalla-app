@@ -61,6 +61,7 @@ const KOPPLING = {
   rindo: ['0187Q101', 'Vaxholm'],
   roro: ['1407Q107', 'Öckerö'],
   runmaro: ['0120Q101', 'Värmdö'],
+  // KÄLLA: https://stockholmslansmuseum.se/besoksmal/sandhamn/ — "Sandön, där Sandhamn ligger", "Kommun: Värmdö" (Stockholms läns museum) (läst 2026-11-09)
   sandhamn: ['0120Q103', 'Värmdö', 'Sandön'],
   storholmen: ['0186Q101', 'Lidingö', 'Storholmen och Tallholmen'],
   styrso: ['1480Q102', 'Göteborg'],

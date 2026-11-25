@@ -91,6 +91,9 @@ const META_TYP_ORD: Record<string, string> = {
   fuel: 'tankställe', fuel_station: 'tankställe',
   beach: 'badplats', sauna: 'bastu', shop: 'butik', hotel: 'hotell', nature: 'naturplats',
   attraction: 'sevärdhet',
+  // Vandrarhem och stugor fanns i databasen utan typord ("Möja vandrarhem · Hotell", full-19 k036), och camping
+  // läggs till enligt Toms beslut 4 (mallarnas runda 5, 2026-11-10; boendetyperna i src/lib/platstyper.ts).
+  hostel: 'vandrarhem', cabin: 'stugor', camping: 'camping',
 }
 
 /**
@@ -100,7 +103,7 @@ const META_TYP_ORD: Record<string, string> = {
  */
 const SCHEMA_TYP: Record<string, string> = {
   restaurant: 'Restaurant', cafe: 'CafeOrCoffeeShop', bar: 'BarOrPub',
-  hotel: 'Hotel', hostel: 'Hostel', camping: 'Campground',
+  hotel: 'Hotel', hostel: 'Hostel', camping: 'Campground', cabin: 'LodgingBusiness',
   beach: 'Beach', fuel: 'GasStation', fuel_station: 'GasStation',
   nature: 'TouristAttraction', attraction: 'TouristAttraction', sauna: 'TouristAttraction',
   marina: 'TouristAttraction', harbor: 'TouristAttraction',
@@ -455,6 +458,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    fuel: 'Bränsle', fuel_station: 'Bränsle',
    beach: 'Bad', sauna: 'Bastu', shop: 'Butik', hotel: 'Hotell', nature: 'Naturplats',
    attraction: 'Sevärdhet',
+   hostel: 'Vandrarhem', cabin: 'Stugor', camping: 'Camping',
  }
  const typeLabel = r.type ? (TYPE_LABEL_MAP[r.type] ?? null) : null
 
@@ -474,6 +478,10 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    fuel:       { color: '#525252', icon: '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>' },
    fuel_station: { color: '#525252', icon: '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>' },
    hotel:      { color: '#6d28d9', icon: '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>' },
+   hostel:     { color: '#6d28d9', icon: '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>' },
+   cabin:      { color: '#6d28d9', icon: '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>' },
+   // tent — samma tält som Icon.tsx (camping, Toms beslut 4)
+   camping:    { color: '#6d28d9', icon: '<path d="M12 4 3 20h18z"/><path d="M12 4v16"/><path d="M8.5 20 12 13l3.5 7"/>' },
    beach:      { color: '#0a7b8c', icon: '<path d="M2 21h20"/><path d="M5 21V11a4 4 0 0 1 8 0v10"/><path d="M5 14a3 3 0 0 1 4 0 3 3 0 0 0 4 0"/>' },
  }
  const pinTypeKey = r.type && PIN_BY_TYPE[r.type] ? r.type : 'marina'

@@ -23,6 +23,8 @@
 import { readFileSync, writeFileSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { ersattKlockslag, hittaKlockslag } from '../src/lib/klockslag.mjs'
+import { slaIhopOrganisationer } from '../src/lib/kallorOrg.mjs'
 
 const ROT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const KONTROLL = process.argv.includes('--kontroll')
@@ -50,30 +52,29 @@ const FORBJUDNA_DOMANER = /(^|\.)(wikipedia\.org|wikimedia\.org|moovitapp\.com|r
 const MYNDIGHET_DOMAN = [
   'lansstyrelsen.se', 'naturvardsverket.se', 'sverigesnationalparker.se',
   'raa.se', 'sfv.se', 'sjofartsverket.se', 'trafikverket.se',
-  'riksantikvarieambetet.se', 'kringla.nu', 'sl.se', 'vasttrafik.se',
-  'waxholmsbolaget.se', 'sverigesradio.se', 'scb.se',
+  'riksantikvarieambetet.se', 'kringla.nu',
+  // sl.se, vasttrafik.se, waxholmsbolaget.se och sverigesradio.se borttagna
+  // 2026-11-02 (faktagranskningen mall-0086): trafikbolag och medieföretag är
+  // NIVÅ 2 i källhierarkin (operatören), inte myndighet eller kommun.
+  'scb.se',
   // Tillagt 2026-09-30. Listan räknade bara 16 % av källorna som myndighet,
   // för att kommunernas egna domäner och flera statliga verk saknades. Siffran
   // visas på /om, så den ska vara rätt och inte bara försiktig. Bara domäner
   // som tillhör en kommun, en region eller ett statligt verk står här.
   'lantmateriet.se', 'havochvatten.se', 'smhi.se', 'fortifikationsverket.se',
-  'riksarkivet.se', 'jordbruksverket.se', 'historiska.se', 'blekingetrafiken.se',
+  'riksarkivet.se', 'jordbruksverket.se', 'historiska.se',
+  // blekingetrafiken.se borttagen 2026-11-02 (faktagranskningen mall-0086–0087,
+  // omarbete): Blekingetrafiken är en förvaltning inom Region Blekinge men står
+  // för sin egen trafik som operatör, NIVÅ 2, som SL och Västtrafik.
   'varmdo.se', 'vaxholm.se', 'haninge.se', 'tjorn.se', 'norrtalje.se',
   'nynashamn.se', 'orust.se', 'osteraker.se', 'ockero.se', 'kungalv.se',
   'lysekil.se', 'sotenas.se', 'tanum.se', 'karlskrona.se', 'lidingo.se',
   'sodertalje.se', 'umea.se', 'borgholm.se', 'gotland.se', 'jonkoping.se',
 ]
 
-/**
- * Trafikbolagens tidtabeller ligger hos en tryckeripartner och på en
- * lagringsyta. Värdnamnet är inte bolagets, men dokumentet är det.
- * Samma avgränsning som domanNamn() använder för visningsnamnet.
- */
-function arTrafikbolagetsTidtabell(u) {
-  const host = u.hostname.replace(/^www\./, '')
-  if (host === 'kund.printhuset-sthlm.se') return /^\/(wa|sl)\//.test(u.pathname)
-  return host.endsWith('.blob.core.windows.net') && host.startsWith('vtstorage')
-}
+// arTrafikbolagetsTidtabell() togs bort 2026-11-10 (mallarnas runda 5): sedan 2026-11-02 räknas trafikbolagens
+// tryckta tidtabeller inte som myndighet (mall-0086), och funktionen användes inte längre. domanNamn() känner
+// fortfarande igen tryckeriets och lagringsytans värdnamn för visningsnamnet.
 
 /** Kommuner och regioner räknas också som myndighet, oavsett domännamn. */
 const MYNDIGHET_ORD = /kommun|länsstyrelse|lansstyrelse|naturvårdsverk|riksantikvarie|statens fastighetsverk|sjöfartsverk|trafikverk|västra götalandsregionen|region /i
@@ -201,16 +202,32 @@ function snyggOrg(raOrg, url) {
  */
 const INTERN_ANTECKNING = /(borttage[nt]|självciter|kunde inte beläggas|gick (ej|inte) att (verifiera|belägga)|hittades inte|går inte att belägga|saknar belägg|ej verifierat|obekräftat)/i
 
+/**
+ * Belopp publiceras inte i källistan (arbetsreglerna; källrutan lovar priser bara
+ * ur publicerade prislistor). Ett citat med belopp visas inte – adressen räcker
+ * (faktagranskningen 2026-11-02).
+ */
+const PRIS = /\d\s?(?:kr|kronor|SEK)\b/i
+
+/**
+ * Klockslag ersätts med "…" och resten av citatet står kvar ordagrant (mallarnas
+ * runda 5, 2026-11-10). Förut tömdes hela citatet, och "kl. 11–16" och "kl 18" utan
+ * minuter slank igenom. Regeln ligger sedan runda 6 (2026-11-16) i src/lib/klockslag.mjs,
+ * samma som FAQ-svaren och korten med färdsätt använder.
+ */
 function rensaVad(vad) {
   if (!vad) return ''
-  return INTERN_ANTECKNING.test(vad) ? '' : vad
+  if (INTERN_ANTECKNING.test(vad) || PRIS.test(vad)) return ''
+  return ersattKlockslag(vad)
 }
 
 /** Läser ut vad källan sägs bekräfta — texten mellan första — och URL:en. */
 function parseVad(rest) {
-  const delar = rest.split(/\s+[—–]\s+/)
-  if (delar.length < 2) return ''
-  let vad = delar.slice(1).join(' — ').replace(/https?:\/\/\S+/g, '').trim()
+  // Bara första tankstrecket skiljer källan från citatet. Streck inne i citatet
+  // ("21A ÅRSTA – UTÖ") ska stå som på sidan, inte bli " — " (2026-11-02).
+  const m = rest.match(/\s+[—–]\s+/)
+  if (!m || m.index === undefined) return ''
+  let vad = rest.slice(m.index + m[0].length).replace(/https?:\/\/\S+/g, '').trim()
   vad = vad.replace(/\((?:läst|hämtad|verifierat)[^)]*\)/g, '')
   // Samma datum utan parentes: "…, läst 2026-09-24 , …" (skrivsättet i omgångarna 24–29 sept)
   vad = vad.replace(/[,;]?\s*\b(?:läst|hämtad|verifierat)\s+\d{4}-\d{2}-\d{2}\s*[,:;]?/g, ' ')
@@ -236,7 +253,7 @@ function arMyndighet(url, org) {
     const u = new URL(url)
     const host = u.hostname.replace(/^www\./, '')
     if (MYNDIGHET_DOMAN.some(d => host === d || host.endsWith('.' + d))) return true
-    if (arTrafikbolagetsTidtabell(u)) return true
+    // Trafikbolagens tryckta tidtabeller räknas inte som myndighet (2026-11-02, mall-0086).
     // kommunala domäner: tjorn.se, orust.se, varmdo.se … känns igen på org-namnet
     return false
   } catch { return false }
@@ -261,8 +278,12 @@ function laisFil(relPath) {
     const last = parseLast(rest)
 
     // En rad kan bära flera källor, separerade med ' ; '
-    for (const bit of rest.split(/\s+;\s+/)) {
-      const urlM = bit.match(/https?:\/\/[^\s;,)\]'"]+/)
+    // Också "; https://…" utan blanksteg före semikolon: annars hamnade båda
+    // citaten under radens första URL (2026-11-02, se storholmen-0159).
+    for (const bit of rest.split(/\s+;\s+|;\s+(?=https?:\/\/)/)) {
+      // Kommatecken inne i en URL hör till den (Österåkers PDF "…underlag,%20daterad%20220124.pdf", sl01-k007); ett
+      // kommatecken efter URL:en skärs bort nedan (mallarnas runda 6, 2026-11-16).
+      const urlM = bit.match(/https?:\/\/[^\s;)\]'"]+/)
       if (!urlM) { nuvarande.utanUrl++; continue }
       const url = urlM[0].replace(/[.,;]+$/, '')
       if (url.includes('/.../')) { nuvarande.utanUrl++; continue } // utelämnad sökväg
@@ -292,7 +313,11 @@ function laisFil(relPath) {
   return oar
 }
 
-/** Slår ihop dubbletter per ö: samma URL en gång, med den fylligaste beskrivningen. */
+/**
+ * Slår ihop dubbletter per ö: samma URL en gång, med den fylligaste beskrivningen. Därefter får varianter av samma
+ * organisation ett gemensamt namn ("varmdo.se" och "Värmdö kommun"), så att källistan räknar organisationen en gång
+ * (src/lib/kallorOrg.mjs; mallarnas runda 6, 2026-11-16, Redaktörens tillägg 12).
+ */
 function slaIhop(kallor) {
   const perUrl = new Map()
   for (const k of kallor) {
@@ -302,7 +327,7 @@ function slaIhop(kallor) {
     if (k.last && (!fanns.last || k.last > fanns.last)) fanns.last = k.last
     if (k.org.length < fanns.org.length && k.org.length > 2) fanns.org = k.org
   }
-  return [...perUrl.values()].sort((a, b) => {
+  return slaIhopOrganisationer([...perUrl.values()]).sort((a, b) => {
     if (a.myndighet !== b.myndighet) return a.myndighet ? -1 : 1
     return a.org.localeCompare(b.org, 'sv')
   })
@@ -354,9 +379,37 @@ export const OAR_MED_KALLOR = ${Object.keys(perSlug).length}
 
 const utvag = resolve(ROT, UTFIL)
 
+/**
+ * Klockslag som står kvar i ett citat, i filen som ska skrivas eller i den som
+ * ligger i repot (till exempel en handredigering). Larmet fäller --kontroll och
+ * därmed bygget (prebuild), som verify-claims gör för obelagda siffror.
+ */
+function klockslagKvar(kallorPerSlug) {
+  const ut = []
+  for (const [slug, kallor] of Object.entries(kallorPerSlug)) {
+    for (const k of kallor) {
+      const t = hittaKlockslag(k.vad)
+      if (t.length > 0) ut.push(`${slug}: ${k.url} (${t.join(', ')})`)
+    }
+  }
+  return ut
+}
+
 if (KONTROLL) {
   let nuvarande = ''
   try { nuvarande = readFileSync(utvag, 'utf8') } catch { /* saknas */ }
+  const iFilen = []
+  for (const m of nuvarande.matchAll(/^\s*"vad": (".*"),?$/gm)) {
+    const t = hittaKlockslag(JSON.parse(m[1]))
+    if (t.length > 0) iFilen.push(t.join(', '))
+  }
+  const kvar = [...klockslagKvar(perSlug), ...iFilen.map(t => `${UTFIL}: ${t}`)]
+  if (kvar.length > 0) {
+    console.error(`✗ klockslag kvar i källistan (${kvar.length}). Arbetsreglerna tillåter inga klockslag i citaten:`)
+    for (const k of kvar.slice(0, 20)) console.error(`  ${k}`)
+    console.error('  Utöka regeln i src/lib/klockslag.mjs och kör: node scripts/generera-kallor.mjs')
+    process.exit(1)
+  }
   if (nuvarande !== innehall) {
     console.error('✗ kallor.generated.ts är inaktuell. Kör: node scripts/generera-kallor.mjs')
     process.exit(1)

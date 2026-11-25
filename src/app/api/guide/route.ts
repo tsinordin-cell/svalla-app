@@ -9,6 +9,7 @@ import { resolvePlaceName, listSupportedPlaces } from '@/lib/placeResolver'
 import { logger } from '@/lib/logger'
 import { fetchTripsResult, type TripSummary } from '@/lib/trafiklab'
 import { getIslandTransit, getReseplanerare, ISLAND_TRANSIT } from '@/lib/transit-stops'
+import { arBatben } from '@/lib/batben'
 import { ALL_ISLANDS } from '@/app/o/island-data'
 import { byggPlatslista, rensaLankar, PLATSLISTA_REGLER, THORKEL_PLATSTYPER, type PlatsRad } from '@/lib/thorkel-platser'
 
@@ -763,7 +764,8 @@ async function executeTool(
             durationMin: trips[0]!.durationMin,
             changes: trips[0]!.changes,
             operators: [...new Set(trips[0]!.legs.map(l => l.operator).filter(Boolean))],
-            hasFerry: trips[0]!.legs.some(l => l.category.toLowerCase().includes('färja')),
+            // Samma test som DepartureWidget och ThorkelRouteCard (src/lib/batben.ts; mallarnas runda 11, sr03-k002).
+            hasFerry: trips[0]!.legs.some(arBatben),
           },
         }
     return { result: claudeView as ToolResult, planData: null, transitData }

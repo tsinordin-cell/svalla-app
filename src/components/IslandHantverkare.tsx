@@ -22,9 +22,12 @@ const SMAKPROV = 3
 export default function IslandHantverkare({
   islandSlug,
   islandName,
+  utanBat = false,
 }: {
   islandSlug: string
   islandName?: string
+  /** Ön nås med bil eller buss utan båt (nasUtanBat i HantverkarKort). */
+  utanBat?: boolean
 }) {
   const alla = getHantverkareForIsland(islandSlug)
   if (alla.length === 0) return null
@@ -56,7 +59,7 @@ export default function IslandHantverkare({
       </p>
 
       <ul style={{ display: 'grid', gap: 10, margin: 0, padding: 0 }}>
-        {visade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={islandSlug} />)}
+        {visade.map(h => <HantverkarKort key={h.slug} h={h} oSlug={islandSlug} utanBat={utanBat} />)}
       </ul>
 
       {fler > 0 && (

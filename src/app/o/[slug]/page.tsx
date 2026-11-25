@@ -26,6 +26,8 @@ import { PUBLICERADE_GUIDER } from '../../guider/guides-data'
 import { getGuidesForIsland } from '../../guider/guide-island-map'
 import IslandB2BCTA from '@/components/IslandB2BCTA'
 import IslandHantverkare from '@/components/IslandHantverkare'
+import { OBILDER } from '../obilder.generated'
+import { nasUtanBat } from '@/components/HantverkarKort'
 import { getHantverkareForIsland } from '../hantverkare-data'
 import IslandTabRow from '@/components/IslandTabRow'
 import IslandKallor from '@/components/IslandKallor'
@@ -34,6 +36,9 @@ import Hopfallbart from '@/components/Hopfallbart'
 import IslandFoto from '@/components/IslandFoto'
 import IslandFakta from '@/components/IslandFakta'
 import { SCB_OAR, SCB_OAR_KALLA } from '../scb-oar.generated'
+import { pekarBort, omBad, boendeOrd, klockslagsregler, arOrt } from '@/lib/mallRegler'
+import { stryksKlockslag } from '@/lib/klockslagStrykning'
+import { krogarIDatabasen } from '@/lib/islandPlaces'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -59,9 +64,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
+ // Bara det ön har i datan: "mat, boende" och "badplatser" stod också på öar utan krogar,
+ // boende eller bad (Långskär, Ormskär, Lilla Karlsö m.fl.; 2026-11-02, mall-0002 omarbete).
+ // Badtunnor (Lidö) är inget bad i havet (mall-0002 omarbete 2).
+ // En post vars första mening säger att det saknas på ön, eller pekar till grannön, räknas inte:
+ // Vindö (boende och bad på Djurö), Öckerö (hotell på Hönö). En badstege vid bastun (Bullerö) är ingen badplats (mall-0002 omarbete 3).
+ // Reglerna ligger i src/lib/mallRegler.ts, så att badsidan räknar bad på samma sätt (mall-0191 och mall-0192 omarbete 4).
+ const harBadData = (island.activity_meta?.bad?.beaches ?? []).length > 0 || island.activities.some(omBad)
+ // "boende" bara för övernattning under tak; har ön bara tält-, camping- eller ställplatser står "tältning"
+ // (Askö, Yttre Gården, Torö; utanför-2, mall-0003 omarbete 4). Regeln: boendeOrd i src/lib/mallRegler.ts.
+ const amnen = [
+  island.restaurants.some(r => !pekarBort(r.desc)) ? 'mat' : '',
+  boendeOrd(island.accommodation),
+  'aktiviteter',
+ ].filter(Boolean)
+ const beskrAmnen = [...amnen, ...(harBadData ? ['badplatser'] : []), 'hur du tar dig dit']
  return {
- title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026: restauranger, boende & aktiviteter`,
- description: island.seoDescription ?? `Guide till ${island.name}: restauranger, boende, aktiviteter, badplatser och hur du tar dig dit. ${island.tagline}`,
+ // Faktagranskningen 2026-11-02 (mall-0002): "restauranger" stämde inte för Husarö (kafé i lanthandeln).
+ title: island.seoTitle ? `${island.seoTitle}` : `${island.name} 2026: ${amnen.length > 1 ? `${amnen.slice(0, -1).join(', ')} & ${amnen[amnen.length - 1]}` : amnen[0]}`,
+ description: island.seoDescription ?? `Guide till ${island.name}: ${beskrAmnen.slice(0, -1).join(', ')} och ${beskrAmnen[beskrAmnen.length - 1]}. ${island.tagline}`,
  keywords: [
   `${island.name.toLowerCase()} guide`,
   `${island.name.toLowerCase()} restaurang`,
@@ -76,7 +97,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  },
  openGraph: {
  title: `${island.name}, ${island.tagline}`,
- description: `Komplett guide till ${island.name} i ${(island.regionLabel ?? '').toLowerCase()}.`,
+ description: `Guide till ${island.name}${island.regionLabel ? `, ${island.regionLabel}` : ''}.`,
  url: `https://svalla.se/o/${slug}`,
  type: 'article',
  images: [{
@@ -88,7 +109,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  twitter: {
  card: 'summary_large_image',
  title: `${island.name}, ${island.tagline}`,
- description: `Guide till ${island.name} i ${(island.regionLabel ?? '').toLowerCase()}.`,
+ // Samma som og:description: "Guide till Tynningö i ." och "göteborgs södra skärgård" (2026-11-02, omarbete).
+ description: `Guide till ${island.name}${island.regionLabel ? `, ${island.regionLabel}` : ''}.`,
  images: [`https://svalla.se/api/og/island/${slug}`],
  },
  }
@@ -163,6 +185,13 @@ export default async function IslandPage({ params }: Props) {
    // Supabase-fel: rendera sidan utan besökarräknare och forumtrådar
  }
 
+ // Platsdatabasens krogar på ön, samma urval som restaurangsidan, så att FAQ:n räknar lika: på Sandhamn
+ // 4 i FAQ:n mot 10 på restaurangsidan (full-20 k084; mallarnas runda 5, 2026-11-10).
+ const dbKrogar = (await krogarIDatabasen(island)).filter(p => p.onIsland)
+ // "Badplatser på och nära X" i kortet bara när ön har badplatser eller bad i datan, samma regel som badsidans
+ // metabeskrivning; annars badsidans text för öar utan badplats (Storholmen; full-24 k011, mall-0094; runda 5).
+ const harBad = (island.activity_meta?.bad?.beaches ?? []).length > 0 || island.activities.some(omBad)
+
  const regionColor = island.region === 'norra'
  ? '#1a5276'
  : island.region === 'södra'
@@ -185,6 +214,7 @@ export default async function IslandPage({ params }: Props) {
    const coordLat = island.lat ?? ISLAND_COORD_MAP[slug]?.lat
    const coordLng = island.lng ?? ISLAND_COORD_MAP[slug]?.lng
    const hasCoords = !!(coordLat && coordLng)
+   const foto = OBILDER[island.slug]
    const scb = SCB_OAR[island.slug]
    const mapsUrl = hasCoords
      ? `https://www.google.com/maps?q=${coordLat},${coordLng}`
@@ -201,8 +231,17 @@ export default async function IslandPage({ params }: Props) {
            name: island.name,
            description: island.description?.[0] ?? island.tagline,
            url: `https://svalla.se/o/${island.slug}`,
-           image: `https://svalla.se/api/og/island/${island.slug}`,
-           isAccessibleForFree: true,
+           // Delningskortet (färgtoning med namn och restid) är ingen bild av ön. Fotot som
+           // visas på sidan, med fotograf och licens; saknas foto står ingen bild (2026-11-02, mall-0011 omarbete).
+           ...(foto ? {
+             image: {
+               '@type': 'ImageObject',
+               contentUrl: foto.url,
+               creditText: foto.fotograf,
+               ...(foto.licensUrl ? { license: foto.licensUrl } : {}),
+               acquireLicensePage: foto.kalla,
+             },
+           } : {}),
            publicAccess: true,
            containedInPlace: {
              '@type': 'Place',
@@ -240,16 +279,9 @@ export default async function IslandPage({ params }: Props) {
                longitude: coordLng,
              },
            } : {}),
-           ...(island.seasonal ? {
-             openingHoursSpecification: {
-               '@type': 'OpeningHoursSpecification',
-               description: `Säsong: ${island.seasonal.open}. Bäst tid: ${island.seasonal.best}.`,
-               ...(island.seasonal.open !== 'Hela året' ? {
-                 validFrom: '2026-05-01',
-                 validThrough: '2026-10-31',
-               } : {}),
-             },
-           } : {}),
+           // openingHoursSpecification borttagen 2026-11-02 (faktagranskningen mall-0012–0014):
+           // utan opens betyder den "stängt" enligt schema.org, en ö har inga öppettider,
+           // och validFrom/validThrough var fasta datum. Säsongen står synligt på sidan.
          })
        }}
      />
@@ -267,18 +299,7 @@ export default async function IslandPage({ params }: Props) {
  ],
  }) }}
  />
- <script
- type="application/ld+json"
- dangerouslySetInnerHTML={{ __html: serializeForScript({
- '@context': 'https://schema.org',
- '@type': 'FAQPage',
- mainEntity: getFaqsForIsland(island).map(faq => ({
- '@type': 'Question',
- name: faq.q,
- acceptedAnswer: { '@type': 'Answer', text: faq.a },
- })),
- }) }}
- />
+ {/* FAQPage-blocket borttaget 2026-11-02 (mall-0015): FAQSection längre ner ger samma JSON-LD. */}
 
  {/* ── NAV ─────────────────────────────────────────────────── */}
  {/* revision 2026-10-02: mork-yta = vit fokusring (globals.css), --sea syntes inte här. */}
@@ -350,8 +371,11 @@ export default async function IslandPage({ params }: Props) {
  <circle cx="12" cy="8" r="2.4" />
  </svg>
  <span>
+ {/* Räknar rader i visited_islands: knappen och ruttplaneraren, men också GPS-turer,
+     turloggar och gamla passager från före 2026-10-26. Inte bara de som markerat
+     ön (2026-11-02, mall-0018–0019 omarbete). */}
  <strong style={{ fontSize: 15 }}>{visitorCount?.toLocaleString('sv-SE')}</strong>{' '}
- seglare har besökt {island.name} via Svalla
+ har {island.name} bland sina besökta öar i Svalla
  </span>
  </div>
  )}
@@ -387,7 +411,9 @@ export default async function IslandPage({ params }: Props) {
  marginTop: 22,
  }}>
  {([
- { label: 'Restid', value: island.facts.travel_time, icon: 'compass' as const, pk: 'travel_time' },
+ // Restiden utan led med klockslag, som på komma-dit och med barn (Lilla Karlsö "båten till ön avgår 09.00", Blå
+ // Jungfrun "avgång 09.00, hemma 15.15 eller 16.15"); enligt Toms beslut 10 (mallarnas runda 7, 2026-11-17).
+ { label: 'Restid', value: klockslagsregler(stryksKlockslag(slug, 'ösidan')).utanKlockslag(island.facts.travel_time ?? ''), icon: 'compass' as const, pk: 'travel_time' },
  { label: 'Karaktär', value: island.facts.character, icon: 'leaf' as const, pk: 'character' },
  { label: 'Säsong', value: island.facts.season, icon: 'sun' as const, pk: 'season' },
  { label: 'Perfekt för', value: island.facts.best_for, icon: 'star' as const, pk: 'best_for' },
@@ -472,7 +498,8 @@ export default async function IslandPage({ params }: Props) {
      off: 'var(--txt2)', limited: 'var(--txt)', open: 'var(--txt)', peak: '#fff',
    }
    const LABEL: Record<string, string> = {
-     off: 'Stängt', limited: 'Begränsad service', open: 'Öppet', peak: 'Högsäsong',
+     // 'Stängt' ändrat 2026-11-02 (mall-0112): off-månader är lågsäsong för service, ön är inte stängd.
+     off: 'Lågsäsong', limited: 'Begränsad service', open: 'Öppet', peak: 'Högsäsong',
    }
    const currentMonth = new Date().getMonth() // 0-indexed
    return (
@@ -828,7 +855,7 @@ export default async function IslandPage({ params }: Props) {
  {/* Hantverk & service — renderar sig själv till null om ön saknar poster
      för ön, vilket är normalfallet tills registret ringts igenom. Se
      hantverkare-data.ts för varför spärren ligger i datalagret och inte här. */}
- <div data-vidareklick="hantverk"><IslandHantverkare islandSlug={slug} islandName={island.name} /></div>
+ <div data-vidareklick="hantverk"><IslandHantverkare islandSlug={slug} islandName={island.name} utanBat={nasUtanBat(island.getting_there, island.name)} /></div>
 
  {/* Boende */}
  {island.accommodation.length > 0 && (
@@ -876,7 +903,9 @@ export default async function IslandPage({ params }: Props) {
  <section data-vidareklick="resa" style={{ marginBottom: 52 }}>
  <SectionHeader icon="ship" title="Ta sig dit" />
  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
- {island.getting_there.map(t => (
+ {/* Korten utan klockslag (tid och text), som på komma-dit; enligt Toms beslut 10 (src/lib/klockslagStrykning.ts;
+     mallarnas runda 7, 2026-11-17). "från" bara när from är en ort (arOrt). */}
+ {island.getting_there.map(klockslagsregler(stryksKlockslag(slug, 'ösidan')).fardUtanKlockslag).map(t => (
  <div key={t.method} style={{
  background: 'var(--white)',
  borderRadius: 14,
@@ -898,7 +927,7 @@ export default async function IslandPage({ params }: Props) {
  <div style={{ flex: 1 }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 3, flexWrap: 'wrap' }}>
  <span style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)' }}>{t.method}</span>
- {t.from && <span style={{ fontSize: 12, color: 'var(--txt3)' }}>från {t.from}</span>}
+ {arOrt(t.from) && <span style={{ fontSize: 12, color: 'var(--txt3)' }}>från {t.from}</span>}
  {t.time && (
  <span style={{
  fontSize: 11,
@@ -922,7 +951,7 @@ export default async function IslandPage({ params }: Props) {
    Planera en dag på {island.name} →
   </Link>
   <Link href={`/o/${slug}/komma-dit`} style={{ fontSize: 13, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>
-   Komplett transportguide →
+   Mer om hur du tar dig hit →
   </Link>
  </div>
  </section>
@@ -1021,7 +1050,7 @@ export default async function IslandPage({ params }: Props) {
 
  {/* FAQ — vanliga frågor (SEO Featured Snippets) */}
  <FAQSection
- items={getFaqsForIsland(island)}
+ items={getFaqsForIsland(island, { dbKrogar, stryk: stryksKlockslag(slug, 'ösidan') })}
  title={`Vanliga frågor om ${island.name}`}
  schemaUrl={`https://svalla.se/o/${island.slug}`}
  />
@@ -1077,7 +1106,7 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Bad &amp; stränder</div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Badplatser på och nära {island.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>{harBad ? `Badplatser på och nära ${island.name}` : `Vad som gäller när du badar vid ${island.name}`}</div>
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
@@ -1098,7 +1127,7 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Komma dit</div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Båt, färja och transport till {island.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Så tar du dig till {island.name}</div>
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
@@ -1119,7 +1148,7 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Med barn</div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Barnvänlig guide till {island.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Tips för dig som åker till {island.name} med barn</div>
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
@@ -1144,7 +1173,7 @@ export default async function IslandPage({ params }: Props) {
        </div>
        <div style={{ flex: 1 }}>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', marginBottom: 2 }}>Hantverkare &amp; service</div>
-        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Hus, brygga, båt och tomt på {island.name}</div>
+        <div style={{ fontSize: 12, color: 'var(--txt3)' }}>Företag med verksamhet på {island.name}</div>
        </div>
        <span style={{ color: 'var(--sea)', fontWeight: 700 }}>→</span>
       </div>
@@ -1231,7 +1260,7 @@ export default async function IslandPage({ params }: Props) {
      Tidigare två sektioner med samma rubrik "Guider om X" efter varandra. */}
  {(guideLinks.length > 0 || (island.blogLinks && island.blogLinks.length > 0)) && (
   <section style={{ marginBottom: 36 }}>
-   <SectionHeader icon="book" title={`Guider om ${island.name}`} />
+   <SectionHeader icon="book" title={`Guider som tar upp ${island.name}`} />
    {guideLinks.length > 0 && (
    <div style={{
     display: 'grid',
@@ -1370,7 +1399,7 @@ export default async function IslandPage({ params }: Props) {
     /* Inga trådar — visa klickbara startfrågor */
     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 14 }}>
      <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', marginBottom: 4 }}>
-      Inga diskussioner ännu: bli den första:
+      Ställ en fråga om {island.name}:
      </div>
      {[
       `Vad ska man inte missa på ${island.name}?`,
@@ -1458,7 +1487,7 @@ export default async function IslandPage({ params }: Props) {
  variant="card"
  source={`o-${island.slug}`}
  title={`Vill du veta mer om ${island.name}?`}
- description={`De bästa öarna hittar du inte via Google. Prenumerera och vi visar dig.`}
+ description="Säsongsstarter, nya guider och ändrade båtlinjer, när det händer något. Inga annonser."
  />
  </div>
 

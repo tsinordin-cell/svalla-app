@@ -104,8 +104,26 @@ export const ACTIVITIES: Record<ActivityType, ActivityMeta> = {
 
 export const ACTIVITY_LIST: ActivityMeta[] = Object.values(ACTIVITIES)
 
+/**
+ * Kan besökande båtar lägga till på ön? En trafikbrygga räcker inte: på Eknö och Gräskö
+ * säger öns egen hamntext att gästhamn inte gått att belägga (2026-11-02, mall-0093 omarbete 2).
+ */
+function harGasthamn(island: Island): boolean {
+  const ord = /gästhamn|gästplats|gästbåt|gästbrygg|naturhamn|båtplats|boj|ankr/i
+  const fornekat = /inte kunnat belägga|inte hittat/i
+  return island.harbors.some(h => (h.spots ?? 0) > 0 || (h.service ?? []).length > 0
+      || (ord.test(`${h.name} ${h.desc}`) && !fornekat.test(h.desc)))
+    || island.activities.some(a => /segl|gästhamn|naturhamn/i.test(`${a.name} ${a.desc}`) && !fornekat.test(a.desc))
+}
+
 /** Hämtar de aktivitets-cards från ön som faktiskt matchar typen */
 export function islandActivitiesForType(island: Island, type: ActivityType): typeof island.activities {
+  // Delordsmatchningen gav "Mat & krogar" av "ta med mat" (Svartlöga), "Kayakomat" (Yttre Gården)
+  // och "informationsskyltar" (Långviksskär), och "Segling" av t.ex. "trampbåtar" (Gålö).
+  // Mat kräver krog, kafé eller butik i ödatan, segling en hamn eller ett seglingsord
+  // (2026-11-02, mall-0093 omarbete).
+  if (type === 'mat' && island.restaurants.length === 0) return []
+  if (type === 'segling' && !harGasthamn(island)) return []
   const matchers = ACTIVITIES[type].matchers
   return island.activities.filter(a => {
     const text = `${a.name} ${a.desc}`.toLowerCase()
