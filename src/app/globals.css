@@ -772,11 +772,31 @@ img {
 /* Toppraden glider undan vid skroll nedåt (ToppradGom.tsx). Bara på mobil;
    från 1024 px är raden dold eller står still. */
 .app-topbar {
-  transition: transform 0.22s ease;
+  transition: transform 0.22s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 @media (max-width: 1023px) {
   .app-topbar--gomd {
     transform: translateY(-100%);
+  }
+  /* Genomskinlig rad över en mörk yta (ToppradGenomskinlig.tsx, Profil 2026-11-25).
+     !important eftersom raden har sin bakgrund inline. Loggan och knapparna blir
+     vita genom att --sea byts bara på dem, inte på notispanelen bredvid. */
+  .app-topbar--genomskinlig {
+    background: transparent !important;
+    border-bottom-color: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .app-topbar--genomskinlig .toppknapp,
+  .app-topbar--genomskinlig .app-topbar-logga {
+    --sea: #ffffff;
+  }
+  /* Profilens mörka yta går upp under toppraden (44 px + 1 px kant) och under
+     telefonens statusrad (html har padding-top för notchen). Synlig höjd under
+     raden blir 140 - 45 px, så innehållet flyttar upp 45 px. */
+  .profil-hero {
+    margin-top: calc(-45px - env(safe-area-inset-top, 0px));
+    height: calc(140px + env(safe-area-inset-top, 0px)) !important;
   }
 }
 @media (prefers-reduced-motion: reduce) {
