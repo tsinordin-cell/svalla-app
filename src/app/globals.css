@@ -906,6 +906,10 @@ img {
   .flode-topp.app-topbar--gomd {
     transform: translateY(-100%);
   }
+  /* TESTGREN: gamla beteendet via ?fore=1 */
+  .flode-topp.test-fore.app-topbar--gomd {
+    transform: translateY(calc(-1 * var(--topprad-h, 45px)));
+  }
   .flode-topp + .feed-ambient-top {
     margin-top: calc(-1 * var(--flode-topp-h, 89px));
     padding-top: var(--flode-topp-h, 89px);

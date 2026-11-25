@@ -32,6 +32,12 @@ export default function ToppradGom({ mal }: { mal?: string } = {}) {
         parent?.style.setProperty('--flode-topp-h', `${rad.offsetHeight}px`)
       }
       mat()
+      // TESTGREN: ?fore=1 visar det gamla beteendet (bara toppraden glider undan).
+      if (new URLSearchParams(window.location.search).get('fore') === '1') {
+        const topprad = rad.querySelector<HTMLElement>('header')
+        rad.classList.add('test-fore')
+        if (topprad) rad.style.setProperty('--topprad-h', `${topprad.offsetHeight}px`)
+      }
       if (typeof ResizeObserver !== 'undefined') {
         ro = new ResizeObserver(mat)
         ro.observe(rad)
