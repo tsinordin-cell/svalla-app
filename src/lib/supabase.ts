@@ -1,5 +1,6 @@
 import { createBrowserClient } from '@supabase/ssr'
 import { delaGetUser } from '@/lib/delatAnrop'
+import { installeraTestInloggning } from '@/lib/testInloggad'
 
 export function createClient() {
   const client = createBrowserClient(
@@ -9,6 +10,7 @@ export function createClient() {
   // I webbläsaren är klienten en och samma för hela fliken. Alla komponenters
   // "vem är inloggad"-frågor delar då ett nätverksanrop, se lib/delatAnrop.ts.
   if (typeof window !== 'undefined') delaGetUser(client.auth)
+  installeraTestInloggning(client.auth)
   return client
 }
 
