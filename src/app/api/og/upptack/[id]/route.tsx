@@ -56,11 +56,12 @@ export async function GET(
     : null
   const googleRef = (data.google_photo_refs as { reference: string }[] | null)?.[0]?.reference
   let bgUrl: string | null = null
-  if (googleRef) {
+  // Vår lagrade kopia först; Google bara om den saknas (Google nekar 403).
+  if (egenBild) {
+    bgUrl = egenBild
+  } else if (googleRef) {
     const encoded = Buffer.from(googleRef, 'utf-8').toString('base64url')
     bgUrl = `${SITE}/api/places/photo/${encoded}?w=1600&h=900`
-  } else {
-    bgUrl = egenBild
   }
 
   // ogFoto hämtar, kontrollerar att det är en bild och gör om den till JPEG.

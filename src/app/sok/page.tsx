@@ -302,7 +302,8 @@ function SokPageInner() {
  href: `/rutter/${t.id}`,
  })),
  ...(placesRes.data ?? []).map(r => {
- // Föredra Google-foto framför seedade fallback-bilder
+ // Vår lagrade kopia (image_url) först, Google bara om den saknas.
+ // Google nekar nyckeln (403) och då blev tumnageln en tom ruta.
  const ref = r.google_photo_refs?.[0]?.reference
  // Inte Buffer#toString('base64url'): polyfillen i webbläsaren kastar
  // "Unknown encoding: base64url" och då fastnar hela träfflistan på snurran.
@@ -312,7 +313,7 @@ function SokPageInner() {
  id: r.id,
  title: r.name,
  subtitle: r.island ?? '',
- image: googleImg ?? r.image_url ?? undefined,
+ image: r.image_url ?? googleImg ?? undefined,
  href: `/upptack/${r.id}`,
  }
  }),

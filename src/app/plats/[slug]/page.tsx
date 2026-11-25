@@ -150,10 +150,11 @@ export default async function PlatsPage({ params }: { params: Promise<{ slug: st
  const googleHero = googlePhotoRef
    ? `/api/places/photo/${Buffer.from(googlePhotoRef, 'utf-8').toString('base64url')}?w=1600`
    : null
- // Google först, platsens egna foton som reserv, sedan öns foto. Google
- // nekar nyckeln sedan 2026-11 (403), och utan reserv visade toppen en
- // trasig bild. Stockfoton visas aldrig som platsen. Se PlatsHeroBild.
- const heroKallor = [googleHero, p.images?.[0] ?? null, p.image_url]
+ // Vår lagrade kopia (image_url, sparad från Google i 1600 px) först,
+ // Google bara som reserv, sedan öns foto. Google nekar nyckeln (403), och
+ // varje besök gjorde annars ett misslyckat anrop innan bilden kom.
+ // Stockfoton visas aldrig som platsen. Se PlatsHeroBild.
+ const heroKallor = [p.image_url, p.images?.[0] ?? null, googleHero]
    .filter((u, i, alla): u is string => !!u && !arStockfoto(u) && alla.indexOf(u) === i)
  const heroReserv = oReserv(p.island)
  const typeInfo = p.type ? (TYPE_CONFIG[p.type] ?? null) : null
