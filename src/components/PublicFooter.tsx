@@ -39,8 +39,8 @@ export default function PublicFooter() {
               margin: 0,
               maxWidth: 360,
             }}>
-              Skärgårdens guide med ösidor, krogar, hamnar och båttider från Trafiklab.
-              Ingen reklam, inga trick, bara skärgården.
+              {/* Samma text i alla sidfötter (Max 2026-11-24) */}
+              Skärgården börjar här. Öar, krogar, hamnar och båttider längs hela kusten, från Bohuslän till Höga kusten.
             </p>
           </div>
           <div style={{ flex: '0 0 auto' }}>
