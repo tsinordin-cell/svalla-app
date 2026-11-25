@@ -1724,3 +1724,38 @@ html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-liten{color:rgba(10,37,64,.
 html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-liten:hover{color:#0a2540}
 html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-mob-sok{color:#0a2540}
 html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-mob-knapp{background:rgba(10,37,64,.06);border-color:rgba(10,37,64,.25);color:#0a2540}
+
+/* ==========================================================================
+   Max 2026-11-25: EN FÄRGSKALA OCH EN RUBRIKSKALA (granskning inför Oskar)
+   Bygger vidare på sandregeln ovan. Typsnitten är oförändrade till torsdag.
+   ========================================================================== */
+
+/* F1. Sidans grund är sand (--bg), inte kall blåvit. Bara ljust läge. */
+html:not([data-theme="dark"]) body{background:var(--bg)}
+
+/* F2. Sidhuvuden med blå toning blir sand med marinblå text, som övriga undersidor:
+   ösidorna (/o/...), /oar, /guider och /partner. Bara ljust läge. */
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh){background:#efe7d6!important;color:#0a2540}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(h1,h2,h3,p,span,small,li,div,em,strong,label,svg,a:not([style*="background"]),button:not([style*="#b5591a"]):not([style*="--acc"])){color:#0a2540!important;text-shadow:none!important}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(span,a,div,button)[style*="rgba(255"]{background:#fffdf8!important;border-color:rgba(10,37,64,.12)!important;color:#0a2540!important}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) [style*="border"][style*="rgba(255"]{border-color:rgba(10,37,64,.16)!important}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) svg :is([stroke="#fff"],[stroke="#ffffff"],[stroke="white"]){stroke:currentColor}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) svg :is([fill="#fff"],[fill="#ffffff"],[fill="white"]){fill:currentColor}
+/* Vita knappar i dessa sidhuvuden hade ljusblå text (--sea-l) som knappt syntes. */
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) a[style*="background:#fff"]{color:#0a2540!important}
+
+/* F3. Mörka partier är en ren marinblå yta i stället för toningar i blått, petrol och skiffer. Båda lägena. */
+:is([style*="linear-gradient(135deg, #0d2440"],[style*="linear-gradient(135deg, rgb(30, 41, 59)"],[style*="linear-gradient(135deg, #0a7b8c"],[style*="linear-gradient(135deg, #0a1e2e"],section[style*="linear-gradient(135deg, #1e5c82, #2d7d8a)"]){background:#0a2540!important}
+
+/* F4. En sidfot: marinblå #0a2540 överallt (tidigare havsblå #1e5c82 och nästan svart #0d1a27). */
+:is(footer.mork-yta,.public-footer){background:#0a2540!important}
+
+/* R1. Sidans huvudrubrik (H1) i sidhuvudet: 44 px på dator, ner till 32 px i mobilen, vikt 700. Tidigare 36 till 56 px. */
+:is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh,header:not(.app-topbar)) h1:not(.lp-dold){font-size:clamp(32px,3.2vw + 8px,44px)!important;line-height:1.1!important;font-weight:700!important;letter-spacing:-.01em!important}
+
+/* R2. Startsidans avsnittsrubriker (H2): 28 px på dator, 24 px i mobilen, vikt 700. Tidigare 26 till 48 px och vikt 400 eller 800. */
+.lp-start h2:not(.lp-dold){font-size:28px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-.01em!important}
+@media (max-width:640px){.lp-start h2:not(.lp-dold){font-size:24px!important}}
+
+/* R3. Loggan i sidfoten har samma storlek på alla sidor (28 px hög). Tidigare 22, 26 eller 28 px. */
+footer svg[aria-label="Svalla"]{height:28px!important;width:auto!important}
