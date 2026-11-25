@@ -7,7 +7,7 @@ import { HAR_KONTO_KAKA, harHaftKonto } from '@/lib/kontoLage'
 // Defense-in-depth: middleware-baserad auth-gate. Varje page har också egen
 // auth-check, men listan här fångar om någon framtida sida glömmer redirect.
 const PROTECTED_ROUTES = [
-  /* TESTGREN: /feed öppen för skärmbilder */ '/profil', '/spara', '/logga', '/notiser',
+  '/feed', '/profil', '/spara', '/logga', '/notiser',
   '/planera', '/sparade', '/meddelanden', '/min-skargard',
   '/onboarding', '/check-in', '/loppis/sparat', '/loppis/mina-annonser',
 ]
@@ -177,7 +177,8 @@ export async function middleware(request: NextRequest) {
   }
 
   let isProtected = false
-  for (const route of PROTECTED_ROUTES) {
+  // TESTGREN: /feed öppen för skärmbilder
+  for (const route of PROTECTED_ROUTES.filter(r => r !== '/feed')) {
     if (pathname === route || pathname.startsWith(route + '/')) {
       isProtected = true
       break
