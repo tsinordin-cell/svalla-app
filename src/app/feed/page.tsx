@@ -3,6 +3,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import FeedTabs from '@/components/FeedTabs'
+import FlodeFlikar from '@/components/FlodeFlikar'
 import StoriesStrip from '@/components/StoriesStrip'
 import LoppisFeedBanner from '@/components/LoppisFeedBanner'
 import NewsletterOptInBanner from '@/components/NewsletterOptInBanner'
@@ -200,6 +201,10 @@ export default async function FeedPage(
  {/* ── Header ── 2026-11-23 (menyförslaget): gemensam topprad. Huset till startsidan
      är borta; loggan går till flödet. Från 1024 px döljs raden, sidomenyn har allt. */}
  <AppTopBar bakgrund="rgba(255,255,255,0.55)" doljPaDesktop />
+ {/* 2026-11-24 (Tom): flikarna Flöde · Forum · Topplista direkt under toppraden, som på
+     Forum och Topplista. Förut låg de under hälsningen och vinterkorten (i FeedTabs), så
+     de bytte plats i höjdled när man gick mellan de tre sidorna. */}
+ <FlodeFlikar aktiv="flode" bakgrund="var(--white)" />
 
  {/* ── Greeting ── */}
  {feedUsername && (
