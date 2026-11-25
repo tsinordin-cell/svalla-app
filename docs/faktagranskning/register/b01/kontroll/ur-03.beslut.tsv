@@ -1,0 +1,8 @@
+kid	register-id	fynd	beslut (Redaktören 2026-11-25)
+ur03-k003	styrso-0178	FEL	Registret: texten blir slutkodens mening (island-data.ts:9990), som ub-03 har prövat OK mot krogens sida.
+ur03-k013	styrso-0177	FEL	Som k003.
+ur03-k017	styrso-0179	FEL	Som k003.
+ur03-k006	lag3b-N031	FEL	Godtas. Meningen om varvsnäringens uppsving under 1900-talet i skärgården klarar inte utfyllnadstestet och stryks från Möjas text. Sidan mäts om (Lag 3).
+ur03-k018	lag3a-N019	FEL	Delvis godtas. Gästhamnens service är belagd av Nynäshamns kommun (KÄLLA vid island-data.ts:10374), men registerraden saknar den källan, och «närmast» är obelagt. «Närmast» stryks, uppgifterna tillskrivs kommunen och registrets KÄLLA kompletteras. Kommentaren från runda 11 som säger att servicen är struken rättas. Meningen klarar utfyllnadstestet, eftersom den anger varifrån man hyr båt till just Yttre Gården, där det inte finns någon reguljär båt.
+ur03-k028	uto-0401	FEL	Registret: raden ska spegla beslutet att dölja posten (ub01-k016). Namnet påstås inte längre; registerraden skrivs om till dold post med skäl.
+övriga		OK	25 rader OK, inklusive de två strukna meningarna.

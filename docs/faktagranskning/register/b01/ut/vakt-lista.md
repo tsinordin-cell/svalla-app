@@ -165,3 +165,5 @@ Samlad av Redaktören 2026-11-03 ur STATUS.md. Detta är punkterna för Vakten i
 - ub-01: 30 texter, 20 OK, 9 FEL, 1 SAKNAS (löst av Redaktören i Toms Chrome). Donsö-fynden (k003, k025, k026) avgörs av Toms beslut 7; namn, telefon och läge byts tillsammans.
 - ub-02: 29 texter, 24 OK, 4 FEL, 1 SAKNAS. Strömmas webb säger ca 15 min Hovgården–Birka, tabellen 30 min; texten följer tabellen. Pröva igen före säsongen 2027.
 - Rättelserunda 12 startad 2026-11-25 med 21 punkter (redaktor/rattelser-mopp3.tsv). Sedan omkontroll av de ändrade raderna.
+- Fjärde kontrollen (2026-11-25): ur-03 25 OK, 6 FEL; ub-03 8 OK, 3 FEL; 0 SAKNAS, ingen P0. ub-03:s tre FEL gällde poster som en senare post skriver över (slutkodens text OK). artefakter.py ska hoppa över överskrivna poster. Dykarbaren: sidan anger säsong maj till september men tider från 11 juni.
+- Rättelserunda 13 startad med 6 punkter (redaktor/rattelser-mopp4.tsv): Möjas mening om varvsnäringen stryks (utfyllnad), Yttre Gårdens «närmast» stryks, fyra registerrader.
