@@ -1791,3 +1791,8 @@ html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--acc)"],html
    På mörk botten används ljus orange #f4b06a. På ljus botten (t.ex. "För utforskaren") den mörka textorangen. */
 .lp-start .sd-liten.sd-ljus,.mm-utvalt-etikett{color:#f4b06a!important}
 html:not([data-theme="dark"]) .lp-start .sd-liten:not(.sd-ljus){color:var(--acc-text)!important}
+
+/* ===== LOGGAN I EN STORLEK (Max 2026-11-25) =====
+   Alla små Svalla-loggor (menyer, sidfötter, julkalendern, inbyggda kopior) är exakt 28 x 90 px.
+   Vid 28 px är en enhet i loggans viewBox en hel pixel, så SVALLA blir skarp vid 100 % zoom. */
+svg[aria-label="Svalla"][viewBox="0 0 90 28"]{height:28px!important;width:90px!important;max-width:none!important;flex-shrink:0}
