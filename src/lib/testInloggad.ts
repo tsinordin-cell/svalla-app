@@ -22,6 +22,8 @@ export function installeraTestInloggning(auth: any): void {
   })
   if (installerad) return
   installerad = true
+  if (document.readyState === 'complete') simuleraNotch()
+  else window.addEventListener('load', () => { simuleraNotch() })
   const foljer = new URLSearchParams(window.location.search).get('foljer') === '1'
   const orig = window.fetch.bind(window)
   window.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
@@ -37,4 +39,43 @@ export function installeraTestInloggning(auth: any): void {
     }
     return orig(input as any, init)
   }) as typeof window.fetch
+}
+
+// ?notch=59 : byter env(safe-area-inset-top) mot 59px i sidans riktiga CSS
+// (länkade filer, <style> och inline-stilar) och lägger en ritad statusrad
+// med Dynamic Island överst, som på en iPhone med notch. Bara testgrenen.
+const SAFE = /env\(\s*safe-area-inset-top\s*(,[^()]*(\([^()]*\))?[^()]*)?\)/g
+let notchKord = false
+export async function simuleraNotch(): Promise<void> {
+  if (typeof window === 'undefined' || notchKord) return
+  const n = Number(new URLSearchParams(window.location.search).get('notch') ?? '')
+  if (!n) return
+  notchKord = true
+  const byt = (t: string) => t.replace(SAFE, n + 'px')
+  for (const l of Array.from(document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]'))) {
+    try {
+      const t = await (await fetch(l.href)).text()
+      const s = document.createElement('style'); s.textContent = byt(t)
+      l.after(s); l.disabled = true
+    } catch {}
+  }
+  for (const s of Array.from(document.querySelectorAll('style'))) {
+    if (s.textContent && SAFE.test(s.textContent)) s.textContent = byt(s.textContent)
+    SAFE.lastIndex = 0
+  }
+  const fixaInline = () => {
+    for (const el of Array.from(document.querySelectorAll<HTMLElement>('[style*="safe-area-inset-top"]'))) {
+      el.setAttribute('style', byt(el.getAttribute('style') ?? ''))
+    }
+  }
+  fixaInline()
+  new MutationObserver(fixaInline).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ['style'] })
+  const bar = document.createElement('div')
+  bar.setAttribute('aria-hidden', 'true')
+  bar.style.cssText = `position:fixed;inset:0 0 auto 0;height:${n}px;z-index:2147483647;pointer-events:none;font:600 16px -apple-system,system-ui,sans-serif;color:#fff;mix-blend-mode:difference`
+  bar.innerHTML = `<span style="position:absolute;left:34px;top:${Math.round(n / 2) - 9}px">9:41</span><span style="position:absolute;right:30px;top:${Math.round(n / 2) - 9}px">●●● 100%</span>`
+  const o = document.createElement('div')
+  o.setAttribute('aria-hidden', 'true')
+  o.style.cssText = `position:fixed;left:50%;top:11px;width:126px;height:37px;margin-left:-63px;border-radius:20px;background:#000;z-index:2147483647;pointer-events:none`
+  document.body.append(bar, o)
 }
