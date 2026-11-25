@@ -1917,3 +1917,9 @@ html:not([data-theme="dark"]) .fb-flytande{background:#0a2540!important}
 html:not([data-theme="dark"]) [style*="color:#d6a318"]{color:#8a6400!important}
 html:not([data-theme="dark"]) [style*="color:#16a34a"]{color:#15803d!important}
 html:not([data-theme="dark"]) .ht-knapp{background:var(--acc-knapp,#b5591a)!important}
+
+/* Andra varvet (samma dag): knappar och rubriker som första varvet missade. */
+html:not([data-theme="dark"]) .ss-knapp,html:not([data-theme="dark"]) .jk-cta,html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--sea);color:var(--white)"],html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--sea);color:#fff"],html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--sea, #1e5c82);color:#fff"],html:not([data-theme="dark"]) button[style*="background: var(--grad-sea)"],html:not([data-theme="dark"]) button[style*="background:var(--grad-sea)"]{background:var(--acc-knapp,#b5591a)!important;color:#fff!important}
+html:not([data-theme="dark"]) [style*="color:#3f9d5a"]{color:#2b7a43!important}
+h2[style^="font-size:20px;font-weight:700;color:var(--txt);margin-bottom:16px"],h2[style^="font-size:16px;font-weight:700;margin-bottom:8px"]{font-size:24px!important;line-height:1.2!important}
+h2[style^="font-size:15px;font-weight:700;color:var(--txt);margin:0 0 6px"]{font-size:18px!important}
