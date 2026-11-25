@@ -56,7 +56,7 @@ const START_CSS = `
 @media (min-width:600px) and (max-width:860px){.lp-start .julskylt{top:80px}}
 @media (min-width:861px){.lp-start .julskylt{top:166px;right:22px}}
 /* Julkalenderns paket ligger uppe till vänster, så Spela igen och Hoppa över står under ljudknappen till höger */
-.hf-scen .ki-styr,.hf-scen .ki-styr.ljus{left:auto;right:14px;top:52px}
+.hf-scen .ki-styr,.hf-scen .ki-styr.ljus{display:none}
 .lp-dold{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 `
 
