@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>CSP-prov</title>
+</head>
+<body>
+<!--
+  Provsida för CSP-rapporteringen (2026-11-25).
+
+  Sidan bryter med flit mot "script-src-attr 'none'" i next.config.ts:
+  bilden nedan finns inte, så webbläsaren försöker köra dess onerror,
+  CSP:n stoppar det och skickar en rapport till /api/csp-rapport.
+  Rapporten ska då synas i Vercels loggar som en rad som börjar med [csp]
+  och nämner /csp-prov.html.
+
+  Händelsekoden gör ingenting (void 0) även om den skulle köras.
+  Sidan är inte länkad från sajten och har noindex.
+-->
+<p>Provsida för Svallas säkerhetsskydd. Här finns inget att se.</p>
+<img src="/csp-prov-finns-inte.png" alt="" width="1" height="1" onerror="void 0">
+</body>
+</html>
