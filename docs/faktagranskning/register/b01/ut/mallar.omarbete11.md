@@ -40,6 +40,8 @@ Batch 01, lägsta andel per ö: Husarö bad 97,1 %, Möja hamnar 98,4 %, Utö re
 1. Arkösund, Harstena och Ämtö boende och Eknö med barn hamnar under 95 % bara av klockslagsstrykningen. Enligt beslut C borde de stå i UPPSKJUTEN_STRYKNING; inte ändrat. Ska de läggas till?
 2. mall-0111: main:s slogan ersätter mallarnas sidfotstext. Bekräfta.
 
+- **Redaktörens beslut (enligt beslut C):** Ämtö, Arkösund och Harstena boende och Eknö med barn ligger nu i UPPSKJUTEN_STRYKNING (src/lib/klockslagStrykning.ts). MÄTT mot main f3f8df4 med öarnas poster: 128/127, 112/111, 130/129 och 217/206 ord (alla ≥ 100 %). Under 95 % nu 13 sidor (batch 01: 0). Efteråt: prebuild exit 0, tsc 0 fel, vitest 997 gröna, patchen sparad igen (53 filer).
+
 ## Kontroller (2026-11-25)
 /home/claude/svalla-mallar11: `npm run -s prebuild` exit 0 (verify-claims utan nya påståenden, källistan och uppskattningar aktuella, vitest i prebuild grön, obilder grön) · `npx tsc --noEmit -p .` 0 fel · `npx vitest run src/lib` 112 filer, 997 test gröna · eslint på ändrade filer: bara de tre emojifelen som finns på main (hamnar/page.tsx, page.tsx, api/guide/route.ts).
 Ihop (kopia i scratchpad/b01/mallar11/ihop): först föll oSok.test.ts (punkt 3 ovan); med O_SOK omskriven ur ALL_ISLANDS (skript/osok.ts): prebuild exit 0, tsc 0 fel, vitest 112 filer, 997 test gröna. Kopian borttagen.

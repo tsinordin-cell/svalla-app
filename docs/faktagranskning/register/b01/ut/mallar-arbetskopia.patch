@@ -12019,10 +12019,10 @@ index 0000000..9990c38
 +})
 diff --git a/src/lib/klockslagStrykning.ts b/src/lib/klockslagStrykning.ts
 new file mode 100644
-index 0000000..bd87bdb
+index 0000000..16a8cdb
 --- /dev/null
 +++ b/src/lib/klockslagStrykning.ts
-@@ -0,0 +1,50 @@
+@@ -0,0 +1,52 @@
 +/**
 + * Var mallarna stryker klockslag ur öarnas data (Toms beslut 10, C, 2026-11-17; docs/faktagranskning/beslut-tom.md).
 + *
@@ -12048,11 +12048,13 @@ index 0000000..bd87bdb
 +// Mätt 2026-11-17 (mallarnas runda 8, med den riktiga platsdatabasen och runda 8:s kompensation): kommentaren visar
 +// ordantalet med strykning mot main ce275b2 (under 95 %).
 +export const UPPSKJUTEN_STRYKNING = new Set<string>([
++  // Runda 11 (2026-11-25, Redaktörens beslut enligt beslut C): öar som är nya på main, mätt mot f3f8df4 med öarnas poster.
++  'amto/boende', 'arkosund/boende', 'harstena/boende',  // boende 120/127, 104/111, 122/129 ord
 +  'asko/ösidan', 'asko/boende', 'asko/med-barn',  // ösidan 1125/1209 ord, boende 189/220 ord, med-barn 230/252 ord
 +  'asperon/komma-dit', 'asperon/boende', 'asperon/med-barn',  // komma-dit 213/228 ord, boende 175/208 ord, med-barn 340/367 ord
 +  'bla-jungfrun/ösidan', 'bla-jungfrun/boende', 'bla-jungfrun/med-barn',  // ösidan 1752/1897 ord, boende 206/261 ord, med-barn 354/408 ord
 +  'djuro/boende', 'djuro/med-barn',  // boende 205/235 ord, med-barn 365/389 ord
-+  'ekno/ösidan', 'ekno/boende',  // ösidan 997/1058 ord, boende 147/168 ord
++  'ekno/ösidan', 'ekno/boende', 'ekno/med-barn',  // ösidan 997/1058 ord, boende 147/168 ord; med-barn 195/206 mot main f3f8df4 (runda 11)
 +  'fjardlang/ösidan', 'fjardlang/boende',  // ösidan 1688/1777 ord, boende 265/281 ord
 +  'gotska-sandon/ösidan', 'gotska-sandon/boende',  // ösidan 1631/1741 ord, boende 268/295 ord
 +  'huvudskar/boende',  // boende 187/208 ord
