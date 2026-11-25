@@ -269,6 +269,8 @@ export default async function PublicProfilePage({
  Följ, meddelande, notisval och mer-menyn (blockera, rapportera) som låg i raden
  ligger nu uppe till höger i den mörka ytan (.u-profil-hero-knappar). */}
  <BackButtonInline fallback="/feed" flytande />
+ {/* Täcker telefonens statusrad så att innehållet inte syns under klockan när man skrollar. */}
+ <div className="u-statusrad" aria-hidden="true" />
 
  {/* ── Cover hero ── */}
  {/* u-profil-hero: ytan går upp under telefonens statusrad (globals.css). */}

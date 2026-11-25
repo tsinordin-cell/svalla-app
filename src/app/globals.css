@@ -832,6 +832,19 @@ img {
     left: calc(220px + 16px);
   }
 }
+/* Profilsidan /u/[namn]: utan rad överst täcker inget statusraden, så i appen
+   skulle innehållet synas under klockan vid skroll. Ett mörkt band lika högt som
+   statusraden ligger fast överst; i en vanlig webbläsare är höjden 0. */
+.u-statusrad {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top, 0px);
+  background: #0d2240;
+  z-index: 59;
+  pointer-events: none;
+}
 /* Profilsidan /u/[namn] (2026-11-25, Tom): notisval, meddelande, Följ och mer-menyn
    ligger uppe till höger i den mörka ytan, runda som tillbaka-knappen.
    De följer med sidan när man skrollar. 44 px är minsta tryckyta enligt Apple. */
