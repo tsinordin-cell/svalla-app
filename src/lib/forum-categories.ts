@@ -28,5 +28,5 @@ export const STATIC_CATEGORIES: ForumCategory[] = [
   { id: 'teknik-underhall', name: 'Teknik & underhåll', description: 'Motor, elektronik, rigg och verkstad',          icon: '', iconName: 'wrench',    iconColor: '#525252', sort_order: 6, thread_count: 0, post_count: 0 },
   { id: 'hamnar-bryggor',   name: 'Hamnar & bryggor',   description: 'Gästhamnstips, avgifter, ankringsplatser',      icon: '', iconName: 'anchor',    iconColor: '#1d4ed8', sort_order: 7, thread_count: 0, post_count: 0 },
   { id: 'nyborjare',        name: 'Nybörjare',          description: 'Inga dumma frågor: fråga allt här',            icon: '', iconName: 'compass',   iconColor: '#9d174d', sort_order: 8, thread_count: 0, post_count: 0 },
-  { id: 'loppis',           name: 'Loppis & köp/sälj',  description: 'Utrustning, båtar, delar och evenemang',        icon: '', iconName: 'handshake', iconColor: '#0a7b3c', sort_order: 9, thread_count: 0, post_count: 0 },
+  { id: 'loppis',           name: 'Loppis & köp/sälj',  description: 'Utrustning, båtar, delar och evenemang',        icon: '', iconName: 'tag',       iconColor: '#0a7b3c', sort_order: 9, thread_count: 0, post_count: 0 },
 ]
