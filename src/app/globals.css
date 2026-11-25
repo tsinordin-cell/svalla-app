@@ -1786,3 +1786,119 @@ body.underkantsruta-oppen .fb-flytande {
 @media (min-width: 768px) {
   .sok-filter { flex-wrap: wrap; overflow-x: visible !important; row-gap: 6px; }
 }
+
+/* Max 2026-11-24: färgerna ska hänga ihop med sandtonen från startsidan.
+   Sidhuvuden med den blå havstoningen blir sand med marinblå text, och menyn blir ljus på alla undersidor.
+   Startsidans meny (mm-start) och mörkt läge är oförändrade. Menyns typsnitt rörs inte. */
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"]){background:#efe7d6!important;color:#0a2540}
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"]) :is(h1,h2,h3,p,span,small,li,div,a:not([style*="background"])){color:#0a2540!important;text-shadow:none!important}
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"]) :is(span,a,div)[style*="rgba(255"]{background:rgba(10,37,64,.07)!important;border-color:rgba(10,37,64,.14)!important}
+html:not([data-theme="dark"]) .mm:not(.mm-start){background:#efe7d6;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-logga svg [fill="#ffffff"]{fill:#0a2540}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-logga svg [stroke="#ffffff"]{stroke:#0a2540}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-punkt{color:rgba(10,37,64,.85)}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-punkt:hover,html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-punkt.oppen{color:#0a2540}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-sok{background:rgba(10,37,64,.05);border-color:rgba(10,37,64,.18);color:rgba(10,37,64,.75)}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-sok:focus-within{background:#fff;border-color:rgba(10,37,64,.35)}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-sok input{color:#0a2540!important}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-sok input::placeholder{color:rgba(10,37,64,.55)}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-sok-text{color:#0a2540}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-liten{color:rgba(10,37,64,.75)}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-liten:hover{color:#0a2540}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-mob-sok{color:#0a2540}
+html:not([data-theme="dark"]) .mm:not(.mm-start) .mm-mob-knapp{background:rgba(10,37,64,.06);border-color:rgba(10,37,64,.25);color:#0a2540}
+
+/* ==========================================================================
+   Max 2026-11-25: EN FÄRGSKALA OCH EN RUBRIKSKALA (granskning inför Oskar)
+   Bygger vidare på sandregeln ovan. Typsnitten är oförändrade till torsdag.
+   ========================================================================== */
+
+/* F1. Sidans grund är sand (--bg), inte kall blåvit. Bara ljust läge. */
+html:not([data-theme="dark"]) body{background:var(--bg)}
+
+/* F2. Sidhuvuden med blå toning blir sand med marinblå text, som övriga undersidor:
+   ösidorna (/o/...), /oar, /guider och /partner. Bara ljust läge. */
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh){background:#efe7d6!important;color:#0a2540}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(h1,h2,h3,p,span,small,li,div,em,strong,label,svg,a:not([style*="background"]),button:not([style*="#b5591a"]):not([style*="--acc"])){color:#0a2540!important;text-shadow:none!important}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(span,a,div,button)[style*="rgba(255"]{background:#fffdf8!important;border-color:rgba(10,37,64,.12)!important;color:#0a2540!important}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) [style*="border"][style*="rgba(255"]{border-color:rgba(10,37,64,.16)!important}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) svg :is([stroke="#fff"],[stroke="#ffffff"],[stroke="white"]){stroke:currentColor}
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) svg :is([fill="#fff"],[fill="#ffffff"],[fill="white"]){fill:currentColor}
+/* Vita knappar i dessa sidhuvuden hade ljusblå text (--sea-l) som knappt syntes. */
+html:not([data-theme="dark"]) :is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) a[style*="background:#fff"]{color:#0a2540!important}
+
+/* F3. Mörka partier är en ren marinblå yta i stället för toningar i blått, petrol och skiffer. Båda lägena. */
+:is([style*="linear-gradient(135deg, #0d2440"],[style*="linear-gradient(135deg, rgb(30, 41, 59)"],[style*="linear-gradient(135deg, #0a7b8c"],[style*="linear-gradient(135deg, #0a1e2e"],section[style*="linear-gradient(135deg, #1e5c82, #2d7d8a)"]){background:#0a2540!important}
+
+/* F4. En sidfot: marinblå #0a2540 överallt (tidigare havsblå #1e5c82 och nästan svart #0d1a27). */
+:is(footer.mork-yta,.public-footer){background:#0a2540!important}
+
+/* R1. Sidans huvudrubrik (H1) i sidhuvudet: 44 px på dator, ner till 32 px i mobilen, vikt 700. Tidigare 36 till 56 px. */
+:is(.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh,header:not(.app-topbar)) h1:not(.lp-dold){font-size:clamp(32px,3.2vw + 8px,44px)!important;line-height:1.1!important;font-weight:700!important;letter-spacing:-.01em!important}
+
+/* R2. Startsidans avsnittsrubriker (H2): 28 px på dator, 24 px i mobilen, vikt 700. Tidigare 26 till 48 px och vikt 400 eller 800. */
+.lp-start h2:not(.lp-dold){font-size:28px!important;line-height:1.2!important;font-weight:700!important;letter-spacing:-.01em!important}
+@media (max-width:640px){.lp-start h2:not(.lp-dold){font-size:24px!important}}
+
+/* R3. Loggan i sidfoten har samma storlek på alla sidor (28 px hög). Tidigare 22, 26 eller 28 px. */
+footer svg[aria-label="Svalla"]{height:28px!important;width:auto!important}
+
+/* F2b. Max 2026-11-25: i sand-sidhuvudena fick även textlänkar och etiketter (som bara har vit TEXT, ingen vit bakgrund)
+   en ljus ruta bakom sig, t.ex. brödsmulorna "Hem › Stockholms skärgård" och "RESTID" i faktakorten.
+   Bara element som själva hade en vit genomskinlig bakgrund ska bli ljusa kort; övriga får ingen bakgrund. */
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(span,a,div,button)[style*="rgba(255"]:not([style*="background:rgba(255"]):not([style*="background: rgba(255"]){background:transparent!important}
+
+/* F2c. Max 2026-11-25 (färggranskning 2): i sand-sidhuvudena fanns kvar vit text som knappt syntes:
+   brödsmulor på ösidornas undersidor (/o/.../bad m.fl.), länk-chips, "Tillbaka" på /blogg.
+   All text som var satt till vitt blir marinblå. Knappar med orange eller havsblå bakgrund behåller vit text. */
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) .island-subpage-breadcrumb :is(nav,a,span){color:#0a2540!important}
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(a,button,span,div,p,small,strong,em,i,label,li,h1,h2,h3)[style*="color:rgba(255"]:not([style*="--acc"]):not([style*="#b5591a"]):not([style*="#c96e2a"]):not([style*="background:var(--sea"]):not([style*="background: var(--sea"]):not([style*="background:#1e5c82"]):not([style*="linear-gradient"]),
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(a,button,span,div,p,small,strong,em,i,label,li,h1,h2,h3)[style*="color: rgba(255"]:not([style*="--acc"]):not([style*="#b5591a"]):not([style*="#c96e2a"]):not([style*="background:var(--sea"]):not([style*="background: var(--sea"]):not([style*="background:#1e5c82"]):not([style*="linear-gradient"]),
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(a,button,span,div,p,small,strong,em,i,label,li,h1,h2,h3)[style*="color:#fff"]:not([style*="--acc"]):not([style*="#b5591a"]):not([style*="#c96e2a"]):not([style*="background:var(--sea"]):not([style*="background: var(--sea"]):not([style*="background:#1e5c82"]):not([style*="linear-gradient"]),
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(a,button,span,div,p,small,strong,em,i,label,li,h1,h2,h3)[style*="color: #fff"]:not([style*="--acc"]):not([style*="#b5591a"]):not([style*="#c96e2a"]):not([style*="background:var(--sea"]):not([style*="background: var(--sea"]):not([style*="background:#1e5c82"]):not([style*="linear-gradient"]),
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(a,button,span,div,p,small,strong,em,i,label,li,h1,h2,h3)[style*="color:white"]:not([style*="--acc"]):not([style*="#b5591a"]):not([style*="#c96e2a"]):not([style*="background:var(--sea"]):not([style*="background: var(--sea"]):not([style*="background:#1e5c82"]):not([style*="linear-gradient"]),
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(a,button,span,div,p,small,strong,em,i,label,li,h1,h2,h3)[style*="color: rgb(255"]:not([style*="--acc"]):not([style*="#b5591a"]):not([style*="#c96e2a"]):not([style*="background:var(--sea"]):not([style*="background: var(--sea"]):not([style*="background:#1e5c82"]):not([style*="linear-gradient"]){color:#0a2540!important;text-shadow:none!important}
+/* Ljusorange accentord i rubriker (t.ex. "på en sida" på /regioner) syntes inte på sand. Mörk orange i stället. */
+html:not([data-theme="dark"]) :is([style*="var(--grad-sea-hero"],[style*="#1e5c82 0%, #2d7d8a 100%"],.mork-yta[style*="linear-gradient(170deg"],header[style*="linear-gradient(170deg"],section[style*="linear-gradient(170deg"],section.gh) :is(em,i,span)[style*="#f4b06a"]{color:#a8501a!important}
+/* F3b. Fler mörka toningar blir ren marinblå (rutan "Planera hela dagen" på ösidornas undersidor). */
+[style*="linear-gradient(160deg, #1a4a6b"]{background:#0a2540!important}
+
+/* F5. Orange: en nyans för text och en för knappar (granskning 2, Max 2026-11-25).
+   Text: #98481a, minst 5:1 mot sand, kort och vitt (tidigare #c96e2a 3,6:1 och #a8501a 4,3:1 på ljus orange).
+   Knappar med vit text: --acc-knapp #b5591a (4,8:1), även där koden använde --acc (3,6:1). */
+html:not([data-theme="dark"]){--acc-text:#98481a}
+html:not([data-theme="dark"]) :is(span,small,div,p,a,strong,em,b,label,li)[style*="color:var(--acc)"]:not([style*="background:var(--acc"]):not([style*="background-color:var(--acc"]):not([style*="background: var(--acc"]):not([style*="background-color: var(--acc"]),html:not([data-theme="dark"]) :is(span,small,div,p,a,strong,em,b,label,li)[style*="color: var(--acc)"]:not([style*="background:var(--acc"]):not([style*="background-color:var(--acc"]):not([style*="background: var(--acc"]):not([style*="background-color: var(--acc"]),html:not([data-theme="dark"]) :is(span,small,div,p,a,strong,em,b,label,li)[style*="color:#c96e2a"]:not([style*="background:var(--acc"]):not([style*="background-color:var(--acc"]):not([style*="background: var(--acc"]):not([style*="background-color: var(--acc"]),html:not([data-theme="dark"]) :is(span,small,div,p,a,strong,em,b,label,li)[style*="color:#a8501a"]:not([style*="background:var(--acc"]):not([style*="background-color:var(--acc"]):not([style*="background: var(--acc"]):not([style*="background-color: var(--acc"]){color:var(--acc-text)!important}
+html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--acc)"],html:not([data-theme="dark"]) :is(a,button)[style*="background: var(--acc)"],html:not([data-theme="dark"]) :is(a,button)[style*="background:#c96e2a"]{background:var(--acc-knapp)!important}
+
+/* F5b. Orange etiketter på mörk botten (startsidans Thorkel- och krogrutor och menyns "Svallas AI-guide") var mörkorange på marinblått, 2,8:1.
+   På mörk botten används ljus orange #f4b06a. På ljus botten (t.ex. "För utforskaren") den mörka textorangen. */
+.lp-start .sd-liten.sd-ljus,.mm-utvalt-etikett{color:#f4b06a!important}
+html:not([data-theme="dark"]) .lp-start .sd-liten:not(.sd-ljus){color:var(--acc-text)!important}
+
+/* ===== LOGGAN I EN STORLEK (Max 2026-11-25) =====
+   Alla små Svalla-loggor (menyer, sidfötter, julkalendern, inbyggda kopior) är exakt 28 x 90 px.
+   Vid 28 px är en enhet i loggans viewBox en hel pixel, så SVALLA blir skarp vid 100 % zoom. */
+svg[aria-label="Svalla"][viewBox="0 0 90 28"]{height:28px!important;width:90px!important;max-width:none!important;flex-shrink:0}
+
+/* ===== MOBILGRANSKNING (Max 2026-11-25) =====
+   M1. "Boka bord" på ösidorna: vit text på --acc var 3,7:1. Koden skriver var(--acc, #c96e2a), som F5 inte fångade. */
+html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--acc, #c96e2a)"],html:not([data-theme="dark"]) :is(a,button)[style*="background: var(--acc, #c96e2a)"]{background:var(--acc-knapp,#b5591a)!important}
+/* M2. En färg på fyllda knappar: orange (--acc-knapp). Blå fyllda knappar fanns på startsidan (Kom igång, Se hela ..., Alla dagsplaner). */
+.sd-knapp,.rk-knapp{background:var(--acc-knapp,#b5591a)!important;color:#fff!important}
+@media (max-width:760px){.sd-mer a[href="/resetips"]{background:var(--acc-knapp,#b5591a)!important;border-color:var(--acc-knapp,#b5591a)!important;color:#fff!important}}
+/* M3. Rutan "Din guide ute på vattnet" var kall blågrön (#dfe9ea). Nu samma sand som sidhuvudena. */
+html:not([data-theme="dark"]) .sd-guide-yta{background:#efe7d6!important}
+html:not([data-theme="dark"]) .sd-guide-text li{border-left-color:var(--acc-knapp,#b5591a)!important}
+/* M4. Rubriker på ösidorna: fem storlekar (15, 17, 18, 19, 22 px) blir två. Avsnittsrubrik 24 px, rubrik i kort 18 px. */
+h2[style^="font-size:19px;font-weight:700;color:var(--txt)"],h2[style^="font-size:18px;font-weight:700;color:var(--txt)"],h2[style^="font-size:17px;font-weight:700;color:var(--txt)"],h2[style^="font-size:22px;font-weight:700;margin-bottom:14px;color:var(--txt)"]{font-size:24px!important;line-height:1.2!important}
+h2[style^="font-size:15px;font-weight:700;margin:0;letter-spacing:-0.2px"],h2[style^="font-size: 15px; font-weight: 700; margin: 0px; letter-spacing: -0.2px"]{font-size:18px!important}
+/* M5. Namnen på Sverigekartan var 6 px i mobilen (11 enheter i en karta som skalas ner). 25 enheter blir cirka 11 px. */
+@media (max-width:760px){.rk-etikett{font-size:25px!important;stroke-width:5px!important}.rk-etikett-vald{font-size:27px!important}}
+/* M6. Ingen text under 11 px (månader, etiketter, "Läst"-datum, märken). */
+[style*="font-size:9px"],[style*="font-size: 9px"],[style*="font-size:9.5px"],[style*="font-size: 9.5px"],[style*="font-size:10px"],[style*="font-size: 10px"],[style*="font-size:10.5px"],[style*="font-size: 10.5px"]{font-size:11px!important}
+[style*="padding:8px 2px 6px;text-align:center"]{padding-left:0!important;padding-right:0!important}
+/* Säsongsdiagrammet: 12 månader i rad fick inte plats med 11 px text i mobilen. Två rader med sex månader. */
+@media (max-width:760px){[style*="grid-template-columns:repeat(12,minmax(0,1fr))"]{grid-template-columns:repeat(6,minmax(0,1fr))!important}}
+[style*="font-size:9px;font-weight:700;color:var(--txt);letter-spacing:0.3px"],[style*="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.3px"]{letter-spacing:0!important}
+/* M7. Julkalenderns sidfot var 4,4:1, nu 5,9:1. */
+.jk-fot{color:#466470!important}

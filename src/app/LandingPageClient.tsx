@@ -1,6 +1,6 @@
 'use client'
 import { serializeForScript } from '@/lib/serializeForScript'
-import { useEffect, Suspense } from 'react'
+import { useEffect } from 'react'
 import RegionKarta from '@/components/RegionKarta'
 import StartKarta from '@/components/StartKarta'
 import ThorkelHero from '@/components/ThorkelHero'
@@ -11,29 +11,54 @@ import JulkalenderSkylt from '@/components/JulkalenderSkylt'
 import StartMobil from '@/components/StartMobil'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
-import dynamic from 'next/dynamic'
+import Startscen from '@/components/Startscen'
 // island-data importeras INTE här (revision 2026-10-02): den drog med hela
 // ödatan till varje besökare bara för att visa antalet öar — en chunk på
 // 787 kB (235 kB gzip, drygt 40 % av startsidans JS), mätt på svalla.se
 // 2026-10-02. Talet räknas på servern (page.tsx) och skickas in.
 
-const HeroAnimation = dynamic(() => import('@/components/HeroAnimation'), {
- ssr: false,
- loading: () => null,
-})
-
-// Startsidans säsong (2026-11-12): vintermotiv (variant 6) 1 december till sista februari,
-// annars sommarmotivet (variant 1) precis som förut. ?sasong=vinter eller ?sasong=sommar
-// tvingar fram ett av dem, för att kunna titta i förväg.
-const startsidansVariant = (): 1 | 6 => {
- if (typeof window === 'undefined') return 1
- const val = new URLSearchParams(window.location.search).get('sasong')
- if (val === 'vinter') return 6
- if (val === 'sommar') return 1
- // Vinter 13 november till och med februari (Max 2026-11-13: starta vintern direkt, julkalendern visas redan nu)
- const nu = new Date(), m = nu.getMonth()
- return m === 11 || m <= 1 || (m === 10 && nu.getDate() >= 13) ? 6 : 1
-}
+// Max 2026-11-24: startscenen (Startscen.tsx) är heron. Den tidigare bakgrundsanimationen (HeroAnimation)
+// och HTML-heron med rubrik, sökruta och två knappar visas inte längre. Rubriken finns kvar för sökmotorer
+// och skärmläsare men syns inte, eftersom SVALLA och Skärgården börjar här står i scenen.
+const START_CSS = `
+/* Menyn ljus i samma ton som himlen, marinblå text och logga (Max och Thomas 2026-11-24) */
+.lp-start .mm{background:#efe7d6;color:#0a2540;box-shadow:0 1px 0 rgba(10,37,64,.08)}
+.lp-start .mm-logga svg [fill="#ffffff"]{fill:#0a2540}
+.lp-start .mm-logga svg [stroke="#ffffff"]{stroke:#0a2540}
+.lp-start .mm-punkt{color:rgba(10,37,64,.85)}
+.lp-start .mm-punkt:hover,.lp-start .mm-punkt.oppen{color:#0a2540}
+.lp-start .mm-sok{background:rgba(10,37,64,.05);border-color:rgba(10,37,64,.18);color:rgba(10,37,64,.75)}
+.lp-start .mm-sok:focus-within{background:#fff;border-color:rgba(10,37,64,.35)}
+.lp-start .mm-sok input{color:#0a2540!important}
+.lp-start .mm-sok input::placeholder{color:rgba(10,37,64,.55)}
+.lp-start .mm-sok-text{color:#0a2540}
+.lp-start .mm-liten{color:rgba(10,37,64,.75)}
+.lp-start .mm-liten:hover{color:#0a2540}
+.lp-start .mm-mob-sok{color:#0a2540}
+.lp-start .mm-mob-knapp{background:rgba(10,37,64,.06);border-color:rgba(10,37,64,.25);color:#0a2540}
+/* Oskar 2026-11-24: mindre hero, så att man snabbare kommer dit man ska och nästa del syns direkt */
+/* div i stället för section: startsidans stilmall ger alla section 100 px och 40 px utfyllnad */
+.hf-scen{position:relative;z-index:1;background:#efe7d6}
+.hf-scen .ki-scen{border-radius:0;box-shadow:none}
+/* Max 2026-11-24: hela rutan under heron (Tre sätt att ta sig ut) ska synas utan att man scrollar.
+   Heron får det som blir över av skärmhöjden när menyn (68 px) och rutan (cirka 350 px) är borträknade, minst 380 och högst 640 px. */
+@media (min-width:861px){.hf-scen .ki-scen{aspect-ratio:auto;height:clamp(380px,calc(100svh - 418px),640px);min-height:0}}
+/* Thorkels frågeruta lite lägre och mindre, så att den inte täcker skylten Intresserad av samarbete i den lägre heron */
+.lp-start .th{bottom:12px;scale:.86;transform-origin:left bottom}
+@media (max-width:860px) and (orientation:portrait){.hf-scen .ki-scen{aspect-ratio:1/1}}
+/* Liggande telefon: hela scenen på en skärmhöjd och skyltarna vid sidorna av båten */
+@media (max-width:860px) and (orientation:landscape){.hf-scen .ki-scen{aspect-ratio:auto;height:calc(100svh - 64px);min-height:300px}.hf-scen .ki-skyltar .ki-s-samarbete{right:auto;left:5%;top:50%}.hf-scen .ki-skyltar .ki-s-planera{left:auto;right:5%;top:50%}.hf-scen .ki-skyltar .ki-skylt::before{display:none}}
+.hf-scen .ki-logga{display:none}
+/* Julkalenderns paket står till höger i himlen, under menyn och bort från solen som står till vänster
+   (solen hör till sommaren, Max 2026-11-24). Paketet i sig är oförändrat. */
+.lp-start .julskylt{left:auto;right:14px}
+@media (max-width:599px){.lp-start .julskylt{top:74px}}
+@media (min-width:600px) and (max-width:860px){.lp-start .julskylt{top:80px}}
+@media (min-width:861px){.lp-start .julskylt{top:166px;right:22px}}
+/* Julkalenderns paket ligger uppe till vänster, så Spela igen och Hoppa över står under ljudknappen till höger */
+.hf-scen .ki-styr,.hf-scen .ki-styr.ljus{display:none}
+.lp-dold{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+`
 
 const LANDING_CSS = `
 /* 2026-09-21: @import av Google Fonts borttagen. CSP:n (style-src 'self') blockerade den på varje
@@ -570,14 +595,14 @@ const LANDING_HTML = `
 <style>${LANDING_CSS}</style>
 <nav class="lp-nav" id="mainNav">
  <a href="/" class="nav-logo">
- <svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla">
+ <svg viewBox="0 0 90 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla">
  <g transform="translate(0,2)">
  <line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/>
  <path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/>
  <path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/>
  <path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
  </g>
- <text x="23" y="20" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5" fill="#ffffff">SVALLA</text>
+ <path transform="translate(23 20) scale(0.0155) translate(-55 0)" fill="#ffffff" d="M284 -721Q343 -721 375 -708Q407 -696 430 -682Q442 -675 450 -672Q457 -668 464 -668Q474 -668 478 -679Q483 -690 486 -712H509Q508 -693 506 -666Q505 -640 504 -597Q504 -554 504 -484H481Q477 -536 457 -585Q437 -634 400 -666Q364 -697 311 -697Q263 -697 232 -670Q201 -643 201 -595Q201 -555 221 -526Q241 -498 280 -471Q318 -444 373 -406Q421 -375 459 -344Q497 -313 520 -274Q543 -235 543 -181Q543 -115 508 -72Q474 -29 418 -8Q362 14 295 14Q233 14 196 2Q159 -10 134 -23Q112 -37 100 -37Q90 -37 86 -26Q81 -15 78 7H55Q57 -17 58 -49Q58 -81 58 -132Q59 -184 59 -263H82Q86 -197 104 -140Q123 -82 162 -47Q200 -12 264 -12Q299 -12 326 -24Q354 -37 371 -62Q388 -87 388 -124Q388 -166 368 -197Q349 -228 316 -255Q282 -282 238 -310Q191 -341 150 -372Q109 -403 84 -443Q60 -483 60 -538Q60 -601 92 -642Q123 -682 174 -702Q226 -721 284 -721ZM1312 -708V-688Q1290 -680 1266 -653Q1241 -626 1220 -569L1009 2Q1001 1 992 1H957Q948 1 940 2L685 -624Q671 -660 654 -674Q637 -687 622 -688V-708Q652 -707 692 -706Q733 -705 774 -705Q820 -705 860 -706Q901 -707 926 -708V-688Q894 -687 876 -680Q858 -674 856 -656Q854 -639 868 -604L1044 -156L1167 -488Q1194 -563 1195 -606Q1196 -649 1174 -668Q1152 -687 1111 -688V-708Q1145 -707 1175 -706Q1205 -705 1236 -705Q1258 -705 1278 -706Q1297 -707 1312 -708ZM1690 -710 1933 -84Q1947 -48 1964 -34Q1982 -21 1996 -20V0Q1966 -2 1926 -2Q1885 -3 1844 -3Q1798 -3 1757 -2Q1716 -2 1692 0V-20Q1743 -22 1756 -38Q1770 -53 1750 -104L1690 -268H1472L1446 -199Q1424 -144 1420 -109Q1415 -74 1424 -55Q1434 -36 1456 -28Q1477 -21 1507 -20V0Q1474 -2 1444 -2Q1414 -3 1383 -3Q1361 -3 1342 -2Q1322 -2 1307 0V-20Q1328 -24 1350 -47Q1372 -70 1393 -125L1621 -710Q1637 -709 1656 -709Q1674 -709 1690 -710ZM1683 -288 1584 -558 1480 -288ZM2408 -708V-688Q2374 -687 2356 -680Q2339 -674 2333 -656Q2327 -639 2327 -602V-94Q2327 -63 2332 -48Q2336 -33 2350 -28Q2363 -23 2390 -23H2439Q2473 -23 2503 -39Q2533 -55 2557 -84Q2581 -114 2597 -155Q2613 -196 2621 -246H2644Q2641 -212 2641 -158Q2641 -135 2642 -91Q2643 -47 2648 0Q2597 -2 2533 -2Q2469 -3 2419 -3H2355Q2316 -3 2271 -2Q2226 -2 2180 -2Q2134 -1 2093 0V-20Q2125 -22 2141 -28Q2157 -34 2162 -52Q2168 -70 2168 -106V-602Q2168 -639 2162 -656Q2157 -674 2140 -680Q2124 -687 2093 -688V-708Q2118 -707 2160 -706Q2203 -705 2251 -705Q2295 -705 2338 -706Q2380 -707 2408 -708ZM3089 -708V-688Q3055 -687 3038 -680Q3020 -674 3014 -656Q3008 -639 3008 -602V-94Q3008 -63 3012 -48Q3017 -33 3030 -28Q3044 -23 3071 -23H3120Q3154 -23 3184 -39Q3214 -55 3238 -84Q3262 -114 3278 -155Q3294 -196 3302 -246H3325Q3322 -212 3322 -158Q3322 -135 3323 -91Q3324 -47 3329 0Q3278 -2 3214 -2Q3150 -3 3100 -3H3036Q2997 -3 2952 -2Q2907 -2 2861 -2Q2815 -1 2774 0V-20Q2806 -22 2822 -28Q2838 -34 2844 -52Q2849 -70 2849 -106V-602Q2849 -639 2844 -656Q2838 -674 2822 -680Q2805 -687 2774 -688V-708Q2799 -707 2842 -706Q2884 -705 2932 -705Q2976 -705 3018 -706Q3061 -707 3089 -708ZM3799 -710 4042 -84Q4056 -48 4074 -34Q4091 -21 4105 -20V0Q4075 -2 4034 -2Q3994 -3 3953 -3Q3907 -3 3866 -2Q3825 -2 3801 0V-20Q3852 -22 3866 -38Q3879 -53 3859 -104L3799 -268H3581L3555 -199Q3533 -144 3528 -109Q3524 -74 3534 -55Q3543 -36 3564 -28Q3586 -21 3616 -20V0Q3583 -2 3553 -2Q3523 -3 3492 -3Q3470 -3 3450 -2Q3431 -2 3416 0V-20Q3437 -24 3459 -47Q3481 -70 3502 -125L3730 -710Q3746 -709 3764 -709Q3783 -709 3799 -710ZM3792 -288 3693 -558 3589 -288Z"/>
  </svg>
  </a>
  <style>.nav-sok input::placeholder{color:rgba(255,255,255,.7)}@media (max-width:1100px){.nav-sok{display:none!important}}@media (min-width:1101px){.hero-search{display:none!important}}</style>
@@ -948,8 +973,8 @@ __MOB_NAV__ </nav>
  <div class="footer-inner">
  <div class="footer-grid">
  <div class="footer-brand">
- <div class="logo"><svg viewBox="0 0 120 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla" style="display:block"><g transform="translate(0,2)"><line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/><path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/><path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/><path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/></g><text x="23" y="20" fill="#ffffff" font-family="'Georgia','Times New Roman',serif" font-size="15" font-weight="700" letter-spacing="2.5">SVALLA</text></svg></div>
- <p>Den nordiska plattformen för krogar, kajer och upplevelser i skärgården. Byggt av skärgårdsälskare, för skärgårdsälskare.</p>
+ <div class="logo"><svg viewBox="0 0 90 28" height="28" xmlns="http://www.w3.org/2000/svg" aria-label="Svalla" style="display:block"><g transform="translate(0,2)"><line x1="9" y1="20" x2="9" y2="3" stroke="#ffffff" stroke-width="1.4" stroke-linecap="round"/><path d="M9,4 L18,18 L9,18 Z" fill="#ffffff" opacity="0.9"/><path d="M9,8 L1,17 L9,17 Z" fill="#ffffff" opacity="0.5"/><path d="M2,20 Q6,17.5 9,20 Q12,17.5 17,20" stroke="#ffffff" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/></g><path transform="translate(23 20) scale(0.0155) translate(-55 0)" fill="#ffffff" d="M284 -721Q343 -721 375 -708Q407 -696 430 -682Q442 -675 450 -672Q457 -668 464 -668Q474 -668 478 -679Q483 -690 486 -712H509Q508 -693 506 -666Q505 -640 504 -597Q504 -554 504 -484H481Q477 -536 457 -585Q437 -634 400 -666Q364 -697 311 -697Q263 -697 232 -670Q201 -643 201 -595Q201 -555 221 -526Q241 -498 280 -471Q318 -444 373 -406Q421 -375 459 -344Q497 -313 520 -274Q543 -235 543 -181Q543 -115 508 -72Q474 -29 418 -8Q362 14 295 14Q233 14 196 2Q159 -10 134 -23Q112 -37 100 -37Q90 -37 86 -26Q81 -15 78 7H55Q57 -17 58 -49Q58 -81 58 -132Q59 -184 59 -263H82Q86 -197 104 -140Q123 -82 162 -47Q200 -12 264 -12Q299 -12 326 -24Q354 -37 371 -62Q388 -87 388 -124Q388 -166 368 -197Q349 -228 316 -255Q282 -282 238 -310Q191 -341 150 -372Q109 -403 84 -443Q60 -483 60 -538Q60 -601 92 -642Q123 -682 174 -702Q226 -721 284 -721ZM1312 -708V-688Q1290 -680 1266 -653Q1241 -626 1220 -569L1009 2Q1001 1 992 1H957Q948 1 940 2L685 -624Q671 -660 654 -674Q637 -687 622 -688V-708Q652 -707 692 -706Q733 -705 774 -705Q820 -705 860 -706Q901 -707 926 -708V-688Q894 -687 876 -680Q858 -674 856 -656Q854 -639 868 -604L1044 -156L1167 -488Q1194 -563 1195 -606Q1196 -649 1174 -668Q1152 -687 1111 -688V-708Q1145 -707 1175 -706Q1205 -705 1236 -705Q1258 -705 1278 -706Q1297 -707 1312 -708ZM1690 -710 1933 -84Q1947 -48 1964 -34Q1982 -21 1996 -20V0Q1966 -2 1926 -2Q1885 -3 1844 -3Q1798 -3 1757 -2Q1716 -2 1692 0V-20Q1743 -22 1756 -38Q1770 -53 1750 -104L1690 -268H1472L1446 -199Q1424 -144 1420 -109Q1415 -74 1424 -55Q1434 -36 1456 -28Q1477 -21 1507 -20V0Q1474 -2 1444 -2Q1414 -3 1383 -3Q1361 -3 1342 -2Q1322 -2 1307 0V-20Q1328 -24 1350 -47Q1372 -70 1393 -125L1621 -710Q1637 -709 1656 -709Q1674 -709 1690 -710ZM1683 -288 1584 -558 1480 -288ZM2408 -708V-688Q2374 -687 2356 -680Q2339 -674 2333 -656Q2327 -639 2327 -602V-94Q2327 -63 2332 -48Q2336 -33 2350 -28Q2363 -23 2390 -23H2439Q2473 -23 2503 -39Q2533 -55 2557 -84Q2581 -114 2597 -155Q2613 -196 2621 -246H2644Q2641 -212 2641 -158Q2641 -135 2642 -91Q2643 -47 2648 0Q2597 -2 2533 -2Q2469 -3 2419 -3H2355Q2316 -3 2271 -2Q2226 -2 2180 -2Q2134 -1 2093 0V-20Q2125 -22 2141 -28Q2157 -34 2162 -52Q2168 -70 2168 -106V-602Q2168 -639 2162 -656Q2157 -674 2140 -680Q2124 -687 2093 -688V-708Q2118 -707 2160 -706Q2203 -705 2251 -705Q2295 -705 2338 -706Q2380 -707 2408 -708ZM3089 -708V-688Q3055 -687 3038 -680Q3020 -674 3014 -656Q3008 -639 3008 -602V-94Q3008 -63 3012 -48Q3017 -33 3030 -28Q3044 -23 3071 -23H3120Q3154 -23 3184 -39Q3214 -55 3238 -84Q3262 -114 3278 -155Q3294 -196 3302 -246H3325Q3322 -212 3322 -158Q3322 -135 3323 -91Q3324 -47 3329 0Q3278 -2 3214 -2Q3150 -3 3100 -3H3036Q2997 -3 2952 -2Q2907 -2 2861 -2Q2815 -1 2774 0V-20Q2806 -22 2822 -28Q2838 -34 2844 -52Q2849 -70 2849 -106V-602Q2849 -639 2844 -656Q2838 -674 2822 -680Q2805 -687 2774 -688V-708Q2799 -707 2842 -706Q2884 -705 2932 -705Q2976 -705 3018 -706Q3061 -707 3089 -708ZM3799 -710 4042 -84Q4056 -48 4074 -34Q4091 -21 4105 -20V0Q4075 -2 4034 -2Q3994 -3 3953 -3Q3907 -3 3866 -2Q3825 -2 3801 0V-20Q3852 -22 3866 -38Q3879 -53 3859 -104L3799 -268H3581L3555 -199Q3533 -144 3528 -109Q3524 -74 3534 -55Q3543 -36 3564 -28Q3586 -21 3616 -20V0Q3583 -2 3553 -2Q3523 -3 3492 -3Q3470 -3 3450 -2Q3431 -2 3416 0V-20Q3437 -24 3459 -47Q3481 -70 3502 -125L3730 -710Q3746 -709 3764 -709Q3783 -709 3799 -710ZM3792 -288 3693 -558 3589 -288Z"/></svg></div>
+ <p>Skärgården börjar här. Öar, krogar, hamnar och båttider längs hela kusten, från Bohuslän till Höga kusten.</p>
  </div>
  <div class="footer-col">
  <h5>Utforska</h5>
@@ -1296,6 +1321,10 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
   const iNav = heroHtml.indexOf('<nav class="lp-nav"')
   const iHeroSek = heroHtml.indexOf('<section class="hero"')
   const heroUtanMeny = iNav >= 0 && iHeroSek > iNav ? heroHtml.slice(0, iNav) + heroHtml.slice(iHeroSek) : heroHtml
+  // Startscenen ersätter HTML-heron: bara stilarna före den blir kvar
+  const iHero = heroUtanMeny.indexOf('<section class="hero"')
+  const iHeroSlut = iHero >= 0 ? heroUtanMeny.indexOf('</section>', iHero) : -1
+  const utanHero = iHeroSlut > iHero ? heroUtanMeny.slice(0, iHero) + heroUtanMeny.slice(iHeroSlut + '</section>'.length) : heroUtanMeny
  const andraHtml = iSektion >= 0 ? landingHtml.slice(iSlut) : null
   // Max 2026-11-20: förtroenderaden, Utvalda turer, Skärgårdslivet, gamla Thorkel-delen och Din guide / Sätt er krog
   // är utbytta mot React-delarna i StartDelar. Vanliga frågor, FAQ-schemat och sidfoten ligger kvar som HTML.
@@ -1312,36 +1341,15 @@ export default function LandingPageClient({ photoMap, bildkallor = [], antalOar,
  return (
  <>
  {photoMap && Object.keys(photoMap).length > 0 && <script dangerouslySetInnerHTML={{ __html: `window.__LP_PHOTOS__=${serializeForScript(photoMap)}` }} />}
- <div style={{ position: 'relative' }}>
- {/* Animated skärgård scene — fills exactly the hero viewport, behind all content */}
- <div style={{
- position: 'absolute', top: 0, left: 0, right: 0,
- /* Exakt 100vh — canvas matchar viewport, vattenlinje vid 58% = 42% hav synligt */
- height: '100vh',
- zIndex: 0,
- overflow: 'hidden',
- pointerEvents: 'none',
- /* Platshållare tills canvasen målat: samma färgstopp som dagtemat (variant 1)
-    i HeroAnimation — himmel #3d94d4→#b0dcf2 ned till vattenlinjen på 58 %,
-    vatten #2488c0→#0a2e5a under. Var tidigare en mörkblå gradient, vilket gav
-    en mörk blixt första sekunden innan animationen tog över (kort 1780a7c6). */
- background: 'linear-gradient(to bottom, #3d94d4 0%, #60aee0 20%, #92c8f0 44%, #b0dcf2 58%, #2488c0 58%, #186aa8 72%, #104e84 86%, #0a2e5a 100%)',
- } as React.CSSProperties}>
- {/* Wrapping HeroAnimation i Suspense förhindrar att Next.js stämplar
-     BAILOUT_TO_CLIENT_SIDE_RENDERING på resten av sidan när komponenten
-     är dynamic({ssr:false}). Resten av landing-sidan SSR:as då normalt
-     och Googlebot ser hela LANDING_HTML i initial HTML — kritiskt för
-     indexering. */}
- <Suspense fallback={null}>
-   <HeroAnimation variant={startsidansVariant()} />
- </Suspense>
- </div>
- <style>{`
- /* Hero section — transparent shows canvas through, no dark bg that would cover animation */
- .hero { position: relative; z-index: 1; background: transparent !important; }
- `}</style>
- <MegaMeny overStart />
- <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: heroUtanMeny }} />
+ <div className="lp-start" style={{ position: 'relative' }}>
+  <style>{START_CSS}</style>
+  <MegaMeny />
+  <div style={{ position: 'relative', zIndex: 1 }} dangerouslySetInnerHTML={{ __html: utanHero }} />
+  <div className="hf-scen">
+   <h1 id="start-rubrik" className="lp-dold">Planera din skärgårdsvistelse</h1>
+   <p className="lp-dold">Skärgården börjar här. Öar, krogar, badplatser och båttider, samlat på ett ställe.</p>
+   <Startscen varld dygn="dag" />
+  </div>
  <ThorkelHero />
  <TreSatt />
  <JustNu />
