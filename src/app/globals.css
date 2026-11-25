@@ -799,6 +799,89 @@ img {
     height: calc(140px + env(safe-area-inset-top, 0px)) !important;
   }
 }
+/* Profilsidan /u/[namn] (2026-11-25, Tom): ingen rad överst längre. Den mörka ytan
+   går upp under telefonens statusrad (html har padding-top för notchen), och
+   tillbaka-knappen ligger rund i hörnet ovanpå den och står kvar vid skroll.
+   Plattan är mörk och halvgenomskinlig så att knappen syns även över ljust innehåll. */
+.u-profil-hero {
+  margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+  height: calc(140px + env(safe-area-inset-top, 0px)) !important;
+}
+.flytande-tillbaka {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: 14px;
+  z-index: 60;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(10, 30, 50, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 20, 40, 0.22);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Dator: sidomenyn är 220 px bred till vänster, knappen ska inte hamna på den. */
+@media (min-width: 1024px) {
+  body.has-app-nav .flytande-tillbaka {
+    left: calc(220px + 16px);
+  }
+}
+/* Profilsidan /u/[namn]: utan rad överst täcker inget statusraden, så i appen
+   skulle innehållet synas under klockan vid skroll. Ett mörkt band lika högt som
+   statusraden ligger fast överst; i en vanlig webbläsare är höjden 0. */
+.u-statusrad {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top, 0px);
+  /* Samma toning och storlek som den mörka ytan, så att bandet inte syns som en
+     egen rand när sidan ligger överst. */
+  background: linear-gradient(160deg, #0d2240 0%, #1a4a5e 50%, #0a7b8c 100%) top left / 100% calc(140px + env(safe-area-inset-top, 0px)) no-repeat;
+  z-index: 59;
+  pointer-events: none;
+}
+/* Profilsidan /u/[namn] (2026-11-25, Tom): notisval, meddelande, Följ och mer-menyn
+   ligger uppe till höger i den mörka ytan, runda som tillbaka-knappen.
+   De följer med sidan när man skrollar. 44 px är minsta tryckyta enligt Apple. */
+.u-profil-hero-knappar {
+  position: absolute;
+  z-index: 2;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  right: 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.hero-rund {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(10, 30, 50, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 20, 40, 0.22);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Följ-knappen har sin stil inline; här får den samma höjd som de runda. */
+.u-profil-hero-knappar button.press-feedback {
+  height: 44px;
+  padding: 0 20px !important;
+}
+
 /* Flödet (2026-11-25, Tom): toppraden och flikraden Flöde · Forum · Topplista ligger
    i samma fasta block (feed/page.tsx). Vid skroll nedåt glider blocket upp så mycket
    som toppraden är hög, så att bara flikraden ligger kvar; vid skroll uppåt kommer
