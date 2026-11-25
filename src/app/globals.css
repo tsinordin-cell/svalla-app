@@ -799,8 +799,39 @@ img {
     height: calc(140px + env(safe-area-inset-top, 0px)) !important;
   }
 }
+/* Flödet (2026-11-25, Tom): toppraden och flikraden Flöde · Forum · Topplista ligger
+   i samma fasta block (feed/page.tsx). Vid skroll nedåt glider blocket upp så mycket
+   som toppraden är hög, så att bara flikraden ligger kvar; vid skroll uppåt kommer
+   toppraden tillbaka (ToppradGom.tsx med mal=".flode-topp"). Förut låg toppraden
+   fast bara inom den beige ytan överst och flikraden skrollade bort direkt.
+   Höjderna mäts i ToppradGom; siffrorna här gäller tills sidan laddat klart. */
+.flode-topp {
+  position: relative;
+  z-index: 50;
+}
+/* Den beige toningen går upp bakom blocket som förut, utan att innehållet flyttar. */
+.flode-topp + .feed-ambient-top {
+  margin-top: calc(-1 * var(--flode-topp-h, 44px));
+  padding-top: var(--flode-topp-h, 44px);
+}
+@media (max-width: 1023px) {
+  .flode-topp {
+    position: sticky;
+    top: 0;
+    transition: transform 0.22s ease;
+  }
+  .flode-topp.app-topbar--gomd {
+    transform: translateY(calc(-1 * var(--topprad-h, 45px)));
+  }
+  .flode-topp + .feed-ambient-top {
+    margin-top: calc(-1 * var(--flode-topp-h, 89px));
+    padding-top: var(--flode-topp-h, 89px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .app-topbar {
+  .app-topbar,
+  .flode-topp {
     transition: none;
   }
 }
