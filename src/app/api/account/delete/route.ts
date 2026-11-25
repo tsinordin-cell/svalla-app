@@ -8,6 +8,7 @@ import { clearSupabaseAuthCookies } from '@/lib/authCookies'
 import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
 import { logger } from '@/lib/logger'
+import { DM_BILD_HINK, arDmBildSokvag } from '@/lib/dmBilder'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { harLosenord, farskInloggning, raderingBekraftad } from '@/lib/kontoBekraftelse'
 // TODO: wrap handlers with withSentrySimple(handler, 'account/delete') — se src/lib/api-handler.ts
@@ -129,6 +130,20 @@ export async function POST(req: NextRequest) {
     .update({ body: '[Borttaget av användare]', title: '[Borttaget av användare]' })
     .eq('user_id', userId)
 
+  // Användarens bilder i direktmeddelanden (privata hinken dm-bilder), lästa
+  // ur messages innan raderna tas bort. Täcker även samtal hen redan lämnat.
+  const dmBildSokvagar: string[] = []
+  for (let fran = 0; ; fran += 1000) {
+    const { data: rader } = await s.from('messages')
+      .select('attachment_url')
+      .eq('user_id', userId).eq('attachment_type', 'image')
+      .range(fran, fran + 999)
+    for (const r of rader ?? []) {
+      if (arDmBildSokvag(r.attachment_url as string | null)) dmBildSokvagar.push(r.attachment_url as string)
+    }
+    if (!rader || rader.length < 1000) break
+  }
+
   // ─── Steg 3: Cascade-delete user-specific data ────────────────────────
   // Tabeller som ska tömmas helt för denna user. Body-content (forum) hanteras ovan.
   // GDPR Art. 17: alla user-rader ska bort. Listan utvidgad i 2026-05 audit
@@ -219,6 +234,15 @@ export async function POST(req: NextRequest) {
     }
   } catch (e) {
     logger.error('account-delete', 'trip-images storage cleanup failed', { e: String(e), userId })
+  }
+
+  // Bilder i direktmeddelanden: dm-bilder, sökväg {konversation}/{userId}/{fil}.jpg
+  for (let i = 0; i < dmBildSokvagar.length; i += 100) {
+    try {
+      await s.storage.from(DM_BILD_HINK).remove(dmBildSokvagar.slice(i, i + 100))
+    } catch (e) {
+      logger.error('account-delete', 'dm-bilder storage cleanup failed', { e: String(e), userId })
+    }
   }
 
   // Trip-bilder: trips-bucket, prefix {userId}-

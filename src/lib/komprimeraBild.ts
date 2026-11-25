@@ -63,3 +63,47 @@ export async function komprimeraBild(
     img.src = url
   })
 }
+
+/**
+ * Som komprimeraBild, men faller ALDRIG tillbaka på originalfilen.
+ *
+ * Används för bilder i direktmeddelanden (2026-11-25). Originalfilen från
+ * telefonen bär ofta platsdata (GPS) i EXIF. Att rita om bilden på en canvas
+ * och spara den som ny JPEG tar bort all sådan metadata. Om det inte går
+ * kastas ett fel, så att anroparen kan stoppa uppladdningen i stället för att
+ * skicka originalet med platsdata.
+ */
+export async function ritaOmBildUtanMetadata(
+  file: File,
+  maxPx = FOTO_MAX_PX,
+  kvalitet = 0.82,
+): Promise<File> {
+  if (!file.type.startsWith('image/')) throw new Error('Inte en bild')
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    const url = URL.createObjectURL(file)
+    img.onload = () => {
+      URL.revokeObjectURL(url)
+      let { width, height } = img
+      if (!width || !height) { reject(new Error('Bilden kunde inte läsas')); return }
+      if (width > maxPx || height > maxPx) {
+        if (width >= height) { height = Math.round(height * maxPx / width); width = maxPx }
+        else                 { width = Math.round(width * maxPx / height);  height = maxPx }
+      }
+      const canvas = document.createElement('canvas')
+      canvas.width = width; canvas.height = height
+      const ctx = canvas.getContext('2d')
+      if (!ctx) { reject(new Error('Canvas saknas')); return }
+      ctx.drawImage(img, 0, 0, width, height)
+      canvas.toBlob(
+        (blob) => {
+          if (!blob) { reject(new Error('Bilden kunde inte sparas')); return }
+          resolve(new File([blob], 'bild.jpg', { type: 'image/jpeg' }))
+        },
+        'image/jpeg', kvalitet,
+      )
+    }
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Bilden kunde inte läsas')) }
+    img.src = url
+  })
+}

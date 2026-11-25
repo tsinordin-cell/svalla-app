@@ -20,6 +20,28 @@ export async function findOrCreateDM(
 ): Promise<{ id: string; status: 'active' | 'request' | 'declined' } | null> {
   if (currentUserId === otherUserId) return null
 
+  // Databasfunktionen starta_dm (2026-11-25) gör allt i ett steg på servern:
+  // blockering, befintlig konversation, förfrågan eller aktiv, och en
+  // gräns på 20 nya förfrågningar per dygn. Klienten får inte längre skapa
+  // konversationer eller lägga till deltagare själv.
+  try {
+    const { data, error } = await supabase.rpc('starta_dm', { p_mottagare: otherUserId })
+    if (!error) {
+      const rad = (Array.isArray(data) ? data[0] : data) as { conv_id?: string; conv_status?: string } | null
+      if (!rad?.conv_id) return null
+      return { id: rad.conv_id, status: (rad.conv_status as 'active' | 'request' | 'declined') ?? 'request' }
+    }
+    // Funktionen saknas bara innan migrationen körts. Annars är felet ett
+    // riktigt stopp (blockerad, för många förfrågningar) och ska inte gå runt.
+    const saknas = error.code === 'PGRST202' || /Could not find the function/i.test(error.message ?? '')
+    if (!saknas) return null
+  } catch {
+    return null
+  }
+
+  // ÖVERGÅNG: gamla vägen, används bara tills migrationen
+  // 20261126000001_meddelanden_sakerhet.sql körts. Tas bort därefter;
+  // efter migrationen stoppar databasen den här vägen ändå.
   try {
     // 0. Blockering åt något håll: ingen konversation (databasen stoppar
     //    annars deltagaren tyst och lämnar en tom konversation).
