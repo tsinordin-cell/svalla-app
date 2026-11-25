@@ -43,6 +43,12 @@ update restaurants set description = 'Gruvbryggan är den mest trafikerade av Wa
 -- FÖRE: 'Lilla Haket & Ninas Bod är ett kafé i Gruvbyn på Utö, Haninge kommun.'
 update restaurants set description = 'Platsen ligger vid Bygatan i Gruvbyn på Utö, Haninge kommun. I Gruvbyn finns enligt Skärgårdsstiftelsen bland annat gästhamn, turistbyrå, livsmedelsbutik och bageri.', updated_at = now() where slug = 'lilla-haket-ninas-bod' and description = 'Lilla Haket & Ninas Bod är ett kafé i Gruvbyn på Utö, Haninge kommun.';
 
+-- lilla-haket-ninas-bod.name — uto-0401 (runda 11, sr03-k005; Redaktörens beslut: ta bort namnet eller belägg det med verksamheten)
+-- Rättad 2026-11-25: namnet «Lilla Haket & Ninas Bod» står bara i OpenStreetMap, som bara belägger läge. Ingen sida från verksamheten hittades i dag heller (sökt 2026-11-25; bara en restaurangguide, som är förbjuden som källa). Namnet ersätts med läget, som OpenStreetMap får belägga. Sluggen ändras inte (adressen /upptack/lilla-haket-ninas-bod står kvar).
+-- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9698715&lon=18.3247173&format=jsonv2&zoom=18&addressdetails=1&accept-language=sv — ""road":"Bygatan","hamlet":"Gruvbyn","municipality":"Haninge kommun"" (läst 2026-10-29; läge, inte namn)
+-- FÖRE: 'Lilla Haket & Ninas Bod'
+update restaurants set name = 'Bygatan i Gruvbyn', updated_at = now() where slug = 'lilla-haket-ninas-bod' and name = 'Lilla Haket & Ninas Bod';
+
 -- bakgarden-uto.description — uto-0420, uto-0421, uto-0422 (OBELAGD: källan explorearchipelago.com omdirigerar till skargardsstiftelsen.se); namnet: uto.tom.md
 -- KÄLLA: https://nominatim.openstreetmap.org/reverse?lat=58.9699&lon=18.3255&format=jsonv2&zoom=18&addressdetails=1&accept-language=sv — ""hamlet":"Gruvbyn","municipality":"Haninge kommun"" (läst 2026-10-29)
 -- KÄLLA: https://skargardsstiftelsen.se/app/uploads/2024/07/Uto-Skargardsstiftelsen-20240724.pdf — "Här i Gruvbyn finns turistbyrå, gästhamn, bensinmack, livsmedel, bageri, cykeluthyrning, restauranger och shopping." (läst 2026-10-29)
