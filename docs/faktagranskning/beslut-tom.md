@@ -264,3 +264,7 @@ sökadress, och finnhamn.se lästes av en Granskare. Kvar:
 ### 10. (BESLUTAT 2026-11-17: C) Avgångstider och Lag 3
 - Fråga: när klockslag stryks enligt reglerna hamnar komma-dit-sidan under 95 % på 18 öar, och korten på ösidan, boende och med barn visar klockslag på 35, 23 och 26 öar. A: kompensera alla öar. B: räkna inte avgångstiderna i Lag 3. C: batch 01:s nio öar kompenseras nu; för andra öar väntar strykningen tills ön granskas.
 - **Toms beslut 2026-11-17 05:48: C.** Strykningar som gör en sida utanför batch 01 tunnare än 95 % av main skjuts upp till öns egen batch och skrivs på Vaktens lista. Batch 01:s sidor kompenseras med belagt innehåll.
+
+### 11. (BESLUTAT 2026-11-25) Frys på batch 01:s öar och ö-mallarna
+Redaktörens rekommendation: annat arbete låter batch 01:s nio öar (Fjäderholmarna, Grinda, Vaxholm, Storholmen, Husarö, Utö, Möja, Sandhamn, Styrsö) och ö-mallarna under src/app/o/[slug]/ vara tills batch 01 är publicerad, eftersom varje ändring där tvingar fram en ny omläggning.
+Tom 2026-11-25 15:59 (New York): "Låter bra, kör".
