@@ -10,7 +10,7 @@ import LikeButton from './LikeButton'
 import Comments from './Comments'
 import TripShareModal from './TripShareModal'
 import ShareTripModal from './ShareTripModal'
-import { IconShare } from '@/components/ui/icons'
+import Icon from '@/components/Icon'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
 import TripActions from './TripActions'
@@ -601,10 +601,12 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               WebkitTapHighlightColor: 'transparent',
             }}
           >
-            <IconShare size={22} stroke={1.75} />
+            {/* 2026-11-24: pappersflygplan för "skicka som meddelande". Pilen upp ur lådan
+                betyder dela utåt och sitter nu på Dela-knappen till höger. */}
+            <Icon name="send" size={21} stroke={1.75} />
           </button>
           <div style={{ marginLeft: 'auto' }}>
-            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} hasStats={harTal({ distanceNM: trip.distance ?? null, sekunder: (trip.duration ?? 0) > 0 ? trip.duration * 60 : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })} />
+            <TripShareModal variant="rad" tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} hasStats={harTal({ distanceNM: trip.distance ?? null, sekunder: (trip.duration ?? 0) > 0 ? trip.duration * 60 : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })} />
           </div>
         </div>
       </div>
