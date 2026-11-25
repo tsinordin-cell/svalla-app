@@ -1162,6 +1162,12 @@ const CSS = `
 .ki-s-boende{left:4%}.ki-s-krogar{left:27%}.ki-s-farjor{left:49.5%}.ki-s-gora{left:auto;right:4%}}
 @media (max-width:560px){.ki-skylt{font-size:12px;padding:5px 9px 5px 7px;gap:5px}.ki-ik{width:14px;height:14px}.ki-cta{font-size:10.5px;padding:5px 8px 5px 7px}
 .ki-skyltar .ki-s-planera,.ki-skyltar .ki-s-samarbete{top:42.5%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-farjor{left:7%;right:auto}.ki-skyltar .ki-s-krogar,.ki-skyltar .ki-s-gora{left:auto;right:7%}.ki-skyltar .ki-s-boende,.ki-skyltar .ki-s-krogar{top:79%}.ki-skyltar .ki-s-farjor,.ki-skyltar .ki-s-gora{top:89%}}
+/* Späckhuggarna får aldrig simma under bildens nederkant (Max 2026-11-25). Storleken följer djupets höjd, inte bara bredden,
+   så att de på breda skärmar inte blir för stora för vattnet. 132cqh - 26px = 62 % av djupet minus 12 px gupp, omräknat till bredd. */
+.ki-djup{container-type:size}
+.ki-d-orca{width:min(15%,calc(132cqh - 26px))}
+.ki-d-unge{width:min(8.5%,calc(100cqh - 26px));margin-left:calc(min(15%,calc(132cqh - 26px)) * 1.033)}
+@media (max-width:860px){.ki-d-orca{top:22%;width:min(30%,calc(132cqh - 26px))}.ki-d-unge{top:38%;width:min(17%,calc(100cqh - 26px));margin-left:calc(min(30%,calc(132cqh - 26px)) * 1.033)}}
 /* Loggan: uppe till vänster på himlen, i mobilen nere till vänster på havet där knapparna inte sitter */
 .ki-logga{position:absolute;left:22px;top:20px;z-index:4;display:flex;align-items:center;gap:8px;color:#0a2540;pointer-events:none}
 .ki-logga svg{height:26px;width:auto}
