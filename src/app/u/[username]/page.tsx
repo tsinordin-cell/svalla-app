@@ -263,26 +263,16 @@ export default async function PublicProfilePage({
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom,0px) + 24px)' }}>
 
- {/* ── Sticky header ── */}
- <header style={{
- position: 'sticky', top: 0, zIndex: 50,
- display: 'flex', alignItems: 'center', gap: 10, padding: '12px 16px',
- background: 'var(--glass-96)',
- backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
- borderBottom: '1px solid rgba(10,123,140,0.10)',
- }}>
- <BackButtonInline fallback="/feed" />
- <span style={{ fontSize: 17, fontWeight: 700, color: 'var(--sea)' }}>{userRow.username}</span>
- <div style={{ marginLeft: 'auto', display: 'flex', gap: 6, alignItems: 'center' }}>
- <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
- <DmButton targetUserId={userRow.id} targetUsername={userRow.username} />
- <FollowButton targetUserId={userRow.id} hideCount />
- <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
- </div>
- </header>
+ {/* 2026-11-25 (Tom): raden överst med tillbaka-knapp och namn är borta, namnet
+ står redan under profilbilden. Tillbaka-knappen ligger rund över den mörka ytan
+ och står kvar i hörnet när man skrollar (.flytande-tillbaka i globals.css).
+ Följ, meddelande, notisval och mer-menyn (blockera, rapportera) som låg i raden
+ ligger nu i raden med profilbilden. */}
+ <BackButtonInline fallback="/feed" flytande />
 
  {/* ── Cover hero ── */}
- <div style={{
+ {/* u-profil-hero: ytan går upp under telefonens statusrad (globals.css). */}
+ <div className="u-profil-hero" style={{
  height: 140,
  background: 'linear-gradient(160deg, #0d2240 0%, #1a4a5e 50%, #0a7b8c 100%)',
  position: 'relative',
@@ -304,7 +294,7 @@ export default async function PublicProfilePage({
  <div style={{ maxWidth: 520, margin: '0 auto', padding: '0 16px', position: 'relative', zIndex: 1 }}>
 
  {/* ── Avatar + action row ── */}
- <div style={{ display: 'flex', alignItems: 'flex-end', gap: 12, marginTop: -44, marginBottom: 14 }}>
+ <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: 12, rowGap: 8, marginTop: -44, marginBottom: 14 }}>
  <div style={{
  width: 84, height: 84, borderRadius: '50%', flexShrink: 0,
  background: 'var(--grad-sea)', position: 'relative',
@@ -331,6 +321,14 @@ export default async function PublicProfilePage({
  <span style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.75)' }}>v</span>
  </div>
  )}
+ {/* Knapparna som låg i den borttagna raden överst. Komponenterna visar
+ ingenting på den egna profilen. */}
+ <div style={{ marginLeft: 'auto', marginBottom: 2, display: 'flex', gap: 6, alignItems: 'center', flexShrink: 0 }}>
+ <FollowPrefsButton followingId={userRow.id} followingUsername={userRow.username} />
+ <DmButton targetUserId={userRow.id} targetUsername={userRow.username} />
+ <FollowButton targetUserId={userRow.id} hideCount />
+ <ProfileMoreMenu targetUserId={userRow.id} targetUsername={userRow.username} />
+ </div>
  </div>
 
  {/* ── Name + bio + chips ── */}

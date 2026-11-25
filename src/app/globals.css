@@ -799,6 +799,40 @@ img {
     height: calc(140px + env(safe-area-inset-top, 0px)) !important;
   }
 }
+/* Profilsidan /u/[namn] (2026-11-25, Tom): ingen rad överst längre. Den mörka ytan
+   går upp under telefonens statusrad (html har padding-top för notchen), och
+   tillbaka-knappen ligger rund i hörnet ovanpå den och står kvar vid skroll.
+   Plattan är mörk och halvgenomskinlig så att knappen syns även över ljust innehåll. */
+.u-profil-hero {
+  margin-top: calc(-1 * env(safe-area-inset-top, 0px));
+  height: calc(140px + env(safe-area-inset-top, 0px)) !important;
+}
+.flytande-tillbaka {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  left: 14px;
+  z-index: 60;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(10, 30, 50, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 10px rgba(0, 20, 40, 0.22);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+/* Dator: sidomenyn är 220 px bred till vänster, knappen ska inte hamna på den. */
+@media (min-width: 1024px) {
+  body.has-app-nav .flytande-tillbaka {
+    left: calc(220px + 16px);
+  }
+}
+
 /* Flödet (2026-11-25, Tom): toppraden och flikraden Flöde · Forum · Topplista ligger
    i samma fasta block (feed/page.tsx). Vid skroll nedåt glider blocket upp så mycket
    som toppraden är hög, så att bara flikraden ligger kvar; vid skroll uppåt kommer
