@@ -882,32 +882,22 @@ img {
   padding: 0 20px !important;
 }
 
-/* Flödet (2026-11-25, Tom): toppraden och flikraden Flöde · Forum · Topplista ligger
-   i samma fasta block (feed/page.tsx). Vid skroll nedåt glider hela blocket undan,
-   toppraden och flikraden tillsammans; vid skroll uppåt kommer båda tillbaka
-   (ToppradGom.tsx med mal=".flode-topp"). Förut låg flikraden kvar överst när
-   toppraden gled undan (Tom 20:26Z: flikraden ska försvinna precis som toppraden).
-   Blockets höjd mäts i ToppradGom; siffran här gäller tills sidan laddat klart. */
+/* Flödet (2026-11-25, Tom 20:52Z): som på Planera. Toppraden ligger fast och glider
+   undan själv (app-topbar--gomd); flikraden Flöde · Forum · Topplista i .flode-topp
+   ligger i sidan och skrollar bort med innehållet, så raderna försvinner strax efter
+   varandra. FlodeToppHojd.tsx mäter topprad + flikrad; siffrorna här gäller tills
+   sidan laddat klart. Flikraden är positionerad så att toningen inte ritas över den,
+   men ligger under den fasta toppraden (z-index 50) som den skrollar in under. */
 .flode-topp {
   position: relative;
-  z-index: 50;
+  z-index: 1;
 }
-/* Den beige toningen går upp bakom blocket som förut, utan att innehållet flyttar. */
+/* Den beige toningen går upp bakom toppraden och flikraden, utan att innehållet flyttar. */
 .flode-topp + .feed-ambient-top {
   margin-top: calc(-1 * var(--flode-topp-h, 44px));
   padding-top: var(--flode-topp-h, 44px);
 }
 @media (max-width: 1023px) {
-  .flode-topp {
-    position: sticky;
-    top: 0;
-    transition: transform 0.22s ease;
-  }
-  /* 4 px extra: den aktiva flikens understrykning sticker ut en halv pixel under
-     blocket och syntes annars som en tunn linje överst. */
-  .flode-topp.app-topbar--gomd {
-    transform: translateY(calc(-100% - 4px));
-  }
   .flode-topp + .feed-ambient-top {
     margin-top: calc(-1 * var(--flode-topp-h, 89px));
     padding-top: var(--flode-topp-h, 89px);
@@ -915,8 +905,7 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .app-topbar,
-  .flode-topp {
+  .app-topbar {
     transition: none;
   }
 }

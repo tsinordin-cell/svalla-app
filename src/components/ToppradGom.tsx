@@ -10,33 +10,13 @@ import { useEffect, useRef } from 'react'
  * Renderas inuti <header className="app-topbar"> och sätter klassen
  * app-topbar--gomd på den (globals.css). Raden göms inte medan notisrutan är
  * öppen, och visas igen om något i den får tangentbordsfokus.
- *
- * Med `mal` (Flödet, 2026-11-25) sätts klassen i stället på närmaste element som
- * matchar väljaren, t.ex. blocket med toppraden och flikraden, som då glider
- * undan i sin helhet. Blockets höjd mäts (--flode-topp-h, på föräldern, så att
- * toningen under kan gå upp bakom blocket).
  */
-export default function ToppradGom({ mal }: { mal?: string } = {}) {
+export default function ToppradGom() {
   const ref = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    const rad = mal
-      ? ref.current?.closest<HTMLElement>(mal)
-      : ref.current?.closest<HTMLElement>('header')
+    const rad = ref.current?.closest<HTMLElement>('header')
     if (!rad) return
-
-    let ro: ResizeObserver | undefined
-    if (mal) {
-      const parent = rad.parentElement
-      const mat = () => {
-        parent?.style.setProperty('--flode-topp-h', `${rad.offsetHeight}px`)
-      }
-      mat()
-      if (typeof ResizeObserver !== 'undefined') {
-        ro = new ResizeObserver(mat)
-        ro.observe(rad)
-      }
-    }
 
     let senast = window.scrollY, ack = 0
     const visa = () => rad.classList.remove('app-topbar--gomd')
@@ -54,10 +34,9 @@ export default function ToppradGom({ mal }: { mal?: string } = {}) {
     return () => {
       window.removeEventListener('scroll', onScroll)
       rad.removeEventListener('focusin', visa)
-      ro?.disconnect()
       visa()
     }
-  }, [mal])
+  }, [])
 
   return <span ref={ref} hidden />
 }
