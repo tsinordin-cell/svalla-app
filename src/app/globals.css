@@ -1796,3 +1796,24 @@ html:not([data-theme="dark"]) .lp-start .sd-liten:not(.sd-ljus){color:var(--acc-
    Alla små Svalla-loggor (menyer, sidfötter, julkalendern, inbyggda kopior) är exakt 28 x 90 px.
    Vid 28 px är en enhet i loggans viewBox en hel pixel, så SVALLA blir skarp vid 100 % zoom. */
 svg[aria-label="Svalla"][viewBox="0 0 90 28"]{height:28px!important;width:90px!important;max-width:none!important;flex-shrink:0}
+
+/* ===== MOBILGRANSKNING (Max 2026-11-25) =====
+   M1. "Boka bord" på ösidorna: vit text på --acc var 3,7:1. Koden skriver var(--acc, #c96e2a), som F5 inte fångade. */
+html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--acc, #c96e2a)"],html:not([data-theme="dark"]) :is(a,button)[style*="background: var(--acc, #c96e2a)"]{background:var(--acc-knapp,#b5591a)!important}
+/* M2. En färg på fyllda knappar: orange (--acc-knapp). Blå fyllda knappar fanns på startsidan (Kom igång, Se hela ..., Alla dagsplaner). */
+.sd-knapp,.rk-knapp{background:var(--acc-knapp,#b5591a)!important;color:#fff!important}
+@media (max-width:760px){.sd-mer a[href="/resetips"]{background:var(--acc-knapp,#b5591a)!important;border-color:var(--acc-knapp,#b5591a)!important;color:#fff!important}}
+/* M3. Rutan "Din guide ute på vattnet" var kall blågrön (#dfe9ea). Nu samma sand som sidhuvudena. */
+html:not([data-theme="dark"]) .sd-guide-yta{background:#efe7d6!important}
+html:not([data-theme="dark"]) .sd-guide-text li{border-left-color:var(--acc-knapp,#b5591a)!important}
+/* M4. Rubriker på ösidorna: fem storlekar (15, 17, 18, 19, 22 px) blir två. Avsnittsrubrik 24 px, rubrik i kort 18 px. */
+h2[style^="font-size:19px;font-weight:700;color:var(--txt)"],h2[style^="font-size:18px;font-weight:700;color:var(--txt)"],h2[style^="font-size:17px;font-weight:700;color:var(--txt)"],h2[style^="font-size:22px;font-weight:700;margin-bottom:14px;color:var(--txt)"]{font-size:24px!important;line-height:1.2!important}
+h2[style^="font-size:15px;font-weight:700;margin:0;letter-spacing:-0.2px"],h2[style^="font-size: 15px; font-weight: 700; margin: 0px; letter-spacing: -0.2px"]{font-size:18px!important}
+/* M5. Namnen på Sverigekartan var 6 px i mobilen (11 enheter i en karta som skalas ner). 25 enheter blir cirka 11 px. */
+@media (max-width:760px){.rk-etikett{font-size:25px!important;stroke-width:5px!important}.rk-etikett-vald{font-size:27px!important}}
+/* M6. Ingen text under 11 px (månader, etiketter, "Läst"-datum, märken). */
+[style*="font-size:9px"],[style*="font-size: 9px"],[style*="font-size:9.5px"],[style*="font-size: 9.5px"],[style*="font-size:10px"],[style*="font-size: 10px"],[style*="font-size:10.5px"],[style*="font-size: 10.5px"]{font-size:11px!important}
+[style*="padding:8px 2px 6px;text-align:center"]{padding-left:0!important;padding-right:0!important}
+[style*="font-size:9px;font-weight:700;color:var(--txt);letter-spacing:0.3px"],[style*="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.3px"]{letter-spacing:0!important}
+/* M7. Julkalenderns sidfot var 4,4:1, nu 5,9:1. */
+.jk-fot{color:#466470!important}
