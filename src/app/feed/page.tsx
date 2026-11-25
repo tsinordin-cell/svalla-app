@@ -196,8 +196,8 @@ export default async function FeedPage(
 
  {/* ── Ambient gradient — wraps header + top content ── */}
  {/* 2026-11-25 (Tom): toppraden och flikraden i ett gemensamt block som ligger fast
-     överst under 1024 px. Vid skroll nedåt glider toppraden undan och flikraden ligger
-     kvar; vid skroll uppåt kommer toppraden tillbaka (klassen flode-topp i globals.css).
+     överst under 1024 px. Vid skroll nedåt glider båda undan (Tom 20:26Z, förut låg
+     flikraden kvar); vid skroll uppåt kommer de tillbaka (klassen flode-topp i globals.css).
      Blocket ligger utanför den beige ytan, annars följer det med ytan bort; toningen går
      ändå upp bakom blocket som förut. */}
  <div className="flode-topp">
