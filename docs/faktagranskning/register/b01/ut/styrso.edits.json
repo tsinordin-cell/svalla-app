@@ -319,7 +319,7 @@
   {
     "fil": "src/lib/islandCoords.ts",
     "gammal": "  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },\n",
-    "ny": "  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },\n\n  // ── Göteborgs södra skärgård ──────────────────────────────────────────────\n  // Tillagd 2026-11-09 enligt Toms beslut 3 (2026-11-08). Nålen är densamma som i island-data.ts (Lantmäteriets ortnamn Styrsö, trakt).\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/6429433/full — \"Styrsö\"; \"island\" (läst 2026-11-09); uppmätt 2026-11-09 (haversine) i relationens 1 423 strandnoder: öns längsta strandpunkt ligger 1 988 m från nålen 57.6152, 11.7757 (node 3571400197), så 2,0 km täcker hela Styrsö. Bryggorna (OSM-noder): Tången 781 m, Bratten 1 106 m, Skäret 1 548 m.\n  // Grannöarnas närmaste strand (relationerna 10129624, 10129623, 11048170, 10250729 och 10250730, /full i samma API, lästa samma dag): Vargö 1 044 m, Känsö 1 317 m, Donsö 1 544 m, Köpstadsö 1 697 m och Brännö 1 805 m, alltså innanför radien. Donsö färjeläge (node 639186627) ligger 2 018 m bort, utanför. Radien styr GPS-taggningen och platslistorna (islandPlaces); utan raden gällde standardradien 3 km.\n  { slug: 'styrso',            name: 'Styrsö',            lat: 57.6152, lng: 11.7757, radiusKm: 2.0 },\n",
+    "ny": "  // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/10626307/full — \"Långskärs naturreservat\"; \"2000877\" (läst 2026-11-25). Uppmätt 2026-11-25 (runda 11, sb03-k030; haversine): reservatets gräns (19 noder) ligger som längst 3 448 m från nålen, och av de 2 014 strandnoder (natural=coastline, api/0.6/map för rutan 18.78,59.15,18.93,59.22) som ligger inom gränsen ligger den längsta 2 637 m bort (node 3198499372). 2,5 km täcker alltså inte hela reservatets land. radiusKm ändras inte här; förslaget står i styrso.tom.md.\n  { slug: 'langskar',          name: 'Långskär',          lat: 59.1835, lng: 18.8514, radiusKm: 2.5 },\n\n  // ── Göteborgs södra skärgård ──────────────────────────────────────────────\n  // Tillagd 2026-11-09 enligt Toms beslut 3 (2026-11-08). Nålen är densamma som i island-data.ts (Lantmäteriets ortnamn Styrsö, trakt).\n  // KÄLLA: https://api.openstreetmap.org/api/0.6/relation/6429433/full — \"Styrsö\"; \"island\" (läst 2026-11-09); uppmätt 2026-11-09 (haversine) i relationens 1 423 strandnoder: öns längsta strandpunkt ligger 1 988 m från nålen 57.6152, 11.7757 (node 3571400197), så 2,0 km täcker hela Styrsö. Bryggorna (OSM-noder): Tången 781 m, Bratten 1 106 m, Skäret 1 548 m.\n  // Grannöarnas närmaste strand (relationerna 10129624, 10129623, 11048170, 10250729 och 10250730, /full i samma API, lästa samma dag): Vargö 1 044 m, Känsö 1 317 m, Donsö 1 544 m, Köpstadsö 1 697 m och Brännö 1 805 m, alltså innanför radien. Donsö färjeläge (node 639186627) ligger 2 018 m bort, utanför. Radien styr GPS-taggningen och platslistorna (islandPlaces); utan raden gällde standardradien 3 km.\n  { slug: 'styrso',            name: 'Styrsö',            lat: 57.6152, lng: 11.7757, radiusKm: 2.0 },\n",
     "rader": [
       "styrso-0284",
       "styrso-0299",
@@ -342,6 +342,14 @@
       "styrso-N038",
       "styrso-N039",
       "styrso-N040"
+    ]
+  },
+  {
+    "fil": "src/lib/oSok.ts",
+    "gammal": "  {\"slug\":\"styrso\",\"name\":\"Styrsö\",\"regionLabel\":\"Göteborgs södra skärgård\",\"tagline\":\"Bilfri ö med 1 400 invånare i Göteborgs södra skärgård: tre bryggor, fyra små samhällen och bro till Donsö.\",\"tags\":[\"göteborg\",\"södra skärgård\",\"restaurang\",\"bilfritt\",\"styrsöbolaget\",\"fiskeläge\"]},\n",
+    "ny": "  {\"slug\":\"styrso\",\"name\":\"Styrsö\",\"regionLabel\":\"Göteborgs södra skärgård\",\"tagline\":\"Bilfri ö med drygt 1 300 invånare i Göteborgs södra skärgård: tre bryggor, fyra små samhällen och bro till Donsö.\",\"tags\":[\"göteborg\",\"södra skärgård\",\"restaurang\",\"bilfritt\",\"styrsöbolaget\",\"fiskeläge\"]},\n",
+    "rader": [
+      "styrso-0010"
     ]
   }
 ]

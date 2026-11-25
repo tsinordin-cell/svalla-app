@@ -387,5 +387,13 @@
       "uto-0251",
       "uto-0252"
     ]
+  },
+  {
+    "fil": "src/lib/oSok.ts",
+    "gammal": "  {\"slug\":\"uto\",\"name\":\"Utö\",\"regionLabel\":\"Södra skärgården\",\"tagline\":\"Järngruvor sedan medeltiden, grusvägar att cykla och sandstrand vid Ålö Storsand.\",\"tags\":[\"cykling\",\"havsbastu\",\"gruva\",\"naturreservat\",\"familj\"]},\n",
+    "ny": "  {\"slug\":\"uto\",\"name\":\"Utö\",\"regionLabel\":\"Södra skärgården\",\"tagline\":\"Järngruvor sedan medeltiden, grusvägar att cykla och sandstrand vid Ålö Storsand.\",\"tags\":[\"cykling\",\"bastu\",\"gruva\",\"naturreservat\",\"familj\"]},\n",
+    "rader": [
+      "uto-0010"
+    ]
   }
 ]

@@ -272,5 +272,14 @@
     "rader": [
       "husaro-N023"
     ]
+  },
+  {
+    "fil": "src/lib/oSok.ts",
+    "gammal": "  {\"slug\":\"husaro\",\"name\":\"Husarö\",\"regionLabel\":\"Mellersta skärgården\",\"tagline\":\"Gammalt lotssamhälle mellan Ljusterö och Möja: by från 1800-talet, badvikar och lotsmuseum.\",\"tags\":[\"bilfri\",\"orört\",\"segling\",\"vandring\",\"lugnt\"]},\n",
+    "ny": "  {\"slug\":\"husaro\",\"name\":\"Husarö\",\"regionLabel\":\"Mellersta skärgården\",\"tagline\":\"Gammalt lotssamhälle mellan Ljusterö och Möja: by från 1800-talet, badplatser och lotsmuseum.\",\"tags\":[\"historia\",\"ytterskärgård\",\"segling\",\"vandring\",\"bad\"]},\n",
+    "rader": [
+      "husaro-0012",
+      "husaro-0004"
+    ]
   }
 ]

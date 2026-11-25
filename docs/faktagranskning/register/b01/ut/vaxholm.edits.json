@@ -599,5 +599,13 @@
     "rader": [
       "vaxholm-0612"
     ]
+  },
+  {
+    "fil": "src/lib/oSok.ts",
+    "gammal": "  {\"slug\":\"vaxholm\",\"name\":\"Vaxholm\",\"regionLabel\":\"Mellersta skärgården\",\"tagline\":\"Skärgårdsstad med kastell, trähuskvarter och båt från Strömkajen på SL-biljett.\",\"tags\":[\"historia\",\"fästning\",\"stad\",\"dagsturer\",\"helår\"]},\n",
+    "ny": "  {\"slug\":\"vaxholm\",\"name\":\"Vaxholm\",\"regionLabel\":\"Mellersta skärgården\",\"tagline\":\"Skärgårdsstad med kastell, trähuskvarter och båt från Strömkajen på SL-biljett.\",\"tags\":[\"historia\",\"fästning\",\"stad\",\"dagsturer\",\"helår\"],\"slag\":\"ort\"},\n",
+    "rader": [
+      "vaxholm-0011"
+    ]
   }
 ]

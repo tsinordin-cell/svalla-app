@@ -53,3 +53,7 @@ Till: bastubryggan@bastubryggan.nu (adressen från bastubryggan.nu)
 > Tom, svalla.se
 
 Tills svar finns står nålen kvar (den får inte flyttas till en obelagd plats).
+
+## Runda 11 (2026-11-25): Långskärs GPS-radie (sb03-k030)
+
+Raden för Långskär i `src/lib/islandCoords.ts` (nålen 59.1835, 18.8514, `radiusKm: 2.5`) står intill Styrsös och prövades i samma rad. MÄTT 2026-11-25 med haversine i OpenStreetMap (relation 10626307, Långskärs naturreservat, NVR 2000877, och strandlinjen i api/0.6/map för rutan 18.78,59.15,18.93,59.22): reservatets längsta strandpunkt ligger 2 637 m från nålen och reservatsgränsen som längst 3 448 m bort. Förslag: `radiusKm: 2.7` om radien ska täcka hela reservatets land, eller 3.5 om den ska täcka hela reservatet med vatten. Radien styr GPS-besöksdetekteringen, så Tom avgör; ingen ändring är gjord i edits.json.

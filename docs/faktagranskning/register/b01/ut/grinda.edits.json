@@ -295,5 +295,13 @@
     "rader": [
       "grinda-0090"
     ]
+  },
+  {
+    "fil": "src/lib/oSok.ts",
+    "gammal": "  {\"slug\":\"grinda\",\"name\":\"Grinda\",\"regionLabel\":\"Mellersta skärgården\",\"tagline\":\"Naturreservat i mellanskärgården: natur- och kulturstig, barnvänliga bad och STF-boende.\",\"tags\":[\"gästhamn\",\"värdshus\",\"natur\",\"segling\",\"romantik\"]},\n",
+    "ny": "  {\"slug\":\"grinda\",\"name\":\"Grinda\",\"regionLabel\":\"Mellersta skärgården\",\"tagline\":\"Naturreservat i mellanskärgården: natur- och kulturstig, barnvänliga bad och STF-boende.\",\"tags\":[\"gästhamn\",\"värdshus\",\"natur\",\"segling\",\"vandring\"]},\n",
+    "rader": [
+      "grinda-0026"
+    ]
   }
 ]

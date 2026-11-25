@@ -199,5 +199,14 @@
       "storholmen-N012",
       "storholmen-N013"
     ]
+  },
+  {
+    "fil": "src/lib/oSok.ts",
+    "gammal": "  {\"slug\":\"storholmen\",\"name\":\"Storholmen\",\"regionLabel\":\"Innerskärgården\",\"tagline\":\"Bebodd ö i Lidingös skärgård med sjökrog och promenadstigar: 28 minuter med SL:s pendelbåt 80 från Ropsten\",\"tags\":[\"bebodd\",\"lidingö\",\"innerskärgård\",\"dagstur\",\"restaurang\",\"promenad\"]},\n",
+    "ny": "  {\"slug\":\"storholmen\",\"name\":\"Storholmen\",\"regionLabel\":\"Lidingös skärgård\",\"tagline\":\"Bebodd ö i Lidingös skärgård med sjökrog och promenadstigar: 28 minuter med SL:s pendelbåt 80 från Ropsten\",\"tags\":[\"bebodd\",\"lidingö\",\"pendelbåt\",\"dagstur\",\"restaurang\",\"promenad\"]},\n",
+    "rader": [
+      "storholmen-0001",
+      "storholmen-0016"
+    ]
   }
 ]
