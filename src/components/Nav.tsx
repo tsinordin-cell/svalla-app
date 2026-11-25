@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createClient } from '@/lib/supabase'
 import NotificationBell from '@/components/NotificationBell'
 import MessageBell from '@/components/MessageBell'
-import SvallaLogo from '@/components/SvallaLogo'
+import SvallaLogo, { SvallaSegel } from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 import { TOPPKNAPP_STIL } from '@/components/toppradStil'
 import { countUnreadMessages } from '@/lib/dm'
@@ -357,11 +357,12 @@ export default function Nav() {
             >
               {/* Platsen är lika hög som flikarnas ikonruta (30 px), så texten under hamnar
                   på samma rad som de andra. Cirkeln sticker upp ur den.
-                  Plus, inte loggans segel: seglet betyder redan Segling och Sandhamn på
-                  samma skärmar (forumet), och loggan står i toppraden. */}
+                  Loggans segel i stället för ett plus: Toms beslut 2026-11-24, efter att ha
+                  sett båda i förhandsbygge. (Claude förordade plus: seglet betyder också
+                  Segling och Sandhamn i forumet, och 19 av 42 konton med vald båttyp har motorbåt.) */}
               <span className="nav-fab-plats">
                 <span className="nav-fab-mobile">
-                  <Icon name="plus" size={22} stroke={2.4} style={{ color: '#fff' }} />
+                  <SvallaSegel size={25} color="#fff" />
                 </span>
               </span>
               <span className="nav-fab-label">Logga tur</span>
