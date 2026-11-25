@@ -3,14 +3,15 @@ import { ruttArAnvandbar, harTal } from '@/lib/dela-klistermarken'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import { useRouter } from 'next/navigation'
 import type { Trip } from '@/lib/supabase'
 import LikeButton from './LikeButton'
 import Comments from './Comments'
 import TripShareModal from './TripShareModal'
+import TurBildvisare from './TurBildvisare'
+import dynamic from 'next/dynamic'
 import ShareTripModal from './ShareTripModal'
-import { IconShare } from '@/components/ui/icons'
+import Icon from '@/components/Icon'
 import RouteMapSVG from './RouteMapSVG'
 import ProfileTeaserPopover from './ProfileTeaserPopover'
 import TripActions from './TripActions'
@@ -18,6 +19,9 @@ import { formatDurationMin } from '@/lib/gps'
 import { timeAgoKompakt, absoluteDate } from '@/lib/utils'
 import { renderMentions } from './Comments'
 import { fontSize, fontWeight } from '@/lib/tokens'
+
+// Leaflet laddas först när någon öppnar en rutt, inte med flödet.
+const TurKartvisare = dynamic(() => import('./TurKartvisare'), { ssr: false })
 
 function fmt(n: number, dec = 1) {
   return n % 1 === 0 ? n.toString() : n.toFixed(dec).replace('.', ',')   // decimalkomma (2026-11-02)
@@ -601,10 +605,12 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
               WebkitTapHighlightColor: 'transparent',
             }}
           >
-            <IconShare size={22} stroke={1.75} />
+            {/* 2026-11-24: pappersflygplan för "skicka som meddelande". Pilen upp ur lådan
+                betyder dela utåt och sitter nu på Dela-knappen till höger. */}
+            <Icon name="send" size={21} stroke={1.75} />
           </button>
           <div style={{ marginLeft: 'auto' }}>
-            <TripShareModal tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} hasStats={harTal({ distanceNM: trip.distance ?? null, sekunder: (trip.duration ?? 0) > 0 ? trip.duration * 60 : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })} />
+            <TripShareModal variant="rad" tripId={trip.id} title={trip.location_name ?? 'Min tur'} url={`https://svalla.se/tur/${trip.id}`} hasPhoto={hasPhoto} hasRoute={hasRoute} hasStats={harTal({ distanceNM: trip.distance ?? null, sekunder: (trip.duration ?? 0) > 0 ? trip.duration * 60 : null, toppKn: trip.max_speed_knots ?? null, snittKn: trip.average_speed_knots ?? null })} />
           </div>
         </div>
       </div>
@@ -638,155 +644,41 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
         <ShareTripModal trip={trip} onClose={() => setShowShareDM(false)} />
       )}
 
-      {/* Lightbox — portal till document.body för att undvika transform-stacking-context */}
-      {lightbox && createPortal(
-        <>
-          <style>{`
-            @keyframes _lb_fade { from { opacity:0 } to { opacity:1 } }
-            @keyframes _lb_pop  { from { opacity:0;transform:scale(0.93) } to { opacity:1;transform:scale(1) } }
-            .lb-scroll { scrollbar-width:none; -ms-overflow-style:none; }
-            .lb-scroll::-webkit-scrollbar { display:none; }
-          `}</style>
-          {/* Backdrop */}
-          <div
-            onClick={() => setLightbox(null)}
-            style={{
-              position: 'fixed', inset: 0, zIndex: 2000,
-              background: 'rgba(4,14,26,0.72)',
-              backdropFilter: 'blur(8px)',
-              WebkitBackdropFilter: 'blur(8px)',
-              animation: '_lb_fade 0.18s ease',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              padding: '20px 16px',
-            }}
-          >
-            {/* Popup container */}
-            <div
-              role="dialog"
-              aria-modal="true"
-              onClick={e => e.stopPropagation()}
-              style={{
-                position: 'relative',
-                width: '100%',
-                maxWidth: 520,
-                maxHeight: 'min(82vh, 680px)',
-                borderRadius: 20,
-                overflow: 'hidden',
-                background: 'rgb(8,20,38)',
-                boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
-                animation: '_lb_pop 0.22s cubic-bezier(0.16,1,0.3,1)',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              {/* Close button */}
-              <button
-                onClick={() => setLightbox(null)}
-                aria-label="Stäng"
-                style={{
-                  position: 'absolute', top: 10, right: 10, zIndex: 20,
-                  width: 32, height: 32, borderRadius: '50%',
-                  background: 'rgba(0,0,0,0.45)',
-                  border: '1px solid rgba(255,255,255,0.18)',
-                  cursor: 'pointer',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  WebkitTapHighlightColor: 'transparent',
-                }}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth={2.5} style={{ width: 13, height: 13 }}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+      {/* Bilder: helskärmsvisaren (2026-11-24). */}
+      {lightbox === 'photo' && allPhotos.length > 0 && (
+        <TurBildvisare
+          bilder={allPhotos}
+          start={photoIdx}
+          onByt={setPhotoIdx}
+          onStang={() => setLightbox(null)}
+          namn={username}
+          rad={[timeAgoKompakt(trip.created_at), trip.location_name].filter(Boolean).join(' · ')}
+          tal={[
+            trip.distance >= 0.1 ? `${trip.distance.toFixed(1).replace('.', ',')} NM` : null,
+            (trip.duration ?? 0) > 0 ? formatDurationMin(trip.duration) : null,
+          ].filter(Boolean) as string[]}
+          text={caption || null}
+        />
+      )}
 
-              {/* Photo */}
-              {lightbox === 'photo' && (
-                <>
-                  <div
-                    className="lb-scroll"
-                    ref={el => { if (el) el.scrollLeft = photoIdx * el.clientWidth }}
-                    onScroll={e => {
-                      const el = e.currentTarget
-                      const idx = Math.round(el.scrollLeft / el.clientWidth)
-                      if (idx !== photoIdx) setPhotoIdx(idx)
-                    }}
-                    style={{
-                      flex: 1,
-                      overflowX: 'auto', overflowY: 'hidden',
-                      scrollSnapType: 'x mandatory',
-                      display: 'flex',
-                      WebkitOverflowScrolling: 'touch',
-                      minHeight: 0,
-                    }}
-                  >
-                    {allPhotos.map((src, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          flexShrink: 0, width: '100%', height: '100%',
-                          scrollSnapAlign: 'start',
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          background: '#000',
-                          minHeight: 280,
-                        }}
-                      >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={src}
-                          alt=""
-                          style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                  {allPhotos.length > 1 && (
-                    <div style={{
-                      padding: '10px 0',
-                      display: 'flex', justifyContent: 'center', gap: 6,
-                      background: 'rgb(8,20,38)',
-                    }}>
-                      {allPhotos.map((_, i) => (
-                        <div key={i} style={{
-                          height: 5,
-                          width: i === photoIdx ? 16 : 5,
-                          borderRadius: 3,
-                          background: i === photoIdx ? '#fff' : 'rgba(255,255,255,0.30)',
-                          transition: 'width 0.2s ease',
-                        }} />
-                      ))}
-                    </div>
-                  )}
-                </>
-              )}
-
-              {/* Map */}
-              {lightbox === 'map' && routePoints && (
-                <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
-                  <div style={{ flex: 1, position: 'relative', overflow: 'hidden', minHeight: 280 }}>
-                    <RouteMapSVG points={routePoints} w={400} h={500} />
-                  </div>
-                  {(trip.location_name || trip.start_location) && (
-                    <div style={{
-                      padding: '14px 18px 16px',
-                      borderTop: '1px solid rgba(255,255,255,0.07)',
-                    }}>
-                      <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', letterSpacing: '-0.3px' }}>
-                        {trip.start_location && trip.location_name
-                          ? `${trip.start_location} → ${trip.location_name}`
-                          : (trip.location_name ?? trip.start_location)}
-                      </div>
-                      {trip.distance >= 0.1 && (
-                        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.42)', marginTop: 3 }}>
-                          {`${trip.distance.toFixed(1).replace('.', ',')} NM`}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </div>
-        </>,
-        document.body
+      {/* Rutten: helskärmskarta som går att dra och zooma (2026-11-24). */}
+      {lightbox === 'map' && routePoints && (
+        <TurKartvisare
+          punkter={routePoints}
+          onStang={() => setLightbox(null)}
+          namn={username}
+          rad={[
+            timeAgoKompakt(trip.created_at),
+            trip.start_location && trip.location_name && trip.start_location !== trip.location_name
+              ? `${trip.start_location} → ${trip.location_name}`
+              : (trip.location_name ?? trip.start_location),
+          ].filter(Boolean).join(' · ')}
+          tal={[
+            trip.distance >= 0.1 ? `${trip.distance.toFixed(1).replace('.', ',')} NM` : null,
+            (trip.duration ?? 0) > 0 ? formatDurationMin(trip.duration) : null,
+          ].filter(Boolean) as string[]}
+          turHref={`/tur/${trip.id}`}
+        />
       )}
     </article>
   )
