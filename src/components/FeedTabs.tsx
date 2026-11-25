@@ -1,5 +1,4 @@
 'use client'
-import FlodeFlikar from '@/components/FlodeFlikar'
 import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
 import Link from 'next/link'
 import { Sparkles } from '@/components/icons/LucideIcons'
@@ -120,9 +119,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
 
   return (
     <>
-      {/* ── Flöde / Forum / Topplista ── (menyförslaget 2026-11-23) */}
-      <FlodeFlikar aktiv="flode" marginBottom={16} />
-
+      {/* Flikarna Flöde · Forum · Topplista ligger sedan 2026-11-24 överst på sidan (feed/page.tsx). */}
       {/* ── Filters — sort pills + en båttyp-chip som öppnar sheet ── */}
       <div style={{ marginBottom: 16 }}>
         <div className="filter-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
