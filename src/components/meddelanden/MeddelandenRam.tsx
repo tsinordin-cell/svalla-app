@@ -17,7 +17,7 @@ export default function MeddelandenRam({ children }: { children: React.ReactNode
   const iSamtal = /^\/meddelanden\/.+/.test(path)
   return (
     <div className={`md-ram md-rot ${iSamtal ? 'md-ram--samtal' : 'md-ram--inkorg'}`}>
-      <aside className="md-ram-lista" aria-label="Samtal">
+      <aside className="md-ram-lista" aria-label="Meddelanden">
         <Inkorg />
       </aside>
       <section className="md-ram-innehall">{children}</section>

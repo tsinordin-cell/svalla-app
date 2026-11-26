@@ -9,12 +9,14 @@ import { createClient } from '@/lib/supabase'
 import { findOrCreateDM } from '@/lib/dm'
 import { avatarGradient, initialsOf } from '@/lib/utils'
 import { toast } from '@/components/Toast'
+import { etikettFor, samtalPerPerson, type BefintligtSamtal, type Etikett } from '@/lib/nyttSamtal'
 
 type Candidate = {
  id: string
  username: string
  avatar: string | null
  mutual: boolean // true = båda följer varandra
+ etikett: Etikett // texten under namnet, se lib/nyttSamtal
 }
 
 export default function NyKonversationPage() {
@@ -74,13 +76,44 @@ function NyKonversationInner() {
  .select('id, username, avatar')
  .in('id', followIds)
 
+ // 4. Befintliga 1:1-samtal med dem. starta_dm öppnar ett sådant samtal i
+ //    stället för att skicka en ny förfrågan, så texten under namnet ska
+ //    utgå från det (rättat 2026-11-26).
+ const { data: minaDelar } = await supabase
+ .from('conversation_participants')
+ .select('conversation_id')
+ .eq('user_id', user.id)
+ const minaIds = (minaDelar ?? []).map(r => r.conversation_id as string)
+ let samtalMed = new Map<string, BefintligtSamtal>()
+ if (minaIds.length > 0) {
+ const [{ data: deras }, { data: samtal }] = await Promise.all([
+ supabase.from('conversation_participants')
+ .select('conversation_id, user_id')
+ .in('conversation_id', minaIds)
+ .in('user_id', followIds),
+ supabase.from('conversations')
+ .select('id, status, created_by, last_message_at')
+ .in('id', minaIds)
+ .eq('is_group', false),
+ ])
+ samtalMed = samtalPerPerson(
+ (deras ?? []) as { conversation_id: string; user_id: string }[],
+ (samtal ?? []) as { id: string; status: string | null; created_by: string | null; last_message_at: string | null }[],
+ user.id,
+ )
+ }
+
  const list: Candidate[] = (users ?? [])
- .map(u => ({
+ .map(u => {
+ const mutual = mutualSet.has(u.id as string)
+ return {
  id: u.id as string,
  username: u.username as string,
  avatar: (u.avatar as string | null) ?? null,
- mutual: mutualSet.has(u.id as string),
- }))
+ mutual,
+ etikett: etikettFor(samtalMed.get(u.id as string), mutual, user.id),
+ }
+ })
  .sort((a, b) => {
  // Vänner först, sen alfabetiskt
  if (a.mutual !== b.mutual) return a.mutual ? -1 : 1
@@ -133,17 +166,19 @@ function NyKonversationInner() {
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 40 }}>
  {/* Header */}
+ {/* Samma glas och linje som inkorgen och samtalen. Förut --header-bg, som
+     fortfarande är den gamla kalla vita och stack ut mot den varma sanden. */}
  <header style={{
  position: 'sticky', top: 0, zIndex: 50,
- background: 'var(--header-bg, var(--glass-96))',
- backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
- borderBottom: '1px solid rgba(10,123,140,0.10)',
+ background: 'var(--md-glas)',
+ backdropFilter: 'saturate(1.6) blur(16px)', WebkitBackdropFilter: 'saturate(1.6) blur(16px)',
+ borderBottom: '1px solid var(--md-linje)',
  }}>
- <div style={{ maxWidth: 520, margin: '0 auto', padding: '12px 16px 10px' }}>
+ <div style={{ maxWidth: 520, margin: '0 auto', padding: 'calc(12px + env(safe-area-inset-top, 0px)) 16px 10px' }}>
  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
  <Link href="/meddelanden" aria-label="Tillbaka" style={{
  width: 36, height: 36, borderRadius: '50%', flexShrink: 0,
- background: 'rgba(10,123,140,0.07)',
+ background: 'var(--md-vald)',
  display: 'flex', alignItems: 'center', justifyContent: 'center',
  }}>
  <svg viewBox="0 0 24 24" fill="none" stroke="var(--sea)" strokeWidth={2.5} style={{ width: 17, height: 17 }}>
@@ -151,7 +186,7 @@ function NyKonversationInner() {
  </svg>
  </Link>
  <h1 style={{ flex: 1, fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>
- Ny konversation
+ Nytt meddelande
  </h1>
  </div>
 
@@ -168,10 +203,11 @@ function NyKonversationInner() {
  onChange={(e) => setQuery(e.target.value)}
  style={{
  width: '100%', boxSizing: 'border-box',
- padding: '11px 14px 11px 38px', borderRadius: 14,
- border: '1px solid rgba(10,123,140,0.18)',
- background: 'var(--white)', color: 'var(--txt)',
- fontSize: 14, fontWeight: 500,
+ padding: '11px 14px 11px 38px', borderRadius: 12,
+ border: 0,
+ background: 'var(--bg)', color: 'var(--txt)',
+ // 16 px: mindre text får iPhone att zooma in sidan när fältet får fokus.
+ fontSize: 16, fontWeight: 400,
  outline: 'none',
  }}
  />
@@ -226,10 +262,10 @@ function NyKonversationInner() {
  {!loading && requests.length > 0 && (
  <Section
  title="Du följer"
- subtitle="Första meddelandet skickas som en förfrågan"
+ subtitle="De följer inte dig. Ett nytt meddelande blir en förfrågan."
  >
  {requests.map(c => (
- <Row key={c.id} c={c} starting={starting === c.id} onClick={() => me && startDM(me, c.id)} isRequest />
+ <Row key={c.id} c={c} starting={starting === c.id} onClick={() => me && startDM(me, c.id)} />
  ))}
  </Section>
  )}
@@ -256,11 +292,10 @@ function Section({ title, subtitle, children }: { title: string; subtitle?: stri
  )
 }
 
-function Row({ c, starting, onClick, isRequest }: {
+function Row({ c, starting, onClick }: {
  c: Candidate
  starting: boolean
  onClick: () => void
- isRequest?: boolean
 }) {
  const grad = avatarGradient(c.username)
  const initials = initialsOf(c.username)
@@ -272,7 +307,7 @@ function Row({ c, starting, onClick, isRequest }: {
  display: 'flex', alignItems: 'center', gap: 12,
  width: '100%', textAlign: 'left',
  padding: '11px 16px',
- border: 'none', borderBottom: '1px solid rgba(10,123,140,0.06)',
+ border: 'none', borderBottom: '1px solid var(--md-linje)',
  background: 'transparent', cursor: starting ? 'default' : 'pointer',
  WebkitTapHighlightColor: 'transparent',
  opacity: starting ? 0.6 : 1,
@@ -291,9 +326,12 @@ function Row({ c, starting, onClick, isRequest }: {
  </div>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)' }}>{c.username}</div>
- {isRequest && (
- <div style={{ fontSize: 11, color: 'var(--acc)', fontWeight: 600, marginTop: 2 }}>
- Skickas som förfrågan
+ {c.etikett && (
+ <div style={{
+ fontSize: 12, fontWeight: 600, marginTop: 2,
+ color: c.etikett.ton === 'acc' ? 'var(--acc-text, var(--acc))' : 'var(--txt3)',
+ }}>
+ {c.etikett.text}
  </div>
  )}
  </div>
