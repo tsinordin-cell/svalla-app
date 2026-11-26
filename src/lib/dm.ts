@@ -179,17 +179,29 @@ export async function countUnreadMessages(
   }
 }
 
+/**
+ * Händelse som skickas i fönstret när ett samtal har markerats som läst.
+ * Menyns räknare (Nav, MessageBell) lyssnar och räknar om, eftersom tabellen
+ * med "läst" inte ligger i realtidspublikationen och inget annat säger till.
+ */
+export const MEDDELANDEN_LASTA_HANDELSE = 'svalla:meddelanden-lasta'
+
 /** Markera en konversation som läst (sätter last_read_at = now()). */
 export async function markConversationRead(
   supabase: SupabaseClient,
   currentUserId: string,
   conversationId: string,
 ): Promise<void> {
-  await supabase
+  const { error } = await supabase
     .from('conversation_participants')
     .update({ last_read_at: new Date().toISOString() })
     .eq('user_id', currentUserId)
     .eq('conversation_id', conversationId)
+  // 2026-11-26: siffran för olästa i menyn låg kvar fast samtalet var öppet,
+  // eftersom menyn räknade innan samtalet hunnit markeras som läst.
+  if (!error && typeof window !== 'undefined') {
+    window.dispatchEvent(new Event(MEDDELANDEN_LASTA_HANDELSE))
+  }
 }
 
 /**
