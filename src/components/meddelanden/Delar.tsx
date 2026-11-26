@@ -511,7 +511,7 @@ function Inspelningsrad({ rost }: { rost: RostInspelning }) {
       </div>
       <button type="button" className="md-skicka md-skicka--redo" onClick={rost.skicka}
         disabled={skickar || lage === 'startar'} aria-label="Skicka röstmeddelandet" aria-busy={skickar}>
-        <Ikon d={IKON.skicka} s={20} w={2.4} />
+        <Ikon d={IKON.flygplan} s={20} w={2.3} />
       </button>
     </div>
   )
