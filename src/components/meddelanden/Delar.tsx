@@ -42,6 +42,10 @@ export const IKON = {
   plus: 'M12 5v14M5 12h14',
   kamera: 'M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1zM12 17a4 4 0 100-8 4 4 0 000 8z',
   mikrofon: 'M12 3a3 3 0 00-3 3v6a3 3 0 006 0V6a3 3 0 00-3-3zM5 11a7 7 0 0014 0M12 18v3',
+  kuvert: 'M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1zM3.5 7l8.5 6 8.5-6',
+  kuvertOppet: 'M3 10l9-6 9 6v9a1 1 0 01-1 1H4a1 1 0 01-1-1zM3.5 10.5l8.5 5.5 8.5-5.5',
+  klocka: 'M6 16V11a6 6 0 0112 0v5l1.5 2h-15zM10 20.5a2 2 0 004 0',
+  klockaAv: 'M6 16V11a6 6 0 019.3-5M18 11v5l1.5 2H8M10 20.5a2 2 0 004 0M4 4l16 16',
 } as const
 
 export function Ikon({ d, s = 20, w = 2 }: { d: string; s?: number; w?: number }) {
@@ -112,17 +116,24 @@ export type KonvRadData = {
   olasta: number
   forfragan: boolean
   vantar: boolean
+  /** Tystat: inga aviseringar från samtalet */
+  tyst?: boolean
 }
 
-export function KonvRad({ r, vald, href }: { r: KonvRadData; vald: boolean; href: string }) {
+export function KonvRad({ r, vald, href, tryck }: {
+  r: KonvRadData; vald: boolean; href: string
+  /** Långt tryck / högerklick öppnar samtalsmenyn (KonvMeny.tsx) */
+  tryck?: React.HTMLAttributes<HTMLAnchorElement>
+}) {
   const olasta = vald ? 0 : r.olasta
   const tom = !r.text
   return (
-    <Link href={href} className={`md-konv${olasta > 0 ? ' md-konv--olast' : ''}`} aria-current={vald ? 'page' : undefined}>
+    <Link href={href} className={`md-konv${olasta > 0 ? ' md-konv--olast' : ''}`} aria-current={vald ? 'page' : undefined} {...tryck}>
       <Avatar namn={r.namn} nyckel={r.nyckel} bild={r.bild} s={52} />
       <div className="md-konv-mitt">
         <div className="md-konv-topp">
           <span className="md-konv-namn">{r.namn}</span>
+          {r.tyst && <span className="md-konv-tyst" aria-label="Tystat" title="Tystat"><Ikon d={IKON.klockaAv} s={14} w={2} /></span>}
           <span className="md-konv-tid">{inkorgTid(r.tid)}</span>
         </div>
         <div className="md-konv-under">

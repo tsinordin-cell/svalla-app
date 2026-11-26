@@ -531,3 +531,37 @@
   -webkit-appearance: none; appearance: none; background: transparent;
 }
 .md-rost-tid { font-size: 13px; font-variant-numeric: tabular-nums; opacity: 0.8; min-width: 32px; text-align: right; }
+
+/* ─── Långt tryck på ett samtal i inkorgen (2026-11-26, som i Messenger) ──────
+ * Raden: ingen länkmeny eller textmarkering i iPhones Safari vid långt tryck. */
+.md-konv { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+/* Tystat samtal: en liten klocka direkt efter namnet. Bara på tystade rader. */
+.md-konv-topp:has(.md-konv-tyst) .md-konv-namn { flex: 0 1 auto; }
+.md-konv-tyst { flex: 1; display: flex; align-items: center; color: var(--txt3); align-self: center; }
+
+/* Kortet med de senaste meddelandena, och valen under (samma stil som meddelandemenyn) */
+.md-kmeny {
+  position: absolute; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  animation: md-lyft 0.2s cubic-bezier(0.2, 0.8, 0.2, 1); transform-origin: top center;
+}
+.md-kmeny-kort {
+  width: 100%; display: flex; flex-direction: column; overflow: hidden; cursor: pointer;
+  border-radius: 22px; background: var(--bg);
+  box-shadow: 0 0 0 1px var(--md-linje), 0 16px 40px rgba(10, 25, 40, 0.22);
+  -webkit-tap-highlight-color: transparent;
+}
+.md-kmeny-huvud {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px 10px; flex-shrink: 0;
+  border-bottom: 1px solid var(--md-linje); background: var(--white);
+}
+.md-kmeny-namn { min-width: 0; font-size: 15.5px; font-weight: 600; color: var(--txt); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.md-kmeny-tyst { display: flex; color: var(--txt3); }
+.md-kmeny-flode { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 6px 12px 14px; }
+.md-kmeny-flode .md-kol { max-width: 80%; }
+.md-kmeny-etikett { font-style: italic; color: var(--txt2); }
+.md-rad--egen .md-kmeny-etikett { color: var(--md-egen-txt); opacity: 0.85; }
+.md-kmeny-skel { height: 34px; border-radius: 18px; margin-top: 10px; }
+.md-kmeny-skel--egen { margin-left: auto; }
+.md-kmeny-info { margin: 0; padding: 28px 8px; text-align: center; font-size: 14.5px; color: var(--txt3); }
+.md-kmeny .md-meny-val { min-width: 240px; }
+@media (prefers-reduced-motion: reduce) { .md-kmeny { animation: none; } }

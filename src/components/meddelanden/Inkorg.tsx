@@ -10,12 +10,16 @@
  * deltagarna, så att raden kan visa om ditt senaste meddelande är läst.
  */
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import NotificationBell from '@/components/NotificationBell'
 import { createClient, getViewer } from '@/lib/supabase'
-import { IKON, Ikon, KonvRad, SkelettRad, TomtLage, type KonvRadData } from './Delar'
+import { markConversationRead, leaveConversation, MEDDELANDEN_LASTA_HANDELSE } from '@/lib/dm'
+import { blockUser } from '@/lib/blocks'
+import { toast } from '@/components/Toast'
+import { Ark, IKON, Ikon, KonvRad, SkelettRad, TomtLage, type KonvRadData } from './Delar'
+import { KonvMeny, useLangtTryck, type ForhandsRad } from './KonvMeny'
 
 type ConvRow = {
   id: string
@@ -31,6 +35,7 @@ type ConvRow = {
   other_id?: string
   other_read_at?: string | null
   unread?: number
+  muted?: boolean
 }
 
 type Flik = 'active' | 'requests'
@@ -55,11 +60,23 @@ export function tillRad(c: ConvRow, me: string): KonvRadData {
     olasta: c.unread ?? 0,
     forfragan: c.status === 'request' && c.created_by !== me,
     vantar: c.status === 'request' && c.created_by === me,
+    tyst: !!c.muted,
   }
 }
 
+/** Kort text för ett meddelande som inte är text, i förhandsvisningen. */
+export function etikettFor(typ: string | null | undefined): string {
+  return typ === 'image' ? 'Bild' : typ === 'geo' ? 'Position' : typ === 'trip' ? 'Tur' : typ === 'audio' ? 'Röstmeddelande' : 'Meddelande'
+}
+
+/** En rad som öppnar samtalsmenyn vid långt tryck eller högerklick. */
+function TryckbarRad({ r, vald, href, onMeny }: { r: KonvRadData; vald: boolean; href: string; onMeny: (r: KonvRadData, el: HTMLElement) => void }) {
+  const tryck = useLangtTryck(el => onMeny(r, el))
+  return <KonvRad r={r} vald={vald} href={href} tryck={tryck} />
+}
+
 /** Ren vy, används av inkorgen och av förhandsvisningen. */
-export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, setFlik, sok, setSok, valtId, onForsokIgen, hrefFor = id => `/meddelanden/${id}` }: {
+export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, setFlik, sok, setSok, valtId, onForsokIgen, hrefFor = id => `/meddelanden/${id}`, onMeny }: {
   lage: 'laddar' | 'utloggad' | 'fel' | 'klar'
   rader: KonvRadData[]
   aktivaAntal: number
@@ -71,6 +88,8 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
   valtId: string | null
   onForsokIgen: () => void
   hrefFor?: (id: string) => string
+  /** Långt tryck / högerklick på en rad */
+  onMeny?: (r: KonvRadData, el: HTMLElement) => void
 }) {
   const ingaAlls = lage === 'klar' && aktivaAntal + forfragningarAntal === 0
   return (
@@ -133,9 +152,10 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
           </p>
         )}
 
-        {lage === 'klar' && rader.map(r => (
-          <KonvRad key={r.id} r={r} vald={r.id === valtId} href={hrefFor(r.id)} />
-        ))}
+        {lage === 'klar' && rader.map(r => onMeny
+          ? <TryckbarRad key={r.id} r={r} vald={r.id === valtId} href={hrefFor(r.id)} onMeny={onMeny} />
+          : <KonvRad key={r.id} r={r} vald={r.id === valtId} href={hrefFor(r.id)} />
+        )}
       </div>
     </div>
   )
@@ -144,6 +164,7 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
 export default function Inkorg() {
   const supabase = useRef(createClient()).current
   const pathname = usePathname()
+  const router = useRouter()
   const valtId = pathname?.match(/^\/meddelanden\/([^/]+)/)?.[1] ?? null
   const [me, setMe] = useState<string | null>(null)
   const [convs, setConvs] = useState<ConvRow[]>([])
@@ -153,6 +174,11 @@ export default function Inkorg() {
   const [error, setError] = useState(false)
   const meRef = useRef<string | null>(null)
   const forstaLaddning = useRef(true)
+  // Samtalsmenyn vid långt tryck
+  const [meny, setMeny] = useState<{ rad: KonvRadData; rect: { top: number; left: number; right: number; height: number } } | null>(null)
+  const [forhand, setForhand] = useState<ForhandsRad[] | 'laddar' | 'fel'>('laddar')
+  const menyId = useRef<string | null>(null)
+  const [bekrafta, setBekrafta] = useState<{ title: string; body: string; label: string; onConfirm: () => Promise<void> } | null>(null)
 
   useEffect(() => {
     getViewer(supabase).then(({ data: { user } }) => {
@@ -220,7 +246,7 @@ export default function Inkorg() {
 
       const { data: parts, error: partsErr } = await supabase
         .from('conversation_participants')
-        .select('conversation_id, last_read_at')
+        .select('conversation_id, last_read_at, muted')
         .eq('user_id', userId)
 
       if (partsErr) { setConvs([]); setLoading(false); return }
@@ -228,7 +254,11 @@ export default function Inkorg() {
       if (ids.length === 0) { setConvs([]); setLoading(false); return }
 
       const lastReadMap: Record<string, string> = {}
-      for (const p of parts ?? []) lastReadMap[p.conversation_id as string] = p.last_read_at as string
+      const tystMap: Record<string, boolean> = {}
+      for (const p of parts ?? []) {
+        lastReadMap[p.conversation_id as string] = p.last_read_at as string
+        tystMap[p.conversation_id as string] = !!(p as { muted?: boolean }).muted
+      }
 
       const { data: cs, error: csErr } = await supabase
         .from('conversations')
@@ -293,6 +323,7 @@ export default function Inkorg() {
           other_id: o?.id,
           other_read_at: o?.readAt ?? null,
           unread: unreadByConv[c.id] ?? 0,
+          muted: tystMap[c.id] ?? false,
         }
       }))
       setLoading(false)
@@ -317,7 +348,125 @@ export default function Inkorg() {
 
   const lage = loading ? 'laddar' : me === null ? 'utloggad' : error ? 'fel' : 'klar'
 
+  async function oppnaKonvMeny(r: KonvRadData, el: HTMLElement) {
+    if (!me) return
+    const rc = el.getBoundingClientRect()
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
+    try { navigator.vibrate?.(8) } catch { /* stöds inte på iPhone */ }
+    menyId.current = r.id
+    setForhand('laddar')
+    setMeny({ rad: r, rect: { top: rc.top, left: rc.left, right: rc.right, height: rc.height } })
+    // Bara läsning: att titta i kortet markerar inte samtalet som läst.
+    try {
+      const { data, error: fel } = await supabase
+        .from('messages')
+        .select('id, user_id, content, attachment_type')
+        .eq('conversation_id', r.id)
+        .order('created_at', { ascending: false })
+        .limit(15)
+      if (menyId.current !== r.id) return
+      if (fel || !data) { setForhand('fel'); return }
+      const rows = [...data].reverse()
+      const conv = convs.find(c => c.id === r.id)
+      const andra: Record<string, { namn: string; nyckel: string; bild: string | null }> = {}
+      if (conv?.is_group) {
+        const ids = [...new Set(rows.map(m => m.user_id as string).filter(u => u !== me))]
+        if (ids.length > 0) {
+          const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', ids)
+          for (const u of users ?? []) andra[u.id] = { namn: u.username, nyckel: u.username, bild: u.avatar ?? null }
+        }
+      }
+      if (menyId.current !== r.id) return
+      setForhand(rows.map(m => {
+        const text = ((m.content as string | null) ?? '').trim()
+        return {
+          id: m.id as string,
+          mine: m.user_id === me,
+          text: text || etikettFor(m.attachment_type as string | null),
+          etikett: !text,
+          avsandare: conv?.is_group && m.user_id !== me
+            ? (andra[m.user_id as string] ?? { namn: 'Seglare', nyckel: m.user_id as string, bild: null })
+            : undefined,
+        }
+      }))
+    } catch {
+      if (menyId.current === r.id) setForhand('fel')
+    }
+  }
+
+  const stangMeny = useCallback(() => { menyId.current = null; setMeny(null) }, [])
+
+  async function markeraOlast(id: string) {
+    stangMeny()
+    if (!me) return
+    // Sätt läst till strax före det senaste meddelandet från någon annan.
+    const { data: senaste } = await supabase
+      .from('messages').select('created_at').eq('conversation_id', id).neq('user_id', me)
+      .order('created_at', { ascending: false }).limit(1).maybeSingle()
+    if (!senaste?.created_at) return
+    const fore = new Date(new Date(senaste.created_at as string).getTime() - 1).toISOString()
+    const { error: fel } = await supabase.from('conversation_participants')
+      .update({ last_read_at: fore }).eq('user_id', me).eq('conversation_id', id)
+    if (fel) { toast('Det gick inte att markera som oläst.', 'error'); return }
+    window.dispatchEvent(new Event(MEDDELANDEN_LASTA_HANDELSE))
+    load(me, true)
+  }
+
+  async function markeraLast(id: string) {
+    stangMeny()
+    if (!me) return
+    await markConversationRead(supabase, me, id)
+    load(me, true)
+  }
+
+  async function vaxlaTyst(id: string, tyst: boolean) {
+    stangMeny()
+    if (!me) return
+    const { error: fel } = await supabase.from('conversation_participants')
+      .update({ muted: !tyst }).eq('user_id', me).eq('conversation_id', id)
+    if (fel) { toast('Det gick inte att ändra aviseringarna.', 'error'); return }
+    setConvs(prev => prev.map(c => (c.id === id ? { ...c, muted: !tyst } : c)))
+    toast(tyst ? 'Aviseringarna är på igen' : 'Tystat. Du får inga aviseringar från samtalet.', 'success')
+  }
+
+  function radera(id: string, arGrupp: boolean) {
+    stangMeny()
+    setBekrafta({
+      title: arGrupp ? 'Lämna gruppen' : 'Radera meddelandena',
+      body: arGrupp
+        ? 'Du lämnar gruppen. Meddelandena finns kvar för de andra.'
+        : 'Meddelandena försvinner för dig. När ni båda har raderat dem tas de bort helt, även bilderna.',
+      label: arGrupp ? 'Lämna' : 'Radera',
+      onConfirm: async () => {
+        const ok = await leaveConversation(id)
+        if (!ok) { toast(arGrupp ? 'Kunde inte lämna gruppen.' : 'Kunde inte radera meddelandena.', 'error'); return }
+        if (valtId === id) router.push('/meddelanden')
+        if (me) load(me, true)
+      },
+    })
+  }
+
+  function blockera(namn: string, otherId: string, id: string) {
+    stangMeny()
+    setBekrafta({
+      title: `Blockera ${namn}`,
+      body: 'Du och den här personen kan inte längre skicka meddelanden till varandra.',
+      label: 'Blockera',
+      onConfirm: async () => {
+        if (!me) return
+        const ok = await blockUser(supabase, me, otherId)
+        if (!ok) { toast('Något gick fel.', 'error'); return }
+        toast(`${namn} blockerad`, 'success')
+        if (valtId === id) router.push('/meddelanden')
+      },
+    })
+  }
+
+  const menyConv = meny ? convs.find(c => c.id === meny.rad.id) : undefined
+  const stangBekraftelse = useCallback(() => setBekrafta(null), [])
+
   return (
+    <>
     <InkorgVy
       lage={lage}
       rader={rader}
@@ -329,6 +478,41 @@ export default function Inkorg() {
       setSok={setQuery}
       valtId={valtId}
       onForsokIgen={() => { if (me) load(me) }}
+      onMeny={oppnaKonvMeny}
     />
+
+    {meny && menyConv && (
+      <KonvMeny
+        rad={meny.rad}
+        rect={meny.rect}
+        forhand={forhand}
+        tyst={!!menyConv.muted}
+        arGrupp={menyConv.is_group}
+        onOppna={() => { const id = meny.rad.id; stangMeny(); router.push(`/meddelanden/${id}`) }}
+        onLast={meny.rad.olasta > 0 && meny.rad.id !== valtId ? () => markeraLast(meny.rad.id) : undefined}
+        onOlast={meny.rad.olasta === 0 && !meny.rad.duSkrev && !!meny.rad.text && meny.rad.id !== valtId ? () => markeraOlast(meny.rad.id) : undefined}
+        onTysta={() => vaxlaTyst(meny.rad.id, !!menyConv.muted)}
+        onRadera={() => radera(meny.rad.id, menyConv.is_group)}
+        onBlockera={!menyConv.is_group && menyConv.other_id ? () => blockera(meny.rad.namn, menyConv.other_id as string, meny.rad.id) : undefined}
+        onStang={stangMeny}
+      />
+    )}
+
+    {bekrafta && (
+      <Ark onStang={stangBekraftelse} etikett={bekrafta.title}>
+        <div className="md-ark-text">
+          <h2>{bekrafta.title}</h2>
+          <p>{bekrafta.body}</p>
+        </div>
+        <div className="md-ark-knappar">
+          <button type="button" className="md-ark-ja"
+            onClick={async () => { const b = bekrafta; setBekrafta(null); await b.onConfirm() }}>
+            {bekrafta.label}
+          </button>
+          <button type="button" className="md-ark-nej" onClick={stangBekraftelse}>Avbryt</button>
+        </div>
+      </Ark>
+    )}
+    </>
   )
 }

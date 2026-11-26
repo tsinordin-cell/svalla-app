@@ -8,6 +8,7 @@ import {
 import { rostFormat, useRostInspelning, type RostInspelning } from '@/lib/useRostInspelning'
 import { PROV_M4A, PROV_WEBM } from './ljudprov'
 import { InkorgVy } from '@/components/meddelanden/Inkorg'
+import { KonvMeny, type ForhandsRad } from '@/components/meddelanden/KonvMeny'
 import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, REAKTIONER, type Reaktion } from '@/components/meddelanden/Meny'
 
 // Påhittade samtal. Inga riktiga personer eller meddelanden.
@@ -47,6 +48,19 @@ const START_REAKTIONER: Reaktion[] = [
   { id: 'r4', message_id: '7', user_id: 'jag', emoji: REAKTIONER[0] },
 ]
 
+/** Påhittade meddelanden i kortet vid långt tryck. Elin har samma samtal som samtalsvyn. */
+function forhandFor(id: string): ForhandsRad[] {
+  if (id === 'a') return SAMTAL.map(m => ({ id: m.id, mine: m.mine, text: kortText(m), etikett: !m.text }))
+  if (id === 'c') return [
+    { id: 'c1', mine: false, text: 'Vi samlas vid Stavsnäs kl 9 på lördag', avsandare: { namn: 'Maja Ström', nyckel: 'majastrom', bild: null } },
+    { id: 'c2', mine: false, text: 'Jag tar med kaffe', avsandare: { namn: 'Per Ahl', nyckel: 'perahl', bild: null } },
+    { id: 'c3', mine: true, text: 'Vi kommer med två båtar' },
+    { id: 'c4', mine: false, text: 'Någon som har plats för två till?', avsandare: { namn: 'Maja Ström', nyckel: 'majastrom', bild: null } },
+  ]
+  const r = RADER.find(x => x.id === id)
+  return r?.text ? [{ id: `${id}1`, mine: r.duSkrev, text: r.text }] : []
+}
+
 function kortText(m: M) {
   if (m.text) return m.text
   return m.typ === 'bild' ? 'Bild' : m.typ === 'geo' ? 'Position' : m.typ === 'tur' ? 'Tur' : m.typ === 'rost' ? 'Röstmeddelande' : 'Meddelande'
@@ -61,10 +75,12 @@ function kortText(m: M) {
  * ?plus=privat: frågan som kommer när man väljer en privat tur.
  * ?pek=1: visar kameraknappen även med mus, så att telefonens skrivfält går att fota på dator.
  * ?rost=spelar|klar: inspelningsraden mitt i en inspelning, eller stoppad vid två minuter.
+ * ?konv=1: långt tryck (eller högerklick) på ett samtal i listan öppnar samtalsmenyn, och Segelgänget
+ *   visas som tystat. ?konv=meny öppnar menyn på Elin direkt, ?konv=grupp på Segelgänget (för bilder).
  * ?rost=prov: visar vilket format webbläsaren spelar in i. Utan rost= fungerar mikrofonen på riktigt:
  *   klippet stannar i webbläsaren och läggs sist i samtalet, inget laddas upp.
  */
-export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek, rost }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string; pek?: string; rost?: string }) {
+export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek, rost, konv }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string; pek?: string; rost?: string; konv?: string }) {
   // ?tema=mork|ljust: sätter samma inställning som appens temaväljare (bara i förhandsversionens webbläsare).
   useEffect(() => {
     if (tema !== 'mork' && tema !== 'ljust') return
@@ -78,7 +94,26 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek, r
   const iSamtal = vy === 'samtal'
   const lage = vy === 'laddar' ? 'laddar' : vy === 'utloggad' ? 'utloggad' : vy === 'fel' ? 'fel' : 'klar'
   const tomInkorg = vy === 'tom'
-  const synliga = tomInkorg ? [] : RADER.filter(r => (flik === 'requests' ? r.forfragan : !r.forfragan))
+  const [tysta, setTysta] = useState<Record<string, boolean>>(konv ? { c: true } : {})
+  const [olasta, setOlasta] = useState<Record<string, number>>({})
+  const [konvMeny, setKonvMeny] = useState<{ rad: KonvRadData; rect: { top: number; left: number; right: number; height: number } } | null>(null)
+  const rader = RADER.map(r => ({ ...r, tyst: !!tysta[r.id], olasta: olasta[r.id] ?? r.olasta }))
+  const oppnaKonv = useCallback((r: KonvRadData, el: HTMLElement) => {
+    const rc = el.getBoundingClientRect()
+    setKonvMeny({ rad: r, rect: { top: rc.top, left: rc.left, right: rc.right, height: rc.height } })
+  }, [])
+  // ?konv=meny|grupp: öppna menyn direkt, så att den kan fotograferas.
+  useEffect(() => {
+    if (konv !== 'meny' && konv !== 'grupp') return
+    const id = konv === 'grupp' ? 'c' : 'a'
+    const t = setTimeout(() => {
+      const el = document.querySelectorAll<HTMLElement>('.md-konv')[RADER.findIndex(r => r.id === id)]
+      const r = RADER.find(x => x.id === id)
+      if (el && r) oppnaKonv({ ...r, tyst: id === 'c' }, el)
+    }, 300)
+    return () => clearTimeout(t)
+  }, [konv, oppnaKonv])
+  const synliga = tomInkorg ? [] : rader.filter(r => (flik === 'requests' ? r.forfragan : !r.forfragan))
     .filter(r => !sok || r.namn.toLowerCase().includes(sok.toLowerCase()))
 
   return (
@@ -95,6 +130,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek, r
             valtId={iSamtal ? 'a' : null}
             onForsokIgen={() => {}}
             hrefFor={() => '/designforslag/meddelanden?vy=samtal'}
+            onMeny={konv ? oppnaKonv : undefined}
           />
         </aside>
         <section className="md-ram-innehall">
@@ -105,6 +141,23 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek, r
           )}
         </section>
       </div>
+      {konvMeny && (
+        <KonvMeny
+          rad={konvMeny.rad}
+          rect={konvMeny.rect}
+          forhand={forhandFor(konvMeny.rad.id)}
+          tyst={!!tysta[konvMeny.rad.id]}
+          arGrupp={konvMeny.rad.id === 'c'}
+          onOppna={() => { setKonvMeny(null); location.href = '/designforslag/meddelanden?vy=samtal' }}
+          onLast={(olasta[konvMeny.rad.id] ?? konvMeny.rad.olasta) > 0 ? () => { setOlasta(o => ({ ...o, [konvMeny.rad.id]: 0 })); setKonvMeny(null) } : undefined}
+          onOlast={(olasta[konvMeny.rad.id] ?? konvMeny.rad.olasta) === 0 && !konvMeny.rad.duSkrev && !!konvMeny.rad.text
+            ? () => { setOlasta(o => ({ ...o, [konvMeny.rad.id]: 1 })); setKonvMeny(null) } : undefined}
+          onTysta={() => { setTysta(t => ({ ...t, [konvMeny.rad.id]: !t[konvMeny.rad.id] })); setKonvMeny(null) }}
+          onRadera={() => setKonvMeny(null)}
+          onBlockera={konvMeny.rad.id === 'c' ? undefined : () => setKonvMeny(null)}
+          onStang={() => setKonvMeny(null)}
+        />
+      )}
       <style>{`
         .fb-flytande{display:none!important}
         .md-fv--pek .md-rund--kamera{display:flex!important}
