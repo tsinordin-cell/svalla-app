@@ -112,13 +112,27 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
               <input type="search" value={sok} onChange={e => setSok(e.target.value)} placeholder="Sök på namn" aria-label="Sök bland meddelanden" />
             </label>
             {lage === 'klar' && (
-              <div className="md-flikar" role="group" aria-label="Visa">
-                <button type="button" className="md-flik" aria-pressed={flik === 'active'} onClick={() => setFlik('active')}>
-                  Meddelanden{aktivaAntal > 0 && <span className="md-flik-tal">{aktivaAntal}</span>}
-                </button>
-                <button type="button" className="md-flik" aria-pressed={flik === 'requests'} onClick={() => setFlik('requests')}>
-                  Förfrågningar{forfragningarAntal > 0 && <span className="md-flik-tal md-flik-tal--acc">{forfragningarAntal > 9 ? '9+' : forfragningarAntal}</span>}
-                </button>
+              <div className="md-ink-under">
+                {flik === 'active' ? (
+                  <>
+                    <h2>Samtal</h2>
+                    <button
+                      type="button"
+                      className={`md-ink-forfr${forfragningarAntal > 0 ? ' md-ink-forfr--ny' : ''}`}
+                      onClick={() => setFlik('requests')}
+                      aria-label={forfragningarAntal > 0 ? `Förfrågningar, ${forfragningarAntal} nya` : 'Förfrågningar'}
+                    >
+                      Förfrågningar{forfragningarAntal > 0 && ` (${forfragningarAntal > 9 ? '9+' : forfragningarAntal})`}
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button type="button" className="md-ink-bak" onClick={() => setFlik('active')} aria-label="Tillbaka till samtal">
+                      <Ikon d={IKON.bak} s={20} w={2.2} />
+                    </button>
+                    <h2>Förfrågningar</h2>
+                  </>
+                )}
               </div>
             )}
           </>
