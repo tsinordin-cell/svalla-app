@@ -1,0 +1,14 @@
+update restaurants set description = 'Grinda Sjömack är en sjömack i direkt anslutning till gästhamnen på Grinda i Värmdö kommun och säljer bensin 98, diesel och gasol. Macken har kortautomat för de tider den är obemannad och är öppen året om, utom nattetid. Enklare båttillbehör och kioskvaror finns i Aktivitetshuset vid bryggan.'
+ where slug = 'grinda-sjomack' and description = 'Grinda Sjömack ligger i direkt anslutning till gästhamnen och säljer bensin 98, diesel och gasol. Macken har kortautomat och är öppen året om, utom mellan kl. 22 och 05. Enklare båttillbehör och kioskvaror finns i Aktivitetshuset vid bryggan.';
+update restaurants set type = 'restaurant'
+ where slug = 'framfickan-grinda' and type = 'cafe';
+update restaurants set latitude = 59.4130702, longitude = 18.5592303
+ where slug = 'grinda-lanthandel-cafe' and latitude = 59.4128 and longitude = 18.5576;
+update restaurants set description = 'Grinda Wärdshus är en restaurang med hotell mitt på Grinda i Värmdö kommun, en knapp kilometers promenad från både Södra och Norra bryggan. Wärdshuset ligger i en sommarvilla med utsikt över Saxarfjärden, som enligt Länsstyrelsen uppfördes 1907 efter ritning av arkitekten Ernst Stenhammar, och köket serverar klassisk skärgårdsmat. Från månadsskiftet mellan augusti och september 2026 renoveras husets tak och fasad, och Grinda Wärdshus räknar med nypremiär i maj 2027. I anslutning till wärdshuset ligger gästhamnen i Hemviken med el, dusch och toalett, och sjömacken säljer bensin 98, diesel och gasol.'
+ where slug = 'grinda-wardshus' and description = 'Grinda Wärdshus vid Södra bryggan på Grinda ligger i ett hus som har sett ut över Saxarfjärden sedan 1906 och serverar skärgårdsmat. I viken finns gästhamnen med el, dusch och toalett, och sjömacken säljer bensin, diesel och gasol.';
+update restaurants set type = 'cafe'
+ where slug = 'hemmesta-sjocafe' and type = 'restaurant';
+update restaurants set latitude = 59.4127412, longitude = 18.4963563
+ where slug = 'hemmesta-sjocafe' and latitude = 59.41017 and longitude = 18.49936;
+update restaurants set description = 'Södra ångbåtsbryggan på Grinda, i Grinda naturreservat, trafikeras av Waxholmsbolaget, som skriver att Grinda har trafik året om. Under säsong angör även Strömmas Cinderellabåt Södra Grinda; 2026 gick den 30 april till 27 september. Vid bryggan finns ett barnvänligt bad, grillplatser och torrdass. Gästhamn för fritidsbåtar finns i Hemviken och naturhamn i Hästholmssundet.'
+ where slug = 'grinda-sodra-bryggan' and description = 'Södra ångbåtsbryggan på Grinda, i Grinda naturreservat, trafikeras av Waxholmsbolaget, som skriver att Grinda har trafik året om. Under säsong angör även Strömmas Cinderellabåt Södra Grinda; 2026 gick den 30 april–27 september. Vid bryggan finns ett barnvänligt bad, grillplatser och torrdass. Gästhamn för fritidsbåtar finns i Hemviken och naturhamn i Hästholmssundet.';
