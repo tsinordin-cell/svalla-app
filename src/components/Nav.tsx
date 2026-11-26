@@ -9,7 +9,7 @@ import MessageBell from '@/components/MessageBell'
 import SvallaLogo, { SvallaSegel } from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 import { TOPPKNAPP_STIL } from '@/components/toppradStil'
-import { countUnreadMessages } from '@/lib/dm'
+import { countUnreadMessages, MEDDELANDEN_LASTA_HANDELSE } from '@/lib/dm'
 import { prefetchFor as prefetchUtloggad } from '@/lib/inloggningsrutter'
 import { visaGlobalaKlockor } from '@/lib/klockor'
 
@@ -149,9 +149,12 @@ export default function Nav() {
       .subscribe()
     const vidSynlig = () => { if (document.visibilityState === 'visible') raknaOm() }
     document.addEventListener('visibilitychange', vidSynlig)
+    // Ett samtal har markerats som läst: räkna om, annars ligger siffran kvar.
+    window.addEventListener(MEDDELANDEN_LASTA_HANDELSE, raknaOm)
     return () => {
       supabase.removeChannel(ch)
       document.removeEventListener('visibilitychange', vidSynlig)
+      window.removeEventListener(MEDDELANDEN_LASTA_HANDELSE, raknaOm)
     }
   }, [userId])
   const harOlasta = olastaMedd + olastaNotiser > 0

@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { createClient, getViewer } from '@/lib/supabase'
-import { countUnreadMessages } from '@/lib/dm'
+import { countUnreadMessages, MEDDELANDEN_LASTA_HANDELSE } from '@/lib/dm'
 import Icon from '@/components/Icon'
 import { RAKNARE_STIL, TOPPKNAPP_STIL } from '@/components/toppradStil'
 
@@ -61,6 +61,14 @@ export default function MessageBell() {
       }
     }
   }, [refresh, supabase])
+
+  // Ett samtal har markerats som läst: räkna om, annars ligger siffran kvar.
+  useEffect(() => {
+    if (!userId) return
+    const raknaOm = () => { refresh(userId) }
+    window.addEventListener(MEDDELANDEN_LASTA_HANDELSE, raknaOm)
+    return () => window.removeEventListener(MEDDELANDEN_LASTA_HANDELSE, raknaOm)
+  }, [userId, refresh])
 
   if (!userId) return null
 
