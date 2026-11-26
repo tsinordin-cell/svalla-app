@@ -5,7 +5,8 @@
 --    annat meddelande i samma samtal. Raderas originalet blir kolumnen tom och
 --    citatet försvinner ur svaret (svaret självt ligger kvar).
 -- 2. En spärr (trigger) som stoppar svar på ett meddelande i ett annat samtal,
---    så att ingen kan citera ur ett samtal hen inte är med i.
+--    så att ingen kan citera ur ett samtal hen inte är med i. Gäller både nya
+--    meddelanden och ändringar av reply_to_id.
 -- 3. Ny tabell message_reactions: en reaktion per person och meddelande,
 --    från en fast lista med sex emoji. Väljer man en annan ersätts den gamla.
 -- 4. Regler (RLS) för reaktioner: bara deltagare i samtalet kan se dem, bara
@@ -54,7 +55,7 @@ $$;
 
 drop trigger if exists meddelande_svar_samma_samtal_trigger on public.messages;
 create trigger meddelande_svar_samma_samtal_trigger
-  before insert on public.messages
+  before insert or update of reply_to_id on public.messages
   for each row execute function public.meddelande_svar_samma_samtal();
 
 -- ── 3. Reaktioner ─────────────────────────────────────────────────────────
