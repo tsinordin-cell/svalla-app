@@ -241,7 +241,7 @@ export default async function ForumPage() {
  color: cat.iconColor,
  flexShrink: 0,
  }}>
- <Icon name={cat.iconName} size={22} stroke={1.8} />
+ <Icon name={cat.iconName} size={22} stroke={1.8} malad />
  </span>
 
  {/* Text */}

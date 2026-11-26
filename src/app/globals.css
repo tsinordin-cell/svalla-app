@@ -1915,3 +1915,25 @@ h2[style^="font-size:15px;font-weight:700;margin:0;letter-spacing:-0.2px"],h2[st
 [style*="font-size:9px;font-weight:700;color:var(--txt);letter-spacing:0.3px"],[style*="font-size:9px;font-weight:700;color:#fff;letter-spacing:0.3px"]{letter-spacing:0!important}
 /* M7. Julkalenderns sidfot var 4,4:1, nu 5,9:1. */
 .jk-fot{color:#466470!important}
+
+/* ===== DUBBELKONTROLL (Max 2026-11-25): samma regler på alla sidor, inte bara de granskade =====
+   D1. En knappfärg överallt. Fyllda knappar med --sea-knapp (Prenumerera, Öppna tidtabell, Starta en ny diskussion,
+   Fråga Thorkel om den här) och inline-blå knappar (Skapa gratis konto, Öppna kartan, Kom med) blir orange som övriga. */
+html:not([data-theme="dark"]){--sea-knapp:var(--acc-knapp,#b5591a)}
+html:not([data-theme="dark"]) :is(a,button)[style*="background:#1e5c82;color:#fff"],html:not([data-theme="dark"]) :is(a,button)[style*="background:linear-gradient(135deg, #1a4a6b, #0a7b8c);color:#fff"]{background:var(--acc-knapp,#b5591a)!important}
+/* Tipsa oss-knappen är gränssnitt, inte en uppmaning: marinblå i stället för havsblå. */
+html:not([data-theme="dark"]) .fb-flytande{background:#0a2540!important}
+/* D2. Ingen text under 11 px, även 8 px-datum på platssidorna, startsidans datumrutor och fotokrediter, säljsidan för hotell. */
+[style*="font-size:8px"],[style*="font-size: 8px"],[style*="font-size:8.5px"],[style*="font-size: 8.5px"],.sd-kansla-ruta i,.ht-foto,.ht-ex,.ht-skarm-forman em,.ht-kh em{font-size:11px!important}
+@media (max-width:760px){.ki-cta span,.sd-nu-rad>span,.sd-nu-text small{font-size:11px!important}}
+/* D3. Läsbar kontrast för svårighetsgrad (gul) och "Live tidtabell" (grön) på ljus botten, och säljsidans knapp. */
+html:not([data-theme="dark"]) [style*="color:#d6a318"]{color:#8a6400!important}
+html:not([data-theme="dark"]) [style*="color:#16a34a"]{color:#15803d!important}
+html:not([data-theme="dark"]) .ht-knapp{background:var(--acc-knapp,#b5591a)!important}
+
+/* Andra varvet (samma dag): knappar och rubriker som första varvet missade. */
+html:not([data-theme="dark"]) .ss-knapp,html:not([data-theme="dark"]) .jk-cta,html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--sea);color:var(--white)"],html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--sea);color:#fff"],html:not([data-theme="dark"]) :is(a,button)[style*="background:var(--sea, #1e5c82);color:#fff"],html:not([data-theme="dark"]) button[style*="background: var(--grad-sea)"],html:not([data-theme="dark"]) button[style*="background:var(--grad-sea)"]{background:var(--acc-knapp,#b5591a)!important;color:#fff!important}
+html:not([data-theme="dark"]) [style*="color:#3f9d5a"]{color:#2b7a43!important}
+h2[style^="font-size:20px;font-weight:700;color:var(--txt);margin-bottom:16px"],h2[style^="font-size:16px;font-weight:700;margin-bottom:8px"]{font-size:24px!important;line-height:1.2!important}
+h2[style^="font-size:15px;font-weight:700;color:var(--txt);margin:0 0 6px"]{font-size:18px!important}
+html:not([data-theme="dark"]) :is(a,button)[style*="background:#1a4a6b;color:#fff"]{background:var(--acc-knapp,#b5591a)!important}
