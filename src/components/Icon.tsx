@@ -174,7 +174,10 @@ export type IconName = keyof typeof PATHS
 /** Svallas egna målade ikoner (Max och Oskar 2026-11-24): målade med samma pensel som startscenen,
  *  marinblått bläck och orange detaljer. Ligger som bilder i public/ikoner/<namn>.webp.
  *  Ikoner i gränssnittet (pilar, sök, kalender, karta med flera) behåller den enkla linjen. */
-const MALADE = new Set(['anchor', 'bathtub', 'beach', 'bed', 'beer', 'bike', 'binoculars', 'bird', 'castle', 'child', 'cloud', 'coffee', 'compass', 'fire', 'fish', 'fishing', 'fog', 'fuel', 'island', 'leaf', 'lifebuoy', 'map', 'mountain', 'navigation', 'paddle', 'pin', 'rain', 'sailboat', 'ship', 'shower', 'snow', 'sun', 'swim', 'tag', 'tent', 'tower', 'tree', 'utensils', 'walk', 'waves', 'wind', 'wine', 'wrench'])
+const MALADE = new Set(['anchor', 'bathtub', 'beach', 'bed', 'beer', 'bike', 'binoculars', 'bird', 'castle', 'child', 'cloud', 'coffee', 'fire', 'fish', 'fishing', 'fog', 'fuel', 'island', 'leaf', 'lifebuoy', 'mountain', 'paddle', 'rain', 'sailboat', 'ship', 'shower', 'snow', 'sun', 'swim', 'tag', 'tent', 'tower', 'tree', 'utensils', 'walk', 'waves', 'wind', 'wine', 'wrench'])
+/** Namn som både är innehåll och gränssnitt (Max 2026-11-25): kompassen är också menyknappen Utforska, nålen och kartan
+ *  finns i verktygsrader. De är målade bara där anropet ber om det med `malad`, annars den enkla linjen. */
+const MALADE_VID_BEHOV = new Set(['compass', 'map', 'navigation', 'pin'])
 // 2026-11-25 (Thomas): vind, skiftnyckel, kompass, navigering, nål, karta, prislapp, moln, regn, snö och dimma målade,
 // så att forumets kategorier, flödets vinterkort och vädret på ösidorna inte blandar målade och linjeritade ikoner.
 
@@ -189,6 +192,8 @@ interface Props {
   className?: string
   style?: React.CSSProperties
   'aria-label'?: string
+  /** Visa den målade versionen för namn som annars är linje i gränssnittet (kompass, karta, navigering, nål). */
+  malad?: boolean
 }
 
 export default function Icon({
@@ -198,12 +203,13 @@ export default function Icon({
   className,
   style,
   'aria-label': ariaLabel,
+  malad = false,
 }: Props) {
   // Defensiv lookup: om name inte finns i PATHS (t.ex. runtime-string från
   // databas eller content-fil som inte typchecks), fall back till tom path.
   // Annars kraschar React build med "props.dangerouslySetInnerHTML must be
   // in the form {__html: ...}" när __html är undefined.
-  if (MALADE.has(name)) {
+  if (MALADE.has(name) || (malad && MALADE_VID_BEHOV.has(name))) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img

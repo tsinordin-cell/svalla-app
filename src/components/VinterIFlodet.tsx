@@ -72,7 +72,7 @@ export default function VinterIFlodet({ manad = new Date().getMonth() + 1 }: { m
               background: 'var(--teal-10)', color: 'var(--sea)',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             }} aria-hidden>
-              <Icon name={r.icon} size={20} stroke={1.9} />
+              <Icon name={r.icon} size={20} stroke={1.9} malad />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.25 }}>{r.titel}</div>
