@@ -23,7 +23,7 @@ export default function Error({
  Meddelandet kunde inte laddas
  </h2>
  <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 8px', maxWidth: 300, lineHeight: 1.5 }}>
- Konversationen gick inte att hämta. Försök igen.
+ Meddelandena gick inte att hämta. Försök igen.
  </p>
  {error?.message && (
  <p style={{ fontSize: 11, color: 'var(--txt3)', margin: '0 0 16px', maxWidth: 320, lineHeight: 1.4,

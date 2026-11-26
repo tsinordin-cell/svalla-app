@@ -9,7 +9,7 @@ import { IKON, TomtLage } from '@/components/meddelanden/Delar'
 export default function MeddelandenPage() {
   return (
     <div className="md-valj">
-      <TomtLage ikon={IKON.pratbubbla} rubrik="Välj ett samtal" text="Dina samtal finns till vänster. Du kan också starta ett nytt." />
+      <TomtLage ikon={IKON.pratbubbla} rubrik="Dina meddelanden" text="Välj någon till vänster eller skriv ett nytt meddelande." />
     </div>
   )
 }

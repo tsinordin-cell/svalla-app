@@ -139,7 +139,7 @@ function NyKonversationInner() {
  setStarting(otherId)
  const res = await findOrCreateDM(supabase, myId, otherId)
  if (!res) {
- toast((await arBlockerad(supabase, myId, otherId)) ? BLOCKERAD_TEXT : 'Kunde inte starta konversation. Försök igen.', 'error')
+ toast((await arBlockerad(supabase, myId, otherId)) ? BLOCKERAD_TEXT : 'Det gick inte att börja skriva. Försök igen.', 'error')
  setStarting(null)
  return
  }

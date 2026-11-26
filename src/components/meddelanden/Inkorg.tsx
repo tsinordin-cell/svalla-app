@@ -90,7 +90,7 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
           <>
             <label className="md-sok">
               <Ikon d={IKON.sok} s={18} w={1.9} />
-              <input type="search" value={sok} onChange={e => setSok(e.target.value)} placeholder="Sök på namn" aria-label="Sök bland samtalen" />
+              <input type="search" value={sok} onChange={e => setSok(e.target.value)} placeholder="Sök på namn" aria-label="Sök bland meddelanden" />
             </label>
             {lage === 'klar' && (
               <div className="md-flikar" role="group" aria-label="Visa">
@@ -110,26 +110,26 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
         {lage === 'laddar' && [0, 1, 2, 3, 4].map(i => <SkelettRad key={i} />)}
 
         {lage === 'utloggad' && (
-          <TomtLage ikon={IKON.pratbubbla} rubrik="Logga in för att chatta" text="Skriv med andra seglare och dela var du ligger.">
+          <TomtLage ikon={IKON.pratbubbla} rubrik="Logga in för att skriva meddelanden" text="Skriv med andra seglare och dela var du ligger.">
             <Link href="/logga-in?returnTo=%2Fmeddelanden" className="md-knapp">Logga in</Link>
           </TomtLage>
         )}
 
         {lage === 'fel' && (
-          <TomtLage ikon={IKON.pratbubbla} rubrik="Samtalen gick inte att hämta" text="Kontrollera anslutningen och försök igen.">
+          <TomtLage ikon={IKON.pratbubbla} rubrik="Meddelandena gick inte att hämta" text="Kontrollera anslutningen och försök igen.">
             <button type="button" className="md-knapp" onClick={onForsokIgen}>Försök igen</button>
           </TomtLage>
         )}
 
         {ingaAlls && (
-          <TomtLage ikon={IKON.pratbubbla} rubrik="Inga meddelanden än" text="Starta ett samtal med en seglare du följer.">
+          <TomtLage ikon={IKON.pratbubbla} rubrik="Inga meddelanden än" text="Skriv till en seglare du följer.">
             <Link href="/meddelanden/ny" className="md-knapp">Nytt meddelande</Link>
           </TomtLage>
         )}
 
         {lage === 'klar' && !ingaAlls && rader.length === 0 && (
           <p style={{ padding: '40px 24px', textAlign: 'center', fontSize: 15, color: 'var(--txt3)', margin: 0 }}>
-            {sok ? `Inga träffar för "${sok}"` : flik === 'requests' ? 'Inga förfrågningar just nu.' : 'Inga samtal än.'}
+            {sok ? `Inga träffar för "${sok}"` : flik === 'requests' ? 'Inga förfrågningar just nu.' : 'Inga meddelanden än.'}
           </p>
         )}
 
