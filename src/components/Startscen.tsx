@@ -450,9 +450,8 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         const ls = c as unknown as { letterSpacing?: string }
         // Startscenen: "Skärgården börjar här" som rubrik i halva SVALLA-storleken, med en rad om vilka Svalla är till för (Max 2026-11-26).
         // Loggan i menyraden visar redan SVALLA. Introt i del 1 är oförändrat.
-        if (varld) {
-          // Rubriken och raden under ritas som HTML (.ki-rubrik) i sajtens typsnittstråd: Playfair 700 i rubrikfärgen, Inter 400 i brödtextfärgen (Max 2026-11-26)
-        } else {
+        // I startscenen ritas rubriken och raden under som HTML (.ki-rubrik) i sajtens typsnittstråd: Playfair 700 i rubrikfärgen, Inter 400 i brödtextfärgen (Max 2026-11-26)
+        if (!varld) {
         // SVALLA med optiskt jämn luft (Max 2026-11-25): mellanrum per par S–V, V–A, A–L, L–L och L–A i em,
         // uppmätt mot bläcket i Playfair Display 700 så att alla mellanrum ser lika stora ut. En bokstav i taget.
         if ('letterSpacing' in c) ls.letterSpacing = '0px'
@@ -963,12 +962,12 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       {varld && (
         // Svallas logga i hörnet av startscenen hela tiden, samma komponent som i menyn på svalla.se (Max 2026-11-24)
         <div className="ki-logga"><SvallaLogo height={26} color="currentColor" /></div>
+      )}
       {varld && (
         <div className="ki-rubrik">
           <h2>Skärgården börjar här</h2>
           <p>För öbon, företagaren, besökaren och familjen.</p>
         </div>
-      )}
       )}
       <div className="ki-topp">
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
