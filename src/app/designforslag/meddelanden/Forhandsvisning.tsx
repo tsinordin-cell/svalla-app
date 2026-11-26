@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   Avatar, BildBubbla, DagAvdelare, IKON, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt, TextBubbla,
   TomtLage, TurKort, type KonvRadData,
@@ -33,7 +33,14 @@ const SAMTAL: M[] = [
   { id: '8', mine: true, tid: iso(11 * MIN), text: 'Vi rundar Korsö nu. Om en timme ungefär!' },
 ]
 
-export default function Forhandsvisning({ vy }: { vy: string }) {
+export default function Forhandsvisning({ vy, tema }: { vy: string; tema?: string }) {
+  // ?tema=mork|ljust: sätter samma inställning som appens temaväljare (bara i förhandsversionens webbläsare).
+  useEffect(() => {
+    if (tema !== 'mork' && tema !== 'ljust') return
+    const t = tema === 'mork' ? 'dark' : 'light'
+    try { localStorage.setItem('svalla-theme', t) } catch { /* privat läge */ }
+    document.documentElement.setAttribute('data-theme', t)
+  }, [tema])
   const [text, setText] = useState('')
   const [flik, setFlik] = useState<'active' | 'requests'>('active')
   const [sok, setSok] = useState('')
@@ -54,13 +61,13 @@ export default function Forhandsvisning({ vy }: { vy: string }) {
             aktivaAntal={tomInkorg ? 0 : RADER.filter(r => !r.forfragan).length}
             forfragningarAntal={tomInkorg ? 0 : RADER.filter(r => r.forfragan).length}
             flik={flik} setFlik={setFlik} sok={sok} setSok={setSok}
-            valtId={iSamtal || vy === 'inkorg' ? 'a' : null}
+            valtId={iSamtal ? 'a' : null}
             onForsokIgen={() => {}}
             hrefFor={() => '/designforslag/meddelanden?vy=samtal'}
           />
         </aside>
         <section className="md-ram-innehall">
-          {iSamtal || vy === 'inkorg' ? <Samtal text={text} setText={setText} /> : (
+          {iSamtal ? <Samtal text={text} setText={setText} /> : (
             <div className="md-valj">
               <TomtLage ikon={IKON.pratbubbla} rubrik="Välj ett samtal" text="Dina samtal finns till vänster. Du kan också starta ett nytt." />
             </div>
@@ -82,10 +89,18 @@ export default function Forhandsvisning({ vy }: { vy: string }) {
 
 function Samtal({ text, setText }: { text: string; setText: (t: string) => void }) {
   const sista = SAMTAL.length - 1
+  // Som riktiga samtalet: börja längst ned, vid det senaste meddelandet.
+  const flode = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const ned = () => { if (flode.current) flode.current.scrollTop = flode.current.scrollHeight }
+    ned()
+    const t = [setTimeout(ned, 400), setTimeout(ned, 1500)]
+    return () => t.forEach(clearTimeout)
+  }, [])
   return (
     <div className="md-samtal md-rot">
       <SamtalsHuvud namn="Elin Berg" nyckel="elinberg" bild={null} profilHref={null} under="Visa profil" onMer={() => {}} />
-      <div className="md-flode">
+      <div className="md-flode" ref={flode}>
         <div className="md-flode-inre">
           {SAMTAL.map((m, i) => {
             const fore = SAMTAL[i - 1]
@@ -100,7 +115,7 @@ function Samtal({ text, setText }: { text: string; setText: (t: string) => void 
                 <MeddelandeRad mine={m.mine} nyGrupp={nyGrupp} sist={sist} tid={m.tid} sett={i === sista}
                   avatar={<Avatar namn="Elin Berg" nyckel="elinberg" s={28} />}>
                   {m.typ === 'bild' && <BildBubbla src="/og-image.jpg" />}
-                  {m.typ === 'geo' && <Sjokort meta={{ lat: 59.2794, lng: 18.9123, accuracy: 12, location_name: 'Sandhamn, gästhamnen' }} href={null} onKopiera={() => {}} />}
+                  {m.typ === 'geo' && <Sjokort meta={{ lat: 59.2893, lng: 18.9098, accuracy: 12, location_name: 'Sandhamn, vid sjöstationen' }} href={null} onKopiera={() => {}} />}
                   {m.typ === 'tur' && <TurKort meta={{ location_name: 'Stavsnäs till Sandhamn', distance: 9.4, image: '/og-image.jpg' }} />}
                   {m.text && <TextBubbla text={m.text} />}
                 </MeddelandeRad>
