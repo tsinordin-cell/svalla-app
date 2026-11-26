@@ -756,7 +756,9 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       if (varld && ejd) {
         const vagA = 0.4 + 0.6 * ease((T - 5800) / 1500), tvv = sek * 0.5
         const yta = (px: number) => { const xq = px / H; return (havNiva + (Math.sin(xq * 3.1 + tvv * 1.05) * 0.011 + Math.sin(xq * 7.7 - tvv * 1.6) * 0.0055) * vagA) * H }
-        const span = W * 0.42, start = W * 1.04, fart = W * 0.0042
+        // Simmar över hela scenen, från strax utanför högerkanten till strax utanför vänsterkanten, så att de
+        // tonas in och ut utanför bild och aldrig försvinner mitt i vattnet vid bryggan (Max 2026-11-26)
+        const span = W * 1.2, start = W * 1.1, fart = W * 0.0042
         const fonster = Math.min(256, Math.round(36 * DPR)), cw = cv.width, ch = cv.height
         // Läser av var havet faktiskt börjar i en smal pixelkolumn kring x (formeln ger startgissningen)
         const lasYta = (cx: number) => {
@@ -809,7 +811,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
           // Ligger lite högre i vattnet än förut, så att de inte försvinner i vågorna (Oskar 2026-11-24)
           const djup = k === 0 ? 0.66 : 0.68
           el.style.transform = `translate(${x.toFixed(1)}px, ${(y - h * djup).toFixed(1)}px) rotate(${lut.toFixed(3)}rad)`
-          el.style.opacity = String(klamp(Math.min(pos, span - pos) / (span * 0.1)))
+          el.style.opacity = String(klamp(Math.min(pos, span - pos) / (span * 0.05)))
         }
       }
       if (Math.round(nu / 33) % 2 === 0) { setVisT(T); setNavPos({ x: nv.x, svans: nv.svans, hav: havNiva, bredd: navB }) }
