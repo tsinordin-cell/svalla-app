@@ -98,9 +98,11 @@ export default function Nav() {
   const matchar = (p: string) =>
     p.endsWith('/') ? path.startsWith(p) : path === p || path.startsWith(p + '/')
 
-  // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
-  const showNav = (APP_PATHS.some(matchar) || EXACT_PATHS.includes(path)) &&
-    !path.match(/^\/meddelanden\/.+/)
+  // Enskilda chattrum (/meddelanden/[id], /meddelanden/ny): på telefon tar skrivfältet
+  // botten, så menyn döljs där. 2026-11-26 (premiumsteg 1, Toms ja): på dator syns
+  // sidomenyn även här, eftersom inkorgen och samtalet nu ligger bredvid varandra.
+  const iChattrum = /^\/meddelanden\/.+/.test(path)
+  const showNav = APP_PATHS.some(matchar) || EXACT_PATHS.includes(path) || iChattrum
 
   // Lägg till/ta bort body-klass för desktop sidebar-offset
   useEffect(() => {
@@ -292,7 +294,7 @@ export default function Nav() {
           <NotificationBell />
         </div>
       )}
-    <nav aria-label="Navigering" className="svalla-nav" style={{
+    <nav aria-label="Navigering" className={iChattrum ? 'svalla-nav svalla-nav--doljmobil' : 'svalla-nav'} style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
       height: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
       background: 'var(--nav-bg)',
