@@ -506,21 +506,37 @@ export default function ChatPage() {
   }
 
   async function shareGeo() {
-    if (!navigator.geolocation || sharingGeo) return
+    if (sharingGeo) return
+    if (!navigator.geolocation) {
+      toast('Den här webbläsaren kan inte dela position.', 'error')
+      return
+    }
     setSharingGeo(true)
     navigator.geolocation.getCurrentPosition(
       async (pos) => {
-        const { latitude, longitude } = pos.coords
-        // Reverse-geocoda i bakgrunden så bubblan visar "Sandhamn" istället för
-        // "59.2891°, 18.9134°". Degraderar tyst — bubblan fungerar utan namn.
-        const location_name = await reverseGeocode(latitude, longitude)
-        await sendAttachment('geo',
-          `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=15/${latitude}/${longitude}`,
-          { lat: latitude, lng: longitude, accuracy: pos.coords.accuracy, location_name },
-        )
-        setSharingGeo(false)
+        try {
+          const { latitude, longitude } = pos.coords
+          // Reverse-geocoda i bakgrunden så bubblan visar "Sandhamn" istället för
+          // "59.2891°, 18.9134°". Degraderar tyst — bubblan fungerar utan namn.
+          const location_name = await reverseGeocode(latitude, longitude)
+          await sendAttachment('geo',
+            `https://www.openstreetmap.org/?mlat=${latitude}&mlon=${longitude}#map=15/${latitude}/${longitude}`,
+            { lat: latitude, lng: longitude, accuracy: pos.coords.accuracy, location_name },
+          )
+        } finally {
+          setSharingGeo(false)
+        }
       },
-      () => { setSharingGeo(false) },
+      (err) => {
+        setSharingGeo(false)
+        // Förut hände ingenting alls när platsen inte gick att hämta. Nu får man veta varför.
+        toast(
+          err.code === err.PERMISSION_DENIED
+            ? 'Svalla får inte se din position. Tillåt platsåtkomst för svalla.se i webbläsarens inställningar och försök igen.'
+            : 'Kunde inte hämta din position. Försök igen om en stund.',
+          'error',
+        )
+      },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 },
     )
   }
