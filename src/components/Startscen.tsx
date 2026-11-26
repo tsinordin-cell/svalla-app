@@ -1187,7 +1187,7 @@ const CSS = `
 /* Startscenens rubrik i sajtens typsnittstråd: Playfair Display 700, -0.01em, och Inter 400 under. Färgen är havets blå (BLA_VARLD #4472ab); raden under en nyans mörkare (#375e96) så att den klarar kontrastkravet 4,5:1 i liten storlek (Max 2026-11-26) */
 .ki-rubrik{position:absolute;left:0;right:0;top:12%;z-index:3;text-align:center;pointer-events:none;padding:0 18px;animation:kiRubrik .9s .3s both}
 .ki-rubrik h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(28px,5vw,52px);line-height:1.1;letter-spacing:-0.01em;color:#4472ab}
-.ki-rubrik p{margin:8px 0 0;font-family:Inter,system-ui,sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,19px);line-height:1.45;color:#375e96;max-width:30ch;margin-inline:auto;text-wrap:balance}
+.ki-rubrik p{margin:8px 0 0;font-family:Inter,system-ui,sans-serif;font-weight:400;font-size:clamp(13px,4vw,19px);line-height:1.45;color:#375e96;white-space:nowrap}
 /* Startsidan låser alla h2 till 28/24 px (rubrikskalan). Heron är ett steg större så att den blir sidans tydligaste rubrik (Max 2026-11-26) */
 .lp-start .ki-rubrik h2:not(.lp-dold){font-size:clamp(28px,5vw,52px)!important}
 .ki-tid-natt .ki-rubrik h2{color:#f5f4ef}.ki-tid-natt .ki-rubrik p{color:#c9d6e2}
