@@ -18,6 +18,7 @@
   --md-glas: rgba(255, 253, 248, 0.88);
   --md-skugga: 0 1px 2px rgba(20, 40, 60, 0.06), 0 6px 20px rgba(20, 40, 60, 0.06);
   --md-ark-skugga: 0 -8px 40px rgba(10, 25, 40, 0.18);
+  --md-reak-bg: #ebe5da;        /* reaktionsbrickan: ljust grå-sand, som Instagrams grå */
 }
 [data-theme="dark"] {
   --md-deras: #16283a;          /* txt #d8eaf4 mot den 11:1 */
@@ -27,6 +28,7 @@
   --md-glas: rgba(15, 30, 44, 0.88);
   --md-skugga: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
   --md-ark-skugga: 0 -8px 40px rgba(0, 0, 0, 0.5);
+  --md-reak-bg: #1c3044;
 }
 
 .md-rot *, .md-ark * { box-sizing: border-box; }
@@ -390,12 +392,15 @@
 
 /* Reaktioner under bubblan, lite över dess underkant */
 .md-reak { display: flex; flex-wrap: wrap; gap: 4px; margin-top: -9px; padding: 0 8px; position: relative; z-index: 1; }
+/* Som Instagram (Toms önskan 2026-11-26): en mjuk bricka utan kantlinje, samma
+   för egna och andras reaktioner. Den smala ringen i sidans egen färg skiljer
+   brickan från bubblan utan att synas som en linje. Vems reaktionen är står i
+   knappens etikett för skärmläsare. */
 .md-reak button {
   display: inline-flex; align-items: center; gap: 3px; height: 26px; padding: 0 8px; border-radius: 999px;
-  font-size: 15px; line-height: 1; background: var(--white);
-  box-shadow: 0 0 0 2px var(--bg), 0 1px 4px rgba(10, 25, 40, 0.14);
+  font-size: 15px; line-height: 1; background: var(--md-reak-bg);
+  box-shadow: 0 0 0 2px var(--bg);
 }
-.md-reak .md-reak--min { background: var(--md-vald); box-shadow: 0 0 0 2px var(--bg), inset 0 0 0 1.5px var(--sea); }
 .md-reak-n { font-size: 12.5px; font-weight: 600; color: var(--txt2); font-variant-numeric: tabular-nums; }
 
 /* Citat överst i ett svar */
