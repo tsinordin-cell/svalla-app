@@ -437,14 +437,12 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onP
       {ovanfor}
       {spelarIn ? <Inspelningsrad rost={rost!} /> : (
       <div className="md-komp-rad">
-        <button type="button" className="md-rund" onClick={onPlus} aria-label="Bild, position eller tur" aria-haspopup="dialog">
-          <Ikon d={IKON.plus} s={24} w={2} />
-        </button>
-        <button type="button" className="md-rund md-rund--kamera" onClick={onKamera} disabled={laddarBild}
-          aria-label={laddarBild ? 'Laddar upp bild' : 'Ta en bild'} aria-busy={laddarBild}>
-          <Ikon d={IKON.kamera} s={22} w={1.8} />
-        </button>
+        {/* En enda rundad ruta, som Instagram: kameran först, sedan texten, plus och mikrofon/skicka längst till höger. */}
         <div className="md-falt">
+          <button type="button" className="md-falt-kamera md-rund--kamera" onClick={onKamera} disabled={laddarBild}
+            aria-label={laddarBild ? 'Laddar upp bild' : 'Ta en bild'} aria-busy={laddarBild}>
+            <Ikon d={IKON.kamera} s={20} w={1.9} />
+          </button>
           <textarea ref={ref} rows={1} value={text} maxLength={2000} placeholder={placeholder} aria-label="Meddelande"
             enterKeyHint="send" autoComplete="off"
             onChange={e => setText(e.target.value)}
@@ -454,16 +452,19 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onP
               const pek = typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches
               if (e.key === 'Enter' && !e.shiftKey && !pek && !e.nativeEvent.isComposing) { e.preventDefault(); onSkicka() }
             }} />
+          <button type="button" className="md-falt-knapp" onClick={onPlus} aria-label="Bild, position eller tur" aria-haspopup="dialog">
+            <Ikon d={IKON.plus} s={23} w={1.9} />
+          </button>
+          {visaMikrofon ? (
+            <button type="button" className="md-falt-knapp" onClick={rost!.starta} aria-label="Spela in röstmeddelande">
+              <Ikon d={IKON.mikrofon} s={22} w={1.8} />
+            </button>
+          ) : (
+            <button type="submit" className={`md-falt-skicka${kanSkicka ? ' md-falt-skicka--redo' : ''}`} disabled={!kanSkicka} aria-label="Skicka">
+              <Ikon d={IKON.skicka} s={18} w={2.4} />
+            </button>
+          )}
         </div>
-        {visaMikrofon ? (
-          <button type="button" className="md-rund md-rund--mik" onClick={rost!.starta} aria-label="Spela in röstmeddelande">
-            <Ikon d={IKON.mikrofon} s={22} w={1.8} />
-          </button>
-        ) : (
-          <button type="submit" className={`md-skicka${kanSkicka ? ' md-skicka--redo' : ''}`} disabled={!kanSkicka} aria-label="Skicka">
-            <Ikon d={IKON.skicka} s={20} w={2.4} />
-          </button>
-        )}
       </div>
       )}
     </form>
