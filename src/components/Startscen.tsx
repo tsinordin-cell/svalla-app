@@ -451,12 +451,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         // Startscenen: "Skärgården börjar här" som rubrik i halva SVALLA-storleken, med en rad om vilka Svalla är till för (Max 2026-11-26).
         // Loggan i menyraden visar redan SVALLA. Introt i del 1 är oförändrat.
         if (varld) {
-          const rub = stor * 0.5
-          c.font = `700 ${rub}px ${serif}`
-          if ('letterSpacing' in c) ls.letterSpacing = '0px'
-          c.fillText('Skärgården börjar här', W / 2, H * 0.2)
-          c.font = `500 ${Math.max(12, rub * 0.42)}px ${sans}`
-          c.fillText('För öbon, företagaren, besökaren och familjen.', W / 2, H * 0.2 + rub * 0.95)
+          // Rubriken och raden under ritas som HTML (.ki-rubrik) i sajtens typsnittstråd: Playfair 700 i rubrikfärgen, Inter 400 i brödtextfärgen (Max 2026-11-26)
         } else {
         // SVALLA med optiskt jämn luft (Max 2026-11-25): mellanrum per par S–V, V–A, A–L, L–L och L–A i em,
         // uppmätt mot bläcket i Playfair Display 700 så att alla mellanrum ser lika stora ut. En bokstav i taget.
@@ -968,6 +963,12 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       {varld && (
         // Svallas logga i hörnet av startscenen hela tiden, samma komponent som i menyn på svalla.se (Max 2026-11-24)
         <div className="ki-logga"><SvallaLogo height={26} color="currentColor" /></div>
+      {varld && (
+        <div className="ki-rubrik">
+          <h2>Skärgården börjar här</h2>
+          <p>För öbon, företagaren, besökaren och familjen.</p>
+        </div>
+      )}
       )}
       <div className="ki-topp">
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
@@ -1184,5 +1185,11 @@ const CSS = `
 /* Loggan: uppe till vänster på himlen, i mobilen nere till vänster på havet där knapparna inte sitter */
 .ki-logga{position:absolute;left:22px;top:20px;z-index:4;display:flex;align-items:center;gap:8px;color:#0a2540;pointer-events:none}
 .ki-logga svg{height:26px;width:auto}
+/* Startscenens rubrik i sajtens typsnittstråd (samma som rubrikerna längre ner): Playfair Display 700, #0d2440, -0.01em. Raden under: Inter 400, #3d5865 (Max 2026-11-26) */
+.ki-rubrik{position:absolute;left:0;right:0;top:12%;z-index:3;text-align:center;pointer-events:none;padding:0 18px;animation:kiRubrik .9s .3s both}
+.ki-rubrik h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(28px,4.6vw,50px);line-height:1.1;letter-spacing:-0.01em;color:#0d2440}
+.ki-rubrik p{margin:8px 0 0;font-family:Inter,system-ui,sans-serif;font-weight:400;font-size:clamp(14.5px,1.5vw,18px);line-height:1.45;color:#3d5865}
+.ki-tid-natt .ki-rubrik h2{color:#f5f4ef}.ki-tid-natt .ki-rubrik p{color:#c9d6e2}
+@keyframes kiRubrik{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:560px){.ki-logga{top:auto;bottom:14px;left:14px;color:#f5f4ef}.ki-logga svg{height:20px}}
 `
