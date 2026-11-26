@@ -80,9 +80,11 @@ export default function MeddelandenPage() {
                   c.id === upd.id
                     ? {
                         ...c,
-                        last_message_preview: upd.last_message_preview ?? c.last_message_preview,
+                        // Fälten kan bli tomma när det sista meddelandet raderas,
+                        // så ett null från databasen ska gälla, inte ignoreras.
+                        last_message_preview: 'last_message_preview' in upd ? (upd.last_message_preview ?? null) : c.last_message_preview,
                         last_message_at: upd.last_message_at ?? c.last_message_at,
-                        last_message_user_id: upd.last_message_user_id ?? c.last_message_user_id,
+                        last_message_user_id: 'last_message_user_id' in upd ? (upd.last_message_user_id ?? null) : c.last_message_user_id,
                         status: (upd.status as ConvRow['status']) ?? c.status,
                       }
                     : c

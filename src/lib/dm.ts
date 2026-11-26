@@ -3,6 +3,7 @@
  * hämtar inboxlistor, räknar olästa.
  */
 import { arBlockerad } from './blocks'
+import { DM_BILD_HINK, arDmBildSokvag } from './dmBilder'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 /**
@@ -191,32 +192,44 @@ export async function markConversationRead(
     .eq('conversation_id', conversationId)
 }
 
-/** Radera ett enskilt meddelande (bara egna). */
+/**
+ * Radera ett enskilt meddelande (bara egna). Var det en bild tas även filen
+ * bort ur hinken. Ett anmält meddelandes bild får ligga kvar som underlag;
+ * lagringens regel stoppar då borttagningen, och det felet ignoreras.
+ * Förhandsvisningen i inkorgen räknar databasen om själv (2026-11-26).
+ */
 export async function deleteMessage(
   supabase: SupabaseClient,
   messageId: string,
+  bildSokvag?: string | null,
 ): Promise<boolean> {
-  const { error } = await supabase
+  const { count, error } = await supabase
     .from('messages')
-    .delete()
+    .delete({ count: 'exact' })
     .eq('id', messageId)
-  return !error
+  if (error || count === 0) return false
+  if (arDmBildSokvag(bildSokvag)) {
+    try { await supabase.storage.from(DM_BILD_HINK).remove([bildSokvag as string]) } catch { /* se ovan */ }
+  }
+  return true
 }
 
 /**
  * Lämna / radera en konversation för current user.
- * För 1-till-1: tar bort deltagarraden → konversationen syns ej längre.
+ * För 1-till-1: tar bort deltagarraden, så att konversationen inte syns för
+ * dig. Var du den sista raderar databasen samtalet och dess meddelanden, och
+ * servern tar bort bilderna (2026-11-26).
  * För grupp: lämnar utan att radera för övriga.
  */
-export async function leaveConversation(
-  supabase: SupabaseClient,
-  currentUserId: string,
-  conversationId: string,
-): Promise<boolean> {
-  const { error } = await supabase
-    .from('conversation_participants')
-    .delete()
-    .eq('user_id', currentUserId)
-    .eq('conversation_id', conversationId)
-  return !error
+export async function leaveConversation(conversationId: string): Promise<boolean> {
+  try {
+    const res = await fetch('/api/meddelanden/lamna', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ conversationId }),
+    })
+    return res.ok
+  } catch {
+    return false
+  }
 }

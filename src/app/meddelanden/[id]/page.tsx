@@ -117,6 +117,8 @@ export default function ChatPage() {
   // Bekräftelsedialog — ersätter native confirm()
   const [confirmSheet, setConfirmSheet] = useState<{
     title: string; body: string; label: string; onConfirm: () => Promise<void>
+    /** Vanlig åtgärd (t.ex. dela position) i stället för röd raderingsknapp. */
+    vanlig?: boolean
   } | null>(null)
   const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -425,10 +427,12 @@ export default function ChatPage() {
     setActionSheet({ msgId: null, isOwn: false, show: false })
     setConfirmSheet({
       title: 'Radera meddelande',
-      body: 'Meddelandet tas bort permanent.',
+      body: conv?.is_group ? 'Meddelandet tas bort för alla i samtalet.' : 'Meddelandet tas bort för er båda.',
       label: 'Radera',
       onConfirm: async () => {
-        const ok = await deleteMessage(supabase, msgId)
+        const bild = messages.find(m => m.id === msgId)
+        const ok = await deleteMessage(supabase, msgId,
+          bild?.attachment_type === 'image' ? bild.attachment_url : null)
         if (ok) {
           setMessages(prev => prev.filter(m => m.id !== msgId))
         } else {
@@ -443,15 +447,17 @@ export default function ChatPage() {
     setConvMenu(false)
     if (!me || !conv) return
     setConfirmSheet({
-      title: 'Radera konversation',
-      body: 'Konversationen försvinner bara för dig.',
-      label: 'Radera',
+      title: conv.is_group ? 'Lämna gruppen' : 'Radera konversation',
+      body: conv.is_group
+        ? 'Du lämnar gruppen. Meddelandena finns kvar för de andra.'
+        : 'Konversationen försvinner för dig. När ni båda har raderat den tas den bort helt, med alla meddelanden och bilder.',
+      label: conv.is_group ? 'Lämna' : 'Radera',
       onConfirm: async () => {
-        const ok = await leaveConversation(supabase, me, conv.id)
+        const ok = await leaveConversation(conv.id)
         if (ok) {
           router.push('/meddelanden')
         } else {
-          toast('Kunde inte radera konversationen.', 'error')
+          toast(conv.is_group ? 'Kunde inte lämna gruppen.' : 'Kunde inte radera konversationen.', 'error')
         }
       },
     })
@@ -522,6 +528,18 @@ export default function ChatPage() {
     } finally {
       setUploading(false)
     }
+  }
+
+  // Positionen är exakt och sparas i samtalet, så den skickas först efter ett ja.
+  function confirmShareGeo() {
+    if (!navigator.geolocation || sharingGeo) return
+    setConfirmSheet({
+      title: 'Dela din position?',
+      body: 'Alla i samtalet ser din exakta position på en karta. Den sparas i samtalet tills du raderar meddelandet.',
+      label: 'Dela position',
+      vanlig: true,
+      onConfirm: async () => { shareGeo() },
+    })
   }
 
   async function shareGeo() {
@@ -946,7 +964,7 @@ export default function ChatPage() {
             </button>
 
             {/* Geo — neutral 36×36 */}
-            <button type="button" onClick={shareGeo} disabled={sharingGeo} aria-label="Dela position" style={{
+            <button type="button" onClick={confirmShareGeo} disabled={sharingGeo} aria-label="Dela position" style={{
               width: 36, height: 36, borderRadius: radius.sm, border: 'none',
               background: 'rgba(10,40,80,0.06)', color: 'var(--txt3)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
@@ -1050,7 +1068,7 @@ export default function ChatPage() {
             boxShadow: shadow.md,
           }}>
             <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '4px auto 16px' }} />
-            <ActionSheetItem icon="🗑️" label="Radera konversation" color="#dc2626"
+            <ActionSheetItem icon="🗑️" label={conv?.is_group ? 'Lämna gruppen' : 'Radera konversation'} color="#dc2626"
               onClick={handleLeaveConversation} />
             {!conv?.is_group && otherId && conv && (
               <ActionSheetItem icon="🚩" label={`Anmäl ${otherName}`} color="#dc2626"
@@ -1108,7 +1126,7 @@ export default function ChatPage() {
                 onClick={async () => { const s = confirmSheet; setConfirmSheet(null); await s.onConfirm() }}
                 style={{
                   padding: '14px', borderRadius: radius.md, border: 'none',
-                  background: '#dc2626', color: '#fff',
+                  background: confirmSheet.vanlig ? 'var(--sea-knapp)' : '#dc2626', color: '#fff',
                   fontSize: fontSize.body, fontWeight: fontWeight.semibold,
                   cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
                 }}
