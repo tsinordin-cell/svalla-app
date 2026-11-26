@@ -98,9 +98,11 @@ export default function Nav() {
   const matchar = (p: string) =>
     p.endsWith('/') ? path.startsWith(p) : path === p || path.startsWith(p + '/')
 
-  // Dölj nav i enskilda chattrum (/meddelanden/[id]) — input-fältet tar hela skärmen
-  const showNav = (APP_PATHS.some(matchar) || EXACT_PATHS.includes(path)) &&
-    !path.match(/^\/meddelanden\/.+/)
+  // Enskilda chattrum (/meddelanden/[id], /meddelanden/ny): på telefon tar skrivfältet
+  // botten, så menyn döljs där. 2026-11-26 (premiumsteg 1, Toms ja): på dator syns
+  // sidomenyn även här, eftersom inkorgen och samtalet nu ligger bredvid varandra.
+  const iChattrum = /^\/meddelanden\/.+/.test(path)
+  const showNav = APP_PATHS.some(matchar) || EXACT_PATHS.includes(path) || iChattrum
 
   // Lägg till/ta bort body-klass för desktop sidebar-offset
   useEffect(() => {
@@ -114,13 +116,15 @@ export default function Nav() {
 
   // 2026-11-23 (menyförslaget): på desktop (från 1024 px) ligger Meddelanden och
   // Notiser i sidomenyn med räknare, i stället för ikonraden uppe till höger.
-  // Räknarna hämtas bara på desktop och när sidan byts, inte i realtid; ikonerna
-  // i topprader på mobil har kvar sin egen realtidsräkning.
+  // 2026-11-25 (Tom): på mobil används samma tal till en prick på Profil-fliken,
+  // eftersom Utforska inte längre har någon topprad med klockorna. Talen hämtas
+  // därför på alla bredder: när sidan byts, när fliken blir synlig igen och när
+  // ett nytt meddelande eller en ny notis kommer in (realtid).
   const [olastaMedd, setOlastaMedd] = useState(0)
   const [olastaNotiser, setOlastaNotiser] = useState(0)
+  const [olastaVersion, setOlastaVersion] = useState(0)
   useEffect(() => {
     if (!userId || !showNav) return
-    if (typeof window === 'undefined' || !window.matchMedia('(min-width: 1024px)').matches) return
     let aktiv = true
     const supabase = createClient()
     countUnreadMessages(supabase, userId).then(n => { if (aktiv) setOlastaMedd(n) }).catch(() => {})
@@ -133,7 +137,24 @@ export default function Nav() {
       .neq('type', 'message')
       .then(({ count }) => { if (aktiv) setOlastaNotiser(count ?? 0) })
     return () => { aktiv = false }
-  }, [userId, showNav, path])
+  }, [userId, showNav, path, olastaVersion])
+  useEffect(() => {
+    if (!userId) return
+    const supabase = createClient()
+    const raknaOm = () => setOlastaVersion(v => v + 1)
+    const ch = supabase
+      .channel(`nav-olasta:${userId}:${Date.now()}`)
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'notifications', filter: `user_id=eq.${userId}` }, raknaOm)
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, raknaOm)
+      .subscribe()
+    const vidSynlig = () => { if (document.visibilityState === 'visible') raknaOm() }
+    document.addEventListener('visibilitychange', vidSynlig)
+    return () => {
+      supabase.removeChannel(ch)
+      document.removeEventListener('visibilitychange', vidSynlig)
+    }
+  }, [userId])
+  const harOlasta = olastaMedd + olastaNotiser > 0
 
   // Beräknas här (före early return) så att hooks alltid körs i samma ordning.
   const klockorAktiva = visaGlobalaKlockor(path, username !== null)
@@ -222,6 +243,9 @@ export default function Nav() {
           ) : (
             <Icon name="user" size={22} stroke={active ? 2.2 : 1.75} />
           )}
+          {/* 2026-11-25 (Tom): prick när det finns olästa notiser eller meddelanden. Bara i
+              bottenmenyn (globals.css); sidomenyn på dator har egna räknare. */}
+          {harOlasta && <span className="nav-olast-prick" aria-hidden="true" />}
           {/* Online dot when logged in */}
           {username && (
             <span className="nav-online-prick" style={{
@@ -270,7 +294,7 @@ export default function Nav() {
           <NotificationBell />
         </div>
       )}
-    <nav aria-label="Navigering" className="svalla-nav" style={{
+    <nav aria-label="Navigering" className={iChattrum ? 'svalla-nav svalla-nav--doljmobil' : 'svalla-nav'} style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
       height: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px))',
       background: 'var(--nav-bg)',
@@ -376,7 +400,7 @@ export default function Nav() {
 
         return (
           <Link key={tab.href} href={tab.href} prefetch={prefetchFor(tab.href)} aria-current={active ? 'page' : undefined}
-            aria-label={tab.href === '/profil' ? 'Gå till din profil' : `Gå till ${tab.label}`}
+            aria-label={tab.href === '/profil' ? (harOlasta ? 'Gå till din profil, du har olästa notiser eller meddelanden' : 'Gå till din profil') : `Gå till ${tab.label}`}
             className="nav-tab-link press-feedback"
             style={{
               flex: 1, display: 'flex', flexDirection: 'column',

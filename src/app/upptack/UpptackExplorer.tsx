@@ -26,11 +26,11 @@ import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import { kartytaFor } from '@/lib/kartvy'
 import { tagPlatssvar } from './platsdata'
 import { hamtaLeaflet } from './leaflet'
+import Icon from '@/components/Icon'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { STANDARD_VADERPUNKT } from '@/lib/weatherGrid'
 import { samladVaderpunkt } from '@/lib/samladVaderpunkt'
 import { track } from '@/lib/analytics-events'
-import AppTopBar from '@/components/AppTopBar'
 import { platsKategori, type PlatsKategori } from '@/lib/platskategori'
 
 // ── Types ────────────────────────────────────────────────────────────────
@@ -641,8 +641,12 @@ export default function UpptackExplorer() {
           setHoveredId(p.id)
           // Scrolla in motsvarande kort
           const el = document.getElementById(`upptack-card-${p.id}`)
-          if (el && listScrollRef.current) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+          const lista = listScrollRef.current
+          if (el && lista) {
+            // Skrolla bara listan. scrollIntoView skrollade även sidan runt om,
+            // så filterraden försvann och kartan försköts uppåt på mobil.
+            const top = el.getBoundingClientRect().top - lista.getBoundingClientRect().top + lista.scrollTop
+            lista.scrollTo({ top: top - lista.clientHeight / 2 + el.clientHeight / 2, behavior: 'smooth' })
           }
         })
         markersRef.current.set(p.id, m)
@@ -878,10 +882,10 @@ export default function UpptackExplorer() {
   return (
     <div className="upx-shell" ref={shellRef}>
       <div ref={toppRef} style={{ flexShrink: 0 }}>
-      {/* Samma topprad som övriga huvudsidor (menyförslaget 2026-11-23). Från 1024 px
-          döljs den; sidomenyn har sök, meddelanden och notiser. */}
-      {/* 2026-11-24 (Tom): loggan i stället för sidnamnet, som Flöde, Forum och Topplista. */}
-      <AppTopBar sticky={false} doljPaDesktop onSok={oppnaSok} />
+      {/* 2026-11-25 (Tom): ingen topprad här, så att kartan får mer höjd. Sök ligger
+          som en rund knapp på kartan (upx-sokknapp). Meddelanden och notiser nås via
+          Profil i bottenmenyn, som får en prick när något är oläst (Nav.tsx). Från
+          1024 px har sidomenyn sök, meddelanden och notiser som förut. */}
       {/* Header med region-toggle + filter-dropdown + sök */}
       <header className="upx-header">
         {/* En rad (2026-11-23, mer karta): kategorifiltret först, regionerna
@@ -1112,6 +1116,18 @@ export default function UpptackExplorer() {
             </button>
           )}
 
+          {/* Sök på kartan (mobil): rund knapp överst till höger, ovanför + och −.
+              Öppnar sökfältet i rubriken, som filtrerar kartan och listan på namn.
+              Över 900 px står sökfältet alltid framme och knappen döljs. */}
+          <button
+            type="button"
+            className="upx-sokknapp"
+            onClick={oppnaSok}
+            aria-label="Sök plats, ö eller hamn på kartan"
+          >
+            <Icon name="search" size={20} stroke={2} />
+          </button>
+
           {/* "Visa min plats" — bottom-left på kartan */}
           <button
             type="button"
@@ -1161,8 +1177,8 @@ export default function UpptackExplorer() {
           border-bottom: 1px solid rgba(10, 123, 140, 0.08);
           z-index: 10;
         }
-        /* 2026-11-23: platsen för de fasta ikonerna uppe till höger (84 px) behövs inte
-           längre. Ikonerna ligger i toppraden ovanför (AppTopBar). */
+        /* 2026-11-25: ingen topprad ovanför längre (Tom). Sök finns på kartan,
+           meddelanden och notiser via Profil i bottenmenyn. */
         .upx-filterrow {
           display: flex;
           align-items: center;
@@ -1499,6 +1515,9 @@ export default function UpptackExplorer() {
           background: #b8d4dc;
         }
 
+        /* Sökknappen på kartan (2026-11-25). Bara på mobil, se mediefrågan nedan. */
+        .upx-sokknapp { display: none; }
+
         /* Locate-knapp — bottom-left på kartan */
         .upx-locate {
           position: absolute;
@@ -1560,6 +1579,29 @@ export default function UpptackExplorer() {
         @media (max-width: 900px) {
           .upx-mob-tabs { display: none !important; }
           .upx-search:not(.has-query) { display: none; }
+          /* Rund sökknapp, 44 px tryckyta, i samma vita stil som + och −.
+             Leaflets +/− flyttas ner under den så att kartknapparna står i en kolumn. */
+          .upx-sokknapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 600;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--white, #fff);
+            color: var(--sea, #1e5c82);
+            border: 1px solid rgba(10, 123, 140, 0.15);
+            box-shadow: 0 4px 14px rgba(10, 30, 50, 0.15);
+            cursor: pointer;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+          }
+          .upx-sokknapp:active { background: var(--sea, #1e5c82); color: #fff; }
+          .upx-map .leaflet-top.leaflet-right { top: 54px; }
           .upx-empty-cta-dator { display: none; }
           .upx-sok-hela {
             display: block;
@@ -1579,6 +1621,9 @@ export default function UpptackExplorer() {
             display: block;
             position: relative;
             height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px));
+            /* dvh = den synliga höjden. 100vh räknar på iPhone med Safaris adressfält,
+               så listan blev högre än skärmen och handtaget hamnade utanför. */
+            height: calc(100dvh - var(--upx-header-h, 190px) - var(--nav-h, 64px));
           }
 
           /* Karta = full höjd bakom sheet */
@@ -1615,13 +1660,18 @@ export default function UpptackExplorer() {
 
           /* Snap-points: cyclas via handle-knappen */
           .upx-split.sheet-min  .upx-list { height: 64px; padding-bottom: 8px; }
-          .upx-split.sheet-half .upx-list { height: 50vh; }
+          .upx-split.sheet-half .upx-list { height: 50vh; height: 50dvh; }
+          /* Halv- och helskärm går att skrolla med fingret; handtaget står kvar överst. */
+          .upx-split.sheet-half .upx-list,
+          .upx-split.sheet-full .upx-list { overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
           /* Halvöppen lista: kartan slutar strax under listans överkant, så att
              kartans mitt är mitten av det du ser. Annars zoomar + och − mot en
              punkt under listan, och vädret visar platsen som listan döljer. */
           .upx-map { transition: height 280ms cubic-bezier(0.32, 0.72, 0, 1); }
-          .upx-split.sheet-half .upx-map { height: calc(100% - 50vh + 24px); }
-          .upx-split.sheet-full .upx-list { height: calc(100vh - var(--upx-header-h, 190px) - var(--nav-h, 64px) - 24px); }
+          .upx-split.sheet-half .upx-map { height: calc(100% - 50vh + 24px); height: calc(100% - 50dvh + 24px); }
+          /* Helskärm räknas från listans egen ruta, inte skärmen: överkanten kan
+             då aldrig hamna ovanför filterraden, hur webbläsaren än räknar höjd. */
+          .upx-split.sheet-full .upx-list { height: calc(100% - 24px); }
 
           /* När minimerat: göm scrollande innehåll så bara handle + count syns */
           .upx-split.sheet-min .upx-list > *:not(.upx-sheet-handle):not(.upx-list-meta) {
@@ -1643,6 +1693,14 @@ export default function UpptackExplorer() {
             margin: 4px 0 2px;
             cursor: pointer;
             touch-action: manipulation;
+            /* Handtaget står kvar överst även om listan skrollats, t.ex. när ett
+               tryck på en kartnål skrollar fram kortet. Annars kommer man inte
+               tillbaka till kartan. */
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            flex-shrink: 0;
+            background: var(--white, #fff);
           }
           .upx-sheet-grip {
             display: block;
@@ -1672,9 +1730,13 @@ export default function UpptackExplorer() {
              här mot 0 på desktop). max() tar det som råkar vara högst. */
           .upx-weather-wrap { bottom: max(76px, calc(var(--fb-top) + 10px)); right: 12px; }
           .upx-split.sheet-half .upx-locate,
-          .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); }
+          .upx-split.sheet-half .upx-weather-wrap { bottom: calc(50vh + 12px); bottom: calc(50dvh + 12px); }
           .upx-split.sheet-full .upx-locate,
-          .upx-split.sheet-full .upx-weather-wrap { display: none; }
+          .upx-split.sheet-full .upx-weather-wrap,
+          .upx-split.sheet-full .upx-sokknapp,
+          /* Kartans + och − hamnade ovanpå listans första kort i helskärm
+             (Toms iPhone 2026-11-25). Kartan syns inte då, så knapparna gör inget. */
+          .upx-split.sheet-full .leaflet-control-zoom { display: none; }
         }
       ` }} />
     </div>

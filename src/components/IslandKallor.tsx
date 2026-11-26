@@ -136,12 +136,12 @@ export default function IslandKallor({ slug, islandName }: { slug: string; islan
       <p style={{ fontSize: 12.5, color: 'var(--txt2)', lineHeight: 1.5, margin: '0 0 14px' }}>
         {kallor.length} {kallor.length === 1 ? 'sida' : 'sidor'} hos {grupper.length}{' '}
         {grupper.length === 1 ? 'källa' : 'källor'}
-        {myndigheter > 0 && `, varav ${myndigheter} myndighet eller kommun`}. Vi skriver
-        inga priser, och inget
-        om årtal, areal eller service utan att någon läst källan.
+        {myndigheter > 0 && `, varav ${myndigheter} myndighet eller kommun`}. Priser skriver
+        vi bara ur publicerade prislistor, och uppgifter om årtal, areal och
+        service ska bygga på en källa som någon har läst.
         {gemensamtDatum
           ? ` Samtliga lästa ${gemensamtDatum}.`
-          : senast && ` Senast kontrollerad ${senast}.`} Hittar du något som
+          : senast && ` Senast lästa källa: ${senast}.`} Hittar du något som
         inte stämmer, hör av dig så rättar vi det.
       </p>
 

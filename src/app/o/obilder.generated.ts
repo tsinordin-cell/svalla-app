@@ -578,7 +578,7 @@ export const OBILDER: Record<string, Obild> = {
     "bredd": 1200,
     "hojd": 463,
     "ar": 2009,
-    "fotograf": "This image was produced by me, David Castor (user:dcastor). The pictures I submit to the Wikipedia Project are released to the public domain. This gives you the right to use them in any way you like, without any kind of notification. This said, I would still appreciate to be mentioned as the originator whenever you think it complies well with your use of the picture. A message to me about how it has been used would also be welcome. You are obviously not required to respond to these wishes of mine, just in a friendly manner encouraged to. (All my photos are placed in Category:Images by David Castor or a subcategory thereof.)",
+    "fotograf": "David Castor",
     "licens": "Public domain",
     "licensUrl": null,
     "kalla": "https://commons.wikimedia.org/wiki/File:Lilla_Karls%C3%B6-1.jpg"

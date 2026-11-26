@@ -41,6 +41,14 @@ export default function IntegritetspolicyPage() {
             <li><strong>Nyhetsbrev:</strong> din e-postadress, om du själv har valt att prenumerera på vårt nyhetsbrev, vilket formulär du anmälde dig via och, om du själv svarat på frågan, om du har båt, fritidshus eller åker ut över dagen</li>
           </ul>
 
+          <h3 style={{ color: 'var(--txt)', fontSize: 16 }}>Direktmeddelanden</h3>
+          <p>När du skriver till någon i Svalla sparar vi det du skickar: text, bilder, positioner och turer som du delar, när meddelandet skickades och vilka som är med i samtalet. Bara de som är med i samtalet kan läsa meddelandena i appen, med ett undantag: Svallas administratörer ser det som har anmälts, se nedan. De krypteras på vägen och där de lagras, men inte från ände till ände. Vi läser inte dina meddelanden, utom när någon har anmält ett meddelande eller en användare.</p>
+          <ul>
+            <li><strong>Bilder:</strong> innan en bild skickas tar appen bort platsdata och annan dold information ur filen. Bilderna ligger i en privat lagring som bara de som är med i samtalet kommer åt.</li>
+            <li><strong>Position:</strong> delar du din position skickas din exakta plats, och du får bekräfta först. För att visa ett platsnamn i stället för koordinater skickar din enhet koordinaterna till OpenStreetMaps tjänst Nominatim, som då också ser din IP-adress.</li>
+            <li><strong>Anmälningar:</strong> anmäler du ett meddelande eller en användare får Svallas administratörer se det anmälda meddelandet och upp till tio meddelanden före det, för att kunna granska ärendet. Underlaget, även en anmäld bild, finns kvar om meddelandet, samtalet eller den anmäldas konto raderas, och raderas sex månader efter att ärendet är avslutat. Raderar den som anmälde sitt konto tas anmälan bort.</li>
+          </ul>
+
           <h3 style={{ color: 'var(--txt)', fontSize: 16 }}>Hantverkare och företag på öarna</h3>
           <p>På ösidorna listar vi hantverkare och sjötjänster som tar uppdrag på öarna. Vi visar bara yrkesuppgifter som företaget självt har publicerat för att få kunder: firmanamn, yrke, var företaget finns, vilka öar det tar uppdrag på, telefonnummer, e-postadress och webbplats. Varje uppgift visas med källa och det datum vi läste den. För enskilda firmor kan uppgifterna vara personuppgifter.</p>
           <p>Syftet är att boende och fritidshusägare på öar utan fast vägförbindelse ska hitta hantverkare, och att hantverkarna ska hittas av dem. Vi behandlar uppgifterna med stöd av berättigat intresse. Företag som listas får besked från oss. Vill du ändra något eller inte vara med alls skriver du till <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)' }}>info@svalla.se</a>, så tar vi bort uppgifterna utan att fråga varför. Uppgifter som inte kontrollerats på tolv månader kontrolleras igen eller tas bort.</p>
@@ -61,10 +69,11 @@ export default function IntegritetspolicyPage() {
           <p>Vi säljer aldrig dina personuppgifter till tredje part.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>4. Rättslig grund</h2>
-          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata), <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik, och listan över hantverkare och företag på öarna) och <strong>samtycke</strong> (nyhetsbrevet och julkalenderns påminnelse, som du kan återkalla när som helst genom att avregistrera dig eller stänga av påminnelsen) i enlighet med GDPR artikel 6.</p>
+          <p>Behandlingen sker med stöd av <strong>avtalsuppfyllelse</strong> (kontouppgifter, aktivitetsdata), <strong>berättigat intresse</strong> (förbättring av tjänsten via anonym statistik, listan över hantverkare och företag på öarna, och granskning av anmälda meddelanden och användare för att hålla Svalla tryggt) och <strong>samtycke</strong> (nyhetsbrevet och julkalenderns påminnelse, som du kan återkalla när som helst genom att avregistrera dig eller stänga av påminnelsen) i enlighet med GDPR artikel 6.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>5. Lagring och säkerhet</h2>
           <p>Dina uppgifter lagras säkert hos Supabase (EU-region) med kryptering i transit och vila. Vi behåller kontouppgifter tills du väljer att radera ditt konto.</p>
+          <p>Direktmeddelanden sparas tills du raderar dem. Raderar du ett meddelande försvinner det för alla i samtalet. När både du och den du skriver med har raderat ett samtal tas det bort helt, med alla meddelanden och bilder. Raderar du ditt konto raderas dina meddelanden och bilder. Det som har anmälts sparas som underlag enligt avsnitt 2. Raderade uppgifter kan ligga kvar i våra säkerhetskopior i upp till fem veckor, sedan försvinner de därifrån också.</p>
 
           <h2 style={{ color: 'var(--txt)', fontSize: 18 }}>6. Dina rättigheter</h2>
           <p>Du har rätt att:</p>

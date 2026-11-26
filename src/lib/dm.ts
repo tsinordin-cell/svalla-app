@@ -3,6 +3,7 @@
  * hämtar inboxlistor, räknar olästa.
  */
 import { arBlockerad } from './blocks'
+import { DM_BILD_HINK, arDmBildSokvag } from './dmBilder'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 /**
@@ -20,6 +21,28 @@ export async function findOrCreateDM(
 ): Promise<{ id: string; status: 'active' | 'request' | 'declined' } | null> {
   if (currentUserId === otherUserId) return null
 
+  // Databasfunktionen starta_dm (2026-11-25) gör allt i ett steg på servern:
+  // blockering, befintlig konversation, förfrågan eller aktiv, och en
+  // gräns på 20 nya förfrågningar per dygn. Klienten får inte längre skapa
+  // konversationer eller lägga till deltagare själv.
+  try {
+    const { data, error } = await supabase.rpc('starta_dm', { p_mottagare: otherUserId })
+    if (!error) {
+      const rad = (Array.isArray(data) ? data[0] : data) as { conv_id?: string; conv_status?: string } | null
+      if (!rad?.conv_id) return null
+      return { id: rad.conv_id, status: (rad.conv_status as 'active' | 'request' | 'declined') ?? 'request' }
+    }
+    // Funktionen saknas bara innan migrationen körts. Annars är felet ett
+    // riktigt stopp (blockerad, för många förfrågningar) och ska inte gå runt.
+    const saknas = error.code === 'PGRST202' || /Could not find the function/i.test(error.message ?? '')
+    if (!saknas) return null
+  } catch {
+    return null
+  }
+
+  // ÖVERGÅNG: gamla vägen, används bara tills migrationen
+  // 20261126000001_meddelanden_sakerhet.sql körts. Tas bort därefter;
+  // efter migrationen stoppar databasen den här vägen ändå.
   try {
     // 0. Blockering åt något håll: ingen konversation (databasen stoppar
     //    annars deltagaren tyst och lämnar en tom konversation).
@@ -169,32 +192,44 @@ export async function markConversationRead(
     .eq('conversation_id', conversationId)
 }
 
-/** Radera ett enskilt meddelande (bara egna). */
+/**
+ * Radera ett enskilt meddelande (bara egna). Var det en bild tas även filen
+ * bort ur hinken. Ett anmält meddelandes bild får ligga kvar som underlag;
+ * lagringens regel stoppar då borttagningen, och det felet ignoreras.
+ * Förhandsvisningen i inkorgen räknar databasen om själv (2026-11-26).
+ */
 export async function deleteMessage(
   supabase: SupabaseClient,
   messageId: string,
+  bildSokvag?: string | null,
 ): Promise<boolean> {
-  const { error } = await supabase
+  const { count, error } = await supabase
     .from('messages')
-    .delete()
+    .delete({ count: 'exact' })
     .eq('id', messageId)
-  return !error
+  if (error || count === 0) return false
+  if (arDmBildSokvag(bildSokvag)) {
+    try { await supabase.storage.from(DM_BILD_HINK).remove([bildSokvag as string]) } catch { /* se ovan */ }
+  }
+  return true
 }
 
 /**
  * Lämna / radera en konversation för current user.
- * För 1-till-1: tar bort deltagarraden → konversationen syns ej längre.
+ * För 1-till-1: tar bort deltagarraden, så att konversationen inte syns för
+ * dig. Var du den sista raderar databasen samtalet och dess meddelanden, och
+ * servern tar bort bilderna (2026-11-26).
  * För grupp: lämnar utan att radera för övriga.
  */
-export async function leaveConversation(
-  supabase: SupabaseClient,
-  currentUserId: string,
-  conversationId: string,
-): Promise<boolean> {
-  const { error } = await supabase
-    .from('conversation_participants')
-    .delete()
-    .eq('user_id', currentUserId)
-    .eq('conversation_id', conversationId)
-  return !error
+export async function leaveConversation(conversationId: string): Promise<boolean> {
+  try {
+    const res = await fetch('/api/meddelanden/lamna', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ conversationId }),
+    })
+    return res.ok
+  } catch {
+    return false
+  }
 }

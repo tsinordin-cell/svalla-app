@@ -5,7 +5,8 @@ import { ALL_ISLANDS, getIsland } from '../../island-data'
 import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Vidareklick from '@/components/Vidareklick'
 import IslandPlacesList from '@/components/IslandPlacesList'
-import { getIslandPlaces, utanDubbletter } from '@/lib/islandPlaces'
+import { krogarIDatabasen } from '@/lib/islandPlaces'
+import { arButik } from '@/lib/mallRegler'
 import { ogO } from '@/lib/og-standard'
 
 type Props = { params: Promise<{ slug: string }> }
@@ -27,6 +28,13 @@ export async function generateStaticParams() {
   return ALL_ISLANDS.map(island => ({ slug: island.slug }))
 }
 
+/**
+ * Restaurang, krog eller värdshus – inte kafé, kiosk eller handel. "Restauranger på"
+ * stod också där enda stället är ett kafé eller en lanthandel (Husarö, Nämdö, Rödlöga,
+ * Vinga, Trysunda m.fl.; 2026-11-02, mall-0132 omarbete).
+ */
+const RESTAURANGTYP = /restaurang|krog|värdshus|wärdshus|bistro|brasserie/i
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const island = getIsland(slug)
@@ -34,14 +42,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
+  const rubrik = island.restaurants.length > 0 && !island.restaurants.some(r => RESTAURANGTYP.test(r.type))
+    ? `Mat och dryck på ${island.name}`
+    : `Restauranger på ${island.name}`
+  // Löftet om ställen "med beskrivning" bara när sidan har några: 22 öar har inga i ödatan, och sidan säger då "Vi har
+  // inga restauranger registrerade" (Gotska Sandön; Kontrollantens fynd mo01-k042; mallarnas runda 7, 2026-11-17).
+  const finns = island.restaurants.length > 0 || (await krogarIDatabasen(island)).some(p => p.onIsland)
+  const beskrivning = finns
+    ? `Ställen att äta och dricka på ${island.name} som vi har uppgifter om, med beskrivning.`
+    : `Vi har inga restauranger registrerade på ${island.name}. Kolla säsong och öppettider innan du åker.`
   return {
-    title: `Restauranger på ${island.name}, krogar och kaféer`,
-    description: `Restauranger, krogar, barer och kaféer på ${island.name}, med beskrivning och länk till varje ställe.`,
+    title: rubrik,
+    description: beskrivning,
     keywords: [`${island.name.toLowerCase()} restaurang`, `${island.name.toLowerCase()} krog`, `${island.name.toLowerCase()} café`, `mat på ${island.name.toLowerCase()}`],
     openGraph: {
       images: ogO(island.slug),
-      title: `Restauranger på ${island.name}`,
-      description: `Restauranger, krogar och kaféer på ${island.name}.`,
+      title: rubrik,
+      description: finns ? `Ställen att äta och dricka på ${island.name}.` : beskrivning,
       url: `https://svalla.se/o/${slug}/restauranger`,
     },
     alternates: { canonical: `https://svalla.se/o/${slug}/restauranger` },
@@ -53,27 +70,29 @@ export default async function IslandRestaurantsPage({ params }: Props) {
   const island = getIsland(slug)
   if (!island) notFound()
 
-  // Krogar ur platsdatabasen som inte redan står i island-data.
-  const known = new Set(island.restaurants.flatMap(r => [r.slug, r.name.toLowerCase()]).filter(Boolean) as string[])
-  const dbPlaces = utanDubbletter(
-    (await getIslandPlaces(island, ['restaurant', 'cafe', 'bar'], { extraKm: 0.5 }))
-      .filter(p => !known.has(p.slug) && !known.has(p.name.toLowerCase())),
-    island.restaurants.map(r => r.name),
-    island.name,
-  )
+  // Krogar ur platsdatabasen som inte redan står i island-data (samma urval som ösidans FAQ, src/lib/islandPlaces.ts).
+  const dbPlaces = await krogarIDatabasen(island)
   const total = island.restaurants.length + dbPlaces.filter(p => p.onIsland).length
+  // Butiker räknas för sig, inte som "restauranger, krogar och kaféer" (mo01-k040; mallarnas runda 7, 2026-11-17).
+  const butiker = island.restaurants.filter(r => arButik(r.type)).length
+  const mat = total - butiker
+  const delar = [
+    mat === 1 ? 'ett ställe att äta och dricka' : mat > 1 ? `${mat} restauranger, krogar och kaféer` : '',
+    butiker === 1 ? 'en butik' : butiker > 1 ? `${butiker} butiker` : '',
+  ].filter(Boolean).join(' och ')
+  const undertitel = `${delar.charAt(0).toUpperCase()}${delar.slice(1)} på ${island.name} som vi har uppgifter om.${mat === 0 ? ' Vi har inga restauranger eller kaféer registrerade på ön.' : ''}`
+  const harRestaurang = island.restaurants.some(r => RESTAURANGTYP.test(r.type)) || dbPlaces.some(p => p.onIsland && p.type === 'restaurant')
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
       <IslandSubPageHeader
         island={island}
         tab="restauranger"
+        title={total > 0 && !harRestaurang ? `Mat och dryck på ${island.name}` : undefined}
         subtitle={
           total === 0
             ? `Vi har inga restauranger registrerade på ${island.name}. Kolla säsong och öppettider innan du åker, och ta med matsäck om du är osäker.`
-            : total === 1
-            ? `Restaurangen på ${island.name} som vi har uppgifter om.`
-            : `${total} restauranger, krogar och kaféer på ${island.name} som vi har uppgifter om.`
+            : undertitel
         }
       />
       <Vidareklick islandSlug={island.slug} standard="mat" />

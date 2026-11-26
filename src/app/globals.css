@@ -882,30 +882,22 @@ img {
   padding: 0 20px !important;
 }
 
-/* Flödet (2026-11-25, Tom): toppraden och flikraden Flöde · Forum · Topplista ligger
-   i samma fasta block (feed/page.tsx). Vid skroll nedåt glider blocket upp så mycket
-   som toppraden är hög, så att bara flikraden ligger kvar; vid skroll uppåt kommer
-   toppraden tillbaka (ToppradGom.tsx med mal=".flode-topp"). Förut låg toppraden
-   fast bara inom den beige ytan överst och flikraden skrollade bort direkt.
-   Höjderna mäts i ToppradGom; siffrorna här gäller tills sidan laddat klart. */
+/* Flödet (2026-11-25, Tom 20:52Z): som på Planera. Toppraden ligger fast och glider
+   undan själv (app-topbar--gomd); flikraden Flöde · Forum · Topplista i .flode-topp
+   ligger i sidan och skrollar bort med innehållet, så raderna försvinner strax efter
+   varandra. FlodeToppHojd.tsx mäter topprad + flikrad; siffrorna här gäller tills
+   sidan laddat klart. Flikraden är positionerad så att toningen inte ritas över den,
+   men ligger under den fasta toppraden (z-index 50) som den skrollar in under. */
 .flode-topp {
   position: relative;
-  z-index: 50;
+  z-index: 1;
 }
-/* Den beige toningen går upp bakom blocket som förut, utan att innehållet flyttar. */
+/* Den beige toningen går upp bakom toppraden och flikraden, utan att innehållet flyttar. */
 .flode-topp + .feed-ambient-top {
   margin-top: calc(-1 * var(--flode-topp-h, 44px));
   padding-top: var(--flode-topp-h, 44px);
 }
 @media (max-width: 1023px) {
-  .flode-topp {
-    position: sticky;
-    top: 0;
-    transition: transform 0.22s ease;
-  }
-  .flode-topp.app-topbar--gomd {
-    transform: translateY(calc(-1 * var(--topprad-h, 45px)));
-  }
   .flode-topp + .feed-ambient-top {
     margin-top: calc(-1 * var(--flode-topp-h, 89px));
     padding-top: var(--flode-topp-h, 89px);
@@ -913,8 +905,7 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .app-topbar,
-  .flode-topp {
+  .app-topbar {
     transition: none;
   }
 }
@@ -1097,7 +1088,8 @@ img {
 /* Delar som bara finns i bottenmenyn (visas i mediefrågan nedan). */
 .nav-dyning,
 .nav-vag,
-.nav-etikett-mobil {
+.nav-etikett-mobil,
+.nav-olast-prick {
   display: none;
 }
 @media (max-width: 1023px) {
@@ -1138,6 +1130,21 @@ img {
   .nav-etikett-dator { display: none; }
   /* Pricken sa bara att man är inloggad hos sig själv. */
   .nav-online-prick { display: none; }
+  /* 2026-11-25 (Tom): olästa notiser eller meddelanden. Samma orange som räknarna
+     på klockorna, med en kant i menyns färg så att den syns mot profilbilden. */
+  .nav-olast-prick {
+    display: block;
+    position: absolute;
+    top: -2px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--acc-knapp, #b5591a);
+    border: 2px solid var(--nav-yta);
+    box-sizing: content-box;
+    pointer-events: none;
+  }
 }
 @media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
   .nav-vag { animation: navVag 0.18s ease-out; }
@@ -1231,6 +1238,12 @@ img {
   .nav-fab-wrap[aria-current="page"] .nav-fab-desktop {
     box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--sea);
   }
+}
+
+/* Chattrum på telefon: skrivfältet ligger i botten, så bottenmenyn döljs där
+   (2026-11-26, premiumsteg 1). På dator syns sidomenyn som på övriga appsidor. */
+@media (max-width: 1023px) {
+  nav.svalla-nav.svalla-nav--doljmobil { display: none !important; }
 }
 
 /* ── Desktop nav — left sidebar ≥1024px ── */

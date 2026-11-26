@@ -7,8 +7,22 @@ import IslandSubPageHeader from '@/components/IslandSubPageHeader'
 import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import { ACTIVITY_LIST, islandActivitiesForType, type ActivityType } from '@/app/aktivitet/activity-data'
+import { aktivitetensLage, grannoarIData, LAGESORD } from '@/lib/badLage'
+import { aktivitetsUndertitel } from '@/lib/mallRegler'
 
 type Props = { params: Promise<{ slug: string }> }
+
+/**
+ * Aktiviteterna grupperade efter läge, med samma regel som badsidan och med barn (aktivitetensLage). "Aktiviteter på X"
+ * räknade förut också poster på andra platser: Vindö "Bad på Djurö", Norröra "Söderöra", Gullholmen "Vandra på Härmanö"
+ * och Kungshamn "Nordens Ark" (Kontrollantens fynd mo01-k021, k035, k049, k057; mallarnas runda 7, 2026-11-17).
+ */
+function aktivitetsGrupper(island: NonNullable<ReturnType<typeof getIsland>>) {
+  const grannoar = grannoarIData(island)
+  return (['pa', 'bada', 'annan'] as const)
+    .map(l => ({ lage: l, lista: island.activities.filter(a => aktivitetensLage(a, island.name, grannoar) === l) }))
+    .filter(g => g.lista.length > 0)
+}
 
 // SOFT-404, DEL 2 (2026-08-12). notFound() i generateMetadata (PR #117)
 // räckte inte: Vercel serverar ett byggtids-fallbackskal för ISR-rutter
@@ -32,8 +46,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // så bara ett notFound() HÄR (före headers) ger riktig 404-status. Se
   // motsvarande kommentar i o/[slug]/page.tsx och CLAUDE.md.
   if (!island) notFound()
-  const title = `Aktiviteter på ${island.name}, vad göra 2026`
-  const description = `Allt du kan göra på ${island.name}: ${island.activities.slice(0, 3).map(a => a.name.toLowerCase()).join(', ')} och mer. Komplett aktivitetsguide.`
+  // "på och nära" när någon aktivitet gäller en annan plats (mo01-k049, k057; runda 7).
+  const allaPa = aktivitetsGrupper(island).every(g => g.lage === 'pa')
+  const title = `Aktiviteter ${allaPa ? 'på' : 'på och nära'} ${island.name}, vad göra 2026`
+  // Namnen som de står: gemener gav "vaxholms kastell" och "tycho brahe-museet" (2026-11-02, mall-0124 omarbete).
+  // "på och från": listan har också utflykter till grannöar och orter i närheten, som "Bad på
+  // Djurö" (Vindö) och Bovikens badplats på Hamburgö (Hamburgsund) (mall-0124 omarbete 2).
+  const description = `Det här kan du göra på och från ${island.name}: ${island.activities.slice(0, 3).map(a => a.name).join(', ')}${island.activities.length > 3 ? ' och mer' : ''}.`
   return {
     title,
     description,
@@ -63,6 +82,11 @@ export default async function IslandAktiviteterPage({ params }: Props) {
   const matchingTypes = ACTIVITY_LIST.filter(a =>
     islandActivitiesForType(island, a.slug as ActivityType).length > 0
   )
+  const grupper = aktivitetsGrupper(island)
+  // Räkningen säger "på X" bara om posterna på ön (mo01-k035; runda 7), och "på och nära ön" för de kort som rubriceras så
+  // (sm08-k006; runda 10). Samma tre lägen som rubrikerna nedan.
+  const antal = (l: 'pa' | 'bada' | 'annan') => grupper.find(g => g.lage === l)?.lista.length ?? 0
+  const undertitel = aktivitetsUndertitel(island.name, { pa: antal('pa'), bada: antal('bada'), annan: antal('annan') })
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--bg)' }}>
@@ -90,7 +114,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
             __html: serializeForScript({
               '@context': 'https://schema.org',
               '@type': 'ItemList',
-              name: `Aktiviteter på ${island.name}`,
+              name: `Aktiviteter ${antal('bada') + antal('annan') > 0 ? 'på och nära' : 'på'} ${island.name}`,
               url: `https://svalla.se/o/${slug}/aktiviteter`,
               numberOfItems: island.activities.length,
               itemListElement: island.activities.map((a, i) => ({
@@ -110,7 +134,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
         subtitle={
           island.activities.length === 0
             ? `Inga registrerade aktiviteter för ${island.name} ännu.`
-            : `${island.activities.length} aktiviteter och upplevelser på ${island.name}.`
+            : `${undertitel.charAt(0).toUpperCase()}${undertitel.slice(1)}.`
         }
       />
 
@@ -129,9 +153,16 @@ export default async function IslandAktiviteterPage({ params }: Props) {
           </div>
         ) : (
           <>
-            {/* Aktivitetskort */}
+            {/* Aktivitetskort, grupperade efter läge; rubrik bara för kort som inte gäller bara ön (runda 7). */}
+            {grupper.map(({ lage, lista }) => (
+            <div key={lage}>
+            {lage !== 'pa' && (
+              <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 14px', fontFamily: "'Playfair Display', Georgia, serif" }}>
+                Aktiviteter {LAGESORD[lage]} {island.name}
+              </h2>
+            )}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 14, marginBottom: 40 }}>
-              {island.activities.map(act => (
+              {lista.map(act => (
                 <div key={act.name} style={{
                   background: 'var(--white)', borderRadius: 14,
                   padding: '20px 22px',
@@ -155,6 +186,8 @@ export default async function IslandAktiviteterPage({ params }: Props) {
                 </div>
               ))}
             </div>
+            </div>
+            ))}
 
             {/* Cross-länk till aktivitetstyp-sidor */}
             {matchingTypes.length > 0 && (
@@ -239,7 +272,7 @@ export default async function IslandAktiviteterPage({ params }: Props) {
                 Vill du veta mer?
               </div>
               <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', fontFamily: "'Playfair Display', Georgia, serif" }}>
-                Fullständig guide till {island.name}
+                Hela guiden till {island.name}
               </div>
             </div>
             <Icon name="arrowRight" size={18} stroke={2.2} />

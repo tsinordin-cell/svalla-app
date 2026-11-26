@@ -20,6 +20,7 @@ const TYPE_LABEL: Record<string, string> = {
   fuel: 'Bränsle', fuel_station: 'Bränsle',
   beach: 'Bad', sauna: 'Bastu',
   shop: 'Butik', hotel: 'Boende', nature: 'Naturplats',
+  hostel: 'Vandrarhem', cabin: 'Stugor', camping: 'Camping',
 }
 
 // UUID v4 regex

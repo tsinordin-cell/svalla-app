@@ -21,6 +21,7 @@ const KALL_TEXT: Record<Kallniva, string> = {
   'egen-sajt': 'Enligt företagets egen webbplats',
   forening: 'Enligt öns företagarförening',
   register: 'Enligt kommunens näringslivsregister',
+  elregister: 'Enligt Elsäkerhetsverkets register',
 }
 
 function skrivDatum(iso: string): string {
@@ -31,14 +32,36 @@ function skrivDatum(iso: string): string {
   return m ? `${Number(dag)} ${m} ${ar}` : iso
 }
 
-export default function HantverkarKort({ h, oSlug }: { h: Hantverkare; oSlug?: string }) {
+/**
+ * Nås ön med bil eller buss utan båt eller färja? Då kör ingen "hit med båt":
+ * Vaxholm har fast landsförbindelse (2026-11-02, mall-0074–0075 omarbete).
+ * Färdsätt som bara tar en till hamnen ("Bil till Långedrag", "Buss från Göteborg")
+ * eller börjar med flyg räknas inte.
+ */
+export function nasUtanBat(gettingThere: { method: string; desc: string }[], namn = ''): boolean {
+  // En bro eller fast förbindelse i beskrivningen väger tyngre än att färjor också nämns
+  // (Orust: "Fasta broförbindelser finns åt båda hållen, och dessutom två färjelinjer").
+  // Ett färjeläge med ortens eget namn är en hållplats på orten, ingen överfart: bussen till Furusund
+  // stannar vid "Furusunds färjeläge" (2026-11-03, mall-0166 omarbete 3). Yxlans och Tynningös bussar
+  // går över med färjan från ett annat färjeläge och räknas fortfarande som färja.
+  const namnRe = namn.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const egetFarjelage = namn ? new RegExp(`${namnRe}s? färjeläge[a-zåäö]*`, 'gi') : null
+  return gettingThere.some(t => /bil|buss/i.test(t.method) && !/ till | från |flyg|båt|färj/i.test(t.method)
+    && (/broförbindelse|landsförbindelse|vägförbindelse|bron\b|broarna/i.test(t.desc) || !/båt|färj|bilfri/i.test(egetFarjelage ? t.desc.replace(egetFarjelage, '') : t.desc)))
+}
+
+export default function HantverkarKort({ h, oSlug, utanBat = false }: { h: Hantverkare; oSlug?: string; utanBat?: boolean }) {
   const yrken = synligaYrken(h)
-  const uppringd = h.verifierad !== false
+  // Grönt märke bara när en människa ringt, dvs. när verifierad är ett objekt (2026-11-02, mall-0071).
+  const uppringd = typeof h.verifierad === 'object' && h.verifierad !== null
 
   // Sitter de på den ö besökaren tittar på, eller kör de hit? Skillnaden finns
   // bara för att vi kontrollerat den — registret hade dem alla som lokala.
+  // Sluggen saknar å, ä, ö: "Södermöja, Möja" ska matcha "moja" (2026-11-02, mall-0074). Intervallet är de
+  // kombinerande diakritiska tecknen efter NFD, skrivet med \u så att det syns i koden (2026-11-03, moja-0478).
+  const utanDiakrit = (s: string) => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
   const basAnnanstans = Boolean(
-    oSlug && h.bas && !h.bas.toLowerCase().includes(oSlug.toLowerCase())
+    oSlug && h.bas && !utanDiakrit(h.bas).includes(oSlug.toLowerCase().replace(/-/g, ' '))
   )
 
   return (
@@ -100,7 +123,7 @@ export default function HantverkarKort({ h, oSlug }: { h: Hantverkare; oSlug?: s
 
       {basAnnanstans && (
         <p style={{ margin: '9px 0 0', fontSize: 13, color: 'var(--txt2)' }}>
-          <Icon name="ship" size={14} stroke={2} /> Baserade i {h.bas}, kör hit med båt
+          <Icon name="ship" size={14} stroke={2} /> Baserade i {h.bas}{utanBat ? '' : ', kör hit med båt'}
         </p>
       )}
 

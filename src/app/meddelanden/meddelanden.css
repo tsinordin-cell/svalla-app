@@ -1,0 +1,340 @@
+/*
+ * Meddelanden, premiumsteg 1 (2026-11-26, Toms ja "Ja, bygg första delen").
+ *
+ * Alla färger går via appens färgord (globals.css), så mörkt tema fungerar
+ * utan egna undantag. De få egna färgorden står här överst, med ljust och
+ * mörkt värde. Klasserna börjar på md- så att inget krockar med resten av sajten.
+ *
+ * Från 1024 px (samma gräns som sidomenyn) ligger inkorgen och samtalet bredvid
+ * varandra. Under 1024 px visas en sak i taget, som förut.
+ */
+
+:root {
+  --md-deras: #efe8dc;          /* motpartens bubbla: varm sand, txt mot den 12:1 */
+  --md-egen: #1e5c82;           /* egen bubbla = --sea, vit text 7,3:1 */
+  --md-egen-txt: #fff;
+  --md-linje: rgba(25, 40, 48, 0.08);
+  --md-vald: rgba(30, 92, 130, 0.08);
+  --md-glas: rgba(255, 253, 248, 0.88);
+  --md-skugga: 0 1px 2px rgba(20, 40, 60, 0.06), 0 6px 20px rgba(20, 40, 60, 0.06);
+  --md-ark-skugga: 0 -8px 40px rgba(10, 25, 40, 0.18);
+}
+[data-theme="dark"] {
+  --md-deras: #16283a;          /* txt #d8eaf4 mot den 11:1 */
+  --md-egen: #1c7f98;           /* = --sea-knapp i mörkt, vit text 4,6:1 */
+  --md-linje: rgba(216, 234, 244, 0.08);
+  --md-vald: rgba(74, 184, 212, 0.10);
+  --md-glas: rgba(15, 30, 44, 0.88);
+  --md-skugga: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.25);
+  --md-ark-skugga: 0 -8px 40px rgba(0, 0, 0, 0.5);
+}
+
+.md-rot *, .md-ark * { box-sizing: border-box; }
+/* :where() ger nollspecificitet, så att knapparnas egna klasser (md-knapp, md-ark-ja …) vinner över återställningen. */
+:where(.md-rot, .md-ark) button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
+:where(.md-rot, .md-ark) a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.md-rot :focus-visible, .md-ark :focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
+
+/* ── Ram: inkorg + samtal ─────────────────────────────────────────────────── */
+.md-ram { background: var(--bg); color: var(--txt); min-height: 100dvh; }
+.md-ram-lista { background: var(--white); min-height: 100dvh; }
+.md-ram-innehall { min-width: 0; }
+/* Mobil: en sak i taget. I ett samtal döljs listan, i inkorgen döljs högerspalten. */
+.md-ram--samtal .md-ram-lista { display: none; }
+.md-ram--inkorg .md-ram-innehall { display: none; }
+
+@media (min-width: 1024px) {
+  .md-ram { display: flex; height: 100dvh; min-height: 0; overflow: hidden; }
+  .md-ram-lista {
+    display: flex !important; flex-direction: column;
+    width: 360px; flex-shrink: 0; min-height: 0; height: 100dvh;
+    border-right: 1px solid var(--md-linje);
+  }
+  .md-ram-innehall { display: flex !important; flex-direction: column; flex: 1; height: 100dvh; min-height: 0; overflow-y: auto; }
+  .md-bara-mobil { display: none !important; }
+}
+
+/* ── Inkorg ───────────────────────────────────────────────────────────────── */
+.md-inkorg { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.md-ink-topp {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--md-glas);
+  -webkit-backdrop-filter: saturate(1.6) blur(16px); backdrop-filter: saturate(1.6) blur(16px);
+  padding: calc(10px + env(safe-area-inset-top, 0px)) 12px 8px 16px;
+}
+.md-ink-rad { display: flex; align-items: center; gap: 4px; }
+.md-ink-rad h1 {
+  flex: 1; margin: 0; font-size: 28px; line-height: 1.15; font-weight: 700; letter-spacing: -0.3px; color: var(--txt);
+}
+.md-rund {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; color: var(--sea);
+  transition: background 0.15s;
+}
+.md-rund:hover { background: var(--md-vald); }
+.md-rund:disabled { opacity: 0.45; cursor: default; }
+.md-rund--fylld { background: var(--sea-knapp); color: #fff; }
+.md-rund--fylld:hover { background: var(--sea-knapp); filter: brightness(1.08); }
+.md-sok {
+  margin-top: 8px; height: 40px; border-radius: 12px; background: var(--bg);
+  display: flex; align-items: center; gap: 8px; padding: 0 12px; color: var(--txt3);
+}
+.md-sok input {
+  flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent;
+  color: var(--txt); font: inherit; font-size: 16px; -webkit-appearance: none; appearance: none;
+}
+.md-sok input::placeholder { color: var(--txt3); }
+.md-flikar { display: flex; gap: 4px; margin-top: 10px; padding: 3px; border-radius: 12px; background: var(--bg); height: 38px; }
+.md-flik {
+  flex: 1; border-radius: 9px; font-size: 14px; font-weight: 500; color: var(--txt3);
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: background 0.15s, color 0.15s;
+}
+.md-flik[aria-pressed="true"] { background: var(--white); color: var(--txt); font-weight: 600; box-shadow: var(--md-skugga); }
+.md-flik-tal { font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 999px; background: var(--md-vald); color: var(--sea); }
+.md-flik-tal--acc { background: var(--acc-knapp); color: #fff; }
+
+.md-rader {
+  flex: 1; padding: 4px 8px calc(var(--nav-h, 64px) + env(safe-area-inset-bottom, 0px) + 16px);
+}
+@media (min-width: 1024px) { .md-rader { overflow-y: auto; padding-bottom: 24px; } }
+
+.md-konv {
+  display: flex; align-items: center; gap: 13px; padding: 10px 12px; border-radius: 16px; min-height: 72px;
+  transition: background 0.15s; position: relative;
+}
+.md-konv:hover { background: var(--md-vald); }
+.md-konv[aria-current="page"] { background: var(--md-vald); }
+.md-konv-mitt { flex: 1; min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 3px; }
+.md-konv-topp { display: flex; align-items: baseline; gap: 8px; }
+.md-konv-namn { flex: 1; min-width: 0; font-size: 16px; font-weight: 500; color: var(--txt); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.md-konv-tid { font-size: 13px; color: var(--txt3); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+.md-konv-under { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.md-konv-text { flex: 1; min-width: 0; font-size: 14.5px; color: var(--txt3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.md-konv-text--tom { font-style: italic; opacity: 0.75; }
+.md-konv-kvitto { flex-shrink: 0; color: var(--txt3); display: inline-flex; }
+.md-konv-kvitto--last { color: var(--sea); }
+.md-konv--olast .md-konv-namn { font-weight: 700; }
+.md-konv--olast .md-konv-text { color: var(--txt); font-weight: 500; }
+.md-bricka {
+  min-width: 22px; height: 22px; padding: 0 7px; border-radius: 11px; flex-shrink: 0;
+  background: var(--acc-knapp); color: #fff; font-size: 12.5px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums;
+}
+.md-etikett {
+  font-size: 10.5px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
+  border-radius: 6px; padding: 2px 6px; flex-shrink: 0;
+}
+.md-etikett--acc { color: var(--acc-text); background: var(--acc-08, rgba(201, 110, 42, 0.10)); }
+.md-etikett--neutral { color: var(--txt3); background: var(--md-vald); }
+
+/* Avatarer: riktig bild när den finns, annars initial på en lugn platta */
+.md-av { position: relative; flex-shrink: 0; border-radius: 50%; overflow: hidden; }
+.md-av-fall {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  position: relative; background: var(--md-deras); color: var(--txt); font-weight: 600;
+}
+.md-av-fall::before { content: ""; position: absolute; inset: 0; background: var(--av); opacity: 0.24; }
+.md-av-fall span { position: relative; }
+
+.md-skel {
+  border-radius: 7px;
+  background: linear-gradient(90deg, var(--md-linje) 0%, var(--md-vald) 50%, var(--md-linje) 100%);
+  background-size: 200% 100%; animation: md-skimmer 1.4s infinite linear;
+}
+
+/* Tomt, fel, utloggad, "välj ett samtal" */
+.md-tomt {
+  margin: auto; max-width: 320px; padding: 56px 24px; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.md-tomt h2 { font-size: 19px; font-weight: 700; margin: 12px 0 0; color: var(--txt); line-height: 1.3; }
+.md-tomt p { font-size: 15px; line-height: 1.45; color: var(--txt2); margin: 2px 0 10px; }
+.md-tomt-ikon { width: 64px; height: 64px; border-radius: 20px; background: var(--md-vald); color: var(--sea); display: flex; align-items: center; justify-content: center; }
+.md-knapp {
+  height: 46px; padding: 0 20px; border-radius: 14px; background: var(--sea-knapp); color: #fff !important;
+  font-weight: 600; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; margin-top: 4px;
+}
+.md-knapp:hover { filter: brightness(1.08); }
+.md-knapp--vit { background: var(--white); color: var(--txt) !important; box-shadow: inset 0 0 0 1px var(--md-linje); }
+.md-valj { flex: 1; display: none; }
+@media (min-width: 1024px) { .md-valj { display: flex; } }
+
+/* ── Samtal ───────────────────────────────────────────────────────────────── */
+.md-samtal { height: 100dvh; display: flex; flex-direction: column; background: var(--bg); color: var(--txt); position: relative; }
+.md-sam-huvud {
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+  padding: calc(8px + env(safe-area-inset-top, 0px)) 8px 8px 4px;
+  background: var(--md-glas);
+  -webkit-backdrop-filter: saturate(1.6) blur(16px); backdrop-filter: saturate(1.6) blur(16px);
+  border-bottom: 1px solid var(--md-linje); position: relative; z-index: 5;
+}
+.md-sam-vem { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; padding: 4px 6px; border-radius: 12px; }
+.md-sam-vem:hover { background: var(--md-vald); }
+.md-sam-text { min-width: 0; }
+.md-sam-namn { font-size: 16px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--txt); }
+.md-sam-under { font-size: 13px; color: var(--txt3); }
+
+.md-banner { margin: 12px auto 0; width: 100%; max-width: 760px; padding: 0 16px; }
+.md-banner-ruta { padding: 14px 16px; border-radius: 16px; background: var(--white); box-shadow: var(--md-skugga), inset 3px 0 0 var(--acc); }
+.md-banner-ruta strong { display: block; font-size: 15px; color: var(--txt); margin-bottom: 4px; }
+.md-banner-ruta p { margin: 0 0 12px; font-size: 14px; color: var(--txt2); line-height: 1.5; }
+.md-banner-knappar { display: flex; gap: 8px; }
+.md-banner-knappar .md-knapp { flex: 1; justify-content: center; margin: 0; height: 44px; }
+.md-banner--info .md-banner-ruta { box-shadow: var(--md-skugga); font-size: 14px; color: var(--txt2); line-height: 1.5; }
+
+.md-flode {
+  flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+  padding: 12px 12px 8px; display: flex; flex-direction: column;
+}
+.md-flode-inre { width: 100%; max-width: 760px; margin: auto auto 0; display: flex; flex-direction: column; }
+.md-dag { display: flex; justify-content: center; margin: 14px 0 10px; }
+.md-dag span {
+  font-size: 12.5px; font-weight: 600; color: var(--txt3); padding: 4px 12px; border-radius: 999px;
+  background: var(--white); box-shadow: var(--md-skugga);
+}
+.md-rad { display: flex; align-items: flex-end; gap: 8px; margin-top: 2px; }
+.md-rad--ny-grupp { margin-top: 12px; }
+.md-rad--egen { flex-direction: row-reverse; }
+.md-rad--skickar { opacity: 0.6; }
+.md-av-plats { width: 28px; flex-shrink: 0; }
+.md-kol {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+  max-width: min(78%, 520px); min-width: 0;
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none;
+}
+.md-rad--egen .md-kol { align-items: flex-end; cursor: pointer; }
+@media (min-width: 1024px) {
+  .md-flode { padding: 16px 28px 8px; }
+  .md-kol { max-width: min(62%, 520px); }
+}
+
+.md-bubbla {
+  padding: 9px 14px 10px; font-size: 16px; line-height: 1.38; border-radius: 20px;
+  overflow-wrap: anywhere; white-space: pre-wrap;
+  background: var(--md-deras); color: var(--txt);
+}
+.md-rad--egen .md-bubbla { background: var(--md-egen); color: var(--md-egen-txt); }
+/* Ihopkopplade bubblor i samma grupp får mindre hörn mot varandra */
+.md-rad:not(.md-rad--egen):not(.md-rad--ny-grupp) .md-bubbla { border-top-left-radius: 6px; }
+.md-rad:not(.md-rad--egen):not(.md-rad--sist) .md-bubbla { border-bottom-left-radius: 6px; }
+.md-rad--egen:not(.md-rad--ny-grupp) .md-bubbla { border-top-right-radius: 6px; }
+.md-rad--egen:not(.md-rad--sist) .md-bubbla { border-bottom-right-radius: 6px; }
+
+.md-tid { font-size: 12px; color: var(--txt3); padding: 0 4px; font-variant-numeric: tabular-nums; }
+.md-sett { display: flex; align-items: center; gap: 3px; padding: 0 4px; font-size: 12px; color: var(--txt3); }
+.md-sett svg { color: var(--sea); }
+
+/* Kort i bubblor: position, tur, bild */
+.md-kort {
+  width: min(300px, 64vw); background: var(--white); color: var(--txt); border-radius: 16px; overflow: hidden;
+  box-shadow: 0 0 0 1px var(--md-linje), var(--md-skugga);
+}
+.md-karta { position: relative; overflow: hidden; height: 156px; background: #aad3df; display: block; }
+.md-mosaik { position: absolute; width: 768px; height: 768px; }
+.md-mosaik img, .md-bas img { position: absolute; width: 256px; height: 256px; max-width: none; user-select: none; -webkit-user-drag: none; display: block; }
+.md-bas { position: absolute; inset: 0; }
+/* Mörkt tema: bara grundkartan inverteras, sjömärkena behåller sina färger */
+[data-theme="dark"] .md-karta { background: #1b2c38; }
+[data-theme="dark"] .md-bas { filter: invert(1) hue-rotate(180deg) brightness(0.92) contrast(0.9); }
+.md-nal { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -100%); filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.25)); pointer-events: none; }
+.md-nal svg { display: block; position: relative; }
+.md-nal-puls {
+  position: absolute; left: 50%; bottom: -6px; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%;
+  background: var(--acc); opacity: 0.35; animation: md-puls 2.4s ease-out infinite;
+}
+.md-noggrannhet {
+  position: absolute; top: 8px; right: 8px; padding: 2px 8px; border-radius: 999px;
+  background: rgba(7, 15, 24, 0.72); color: #fff; font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums;
+}
+.md-attr { position: absolute; right: 6px; bottom: 5px; font-size: 10px; padding: 1px 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.85); color: #3d5865; }
+.md-attr a { text-decoration: underline; }
+[data-theme="dark"] .md-attr { background: rgba(7, 15, 24, 0.78); color: #9abccc; }
+.md-kort-tom { height: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--txt3); font-size: 14px; background: var(--md-vald); }
+.md-kort-fot { display: flex; align-items: center; gap: 10px; padding: 11px 12px 6px; }
+.md-kort-ikon { width: 34px; height: 34px; border-radius: 10px; background: var(--md-vald); color: var(--sea); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.md-kort-titel { font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.md-kort-under { font-size: 13px; color: var(--txt3); font-variant-numeric: tabular-nums; }
+.md-kort-knappar { display: flex; gap: 6px; padding: 6px 8px 8px; }
+.md-kort-knappar a, .md-kort-knappar button {
+  flex: 1; height: 38px; border-radius: 11px; background: var(--bg); display: flex; align-items: center; justify-content: center;
+  gap: 6px; font-size: 14px; font-weight: 600; color: var(--sea) !important; transition: background 0.15s;
+}
+.md-kort-knappar a:hover, .md-kort-knappar button:hover { background: var(--md-vald); }
+.md-tur-bild { position: relative; display: block; width: 100%; height: 118px; background: var(--md-deras); }
+.md-bild { display: block; border-radius: 16px; overflow: hidden; width: min(240px, 58vw); aspect-ratio: 4 / 3; background: var(--md-vald); box-shadow: 0 0 0 1px var(--md-linje); }
+.md-bild img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Skrivfält */
+.md-komp {
+  flex-shrink: 0; padding: 8px 10px calc(10px + env(safe-area-inset-bottom, 0px));
+  background: var(--md-glas);
+  -webkit-backdrop-filter: saturate(1.6) blur(16px); backdrop-filter: saturate(1.6) blur(16px);
+  border-top: 1px solid var(--md-linje); position: relative; z-index: 5;
+}
+.md-komp-rad { display: flex; align-items: flex-end; gap: 4px; width: 100%; max-width: 760px; margin: 0 auto; }
+.md-komp .md-rund { color: var(--txt2); }
+.md-falt { flex: 1; min-width: 0; background: var(--white); border-radius: 22px; box-shadow: inset 0 0 0 1px var(--md-linje); display: flex; margin: 0 2px; }
+.md-falt:focus-within { box-shadow: inset 0 0 0 1.5px var(--sea); }
+.md-falt textarea {
+  flex: 1; border: 0; outline: 0; resize: none; background: transparent; color: var(--txt);
+  font: inherit; font-size: 16px; line-height: 22px; padding: 11px 16px; height: 44px; max-height: 132px; display: block;
+}
+.md-falt textarea::placeholder { color: var(--txt3); }
+/* Fältet visar fokus med sin runda ring (.md-falt:focus-within). Den allmänna fyrkantiga fokusramen ovan stängs av här. */
+.md-rot .md-falt textarea:focus-visible { outline: none; }
+/* Sajtens globala mörka fältstil (globals.css, med !important) ger annars sök- och skrivfältet en egen mörkare ruta inuti.
+   Här ärver fälten sin omgivande yta i stället, i både ljust och mörkt läge. */
+.md-sok input, .md-sok input:focus,
+.md-falt textarea, .md-falt textarea:focus,
+[data-theme="dark"] .md-sok input, [data-theme="dark"] .md-falt textarea {
+  background: transparent !important; border: 0 !important; box-shadow: none !important; color: var(--txt) !important;
+}
+[data-theme="dark"] .md-sok input::placeholder, [data-theme="dark"] .md-falt textarea::placeholder { color: var(--txt3) !important; }
+.md-skicka {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  background: var(--md-linje); color: var(--txt3); transition: background 0.18s, transform 0.18s, color 0.18s;
+}
+.md-skicka--redo { background: var(--sea-knapp); color: #fff; }
+.md-skicka--redo:active { transform: scale(0.92); }
+@media (min-width: 1024px) { .md-komp { padding: 10px 24px 16px; } }
+
+/* Ark nedifrån (åtgärder, bekräftelse) */
+.md-ark-bakgrund { position: fixed; inset: 0; background: rgba(5, 12, 20, 0.42); z-index: 1000; animation: md-tona 0.18s ease; }
+.md-ark {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 1001;
+  background: var(--white); color: var(--txt); border-radius: 22px 22px 0 0;
+  padding: 8px 8px calc(16px + env(safe-area-inset-bottom, 0px));
+  box-shadow: var(--md-ark-skugga); animation: md-upp 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  max-width: 520px; margin: 0 auto;
+}
+.md-ark-handtag { width: 36px; height: 4px; border-radius: 2px; background: var(--md-linje); margin: 4px auto 10px; }
+.md-ark-rad {
+  display: flex; align-items: center; gap: 14px; width: 100%; min-height: 52px; padding: 0 16px;
+  border-radius: 14px; font-size: 16px; font-weight: 600; color: var(--txt); text-align: left;
+}
+.md-ark-rad:hover { background: var(--md-vald); }
+.md-ark-rad svg { color: var(--txt3); }
+.md-ark-rad--fara, .md-ark-rad--fara svg { color: var(--fara); }
+.md-ark-text { padding: 8px 16px 0; }
+.md-ark-text h2 { margin: 0 0 6px; font-size: 19px; font-weight: 700; color: var(--txt); }
+.md-ark-text p { margin: 0 0 20px; font-size: 15px; line-height: 1.5; color: var(--txt2); }
+.md-ark-knappar { display: flex; flex-direction: column; gap: 8px; padding: 0 8px 4px; }
+.md-ark-knappar button { height: 50px; border-radius: 14px; font-size: 16px; font-weight: 600; }
+.md-ark-ja { background: var(--fara-knapp, #b03a2e) !important; color: #fff !important; }
+.md-ark-ja--vanlig { background: var(--sea-knapp) !important; }
+.md-ark-nej { background: var(--bg) !important; color: var(--txt) !important; }
+@media (min-width: 1024px) {
+  .md-ark { bottom: 50%; transform: translateY(50%); border-radius: 22px; padding-bottom: 16px; animation: md-tona 0.18s ease; }
+}
+
+.md-snurra { width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid var(--sea); border-top-color: transparent; animation: md-snurr 0.7s linear infinite; margin: 40px auto; }
+
+@keyframes md-skimmer { from { background-position: 200% 0 } to { background-position: -200% 0 } }
+@keyframes md-puls { 0% { transform: scale(0.6); opacity: 0.5 } 100% { transform: scale(2.6); opacity: 0 } }
+@keyframes md-tona { from { opacity: 0 } to { opacity: 1 } }
+@keyframes md-upp { from { transform: translateY(24px); opacity: 0 } to { transform: none; opacity: 1 } }
+@keyframes md-snurr { to { transform: rotate(360deg) } }
+@media (prefers-reduced-motion: reduce) {
+  .md-rot *, .md-ark, .md-ark-bakgrund, .md-skel, .md-nal-puls { animation: none !important; transition: none !important; }
+  .md-nal-puls { display: none; }
+}

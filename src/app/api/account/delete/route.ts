@@ -8,6 +8,8 @@ import { clearSupabaseAuthCookies } from '@/lib/authCookies'
 import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
 import { logger } from '@/lib/logger'
+import { arDmBildSokvag } from '@/lib/dmBilder'
+import { taBortDmBilder, rensaBilderForRaderadeSamtal } from '@/lib/dmBilderRensning'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { harLosenord, farskInloggning, raderingBekraftad } from '@/lib/kontoBekraftelse'
 // TODO: wrap handlers with withSentrySimple(handler, 'account/delete') — se src/lib/api-handler.ts
@@ -129,6 +131,34 @@ export async function POST(req: NextRequest) {
     .update({ body: '[Borttaget av användare]', title: '[Borttaget av användare]' })
     .eq('user_id', userId)
 
+  // Användarens bilder i direktmeddelanden (privata hinken dm-bilder), lästa
+  // ur messages innan raderna tas bort. Täcker även samtal hen redan lämnat.
+  const dmBildSokvagar: string[] = []
+  for (let fran = 0; ; fran += 1000) {
+    const { data: rader } = await s.from('messages')
+      .select('conversation_id, attachment_url')
+      .eq('user_id', userId).eq('attachment_type', 'image')
+      .range(fran, fran + 999)
+    for (const r of rader ?? []) {
+      const url = r.attachment_url as string | null
+      if (!arDmBildSokvag(url)) continue
+      // Bara filer i hens egen mapp i samma samtal: attachment_url skrivs av
+      // klienten och får inte kunna peka ut någon annans bild.
+      const [samtal, avsandare] = url!.split('/')
+      if (samtal === r.conversation_id && avsandare === userId) dmBildSokvagar.push(url!)
+    }
+    if (!rader || rader.length < 1000) break
+  }
+  // Samtalen hen är med i. Är hen den sista som lämnar ett samtal raderar
+  // databasen samtalet (2026-11-26); då tas även den andras bilder bort nedan.
+  const dmSamtal: string[] = []
+  for (let fran = 0; ; fran += 1000) {
+    const { data: rader } = await s.from('conversation_participants')
+      .select('conversation_id').eq('user_id', userId).range(fran, fran + 999)
+    for (const r of rader ?? []) dmSamtal.push(r.conversation_id as string)
+    if (!rader || rader.length < 1000) break
+  }
+
   // ─── Steg 3: Cascade-delete user-specific data ────────────────────────
   // Tabeller som ska tömmas helt för denna user. Body-content (forum) hanteras ovan.
   // GDPR Art. 17: alla user-rader ska bort. Listan utvidgad i 2026-05 audit
@@ -219,6 +249,15 @@ export async function POST(req: NextRequest) {
     }
   } catch (e) {
     logger.error('account-delete', 'trip-images storage cleanup failed', { e: String(e), userId })
+  }
+
+  // Bilder i direktmeddelanden: dm-bilder, sökväg {konversation}/{userId}/{fil}.jpg.
+  // Anmälda bilder ligger kvar som underlag för admin (2026-11-26).
+  try {
+    await taBortDmBilder(s, dmBildSokvagar)
+    await rensaBilderForRaderadeSamtal(s, dmSamtal)
+  } catch (e) {
+    logger.error('account-delete', 'dm-bilder storage cleanup failed', { e: String(e), userId })
   }
 
   // Trip-bilder: trips-bucket, prefix {userId}-
