@@ -35,6 +35,8 @@ export const IKON = {
   lamna: 'M15 4h3a2 2 0 012 2v12a2 2 0 01-2 2h-3M10 17l-5-5 5-5M5 12h11',
   bat: 'M3 17l2 3h14l2-3M5 17V10l7-6 7 6v7M12 4v13',
   logga: 'M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3',
+  svar: 'M9 14L4 9l5-5M4 9h10a6 6 0 016 6v4',
+  smil: 'M12 21a9 9 0 100-18 9 9 0 000 18zM8.5 14.5s1.3 1.8 3.5 1.8 3.5-1.8 3.5-1.8M9 9.5h.01M15 9.5h.01',
 } as const
 
 export function Ikon({ d, s = 20, w = 2 }: { d: string; s?: number; w?: number }) {
@@ -222,7 +224,7 @@ export function DagAvdelare({ iso }: { iso: string }) {
 }
 
 /** En rad i samtalet: avatar (för andras), innehåll, tid och läst. */
-export function MeddelandeRad({ mine, nyGrupp, sist, skickar, avatar, tid, sett, handlers, children }: {
+export function MeddelandeRad({ mine, nyGrupp, sist, skickar, avatar, tid, sett, handlers, under, atgarder, markerad, radId, children }: {
   mine: boolean
   nyGrupp: boolean
   sist: boolean
@@ -231,15 +233,23 @@ export function MeddelandeRad({ mine, nyGrupp, sist, skickar, avatar, tid, sett,
   tid: string
   sett?: boolean
   handlers?: React.HTMLAttributes<HTMLDivElement>
+  /** Reaktionerna under bubblan */
+  under?: ReactNode
+  /** Knappar bredvid bubblan på dator (visas vid hovring och fokus) */
+  atgarder?: ReactNode
+  /** Kort markering när man hoppat hit från ett citat */
+  markerad?: boolean
+  radId?: string
   children: ReactNode
 }) {
-  const klass = ['md-rad', mine && 'md-rad--egen', nyGrupp && 'md-rad--ny-grupp', sist && 'md-rad--sist', skickar && 'md-rad--skickar']
+  const klass = ['md-rad', mine && 'md-rad--egen', nyGrupp && 'md-rad--ny-grupp', sist && 'md-rad--sist', skickar && 'md-rad--skickar', markerad && 'md-rad--markerad']
     .filter(Boolean).join(' ')
   return (
-    <div className={klass}>
+    <div className={klass} id={radId}>
       {!mine && <div className="md-av-plats">{sist ? avatar : null}</div>}
       <div className="md-kol" {...handlers}>
         {children}
+        {under}
         {sist && (
           <span className="md-tid" title={absoluteDate(tid)}>{skickar ? 'Skickar…' : meddelandeTid(tid)}</span>
         )}
@@ -247,6 +257,7 @@ export function MeddelandeRad({ mine, nyGrupp, sist, skickar, avatar, tid, sett,
           <span className="md-sett"><Bockar dubbel /> Läst</span>
         )}
       </div>
+      {atgarder && <div className="md-hover">{atgarder}</div>}
     </div>
   )
 }
@@ -383,7 +394,7 @@ export function TurKort({ meta }: { meta: TripMeta }) {
 
 // ─── Skrivfältet ─────────────────────────────────────────────────────────────
 
-export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onBild, onPosition, laddarBild, delarPosition, onFokus }: {
+export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onBild, onPosition, laddarBild, delarPosition, onFokus, ovanfor, fokusSignal }: {
   text: string
   setText: (t: string) => void
   onSkicka: () => void
@@ -394,8 +405,15 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onB
   laddarBild: boolean
   delarPosition: boolean
   onFokus?: () => void
+  /** Visas ovanför fältet, t.ex. vilket meddelande man svarar på */
+  ovanfor?: ReactNode
+  /** Ändras värdet får fältet fokus (t.ex. efter Svara i menyn) */
+  fokusSignal?: number
 }) {
   const ref = useRef<HTMLTextAreaElement>(null)
+  useEffect(() => {
+    if (fokusSignal) ref.current?.focus()
+  }, [fokusSignal])
   // Fältet växer med texten upp till sex rader, sedan skrollar det.
   useEffect(() => {
     const el = ref.current
@@ -406,6 +424,7 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onB
 
   return (
     <form className="md-komp" onSubmit={e => { e.preventDefault(); onSkicka() }}>
+      {ovanfor}
       <div className="md-komp-rad">
         <button type="button" className="md-rund" onClick={onBild} disabled={laddarBild}
           aria-label={laddarBild ? 'Laddar upp bild' : 'Skicka en bild'} aria-busy={laddarBild}>

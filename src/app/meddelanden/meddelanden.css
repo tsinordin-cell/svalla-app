@@ -335,6 +335,102 @@
 @keyframes md-upp { from { transform: translateY(24px); opacity: 0 } to { transform: none; opacity: 1 } }
 @keyframes md-snurr { to { transform: rotate(360deg) } }
 @media (prefers-reduced-motion: reduce) {
-  .md-rot *, .md-ark, .md-ark-bakgrund, .md-skel, .md-nal-puls { animation: none !important; transition: none !important; }
+  .md-rot *, .md-ark, .md-ark-bakgrund, .md-skel, .md-nal-puls, .md-meny-lager * { animation: none !important; transition: none !important; }
   .md-nal-puls { display: none; }
 }
+
+/* ─── Menyn vid långt tryck (PR: svar och reaktioner) ───────────────────────
+ * Meddelandet lyfts fram över en suddig bakgrund, med reaktioner ovanför och
+ * valen under, som i de stora meddelandeapparna. */
+.md-meny-lager { position: fixed; inset: 0; z-index: 1000; }
+.md-meny-lager * { box-sizing: border-box; }
+:where(.md-meny-lager) button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; padding: 0; -webkit-tap-highlight-color: transparent; }
+.md-meny-lager :focus-visible { outline: 2px solid var(--sea); outline-offset: 2px; }
+.md-meny-sloja {
+  position: absolute; inset: 0;
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2);
+  animation: md-tona 0.16s ease;
+}
+.md-meny-stack {
+  position: absolute; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  max-width: calc(100vw - 24px);
+  animation: md-lyft 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform-origin: top left;
+}
+.md-meny-stack--egen { align-items: flex-end; transform-origin: top right; }
+.md-meny-emoji {
+  display: flex; gap: 2px; padding: 5px 6px; border-radius: 999px; max-width: 100%;
+  background: var(--white); box-shadow: 0 0 0 1px var(--md-linje), 0 12px 32px rgba(10, 25, 40, 0.18);
+}
+.md-meny-emoji button {
+  width: 42px; height: 42px; border-radius: 50%; font-size: 24px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.md-meny-emoji button:hover, .md-meny-emoji button:active { transform: scale(1.18); background: var(--md-vald); }
+.md-meny-emoji .md-meny-emoji--vald { background: var(--md-vald); box-shadow: inset 0 0 0 1.5px var(--sea); }
+.md-meny-lyft { margin: 0; pointer-events: none; overflow: hidden; border-radius: 22px; }
+.md-meny-lyft .md-kol { max-width: none; }
+.md-meny-lyft .md-bubbla, .md-meny-lyft .md-bild, .md-meny-lyft .md-kort, .md-meny-lyft .md-citat {
+  box-shadow: 0 10px 30px rgba(10, 25, 40, 0.22);
+}
+.md-meny-val {
+  min-width: 228px; max-width: 100%; border-radius: 16px; overflow: hidden;
+  background: var(--white); box-shadow: 0 0 0 1px var(--md-linje), 0 12px 32px rgba(10, 25, 40, 0.18);
+}
+.md-meny-rad {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%;
+  min-height: 48px; padding: 0 16px; font-size: 16px; color: var(--txt); text-align: left;
+}
+.md-meny-rad + .md-meny-rad { border-top: 1px solid var(--md-linje); }
+.md-meny-rad:hover, .md-meny-rad:active { background: var(--md-vald); }
+.md-meny-rad svg { color: var(--txt2); flex-shrink: 0; }
+.md-meny-rad--fara, .md-meny-rad--fara svg { color: var(--fara); }
+
+/* Reaktioner under bubblan, lite över dess underkant */
+.md-reak { display: flex; flex-wrap: wrap; gap: 4px; margin-top: -9px; padding: 0 8px; position: relative; z-index: 1; }
+.md-reak button {
+  display: inline-flex; align-items: center; gap: 3px; height: 26px; padding: 0 8px; border-radius: 999px;
+  font-size: 15px; line-height: 1; background: var(--white);
+  box-shadow: 0 0 0 2px var(--bg), 0 1px 4px rgba(10, 25, 40, 0.14);
+}
+.md-reak .md-reak--min { background: var(--md-vald); box-shadow: 0 0 0 2px var(--bg), inset 0 0 0 1.5px var(--sea); }
+.md-reak-n { font-size: 12.5px; font-weight: 600; color: var(--txt2); font-variant-numeric: tabular-nums; }
+
+/* Citat överst i ett svar */
+.md-citat {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px; max-width: 100%;
+  padding: 7px 12px 8px; margin-bottom: -1px; border-radius: 16px; text-align: left;
+  background: var(--md-vald); box-shadow: inset 3px 0 0 var(--sea); color: var(--txt2);
+}
+.md-citat:disabled { cursor: default; opacity: 1; }
+.md-citat-vem { font-size: 12.5px; font-weight: 600; color: var(--txt2); }
+.md-citat-text {
+  font-size: 14px; line-height: 1.35; color: var(--txt2); overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* Raden ovanför skrivfältet när man svarar */
+.md-svarsrad {
+  display: flex; align-items: center; gap: 10px; width: 100%; max-width: 760px; margin: 0 auto 6px;
+  padding: 6px 4px 6px 12px; border-radius: 14px; background: var(--md-vald); color: var(--sea);
+}
+.md-svarsrad-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.md-svarsrad .md-citat-text { -webkit-line-clamp: 1; }
+.md-rund--liten { width: 32px !important; height: 32px !important; color: var(--txt2); }
+
+/* Knappar bredvid bubblan på dator */
+.md-hover { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .md-hover { display: flex; align-items: center; gap: 2px; align-self: center; opacity: 0; transition: opacity 0.12s ease; }
+  .md-rad:hover .md-hover, .md-rad:focus-within .md-hover { opacity: 1; }
+}
+.md-hover-knapp { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--txt3); }
+.md-hover-knapp:hover { background: var(--md-vald); color: var(--txt); }
+
+/* Kort markering när man hoppat till originalet från ett citat */
+.md-rad--markerad .md-bubbla, .md-rad--markerad .md-bild, .md-rad--markerad .md-kort { animation: md-blink 1.6s ease; }
+
+@keyframes md-lyft { from { transform: scale(0.96); opacity: 0 } to { transform: none; opacity: 1 } }
+@keyframes md-blink { 0%, 40% { box-shadow: 0 0 0 3px var(--sea) } 100% { box-shadow: 0 0 0 3px transparent } }

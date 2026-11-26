@@ -10,13 +10,31 @@ import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import {
-  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt,
+  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt,
   TextBubbla, TomtLage, TurKort, type GeoMeta, type TripMeta,
 } from '@/components/meddelanden/Delar'
+import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, type Reaktion } from '@/components/meddelanden/Meny'
 import { reverseGeocode } from '@/lib/reverse-geocode'
 import type { Message, Conversation } from '@/lib/supabase'
 
-type MsgWithMeta = Message & { username?: string; avatar?: string | null; optimistic?: boolean }
+type MsgWithMeta = Message & { reply_to_id?: string | null; username?: string; avatar?: string | null; optimistic?: boolean }
+
+type MenyLage = { msgId: string; rect: { top: number; left: number; right: number; height: number } }
+
+/** Kort text för ett meddelande i ett citat eller i svarsraden. */
+function kortText(m: MsgWithMeta): string {
+  if (m.content) return m.content
+  if (m.attachment_type === 'image') return 'Bild'
+  if (m.attachment_type === 'geo') return 'Position'
+  if (m.attachment_type === 'trip') return 'Tur'
+  return 'Meddelande'
+}
+
+function saknasIDatabasen(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return false
+  return ['42P01', '42703', 'PGRST204', 'PGRST205'].includes(error.code ?? '') ||
+    /does not exist|Could not find/i.test(error.message ?? '')
+}
 
 function sameDay(a: string, b: string): boolean {
   try {
@@ -64,12 +82,18 @@ export default function ChatPage() {
   const [otherId, setOtherId] = useState<string | null>(null)
   const [otherReadAt, setOtherReadAt] = useState<string | null>(null)
 
-  // Long-press action sheet (per meddelande)
-  const [actionSheet, setActionSheet] = useState<{
-    msgId: string | null
-    isOwn: boolean
-    show: boolean
-  }>({ msgId: null, isOwn: false, show: false })
+  // Menyn vid långt tryck (per meddelande)
+  const [meny, setMeny] = useState<MenyLage | null>(null)
+
+  // Svar och reaktioner. Stödet känns av, så att sidan fungerar både före och
+  // efter att databasändringen (20261126000004) är körd.
+  const [stod, setStod] = useState<{ reaktioner: boolean; svar: boolean }>({ reaktioner: false, svar: false })
+  const [reaktioner, setReaktioner] = useState<Reaktion[]>([])
+  const reaktionerRef = useRef<Reaktion[]>([])
+  reaktionerRef.current = reaktioner
+  const [svarPa, setSvarPa] = useState<string | null>(null)
+  const [fokusSignal, setFokusSignal] = useState(0)
+  const [markerad, setMarkerad] = useState<string | null>(null)
 
   // Konversationsmeny (⋯ i headern)
   const [convMenu, setConvMenu] = useState(false)
@@ -88,7 +112,6 @@ export default function ChatPage() {
   const listRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const userMapRef = useRef<Record<string, { username: string; avatar: string | null }>>({})
-  const longPressDidFire = useRef(false)
 
   // Bootstrap
   useEffect(() => {
@@ -211,6 +234,31 @@ export default function ChatPage() {
     return () => { avbruten = true }
   }, [messages, bildLankar, supabase])
 
+  const loadReaktioner = useCallback(async () => {
+    const { data, error } = await supabase
+      .from('message_reactions')
+      .select('id, message_id, user_id, emoji')
+      .eq('conversation_id', id)
+      .limit(2000)
+    if (error) {
+      if (saknasIDatabasen(error)) setStod(s => ({ ...s, reaktioner: false }))
+      return
+    }
+    setStod(s => (s.reaktioner ? s : { ...s, reaktioner: true }))
+    setReaktioner((data ?? []) as Reaktion[])
+  }, [supabase, id])
+
+  // Känn av om databasen har stöd för svar och reaktioner.
+  useEffect(() => {
+    if (!me) return
+    let avbruten = false
+    loadReaktioner()
+    supabase.from('messages').select('reply_to_id').eq('conversation_id', id).limit(1).then(({ error }) => {
+      if (!avbruten) setStod(s => ({ ...s, svar: !error }))
+    }, () => {})
+    return () => { avbruten = true }
+  }, [supabase, id, me, loadReaktioner])
+
   // Realtime
   useEffect(() => {
     if (!me) return
@@ -237,12 +285,33 @@ export default function ChatPage() {
             if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
           },
         )
-        .subscribe()
+      // Reaktioner lyssnas bara på när tabellen finns, annars kan hela kanalen fallera.
+      if (stod.reaktioner) {
+        ch = ch
+          .on('postgres_changes',
+            { event: 'INSERT', schema: 'public', table: 'message_reactions', filter: `conversation_id=eq.${id}` },
+            () => { loadReaktioner() },
+          )
+          .on('postgres_changes',
+            { event: 'UPDATE', schema: 'public', table: 'message_reactions', filter: `conversation_id=eq.${id}` },
+            () => { loadReaktioner() },
+          )
+          // Borttagningar går inte att filtrera per samtal. De innehåller bara radens id,
+          // så vi läser om bara när det är en reaktion som finns i det här samtalet.
+          .on('postgres_changes',
+            { event: 'DELETE', schema: 'public', table: 'message_reactions' },
+            (p: { old?: { id?: string } }) => {
+              const gid = p.old?.id
+              if (gid && reaktionerRef.current.some(r => r.id === gid)) loadReaktioner()
+            },
+          )
+      }
+      ch.subscribe()
     } catch {
       // Realtime-prenumeration misslyckades — chatt fungerar utan realtid (pull-to-refresh)
     }
     return () => { if (ch) supabase.removeChannel(ch) }
-  }, [supabase, id, me, loadMessages])
+  }, [supabase, id, me, loadMessages, loadReaktioner, stod.reaktioner])
 
   // Presence — signalera att jag är aktiv i denna chatt så servern inte pushar hit
   useEffect(() => {
@@ -279,6 +348,8 @@ export default function ChatPage() {
     if (!me || !content || posting) return
     setPosting(true)
     setText('')
+    const svar = stod.svar ? svarPa : null
+    setSvarPa(null)
 
     const tempId = `opt-${Date.now()}`
     const nowIso = new Date().toISOString()
@@ -288,6 +359,7 @@ export default function ChatPage() {
       user_id: me,
       content,
       attachment_type: null, attachment_url: null, attachment_meta: null,
+      reply_to_id: svar,
       created_at: nowIso,
       username: userMapRef.current[me]?.username ?? 'Du',
       avatar: userMapRef.current[me]?.avatar ?? null,
@@ -295,11 +367,12 @@ export default function ChatPage() {
     }])
 
     const { data: inserted, error } = await supabase.from('messages').insert({
-      conversation_id: id, user_id: me, content,
+      conversation_id: id, user_id: me, content, ...(svar ? { reply_to_id: svar } : {}),
     }).select('id').single()
     if (error || !inserted) {
       setMessages(prev => prev.filter(m => m.id !== tempId))
       setText(content)
+      setSvarPa(svar)
       setPosting(false)
       toast(felText(error), 'error')
       return
@@ -321,14 +394,17 @@ export default function ChatPage() {
 
   async function sendAttachment(type: 'image' | 'geo', url: string, meta: Record<string, unknown>): Promise<boolean> {
     if (!me) return false
+    const svar = stod.svar ? svarPa : null
     const { data: inserted, error } = await supabase.from('messages').insert({
       conversation_id: id, user_id: me,
       content: null, attachment_type: type, attachment_url: url, attachment_meta: meta,
+      ...(svar ? { reply_to_id: svar } : {}),
     }).select('id').single()
     if (error || !inserted) {
       toast(felText(error), 'error')
       return false
     }
+    if (svar) setSvarPa(null)
     await loadMessages(me)
     pushToOthers({ messageId: inserted.id as string })
     return true
@@ -387,7 +463,7 @@ export default function ChatPage() {
   }
 
   async function handleDeleteMessage(msgId: string) {
-    setActionSheet({ msgId: null, isOwn: false, show: false })
+    setMeny(null)
     setConfirmSheet({
       title: 'Radera meddelande',
       body: conv?.is_group ? 'Meddelandet tas bort för alla i samtalet.' : 'Meddelandet tas bort för er båda.',
@@ -398,6 +474,8 @@ export default function ChatPage() {
           bild?.attachment_type === 'image' ? bild.attachment_url : null)
         if (ok) {
           setMessages(prev => prev.filter(m => m.id !== msgId))
+          setReaktioner(prev => prev.filter(r => r.message_id !== msgId))
+          setSvarPa(prev => (prev === msgId ? null : prev))
         } else {
           toast('Kunde inte radera meddelandet.', 'error')
         }
@@ -406,7 +484,7 @@ export default function ChatPage() {
   }
 
   async function handleLeaveConversation() {
-    setActionSheet({ msgId: null, isOwn: false, show: false })
+    setMeny(null)
     setConvMenu(false)
     if (!me || !conv) return
     setConfirmSheet({
@@ -427,7 +505,7 @@ export default function ChatPage() {
   }
 
   async function handleBlockUser() {
-    setActionSheet({ msgId: null, isOwn: false, show: false })
+    setMeny(null)
     setConvMenu(false)
     if (!me || !otherId) return
     setConfirmSheet({
@@ -446,12 +524,76 @@ export default function ChatPage() {
     })
   }
 
-  function onLongPressStart(msgId: string, isOwn: boolean) {
-    longPressDidFire.current = false
+  function oppnaMeny(msgId: string, el: Element | null | undefined) {
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    // Tangentbordet på telefonen stängs, så att menyn får plats.
+    if (document.activeElement instanceof HTMLElement) document.activeElement.blur()
+    try { navigator.vibrate?.(8) } catch { /* stöds inte på iPhone */ }
+    setMeny({ msgId, rect: { top: r.top, left: r.left, right: r.right, height: r.height } })
+  }
+
+  function onLongPressStart(msgId: string, el: HTMLElement) {
+    if (longPressTimer.current) clearTimeout(longPressTimer.current)
     longPressTimer.current = setTimeout(() => {
-      longPressDidFire.current = true
-      setActionSheet({ msgId, isOwn, show: true })
-    }, 450)
+      longPressTimer.current = null
+      oppnaMeny(msgId, el)
+    }, 420)
+  }
+
+  function svara(msgId: string) {
+    setMeny(null)
+    setSvarPa(msgId)
+    setFokusSignal(n => n + 1)
+  }
+
+  function hoppaTill(msgId: string) {
+    const el = document.getElementById(`m-${msgId}`)
+    if (!el) return
+    el.scrollIntoView({ block: 'center', behavior: 'smooth' })
+    setMarkerad(msgId)
+    setTimeout(() => setMarkerad(prev => (prev === msgId ? null : prev)), 1600)
+  }
+
+  async function kopieraText(text: string) {
+    try {
+      await navigator.clipboard.writeText(text)
+      toast('Kopierat', 'success')
+    } catch {
+      toast('Kunde inte kopiera', 'error')
+    }
+  }
+
+  function reaktionsFel(error: { code?: string; message?: string } | null): string {
+    if (arRegelstopp(error)) return BLOCKERAD_TEXT
+    if (error?.message?.includes('För många reaktioner')) return 'Du reagerar väldigt ofta. Vänta en minut.'
+    return 'Reaktionen kunde inte sparas. Försök igen.'
+  }
+
+  // Samma emoji igen tar bort reaktionen. En annan emoji ersätter den.
+  async function reagera(msgId: string, emoji: string) {
+    if (!me || !stod.reaktioner) return
+    const forra = reaktionerRef.current
+    const finns = forra.find(r => r.message_id === msgId && r.user_id === me)
+    if (finns && finns.emoji === emoji) {
+      setReaktioner(prev => prev.filter(r => r.id !== finns.id))
+      const { error } = await supabase.from('message_reactions').delete().eq('id', finns.id)
+      if (error) { setReaktioner(forra); toast('Reaktionen kunde inte tas bort. Försök igen.', 'error') }
+      return
+    }
+    const tillfallig: Reaktion = { id: finns?.id ?? `opt-${Date.now()}`, message_id: msgId, user_id: me, emoji }
+    setReaktioner(prev => [...prev.filter(r => !(r.message_id === msgId && r.user_id === me)), tillfallig])
+    const { data, error } = await supabase
+      .from('message_reactions')
+      .upsert({ message_id: msgId, user_id: me, emoji }, { onConflict: 'message_id,user_id' })
+      .select('id, message_id, user_id, emoji')
+      .single()
+    if (error || !data) {
+      setReaktioner(forra)
+      toast(reaktionsFel(error), 'error')
+      return
+    }
+    setReaktioner(prev => [...prev.filter(r => !(r.message_id === msgId && r.user_id === me)), data as Reaktion])
   }
 
   function onLongPressEnd() {
@@ -566,7 +708,7 @@ export default function ChatPage() {
     return result
   }, [otherReadAt, messages, me])
 
-  const stangAtgard = useCallback(() => setActionSheet({ msgId: null, isOwn: false, show: false }), [])
+  const stangAtgard = useCallback(() => setMeny(null), [])
   const stangMeny = useCallback(() => setConvMenu(false), [])
   const stangBekraftelse = useCallback(() => setConfirmSheet(null), [])
   const arMottagareAvForfragan = conv?.status === 'request' && !!me && conv.created_by !== me
@@ -581,10 +723,55 @@ export default function ChatPage() {
     }
   }
 
+  const reaktionerPer = useMemo(() => {
+    const per = new Map<string, Reaktion[]>()
+    for (const r of reaktioner) {
+      const l = per.get(r.message_id)
+      if (l) l.push(r); else per.set(r.message_id, [r])
+    }
+    return per
+  }, [reaktioner])
+  const msgById = useMemo(() => new Map(messages.map(m => [m.id, m])), [messages])
+  // Den som fått en förfrågan svarar och reagerar först när den är accepterad.
+  const kanInteragera = !arMottagareAvForfragan && conv?.status !== 'declined'
+  const menyMsg = meny ? msgById.get(meny.msgId) ?? null : null
+  const svarMedd = svarPa ? msgById.get(svarPa) ?? null : null
+
+  function vemNamn(m: MsgWithMeta): string {
+    return m.user_id === me ? 'Du' : (m.username ?? 'Seglare')
+  }
+
   function bildSrc(url: string): string | undefined {
     // Privat hink: tidsbegränsad länk. Gamla bilder (publika länkar) visas bara från Svallas egen lagring.
     if (arDmBildSokvag(url)) return bildLankar[url]
     return url.startsWith(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/`) ? url : undefined
+  }
+
+  /** Innehållet i en bubbla. Används både i flödet och i den upplyfta menyn. */
+  function bubblor(m: MsgWithMeta, iMeny = false) {
+    const orig = m.reply_to_id ? msgById.get(m.reply_to_id) : undefined
+    return (
+      <>
+        {m.reply_to_id && (orig
+          ? <Citat vem={vemNamn(orig)} text={kortText(orig)} onTryck={iMeny ? undefined : () => hoppaTill(orig.id)} />
+          : <Citat vem="Svar" text="Ett tidigare meddelande" />)}
+        {m.attachment_type === 'image' && m.attachment_url && (() => {
+          const url = m.attachment_url as string
+          return (
+            <BildBubbla src={bildSrc(url)}
+              // Länken gäller en timme. Går den ut hämtas en ny.
+              onFel={() => { if (arDmBildSokvag(url)) setBildLankar(prev => { const n = { ...prev }; delete n[url]; return n }) }} />
+          )
+        })()}
+        {m.attachment_type === 'geo' && m.attachment_meta && (
+          <Sjokort meta={m.attachment_meta as GeoMeta} href={m.attachment_url} onKopiera={kopiera} />
+        )}
+        {m.attachment_type === 'trip' && m.attachment_meta && (
+          <TurKort meta={m.attachment_meta as TripMeta} />
+        )}
+        {m.content && <TextBubbla text={m.content} />}
+      </>
+    )
   }
 
   return (
@@ -631,39 +818,42 @@ export default function ChatPage() {
             <div key={m.id}>
               {m.needsDaySep && <DagAvdelare iso={m.created_at} />}
               <MeddelandeRad
+                radId={`m-${m.id}`}
                 mine={m.mine}
                 nyGrupp={m.nyGrupp}
                 sist={m.isLastInGroup}
                 skickar={m.optimistic}
+                markerad={markerad === m.id}
                 tid={m.created_at}
                 sett={m.mine && m.id === lastReadMsgId}
                 avatar={<Avatar namn={m.username ?? 'Seglare'} nyckel={m.username ?? m.user_id} bild={m.avatar} s={28} />}
-                handlers={{
-                  onMouseDown: () => onLongPressStart(m.id, m.mine),
-                  onMouseUp: onLongPressEnd,
-                  onMouseLeave: onLongPressEnd,
-                  onTouchStart: () => onLongPressStart(m.id, m.mine),
+                handlers={m.optimistic ? undefined : {
+                  onTouchStart: e => onLongPressStart(m.id, e.currentTarget),
                   onTouchEnd: onLongPressEnd,
                   onTouchMove: onLongPressEnd,
-                  onClick: () => { if (m.mine && !longPressDidFire.current) setActionSheet({ msgId: m.id, isOwn: true, show: true }) },
-                  onContextMenu: e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) },
+                  onTouchCancel: onLongPressEnd,
+                  onContextMenu: e => { e.preventDefault(); onLongPressEnd(); oppnaMeny(m.id, e.currentTarget) },
                 }}
+                under={stod.reaktioner && (
+                  <ReaktionsRad lista={reaktionerPer.get(m.id) ?? []} me={me} mine={m.mine}
+                    onTryck={e => { if (kanInteragera) reagera(m.id, e) }} />
+                )}
+                atgarder={m.optimistic ? undefined : (
+                  <>
+                    {stod.svar && kanInteragera && (
+                      <button type="button" className="md-hover-knapp" aria-label="Svara" title="Svara" onClick={() => svara(m.id)}>
+                        <Ikon d={IKON.svar} s={17} w={1.9} />
+                      </button>
+                    )}
+                    <button type="button" className="md-hover-knapp" aria-label={stod.reaktioner && kanInteragera ? 'Reagera och fler val' : 'Fler val'}
+                      title={stod.reaktioner && kanInteragera ? 'Reagera' : 'Fler val'}
+                      onClick={e => oppnaMeny(m.id, e.currentTarget.closest('.md-rad')?.querySelector('.md-kol'))}>
+                      <Ikon d={stod.reaktioner && kanInteragera ? IKON.smil : IKON.mer} s={17} w={1.9} />
+                    </button>
+                  </>
+                )}
               >
-                {m.attachment_type === 'image' && m.attachment_url && (() => {
-                  const url = m.attachment_url as string
-                  return (
-                    <BildBubbla src={bildSrc(url)}
-                      // Länken gäller en timme. Går den ut hämtas en ny.
-                      onFel={() => { if (arDmBildSokvag(url)) setBildLankar(prev => { const n = { ...prev }; delete n[url]; return n }) }} />
-                  )
-                })()}
-                {m.attachment_type === 'geo' && m.attachment_meta && (
-                  <Sjokort meta={m.attachment_meta as GeoMeta} href={m.attachment_url} onKopiera={kopiera} />
-                )}
-                {m.attachment_type === 'trip' && m.attachment_meta && (
-                  <TurKort meta={m.attachment_meta as TripMeta} />
-                )}
-                {m.content && <TextBubbla text={m.content} />}
+                {bubblor(m)}
               </MeddelandeRad>
             </div>
           ))}
@@ -684,6 +874,11 @@ export default function ChatPage() {
             onPosition={confirmShareGeo}
             laddarBild={uploading}
             delarPosition={sharingGeo}
+            fokusSignal={fokusSignal}
+            ovanfor={svarMedd ? (
+              <SvarsRad vem={svarMedd.user_id === me ? 'dig själv' : (svarMedd.username ?? 'Seglare')}
+                text={kortText(svarMedd)} onAvbryt={() => setSvarPa(null)} />
+            ) : null}
             onFokus={() => {
               setTimeout(() => {
                 listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' })
@@ -693,21 +888,22 @@ export default function ChatPage() {
         </>
       )}
 
-      {/* Meddelandets åtgärder (långt tryck, eller tryck på eget meddelande) */}
-      {actionSheet.show && (
-        <Ark onStang={stangAtgard} etikett="Åtgärder för meddelandet">
-          {actionSheet.isOwn && actionSheet.msgId && (
-            <ArkRad ikon={IKON.soptunna} label="Radera meddelande" fara onClick={() => handleDeleteMessage(actionSheet.msgId!)} />
-          )}
-          {!actionSheet.isOwn && actionSheet.msgId && (
-            <ArkRad ikon={IKON.flagga} label="Anmäl meddelande" fara onClick={() => {
-              const mid = actionSheet.msgId!
-              stangAtgard()
-              setAnmalan({ typ: 'message', id: mid })
-            }} />
-          )}
-          <ArkRad ikon={IKON.stang} label="Avbryt" onClick={stangAtgard} />
-        </Ark>
+      {/* Menyn vid långt tryck: meddelandet lyfts fram med reaktioner och val */}
+      {meny && menyMsg && (
+        <MeddelandeMeny
+          key={menyMsg.id}
+          rect={meny.rect}
+          mine={menyMsg.user_id === me}
+          innehall={bubblor(menyMsg, true)}
+          reaktioner={stod.reaktioner && kanInteragera}
+          minReaktion={reaktioner.find(r => r.message_id === menyMsg.id && r.user_id === me)?.emoji ?? null}
+          onReagera={e => { stangAtgard(); reagera(menyMsg.id, e) }}
+          onSvara={stod.svar && kanInteragera ? () => svara(menyMsg.id) : undefined}
+          onKopiera={menyMsg.content ? () => { stangAtgard(); kopieraText(menyMsg.content as string) } : undefined}
+          onRadera={menyMsg.user_id === me ? () => handleDeleteMessage(menyMsg.id) : undefined}
+          onAnmal={menyMsg.user_id !== me ? () => { stangAtgard(); setAnmalan({ typ: 'message', id: menyMsg.id }) } : undefined}
+          onStang={stangAtgard}
+        />
       )}
 
       {/* Samtalets meny (⋯ uppe till höger) */}
