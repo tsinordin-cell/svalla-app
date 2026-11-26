@@ -448,6 +448,16 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         const stor = Math.min(W * 0.11, H * 0.12)
         c.font = `700 ${stor}px ${serif}`
         const ls = c as unknown as { letterSpacing?: string }
+        // Startscenen: "Skärgården börjar här" som rubrik i halva SVALLA-storleken, med en rad om vilka Svalla är till för (Max 2026-11-26).
+        // Loggan i menyraden visar redan SVALLA. Introt i del 1 är oförändrat.
+        if (varld) {
+          const rub = stor * 0.5
+          c.font = `700 ${rub}px ${serif}`
+          if ('letterSpacing' in c) ls.letterSpacing = '0px'
+          c.fillText('Skärgården börjar här', W / 2, H * 0.2)
+          c.font = `500 ${Math.max(12, rub * 0.42)}px ${sans}`
+          c.fillText('För öbon, företagaren, besökaren och familjen.', W / 2, H * 0.2 + rub * 0.95)
+        } else {
         // SVALLA med optiskt jämn luft (Max 2026-11-25): mellanrum per par S–V, V–A, A–L, L–L och L–A i em,
         // uppmätt mot bläcket i Playfair Display 700 så att alla mellanrum ser lika stora ut. En bokstav i taget.
         if ('letterSpacing' in c) ls.letterSpacing = '0px'
@@ -461,6 +471,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         c.font = `700 ${Math.max(10, stor * 0.17)}px ${sans}`
         if ('letterSpacing' in c) ls.letterSpacing = `${stor * 0.05}px`
         c.fillText('SKÄRGÅRDEN BÖRJAR HÄR', W / 2, H * 0.2 + stor * 0.42)
+        }
         gl.bindTexture(gl.TEXTURE_2D, txtTex)
         gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, tc)
