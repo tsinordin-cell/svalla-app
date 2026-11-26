@@ -7,7 +7,7 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 // ─── Typer ────────────────────────────────────────────────────────────────────
 
 export type ReportTargetType =
-  | 'trip' | 'comment' | 'user' | 'message' | 'review' | 'story' | 'checkin'
+  | 'trip' | 'comment' | 'user' | 'message' | 'review' | 'story' | 'checkin' | 'forum_thread'
 
 export type ReportReason =
   | 'spam' | 'harassment' | 'inappropriate' | 'misinformation' | 'underage' | 'other'
@@ -200,6 +200,7 @@ export const TARGET_TYPE_LABELS: Record<ReportTargetType, string> = {
   review:   'Recension',
   story:    'Story',
   checkin:  'Check-in',
+  forum_thread: 'Forumtråd',
 }
 
 export const STATUS_LABELS: Record<ReportStatus, string> = {

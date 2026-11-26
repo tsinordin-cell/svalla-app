@@ -40,6 +40,49 @@ export default async function ModerationPage({
 
   const queue = await getModerationQueue(supabase, statusFilter, limit, page * limit)
 
+  // Underlag för anmälda meddelanden och trådar. Bara admin kan läsa tabellen.
+  // Finns den inte ännu (migrationen ej körd) blir listan tom.
+  type Underlag = {
+    report_id: string; message_id: string; avsandare_id: string | null
+    innehall: string | null; bilaga_typ: string | null; bilaga_sokvag: string | null
+    bilaga_meta: { lat?: number; lng?: number } | null; skickat_at: string; ar_anmalt: boolean
+  }
+  const underlagIds = queue.filter(q => q.target_type === 'message' || q.target_type === 'user').map(q => q.id)
+  let underlag: Underlag[] = []
+  if (underlagIds.length > 0) {
+    const { data } = await supabase
+      .from('anmalan_underlag')
+      .select('report_id, message_id, avsandare_id, innehall, bilaga_typ, bilaga_sokvag, bilaga_meta, skickat_at, ar_anmalt')
+      .in('report_id', underlagIds)
+      .order('skickat_at', { ascending: true })
+    underlag = (data ?? []) as Underlag[]
+  }
+  const underlagPerAnmalan = new Map<string, Underlag[]>()
+  for (const u of underlag) {
+    const lista = underlagPerAnmalan.get(u.report_id) ?? []
+    lista.push(u)
+    underlagPerAnmalan.set(u.report_id, lista)
+  }
+
+  // Användarnamn för avsändare i underlaget och för anmälda användare.
+  const anvandarIds = [...new Set([
+    ...underlag.map(u => u.avsandare_id).filter((x): x is string => !!x),
+    ...queue.filter(q => q.target_type === 'user').map(q => q.target_id),
+  ])]
+  const anvandarnamn = new Map<string, string>()
+  if (anvandarIds.length > 0) {
+    const { data } = await supabase.from('users').select('id, username').in('id', anvandarIds)
+    for (const u of (data ?? []) as { id: string; username: string }[]) anvandarnamn.set(u.id, u.username)
+  }
+
+  // Tidsbegränsade länkar till anmälda chattbilder (privat hink).
+  const bildLankar = new Map<string, string>()
+  for (const u of underlag) {
+    if (!u.bilaga_sokvag) continue
+    const { data } = await supabase.storage.from('dm-bilder').createSignedUrl(u.bilaga_sokvag, 3600)
+    if (data?.signedUrl) bildLankar.set(u.bilaga_sokvag, data.signedUrl)
+  }
+
   // Räkna öppna
   const { count: openCount } = await supabase
     .from('reports')
@@ -226,9 +269,9 @@ export default async function ModerationPage({
                         Visa tur ↗
                       </a>
                     )}
-                    {item.target_type === 'user' && (
+                    {item.target_type === 'user' && anvandarnamn.get(item.target_id) && (
                       <a
-                        href={`/admin/moderation/user/${item.target_id}`}
+                        href={`/u/${encodeURIComponent(anvandarnamn.get(item.target_id)!)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{
@@ -237,11 +280,62 @@ export default async function ModerationPage({
                           textDecoration: 'none', display: 'block', whiteSpace: 'nowrap',
                         }}
                       >
-                        Visa användare ↗
+                        Visa @{anvandarnamn.get(item.target_id)} ↗
                       </a>
                     )}
                   </div>
                 </div>
+
+                {/* Underlag från meddelanden */}
+                {(underlagPerAnmalan.get(item.id)?.length ?? 0) > 0 && (
+                  <div style={{
+                    marginBottom: 12, padding: '10px 12px', borderRadius: 12,
+                    background: 'rgba(10,123,140,0.04)', border: '1px solid rgba(10,123,140,0.10)',
+                  }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: 8 }}>
+                      Underlag ur meddelanden
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                      {underlagPerAnmalan.get(item.id)!.map(u => {
+                        const namn = u.avsandare_id ? anvandarnamn.get(u.avsandare_id) : null
+                        const bild = u.bilaga_sokvag ? bildLankar.get(u.bilaga_sokvag) : null
+                        const pos = u.bilaga_meta && typeof u.bilaga_meta.lat === 'number' && typeof u.bilaga_meta.lng === 'number'
+                          ? `${u.bilaga_meta.lat.toFixed(4)}, ${u.bilaga_meta.lng.toFixed(4)}` : null
+                        return (
+                          <div key={u.message_id} style={{
+                            padding: '6px 10px', borderRadius: 8,
+                            background: u.ar_anmalt ? 'rgba(200,30,30,0.07)' : 'transparent',
+                            border: u.ar_anmalt ? '1px solid rgba(200,30,30,0.25)' : '1px solid transparent',
+                          }}>
+                            <div style={{ fontSize: 11, color: 'var(--txt3)', marginBottom: 2 }}>
+                              <strong>@{namn ?? 'raderat konto'}</strong>
+                              {' · '}
+                              {new Date(u.skickat_at).toLocaleString('sv-SE', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}
+                              {u.ar_anmalt && <span style={{ color: 'var(--red)', fontWeight: 700 }}> · Anmält</span>}
+                            </div>
+                            {u.innehall && (
+                              <div style={{ fontSize: 13, color: 'var(--txt)', lineHeight: 1.45, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+                                {u.innehall}
+                              </div>
+                            )}
+                            {u.bilaga_typ === 'image' && (bild
+                              ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={bild} alt="Anmäld bild" style={{ maxWidth: 220, maxHeight: 220, borderRadius: 8, marginTop: 4, display: 'block' }} />
+                              )
+                              : <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>[bild]</div>
+                            )}
+                            {u.bilaga_typ === 'geo' && (
+                              <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>
+                                [delad position{pos ? `: ${pos}` : ''}]
+                              </div>
+                            )}
+                          </div>
+                        )
+                      })}
+                    </div>
+                  </div>
+                )}
 
                 {/* Actions — client component */}
                 {item.status === 'open' && (

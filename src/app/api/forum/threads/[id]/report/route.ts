@@ -58,7 +58,9 @@ export async function POST(
       target_id:   id,
       reason,
       note: note || null,
-      status: 'pending',
+      // 'pending' finns inte bland tillåtna statusar, så alla foruminsatser
+      // avvisades tidigare. Databasen sätter ändå 'open' på nya anmälningar.
+      status: 'open',
     })
 
   if (error) {
