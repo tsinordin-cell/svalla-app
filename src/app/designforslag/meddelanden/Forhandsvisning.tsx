@@ -54,8 +54,9 @@ function kortText(m: M) {
  * ?db=nej: som innan databasändringen är körd: inga reaktioner, inget Svara.
  * ?plus=1: öppnar plusmenyn i skrivfältet. ?plus=tur: turväljaren, ?plus=inga: turväljaren utan turer,
  * ?plus=privat: frågan som kommer när man väljer en privat tur.
+ * ?pek=1: visar kameraknappen även med mus, så att telefonens skrivfält går att fota på dator.
  */
-export default function Forhandsvisning({ vy, tema, meny, svar, db, plus }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string }) {
+export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string; pek?: string }) {
   // ?tema=mork|ljust: sätter samma inställning som appens temaväljare (bara i förhandsversionens webbläsare).
   useEffect(() => {
     if (tema !== 'mork' && tema !== 'ljust') return
@@ -73,7 +74,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db, plus }: { vy
     .filter(r => !sok || r.namn.toLowerCase().includes(sok.toLowerCase()))
 
   return (
-    <div className="md-fv">
+    <div className={`md-fv${pek === '1' ? ' md-fv--pek' : ''}`}>
       <div className="md-fv-meny" aria-hidden="true">Appens sidomeny<br />(oförändrad)</div>
       <div className={`md-ram md-rot ${iSamtal ? 'md-ram--samtal' : 'md-ram--inkorg'}`}>
         <aside className="md-ram-lista" aria-label="Meddelanden">
@@ -98,6 +99,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db, plus }: { vy
       </div>
       <style>{`
         .fb-flytande{display:none!important}
+        .md-fv--pek .md-rund--kamera{display:flex!important}
         .md-fv-meny{display:none}
         @media (min-width:1024px){
           .md-fv{padding-left:220px}
