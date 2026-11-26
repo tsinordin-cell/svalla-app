@@ -95,7 +95,7 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
             {lage === 'klar' && (
               <div className="md-flikar" role="group" aria-label="Visa">
                 <button type="button" className="md-flik" aria-pressed={flik === 'active'} onClick={() => setFlik('active')}>
-                  Samtal{aktivaAntal > 0 && <span className="md-flik-tal">{aktivaAntal}</span>}
+                  Meddelanden{aktivaAntal > 0 && <span className="md-flik-tal">{aktivaAntal}</span>}
                 </button>
                 <button type="button" className="md-flik" aria-pressed={flik === 'requests'} onClick={() => setFlik('requests')}>
                   Förfrågningar{forfragningarAntal > 0 && <span className="md-flik-tal md-flik-tal--acc">{forfragningarAntal > 9 ? '9+' : forfragningarAntal}</span>}
