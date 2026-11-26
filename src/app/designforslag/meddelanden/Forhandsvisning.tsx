@@ -238,8 +238,11 @@ function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus, rostLag
       <SamtalsHuvud namn="Elin Berg" nyckel="elinberg" bild={null} profilHref={null} under="Visa profil" onMer={() => {}} />
       {rostLage === 'prov' && (
         <div className="md-banner md-banner--info"><div className="md-banner-ruta">
-          Den här webbläsaren spelar in som: <strong>{format ?? '…'}</strong>. Elins klipp har Chromes format, ditt har iPhones.
-          Tryck på mikrofonen för att prova att spela in. Inget laddas upp.
+          <strong>Prova röstmeddelanden</strong>
+          <p style={{ marginBottom: 0 }}>
+            Den här webbläsaren spelar in som {format ?? '…'}. Elins klipp har Chromes format, ditt har iPhones.
+            Tryck på mikrofonen för att prova att spela in. Inget laddas upp.
+          </p>
         </div></div>
       )}
       <div className="md-flode" ref={flode}>
