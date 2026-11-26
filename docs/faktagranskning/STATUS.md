@@ -4,6 +4,11 @@ Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
 
 
+## 2026-11-26 — batch 01 helt publicerad
+
+- Databasändringarna körda efter Toms ja (110 UPDATE, SELECT efter varje fil). Verifierat på svalla.se efter cachens timme: Isbolaget på Donsö, Strindberg's Champagne Club på Sandhamn, PUB Alma, Glassigaste och Lilla Haket dolda (404).
+- Frysen (beslut 11) avslutad. Kvar: Toms beslut om Långskärs radie.
+
 ## 2026-11-25 — batch 01:s kod publicerad; databasen väntar på Toms ja
 
 - PR #739 squash-mergad (a2d8d49). Vercel produktion success; ändringarna verifierade på svalla.se.
