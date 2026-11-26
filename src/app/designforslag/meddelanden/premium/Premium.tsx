@@ -251,7 +251,7 @@ export default function Premium({ tema, vy, lage }: { tema: Tema; vy: Vy; lage: 
         <div className="pm-tomt">
           <div className="pm-tomt-ikon"><Ikon d={P.moln} s={28} w={1.8} /></div>
           <h2>Kunde inte hämta dina samtal</h2>
-          <p>Kontrollera uppkopplingen. Inget du skrivit har försvunnit.</p>
+          <p>Kontrollera uppkopplingen och försök igen.</p>
           <button className="pm-knapp">Försök igen</button>
         </div>
       )}
@@ -708,7 +708,7 @@ const CSS = `
 .pm-tomt p{font-size:15px;line-height:1.45;color:var(--pm-txt2);margin:2px 0 10px}
 .pm-tomt-bild{width:148px;height:148px;object-fit:contain}
 .pm-tomt-ikon{width:64px;height:64px;border-radius:20px;background:var(--pm-vald);color:var(--pm-sea);display:flex;align-items:center;justify-content:center}
-.pm-knapp{height:46px;padding:0 20px;border-radius:14px;background:var(--sea-knapp)!important;color:#fff!important;font-weight:600;display:inline-flex;align-items:center;gap:8px;margin-top:6px}
+.pm-rot .pm-knapp{height:46px;padding:0 20px;border-radius:14px;background:var(--sea-knapp)!important;color:#fff!important;font-weight:600;display:inline-flex;align-items:center;gap:8px;margin-top:6px}
 .pm-skel{border-radius:7px;background:linear-gradient(90deg,var(--pm-linje) 0%,rgba(127,150,170,.16) 50%,var(--pm-linje) 100%);background-size:200% 100%;animation:pm-skimmer 1.4s infinite linear}
 
 /* Förhandsvisningens kontrollrad */
