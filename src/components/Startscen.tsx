@@ -966,7 +966,7 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
       {varld && (
         <div className="ki-rubrik">
           <h2>Skärgården börjar här</h2>
-          <p>För öbon, företagaren, besökaren och familjen.</p>
+          <p>För öbon, företagaren, besökaren och familjen</p>
         </div>
       )}
       <div className="ki-topp">
@@ -1184,10 +1184,10 @@ const CSS = `
 /* Loggan: uppe till vänster på himlen, i mobilen nere till vänster på havet där knapparna inte sitter */
 .ki-logga{position:absolute;left:22px;top:20px;z-index:4;display:flex;align-items:center;gap:8px;color:#0a2540;pointer-events:none}
 .ki-logga svg{height:26px;width:auto}
-/* Startscenens rubrik i sajtens typsnittstråd (samma som rubrikerna längre ner): Playfair Display 700, #0d2440, -0.01em. Raden under: Inter 400, #3d5865 (Max 2026-11-26) */
+/* Startscenens rubrik i sajtens typsnittstråd: Playfair Display 700, -0.01em, och Inter 400 under. Färgen är havets blå (BLA_VARLD #4472ab); raden under en nyans mörkare (#375e96) så att den klarar kontrastkravet 4,5:1 i liten storlek (Max 2026-11-26) */
 .ki-rubrik{position:absolute;left:0;right:0;top:12%;z-index:3;text-align:center;pointer-events:none;padding:0 18px;animation:kiRubrik .9s .3s both}
-.ki-rubrik h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(28px,4.6vw,50px);line-height:1.1;letter-spacing:-0.01em;color:#0d2440}
-.ki-rubrik p{margin:8px 0 0;font-family:Inter,system-ui,sans-serif;font-weight:400;font-size:clamp(14.5px,1.5vw,18px);line-height:1.45;color:#3d5865}
+.ki-rubrik h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(32px,5.2vw,52px);line-height:1.1;letter-spacing:-0.01em;color:#4472ab}
+.ki-rubrik p{margin:8px 0 0;font-family:Inter,system-ui,sans-serif;font-weight:400;font-size:clamp(16px,1.6vw,19px);line-height:1.45;color:#375e96}
 .ki-tid-natt .ki-rubrik h2{color:#f5f4ef}.ki-tid-natt .ki-rubrik p{color:#c9d6e2}
 @keyframes kiRubrik{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:560px){.ki-logga{top:auto;bottom:14px;left:14px;color:#f5f4ef}.ki-logga svg{height:20px}}
