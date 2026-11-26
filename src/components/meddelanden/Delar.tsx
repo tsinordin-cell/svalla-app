@@ -26,6 +26,7 @@ export const IKON = {
   bild: 'M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1zM3 16l5-5 4 4 3-3 6 6M15.5 9.5h.01',
   nal: 'M12 21s-7-6.1-7-11.5a7 7 0 0114 0C19 14.9 12 21 12 21zM12 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',
   skicka: 'M12 19V5M5 12l7-7 7 7',
+  flygplan: 'M21 3L3.5 10.3l7.2 3 3 7.2L21 3zM10.7 13.3L21 3',
   pratbubbla: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z',
   sjokort: 'M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14',
   kopiera: 'M9 9h10v10H9zM5 15V5h10',
@@ -459,7 +460,7 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onB
             }} />
           {skriver ? (
             <button type="submit" className="md-falt-skicka" disabled={!kanSkicka} aria-label="Skicka">
-              <Ikon d={IKON.skicka} s={19} w={2.3} />
+              <Ikon d={IKON.flygplan} s={19} w={2.3} />
             </button>
           ) : (
             <>
