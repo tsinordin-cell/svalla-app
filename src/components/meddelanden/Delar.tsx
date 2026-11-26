@@ -37,6 +37,8 @@ export const IKON = {
   logga: 'M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4M10 17l5-5-5-5M15 12H3',
   svar: 'M9 14L4 9l5-5M4 9h10a6 6 0 016 6v4',
   smil: 'M12 21a9 9 0 100-18 9 9 0 000 18zM8.5 14.5s1.3 1.8 3.5 1.8 3.5-1.8 3.5-1.8M9 9.5h.01M15 9.5h.01',
+  plus: 'M12 5v14M5 12h14',
+  kamera: 'M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1zM12 17a4 4 0 100-8 4 4 0 000 8z',
 } as const
 
 export function Ikon({ d, s = 20, w = 2 }: { d: string; s?: number; w?: number }) {
@@ -394,16 +396,17 @@ export function TurKort({ meta }: { meta: TripMeta }) {
 
 // ─── Skrivfältet ─────────────────────────────────────────────────────────────
 
-export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onBild, onPosition, laddarBild, delarPosition, onFokus, ovanfor, fokusSignal }: {
+export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onPlus, onKamera, laddarBild, onFokus, ovanfor, fokusSignal }: {
   text: string
   setText: (t: string) => void
   onSkicka: () => void
   placeholder: string
   kanSkicka: boolean
-  onBild: () => void
-  onPosition: () => void
+  /** Öppnar plusmenyn med Bild, Position och Tur */
+  onPlus: () => void
+  /** Öppnar kameran direkt. Knappen visas bara på pekskärm. */
+  onKamera: () => void
   laddarBild: boolean
-  delarPosition: boolean
   onFokus?: () => void
   /** Visas ovanför fältet, t.ex. vilket meddelande man svarar på */
   ovanfor?: ReactNode
@@ -426,12 +429,12 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onB
     <form className="md-komp" onSubmit={e => { e.preventDefault(); onSkicka() }}>
       {ovanfor}
       <div className="md-komp-rad">
-        <button type="button" className="md-rund" onClick={onBild} disabled={laddarBild}
-          aria-label={laddarBild ? 'Laddar upp bild' : 'Skicka en bild'} aria-busy={laddarBild}>
-          <Ikon d={IKON.bild} s={22} w={1.8} />
+        <button type="button" className="md-rund" onClick={onPlus} aria-label="Bild, position eller tur" aria-haspopup="dialog">
+          <Ikon d={IKON.plus} s={24} w={2} />
         </button>
-        <button type="button" className="md-rund" onClick={onPosition} disabled={delarPosition} aria-label="Dela din position">
-          <Ikon d={IKON.nal} s={22} w={1.8} />
+        <button type="button" className="md-rund md-rund--kamera" onClick={onKamera} disabled={laddarBild}
+          aria-label={laddarBild ? 'Laddar upp bild' : 'Ta en bild'} aria-busy={laddarBild}>
+          <Ikon d={IKON.kamera} s={22} w={1.8} />
         </button>
         <div className="md-falt">
           <textarea ref={ref} rows={1} value={text} maxLength={2000} placeholder={placeholder} aria-label="Meddelande"
@@ -449,6 +452,69 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onB
         </button>
       </div>
     </form>
+  )
+}
+
+// ─── Plusmenyn och turväljaren ───────────────────────────────────────────────
+
+export function PlusMeny({ onStang, onBild, onPosition, onTur, laddarBild, delarPosition }: {
+  onStang: () => void; onBild: () => void; onPosition: () => void; onTur: () => void
+  laddarBild: boolean; delarPosition: boolean
+}) {
+  return (
+    <Ark onStang={onStang} etikett="Skicka bild, position eller tur">
+      <ArkRad ikon={IKON.bild} label={laddarBild ? 'Laddar upp bild…' : 'Bild'} onClick={onBild} />
+      <ArkRad ikon={IKON.nal} label={delarPosition ? 'Hämtar position…' : 'Position'} onClick={onPosition} />
+      <ArkRad ikon={IKON.bat} label="Tur" onClick={onTur} />
+      <ArkRad ikon={IKON.stang} label="Avbryt" onClick={onStang} />
+    </Ark>
+  )
+}
+
+export type TurVal = {
+  id: string; location_name: string | null; distance: number | null; image: string | null
+  started_at: string | null; created_at: string | null; visibility: string | null
+}
+
+function turDatum(t: TurVal): string {
+  const d = t.started_at ?? t.created_at
+  if (!d) return ''
+  return new Date(d).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+/** Listar ens egna turer. turer = null betyder att de laddas. */
+export function TurValjare({ turer, fel, onValj, onStang }: {
+  turer: TurVal[] | null; fel: boolean; onValj: (t: TurVal) => void; onStang: () => void
+}) {
+  return (
+    <Ark onStang={onStang} etikett="Dela en tur">
+      <div className="md-ark-text"><h2>Dela en tur</h2></div>
+      <div className="md-tur-lista">
+        {fel ? (
+          <p className="md-tur-tom">Turerna gick inte att hämta. Försök igen.</p>
+        ) : turer === null ? (
+          <div className="md-snurra" aria-label="Laddar turer" />
+        ) : turer.length === 0 ? (
+          <p className="md-tur-tom">Du har inga sparade turer än. Logga en tur så kan du dela den här.</p>
+        ) : turer.map(t => (
+          <button key={t.id} type="button" className="md-tur-rad" onClick={() => onValj(t)}>
+            <span className="md-tur-tumme">
+              {t.image
+                ? <Image src={t.image} alt="" fill sizes="48px" style={{ objectFit: 'cover' }} />
+                : <Ikon d={IKON.bat} s={20} />}
+            </span>
+            <span className="md-tur-text">
+              <span className="md-kort-titel">{t.location_name ?? 'Tur'}</span>
+              <span className="md-kort-under">
+                {[turDatum(t), t.distance != null && t.distance > 0 ? `${decimal(t.distance)} NM` : null, t.visibility === 'private' ? 'Privat' : null]
+                  .filter(Boolean).join(' · ')}
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+      <ArkRad ikon={IKON.stang} label="Avbryt" onClick={onStang} />
+    </Ark>
   )
 }
 

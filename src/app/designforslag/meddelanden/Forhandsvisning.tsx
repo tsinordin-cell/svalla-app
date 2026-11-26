@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt, TextBubbla,
-  TomtLage, TurKort, type KonvRadData,
+  TomtLage, TurKort, PlusMeny, TurValjare, type KonvRadData, type TurVal,
 } from '@/components/meddelanden/Delar'
 import { InkorgVy } from '@/components/meddelanden/Inkorg'
 import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, REAKTIONER, type Reaktion } from '@/components/meddelanden/Meny'
@@ -52,8 +52,11 @@ function kortText(m: M) {
  * ?meny=fore: den gamla menyn (samma kod som på svalla.se före ändringen), för jämförelse.
  * ?svar=1: visar raden "Svarar Elin Berg" ovanför skrivfältet.
  * ?db=nej: som innan databasändringen är körd: inga reaktioner, inget Svara.
+ * ?plus=1: öppnar plusmenyn i skrivfältet. ?plus=tur: turväljaren, ?plus=inga: turväljaren utan turer,
+ * ?plus=privat: frågan som kommer när man väljer en privat tur.
+ * ?pek=1: visar kameraknappen även med mus, så att telefonens skrivfält går att fota på dator.
  */
-export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string }) {
+export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string; pek?: string }) {
   // ?tema=mork|ljust: sätter samma inställning som appens temaväljare (bara i förhandsversionens webbläsare).
   useEffect(() => {
     if (tema !== 'mork' && tema !== 'ljust') return
@@ -71,7 +74,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: stri
     .filter(r => !sok || r.namn.toLowerCase().includes(sok.toLowerCase()))
 
   return (
-    <div className="md-fv">
+    <div className={`md-fv${pek === '1' ? ' md-fv--pek' : ''}`}>
       <div className="md-fv-meny" aria-hidden="true">Appens sidomeny<br />(oförändrad)</div>
       <div className={`md-ram md-rot ${iSamtal ? 'md-ram--samtal' : 'md-ram--inkorg'}`}>
         <aside className="md-ram-lista" aria-label="Meddelanden">
@@ -87,7 +90,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: stri
           />
         </aside>
         <section className="md-ram-innehall">
-          {iSamtal ? <Samtal text={text} setText={setText} startMeny={meny} startSvar={svar === '1'} medDb={db !== 'nej'} /> : (
+          {iSamtal ? <Samtal text={text} setText={setText} startMeny={meny} startSvar={svar === '1'} medDb={db !== 'nej'} startPlus={plus} /> : (
             <div className="md-valj">
               <TomtLage ikon={IKON.pratbubbla} rubrik="Dina meddelanden" text="Välj någon till vänster eller skriv ett nytt meddelande." />
             </div>
@@ -96,6 +99,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: stri
       </div>
       <style>{`
         .fb-flytande{display:none!important}
+        .md-fv--pek .md-rund--kamera{display:flex!important}
         .md-fv-meny{display:none}
         @media (min-width:1024px){
           .md-fv{padding-left:220px}
@@ -107,9 +111,16 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: stri
   )
 }
 
-function Samtal({ text, setText, startMeny, startSvar, medDb }: {
-  text: string; setText: (t: string) => void; startMeny?: string; startSvar: boolean; medDb: boolean
+const TURER: TurVal[] = [
+  { id: 't1', location_name: 'Stavsnäs till Sandhamn', distance: 9.4, image: '/og-image.jpg', started_at: '2026-08-14T08:10:00Z', created_at: null, visibility: 'public' },
+  { id: 't2', location_name: 'Runt Grinda', distance: 6.2, image: null, started_at: '2026-08-02T11:30:00Z', created_at: null, visibility: 'private' },
+  { id: 't3', location_name: 'Vaxholm till Finnhamn', distance: 14.8, image: '/og-image.jpg', started_at: '2026-07-21T07:45:00Z', created_at: null, visibility: 'public' },
+]
+
+function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus }: {
+  text: string; setText: (t: string) => void; startMeny?: string; startSvar: boolean; medDb: boolean; startPlus?: string
 }) {
+  const [plusLage, setPlusLage] = useState<string | null>(startPlus ?? null)
   const sista = SAMTAL.length - 1
   const [reaktioner, setReaktioner] = useState<Reaktion[]>(medDb ? START_REAKTIONER : [])
   const [svarPa, setSvarPa] = useState<string | null>(startSvar && medDb ? '4' : null)
@@ -228,7 +239,7 @@ function Samtal({ text, setText, startMeny, startSvar, medDb }: {
         </div>
       </div>
       <Skrivfalt text={text} setText={setText} onSkicka={() => { setText(''); setSvarPa(null) }} kanSkicka={!!text.trim()}
-        placeholder="Skriv ett meddelande…" onBild={() => {}} onPosition={() => {}} laddarBild={false} delarPosition={false}
+        placeholder="Skriv ett meddelande…" onPlus={() => setPlusLage('1')} onKamera={() => {}} laddarBild={false}
         ovanfor={svarM ? <SvarsRad vem={svarM.mine ? 'dig själv' : 'Elin Berg'} text={kortText(svarM)} onAvbryt={() => setSvarPa(null)} /> : null} />
 
       {meny && menyM && (
@@ -246,6 +257,27 @@ function Samtal({ text, setText, startMeny, startSvar, medDb }: {
           onAnmal={!menyM.mine ? stang : undefined}
           onStang={stang}
         />
+      )}
+
+      {plusLage === '1' && (
+        <PlusMeny onStang={() => setPlusLage(null)} onBild={() => setPlusLage(null)} onPosition={() => setPlusLage(null)}
+          onTur={() => setPlusLage('tur')} laddarBild={false} delarPosition={false} />
+      )}
+      {(plusLage === 'tur' || plusLage === 'inga') && (
+        <TurValjare turer={plusLage === 'inga' ? [] : TURER} fel={false}
+          onValj={t => setPlusLage(t.visibility === 'private' ? 'privat' : null)} onStang={() => setPlusLage(null)} />
+      )}
+      {plusLage === 'privat' && (
+        <Ark onStang={() => setPlusLage(null)} etikett="Turen är privat">
+          <div className="md-ark-text">
+            <h2>Turen är privat</h2>
+            <p>Andra kan inte öppna en privat tur. Vill du göra den synlig för alla och skicka den?</p>
+          </div>
+          <div className="md-ark-knappar">
+            <button type="button" className="md-ark-ja md-ark-ja--vanlig" onClick={() => setPlusLage(null)}>Gör synlig och skicka</button>
+            <button type="button" className="md-ark-nej" onClick={() => setPlusLage(null)}>Avbryt</button>
+          </div>
+        </Ark>
       )}
 
       {/* Den gamla menyn, oförändrad, för före-bilder (?meny=fore). */}

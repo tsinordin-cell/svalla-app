@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 }
 
-export default async function Page({ searchParams }: { searchParams: Promise<{ vy?: string; tema?: string; meny?: string; svar?: string; db?: string }> }) {
+export default async function Page({ searchParams }: { searchParams: Promise<{ vy?: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string; pek?: string }> }) {
   if (process.env.VERCEL_ENV === 'production') notFound()
-  const { vy, tema, meny, svar, db } = await searchParams
-  return <Forhandsvisning vy={vy ?? 'samtal'} tema={tema} meny={meny} svar={svar} db={db} />
+  const { vy, tema, meny, svar, db, plus, pek } = await searchParams
+  return <Forhandsvisning vy={vy ?? 'samtal'} tema={tema} meny={meny} svar={svar} db={db} plus={plus} pek={pek} />
 }
