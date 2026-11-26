@@ -8,7 +8,8 @@ import { clearSupabaseAuthCookies } from '@/lib/authCookies'
 import { getAdminClient } from '@/lib/supabase-admin'
 import Stripe from 'stripe'
 import { logger } from '@/lib/logger'
-import { DM_BILD_HINK, arDmBildSokvag } from '@/lib/dmBilder'
+import { arDmBildSokvag } from '@/lib/dmBilder'
+import { taBortDmBilder, rensaBilderForRaderadeSamtal } from '@/lib/dmBilderRensning'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { harLosenord, farskInloggning, raderingBekraftad } from '@/lib/kontoBekraftelse'
 // TODO: wrap handlers with withSentrySimple(handler, 'account/delete') — se src/lib/api-handler.ts
@@ -135,12 +136,26 @@ export async function POST(req: NextRequest) {
   const dmBildSokvagar: string[] = []
   for (let fran = 0; ; fran += 1000) {
     const { data: rader } = await s.from('messages')
-      .select('attachment_url')
+      .select('conversation_id, attachment_url')
       .eq('user_id', userId).eq('attachment_type', 'image')
       .range(fran, fran + 999)
     for (const r of rader ?? []) {
-      if (arDmBildSokvag(r.attachment_url as string | null)) dmBildSokvagar.push(r.attachment_url as string)
+      const url = r.attachment_url as string | null
+      if (!arDmBildSokvag(url)) continue
+      // Bara filer i hens egen mapp i samma samtal: attachment_url skrivs av
+      // klienten och får inte kunna peka ut någon annans bild.
+      const [samtal, avsandare] = url!.split('/')
+      if (samtal === r.conversation_id && avsandare === userId) dmBildSokvagar.push(url!)
     }
+    if (!rader || rader.length < 1000) break
+  }
+  // Samtalen hen är med i. Är hen den sista som lämnar ett samtal raderar
+  // databasen samtalet (2026-11-26); då tas även den andras bilder bort nedan.
+  const dmSamtal: string[] = []
+  for (let fran = 0; ; fran += 1000) {
+    const { data: rader } = await s.from('conversation_participants')
+      .select('conversation_id').eq('user_id', userId).range(fran, fran + 999)
+    for (const r of rader ?? []) dmSamtal.push(r.conversation_id as string)
     if (!rader || rader.length < 1000) break
   }
 
@@ -236,13 +251,13 @@ export async function POST(req: NextRequest) {
     logger.error('account-delete', 'trip-images storage cleanup failed', { e: String(e), userId })
   }
 
-  // Bilder i direktmeddelanden: dm-bilder, sökväg {konversation}/{userId}/{fil}.jpg
-  for (let i = 0; i < dmBildSokvagar.length; i += 100) {
-    try {
-      await s.storage.from(DM_BILD_HINK).remove(dmBildSokvagar.slice(i, i + 100))
-    } catch (e) {
-      logger.error('account-delete', 'dm-bilder storage cleanup failed', { e: String(e), userId })
-    }
+  // Bilder i direktmeddelanden: dm-bilder, sökväg {konversation}/{userId}/{fil}.jpg.
+  // Anmälda bilder ligger kvar som underlag för admin (2026-11-26).
+  try {
+    await taBortDmBilder(s, dmBildSokvagar)
+    await rensaBilderForRaderadeSamtal(s, dmSamtal)
+  } catch (e) {
+    logger.error('account-delete', 'dm-bilder storage cleanup failed', { e: String(e), userId })
   }
 
   // Trip-bilder: trips-bucket, prefix {userId}-

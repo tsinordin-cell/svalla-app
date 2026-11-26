@@ -8,6 +8,10 @@
     {
       "path": "/api/notifications/social-visits",
       "schedule": "0 18 * * *"
+    },
+    {
+      "path": "/api/meddelanden/stada-bilder",
+      "schedule": "30 2 * * *"
     }
   ],
   "ignoreCommand": "git diff HEAD^ HEAD --quiet -- ':!*.md' ':!docs/'"
