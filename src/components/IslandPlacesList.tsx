@@ -10,10 +10,13 @@ export default function IslandPlacesList({
   places,
   islandName,
   heading,
+  etiketter,
 }: {
   places: IslandPlace[]
   islandName: string
   heading: string
+  /** Etikett per platstyp, t.ex. "Camping" på boendesidan (mallarnas runda 5, 2026-11-10). Typer utan etikett visas utan. */
+  etiketter?: Record<string, string>
 }) {
   if (places.length === 0) return null
   return (
@@ -35,7 +38,14 @@ export default function IslandPlacesList({
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', gap: 12, alignItems: 'baseline', flexWrap: 'wrap' }}>
-                <span style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>{p.name}</span>
+                <span style={{ fontWeight: 700, fontSize: 16, color: 'var(--txt)' }}>
+                  {p.name}
+                  {etiketter?.[p.type] && (
+                    <span style={{ marginLeft: 8, fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: 'rgba(30,92,130,0.08)', color: '#1e5c82', verticalAlign: 'middle' }}>
+                      {etiketter[p.type]}
+                    </span>
+                  )}
+                </span>
                 {!p.onIsland && p.km != null && (
                   <span style={{ fontSize: 12, color: 'var(--txt3)' }}>{formatKm(p.km)} fågelvägen från {islandName}</span>
                 )}

@@ -82,6 +82,11 @@ function stadaFotograf(ra) {
   // "User Tor Svensson on sv.wikipedia" -> "Tor Svensson (sv.wikipedia)"
   const u = n.match(/^user[: ]+(.+?)(?:\s+on\s+(\S+))?$/i)
   if (u) n = u[2] ? `${u[1]} (${u[2]})` : u[1]
+  // Hela upphovsrättstexten i fältet: "This image was produced by me, David Castor (user:dcastor). The pictures I
+  // submit … are released to the public domain …" -> "David Castor". Licensen står i eget fält och visas för sig
+  // (Lilla Karlsö, full-28 k013, mall-0059; mallarnas runda 5, 2026-11-10).
+  const jag = n.match(/(?:produced|taken|created|photographed|made)\s+by\s+(?:me,\s*)?(\p{Lu}[\p{L}.'-]+(?:\s+\p{Lu}[\p{L}.'-]+){0,3})/u)
+  if (jag && n.length > 60) n = jag[1]
   return n.replace(/\s+/g, ' ').trim()
 }
 
@@ -306,7 +311,8 @@ function sallaBort(urval) {
      * thumburl. Bilden svarar likadant utan dem. Vi skickar inte någon annans
      * spårningsparametrar från våra sidor.
      */
-    kvar[slug] = { ...b, url: (b.url || '').split('?')[0] }
+    // Fotografen städas också i ett färdigt urval (--stada), inte bara vid hämtning (mallarnas runda 5).
+    kvar[slug] = { ...b, fotograf: stadaFotograf(b.fotograf), url: (b.url || '').split('?')[0] }
   }
 
   const perUrl = {}

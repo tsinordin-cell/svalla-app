@@ -94,9 +94,12 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     bestallningTabell: 'Waxholmsbolagets tabell 16',
   },
   grinda: {
-    destStopId: '740098471', destStopName: 'Grinda',
+    // Rättad 2026-11-16 (omarbete 4f, slut-04 k074): hållplatsen 740098471 är Grinda Södra brygga – Trafiklab ger "Grinda Södra bryggan (Värmdö kn)" för turerna dit (MÄTT 2026-11-16 i /api/transit/departures?dest=grinda) – och noten sa "sommartid" fast båten går året om.
+    destStopId: '740098471', destStopName: 'Grinda Södra brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Direktbåt med Waxholmsbolaget från Strömkajen sommartid.',
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/grinda — "Du kan åka till Grinda från Strömkajen, via Vaxholm."; "Under sommaren går det flera turer till Grinda varje dag, men Grinda har trafik året om." (läst 2026-11-16, i Chromium)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026"; "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA"; "Södra Grinda"; "Norra Grinda" (läst 2026-11-16)
+    note: 'Waxholmsbolagets båtar går från Strömkajen via Vaxholm till Grinda året om, och under sommaren flera turer varje dag. Avgångarna här gäller Södra Grinda; tabell 11 har också bryggan Norra Grinda.',
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): tur 1477 (b) i 11A och 1475 (b) i 13B; inga vid Norra Grinda.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA", "Södra Grinda", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Södra Grinda: b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
@@ -155,7 +158,8 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   fjaderholmarna: {
     destStopId: '740034632', destStopName: 'Fjäderholmarna brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Närmaste skärgårdsön: båt direkt från Strömkajen, ca 25 min.',
+    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — "Fjäderholmarna är Stockholms närmaste skärgårdsö" (läst 2026-10-29). https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — "Strömkajen (Stockholm)", Fjäderholmarna med X = "Bryggorna trafikeras utan fast avgångstid." (läst 2026-10-29)
+    note: 'Närmaste skärgårdsön: Waxholmsbolagets linje 2 från Strömkajen lägger till på vissa turer, utan fast tid vid bryggan.',
     // P0 2026-11-02 (Kontrollanten, fjaderholmarna-k002/k103): Fjäderholmarna är
     // märkt X i tabell 2, så tiderna i rutorna är reseplanerarens, inte tidtabellens.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — "Fjäderholmarna", "X", "Bryggorna trafikeras utan fast avgångstid.", "Sök hela din resa på sl.se för att få tider för både anslutande SL-trafik och skärgårdstrafiken." (läst 2026-11-02)
@@ -164,10 +168,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   moja: {
     destStopId: '740024936', destStopName: 'Möjaström brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    // KÄLLA: Värmdö kommun (varmdo.se — Sollenkroka brygga trafikerar Möja) +
-    // ResRobot-ben avlästa 2026-08-11: buss 434 Slussen→Sollenkroka, färja 14-1
-    // Sollenkroka→Möjaström. Noten sa tidigare Stavsnäs — FEL hamn, 3 mil bort.
-    note: 'Båtarna till Möja går från Sollenkroka brygga, inte Stavsnäs.',
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA", "Boda brygga avg." (läst 2026-10-29). Tabell 14 har ingen hållplats i Stavsnäs.
+    // KÄLLA: https://waxholmsbolaget.se/reseplanering/resmal/moja — "Båtar går året runt från Boda brygga på Värmdö till flera bryggor på Möja." (läst 2026-10-29)
+    note: 'Båtarna till Möja går från Sollenkroka brygga, Boda brygga och Strömkajen, inte från Stavsnäs.',
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "Beställ resan i SL-appen" (anmärkningarna B, b och C i tabell 14: B minst två timmar och b minst en timme före avgång, båda senast på eftermiddagen samma dag; C senast tidigt på kvällen dagen före) (läst 2026-10-29)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Långvik", "Dragedet" (läst 2026-10-29)
@@ -718,7 +721,8 @@ export const ISLAND_NO_TRANSIT: Record<string, string> = {
   'ormskar': 'närmaste hållplats (Kalkberget (Nämdö) brygga, 2969 m) kunde inte knytas till ön',
   'norrpada': 'ingen hållplats inom 5 km',
   'langviksskaret': 'ingen hållplats inom 5 km',
-  'storholmen': 'närmaste hållplats (Långvik (Runmarö) brygga, 2752 m) kunde inte knytas till ön',
+  // 'storholmen' borttagen 2026-10-29: mätningen 2026-08-05 gjordes med fel koordinater (59.2803, 18.8090 vid Runmarö). SL:s pendelbåt 80 angör Storholmen södra, östra och norra. Lägg in ön i ISLAND_TRANSIT när hållplats-ID verifierats mot ResRobot.
+  // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — "Ropsten–Storholmen", "Pendelbåt", "Storholmen södra", "Storholmen östra", "Storholmen norra", "Giltig 17 augusti–12 december 2026" (läst 2026-11-10)
   // Ommätt 2026-09-28 med rättade koordinater (islandCoords.ts).
   'langskar': 'närmaste hållplats (Bullerö brygga, 1799 m) kunde inte knytas till ön',
   // Ommätt 2026-09-28 med rättade koordinater (islandCoords.ts).

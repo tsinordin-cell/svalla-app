@@ -19,6 +19,7 @@
  */
 import type { TransitData } from '@/app/api/guide/route'
 import { getReseplanerare } from '@/lib/transit-stops'
+import { arBatben } from '@/lib/batben'
 
 interface Props {
   data: TransitData
@@ -88,7 +89,9 @@ export default function ThorkelRouteCard({ data }: Props) {
 
 function TripRow({ trip, originName, destName, reseplanerareUrl }: { trip: TransitData['trips'][number]; originName: string; destName: string; reseplanerareUrl: string }) {
   const operatorList = [...new Set(trip.legs.map(l => l.operator).filter(Boolean))].join(' · ') || 'Kollektivt'
-  const hasFerry = trip.legs.some(l => l.category.toLowerCase().includes('färja'))
+  // Samma test som DepartureWidget (src/lib/batben.ts): färjekoden och kategorin, inte bara ordet "färja", så att
+  // "Färjetrafik - övrigt" (Stavsnäs båttaxi) också får "· båt" (sr03-k002 utanför raden; mallarnas runda 11).
+  const hasFerry = trip.legs.some(arBatben)
   const tripUrl = reseplanerareUrl
   const dur = formatDuration(trip.durationMin)
 

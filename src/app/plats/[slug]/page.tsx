@@ -55,6 +55,12 @@ const TYPE_CONFIG: Record<string, { icon: string; label: string; color: string }
  fuel: { icon: 'fuel', label: 'Bränsle', color: '#a8381e' },
  nature: { icon: 'leaf', label: 'Naturplats', color: '#3a6b2e' },
  harbor: { icon: 'anchor', label: 'Hamn', color: '#1e5c82' },
+ // Boende saknades, och camping läggs till enligt Toms beslut 4 (mallarnas runda 5, 2026-11-10). Typen hotel står också
+ // för andra boenden i databasen och får därför den allmänna etiketten, som i PlaceFactsSection.
+ hotel: { icon: 'bed', label: 'Boende', color: '#6d28d9' },
+ hostel: { icon: 'bed', label: 'Vandrarhem', color: '#6d28d9' },
+ cabin: { icon: 'home', label: 'Stugor', color: '#6d28d9' },
+ camping: { icon: 'tent', label: 'Camping', color: '#6d28d9' },
 }
 
 const FACILITY_MAP: Record<string, { icon: string; label: string }> = {
