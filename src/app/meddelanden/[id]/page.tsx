@@ -11,7 +11,7 @@ import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import {
-  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, PlusMeny, RostBubbla, SamtalsHuvud, Sjokort, Skrivfalt,
+  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, RostBubbla, SamtalsHuvud, Sjokort, Skrivfalt,
   TextBubbla, TomtLage, TurKort, TurValjare, type GeoMeta, type RostMeta, type TripMeta, type TurVal,
 } from '@/components/meddelanden/Delar'
 import { revalidateTrip } from '@/lib/revalidate-trip'
@@ -115,8 +115,7 @@ export default function ChatPage() {
   const listRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
   const kameraRef = useRef<HTMLInputElement>(null)
-  // Plusmenyn i skrivfältet och turväljaren den öppnar. turer = null medan de laddas.
-  const [plusOppen, setPlusOppen] = useState(false)
+  // Turväljaren som Tur-knappen i skrivfältet öppnar. turer = null medan de laddas.
   const [turOppen, setTurOppen] = useState(false)
   const [turer, setTurer] = useState<TurVal[] | null>(null)
   const [turFel, setTurFel] = useState(false)
@@ -712,9 +711,8 @@ export default function ChatPage() {
   }
   const rost = useRostInspelning({ onKlipp: skickaRost, onFel: t => toast(t, 'error') })
 
-  // ─── Tur från plusmenyn ────────────────────────────────────────────────────
+  // ─── Tur från skrivfältet ────────────────────────────────────────────────────
   async function oppnaTurer() {
-    setPlusOppen(false)
     if (!me) return
     setTurer(null); setTurFel(false); setTurOppen(true)
     const { data, error } = await supabase.from('trips')
@@ -996,8 +994,11 @@ export default function ChatPage() {
             setText={setText}
             onSkicka={() => send()}
             kanSkicka={!!text.trim() && !posting}
-            placeholder={arAvsandareAvForfragan ? 'Lägg till ett meddelande till förfrågan…' : 'Skriv ett meddelande…'}
-            onPlus={() => setPlusOppen(true)}
+            placeholder="Meddelande…"
+            onBild={() => fileRef.current?.click()}
+            onPosition={confirmShareGeo}
+            onTur={oppnaTurer}
+            delarPosition={sharingGeo}
             onKamera={() => kameraRef.current?.click()}
             laddarBild={uploading}
             rost={rost}
@@ -1064,16 +1065,6 @@ export default function ChatPage() {
         />
       )}
 
-      {plusOppen && (
-        <PlusMeny
-          onStang={() => setPlusOppen(false)}
-          onBild={() => { setPlusOppen(false); fileRef.current?.click() }}
-          onPosition={() => { setPlusOppen(false); confirmShareGeo() }}
-          onTur={oppnaTurer}
-          laddarBild={uploading}
-          delarPosition={sharingGeo}
-        />
-      )}
       {turOppen && (
         <TurValjare turer={turer} fel={turFel} onValj={valjTur} onStang={() => setTurOppen(false)} />
       )}
