@@ -11,6 +11,7 @@ import { createClient } from '@/lib/supabase'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
 import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
+import ReportButton from '@/components/ReportButton'
 import { absoluteDate, avatarGradient, initialsOf } from '@/lib/utils'
 import { radius, fontWeight, fontSize, space, shadow, duration, easing } from '@/lib/tokens'
 import { reverseGeocode } from '@/lib/reverse-geocode'
@@ -109,6 +110,9 @@ export default function ChatPage() {
 
   // Konversationsmeny (⋯ i headern)
   const [convMenu, setConvMenu] = useState(false)
+
+  // Anmälan av ett meddelande eller av personen i tråden
+  const [anmalan, setAnmalan] = useState<{ typ: 'message' | 'conversation'; id: string } | null>(null)
 
   // Bekräftelsedialog — ersätter native confirm()
   const [confirmSheet, setConfirmSheet] = useState<{
@@ -810,12 +814,15 @@ export default function ChatPage() {
                     gap: 3,
                     cursor: m.mine ? 'pointer' : 'default',
                     userSelect: 'none',
+                    WebkitUserSelect: 'none',
+                    WebkitTouchCallout: 'none',
                   }}
                   onMouseDown={() => onLongPressStart(m.id, m.mine)}
                   onMouseUp={onLongPressEnd}
                   onMouseLeave={onLongPressEnd}
                   onTouchStart={() => onLongPressStart(m.id, m.mine)}
                   onTouchEnd={onLongPressEnd}
+                  onTouchMove={onLongPressEnd}
                   onClick={() => { if (m.mine && !longPressDidFire.current) setActionSheet({ msgId: m.id, isOwn: true, show: true }) }}
                   onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) }}
                 >
@@ -1015,6 +1022,14 @@ export default function ChatPage() {
               <ActionSheetItem icon="🗑️" label="Radera meddelande" color="#dc2626"
                 onClick={() => handleDeleteMessage(actionSheet.msgId!)} />
             )}
+            {!actionSheet.isOwn && actionSheet.msgId && (
+              <ActionSheetItem icon="🚩" label="Anmäl meddelande" color="#dc2626"
+                onClick={() => {
+                  const id = actionSheet.msgId!
+                  setActionSheet({ msgId: null, isOwn: false, show: false })
+                  setAnmalan({ typ: 'message', id })
+                }} />
+            )}
             <ActionSheetItem icon="✕" label="Avbryt" color="var(--txt3)"
               onClick={() => setActionSheet({ msgId: null, isOwn: false, show: false })} />
           </div>
@@ -1037,6 +1052,10 @@ export default function ChatPage() {
             <div style={{ width: 36, height: 4, borderRadius: 2, background: 'rgba(0,0,0,0.12)', margin: '4px auto 16px' }} />
             <ActionSheetItem icon="🗑️" label="Radera konversation" color="#dc2626"
               onClick={handleLeaveConversation} />
+            {!conv?.is_group && otherId && conv && (
+              <ActionSheetItem icon="🚩" label={`Anmäl ${otherName}`} color="#dc2626"
+                onClick={() => { setConvMenu(false); setAnmalan({ typ: 'conversation', id: conv.id }) }} />
+            )}
             {!conv?.is_group && otherId && (
               <ActionSheetItem icon="🚫" label={`Blockera ${otherName}`} color="#dc2626"
                 onClick={handleBlockUser} />
@@ -1045,6 +1064,23 @@ export default function ChatPage() {
               onClick={() => setConvMenu(false)} />
           </div>
         </>
+      )}
+
+      {/* ── Anmälan (meddelande eller person) ── */}
+      {anmalan && (
+        <ReportButton
+          targetType={anmalan.typ}
+          targetId={anmalan.id}
+          open
+          onOpenChange={o => { if (!o) setAnmalan(null) }}
+          rubrik={anmalan.typ === 'message' ? 'Anmäl meddelande' : `Anmäl ${otherName}`}
+          forklaring={anmalan.typ === 'message'
+            ? 'Meddelandet och högst 10 meddelanden före det skickas till Svallas moderatorer. Den du anmäler ser inte vem som anmält.'
+            : 'De 10 senaste meddelandena i tråden skickas till Svallas moderatorer som underlag. Den du anmäler ser inte vem som anmält.'}
+          efterAnmalan={!conv?.is_group && otherId
+            ? { label: `Blockera ${otherName}`, onClick: handleBlockUser }
+            : undefined}
+        />
       )}
 
       {/* ── Bekräftelsedialog — ersätter native confirm() ── */}

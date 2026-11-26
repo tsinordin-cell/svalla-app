@@ -5,8 +5,15 @@ import { REASON_LABELS } from '@/lib/moderation'
 import type { ReportReason, ReportTargetType } from '@/lib/moderation'
 
 interface Props {
-  targetType: ReportTargetType
+  /** 'conversation' anmäler den andra personen i en meddelandetråd */
+  targetType: ReportTargetType | 'conversation'
   targetId: string
+  /** Rubrik i dialogen — default "Anmäl innehåll" */
+  rubrik?: string
+  /** Text under rubriken — default om att teamet granskar */
+  forklaring?: string
+  /** Visas efter en skickad anmälan, till exempel "Blockera Anna" */
+  efterAnmalan?: { label: string; onClick: () => void }
   /** Valfri label på triggerknappen — default "Anmäl" */
   label?: string
   /** Om true renderas knappen utan ram (för inlining i ⋯-menyer) */
@@ -21,6 +28,8 @@ interface Props {
 
 export default function ReportButton({
   targetType, targetId, label = 'Anmäl', bare = false, open: openProp, onOpenChange,
+  rubrik = 'Anmäl innehåll', efterAnmalan,
+  forklaring = 'Välj anledning nedan. Anmälningar behandlas av vårt team.',
 }: Props) {
   const [innerOpen, setInnerOpen] = useState(false)
   const controlled = openProp !== undefined
@@ -112,7 +121,7 @@ export default function ReportButton({
           <div
             role="dialog"
             aria-modal="true"
-            aria-label="Anmäl innehåll"
+            aria-label={rubrik}
             style={{
               width: '100%', maxWidth: 420,
               background: 'var(--bg)',
@@ -137,10 +146,26 @@ export default function ReportButton({
                     ? 'Tack! Vi granskar din anmälan inom kort.'
                     : 'Du har redan anmält detta innehåll.'}
                 </div>
+                {efterAnmalan && (
+                  <button
+                    onClick={() => { closeDialog(); efterAnmalan.onClick() }}
+                    className="press-feedback"
+                    style={{
+                      display: 'block', width: '100%', marginBottom: 10,
+                      padding: '12px 32px', borderRadius: 12,
+                      border: '1px solid rgba(200,30,30,0.35)',
+                      background: 'rgba(200,30,30,0.06)', color: 'var(--red)',
+                      fontWeight: 600, fontSize: 14, cursor: 'pointer',
+                    }}
+                  >
+                    {efterAnmalan.label}
+                  </button>
+                )}
                 <button
                   onClick={closeDialog}
                   className="press-feedback"
                   style={{
+                    ...(efterAnmalan ? { display: 'block', width: '100%' } : {}),
                     padding: '12px 32px', borderRadius: 12, border: 'none',
                     background: 'var(--grad-sea)', color: '#fff',
                     fontWeight: 600, fontSize: 14, cursor: 'pointer',
@@ -152,10 +177,10 @@ export default function ReportButton({
             ) : (
               <>
                 <h2 style={{ fontSize: 17, fontWeight: 700, color: 'var(--txt)', margin: '0 0 4px' }}>
-                  Anmäl innehåll
+                  {rubrik}
                 </h2>
                 <p style={{ fontSize: 12, color: 'var(--txt3)', margin: '0 0 18px', lineHeight: 1.5 }}>
-                  Välj anledning nedan. Anmälningar behandlas av vårt team.
+                  {forklaring}
                 </p>
 
                 {/* Anledningar */}

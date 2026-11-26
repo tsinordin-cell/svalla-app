@@ -1,6 +1,6 @@
 {
  "_om": "Ögonblicksbild av public-schemat i Supabase (tabell → kolumner), använd av scripts/schemakontroll.mjs. Uppdatera efter varje migration: kör SQL:en i _sql i Supabase SQL Editor och klistra in resultatet i tabeller.",
- "_hamtad": "2026-09-29 (+ passerade_oar 2026-10-26 ur migrationen) (+ email_log.last_event,event_at ur migrationen 20261108000000, körs av Tom) (+ visited_islands.fran_tur, finns i produktion, kontrollerat 2026-11-20) (+ vyn users_publik ur migrationen 20261120000001)",
+ "_hamtad": "2026-09-29 (+ passerade_oar 2026-10-26 ur migrationen) (+ email_log.last_event,event_at ur migrationen 20261108000000, körs av Tom) (+ visited_islands.fran_tur, finns i produktion, kontrollerat 2026-11-20) (+ vyn users_publik ur migrationen 20261120000001) (+ anmalan_underlag ur migrationen 20261126000002, körs av Tom)",
  "_sql": "select json_object_agg(table_name, cols) from (select table_name, string_agg(column_name, ',' order by ordinal_position) as cols from information_schema.columns where table_schema='public' group by table_name) t;",
  "tabeller": {
   "account_deletions": "id,user_id_hash,deleted_at",
@@ -59,6 +59,7 @@
   "user_presence": "user_id,current_chat_id,updated_at",
   "julkalender_paminnelser": "user_id,created_at",
   "users": "id,username,email,avatar,created_at,bio,nationality,experience_years,vessel_type,vessel_model,vessel_name,home_port,sailing_region,public_fields,is_admin,boat_type,website,onboarded_at,home_port_lat,home_port_lng",
+  "anmalan_underlag": "id,report_id,message_id,conversation_id,avsandare_id,innehall,bilaga_typ,bilaga_sokvag,bilaga_meta,skickat_at,ar_anmalt,kopierat_at",
   "users_publik": "id,username,avatar,created_at,public_fields,bio,website,nationality,experience_years,vessel_type,vessel_model,vessel_name,home_port,sailing_region",
   "visited_islands": "id,user_id,island_slug,trip_id,visited_at,fran_tur",
   "user_blocks": "blocker_id,blocked_id,created_at"

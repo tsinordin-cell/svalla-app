@@ -11,6 +11,14 @@ import { sendAdminEmail } from '@/lib/email'
 const VALID_TARGET_TYPES: ReportTargetType[] = [
   'trip', 'comment', 'user', 'message', 'review', 'story', 'checkin',
 ]
+// 'conversation' är ingen egen typ i databasen: den anmäler den andra
+// personen i tråden, med de senaste meddelandena som underlag.
+type InkommandeTyp = ReportTargetType | 'conversation'
+
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;')
+}
 const VALID_REASONS: ReportReason[] = [
   'spam', 'harassment', 'inappropriate', 'misinformation', 'underage', 'other',
 ]
@@ -50,10 +58,11 @@ export async function POST(req: Request) {
     note?: string
   }
 
-  if (!targetType || !VALID_TARGET_TYPES.includes(targetType as ReportTargetType)) {
+  if (!targetType || !(VALID_TARGET_TYPES as string[]).concat('conversation').includes(targetType)) {
     return NextResponse.json({ error: 'Ogiltig måltyp' }, { status: 400 })
   }
-  if (!targetId || typeof targetId !== 'string') {
+  if (!targetId || typeof targetId !== 'string'
+      || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(targetId)) {
     return NextResponse.json({ error: 'targetId saknas' }, { status: 400 })
   }
   if (!reason || !VALID_REASONS.includes(reason as ReportReason)) {
@@ -68,12 +77,39 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Du kan inte anmäla dig själv' }, { status: 400 })
   }
 
-  const result = await createReport(supabase, user.id, {
-    targetType: targetType as ReportTargetType,
-    targetId,
-    reason: reason as ReportReason,
-    note: typeof note === 'string' ? note : undefined,
-  })
+  const typ = targetType as InkommandeTyp
+  const notering = typeof note === 'string' ? note : undefined
+  let result: string | null
+
+  if (typ === 'message' || typ === 'conversation') {
+    // Meddelanden och trådar anmäls via databasfunktioner. De kontrollerar att
+    // du är deltagare och sparar underlaget som bara admin kan läsa.
+    const { data, error } = typ === 'message'
+      ? await supabase.rpc('anmal_meddelande', { p_message_id: targetId, p_anledning: reason, p_notering: notering ?? null })
+      : await supabase.rpc('anmal_konversation', { p_conversation_id: targetId, p_anledning: reason, p_notering: notering ?? null })
+    if (error) {
+      if (error.code === '54000') {
+        return NextResponse.json({ error: 'För många anmälningar idag. Försök imorgon.' }, { status: 429 })
+      }
+      if (error.code === 'P0002') {
+        return NextResponse.json({ error: 'Hittade inte det du vill anmäla.' }, { status: 404 })
+      }
+      if (error.code === '22023') {
+        return NextResponse.json({ error: error.message }, { status: 400 })
+      }
+      return NextResponse.json({ error: 'Kunde inte spara anmälan' }, { status: 500 })
+    }
+    const svar = (data ?? {}) as { status?: string; id?: string }
+    if (svar.status === 'redan') return NextResponse.json({ ok: true, already: true })
+    result = svar.id ?? null
+  } else {
+    result = await createReport(supabase, user.id, {
+      targetType: typ,
+      targetId,
+      reason: reason as ReportReason,
+      note: notering,
+    })
+  }
 
   if (result === 'already_reported') {
     return NextResponse.json({ ok: true, already: true })
@@ -83,7 +119,9 @@ export async function POST(req: Request) {
   }
 
   // Skicka admin-notis (fire-and-forget)
-  const targetLabel = TARGET_TYPE_LABELS[targetType as ReportTargetType] ?? targetType
+  const targetLabel = typ === 'conversation'
+    ? 'Användare (från meddelanden)'
+    : (TARGET_TYPE_LABELS[typ] ?? typ)
   const reasonLabel = REASON_LABELS[reason as ReportReason] ?? reason
   sendAdminEmail({
     subject: `🚨 Ny anmälan på Svalla | ${reasonLabel}`,
@@ -92,7 +130,7 @@ export async function POST(req: Request) {
       <table style="border-collapse:collapse;font-family:sans-serif;font-size:14px">
         <tr><td style="padding:4px 12px 4px 0;color:#666">Typ:</td><td><strong>${targetLabel}</strong></td></tr>
         <tr><td style="padding:4px 12px 4px 0;color:#666">Anledning:</td><td><strong>${reasonLabel}</strong></td></tr>
-        ${note ? `<tr><td style="padding:4px 12px 4px 0;color:#666">Notering:</td><td>${note}</td></tr>` : ''}
+        ${notering ? `<tr><td style="padding:4px 12px 4px 0;color:#666">Notering:</td><td>${escapeHtml(notering)}</td></tr>` : ''}
         <tr><td style="padding:4px 12px 4px 0;color:#666">Rapport-ID:</td><td><code>${result}</code></td></tr>
       </table>
       <p style="margin-top:20px">
