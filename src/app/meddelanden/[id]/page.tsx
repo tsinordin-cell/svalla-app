@@ -10,9 +10,10 @@ import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import {
-  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt,
-  TextBubbla, TomtLage, TurKort, type GeoMeta, type TripMeta,
+  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, PlusMeny, SamtalsHuvud, Sjokort, Skrivfalt,
+  TextBubbla, TomtLage, TurKort, TurValjare, type GeoMeta, type TripMeta, type TurVal,
 } from '@/components/meddelanden/Delar'
+import { revalidateTrip } from '@/lib/revalidate-trip'
 import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, type Reaktion } from '@/components/meddelanden/Meny'
 import { reverseGeocode } from '@/lib/reverse-geocode'
 import type { Message, Conversation } from '@/lib/supabase'
@@ -111,6 +112,12 @@ export default function ChatPage() {
 
   const listRef = useRef<HTMLDivElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const kameraRef = useRef<HTMLInputElement>(null)
+  // Plusmenyn i skrivfältet och turväljaren den öppnar. turer = null medan de laddas.
+  const [plusOppen, setPlusOppen] = useState(false)
+  const [turOppen, setTurOppen] = useState(false)
+  const [turer, setTurer] = useState<TurVal[] | null>(null)
+  const [turFel, setTurFel] = useState(false)
   const userMapRef = useRef<Record<string, { username: string; avatar: string | null }>>({})
 
   // Bootstrap
@@ -392,7 +399,7 @@ export default function ChatPage() {
     return 'Meddelandet kunde inte skickas. Försök igen.'
   }
 
-  async function sendAttachment(type: 'image' | 'geo', url: string, meta: Record<string, unknown>): Promise<boolean> {
+  async function sendAttachment(type: 'image' | 'geo' | 'trip', url: string, meta: Record<string, unknown>): Promise<boolean> {
     if (!me) return false
     const svar = stod.svar ? svarPa : null
     const { data: inserted, error } = await supabase.from('messages').insert({
@@ -635,6 +642,46 @@ export default function ChatPage() {
     }
   }
 
+  // ─── Tur från plusmenyn ────────────────────────────────────────────────────
+  async function oppnaTurer() {
+    setPlusOppen(false)
+    if (!me) return
+    setTurer(null); setTurFel(false); setTurOppen(true)
+    const { data, error } = await supabase.from('trips')
+      .select('id, location_name, distance, image, started_at, created_at, visibility')
+      .eq('user_id', me).eq('status', 'done').is('deleted_at', null)
+      .order('started_at', { ascending: false, nullsFirst: false })
+      .order('created_at', { ascending: false })
+      .limit(30)
+    if (error) { setTurFel(true); return }
+    setTurer((data ?? []) as TurVal[])
+  }
+
+  async function skickaTur(t: TurVal) {
+    // Samma innehåll som när en tur delas från tursidan.
+    await sendAttachment('trip', `https://svalla.se/tur/${t.id}`, {
+      trip_id: t.id, location_name: t.location_name ?? null, distance: t.distance ?? null, image: t.image ?? null,
+    })
+  }
+
+  // En privat tur ger 404 för alla utom ägaren, så den görs synlig först, efter ett ja.
+  function valjTur(t: TurVal) {
+    setTurOppen(false)
+    if (t.visibility !== 'private') { void skickaTur(t); return }
+    setConfirmSheet({
+      title: 'Turen är privat',
+      body: 'Andra kan inte öppna en privat tur. Vill du göra den synlig för alla och skicka den?',
+      label: 'Gör synlig och skicka',
+      vanlig: true,
+      onConfirm: async () => {
+        const { error } = await supabase.from('trips').update({ visibility: 'public' }).eq('id', t.id).eq('user_id', me as string)
+        if (error) { toast('Turen kunde inte göras synlig. Försök igen.', 'error'); return }
+        void revalidateTrip(t.id)
+        await skickaTur(t)
+      },
+    })
+  }
+
   // Positionen är exakt och sparas i samtalet, så den skickas först efter ett ja.
   function confirmShareGeo() {
     if (!navigator.geolocation || sharingGeo) return
@@ -864,16 +911,17 @@ export default function ChatPage() {
       {!arMottagareAvForfragan && (
         <>
           <input ref={fileRef} type="file" accept="image/*" onChange={onPickImage} style={{ display: 'none' }} />
+          {/* capture öppnar kameran direkt på telefon i stället för bildväljaren */}
+          <input ref={kameraRef} type="file" accept="image/*" capture="environment" onChange={onPickImage} style={{ display: 'none' }} />
           <Skrivfalt
             text={text}
             setText={setText}
             onSkicka={() => send()}
             kanSkicka={!!text.trim() && !posting}
             placeholder={arAvsandareAvForfragan ? 'Lägg till ett meddelande till förfrågan…' : 'Skriv ett meddelande…'}
-            onBild={() => fileRef.current?.click()}
-            onPosition={confirmShareGeo}
+            onPlus={() => setPlusOppen(true)}
+            onKamera={() => kameraRef.current?.click()}
             laddarBild={uploading}
-            delarPosition={sharingGeo}
             fokusSignal={fokusSignal}
             ovanfor={svarMedd ? (
               <SvarsRad vem={svarMedd.user_id === me ? 'dig själv' : (svarMedd.username ?? 'Seglare')}
@@ -935,6 +983,20 @@ export default function ChatPage() {
             ? { label: `Blockera ${otherName}`, onClick: handleBlockUser }
             : undefined}
         />
+      )}
+
+      {plusOppen && (
+        <PlusMeny
+          onStang={() => setPlusOppen(false)}
+          onBild={() => { setPlusOppen(false); fileRef.current?.click() }}
+          onPosition={() => { setPlusOppen(false); confirmShareGeo() }}
+          onTur={oppnaTurer}
+          laddarBild={uploading}
+          delarPosition={sharingGeo}
+        />
+      )}
+      {turOppen && (
+        <TurValjare turer={turer} fel={turFel} onValj={valjTur} onStang={() => setTurOppen(false)} />
       )}
 
       {/* Bekräftelse, i stället för webbläsarens confirm() */}
