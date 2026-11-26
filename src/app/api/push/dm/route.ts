@@ -44,6 +44,7 @@ function bilagaText(typ: string | null): string {
   if (typ === 'image') return 'Bild'
   if (typ === 'geo') return 'Position'
   if (typ === 'trip') return 'Tur'
+  if (typ === 'audio') return 'Röstmeddelande'
   return 'Nytt meddelande'
 }
 

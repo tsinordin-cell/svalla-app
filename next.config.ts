@@ -34,7 +34,7 @@ const securityHeaders = [
   {
     // Geo behövs för spara-tur (eget GPS-tracking). Övrigt blockerat.
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=(self), payment=(self), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=()',
+    value: 'camera=(), microphone=(self), geolocation=(self), payment=(self), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), interest-cohort=()',
   },
   {
     // HSTS: tvinga HTTPS i 2 år, inkludera subdomäner

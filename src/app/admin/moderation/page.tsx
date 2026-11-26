@@ -325,6 +325,10 @@ export default async function ModerationPage({
                               )
                               : <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>[bild]</div>
                             )}
+                            {u.bilaga_typ === 'audio' && (bild
+                              ? <audio src={bild} controls preload="none" style={{ marginTop: 4, display: 'block', maxWidth: 260 }} />
+                              : <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>[röstmeddelande]</div>
+                            )}
                             {u.bilaga_typ === 'geo' && (
                               <div style={{ fontSize: 12, color: 'var(--txt3)', fontStyle: 'italic' }}>
                                 [delad position{pos ? `: ${pos}` : ''}]

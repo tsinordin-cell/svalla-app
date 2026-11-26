@@ -227,7 +227,7 @@ export type Message = {
   conversation_id: string
   user_id: string
   content: string | null
-  attachment_type: 'image' | 'geo' | 'trip' | null
+  attachment_type: 'image' | 'geo' | 'trip' | 'audio' | null
   attachment_url: string | null
   attachment_meta: Record<string, unknown> | null
   created_at: string

@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { ritaOmBildUtanMetadata } from '@/lib/komprimeraBild'
 import { DM_BILD_HINK, DM_BILD_LANK_SEKUNDER, arDmBildSokvag } from '@/lib/dmBilder'
+import { useRostInspelning, type RostKlipp } from '@/lib/useRostInspelning'
 import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
@@ -10,8 +11,8 @@ import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import {
-  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, PlusMeny, SamtalsHuvud, Sjokort, Skrivfalt,
-  TextBubbla, TomtLage, TurKort, TurValjare, type GeoMeta, type TripMeta, type TurVal,
+  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, PlusMeny, RostBubbla, SamtalsHuvud, Sjokort, Skrivfalt,
+  TextBubbla, TomtLage, TurKort, TurValjare, type GeoMeta, type RostMeta, type TripMeta, type TurVal,
 } from '@/components/meddelanden/Delar'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, type Reaktion } from '@/components/meddelanden/Meny'
@@ -28,6 +29,7 @@ function kortText(m: MsgWithMeta): string {
   if (m.attachment_type === 'image') return 'Bild'
   if (m.attachment_type === 'geo') return 'Position'
   if (m.attachment_type === 'trip') return 'Tur'
+  if (m.attachment_type === 'audio') return 'Röstmeddelande'
   return 'Meddelande'
 }
 
@@ -224,11 +226,11 @@ export default function ChatPage() {
     }
   }, [supabase, id])
 
-  // Tidsbegränsade länkar för bilder i den privata hinken. Hämtas för de
-  // sökvägar som saknar länk; regeln i databasen släpper bara igenom deltagare.
+  // Tidsbegränsade länkar för bilder och röstmeddelanden i den privata hinken.
+  // Hämtas för de sökvägar som saknar länk; regeln i databasen släpper bara igenom deltagare.
   useEffect(() => {
     const saknas = [...new Set(messages
-      .filter(m => m.attachment_type === 'image' && arDmBildSokvag(m.attachment_url) && !bildLankar[m.attachment_url as string])
+      .filter(m => (m.attachment_type === 'image' || m.attachment_type === 'audio') && arDmBildSokvag(m.attachment_url) && !bildLankar[m.attachment_url as string])
       .map(m => m.attachment_url as string))]
     if (saknas.length === 0) return
     let avbruten = false
@@ -399,7 +401,7 @@ export default function ChatPage() {
     return 'Meddelandet kunde inte skickas. Försök igen.'
   }
 
-  async function sendAttachment(type: 'image' | 'geo' | 'trip', url: string, meta: Record<string, unknown>): Promise<boolean> {
+  async function sendAttachment(type: 'image' | 'geo' | 'trip' | 'audio', url: string, meta: Record<string, unknown>): Promise<boolean> {
     if (!me) return false
     const svar = stod.svar ? svarPa : null
     const { data: inserted, error } = await supabase.from('messages').insert({
@@ -478,7 +480,7 @@ export default function ChatPage() {
       onConfirm: async () => {
         const bild = messages.find(m => m.id === msgId)
         const ok = await deleteMessage(supabase, msgId,
-          bild?.attachment_type === 'image' ? bild.attachment_url : null)
+          bild?.attachment_type === 'image' || bild?.attachment_type === 'audio' ? bild.attachment_url : null)
         if (ok) {
           setMessages(prev => prev.filter(m => m.id !== msgId))
           setReaktioner(prev => prev.filter(r => r.message_id !== msgId))
@@ -641,6 +643,23 @@ export default function ChatPage() {
       setUploading(false)
     }
   }
+
+  // ─── Röstmeddelanden ───────────────────────────────────────────────────────
+  // Samma privata hink och samma sökvägsmönster som bilderna; databasen godtar .m4a och .webm.
+  async function skickaRost({ blob, sekunder, format }: RostKlipp) {
+    if (!me) return
+    const path = `${id}/${me}/${crypto.randomUUID()}.${format.filandelse}`
+    const { error } = await supabase.storage.from(DM_BILD_HINK).upload(path, blob, {
+      upsert: false, contentType: format.typ,
+    })
+    if (error) {
+      toast('Röstmeddelandet kunde inte laddas upp. Försök igen.', 'error')
+      return
+    }
+    const ok = await sendAttachment('audio', path, { duration: sekunder, size: blob.size })
+    if (!ok) await supabase.storage.from(DM_BILD_HINK).remove([path])
+  }
+  const rost = useRostInspelning({ onKlipp: skickaRost, onFel: t => toast(t, 'error') })
 
   // ─── Tur från plusmenyn ────────────────────────────────────────────────────
   async function oppnaTurer() {
@@ -810,6 +829,14 @@ export default function ChatPage() {
               onFel={() => { if (arDmBildSokvag(url)) setBildLankar(prev => { const n = { ...prev }; delete n[url]; return n }) }} />
           )
         })()}
+        {m.attachment_type === 'audio' && m.attachment_url && (() => {
+          const url = m.attachment_url as string
+          return (
+            <RostBubbla src={arDmBildSokvag(url) ? bildLankar[url] : undefined} meta={m.attachment_meta as RostMeta | null}
+              // Länken gäller en timme. Går den ut hämtas en ny.
+              onFel={() => setBildLankar(prev => { const n = { ...prev }; delete n[url]; return n })} />
+          )
+        })()}
         {m.attachment_type === 'geo' && m.attachment_meta && (
           <Sjokort meta={m.attachment_meta as GeoMeta} href={m.attachment_url} onKopiera={kopiera} />
         )}
@@ -922,6 +949,7 @@ export default function ChatPage() {
             onPlus={() => setPlusOppen(true)}
             onKamera={() => kameraRef.current?.click()}
             laddarBild={uploading}
+            rost={rost}
             fokusSignal={fokusSignal}
             ovanfor={svarMedd ? (
               <SvarsRad vem={svarMedd.user_id === me ? 'dig själv' : (svarMedd.username ?? 'Seglare')}
