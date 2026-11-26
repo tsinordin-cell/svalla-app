@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  Avatar, BildBubbla, DagAvdelare, IKON, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt, TextBubbla,
+  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt, TextBubbla,
   TomtLage, TurKort, type KonvRadData,
 } from '@/components/meddelanden/Delar'
 import { InkorgVy } from '@/components/meddelanden/Inkorg'
+import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, REAKTIONER, type Reaktion } from '@/components/meddelanden/Meny'
 
 // Påhittade samtal. Inga riktiga personer eller meddelanden.
 const MIN = 60_000
@@ -21,7 +22,7 @@ const RADER: KonvRadData[] = [
   { id: 'f', namn: 'Lisa Holm', nyckel: 'lisaholm', bild: null, tid: iso(9 * 24 * 60 * MIN), text: null, duSkrev: false, last: null, olasta: 0, forfragan: false, vantar: true },
 ]
 
-type M = { id: string; mine: boolean; tid: string; text?: string; typ?: 'bild' | 'geo' | 'tur' }
+type M = { id: string; mine: boolean; tid: string; text?: string; typ?: 'bild' | 'geo' | 'tur'; svar?: string }
 const SAMTAL: M[] = [
   { id: '1', mine: false, tid: iso(26 * 60 * MIN), text: 'Hej! Ska ni ut i helgen?' },
   { id: '2', mine: true, tid: iso(26 * 60 * MIN - MIN), text: 'Ja, vi tänkte gå mot Sandhamn på lördag om vinden håller.' },
@@ -30,10 +31,29 @@ const SAMTAL: M[] = [
   { id: '5', mine: false, tid: iso(39 * MIN), typ: 'geo' },
   { id: '6', mine: false, tid: iso(38 * MIN), text: 'Vi ligger vid gästbryggan, kom förbi!' },
   { id: '7', mine: true, tid: iso(12 * MIN), typ: 'bild' },
-  { id: '8', mine: true, tid: iso(11 * MIN), text: 'Vi rundar Korsö nu. Om en timme ungefär!' },
+  { id: '8', mine: true, tid: iso(11 * MIN), text: 'Vi rundar Korsö nu. Om en timme ungefär!', svar: '6' },
 ]
 
-export default function Forhandsvisning({ vy, tema }: { vy: string; tema?: string }) {
+// Påhittade reaktioner. "jag" är den som tittar, "elin" den andra.
+const START_REAKTIONER: Reaktion[] = [
+  { id: 'r1', message_id: '2', user_id: 'elin', emoji: REAKTIONER[1] },
+  { id: 'r2', message_id: '6', user_id: 'jag', emoji: REAKTIONER[0] },
+  { id: 'r3', message_id: '7', user_id: 'elin', emoji: REAKTIONER[0] },
+  { id: 'r4', message_id: '7', user_id: 'jag', emoji: REAKTIONER[0] },
+]
+
+function kortText(m: M) {
+  if (m.text) return m.text
+  return m.typ === 'bild' ? 'Bild' : m.typ === 'geo' ? 'Position' : m.typ === 'tur' ? 'Tur' : 'Meddelande'
+}
+
+/**
+ * ?meny=andra|egen: öppnar den nya menyn på Elins eller ett eget meddelande.
+ * ?meny=fore: den gamla menyn (samma kod som på svalla.se före ändringen), för jämförelse.
+ * ?svar=1: visar raden "Svarar Elin Berg" ovanför skrivfältet.
+ * ?db=nej: som innan databasändringen är körd: inga reaktioner, inget Svara.
+ */
+export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string }) {
   // ?tema=mork|ljust: sätter samma inställning som appens temaväljare (bara i förhandsversionens webbläsare).
   useEffect(() => {
     if (tema !== 'mork' && tema !== 'ljust') return
@@ -67,7 +87,7 @@ export default function Forhandsvisning({ vy, tema }: { vy: string; tema?: strin
           />
         </aside>
         <section className="md-ram-innehall">
-          {iSamtal ? <Samtal text={text} setText={setText} /> : (
+          {iSamtal ? <Samtal text={text} setText={setText} startMeny={meny} startSvar={svar === '1'} medDb={db !== 'nej'} /> : (
             <div className="md-valj">
               <TomtLage ikon={IKON.pratbubbla} rubrik="Välj ett samtal" text="Dina samtal finns till vänster. Du kan också starta ett nytt." />
             </div>
@@ -87,8 +107,17 @@ export default function Forhandsvisning({ vy, tema }: { vy: string; tema?: strin
   )
 }
 
-function Samtal({ text, setText }: { text: string; setText: (t: string) => void }) {
+function Samtal({ text, setText, startMeny, startSvar, medDb }: {
+  text: string; setText: (t: string) => void; startMeny?: string; startSvar: boolean; medDb: boolean
+}) {
   const sista = SAMTAL.length - 1
+  const [reaktioner, setReaktioner] = useState<Reaktion[]>(medDb ? START_REAKTIONER : [])
+  const [svarPa, setSvarPa] = useState<string | null>(startSvar && medDb ? '4' : null)
+  const [meny, setMeny] = useState<{ id: string; rect: { top: number; left: number; right: number; height: number } } | null>(null)
+  const [gammal, setGammal] = useState(false)
+  const [markerad, setMarkerad] = useState<string | null>(null)
+  const tryck = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   // Som riktiga samtalet: börja längst ned, vid det senaste meddelandet.
   const flode = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -97,6 +126,59 @@ function Samtal({ text, setText }: { text: string; setText: (t: string) => void 
     const t = [setTimeout(ned, 400), setTimeout(ned, 1500)]
     return () => t.forEach(clearTimeout)
   }, [])
+
+  const oppna = useCallback((id: string, el?: Element | null) => {
+    const kol = el ?? document.querySelector(`#m-${id} .md-kol`)
+    if (!kol) return
+    const r = kol.getBoundingClientRect()
+    setMeny({ id, rect: { top: r.top, left: r.left, right: r.right, height: r.height } })
+  }, [])
+
+  // Öppna en meny direkt via adressen, efter att flödet scrollats färdigt.
+  useEffect(() => {
+    if (!startMeny) return
+    const t = setTimeout(() => {
+      if (startMeny === 'fore') setGammal(true)
+      else oppna(startMeny === 'egen' ? '8' : '6')
+    }, 1700)
+    return () => clearTimeout(t)
+  }, [startMeny, oppna])
+
+  const stang = useCallback(() => setMeny(null), [])
+
+  function reagera(id: string, emoji: string) {
+    setReaktioner(prev => {
+      const min = prev.find(r => r.message_id === id && r.user_id === 'jag')
+      const utan = prev.filter(r => r !== min)
+      return min?.emoji === emoji ? utan : [...utan, { id: `r-${id}-${emoji}`, message_id: id, user_id: 'jag', emoji }]
+    })
+  }
+
+  function hoppa(id: string) {
+    document.getElementById(`m-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    setMarkerad(id)
+    setTimeout(() => setMarkerad(null), 1600)
+  }
+
+  const byId = new Map(SAMTAL.map(m => [m.id, m]))
+  const vem = (m: M) => (m.mine ? 'Du' : 'Elin Berg')
+
+  function bubblor(m: M, iMeny = false) {
+    const orig = medDb && m.svar ? byId.get(m.svar) : undefined
+    return (
+      <>
+        {orig && <Citat vem={vem(orig)} text={kortText(orig)} onTryck={iMeny ? undefined : () => hoppa(orig.id)} />}
+        {m.typ === 'bild' && <BildBubbla src="/og-image.jpg" />}
+        {m.typ === 'geo' && <Sjokort meta={{ lat: 59.2893, lng: 18.9098, accuracy: 12, location_name: 'Sandhamn, vid sjöstationen' }} href={null} onKopiera={() => {}} />}
+        {m.typ === 'tur' && <TurKort meta={{ location_name: 'Stavsnäs till Sandhamn', distance: 9.4, image: '/og-image.jpg' }} />}
+        {m.text && <TextBubbla text={m.text} />}
+      </>
+    )
+  }
+
+  const menyM = meny ? byId.get(meny.id) : undefined
+  const svarM = svarPa ? byId.get(svarPa) : undefined
+
   return (
     <div className="md-samtal md-rot">
       <SamtalsHuvud namn="Elin Berg" nyckel="elinberg" bild={null} profilHref={null} under="Visa profil" onMer={() => {}} />
@@ -113,19 +195,66 @@ function Samtal({ text, setText }: { text: string; setText: (t: string) => void 
               <div key={m.id}>
                 {nyDag && <DagAvdelare iso={m.tid} />}
                 <MeddelandeRad mine={m.mine} nyGrupp={nyGrupp} sist={sist} tid={m.tid} sett={i === sista}
-                  avatar={<Avatar namn="Elin Berg" nyckel="elinberg" s={28} />}>
-                  {m.typ === 'bild' && <BildBubbla src="/og-image.jpg" />}
-                  {m.typ === 'geo' && <Sjokort meta={{ lat: 59.2893, lng: 18.9098, accuracy: 12, location_name: 'Sandhamn, vid sjöstationen' }} href={null} onKopiera={() => {}} />}
-                  {m.typ === 'tur' && <TurKort meta={{ location_name: 'Stavsnäs till Sandhamn', distance: 9.4, image: '/og-image.jpg' }} />}
-                  {m.text && <TextBubbla text={m.text} />}
+                  radId={`m-${m.id}`} markerad={markerad === m.id}
+                  avatar={<Avatar namn="Elin Berg" nyckel="elinberg" s={28} />}
+                  handlers={{
+                    onTouchStart: e => { const el = e.currentTarget; tryck.current = setTimeout(() => oppna(m.id, el), 420) },
+                    onTouchEnd: () => { if (tryck.current) clearTimeout(tryck.current) },
+                    onTouchMove: () => { if (tryck.current) clearTimeout(tryck.current) },
+                    onContextMenu: e => { e.preventDefault(); oppna(m.id, e.currentTarget) },
+                  }}
+                  under={medDb && (
+                    <ReaktionsRad lista={reaktioner.filter(r => r.message_id === m.id)} me="jag" mine={m.mine} onTryck={e => reagera(m.id, e)} />
+                  )}
+                  atgarder={
+                    <>
+                      {medDb && (
+                        <button type="button" className="md-hover-knapp" aria-label="Svara" title="Svara" onClick={() => setSvarPa(m.id)}>
+                          <Ikon d={IKON.svar} s={17} w={1.9} />
+                        </button>
+                      )}
+                      <button type="button" className="md-hover-knapp" aria-label={medDb ? 'Reagera och fler val' : 'Fler val'}
+                        title={medDb ? 'Reagera' : 'Fler val'}
+                        onClick={e => oppna(m.id, e.currentTarget.closest('.md-rad')?.querySelector('.md-kol'))}>
+                        <Ikon d={medDb ? IKON.smil : IKON.mer} s={17} w={1.9} />
+                      </button>
+                    </>
+                  }>
+                  {bubblor(m)}
                 </MeddelandeRad>
               </div>
             )
           })}
         </div>
       </div>
-      <Skrivfalt text={text} setText={setText} onSkicka={() => setText('')} kanSkicka={!!text.trim()}
-        placeholder="Skriv ett meddelande…" onBild={() => {}} onPosition={() => {}} laddarBild={false} delarPosition={false} />
+      <Skrivfalt text={text} setText={setText} onSkicka={() => { setText(''); setSvarPa(null) }} kanSkicka={!!text.trim()}
+        placeholder="Skriv ett meddelande…" onBild={() => {}} onPosition={() => {}} laddarBild={false} delarPosition={false}
+        ovanfor={svarM ? <SvarsRad vem={svarM.mine ? 'dig själv' : 'Elin Berg'} text={kortText(svarM)} onAvbryt={() => setSvarPa(null)} /> : null} />
+
+      {meny && menyM && (
+        <MeddelandeMeny
+          key={menyM.id}
+          rect={meny.rect}
+          mine={menyM.mine}
+          innehall={bubblor(menyM, true)}
+          reaktioner={medDb}
+          minReaktion={reaktioner.find(r => r.message_id === menyM.id && r.user_id === 'jag')?.emoji ?? null}
+          onReagera={e => { stang(); reagera(menyM.id, e) }}
+          onSvara={medDb ? () => { stang(); setSvarPa(menyM.id) } : undefined}
+          onKopiera={menyM.text ? stang : undefined}
+          onRadera={menyM.mine ? stang : undefined}
+          onAnmal={!menyM.mine ? stang : undefined}
+          onStang={stang}
+        />
+      )}
+
+      {/* Den gamla menyn, oförändrad, för före-bilder (?meny=fore). */}
+      {gammal && (
+        <Ark onStang={() => setGammal(false)} etikett="Åtgärder för meddelandet">
+          <ArkRad ikon={IKON.flagga} label="Anmäl meddelande" fara onClick={() => setGammal(false)} />
+          <ArkRad ikon={IKON.stang} label="Avbryt" onClick={() => setGammal(false)} />
+        </Ark>
+      )}
     </div>
   )
 }

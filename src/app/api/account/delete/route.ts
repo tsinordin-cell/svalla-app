@@ -174,6 +174,8 @@ export async function POST(req: NextRequest) {
     'push_subscriptions',
     'partner_inquiries',
     'reports',
+    // Reaktioner på meddelanden (2026-11-26). Försvinner även via on delete cascade.
+    'message_reactions',
     'messages',
     'conversation_participants',
     'planned_routes',
