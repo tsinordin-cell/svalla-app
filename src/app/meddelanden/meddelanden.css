@@ -280,6 +280,8 @@
   font: inherit; font-size: 16px; line-height: 22px; padding: 11px 16px; height: 44px; max-height: 132px; display: block;
 }
 .md-falt textarea::placeholder { color: var(--txt3); }
+/* Fältet visar fokus med sin runda ring (.md-falt:focus-within). Den allmänna fyrkantiga fokusramen ovan stängs av här. */
+.md-rot .md-falt textarea:focus-visible { outline: none; }
 /* Sajtens globala mörka fältstil (globals.css, med !important) ger annars sök- och skrivfältet en egen mörkare ruta inuti.
    Här ärver fälten sin omgivande yta i stället, i både ljust och mörkt läge. */
 .md-sok input, .md-sok input:focus,
