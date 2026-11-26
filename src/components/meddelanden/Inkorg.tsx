@@ -118,8 +118,13 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
               <div className="md-ink-under">
                 {flik === 'active' ? (
                   <>
-                    <button type="button" className="md-ink-forfr" onClick={() => setFlik('requests')}>
-                      Förfrågningar
+                    <button
+                      type="button"
+                      className="md-ink-forfr"
+                      onClick={() => setFlik('requests')}
+                      aria-label={forfragningarAntal > 0 ? `Förfrågningar, ${forfragningarAntal} nya` : 'Förfrågningar'}
+                    >
+                      Förfrågningar{forfragningarAntal > 0 && ` (${forfragningarAntal > 9 ? '9+' : forfragningarAntal})`}
                     </button>
                   </>
                 ) : (
