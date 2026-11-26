@@ -3,6 +3,14 @@
 Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
 
+
+## 2026-11-25 — batch 01:s kod publicerad; databasen väntar på Toms ja
+
+- PR #739 squash-mergad (a2d8d49). Vercel produktion success; ändringarna verifierade på svalla.se.
+- Fem kontrollomgångar efter runda 11 (ur/ub-01 till 05) och rättelserunda 12 till 14. Inga kvarstående FEL i koden.
+- Vakten (MÄTT): Lag 3 1 296 sidor, 0 under 95 % (lägst 98,0 %); 545/548 KÄLLA-adresser svarar 200; prebuild, tsc, verify-claims och vitest 997/997 gröna.
+- Databasen: 113 satser i register/b01/ut/*.sql, 110 träffar sina rader (SELECT 2026-11-25), 3 redan gjorda. Körs efter Toms ja. Underlag: ut/databasandringar-b01.md.
+
 ## 2026-11-17 06:00
 - Runda 4f klar (del A och B). FÖRE-värden prövade med SELECT. Dykarbaren läst i Toms Chrome: webbplatsen är avstängd; Facebook och verksamhetens arkiverade sida stöder uppgifterna. Prövas i slutstädningen.
 - Pågår (2 agenter): mallarnas runda 7 på nya main (ce275b2) med beslut C, och öarnas ändringar på nya main utan tankstreck.
