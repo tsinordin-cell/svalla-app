@@ -1240,6 +1240,12 @@ img {
   }
 }
 
+/* Chattrum på telefon: skrivfältet ligger i botten, så bottenmenyn döljs där
+   (2026-11-26, premiumsteg 1). På dator syns sidomenyn som på övriga appsidor. */
+@media (max-width: 1023px) {
+  nav.svalla-nav.svalla-nav--doljmobil { display: none !important; }
+}
+
 /* ── Desktop nav — left sidebar ≥1024px ── */
 @media (min-width: 1024px) {
   /* Ingen bottom-nav på desktop → nollställ nav-h */
