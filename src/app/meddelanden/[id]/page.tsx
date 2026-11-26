@@ -268,31 +268,38 @@ export default function ChatPage() {
     return () => { avbruten = true }
   }, [supabase, id, me, loadReaktioner])
 
-  // Realtime
+  // Läs om när den andra parten senast läste samtalet ("Läst").
+  const laddaAndrasLast = useCallback(async () => {
+    if (!me) return
+    try {
+      const { data: rp } = await supabase
+        .from('conversation_participants')
+        .select('last_read_at')
+        .eq('conversation_id', id)
+        .neq('user_id', me)
+        .single()
+      if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
+    } catch { /* tyst */ }
+  }, [supabase, id, me])
+
+  // Realtime: nya meddelanden och reaktioner.
+  // Kanalnamnet får ett unikt slut. Effekten körs om när stödet för reaktioner blivit känt,
+  // och en ny kanal med samma namn som den som just tas bort kan annars bli utan prenumeration.
+  // "Läst" lyssnas på i en egen kanal nedan: tabellen för den ligger inte i realtidspublikationen,
+  // och en bindning till den här fick hela kanalen att nekas, så att inga meddelanden kom fram.
   useEffect(() => {
     if (!me) return
     // Wrapped i try-catch: iOS/Safari kastar SecurityError synkront om wss:// saknas i CSP.
     // Det sprider sig annars genom realtime-js (ingen intern try-catch) upp till React och
     // triggar error boundary. Primärfix = wss://*.supabase.co i next.config.ts connect-src.
     let ch: ReturnType<typeof supabase.channel> | null = null
+    let harVaritAnsluten = false
     try {
       ch = supabase
-        .channel(`conv:${id}`)
+        .channel(`conv:${id}:${Date.now()}`)
         .on('postgres_changes',
           { event: 'INSERT', schema: 'public', table: 'messages', filter: `conversation_id=eq.${id}` },
           () => { loadMessages(me) },
-        )
-        .on('postgres_changes',
-          { event: 'UPDATE', schema: 'public', table: 'conversation_participants', filter: `conversation_id=eq.${id}` },
-          async () => {
-            const { data: rp } = await supabase
-              .from('conversation_participants')
-              .select('last_read_at')
-              .eq('conversation_id', id)
-              .neq('user_id', me)
-              .single()
-            if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
-          },
         )
       // Reaktioner lyssnas bara på när tabellen finns, annars kan hela kanalen fallera.
       if (stod.reaktioner) {
@@ -315,12 +322,56 @@ export default function ChatPage() {
             },
           )
       }
-      ch.subscribe()
+      ch.subscribe((status) => {
+        if (status !== 'SUBSCRIBED') return
+        // Vid återanslutning: hämta det som kan ha kommit medan anslutningen var nere.
+        if (harVaritAnsluten) {
+          loadMessages(me)
+          if (stod.reaktioner) loadReaktioner()
+        }
+        harVaritAnsluten = true
+      })
     } catch {
-      // Realtime-prenumeration misslyckades — chatt fungerar utan realtid (pull-to-refresh)
+      // Realtime-prenumeration misslyckades — chatt fungerar utan realtid (hämtas om vid återkomst)
     }
     return () => { if (ch) supabase.removeChannel(ch) }
   }, [supabase, id, me, loadMessages, loadReaktioner, stod.reaktioner])
+
+  // Realtime: "Läst". Egen kanal, så att den inte kan stoppa meddelanden och reaktioner.
+  useEffect(() => {
+    if (!me) return
+    let ch: ReturnType<typeof supabase.channel> | null = null
+    try {
+      ch = supabase
+        .channel(`conv-last:${id}:${Date.now()}`)
+        .on('postgres_changes',
+          { event: 'UPDATE', schema: 'public', table: 'conversation_participants', filter: `conversation_id=eq.${id}` },
+          () => { laddaAndrasLast() },
+        )
+      ch.subscribe()
+    } catch { /* tyst */ }
+    return () => { if (ch) supabase.removeChannel(ch) }
+  }, [supabase, id, me, laddaAndrasLast])
+
+  // När sidan blir synlig igen (iPhone fryser flikar i bakgrunden) eller nätet kommer tillbaka:
+  // hämta nya meddelanden, reaktioner och "Läst", eftersom händelser under tiden inte spelas upp igen.
+  useEffect(() => {
+    if (!me) return
+    const hamtaOm = () => {
+      if (document.visibilityState !== 'visible') return
+      loadMessages(me)
+      if (stod.reaktioner) loadReaktioner()
+      laddaAndrasLast()
+    }
+    document.addEventListener('visibilitychange', hamtaOm)
+    window.addEventListener('online', hamtaOm)
+    window.addEventListener('pageshow', hamtaOm)
+    return () => {
+      document.removeEventListener('visibilitychange', hamtaOm)
+      window.removeEventListener('online', hamtaOm)
+      window.removeEventListener('pageshow', hamtaOm)
+    }
+  }, [me, loadMessages, loadReaktioner, laddaAndrasLast, stod.reaktioner])
 
   // Presence — signalera att jag är aktiv i denna chatt så servern inte pushar hit
   useEffect(() => {
