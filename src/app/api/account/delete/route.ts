@@ -131,13 +131,13 @@ export async function POST(req: NextRequest) {
     .update({ body: '[Borttaget av användare]', title: '[Borttaget av användare]' })
     .eq('user_id', userId)
 
-  // Användarens bilder i direktmeddelanden (privata hinken dm-bilder), lästa
+  // Användarens bilder och röstmeddelanden i direktmeddelanden (privata hinken dm-bilder), lästa
   // ur messages innan raderna tas bort. Täcker även samtal hen redan lämnat.
   const dmBildSokvagar: string[] = []
   for (let fran = 0; ; fran += 1000) {
     const { data: rader } = await s.from('messages')
       .select('conversation_id, attachment_url')
-      .eq('user_id', userId).eq('attachment_type', 'image')
+      .eq('user_id', userId).in('attachment_type', ['image', 'audio'])
       .range(fran, fran + 999)
     for (const r of rader ?? []) {
       const url = r.attachment_url as string | null

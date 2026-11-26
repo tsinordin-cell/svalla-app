@@ -14,6 +14,7 @@ import Link from 'next/link'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { decimal } from '@/lib/gps'
 import { avatarGradient, initialsOf, absoluteDate } from '@/lib/utils'
+import { rostTid, type RostInspelning } from '@/lib/useRostInspelning'
 
 // ─── Ikoner ──────────────────────────────────────────────────────────────────
 
@@ -39,6 +40,7 @@ export const IKON = {
   smil: 'M12 21a9 9 0 100-18 9 9 0 000 18zM8.5 14.5s1.3 1.8 3.5 1.8 3.5-1.8 3.5-1.8M9 9.5h.01M15 9.5h.01',
   plus: 'M12 5v14M5 12h14',
   kamera: 'M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1zM12 17a4 4 0 100-8 4 4 0 000 8z',
+  mikrofon: 'M12 3a3 3 0 00-3 3v6a3 3 0 006 0V6a3 3 0 00-3-3zM5 11a7 7 0 0014 0M12 18v3',
 } as const
 
 export function Ikon({ d, s = 20, w = 2 }: { d: string; s?: number; w?: number }) {
@@ -396,7 +398,7 @@ export function TurKort({ meta }: { meta: TripMeta }) {
 
 // ─── Skrivfältet ─────────────────────────────────────────────────────────────
 
-export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onPlus, onKamera, laddarBild, onFokus, ovanfor, fokusSignal }: {
+export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onPlus, onKamera, laddarBild, onFokus, ovanfor, fokusSignal, rost }: {
   text: string
   setText: (t: string) => void
   onSkicka: () => void
@@ -412,6 +414,8 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onP
   ovanfor?: ReactNode
   /** Ändras värdet får fältet fokus (t.ex. efter Svara i menyn) */
   fokusSignal?: number
+  /** Röstmeddelanden. Mikrofonen visas i skicka-knappens plats när fältet är tomt. */
+  rost?: RostInspelning
 }) {
   const ref = useRef<HTMLTextAreaElement>(null)
   useEffect(() => {
@@ -425,9 +429,13 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onP
     el.style.height = `${Math.min(el.scrollHeight, 132)}px`
   }, [text])
 
+  const spelarIn = !!rost && rost.lage !== 'av'
+  const visaMikrofon = !!rost?.kan && !text.trim()
+
   return (
     <form className="md-komp" onSubmit={e => { e.preventDefault(); onSkicka() }}>
       {ovanfor}
+      {spelarIn ? <Inspelningsrad rost={rost!} /> : (
       <div className="md-komp-rad">
         <button type="button" className="md-rund" onClick={onPlus} aria-label="Bild, position eller tur" aria-haspopup="dialog">
           <Ikon d={IKON.plus} s={24} w={2} />
@@ -447,11 +455,108 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onP
               if (e.key === 'Enter' && !e.shiftKey && !pek && !e.nativeEvent.isComposing) { e.preventDefault(); onSkicka() }
             }} />
         </div>
-        <button type="submit" className={`md-skicka${kanSkicka ? ' md-skicka--redo' : ''}`} disabled={!kanSkicka} aria-label="Skicka">
-          <Ikon d={IKON.skicka} s={20} w={2.4} />
-        </button>
+        {visaMikrofon ? (
+          <button type="button" className="md-rund md-rund--mik" onClick={rost!.starta} aria-label="Spela in röstmeddelande">
+            <Ikon d={IKON.mikrofon} s={22} w={1.8} />
+          </button>
+        ) : (
+          <button type="submit" className={`md-skicka${kanSkicka ? ' md-skicka--redo' : ''}`} disabled={!kanSkicka} aria-label="Skicka">
+            <Ikon d={IKON.skicka} s={20} w={2.4} />
+          </button>
+        )}
       </div>
+      )}
     </form>
+  )
+}
+
+/** Raden som ersätter skrivfältet medan ett röstmeddelande spelas in. */
+function Inspelningsrad({ rost }: { rost: RostInspelning }) {
+  const { lage, sekunder, nivaer } = rost
+  const skickar = lage === 'skickar'
+  const klar = lage === 'klar'
+  return (
+    <div className="md-komp-rad md-insp" role="group" aria-label="Röstmeddelande">
+      <button type="button" className="md-rund md-insp-kasta" onClick={rost.avbryt} disabled={skickar} aria-label="Kasta inspelningen">
+        <Ikon d={IKON.soptunna} s={21} w={1.8} />
+      </button>
+      <div className={`md-insp-falt${klar ? ' md-insp-falt--klar' : ''}`}>
+        <span className={`md-insp-prick${lage === 'spelar' ? ' md-insp-prick--pa' : ''}`} aria-hidden="true" />
+        <span className="md-insp-tid" aria-live="off">{rostTid(sekunder)}</span>
+        <span className="md-insp-vag" aria-hidden="true">
+          {nivaer.map((n, i) => <i key={i} style={{ transform: `scaleY(${0.14 + n * 0.86})` }} />)}
+        </span>
+        <span className="md-insp-text">
+          {skickar ? 'Skickar…' : klar ? 'Max 2 minuter' : lage === 'startar' ? 'Startar…' : 'Spelar in'}
+        </span>
+      </div>
+      <button type="button" className="md-skicka md-skicka--redo" onClick={rost.skicka}
+        disabled={skickar || lage === 'startar'} aria-label="Skicka röstmeddelandet" aria-busy={skickar}>
+        <Ikon d={IKON.skicka} s={20} w={2.4} />
+      </button>
+    </div>
+  )
+}
+
+// ─── Röstmeddelande i en bubbla ──────────────────────────────────────────────
+
+export type RostMeta = { duration?: number | null; size?: number | null }
+
+/** Bara ett klipp spelar åt gången i hela sidan. */
+let spelarNu: HTMLAudioElement | null = null
+
+export function RostBubbla({ src, meta, onFel }: { src: string | undefined; meta: RostMeta | null; onFel?: () => void }) {
+  const ref = useRef<HTMLAudioElement>(null)
+  const [spelar, setSpelar] = useState(false)
+  const [laddar, setLaddar] = useState(false)
+  const [tid, setTid] = useState(0)
+  const [langd, setLangd] = useState<number>(() => (meta?.duration && meta.duration > 0 ? meta.duration : 0))
+
+  useEffect(() => () => { if (spelarNu === ref.current) spelarNu = null }, [])
+
+  function vaxla() {
+    const a = ref.current
+    if (!a || !src) return
+    if (!a.paused) { a.pause(); return }
+    if (spelarNu && spelarNu !== a) spelarNu.pause()
+    spelarNu = a
+    setLaddar(true)
+    a.play().catch(() => { setLaddar(false); setSpelar(false) })
+  }
+
+  function hoppa(e: React.ChangeEvent<HTMLInputElement>) {
+    const a = ref.current
+    if (!a || !langd) return
+    const t = (Number(e.target.value) / 1000) * langd
+    a.currentTime = t
+    setTid(t)
+  }
+
+  const andel = langd > 0 ? Math.min(1, tid / langd) : 0
+  return (
+    <div className="md-bubbla md-rost">
+      <button type="button" className="md-rost-knapp" onClick={vaxla} disabled={!src}
+        aria-label={spelar ? 'Pausa röstmeddelandet' : 'Spela röstmeddelandet'}>
+        {spelar
+          ? <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor" /><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor" /></svg>
+          : <svg viewBox="0 0 24 24" width={18} height={18} aria-hidden="true"><path d="M8 5.5v13a1 1 0 001.5.86l10.4-6.5a1 1 0 000-1.72L9.5 4.64A1 1 0 008 5.5z" fill="currentColor" /></svg>}
+      </button>
+      <div className="md-rost-spar">
+        <div className="md-rost-linje" aria-hidden="true"><div style={{ width: `${andel * 100}%` }} /></div>
+        <input type="range" min={0} max={1000} step={1} value={Math.round(andel * 1000)} onChange={hoppa}
+          disabled={!langd || !src} aria-label="Spola i röstmeddelandet" aria-valuetext={`${rostTid(tid)} av ${rostTid(langd)}`} />
+      </div>
+      <span className="md-rost-tid">{laddar && !spelar ? '…' : rostTid(spelar || tid > 0 ? tid : langd)}</span>
+      {src && (
+        <audio ref={ref} src={src} preload="metadata"
+          onLoadedMetadata={e => { const d = e.currentTarget.duration; if (Number.isFinite(d) && d > 0) setLangd(d) }}
+          onPlaying={() => { setLaddar(false); setSpelar(true) }}
+          onPause={() => setSpelar(false)}
+          onTimeUpdate={e => setTid(e.currentTarget.currentTime)}
+          onEnded={e => { setSpelar(false); setTid(0); e.currentTarget.currentTime = 0 }}
+          onError={() => { setLaddar(false); setSpelar(false); onFel?.() }} />
+      )}
+    </div>
   )
 }
 

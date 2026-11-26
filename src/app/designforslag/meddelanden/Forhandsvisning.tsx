@@ -2,9 +2,11 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
-  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, SamtalsHuvud, Sjokort, Skrivfalt, TextBubbla,
+  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, RostBubbla, SamtalsHuvud, Sjokort, Skrivfalt, TextBubbla,
   TomtLage, TurKort, PlusMeny, TurValjare, type KonvRadData, type TurVal,
 } from '@/components/meddelanden/Delar'
+import { rostFormat, useRostInspelning, type RostInspelning } from '@/lib/useRostInspelning'
+import { PROV_M4A, PROV_WEBM } from './ljudprov'
 import { InkorgVy } from '@/components/meddelanden/Inkorg'
 import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, REAKTIONER, type Reaktion } from '@/components/meddelanden/Meny'
 
@@ -22,7 +24,7 @@ const RADER: KonvRadData[] = [
   { id: 'f', namn: 'Lisa Holm', nyckel: 'lisaholm', bild: null, tid: iso(9 * 24 * 60 * MIN), text: null, duSkrev: false, last: null, olasta: 0, forfragan: false, vantar: true },
 ]
 
-type M = { id: string; mine: boolean; tid: string; text?: string; typ?: 'bild' | 'geo' | 'tur'; svar?: string }
+type M = { id: string; mine: boolean; tid: string; text?: string; typ?: 'bild' | 'geo' | 'tur' | 'rost'; svar?: string; ljud?: 'm4a' | 'webm' | string; sek?: number }
 const SAMTAL: M[] = [
   { id: '1', mine: false, tid: iso(26 * 60 * MIN), text: 'Hej! Ska ni ut i helgen?' },
   { id: '2', mine: true, tid: iso(26 * 60 * MIN - MIN), text: 'Ja, vi tänkte gå mot Sandhamn på lördag om vinden håller.' },
@@ -32,6 +34,9 @@ const SAMTAL: M[] = [
   { id: '6', mine: false, tid: iso(38 * MIN), text: 'Vi ligger vid gästbryggan, kom förbi!' },
   { id: '7', mine: true, tid: iso(12 * MIN), typ: 'bild' },
   { id: '8', mine: true, tid: iso(11 * MIN), text: 'Vi rundar Korsö nu. Om en timme ungefär!', svar: '6' },
+  // Röstmeddelanden: Elins klipp har Chromes format (WebM), ditt har iPhones (M4A).
+  { id: '9', mine: false, tid: iso(6 * MIN), typ: 'rost', ljud: 'webm', sek: 6 },
+  { id: '10', mine: true, tid: iso(5 * MIN), typ: 'rost', ljud: 'm4a', sek: 6 },
 ]
 
 // Påhittade reaktioner. "jag" är den som tittar, "elin" den andra.
@@ -44,7 +49,7 @@ const START_REAKTIONER: Reaktion[] = [
 
 function kortText(m: M) {
   if (m.text) return m.text
-  return m.typ === 'bild' ? 'Bild' : m.typ === 'geo' ? 'Position' : m.typ === 'tur' ? 'Tur' : 'Meddelande'
+  return m.typ === 'bild' ? 'Bild' : m.typ === 'geo' ? 'Position' : m.typ === 'tur' ? 'Tur' : m.typ === 'rost' ? 'Röstmeddelande' : 'Meddelande'
 }
 
 /**
@@ -55,8 +60,11 @@ function kortText(m: M) {
  * ?plus=1: öppnar plusmenyn i skrivfältet. ?plus=tur: turväljaren, ?plus=inga: turväljaren utan turer,
  * ?plus=privat: frågan som kommer när man väljer en privat tur.
  * ?pek=1: visar kameraknappen även med mus, så att telefonens skrivfält går att fota på dator.
+ * ?rost=spelar|klar: inspelningsraden mitt i en inspelning, eller stoppad vid två minuter.
+ * ?rost=prov: visar vilket format webbläsaren spelar in i. Utan rost= fungerar mikrofonen på riktigt:
+ *   klippet stannar i webbläsaren och läggs sist i samtalet, inget laddas upp.
  */
-export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string; pek?: string }) {
+export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek, rost }: { vy: string; tema?: string; meny?: string; svar?: string; db?: string; plus?: string; pek?: string; rost?: string }) {
   // ?tema=mork|ljust: sätter samma inställning som appens temaväljare (bara i förhandsversionens webbläsare).
   useEffect(() => {
     if (tema !== 'mork' && tema !== 'ljust') return
@@ -90,7 +98,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db, plus, pek }:
           />
         </aside>
         <section className="md-ram-innehall">
-          {iSamtal ? <Samtal text={text} setText={setText} startMeny={meny} startSvar={svar === '1'} medDb={db !== 'nej'} startPlus={plus} /> : (
+          {iSamtal ? <Samtal text={text} setText={setText} startMeny={meny} startSvar={svar === '1'} medDb={db !== 'nej'} startPlus={plus} rostLage={rost} /> : (
             <div className="md-valj">
               <TomtLage ikon={IKON.pratbubbla} rubrik="Dina meddelanden" text="Välj någon till vänster eller skriv ett nytt meddelande." />
             </div>
@@ -117,11 +125,45 @@ const TURER: TurVal[] = [
   { id: 't3', location_name: 'Vaxholm till Finnhamn', distance: 14.8, image: '/og-image.jpg', started_at: '2026-07-21T07:45:00Z', created_at: null, visibility: 'public' },
 ]
 
-function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus }: {
-  text: string; setText: (t: string) => void; startMeny?: string; startSvar: boolean; medDb: boolean; startPlus?: string
+const NIVAER = [0.1, 0.2, 0.45, 0.7, 0.5, 0.3, 0.6, 0.85, 0.55, 0.35, 0.2, 0.4, 0.75, 0.9, 0.6, 0.3, 0.15, 0.35, 0.65, 0.8,
+  0.5, 0.25, 0.45, 0.7, 0.4, 0.2, 0.55, 0.3]
+
+/** Provklippen som blob-länkar, som de riktiga klippens länkar från lagringen. */
+function useProvLankar(): Record<string, string> {
+  const [lankar, setLankar] = useState<Record<string, string>>({})
+  useEffect(() => {
+    const blob = (b64: string, typ: string) => URL.createObjectURL(new Blob([Uint8Array.from(atob(b64), c => c.charCodeAt(0))], { type: typ }))
+    const l = { m4a: blob(PROV_M4A, 'audio/mp4'), webm: blob(PROV_WEBM, 'audio/webm') }
+    setLankar(l)
+    return () => Object.values(l).forEach(u => URL.revokeObjectURL(u))
+  }, [])
+  return lankar
+}
+
+function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus, rostLage }: {
+  text: string; setText: (t: string) => void; startMeny?: string; startSvar: boolean; medDb: boolean; startPlus?: string; rostLage?: string
 }) {
   const [plusLage, setPlusLage] = useState<string | null>(startPlus ?? null)
-  const sista = SAMTAL.length - 1
+  const provLankar = useProvLankar()
+  // Egna inspelningar i förhandsvisningen. De stannar i webbläsaren.
+  const [egna, setEgna] = useState<M[]>([])
+  const [egnaLankar, setEgnaLankar] = useState<Record<string, string>>({})
+  const riktig = useRostInspelning({
+    onKlipp: async ({ blob, sekunder }) => {
+      const nyckel = `egen-${Date.now()}`
+      setEgnaLankar(prev => ({ ...prev, [nyckel]: URL.createObjectURL(blob) }))
+      setEgna(prev => [...prev, { id: nyckel, mine: true, tid: new Date().toISOString(), typ: 'rost', ljud: nyckel, sek: sekunder }])
+      setTimeout(() => { if (flode.current) flode.current.scrollTop = flode.current.scrollHeight }, 50)
+    },
+    onFel: t => window.alert(t),
+  })
+  const lasad: RostInspelning | null = rostLage === 'spelar' || rostLage === 'klar'
+    ? { kan: true, lage: rostLage, sekunder: rostLage === 'klar' ? 120 : 14, nivaer: NIVAER, starta: () => {}, avbryt: () => {}, skicka: () => {} }
+    : null
+  const [format, setFormat] = useState<string | null>(null)
+  useEffect(() => { setFormat(rostFormat()?.mime ?? 'kan inte spela in') }, [])
+  const ALLA = [...SAMTAL, ...egna]
+  const sista = ALLA.length - 1
   const [reaktioner, setReaktioner] = useState<Reaktion[]>(medDb ? START_REAKTIONER : [])
   const [svarPa, setSvarPa] = useState<string | null>(startSvar && medDb ? '4' : null)
   const [meny, setMeny] = useState<{ id: string; rect: { top: number; left: number; right: number; height: number } } | null>(null)
@@ -171,7 +213,7 @@ function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus }: {
     setTimeout(() => setMarkerad(null), 1600)
   }
 
-  const byId = new Map(SAMTAL.map(m => [m.id, m]))
+  const byId = new Map(ALLA.map(m => [m.id, m]))
   const vem = (m: M) => (m.mine ? 'Du' : 'Elin Berg')
 
   function bubblor(m: M, iMeny = false) {
@@ -181,6 +223,7 @@ function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus }: {
         {orig && <Citat vem={vem(orig)} text={kortText(orig)} onTryck={iMeny ? undefined : () => hoppa(orig.id)} />}
         {m.typ === 'bild' && <BildBubbla src="/og-image.jpg" />}
         {m.typ === 'geo' && <Sjokort meta={{ lat: 59.2893, lng: 18.9098, accuracy: 12, location_name: 'Sandhamn, vid sjöstationen' }} href={null} onKopiera={() => {}} />}
+        {m.typ === 'rost' && <RostBubbla src={m.ljud ? (provLankar[m.ljud] ?? egnaLankar[m.ljud]) : undefined} meta={{ duration: m.sek ?? null }} />}
         {m.typ === 'tur' && <TurKort meta={{ location_name: 'Stavsnäs till Sandhamn', distance: 9.4, image: '/og-image.jpg' }} />}
         {m.text && <TextBubbla text={m.text} />}
       </>
@@ -193,11 +236,17 @@ function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus }: {
   return (
     <div className="md-samtal md-rot">
       <SamtalsHuvud namn="Elin Berg" nyckel="elinberg" bild={null} profilHref={null} under="Visa profil" onMer={() => {}} />
+      {rostLage === 'prov' && (
+        <div className="md-banner md-banner--info"><div className="md-banner-ruta">
+          Den här webbläsaren spelar in som: <strong>{format ?? '…'}</strong>. Elins klipp har Chromes format, ditt har iPhones.
+          Tryck på mikrofonen för att prova att spela in. Inget laddas upp.
+        </div></div>
+      )}
       <div className="md-flode" ref={flode}>
         <div className="md-flode-inre">
-          {SAMTAL.map((m, i) => {
-            const fore = SAMTAL[i - 1]
-            const efter = SAMTAL[i + 1]
+          {ALLA.map((m, i) => {
+            const fore = ALLA[i - 1]
+            const efter = ALLA[i + 1]
             const nyDag = !fore || new Date(fore.tid).toDateString() !== new Date(m.tid).toDateString()
             const nyGrupp = nyDag || !fore || fore.mine !== m.mine || new Date(m.tid).getTime() - new Date(fore.tid).getTime() > 5 * MIN
             const sist = !efter || efter.mine !== m.mine || new Date(efter.tid).getTime() - new Date(m.tid).getTime() > 5 * MIN ||
@@ -240,6 +289,7 @@ function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus }: {
       </div>
       <Skrivfalt text={text} setText={setText} onSkicka={() => { setText(''); setSvarPa(null) }} kanSkicka={!!text.trim()}
         placeholder="Skriv ett meddelande…" onPlus={() => setPlusLage('1')} onKamera={() => {}} laddarBild={false}
+        rost={lasad ?? riktig}
         ovanfor={svarM ? <SvarsRad vem={svarM.mine ? 'dig själv' : 'Elin Berg'} text={kortText(svarM)} onAvbryt={() => setSvarPa(null)} /> : null} />
 
       {meny && menyM && (

@@ -456,3 +456,52 @@
 }
 .md-tur-text { display: flex; flex-direction: column; min-width: 0; gap: 2px; }
 .md-tur-tom { margin: 4px 16px 16px; font-size: 15px; line-height: 1.5; color: var(--txt2); }
+
+/* ─── Röstmeddelanden (2026-11-26) ─────────────────────────────────────────── */
+/* Mikrofonen står där skicka-knappen står, så länge fältet är tomt. */
+.md-komp .md-rund--mik { color: var(--sea); }
+
+/* Inspelningsraden ersätter skrivfältet medan man spelar in. */
+.md-insp { align-items: center; }
+.md-insp-kasta { color: var(--txt2); }
+.md-insp-falt {
+  flex: 1; min-width: 0; height: 44px; margin: 0 2px; padding: 0 14px;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--white); border-radius: 22px; box-shadow: inset 0 0 0 1.5px var(--sea);
+}
+.md-insp-prick { width: 10px; height: 10px; border-radius: 50%; background: #d64545; flex-shrink: 0; opacity: 0.35; }
+.md-insp-prick--pa { opacity: 1; animation: md-insp-puls 1.2s ease-in-out infinite; }
+@keyframes md-insp-puls { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.md-insp-tid { font-size: 15px; font-weight: 600; color: var(--txt); font-variant-numeric: tabular-nums; min-width: 34px; }
+.md-insp-vag { flex: 1; min-width: 0; height: 24px; display: flex; align-items: center; justify-content: flex-end; gap: 2px; overflow: hidden; }
+.md-insp-vag i { display: block; width: 3px; height: 100%; flex-shrink: 0; border-radius: 2px; background: var(--sea); transform-origin: center; transition: transform 0.09s linear; }
+.md-insp-text { font-size: 13px; color: var(--txt3); white-space: nowrap; }
+.md-insp-falt--klar .md-insp-vag i { background: var(--txt3); }
+@media (max-width: 380px) { .md-insp-text { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .md-insp-prick--pa { animation: none; }
+  .md-insp-vag i { transition: none; }
+}
+
+/* Spelaren i bubblan. Färgerna följer bubblan (egen blå, motpartens sand). */
+.md-rost {
+  display: flex; align-items: center; gap: 10px; padding: 8px 14px 8px 8px;
+  width: min(250px, 62vw); white-space: normal;
+}
+.md-rost-knapp {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--sea-knapp); color: #fff;
+}
+.md-rad--egen .md-rost-knapp { background: rgba(255, 255, 255, 0.92); color: var(--md-egen); }
+.md-rost-knapp:disabled { opacity: 0.5; }
+.md-rost-knapp:active { transform: scale(0.94); }
+.md-rost-spar { position: relative; flex: 1; min-width: 0; height: 28px; display: flex; align-items: center; }
+.md-rost-linje { position: absolute; left: 0; right: 0; height: 4px; border-radius: 2px; background: color-mix(in srgb, currentColor 22%, transparent); overflow: hidden; }
+.md-rost-linje div { height: 100%; background: currentColor; border-radius: 2px; }
+/* Det osynliga reglaget ligger ovanpå linjen, så att man kan spola med fingret. */
+.md-rost-spar input[type="range"] {
+  position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer;
+  -webkit-appearance: none; appearance: none; background: transparent;
+}
+.md-rost-tid { font-size: 13px; font-variant-numeric: tabular-nums; opacity: 0.8; min-width: 32px; text-align: right; }
