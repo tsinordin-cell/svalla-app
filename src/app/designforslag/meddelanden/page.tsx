@@ -43,8 +43,8 @@ type Rad = {
 }
 
 const RADER: Rad[] = [
-  { id: 'r1', namn: 'linnea.seglar', forhands: 'Vi lägger till vid Sandhamn runt tre. Kommer ni?', tid: '14:32', olasta: 2, dag: 'idag' },
-  { id: 'r2', namn: 'Seglargänget Möja', forhands: 'johan_b: Jag tar med grillen', tid: '13:05', olasta: 1, grupp: true, dag: 'idag' },
+  { id: 'r1', namn: 'linnea.seglar', forhands: 'Vi lägger till vid Sandhamn runt tre. Kommer ni?', tid: '14.32', olasta: 2, dag: 'idag' },
+  { id: 'r2', namn: 'Seglargänget Möja', forhands: 'johan_b: Jag tar med grillen', tid: '13.05', olasta: 1, grupp: true, dag: 'idag' },
   { id: 'r3', namn: 'erik.berg', forhands: 'Grinda gästhamn', tid: 'Igår', olasta: 0, typ: 'pos', dag: 'tidigare' },
   { id: 'r4', namn: 'sara_n', forhands: 'Tack för tipset om krogen på Finnhamn!', tid: 'Igår', olasta: 0, avMig: true, dag: 'tidigare' },
   { id: 'r5', namn: 'mattias.k', forhands: 'Vaxholm till Grinda, 9,4 NM', tid: 'mån', olasta: 0, typ: 'tur', dag: 'tidigare' },
@@ -63,12 +63,12 @@ type Medd = {
 }
 
 const SAMTAL: Medd[] = [
-  { id: 'm1', jag: false, text: 'Hej! Såg att du loggade Grinda i helgen. Hur var det i hamnen?', tid: '13:58', rubrik: 'Idag 13:58', forstIGrupp: true, sistIGrupp: true },
-  { id: 'm2', jag: true, text: 'Fint! Gott om plats vid bryggan på fredagen, fullt på lördagskvällen.', tid: '14:10', rubrik: 'Idag 14:10', forstIGrupp: true, sistIGrupp: false },
-  { id: 'm3', jag: true, typ: 'pos', tid: '14:10', forstIGrupp: false, sistIGrupp: true },
-  { id: 'm4', jag: false, text: 'Perfekt, tack.', tid: '14:31', rubrik: 'Idag 14:31', forstIGrupp: true, sistIGrupp: false },
-  { id: 'm5', jag: false, text: 'Vi lägger till vid Sandhamn runt tre. Kommer ni?', tid: '14:32', forstIGrupp: false, sistIGrupp: false },
-  { id: 'm6', jag: false, typ: 'tur', tid: '14:32', forstIGrupp: false, sistIGrupp: true },
+  { id: 'm1', jag: false, text: 'Hej! Såg att du loggade Grinda i helgen. Hur var det i hamnen?', tid: '13.58', rubrik: 'Idag 13.58', forstIGrupp: true, sistIGrupp: true },
+  { id: 'm2', jag: true, text: 'Fint! Gott om plats vid bryggan på fredagen, fullt på lördagskvällen.', tid: '14.10', rubrik: 'Idag 14.10', forstIGrupp: true, sistIGrupp: false },
+  { id: 'm3', jag: true, typ: 'pos', tid: '14.10', forstIGrupp: false, sistIGrupp: true },
+  { id: 'm4', jag: false, text: 'Perfekt, tack.', tid: '14.31', rubrik: 'Idag 14.31', forstIGrupp: true, sistIGrupp: false },
+  { id: 'm5', jag: false, text: 'Vi lägger till vid Sandhamn runt tre. Kommer ni?', tid: '14.32', forstIGrupp: false, sistIGrupp: false },
+  { id: 'm6', jag: false, typ: 'tur', tid: '14.32', forstIGrupp: false, sistIGrupp: true },
 ]
 
 const MOTPART = 'linnea.seglar'
