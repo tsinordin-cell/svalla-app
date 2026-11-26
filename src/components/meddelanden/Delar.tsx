@@ -398,14 +398,17 @@ export function TurKort({ meta }: { meta: TripMeta }) {
 
 // ─── Skrivfältet ─────────────────────────────────────────────────────────────
 
-export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onPlus, onKamera, laddarBild, onFokus, ovanfor, fokusSignal, rost }: {
+export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onBild, onPosition, onTur, delarPosition, onKamera, laddarBild, onFokus, ovanfor, fokusSignal, rost }: {
   text: string
   setText: (t: string) => void
   onSkicka: () => void
   placeholder: string
   kanSkicka: boolean
-  /** Öppnar plusmenyn med Bild, Position och Tur */
-  onPlus: () => void
+  /** Bild, Position och Tur ligger som egna knappar i rutan (förr i plusmenyn). De döljs medan man skriver. */
+  onBild: () => void
+  onPosition: () => void
+  onTur: () => void
+  delarPosition?: boolean
   /** Öppnar kameran direkt. Knappen visas bara på pekskärm. */
   onKamera: () => void
   laddarBild: boolean
@@ -430,14 +433,16 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onP
   }, [text])
 
   const spelarIn = !!rost && rost.lage !== 'av'
-  const visaMikrofon = !!rost?.kan && !text.trim()
+  const skriver = !!text.trim()
+  const visaMikrofon = !!rost?.kan && !skriver
 
   return (
     <form className="md-komp" onSubmit={e => { e.preventDefault(); onSkicka() }}>
       {ovanfor}
       {spelarIn ? <Inspelningsrad rost={rost!} /> : (
       <div className="md-komp-rad">
-        {/* En enda rundad ruta, som Instagram: kameran först, sedan texten, plus och mikrofon/skicka längst till höger. */}
+        {/* En enda rundad ruta, som Instagram: kameran först, sedan texten. Till höger Bild, Position, Tur och mikrofon.
+            När man skriver döljs de och bara skicka-knappen syns längst till höger. */}
         <div className="md-falt">
           <button type="button" className="md-falt-kamera md-rund--kamera" onClick={onKamera} disabled={laddarBild}
             aria-label={laddarBild ? 'Laddar upp bild' : 'Ta en bild'} aria-busy={laddarBild}>
@@ -452,17 +457,29 @@ export function Skrivfalt({ text, setText, onSkicka, placeholder, kanSkicka, onP
               const pek = typeof window !== 'undefined' && window.matchMedia?.('(pointer: coarse)').matches
               if (e.key === 'Enter' && !e.shiftKey && !pek && !e.nativeEvent.isComposing) { e.preventDefault(); onSkicka() }
             }} />
-          <button type="button" className="md-falt-knapp" onClick={onPlus} aria-label="Bild, position eller tur" aria-haspopup="dialog">
-            <Ikon d={IKON.plus} s={23} w={1.9} />
-          </button>
-          {visaMikrofon ? (
-            <button type="button" className="md-falt-knapp" onClick={rost!.starta} aria-label="Spela in röstmeddelande">
-              <Ikon d={IKON.mikrofon} s={22} w={1.8} />
+          {skriver ? (
+            <button type="submit" className="md-falt-skicka" disabled={!kanSkicka} aria-label="Skicka">
+              <Ikon d={IKON.skicka} s={19} w={2.3} />
             </button>
           ) : (
-            <button type="submit" className={`md-falt-skicka${kanSkicka ? ' md-falt-skicka--redo' : ''}`} disabled={!kanSkicka} aria-label="Skicka">
-              <Ikon d={IKON.skicka} s={18} w={2.4} />
-            </button>
+            <>
+              <button type="button" className="md-falt-knapp" onClick={onBild} disabled={laddarBild}
+                aria-label={laddarBild ? 'Laddar upp bild' : 'Skicka en bild'} aria-busy={laddarBild}>
+                <Ikon d={IKON.bild} s={22} w={1.8} />
+              </button>
+              <button type="button" className="md-falt-knapp" onClick={onPosition} disabled={delarPosition}
+                aria-label={delarPosition ? 'Hämtar position' : 'Dela position'} aria-busy={delarPosition}>
+                <Ikon d={IKON.nal} s={22} w={1.8} />
+              </button>
+              <button type="button" className="md-falt-knapp" onClick={onTur} aria-label="Dela en tur">
+                <Ikon d={IKON.bat} s={22} w={1.8} />
+              </button>
+              {visaMikrofon && (
+                <button type="button" className="md-falt-knapp" onClick={rost!.starta} aria-label="Spela in röstmeddelande">
+                  <Ikon d={IKON.mikrofon} s={22} w={1.8} />
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
@@ -561,21 +578,7 @@ export function RostBubbla({ src, meta, onFel }: { src: string | undefined; meta
   )
 }
 
-// ─── Plusmenyn och turväljaren ───────────────────────────────────────────────
-
-export function PlusMeny({ onStang, onBild, onPosition, onTur, laddarBild, delarPosition }: {
-  onStang: () => void; onBild: () => void; onPosition: () => void; onTur: () => void
-  laddarBild: boolean; delarPosition: boolean
-}) {
-  return (
-    <Ark onStang={onStang} etikett="Skicka bild, position eller tur">
-      <ArkRad ikon={IKON.bild} label={laddarBild ? 'Laddar upp bild…' : 'Bild'} onClick={onBild} />
-      <ArkRad ikon={IKON.nal} label={delarPosition ? 'Hämtar position…' : 'Position'} onClick={onPosition} />
-      <ArkRad ikon={IKON.bat} label="Tur" onClick={onTur} />
-      <ArkRad ikon={IKON.stang} label="Avbryt" onClick={onStang} />
-    </Ark>
-  )
-}
+// ─── Turväljaren ───────────────────────────────────────────────
 
 export type TurVal = {
   id: string; location_name: string | null; distance: number | null; image: string | null

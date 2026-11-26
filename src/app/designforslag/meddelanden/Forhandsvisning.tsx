@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import {
   Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, RostBubbla, SamtalsHuvud, Sjokort, Skrivfalt, TextBubbla,
-  TomtLage, TurKort, PlusMeny, TurValjare, type KonvRadData, type TurVal,
+  TomtLage, TurKort, TurValjare, type KonvRadData, type TurVal,
 } from '@/components/meddelanden/Delar'
 import { rostFormat, useRostInspelning, type RostInspelning } from '@/lib/useRostInspelning'
 import { PROV_M4A, PROV_WEBM } from './ljudprov'
@@ -57,7 +57,7 @@ function kortText(m: M) {
  * ?meny=fore: den gamla menyn (samma kod som på svalla.se före ändringen), för jämförelse.
  * ?svar=1: visar raden "Svarar Elin Berg" ovanför skrivfältet.
  * ?db=nej: som innan databasändringen är körd: inga reaktioner, inget Svara.
- * ?plus=1: öppnar plusmenyn i skrivfältet. ?plus=tur: turväljaren, ?plus=inga: turväljaren utan turer,
+ * ?plus=tur: turväljaren, ?plus=inga: turväljaren utan turer,
  * ?plus=privat: frågan som kommer när man väljer en privat tur.
  * ?pek=1: visar kameraknappen även med mus, så att telefonens skrivfält går att fota på dator.
  * ?rost=spelar|klar: inspelningsraden mitt i en inspelning, eller stoppad vid två minuter.
@@ -291,7 +291,7 @@ function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus, rostLag
         </div>
       </div>
       <Skrivfalt text={text} setText={setText} onSkicka={() => { setText(''); setSvarPa(null) }} kanSkicka={!!text.trim()}
-        placeholder="Skriv ett meddelande…" onPlus={() => setPlusLage('1')} onKamera={() => {}} laddarBild={false}
+        placeholder="Meddelande…" onBild={() => {}} onPosition={() => {}} onTur={() => setPlusLage('tur')} onKamera={() => {}} laddarBild={false}
         rost={lasad ?? riktig}
         ovanfor={svarM ? <SvarsRad vem={svarM.mine ? 'dig själv' : 'Elin Berg'} text={kortText(svarM)} onAvbryt={() => setSvarPa(null)} /> : null} />
 
@@ -312,10 +312,6 @@ function Samtal({ text, setText, startMeny, startSvar, medDb, startPlus, rostLag
         />
       )}
 
-      {plusLage === '1' && (
-        <PlusMeny onStang={() => setPlusLage(null)} onBild={() => setPlusLage(null)} onPosition={() => setPlusLage(null)}
-          onTur={() => setPlusLage('tur')} laddarBild={false} delarPosition={false} />
-      )}
       {(plusLage === 'tur' || plusLage === 'inga') && (
         <TurValjare turer={plusLage === 'inga' ? [] : TURER} fel={false}
           onValj={t => setPlusLage(t.visibility === 'private' ? 'privat' : null)} onStang={() => setPlusLage(null)} />

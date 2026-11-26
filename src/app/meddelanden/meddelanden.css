@@ -278,31 +278,36 @@
 .md-komp-rad { display: flex; align-items: flex-end; gap: 4px; width: 100%; max-width: 760px; margin: 0 auto; }
 .md-komp .md-rund { color: var(--txt2); }
 /* Skrivfältet som en enda rundad ruta, som Instagram (2026-11-26, Toms önskan). Kameran fylld till vänster
-   inne i rutan, plus och mikrofon/skicka till höger. Rutan är 48 px hög, knapparna 40 px. */
+   inne i rutan. Till höger Bild, Position, Tur och mikrofon. När man skriver döljs de och bara skicka-knappen
+   syns, fylld och avlång. Rutan är 48 px hög, alla knappar har 44 px tryckyta. */
 .md-falt {
-  flex: 1; min-width: 0; display: flex; align-items: flex-end; gap: 2px; margin: 0;
-  padding: 2px 4px 2px 4px; min-height: 48px; border-radius: 24px; background: var(--md-falt-bg);
+  flex: 1; min-width: 0; display: flex; align-items: flex-end; gap: 0; margin: 0;
+  padding: 2px; min-height: 48px; border-radius: 24px; background: var(--md-falt-bg);
 }
 .md-falt:focus-within { box-shadow: inset 0 0 0 1.5px var(--sea); }
 .md-falt textarea {
   flex: 1; min-width: 0; border: 0; outline: 0; resize: none; background: transparent; color: var(--txt);
-  font: inherit; font-size: 16px; line-height: 22px; padding: 11px 6px 11px 8px; height: 44px; max-height: 132px; display: block;
+  font: inherit; font-size: 16px; line-height: 22px; padding: 11px 4px 11px 10px; height: 44px; max-height: 132px; display: block;
 }
 /* Med mus döljs kameran (se längre ner), då får texten luft till vänster i stället. */
-@media (hover: hover) and (pointer: fine) { .md-falt textarea { padding-left: 14px; } }
-.md-falt-kamera, .md-falt-knapp, .md-falt-skicka {
-  width: 40px; height: 40px; margin: 2px 0; border-radius: 50%; flex-shrink: 0;
+@media (hover: hover) and (pointer: fine) { .md-falt textarea { padding-left: 16px; } }
+.md-falt-kamera, .md-falt-knapp {
+  width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
 }
 .md-falt-kamera { background: var(--md-egen); color: #fff; }
 .md-falt-kamera:active { transform: scale(0.94); }
-.md-falt-kamera:disabled { opacity: 0.5; cursor: default; }
+.md-falt-kamera:disabled, .md-falt-knapp:disabled { opacity: 0.5; cursor: default; }
 .md-falt-knapp { color: var(--txt); transition: background 0.15s; }
-.md-falt-knapp:hover { background: var(--md-vald); }
-/* Skicka-knappen behåller dagens färg (--sea-knapp). Grå pil när det inte går att skicka. */
-.md-falt-skicka { color: var(--txt3); transition: background 0.18s, transform 0.18s, color 0.18s; }
-.md-falt-skicka--redo { background: var(--sea-knapp); color: #fff; }
-.md-falt-skicka--redo:active { transform: scale(0.92); }
+.md-falt-knapp:not(:disabled):hover { background: var(--md-vald); }
+/* Skicka-knappen behåller dagens färg (--sea-knapp). */
+.md-falt-skicka {
+  width: 60px; height: 44px; border-radius: 22px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--sea-knapp); color: #fff; transition: transform 0.18s, opacity 0.18s;
+}
+.md-falt-skicka:active { transform: scale(0.94); }
+.md-falt-skicka:disabled { opacity: 0.5; cursor: default; }
 .md-falt textarea::placeholder { color: var(--txt3); }
 /* Fältet visar fokus med sin runda ring (.md-falt:focus-within). Den allmänna fyrkantiga fokusramen ovan stängs av här. */
 .md-rot .md-falt textarea:focus-visible { outline: none; }
