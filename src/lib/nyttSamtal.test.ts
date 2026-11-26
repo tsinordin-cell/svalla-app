@@ -33,7 +33,7 @@ describe('samtalPerPerson', () => {
 describe('etikettFor', () => {
   it('säger inte förfrågan när ett aktivt samtal redan finns', () => {
     expect(etikettFor({ status: 'active', created_by: 'anna', last_message_at: null }, false, JAG))
-      .toEqual({ text: 'Ni har ett samtal', ton: 'neutral' })
+      .toEqual({ text: 'Ni har redan meddelanden', ton: 'neutral' })
   })
   it('visar skickad förfrågan för den som skickade den', () => {
     expect(etikettFor({ status: 'request', created_by: JAG, last_message_at: null }, false, JAG)?.text)

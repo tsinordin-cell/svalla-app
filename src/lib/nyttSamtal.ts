@@ -56,7 +56,7 @@ function tid(iso: string | null): number {
  */
 export function etikettFor(samtal: BefintligtSamtal | undefined, foljerTillbaka: boolean, jag: string): Etikett {
   if (samtal) {
-    if (samtal.status === 'active') return { text: 'Ni har ett samtal', ton: 'neutral' }
+    if (samtal.status === 'active') return { text: 'Ni har redan meddelanden', ton: 'neutral' }
     if (samtal.status === 'request') {
       return samtal.created_by === jag
         ? { text: 'Förfrågan skickad', ton: 'neutral' }

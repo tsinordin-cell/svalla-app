@@ -186,7 +186,7 @@ function NyKonversationInner() {
  </svg>
  </Link>
  <h1 style={{ flex: 1, fontSize: 18, fontWeight: 600, color: 'var(--txt)', margin: 0 }}>
- Ny konversation
+ Nytt meddelande
  </h1>
  </div>
 
@@ -262,7 +262,7 @@ function NyKonversationInner() {
  {!loading && requests.length > 0 && (
  <Section
  title="Du följer"
- subtitle="De följer inte dig. Ett nytt samtal blir en förfrågan."
+ subtitle="De följer inte dig. Ett nytt meddelande blir en förfrågan."
  >
  {requests.map(c => (
  <Row key={c.id} c={c} starting={starting === c.id} onClick={() => me && startDM(me, c.id)} />
