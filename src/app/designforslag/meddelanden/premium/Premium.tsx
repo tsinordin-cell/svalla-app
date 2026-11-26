@@ -33,7 +33,7 @@ type Rad = {
 }
 
 const RADER: Rad[] = [
-  { id: 'r1', namn: 'linnea.seglar', forhands: 'Vi lägger till vid Sandhamn runt tre. Kommer ni?', tid: '14.32', olasta: 2, skriver: true, bild: '/kreativ/scen-eka.webp' },
+  { id: 'r1', namn: 'linnea.seglar', forhands: 'Vi lägger till vid Sandhamn runt tre. Kommer ni?', tid: '14.32', olasta: 2, skriver: true },
   { id: 'r2', namn: 'Seglargänget Möja', forhands: 'johan_b: Jag tar med grillen', tid: '13.05', olasta: 1, grupp: ['johan_b', 'maja.l', 'nils'] },
   { id: 'r3', namn: 'erik.berg', forhands: 'Delade en position', tid: 'Igår', olasta: 0, typ: 'pos' },
   { id: 'r4', namn: 'sara_n', forhands: 'Tack för tipset om krogen på Finnhamn!', tid: 'Igår', olasta: 0, avMig: true, sett: true },
@@ -62,7 +62,7 @@ const START: Medd[] = [
 ]
 
 const MOTPART = 'linnea.seglar'
-const MOTPART_BILD = '/kreativ/scen-eka.webp'
+const MOTPART_BILD: string | undefined = undefined // riktiga profilbilder visas via samma prop; repot har inga foton att visa
 const UTKAST = 'Vi kommer! Lägger oss bredvid er om det finns plats vid bryggan.'
 const POS = { namn: 'Grinda Södra bryggan', lat: 59.407287, lng: 18.553135 }
 const TUR = { namn: 'Vaxholm till Grinda', nm: '9,4', bild: '/kreativ/scen-angbat.webp' }
@@ -482,14 +482,16 @@ export default function Premium({ tema, vy, lage }: { tema: Tema; vy: Vy; lage: 
         {samtal}
       </div>
 
-      <nav className="pm-kontroll" aria-label="Förhandsvisningens val">
-        <span className="pm-kontroll-mark">Förhandsvisning · exempeldata</span>
+      <details className="pm-kontroll">
+        <summary className="pm-kontroll-mark">Förhandsvisning · exempeldata</summary>
+        <nav aria-label="Förhandsvisningens val" className="pm-kontroll-val">
         <a href={lank(tema === 'mork' ? 'ljust' : 'mork', lage)}>{tema === 'mork' ? 'Ljust' : 'Mörkt'}</a>
         {(['normal', 'tom', 'laddar', 'fel'] as Lage[]).map(l => (
           <a key={l} href={lank(tema, l)} className={l === lage ? 'pm-k-vald' : ''}>{l === 'normal' ? 'Samtal' : l === 'tom' ? 'Tomt' : l === 'laddar' ? 'Laddar' : 'Fel'}</a>
         ))}
         <button onClick={() => setSkriver(s => !s)}>{skriver ? 'Stoppa skriver' : 'Visa skriver'}</button>
-      </nav>
+        </nav>
+      </details>
 
       {ljuslada && (
         <div className="pm-ljus" onClick={() => setLjuslada(false)} role="dialog" aria-label="Bild">
@@ -552,26 +554,27 @@ const CSS = `
 /* Inkorg */
 .pm-inkorg{width:100%;display:flex;flex-direction:column;min-height:0;background:var(--pm-yta)}
 .pm-ink-huvud{display:flex;align-items:center;justify-content:space-between;padding:calc(14px + env(safe-area-inset-top)) 16px 8px 20px}
-.pm-ink-huvud h1{font-size:28px;font-weight:700;letter-spacing:-.5px;margin:0}
+.pm-ink-huvud h1{font-size:30px!important;line-height:1.1!important;font-weight:700;letter-spacing:-.3px;margin:0!important}
 .pm-rund{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--pm-sea);transition:background .15s}
 .pm-rund:hover{background:var(--pm-vald)}
 .pm-liten{width:32px;height:32px;color:var(--pm-txt3)}
 .pm-sok{margin:4px 16px 10px;height:40px;border-radius:12px;background:var(--pm-bg);display:flex;align-items:center;gap:8px;padding:0 12px;color:var(--pm-txt3);font-size:15px}
-.pm-rader{flex:1;overflow-y:auto;padding:0 8px 24px}
+.pm-rader{flex:1;overflow-y:auto;overflow-x:hidden;padding:0 8px 24px}
 .pm-rubrik{font-size:12px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--pm-txt3);padding:14px 12px 6px}
 .pm-rad{display:flex;align-items:center;gap:13px;padding:10px 12px;border-radius:16px;min-height:72px;transition:background .15s}
 .pm-rad:hover{background:var(--pm-vald)}
-.pm-rad-mitt{flex:1;min-width:0;display:grid;gap:3px}
+.pm-rad-mitt{flex:1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:3px}
 .pm-rad-topp{display:flex;align-items:baseline;gap:8px}
 .pm-rad-namn{flex:1;min-width:0;font-size:16px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pm-oläst .pm-rad-namn{font-weight:700}
 .pm-rad-tid{font-size:13px;color:var(--pm-txt3);font-variant-numeric:tabular-nums}
 .pm-rad-under{display:flex;align-items:center;gap:8px}
-.pm-rad-text{flex:1;min-width:0;font-size:14.5px;color:var(--pm-txt3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px}
+.pm-rad-text{flex:1;min-width:0;font-size:14.5px;color:var(--pm-txt3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.pm-rad-text svg{display:inline-block!important;vertical-align:-2px;margin-right:3px}
 .pm-oläst .pm-rad-text{color:var(--pm-txt);font-weight:500}
-.pm-rad-du{display:inline-flex;align-items:center;gap:3px;color:var(--pm-txt3);flex-shrink:0}
+.pm-rad-du{color:var(--pm-txt3)}
 .pm-rad-du svg{color:var(--pm-sea)}
-.pm-rad-typ{display:inline-flex;color:var(--pm-txt3);flex-shrink:0}
+.pm-rad-typ{color:var(--pm-txt3)}
 .pm-rad-skriver{flex:1;font-size:14.5px;color:var(--pm-acc);font-weight:500;display:flex;align-items:center;gap:6px}
 .pm-bricka{min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:var(--pm-acc);color:#fff;font-size:12.5px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .pm-rot[data-theme="dark"] .pm-bricka{color:#1a0e05}
@@ -614,8 +617,9 @@ const CSS = `
 .pm-egen:not(.pm-forst){border-top-right-radius:6px}
 .pm-egen:not(.pm-sistb){border-bottom-right-radius:6px}
 .pm-aktiv{transform:scale(1.02);filter:brightness(1.03)}
-.pm-kort{padding:4px;overflow:hidden}
-.pm-kort .pm-citat{margin:6px 8px 4px}
+.pm-kort{padding:0;overflow:visible;background:transparent!important;box-shadow:none}
+.pm-kort .pm-pos,.pm-kort .pm-tur,.pm-kort .pm-bild{box-shadow:0 0 0 1px var(--pm-linje),var(--pm-skugga)}
+.pm-kort .pm-citat{margin:0 0 6px}
 
 .pm-citat{border-left:3px solid currentColor;padding:4px 10px;margin:0 0 6px;border-radius:4px 10px 10px 4px;background:rgba(0,0,0,.06);opacity:.92}
 .pm-egen .pm-citat{background:rgba(255,255,255,.14)}
@@ -642,8 +646,8 @@ const CSS = `
 .pm-kort-knappar{display:flex;gap:6px;padding:6px 8px 8px}
 .pm-kort-knappar a,.pm-kort-knappar button{flex:1;height:38px;border-radius:11px;background:var(--pm-bg);display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;font-weight:600;color:var(--pm-sea)!important;transition:background .15s}
 .pm-kort-knappar a:hover,.pm-kort-knappar button:hover{background:var(--pm-vald)}
-.pm-tur-bild{display:block;width:100%;height:150px;object-fit:cover;background:var(--pm-deras)}
-.pm-bild{display:block;border-radius:16px;overflow:hidden;width:min(280px,60vw);aspect-ratio:4/5}
+.pm-tur-bild{display:block;width:100%;height:118px;object-fit:cover;background:var(--pm-deras)}
+.pm-bild{display:block;border-radius:16px;overflow:hidden;width:min(240px,58vw);aspect-ratio:4/3}
 .pm-bild img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
 .pm-bild:hover img{transform:scale(1.02)}
 
@@ -708,12 +712,14 @@ const CSS = `
 .pm-skel{border-radius:7px;background:linear-gradient(90deg,var(--pm-linje) 0%,rgba(127,150,170,.16) 50%,var(--pm-linje) 100%);background-size:200% 100%;animation:pm-skimmer 1.4s infinite linear}
 
 /* Förhandsvisningens kontrollrad */
-.pm-kontroll{position:fixed;left:50%;transform:translateX(-50%);top:10px;z-index:60;display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 20px);
+.pm-kontroll{position:fixed;right:10px;top:calc(64px + env(safe-area-inset-top));z-index:60;max-width:calc(100% - 20px);
   padding:5px;border-radius:14px;background:rgba(20,32,44,.9);color:#fff;font-size:12.5px;box-shadow:0 6px 20px rgba(0,0,0,.2)}
 .pm-kontroll a,.pm-kontroll button{color:#fff!important;padding:5px 9px;border-radius:9px;opacity:.85}
 .pm-kontroll a:hover,.pm-kontroll button:hover,.pm-k-vald{background:rgba(255,255,255,.16);opacity:1!important}
-.pm-kontroll-mark{padding:5px 9px;font-weight:600;color:#f2c79a}
-.pm-rot:not(:hover) .pm-kontroll{opacity:.9}
+.pm-kontroll-mark{padding:4px 8px;font-weight:600;color:#f2c79a;cursor:pointer;list-style:none;font-size:11.5px}
+.pm-kontroll-mark::-webkit-details-marker{display:none}
+.pm-kontroll:not([open]){padding:2px;opacity:.75}
+.pm-kontroll-val{display:flex;flex-wrap:wrap;gap:4px;padding-top:4px}
 
 /* Ljuslåda */
 .pm-ljus{position:fixed;inset:0;z-index:80;background:rgba(5,10,16,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 16px 24px;animation:pm-tona .2s ease}
