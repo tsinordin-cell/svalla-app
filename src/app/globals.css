@@ -1920,6 +1920,8 @@ h2[style^="font-size:15px;font-weight:700;margin:0;letter-spacing:-0.2px"],h2[st
    D1. En knappfärg överallt. Fyllda knappar med --sea-knapp (Prenumerera, Öppna tidtabell, Starta en ny diskussion,
    Fråga Thorkel om den här) och inline-blå knappar (Skapa gratis konto, Öppna kartan, Kom med) blir orange som övriga. */
 html:not([data-theme="dark"]){--sea-knapp:var(--acc-knapp,#b5591a)}
+/* Undantag (Tom 2026-11-26): Logga tur-knappen i bottenmenyn behåller sin blå färg som före D1. Ändras inte utan att fråga Tom. */
+html:not([data-theme="dark"]) .nav-fab-mobile{--sea-knapp:#1e5c82}
 html:not([data-theme="dark"]) :is(a,button)[style*="background:#1e5c82;color:#fff"],html:not([data-theme="dark"]) :is(a,button)[style*="background:linear-gradient(135deg, #1a4a6b, #0a7b8c);color:#fff"]{background:var(--acc-knapp,#b5591a)!important}
 /* Tipsa oss-knappen är gränssnitt, inte en uppmaning: marinblå i stället för havsblå. */
 html:not([data-theme="dark"]) .fb-flytande{background:#0a2540!important}
