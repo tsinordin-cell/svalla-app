@@ -96,14 +96,17 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
     <div className="md-inkorg">
       <div className="md-ink-topp">
         <div className="md-ink-rad">
+          <span aria-hidden="true" />
           <h1>Meddelanden</h1>
-          {/* Notiserna nås härifrån på telefon. Döljs från 1024 px, där sidomenyn har Notiser. */}
-          <div className="app-topbar-atgarder" style={{ display: 'flex' }}><NotificationBell /></div>
-          {lage !== 'utloggad' && (
-            <Link href="/meddelanden/ny" className="md-rund" aria-label="Nytt meddelande">
-              <Ikon d={IKON.penna} s={22} w={1.9} />
-            </Link>
-          )}
+          <div className="md-ink-atg">
+            {/* Notiserna nås härifrån på telefon. Döljs från 1024 px, där sidomenyn har Notiser. */}
+            <div className="app-topbar-atgarder" style={{ display: 'flex' }}><NotificationBell /></div>
+            {lage !== 'utloggad' && (
+              <Link href="/meddelanden/ny" className="md-rund" aria-label="Nytt meddelande">
+                <Ikon d={IKON.penna} s={22} w={1.9} />
+              </Link>
+            )}
+          </div>
         </div>
         {lage !== 'utloggad' && !ingaAlls && (
           <>
@@ -115,13 +118,8 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
               <div className="md-ink-under">
                 {flik === 'active' ? (
                   <>
-                    <button
-                      type="button"
-                      className={`md-ink-forfr${forfragningarAntal > 0 ? ' md-ink-forfr--ny' : ''}`}
-                      onClick={() => setFlik('requests')}
-                      aria-label={forfragningarAntal > 0 ? `Förfrågningar, ${forfragningarAntal} nya` : 'Förfrågningar'}
-                    >
-                      Förfrågningar{forfragningarAntal > 0 && ` (${forfragningarAntal > 9 ? '9+' : forfragningarAntal})`}
+                    <button type="button" className="md-ink-forfr" onClick={() => setFlik('requests')}>
+                      Förfrågningar
                     </button>
                   </>
                 ) : (
