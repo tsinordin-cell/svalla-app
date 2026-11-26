@@ -2,26 +2,52 @@ export const dynamic = 'force-dynamic'
 
 import { createServerClient } from '@supabase/ssr'
 import { getAdminClient } from '@/lib/supabase-admin'
+import { checkRateLimit } from '@/lib/rateLimit'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import webpush from 'web-push'
 
+/**
+ * Push vid nytt direktmeddelande.
+ *
+ * SÄKERHET (2026-11-25): tidigare skickade webbläsaren själv texten som
+ * hamnade i pushen, och servern kontrollerade bara att anroparen var
+ * deltagare. Det gick alltså att skicka valfri text till andras telefoner,
+ * även efter blockering och i avvisade konversationer. Nu skickar klienten
+ * bara meddelandets id (eller konversationens id vid "accept"), och servern
+ * hämtar själv innehållet och kontrollerar:
+ *   - att anroparen skrev meddelandet, för högst 60 sekunder sedan
+ *   - att konversationen inte är avvisad
+ *   - att ingen mottagare har blockerat avsändaren eller tvärtom
+ *   - att en förfrågan bara ger EN push (det första meddelandet)
+ * plus en hastighetsgräns per avsändare.
+ */
+
 const THROTTLE_SECONDS = 8
 const PRESENCE_ACTIVE_WINDOW_MS = 30_000
-
-type Kind = 'message' | 'request' | 'accept'
+const MAX_ALDER_MS = 60_000
+const RATE_MAX = 30
+const RATE_FONSTER_MS = 60_000
 
 type PushLogRow = { target_user_id: string; last_sent_at: string }
 type PresenceRow = { user_id: string; current_chat_id: string | null; updated_at: string }
 type SubRow = { user_id: string; endpoint: string; p256dh: string; auth: string }
+type MsgRow = {
+  id: string; conversation_id: string; user_id: string; content: string | null
+  attachment_type: string | null; created_at: string
+}
+type ConvRow = { id: string; status: string | null; created_by: string | null; is_group: boolean | null }
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+function bilagaText(typ: string | null): string {
+  if (typ === 'image') return 'Bild'
+  if (typ === 'geo') return 'Position'
+  if (typ === 'trip') return 'Tur'
+  return 'Nytt meddelande'
+}
 
 export async function POST(req: Request) {
-  webpush.setVapidDetails(
-    'mailto:info@svalla.se',
-    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-    process.env.VAPID_PRIVATE_KEY!,
-  )
-
   const cookieStore = await cookies()
   const userClient = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -37,22 +63,83 @@ export async function POST(req: Request) {
   const { data: { user } } = await userClient.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
 
-  const payloadIn = await req.json().catch(() => ({})) as {
-    conversationId?: string
-    preview?: string
-    kind?: Kind
+  if (!(await checkRateLimit(`push-dm:${user.id}`, RATE_MAX, RATE_FONSTER_MS))) {
+    return NextResponse.json({ error: 'För många anrop' }, { status: 429 })
   }
-  const conversationId = typeof payloadIn.conversationId === 'string' ? payloadIn.conversationId : ''
-  const preview = typeof payloadIn.preview === 'string' ? payloadIn.preview : ''
-  const kind: Kind = payloadIn.kind === 'request' || payloadIn.kind === 'accept' ? payloadIn.kind : 'message'
 
-  if (!conversationId || !preview.trim()) {
-    return NextResponse.json({ error: 'conversationId och preview krävs' }, { status: 400 })
+  const payloadIn = await req.json().catch(() => ({})) as {
+    messageId?: unknown
+    conversationId?: unknown
+    kind?: unknown
+  }
+  const arAccept = payloadIn.kind === 'accept'
+  const messageId = typeof payloadIn.messageId === 'string' && UUID_RE.test(payloadIn.messageId) ? payloadIn.messageId : ''
+  const acceptConvId = typeof payloadIn.conversationId === 'string' && UUID_RE.test(payloadIn.conversationId) ? payloadIn.conversationId : ''
+  if (arAccept ? !acceptConvId : !messageId) {
+    return NextResponse.json({ error: arAccept ? 'conversationId krävs' : 'messageId krävs' }, { status: 400 })
   }
 
   const svc = getAdminClient()
 
-  // 1. Verifiera medlemskap (hindra missbruk)
+  // 1. Hämta underlaget från databasen — aldrig från klienten.
+  let conversationId: string
+  let kind: 'message' | 'request' | 'accept'
+  let bodyText: string
+  let meddelandeTid = 0
+
+  if (arAccept) {
+    const { data: c } = await svc
+      .from('conversations').select('id, status, created_by, is_group').eq('id', acceptConvId).maybeSingle()
+    const conv = c as ConvRow | null
+    // Bara mottagaren av en förfrågan kan acceptera, och då är status redan 'active'.
+    if (!conv || conv.is_group || conv.status !== 'active' || !conv.created_by || conv.created_by === user.id) {
+      return NextResponse.json({ ok: true, sent: 0, skipped: 'not_allowed' })
+    }
+    // En accept-push per samtal och dygn, så att den inte kan upprepas.
+    if (!(await checkRateLimit(`push-dm-accept:${conv.id}`, 1, 24 * 60 * 60 * 1000))) {
+      return NextResponse.json({ ok: true, sent: 0, skipped: 'accept_already_pushed' })
+    }
+    conversationId = conv.id
+    kind = 'accept'
+    bodyText = 'Ni kan nu skriva till varandra'
+  } else {
+    const { data: m } = await svc
+      .from('messages')
+      .select('id, conversation_id, user_id, content, attachment_type, created_at')
+      .eq('id', messageId)
+      .maybeSingle()
+    const msg = m as MsgRow | null
+    if (!msg || msg.user_id !== user.id) {
+      return NextResponse.json({ error: 'Meddelandet finns inte' }, { status: 404 })
+    }
+    const alder = Date.now() - new Date(msg.created_at).getTime()
+    // Negativ ålder = framtidsdaterat (databasen sätter tiden efter
+    // migrationen, men den här kontrollen gäller även före).
+    if (alder > MAX_ALDER_MS || alder < -5_000) {
+      return NextResponse.json({ ok: true, sent: 0, skipped: 'too_old' })
+    }
+    meddelandeTid = new Date(msg.created_at).getTime()
+    const { data: c } = await svc
+      .from('conversations').select('id, status, created_by, is_group').eq('id', msg.conversation_id).maybeSingle()
+    const conv = c as ConvRow | null
+    if (!conv || conv.status === 'declined') {
+      return NextResponse.json({ ok: true, sent: 0, skipped: 'declined' })
+    }
+    conversationId = conv.id
+    if (conv.status === 'request') {
+      // En förfrågan ger bara en push: det första meddelandet.
+      const { count } = await svc
+        .from('messages').select('id', { count: 'exact', head: true })
+        .eq('conversation_id', conv.id)
+      if ((count ?? 0) > 1) return NextResponse.json({ ok: true, sent: 0, skipped: 'request_already_pushed' })
+      kind = 'request'
+    } else {
+      kind = 'message'
+    }
+    bodyText = (msg.content ?? '').trim().slice(0, 120) || bilagaText(msg.attachment_type)
+  }
+
+  // 2. Anroparen måste vara deltagare.
   const { data: myPart } = await svc
     .from('conversation_participants')
     .select('conversation_id')
@@ -61,30 +148,44 @@ export async function POST(req: Request) {
     .maybeSingle()
   if (!myPart) return NextResponse.json({ error: 'Ej medlem' }, { status: 403 })
 
-  // 2. Avsändarens namn
+  // 3. Avsändarens namn
   const { data: senderRow } = await svc
     .from('users').select('username').eq('id', user.id).maybeSingle()
   const senderName = (senderRow?.username as string | undefined) ?? 'Svalla'
 
-  // 3. Övriga deltagare (ej muted, ej jag själv)
+  // 4. Övriga deltagare (ej muted, ej jag själv)
   const { data: others } = await svc
     .from('conversation_participants')
     .select('user_id, muted')
     .eq('conversation_id', conversationId)
     .neq('user_id', user.id)
 
-  const targets = (others ?? [])
+  let candidates = (others ?? [])
     .filter((o: { muted: boolean | null }) => !o.muted)
     .map((o: { user_id: string }) => o.user_id)
-  if (targets.length === 0) {
+  if (candidates.length === 0) {
     return NextResponse.json({ ok: true, sent: 0, skipped: 'none_or_muted' })
   }
 
-  // 4. Filtrera bort de som är aktiva i just denna chatt
+  // 5. Blockering åt något håll → ingen push till den mottagaren.
+  const { data: blocks } = await svc
+    .from('user_blocks')
+    .select('blocker_id, blocked_id')
+    .or(`blocker_id.eq.${user.id},blocked_id.eq.${user.id}`)
+  const blockerade = new Set<string>()
+  for (const b of (blocks ?? []) as { blocker_id: string; blocked_id: string }[]) {
+    blockerade.add(b.blocker_id === user.id ? b.blocked_id : b.blocker_id)
+  }
+  candidates = candidates.filter(c => !blockerade.has(c))
+  if (candidates.length === 0) {
+    return NextResponse.json({ ok: true, sent: 0, skipped: 'blocked' })
+  }
+
+  // 6. Filtrera bort de som är aktiva i just denna chatt
   const { data: presences } = await svc
     .from('user_presence')
     .select('user_id, current_chat_id, updated_at')
-    .in('user_id', targets)
+    .in('user_id', candidates)
 
   const now = Date.now()
   const activeInThisChat = new Set<string>(
@@ -95,12 +196,12 @@ export async function POST(req: Request) {
       )
       .map(p => p.user_id),
   )
-  let candidates = targets.filter((t: string) => !activeInThisChat.has(t))
+  candidates = candidates.filter(t => !activeInThisChat.has(t))
   if (candidates.length === 0) {
     return NextResponse.json({ ok: true, sent: 0, skipped: 'all_active' })
   }
 
-  // 5. Throttle per (target, conv) — undvik att 10 snabba meddelanden ger 10 pushar
+  // 7. Throttle per (target, conv) — undvik att 10 snabba meddelanden ger 10 pushar
   const { data: logs } = await svc
     .from('push_log')
     .select('target_user_id, last_sent_at')
@@ -108,15 +209,20 @@ export async function POST(req: Request) {
     .eq('conversation_id', conversationId)
   const recentSet = new Set<string>(
     ((logs ?? []) as PushLogRow[])
-      .filter(l => now - new Date(l.last_sent_at).getTime() < THROTTLE_SECONDS * 1000)
+      // Strypning, och samma meddelande pushas aldrig två gånger: har vi
+      // redan skickat efter att meddelandet skrevs hoppas mottagaren över.
+      .filter(l => {
+        const t = new Date(l.last_sent_at).getTime()
+        return now - t < THROTTLE_SECONDS * 1000 || (meddelandeTid > 0 && t >= meddelandeTid)
+      })
       .map(l => l.target_user_id),
   )
-  candidates = candidates.filter((c: string) => !recentSet.has(c))
+  candidates = candidates.filter(c => !recentSet.has(c))
   if (candidates.length === 0) {
     return NextResponse.json({ ok: true, sent: 0, skipped: 'throttled' })
   }
 
-  // 6. Hämta subscriptions för kvarvarande targets
+  // 8. Hämta subscriptions för kvarvarande targets
   const { data: subsRaw } = await svc
     .from('push_subscriptions')
     .select('user_id, endpoint, p256dh, auth')
@@ -126,14 +232,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, sent: 0, skipped: 'no_subs' })
   }
 
-  // 7. Bygg titel per kind. Preview trimmas.
+  webpush.setVapidDetails(
+    'mailto:info@svalla.se',
+    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
+    process.env.VAPID_PRIVATE_KEY!,
+  )
+
   const title =
     kind === 'request' ? `${senderName} vill skriva till dig` :
     kind === 'accept'  ? `${senderName} accepterade din förfrågan` :
     senderName
   const url = `/meddelanden/${conversationId}`
-  const bodyText = preview.trim().slice(0, 120)
-
   const payload = JSON.stringify({ title, body: bodyText, url })
 
   const results = await Promise.allSettled(

@@ -2,7 +2,8 @@
 
 import { decimal } from '@/lib/gps'
 import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
-import { komprimeraBild } from '@/lib/komprimeraBild'
+import { ritaOmBildUtanMetadata } from '@/lib/komprimeraBild'
+import { DM_BILD_HINK, DM_BILD_LANK_SEKUNDER, arDmBildSokvag } from '@/lib/dmBilder'
 import { useParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -93,6 +94,9 @@ export default function ChatPage() {
   const [posting, setPosting] = useState(false)
   const [loading, setLoading] = useState(true)
   const [sharingGeo, setSharingGeo] = useState(false)
+  const [uploading, setUploading] = useState(false)
+  // Tidsbegränsade länkar till bilder i den privata hinken, per sökväg.
+  const [bildLankar, setBildLankar] = useState<Record<string, string>>({})
   const [otherId, setOtherId] = useState<string | null>(null)
   const [otherReadAt, setOtherReadAt] = useState<string | null>(null)
 
@@ -221,6 +225,23 @@ export default function ChatPage() {
     }
   }, [supabase, id])
 
+  // Tidsbegränsade länkar för bilder i den privata hinken. Hämtas för de
+  // sökvägar som saknar länk; regeln i databasen släpper bara igenom deltagare.
+  useEffect(() => {
+    const saknas = [...new Set(messages
+      .filter(m => m.attachment_type === 'image' && arDmBildSokvag(m.attachment_url) && !bildLankar[m.attachment_url as string])
+      .map(m => m.attachment_url as string))]
+    if (saknas.length === 0) return
+    let avbruten = false
+    supabase.storage.from(DM_BILD_HINK).createSignedUrls(saknas, DM_BILD_LANK_SEKUNDER).then(({ data }) => {
+      if (avbruten || !data) return
+      const nya: Record<string, string> = {}
+      for (const d of data) if (d.path && d.signedUrl) nya[d.path] = d.signedUrl
+      if (Object.keys(nya).length > 0) setBildLankar(prev => ({ ...prev, ...nya }))
+    }).catch(() => { /* bilden visas som platshållare */ })
+    return () => { avbruten = true }
+  }, [messages, bildLankar, supabase])
+
   // Realtime
   useEffect(() => {
     if (!me) return
@@ -304,45 +325,55 @@ export default function ChatPage() {
       optimistic: true,
     }])
 
-    const { error } = await supabase.from('messages').insert({
+    const { data: inserted, error } = await supabase.from('messages').insert({
       conversation_id: id, user_id: me, content,
-    })
-    if (error) {
+    }).select('id').single()
+    if (error || !inserted) {
       setMessages(prev => prev.filter(m => m.id !== tempId))
       setText(content)
       setPosting(false)
-      toast(arRegelstopp(error) ? BLOCKERAD_TEXT : 'Meddelandet kunde inte skickas. Försök igen.', 'error')
+      toast(felText(error), 'error')
       return
     }
 
     await loadMessages(me)
     setPosting(false)
 
-    // Push-notis till övriga deltagare. Om conv är en pending request SKAPAD AV MIG
-    // → första meddelandet blir en request-push ("X vill skriva till dig").
-    const isPendingFromMe = conv?.status === 'request' && conv?.created_by === me
-    pushToOthers(content.slice(0, 60), isPendingFromMe ? 'request' : 'message')
+    // Push-notis till övriga deltagare. Servern hämtar själv meddelandet och
+    // avgör om det blir en förfrågningspush, en vanlig push eller ingen alls.
+    pushToOthers({ messageId: inserted.id as string })
   }
 
-  async function sendAttachment(type: 'image' | 'geo', url: string, meta: Record<string, unknown>) {
-    if (!me) return
-    const { error } = await supabase.from('messages').insert({
+  function felText(error: { code?: string; message?: string } | null): string {
+    if (arRegelstopp(error)) return BLOCKERAD_TEXT
+    if (error?.message?.includes('För många meddelanden')) return 'Du skickar väldigt många meddelanden. Vänta en minut.'
+    return 'Meddelandet kunde inte skickas. Försök igen.'
+  }
+
+  async function sendAttachment(type: 'image' | 'geo', url: string, meta: Record<string, unknown>): Promise<boolean> {
+    if (!me) return false
+    const { data: inserted, error } = await supabase.from('messages').insert({
       conversation_id: id, user_id: me,
       content: null, attachment_type: type, attachment_url: url, attachment_meta: meta,
-    })
-    if (!error) {
-      await loadMessages(me)
-      pushToOthers(type === 'image' ? '📷 Bild' : '📍 Position')
+    }).select('id').single()
+    if (error || !inserted) {
+      toast(felText(error), 'error')
+      return false
     }
+    await loadMessages(me)
+    pushToOthers({ messageId: inserted.id as string })
+    return true
   }
 
-  async function pushToOthers(preview: string, kind: 'message' | 'request' | 'accept' = 'message') {
+  async function pushToOthers(arg: { messageId: string } | { accept: true }) {
     if (!me) return
-    // Server avgör vem som faktiskt får push (presence, mute, throttle)
+    // Servern hämtar själv innehållet och avgör vem som faktiskt får push
+    // (blockering, status, närvaro, mute, strypning). Klienten skickar bara id.
+    const kind = 'accept' in arg ? 'accept' : 'message'
     fetch('/api/push/dm', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ conversationId: id, preview, kind }),
+      body: JSON.stringify('accept' in arg ? { kind: 'accept', conversationId: id } : { messageId: arg.messageId }),
     }).catch(() => {})
 
     // In-app-notiser i notifications-tabellen — separat kanal. Vid accept har
@@ -370,7 +401,7 @@ export default function ChatPage() {
     toast('Förfrågan accepterad', 'success')
     // Notifiera avsändaren (push + in-app)
     if (conv.created_by && conv.created_by !== me) {
-      pushToOthers('Du kan nu skriva fritt', 'accept')
+      pushToOthers({ accept: true })
       fetch('/api/notifications/insert', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -460,15 +491,33 @@ export default function ChatPage() {
   async function onPickImage(e: React.ChangeEvent<HTMLInputElement>) {
     const rawFile = e.target.files?.[0]
     e.target.value = ''
-    if (!rawFile || !me) return
-    // Komprimera före upload — samma skäl som i /check-in och /logga/manuell.
-    const file = await komprimeraBild(rawFile)
-    const ext = file.name.split('.').pop()?.toLowerCase() ?? 'jpg'
-    const path = `dm/${me}/${Date.now()}.${ext}`
-    const { data, error } = await supabase.storage.from('trip-images').upload(path, file, { upsert: false })
-    if (error || !data) return
-    const { data: pub } = supabase.storage.from('trip-images').getPublicUrl(data.path)
-    await sendAttachment('image', pub.publicUrl, { name: file.name, size: file.size })
+    if (!rawFile || !me || uploading) return
+    setUploading(true)
+    try {
+      // Rita om bilden: tar bort platsdata (GPS) och annan metadata ur filen.
+      // Går det inte skickas ingenting, hellre än originalet med platsdata.
+      let file: File
+      try {
+        file = await ritaOmBildUtanMetadata(rawFile)
+      } catch {
+        toast('Bilden kunde inte förberedas. Prova en annan bild (JPEG eller PNG).', 'error')
+        return
+      }
+      // Privat hink: konversation/avsändare/slumpnamn. Bara deltagarna kan läsa.
+      const path = `${id}/${me}/${crypto.randomUUID()}.jpg`
+      const { error } = await supabase.storage.from(DM_BILD_HINK).upload(path, file, {
+        upsert: false, contentType: 'image/jpeg',
+      })
+      if (error) {
+        toast('Bilden kunde inte laddas upp. Försök igen.', 'error')
+        return
+      }
+      // Databasen sparar sökvägen, aldrig en publik länk.
+      const ok = await sendAttachment('image', path, { size: file.size })
+      if (!ok) await supabase.storage.from(DM_BILD_HINK).remove([path])
+    } finally {
+      setUploading(false)
+    }
   }
 
   async function shareGeo() {
@@ -771,13 +820,32 @@ export default function ChatPage() {
                   onContextMenu={e => { e.preventDefault(); setActionSheet({ msgId: m.id, isOwn: m.mine, show: true }) }}
                 >
                   {/* Image */}
-                  {m.attachment_type === 'image' && m.attachment_url && (
-                    <a href={m.attachment_url} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
-                      <div style={{ position: 'relative', width: 240, height: 240, borderRadius: bubbleR, overflow: 'hidden' }}>
-                        <Image src={m.attachment_url} alt="" fill sizes="240px" style={{ objectFit: 'cover' }} />
-                      </div>
-                    </a>
-                  )}
+                  {m.attachment_type === 'image' && m.attachment_url && (() => {
+                    // Privat hink: visas via tidsbegränsad länk, och inte via
+                    // Next bildtjänst (som annars kunde cacha bilden öppet).
+                    const url = m.attachment_url as string
+                    const arPrivat = arDmBildSokvag(url)
+                    // Gamla bilder (publika länkar) visas bara från Svallas egen lagring.
+                    const src = arPrivat
+                      ? bildLankar[url]
+                      : (url.startsWith(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/`) ? url : undefined)
+                    if (!src) {
+                      return (
+                        <div aria-label="Bild laddas" style={{ width: 240, height: 240, borderRadius: bubbleR, background: 'rgba(10,123,140,0.08)' }} />
+                      )
+                    }
+                    return (
+                      <a href={src} target="_blank" rel="noopener noreferrer" style={{ display: 'block' }}>
+                        <div style={{ position: 'relative', width: 240, height: 240, borderRadius: bubbleR, overflow: 'hidden' }}>
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={src} alt="Bild i konversationen"
+                            // Länken gäller en timme. Går den ut hämtas en ny.
+                            onError={() => { if (arPrivat) setBildLankar(prev => { const n = { ...prev }; delete n[url]; return n }) }}
+                            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                        </div>
+                      </a>
+                    )
+                  })()}
 
                   {/* Geo */}
                   {m.attachment_type === 'geo' && m.attachment_meta && (
@@ -856,11 +924,13 @@ export default function ChatPage() {
             <input ref={fileRef} type="file" accept="image/*" onChange={onPickImage} style={{ display: 'none' }} />
 
             {/* Image — neutral 36×36 */}
-            <button type="button" onClick={() => fileRef.current?.click()} aria-label="Bifoga bild" style={{
+            <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading}
+              aria-label={uploading ? 'Laddar upp bild' : 'Bifoga bild'} aria-busy={uploading} style={{
               width: 36, height: 36, borderRadius: radius.sm, border: 'none',
               background: 'rgba(10,40,80,0.06)', color: 'var(--txt3)',
               display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-              cursor: 'pointer', WebkitTapHighlightColor: 'transparent',
+              cursor: uploading ? 'default' : 'pointer', opacity: uploading ? 0.5 : 1,
+              WebkitTapHighlightColor: 'transparent',
             }}>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} style={{ width: 18, height: 18 }}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4-4a3 3 0 014 0l4 4m-4-4l2-2a3 3 0 014 0l2 2M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
