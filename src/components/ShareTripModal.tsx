@@ -140,7 +140,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  if (!me) return
  setSending(otherId)
  const res = await findOrCreateDM(supabase, me, otherId)
- if (!res) { toast((await arBlockerad(supabase, me, otherId)) ? BLOCKERAD_TEXT : 'Kunde inte starta konversation.', 'error'); setSending(null); return }
+ if (!res) { toast((await arBlockerad(supabase, me, otherId)) ? BLOCKERAD_TEXT : 'Det gick inte att börja skriva.', 'error'); setSending(null); return }
  await sendToConv(res.id)
  }
 
@@ -231,7 +231,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
  borderBottom: tab === t ? '2px solid var(--sea)' : '2px solid transparent',
  cursor: 'pointer',
  }}>
- {t === 'chatt' ? 'Befintlig chatt' : 'Ny konversation'}
+ {t === 'chatt' ? 'Dina meddelanden' : 'Nytt meddelande'}
  </button>
  ))}
  </div>
@@ -246,7 +246,7 @@ export default function ShareTripModal({ trip, onClose }: Props) {
 
  {!loading && tab === 'chatt' && (
  convs.length === 0
- ? <div style={{ padding: '32px 20px', textAlign: 'center', color: 'var(--txt3)', fontSize: 13 }}>Inga aktiva konversationer ännu.</div>
+ ? <div style={{ padding: '32px 20px', textAlign: 'center', color: 'var(--txt3)', fontSize: 13 }}>Inga meddelanden än.</div>
  : convs.map(c => {
  const display = c.is_group ? (c.title ?? 'Grupp') : (c.other_username ?? 'Seglare')
  const grad = avatarGradient(display)

@@ -54,7 +54,7 @@ export default function ChatPage() {
 
   const [me, setMe] = useState<string | null>(null)
   const [conv, setConv] = useState<Conversation | null>(null)
-  const [otherName, setOtherName] = useState<string>('Chatt')
+  const [otherName, setOtherName] = useState<string>('Meddelanden')
   const [otherAvatar, setOtherAvatar] = useState<string | null>(null)
   const [otherUsername, setOtherUsername] = useState<string | null>(null)
   const [messages, setMessages] = useState<MsgWithMeta[]>([])
@@ -466,7 +466,7 @@ export default function ChatPage() {
     setMeny(null)
     setConfirmSheet({
       title: 'Radera meddelande',
-      body: conv?.is_group ? 'Meddelandet tas bort för alla i samtalet.' : 'Meddelandet tas bort för er båda.',
+      body: conv?.is_group ? 'Meddelandet tas bort för alla i gruppen.' : 'Meddelandet tas bort för er båda.',
       label: 'Radera',
       onConfirm: async () => {
         const bild = messages.find(m => m.id === msgId)
@@ -488,17 +488,17 @@ export default function ChatPage() {
     setConvMenu(false)
     if (!me || !conv) return
     setConfirmSheet({
-      title: conv.is_group ? 'Lämna gruppen' : 'Radera konversation',
+      title: conv.is_group ? 'Lämna gruppen' : 'Radera meddelandena',
       body: conv.is_group
         ? 'Du lämnar gruppen. Meddelandena finns kvar för de andra.'
-        : 'Konversationen försvinner för dig. När ni båda har raderat den tas den bort helt, med alla meddelanden och bilder.',
+        : 'Meddelandena försvinner för dig. När ni båda har raderat dem tas de bort helt, även bilderna.',
       label: conv.is_group ? 'Lämna' : 'Radera',
       onConfirm: async () => {
         const ok = await leaveConversation(conv.id)
         if (ok) {
           router.push('/meddelanden')
         } else {
-          toast(conv.is_group ? 'Kunde inte lämna gruppen.' : 'Kunde inte radera konversationen.', 'error')
+          toast(conv.is_group ? 'Kunde inte lämna gruppen.' : 'Kunde inte radera meddelandena.', 'error')
         }
       },
     })
@@ -640,7 +640,7 @@ export default function ChatPage() {
     if (!navigator.geolocation || sharingGeo) return
     setConfirmSheet({
       title: 'Dela din position?',
-      body: 'Alla i samtalet ser din exakta position på en karta. Den sparas i samtalet tills du raderar meddelandet.',
+      body: 'Alla som är med här ser din exakta position på en karta. Den finns kvar tills du raderar meddelandet.',
       label: 'Dela position',
       vanlig: true,
       onConfirm: async () => { shareGeo() },
@@ -777,7 +777,7 @@ export default function ChatPage() {
   return (
     <div className="md-samtal md-rot">
       <SamtalsHuvud
-        namn={loading && otherName === 'Chatt' ? '' : otherName}
+        namn={loading && otherName === 'Meddelanden' ? '' : otherName}
         nyckel={otherUsername ?? otherName ?? id}
         bild={otherAvatar}
         profilHref={otherUsername ? `/u/${encodeURIComponent(otherUsername)}` : null}
@@ -790,7 +790,7 @@ export default function ChatPage() {
         <div className="md-banner">
           <div className="md-banner-ruta">
             <strong>{otherName} vill skriva till dig</strong>
-            <p>Acceptera för att svara. Avvisar du försvinner samtalet.</p>
+            <p>Acceptera för att svara. Avvisar du försvinner meddelandena.</p>
             <div className="md-banner-knappar">
               <button type="button" className="md-knapp" onClick={handleAcceptRequest}>Acceptera</button>
               <button type="button" className="md-knapp md-knapp--vit" onClick={handleDeclineRequest}>Avvisa</button>
@@ -808,10 +808,10 @@ export default function ChatPage() {
 
       <div ref={listRef} className="md-flode">
         <div className="md-flode-inre">
-          {loading && <div className="md-snurra" aria-label="Laddar samtalet" />}
+          {loading && <div className="md-snurra" aria-label="Laddar meddelandena" />}
 
           {!loading && messages.length === 0 && (
-            <TomtLage ikon={IKON.pratbubbla} rubrik="Starta samtalet" text="Skriv något, skicka en bild eller dela var du ligger." />
+            <TomtLage ikon={IKON.pratbubbla} rubrik="Skriv det första meddelandet" text="Skriv något, skicka en bild eller dela var du ligger." />
           )}
 
           {!loading && enriched.map(m => (
@@ -908,8 +908,8 @@ export default function ChatPage() {
 
       {/* Samtalets meny (⋯ uppe till höger) */}
       {convMenu && (
-        <Ark onStang={stangMeny} etikett="Fler val för samtalet">
-          <ArkRad ikon={conv?.is_group ? IKON.lamna : IKON.soptunna} label={conv?.is_group ? 'Lämna gruppen' : 'Radera samtalet'} fara onClick={handleLeaveConversation} />
+        <Ark onStang={stangMeny} etikett="Fler val">
+          <ArkRad ikon={conv?.is_group ? IKON.lamna : IKON.soptunna} label={conv?.is_group ? 'Lämna gruppen' : 'Radera meddelandena'} fara onClick={handleLeaveConversation} />
           {!conv?.is_group && otherId && conv && (
             <ArkRad ikon={IKON.flagga} label={`Anmäl ${otherName}`} fara onClick={() => { setConvMenu(false); setAnmalan({ typ: 'conversation', id: conv.id }) }} />
           )}

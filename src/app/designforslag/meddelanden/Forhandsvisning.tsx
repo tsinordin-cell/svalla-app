@@ -74,7 +74,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: stri
     <div className="md-fv">
       <div className="md-fv-meny" aria-hidden="true">Appens sidomeny<br />(oförändrad)</div>
       <div className={`md-ram md-rot ${iSamtal ? 'md-ram--samtal' : 'md-ram--inkorg'}`}>
-        <aside className="md-ram-lista" aria-label="Samtal">
+        <aside className="md-ram-lista" aria-label="Meddelanden">
           <InkorgVy
             lage={lage}
             rader={synliga}
@@ -89,7 +89,7 @@ export default function Forhandsvisning({ vy, tema, meny, svar, db }: { vy: stri
         <section className="md-ram-innehall">
           {iSamtal ? <Samtal text={text} setText={setText} startMeny={meny} startSvar={svar === '1'} medDb={db !== 'nej'} /> : (
             <div className="md-valj">
-              <TomtLage ikon={IKON.pratbubbla} rubrik="Välj ett samtal" text="Dina samtal finns till vänster. Du kan också starta ett nytt." />
+              <TomtLage ikon={IKON.pratbubbla} rubrik="Dina meddelanden" text="Välj någon till vänster eller skriv ett nytt meddelande." />
             </div>
           )}
         </section>

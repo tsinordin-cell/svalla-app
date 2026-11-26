@@ -212,7 +212,7 @@ export function SamtalsHuvud({ namn, nyckel, bild, profilHref, under, onMer }: {
       {profilHref
         ? <Link href={profilHref} className="md-sam-vem">{vem}</Link>
         : <div className="md-sam-vem">{vem}</div>}
-      <button type="button" className="md-rund" aria-label="Fler val för samtalet" onClick={onMer}>
+      <button type="button" className="md-rund" aria-label="Fler val" onClick={onMer}>
         <Ikon d={IKON.mer} s={24} w={3} />
       </button>
     </div>
@@ -272,7 +272,7 @@ export function BildBubbla({ src, onFel }: { src: string | undefined; onFel?: ()
     <a href={src} target="_blank" rel="noopener noreferrer" className="md-bild">
       {/* Privat hink: visas via tidsbegränsad länk, inte via Next bildtjänst (som annars kunde cacha den öppet). */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt="Bild i samtalet" onError={onFel} />
+      <img src={src} alt="Skickad bild" onError={onFel} />
     </a>
   )
 }
