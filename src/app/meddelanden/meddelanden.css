@@ -88,11 +88,11 @@
   color: var(--txt); font: inherit; font-size: 16px; -webkit-appearance: none; appearance: none;
 }
 .md-sok input::placeholder { color: var(--txt3); }
-/* Raden under sökfältet: rubrik till vänster, Förfrågningar som liten text till höger (2026-11-26, som i Instagram) */
+/* Raden under sökfältet: bara Förfrågningar som liten text till höger (2026-11-26, som i Instagram, Meddelanden står en gång högst upp) */
 .md-ink-under { display: flex; align-items: center; gap: 2px; margin-top: 14px; min-height: 32px; }
 .md-ink-under h2 { flex: 1; margin: 0; font-size: 17px; line-height: 1.2; font-weight: 700; color: var(--txt); }
 .md-ink-forfr {
-  margin: -6px -4px -6px 0; padding: 12px 4px 12px 12px; /* 44 px tryckyta utan att raden blir högre */
+  margin: -6px -4px -6px auto; padding: 12px 4px 12px 12px; /* 44 px tryckyta utan att raden blir högre */
   font-size: 15px; font-weight: 600; color: var(--txt3); white-space: nowrap;
 }
 .md-ink-forfr--ny { color: var(--sea); }

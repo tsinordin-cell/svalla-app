@@ -115,7 +115,6 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
               <div className="md-ink-under">
                 {flik === 'active' ? (
                   <>
-                    <h2>Samtal</h2>
                     <button
                       type="button"
                       className={`md-ink-forfr${forfragningarAntal > 0 ? ' md-ink-forfr--ny' : ''}`}
@@ -127,7 +126,7 @@ export function InkorgVy({ lage, rader, aktivaAntal, forfragningarAntal, flik, s
                   </>
                 ) : (
                   <>
-                    <button type="button" className="md-ink-bak" onClick={() => setFlik('active')} aria-label="Tillbaka till samtal">
+                    <button type="button" className="md-ink-bak" onClick={() => setFlik('active')} aria-label="Tillbaka till meddelanden">
                       <Ikon d={IKON.bak} s={20} w={2.2} />
                     </button>
                     <h2>Förfrågningar</h2>
