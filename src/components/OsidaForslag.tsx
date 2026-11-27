@@ -537,6 +537,8 @@ const CSS = `
 .os-ruta-stor .os-ruta-besk{-webkit-line-clamp:3;font-size:14.5px}
 .os-ruta-text i{font-style:normal;font-size:12px;font-weight:600;opacity:.85;margin-top:2px}
 .os-ruta-foto .os-ruta-text{text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.os-ruta-foto:not(.os-ruta-stor)::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,.05) 0%,rgba(8,24,38,.55) 45%,rgba(8,24,38,.9) 100%)}
+.os-ruta-foto:not(.os-ruta-stor) .os-ruta-besk{display:none}
 .os-kredit{font-style:normal;font-size:10px;opacity:.75;margin-top:4px}
 .os-not{font-size:12px;color:#5b7280;margin:8px 0 0}
 [data-kapitel]::before{content:attr(data-kapitel);display:block;font:700 12px Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#a8501a;border-top:2px solid #0d2440;padding-top:14px;margin:12px 0 18px}
