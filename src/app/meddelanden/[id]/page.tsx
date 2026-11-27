@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
+import { useEffect, useLayoutEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { ritaOmBildUtanMetadata } from '@/lib/komprimeraBild'
 import { DM_BILD_HINK, DM_BILD_LANK_SEKUNDER, arDmBildSokvag } from '@/lib/dmBilder'
 import { useRostInspelning, type RostKlipp } from '@/lib/useRostInspelning'
 import { useParams, useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
+import { hamtaKonvForhand } from '@/lib/konvForhand'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
 import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
@@ -21,6 +22,30 @@ import TurBildvisare from '@/components/TurBildvisare'
 import type { Message, Conversation } from '@/lib/supabase'
 
 type MsgWithMeta = Message & { reply_to_id?: string | null; username?: string; avatar?: string | null; optimistic?: boolean }
+
+/**
+ * Så många meddelanden hämtas åt gången (2026-11-27). Chatten öppnas med de senaste,
+ * och äldre hämtas i omgångar om lika många när man skrollar uppåt.
+ * Förut hämtades de 200 äldsta, så i långa chattar saknades de nyaste.
+ */
+const MEDD_SIDA = 50
+
+/** Senaste omgången, i tidsordning, ihop med de äldre meddelanden som redan visas. */
+function slaIhopSenaste(forut: MsgWithMeta[], senaste: MsgWithMeta[]): { lista: MsgWithMeta[]; luckaAterstalld: boolean } {
+  const forsta = senaste[0]
+  if (!forsta) return { lista: [], luckaAterstalld: false }
+  // Bara den här chattens egna, redan sparade meddelanden
+  const riktiga = forut.filter(m => !m.optimistic && m.conversation_id === forsta.conversation_id)
+  const sistForut = riktiga[riktiga.length - 1]
+  // Kom det fler nya än en omgång medan sidan låg i bakgrunden blir det en lucka.
+  // Då börjar listan om från de senaste, och äldre hämtas igen vid skroll.
+  if (senaste.length >= MEDD_SIDA && sistForut && sistForut.created_at < forsta.created_at) {
+    return { lista: senaste, luckaAterstalld: true }
+  }
+  const nyaIds = new Set(senaste.map(m => m.id))
+  const aldre = riktiga.filter(m => m.created_at < forsta.created_at && !nyaIds.has(m.id))
+  return { lista: [...aldre, ...senaste], luckaAterstalld: false }
+}
 
 type MenyLage = { msgId: string; rect: { top: number; left: number; right: number; height: number } }
 
@@ -62,6 +87,16 @@ export default function ChatPage() {
   const [otherAvatar, setOtherAvatar] = useState<string | null>(null)
   const [otherUsername, setOtherUsername] = useState<string | null>(null)
   const [messages, setMessages] = useState<MsgWithMeta[]>([])
+  // Finns det äldre meddelanden att hämta när man skrollar uppåt
+  const [harAldre, setHarAldre] = useState(false)
+  const laddarAldreRef = useRef(false)
+  // Skrollläget före en hämtning av äldre, så att listan står still när de läggs in ovanför
+  const fastHojdRef = useRef<{ hojd: number; top: number } | null>(null)
+  // Sista meddelandet som listan skrollats ner till
+  const sistNereRef = useRef<string | null>(null)
+  // Listan som den ser ut nu, för hämtningar som ska läggas ihop med den
+  const messagesRef = useRef<MsgWithMeta[]>([])
+  messagesRef.current = messages
   const [text, setText] = useState(() => {
     // Loppis-pre-fill: när användaren just kommit hit via "Kontakta säljare"
     // har vi sparat ett intro-meddelande i sessionStorage (sätts i
@@ -131,66 +166,116 @@ export default function ChatPage() {
   const userMapRef = useRef<Record<string, { username: string; avatar: string | null }>>({})
 
   // Bootstrap
+  // 2026-11-27: chatten hämtades förut med åtta frågor i följd (inloggning, chatt,
+  // deltagare, användare, meddelanden, läst, motpartens läst, läst igen). På en
+  // mobil i USA tog det cirka 2 sekunder innan meddelandena syntes, och huvudet
+  // visade "?" i cirka 1 sekund (mätt i Supabase-loggen 27 nov). Nu läses
+  // inloggningen lokalt, chatt, deltagare med namn och meddelanden hämtas samtidigt,
+  // och "läst" skrivs efter att sidan visats.
   useEffect(() => {
     let cancel = false
+    // Namn och bild som inkorgen redan har, så att huvudet stämmer direkt.
+    const forhand = hamtaKonvForhand(id)
+    if (forhand) {
+      setOtherName(forhand.username)
+      setOtherUsername(forhand.username)
+      setOtherAvatar(forhand.avatar)
+    }
     async function boot() {
       try {
-        const { data: authData } = await supabase.auth.getUser()
-        const user = authData?.user
+        // Sessionen finns redan i webbläsaren; den kontrolleras mot servern först
+        // om något ser fel ut nedan. Databasens regler gäller ändå varje fråga.
+        const { data: sessData } = await supabase.auth.getSession()
+        let userId: string | null = sessData?.session?.user?.id ?? null
+        let kontrollerad = false
+        if (!userId) {
+          const { data: { user } } = await getViewer(supabase)
+          kontrollerad = true
+          if (cancel) return
+          if (!user) { router.push('/logga-in'); return }
+          userId = user.id
+        }
         if (cancel) return
-        if (!user) { router.push('/logga-in'); return }
-        setMe(user.id)
+        setMe(userId)
 
-        // Konversationsinfo
-        const { data: c } = await supabase.from('conversations').select('id, is_group, created_by, status').eq('id', id).single()
+        const [cRes, pRes, mRes] = await Promise.all([
+          supabase.from('conversations').select('id, is_group, created_by, status').eq('id', id).maybeSingle(),
+          supabase
+            .from('conversation_participants')
+            .select('user_id, last_read_at, users(id, username, avatar)')
+            .eq('conversation_id', id),
+          supabase
+            .from('messages')
+            .select('*')
+            .eq('conversation_id', id)
+            .order('created_at', { ascending: false })
+            .limit(MEDD_SIDA),
+        ])
         if (cancel) return
-        if (!c) { router.push('/meddelanden'); return }
+
+        const c = cRes.data
+        if (!c) {
+          // En utgången inloggning ger också tomt svar. Fråga servern innan vi väljer väg.
+          if (!kontrollerad) {
+            const { data: { user } } = await getViewer(supabase)
+            if (cancel) return
+            if (!user) { router.push('/logga-in'); return }
+          }
+          router.push('/meddelanden')
+          return
+        }
         setConv(c as Conversation)
 
-        // Motpart (för 1-till-1) — hämta alla deltagare → visa den andra
+        // Motpart (för 1-till-1): deltagarna kommer med namn och bild i samma fråga.
         try {
-          const { data: parts } = await supabase
-            .from('conversation_participants')
-            .select('user_id')
-            .eq('conversation_id', id)
-          const otherIds = (parts ?? []).map((p: { user_id: string }) => p.user_id).filter(u => u !== user.id)
-          if (otherIds.length > 0) {
-            // Slå ihop egen + motpart i en enda IN-query → sparar 1 round-trip
-            // (förut: users + myU = 2 sekventiella queries)
-            const allUserIds = Array.from(new Set([user.id, ...otherIds]))
-            const { data: allUsers } = await supabase
-              .from('users')
-              .select('id, username, avatar')
-              .in('id', allUserIds)
-            for (const u of allUsers ?? []) {
-              userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
-            }
-            const otherUsers = (allUsers ?? []).filter(u => u.id !== user.id)
-
-            if (!c.is_group && otherUsers[0]) {
-              setOtherName(otherUsers[0].username ?? 'Seglare')
-              setOtherUsername(otherUsers[0].username ?? null)
-              setOtherAvatar(otherUsers[0].avatar ?? null)
-              setOtherId(otherUsers[0].id)
-            } else if (c.is_group) {
-              setOtherName((c as Conversation).title ?? 'Gruppchatt')
-            }
+          type Deltagare = {
+            user_id: string
+            last_read_at: string | null
+            users: { id: string; username: string; avatar: string | null } | { id: string; username: string; avatar: string | null }[] | null
           }
+          const parts = (pRes.data ?? []) as unknown as Deltagare[]
+          for (const p of parts) {
+            const u = Array.isArray(p.users) ? p.users[0] : p.users
+            if (u) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+          }
+          const andra = parts.filter(p => p.user_id !== userId)
+          const otherUsers = andra
+            .map(p => (Array.isArray(p.users) ? p.users[0] : p.users))
+            .filter((u): u is { id: string; username: string; avatar: string | null } => !!u)
+          const forsta = otherUsers[0]
+          if (!c.is_group && forsta) {
+            setOtherName(forsta.username ?? 'Seglare')
+            setOtherUsername(forsta.username ?? null)
+            setOtherAvatar(forsta.avatar ?? null)
+            setOtherId(forsta.id)
+          } else if (c.is_group && andra.length > 0) {
+            setOtherName((c as Conversation).title ?? 'Gruppchatt')
+          }
+          // Motpartens "läst" (bara när det finns exakt en annan deltagare, som förut)
+          const enda = andra.length === 1 ? andra[0] : undefined
+          if (enda?.last_read_at) setOtherReadAt(enda.last_read_at)
         } catch { /* icke-kritisk — namninfo saknas men chatt fungerar */ }
 
-        await loadMessages(user.id)
-        // Hämta motpartens last_read_at för läskvitens
-        try {
-          const { data: rp } = await supabase
-            .from('conversation_participants')
-            .select('last_read_at')
-            .eq('conversation_id', id)
-            .neq('user_id', user.id)
-            .single()
-          if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
-        } catch { /* tyst */ }
-        try { await markConversationRead(supabase, user.id, id) } catch { /* tyst */ }
+        // Meddelandena. Avsändare som inte längre är deltagare hämtas separat (ovanligt).
+        const rows = ((mRes.data ?? []) as MsgWithMeta[]).reverse()
+        setHarAldre(rows.length >= MEDD_SIDA)
+        const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
+        if (missing.length > 0) {
+          try {
+            const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', missing)
+            for (const u of users ?? []) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+          } catch { /* tyst — fallback till 'Seglare' */ }
+          if (cancel) return
+        }
+        setMessages(rows.map(m => ({
+          ...m,
+          username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
+          avatar: userMapRef.current[m.user_id]?.avatar ?? null,
+        })))
         if (!cancel) setLoading(false)
+
+        // Markera läst efter att chatten visats; ingen väntan på svaret.
+        markConversationRead(supabase, userId, id).catch(() => { /* tyst */ })
       } catch (err) {
         // Logga felet men låt inte en ohanterad rejection krascha sidan
         console.error('[ChatPage] boot error:', err)
@@ -208,9 +293,9 @@ export default function ChatPage() {
         .from('messages')
         .select('*')
         .eq('conversation_id', id)
-        .order('created_at', { ascending: true })
-        .limit(200)
-      const rows = (data ?? []) as MsgWithMeta[]
+        .order('created_at', { ascending: false })
+        .limit(MEDD_SIDA)
+      const rows = ((data ?? []) as MsgWithMeta[]).reverse()
 
       // Se till att alla user_ids finns i cache
       const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
@@ -221,11 +306,14 @@ export default function ChatPage() {
         } catch { /* tyst — fallback till 'Seglare' */ }
       }
 
-      setMessages(rows.map(m => ({
+      const senaste = rows.map(m => ({
         ...m,
         username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
         avatar: userMapRef.current[m.user_id]?.avatar ?? null,
-      })))
+      }))
+      const { lista, luckaAterstalld } = slaIhopSenaste(messagesRef.current, senaste)
+      setMessages(lista)
+      if (luckaAterstalld || senaste.length < MEDD_SIDA) setHarAldre(luckaAterstalld)
 
       // Markera läst
       try { await markConversationRead(supabase, userId, id) } catch { /* tyst */ }
@@ -404,11 +492,75 @@ export default function ChatPage() {
   // Auto-scroll till botten — beror på BÅDE messages.length och loading.
   // Meddelandena renderas bara när !loading, så vi måste vänta tills
   // loading blir false innan scrollHeight är korrekt.
+  // Skrollar bara ner när ett nytt meddelande kommit sist, inte när äldre läggs in ovanför.
   useEffect(() => {
     if (loading || !listRef.current) return
+    const sist = messages[messages.length - 1]
+    const sistId = sist ? sist.id : null
+    if (sistId === sistNereRef.current) return
+    sistNereRef.current = sistId
     const el = listRef.current
     requestAnimationFrame(() => { el.scrollTop = el.scrollHeight })
-  }, [messages.length, loading])
+  }, [messages, loading])
+
+  // Äldre meddelanden har lagts in ovanför: flytta skrollen lika mycket som listan växte,
+  // innan sidan ritas, så att det man läser står kvar på samma plats.
+  useLayoutEffect(() => {
+    const fast = fastHojdRef.current
+    const el = listRef.current
+    if (!fast || !el) return
+    fastHojdRef.current = null
+    el.scrollTop = el.scrollHeight - fast.hojd + fast.top
+  }, [messages])
+
+  const laddaAldre = useCallback(async () => {
+    if (laddarAldreRef.current || !harAldre) return
+    const forsta = messages.find(m => !m.optimistic)
+    if (!forsta) return
+    laddarAldreRef.current = true
+    try {
+      const { data } = await supabase
+        .from('messages')
+        .select('*')
+        .eq('conversation_id', id)
+        .lt('created_at', forsta.created_at)
+        .order('created_at', { ascending: false })
+        .limit(MEDD_SIDA)
+      const rows = ((data ?? []) as MsgWithMeta[]).reverse()
+      const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
+      if (missing.length > 0) {
+        try {
+          const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', missing)
+          for (const u of users ?? []) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+        } catch { /* tyst — fallback till 'Seglare' */ }
+      }
+      const el = listRef.current
+      if (el) fastHojdRef.current = { hojd: el.scrollHeight, top: el.scrollTop }
+      setHarAldre(rows.length >= MEDD_SIDA)
+      if (rows.length === 0) { fastHojdRef.current = null; return }
+      setMessages(prev => {
+        const finns = new Set(prev.map(m => m.id))
+        const aldre = rows.filter(m => !finns.has(m.id)).map(m => ({
+          ...m,
+          username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
+          avatar: userMapRef.current[m.user_id]?.avatar ?? null,
+        }))
+        return [...aldre, ...prev]
+      })
+    } catch (err) {
+      console.error('[ChatPage] laddaAldre error:', err)
+      fastHojdRef.current = null
+    } finally {
+      laddarAldreRef.current = false
+    }
+  }, [supabase, id, messages, harAldre])
+
+  // Hämta äldre i god tid innan man når toppen, så att det känns som en enda lång lista.
+  function onFlodeSkroll() {
+    const el = listRef.current
+    if (!el || loading || !harAldre) return
+    if (el.scrollTop < 800) laddaAldre()
+  }
 
   async function send(e?: React.FormEvent) {
     e?.preventDefault()
@@ -950,7 +1102,8 @@ export default function ChatPage() {
   return (
     <div className="md-samtal md-rot">
       <SamtalsHuvud
-        namn={loading && otherName === 'Meddelanden' ? '' : otherName}
+        namn={otherName}
+        laddar={loading && otherName === 'Meddelanden'}
         nyckel={otherUsername ?? otherName ?? id}
         bild={otherAvatar}
         profilHref={otherUsername ? `/u/${encodeURIComponent(otherUsername)}` : null}
@@ -979,7 +1132,7 @@ export default function ChatPage() {
         </div>
       )}
 
-      <div ref={listRef} className="md-flode">
+      <div ref={listRef} className="md-flode" onScroll={onFlodeSkroll}>
         <div className="md-flode-inre">
           {loading && <div className="md-snurra" aria-label="Laddar meddelandena" />}
 
