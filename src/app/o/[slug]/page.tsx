@@ -42,6 +42,7 @@ import { krogarIDatabasen } from '@/lib/islandPlaces'
 // Förhandsvisning av nya ösidor (Max 2026-11-27). Bara på grenen forslag/osidor, mergas inte utan Max beslut.
 import OsidaForslag from '@/components/OsidaForslag'
 import { commonsTumme } from '@/lib/commonsTumme'
+import { platsbild } from '@/lib/platsbilder'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -321,8 +322,8 @@ export default async function IslandPage({ params }: Props) {
    sasong: island.facts.season ?? '',
    perfekt: island.facts.best_for ?? '',
    karaktar: island.facts.character ?? '',
-   krogar: island.restaurants.map(r => ({ namn: r.name, typ: r.type, text: r.desc, ...(r.open_season ? { sasong: r.open_season } : {}) })),
-   boenden: island.accommodation.map(a => ({ namn: a.name, typ: a.type, text: a.desc })),
+   krogar: island.restaurants.map(r => ({ namn: r.name, typ: r.type, text: r.desc, ...(r.open_season ? { sasong: r.open_season } : {}), ...(platsbild(island.slug, r.name) ? { foto: platsbild(island.slug, r.name)! } : {}) })),
+   boenden: island.accommodation.map(a => ({ namn: a.name, typ: a.type, text: a.desc, ...(platsbild(island.slug, a.name) ? { foto: platsbild(island.slug, a.name)! } : {}) })),
    gora: island.activities.map(a => ({ namn: a.name, text: a.desc, ikon: String(emojiToIcon(a.icon) ?? 'tower') })),
  }} />
 
