@@ -3,7 +3,7 @@
  * PlaceMiniMap — fullbredds mini-karta som visar var platsen ligger.
  *
  * - Leaflet med OpenStreetMap baslager + OpenSeaMap (sjökortsmärken) ovanpå
- * - Custom pin centrerat på platsen (samma färg som vår kategori-pin på /upptack)
+ * - Samma nål som på /upptack (src/lib/kartnal.ts), centrerad på platsen
  * - 220px höjd på mobil, 280px på desktop
  * - Klick på pin öppnar plats i Google Maps (eller Apple Maps på iOS)
  * - "Vägbeskrivning"-knapp i hörnet — direkt till Google Maps directions
@@ -16,37 +16,20 @@ import { useEffect, useRef } from 'react'
 import 'leaflet/dist/leaflet.css'
 import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
 import { track } from '@/lib/analytics-events'
+import { pinHtml, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
+import type { PlatsKategori } from '@/lib/platskategori'
 
 interface Props {
   lat: number
   lng: number
   name: string
-  /** Hex-färg för pin (matchar plats-kategorin). Default: sea-blå. */
-  pinColor?: string
-  /** Lucide-ikon SVG-paths som renderas inuti pin-droppen. */
-  pinIcon?: string
+  /** Platsens kategori, samma indelning som på Utforska. Avgör nålens form, färg och ikon. */
+  kategori: PlatsKategori
   /** Plats-id för analytics (track 'directions_clicked'). */
   placeId?: string
 }
 
-// Default pin-ikon = map-pin (Lucide)
-const DEFAULT_ICON = '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>'
-
-function pinHtml(color: string, iconSvg: string): string {
-  return `
-    <div style="filter:drop-shadow(0 4px 8px rgba(10,30,50,0.40))">
-      <svg width="36" height="44" viewBox="0 0 36 44" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 1 C8.6 1 1 8.6 1 18 C1 27 18 43 18 43 C18 43 35 27 35 18 C35 8.6 27.4 1 18 1 Z" fill="${color}" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
-        <circle cx="18" cy="15" r="10" fill="#fff"/>
-        <g transform="translate(8 5) scale(0.83)" stroke="${color}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          ${iconSvg}
-        </g>
-      </svg>
-    </div>
-  `
-}
-
-export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pinIcon = DEFAULT_ICON, placeId }: Props) {
+export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Props) {
   const mapDivRef = useRef<HTMLDivElement>(null)
   const mapRef = useRef<unknown>(null)
 
@@ -75,10 +58,10 @@ export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pin
 
       // Custom pin
       const icon = L.divIcon({
-        html: pinHtml(pinColor, pinIcon),
+        html: pinHtml(kategori),
         className: 'place-mini-pin',
-        iconSize: [36, 44],
-        iconAnchor: [18, 43],
+        iconSize: PIN_SIZE,
+        iconAnchor: PIN_ANCHOR,
       })
       // revision 2026-10-02: nålen gör inget när man klickar på den, men Leaflet
       // gjorde den ändå till en fokuserbar knapp utan namn (axe aria-command-name).
@@ -104,7 +87,7 @@ export default function PlaceMiniMap({ lat, lng, name, pinColor = '#1e5c82', pin
       map?.remove?.()
       mapRef.current = null
     }
-  }, [lat, lng, pinColor, pinIcon])
+  }, [lat, lng, kategori])
 
   // URLs för riktnings-knappar
   const isIOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
