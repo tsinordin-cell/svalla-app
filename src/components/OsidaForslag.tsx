@@ -65,7 +65,7 @@ function nyckel(el: HTMLElement): string {
   if (/Sista båten/.test(t)) return 'sistabat'
   if (/Bäst tid att besöka/.test(t)) return 'sasong'
   if (/^Visste du att/.test(t)) return 'visste'
-  if (/forum/i.test(h) || /^Forum/.test(t)) return 'forum'
+  if (/forum/i.test(h) || /^(Community)?\s*Forum/.test(t)) return 'forum'
   if (el.querySelector('input[type="email"]')) return 'epost'
   if (el.querySelector('img') && !h) return 'foto'
   return 'ovrigt'
@@ -141,17 +141,23 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
   const [flik, setFlik] = useState('oversikt')
   const [mal, setMal] = useState<HTMLElement | null>(null)
   const [kapitelOppen, setKapitelOppen] = useState(false)
+  const [klar, setKlar] = useState(false)
+  const [forbiHero, setForbiHero] = useState(false)
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search).get('v')
     if (p === 'a' || p === 'b' || p === 'c' || p === 'nu') setV(p)
+    setKlar(true)
+    const scroll = () => setForbiHero(window.scrollY > window.innerHeight * 0.55)
+    scroll()
+    window.addEventListener('scroll', scroll, { passive: true })
     const c = document.getElementById('osida-innehall')
     if (!c) return
     const host = document.createElement('div')
     host.dataset.osdel = '__mosaik'
     c.appendChild(host)
     setMal(host)
-    return () => { host.remove() }
+    return () => { host.remove(); window.removeEventListener('scroll', scroll) }
   }, [])
 
   const byt = useCallback((nytt: V) => {
@@ -166,7 +172,7 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
     const c = document.getElementById('osida-innehall')
     const hero = document.getElementById('osida-hero')
     if (!c) return
-    if (hero) hero.style.display = v === 'nu' ? '' : 'none'
+    if (hero) hero.style.display = v === 'nu' ? 'block' : 'none'
     const barn = Array.from(c.children) as HTMLElement[]
     let forstaEpost = true
     for (const el of barn) {
@@ -234,7 +240,7 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
             <h1 className="os-h1">{data.namn}</h1>
             <p className="os-tagline">{data.tagline}</p>
             <div className="os-fakta">
-              {data.restid && <a href={v === 'a' ? undefined : '#'} onClick={e => { e.preventDefault(); if (v === 'a') valjFlik('dit'); else document.querySelector('[data-osdel="dit"]')?.scrollIntoView({ behavior: 'smooth' }) }} className="os-fakta-ruta os-klick"><small>Restid</small>{data.restid}<em>Se båtar och tider →</em></a>}
+              {data.restid && <a href={v === 'a' ? undefined : '#'} onClick={e => { e.preventDefault(); if (v === 'a') valjFlik('dit'); else document.querySelector('[data-osdel="dit"]')?.scrollIntoView({ behavior: 'smooth' }) }} className="os-fakta-ruta os-klick"><small>Restid</small><span className="os-tre">{data.restid}</span><em>Se båtar och tider →</em></a>}
               {data.sasong && <div className="os-fakta-ruta"><small>Säsong</small>{data.sasong}</div>}
               {data.perfekt && <div className="os-fakta-ruta"><small>Perfekt för</small>{data.perfekt}</div>}
             </div>
@@ -243,7 +249,7 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
         </header>
       )}
 
-      {v === 'a' && (
+      {klar && v === 'a' && (
         <div className="os-flikar" id="os-flikar">
           <div className="os-flikar-inre" role="tablist" aria-label={`Välj vad du vill läsa om ${data.namn}`}>
             {FLIKAR.map(f => (
@@ -253,14 +259,14 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
         </div>
       )}
 
-      {v === 'b' && (
+      {klar && v === 'b' && (
         <div className="os-ingress"><p>{data.ingress}</p></div>
       )}
 
-      {v === 'c' && (
+      {klar && v === 'c' && (
         <>
           <div className="os-ingress"><p>{data.ingress}</p></div>
-          <nav className="os-kapitelmeny" aria-label="Kapitel">
+          <nav className={forbiHero ? 'os-kapitelmeny os-synlig' : 'os-kapitelmeny'} aria-label="Kapitel">
             <div className="os-liten">Din resa till {data.namn}</div>
             {KAPITEL.map(k => <a key={k.id} href={'#kapitel-' + k.id}>{k.namn}</a>)}
           </nav>
@@ -288,6 +294,8 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
 }
 
 const CSS = `
+#osida-hero{display:none}
+.os-tre{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .os-hero{position:relative;min-height:min(62vh,560px);display:flex;align-items:flex-end;background:#1e5c82 center/cover no-repeat;color:#fff}
 .os-hero-inre{width:100%;max-width:900px;margin:0 auto;padding:48px 24px 28px}
 .os-smulor{font-size:12.5px;color:rgba(255,255,255,.85);margin-bottom:10px}
@@ -333,13 +341,14 @@ const CSS = `
 [data-kapitel]::before{content:attr(data-kapitel);display:block;font:700 12px Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#a8501a;border-top:2px solid #0d2440;padding-top:14px;margin:12px 0 18px}
 [id^="kapitel-"]{scroll-margin-top:24px}
 .os-kapitelmeny{display:none}
+.os-kapitelknapp{position:fixed;left:50%;transform:translateX(-50%);bottom:72px;z-index:45;display:flex;flex-direction:column;align-items:center;gap:8px}
 @media (min-width:1280px){
-  .os-kapitelmeny{display:flex;flex-direction:column;gap:6px;position:fixed;left:24px;top:140px;width:170px;z-index:30;background:#fffdf8;border:1px solid rgba(150,110,60,.18);border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(60,40,15,.08)}
+  .os-kapitelmeny.os-synlig{display:flex}
+  .os-kapitelmeny{flex-direction:column;gap:6px;position:fixed;left:24px;top:140px;width:170px;z-index:30;background:#fffdf8;border:1px solid rgba(150,110,60,.18);border-radius:16px;padding:16px;box-shadow:0 8px 24px rgba(60,40,15,.08)}
   .os-kapitelmeny a{font-size:14px;font-weight:600;color:#0d2440;text-decoration:none;padding:6px 8px;border-radius:8px}
   .os-kapitelmeny a:hover{background:#f3ece0}
   .os-kapitelknapp{display:none}
 }
-.os-kapitelknapp{position:fixed;left:50%;transform:translateX(-50%);bottom:72px;z-index:45;display:flex;flex-direction:column;align-items:center;gap:8px}
 .os-kapitelknapp button{font:700 14px Inter,system-ui,sans-serif;padding:11px 22px;border-radius:999px;border:none;background:#0d2440;color:#fff;box-shadow:0 8px 20px rgba(13,36,64,.25);cursor:pointer}
 .os-kapitellista{display:flex;flex-direction:column;background:#fffdf8;border-radius:16px;padding:8px;box-shadow:0 12px 30px rgba(13,36,64,.2);min-width:220px}
 .os-kapitellista a{padding:10px 14px;font-size:15px;font-weight:600;color:#0d2440;text-decoration:none;border-radius:10px}
