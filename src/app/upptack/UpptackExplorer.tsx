@@ -1186,9 +1186,13 @@ export default function UpptackExplorer() {
              att namnen försvinner under knappen utan glapp och utan toning.
              --upx-fdd-w är knappens uppmätta bredd. Orullad står "Alla" som
              förut, 8 px från knappen. Utan mätning blir det som en vanlig
-             klippning vid knappens kant. Knappen ligger ovanpå eftersom den
-             är positionerad och raden inte är det. */
+             klippning vid knappens kant. */
           margin: 0 -18px 0 calc(-1 * var(--upx-fdd-w, 0px) - 8px);
+          /* Uttrycklig lagerordning: raden 1, knappen 2. Safari på iPhone lägger
+             annars den rullande raden ovanpå knappen (Tom 2026-11-27, bild),
+             eftersom raden kommer efter knappen i koden. */
+          position: relative;
+          z-index: 1;
           padding-left: calc(var(--upx-fdd-w, 0px) + 8px);
           scroll-padding-left: calc(var(--upx-fdd-w, 0px) + 8px);
         }
@@ -1197,6 +1201,7 @@ export default function UpptackExplorer() {
            Rak, inte rundad: annars tittar raden fram i knappens hörn. */
         .upx-filterrow .upx-fdd {
           background: var(--white, #fff);
+          z-index: 2;
         }
         /* Region-toggle pills — horisontell scroll-bar bredvid kategori-filtret */
         .upx-regions-bar {
