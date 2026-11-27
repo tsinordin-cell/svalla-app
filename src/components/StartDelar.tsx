@@ -8,6 +8,7 @@
  */
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { kommandeDatum, datumBricka } from '@/lib/skargardsdatum'
 
 export type StartBild = { url: string; fotograf: string; licens: string }
 export type StartKansla = { href: string; kansla: string; rubrik: string; antal: number; bild: StartBild | null }
@@ -37,15 +38,8 @@ export function TreSatt() {
   )
 }
 
-/* Datum ur /skargardsdatum (regel och källa står där). Passerade datum visas inte. */
-const DATUM: { iso: string; dag: string; man: string; vad: string; href: string }[] = [
-  { iso: '2026-11-30', dag: '30', man: 'nov', vad: 'Sista dagen för fritidsfiske efter hummer', href: '/guider/hummerpremiar-bohuslan' },
-  { iso: '2026-12-12', dag: '12', man: 'dec', vad: 'Sista dagen för höstens tidtabeller hos Waxholmsbolaget och Styrsöbolaget', href: '/vintertidtabeller' },
-  { iso: '2027-03-01', dag: '1', man: 'mars', vad: 'Hundar får inte springa lösa i naturen, till 20 augusti', href: '/guider/hund-skargarden' },
-  { iso: '2027-08-04', dag: '4', man: 'aug', vad: 'Kräftpremiär enligt traditionen, klockan 17', href: '/guider/kraftskiva-skargarden' },
-  { iso: '2027-08-19', dag: '19', man: 'aug', vad: 'Surströmmingspremiär', href: '/guider/surstrommingspremiar' },
-  { iso: '2027-09-27', dag: '27', man: 'sep', vad: 'Hummerpremiär, klockan 07.00', href: '/guider/hummerpremiar-bohuslan' },
-]
+/* Datum ur src/lib/skargardsdatum.ts, samma lista som /skargardsdatum (regel och källa står där).
+   Passerade datum och perioder som redan börjat visas inte här. */
 const MANADER = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augusti', 'september', 'oktober', 'november', 'december']
 
 export function JustNu() {
@@ -54,7 +48,7 @@ export function JustNu() {
   const klocka = nu ? nu.toLocaleTimeString('sv-SE', { timeZone: 'Europe/Stockholm', hour: '2-digit', minute: '2-digit', second: '2-digit' }) : ''
   const idag = nu ? nu.toLocaleDateString('sv-SE', { timeZone: 'Europe/Stockholm' }) : ''
   const manad = idag ? MANADER[Number(idag.slice(5, 7)) - 1] : ''
-  const kommande = idag ? DATUM.filter(d => d.iso >= idag).slice(0, 4) : DATUM.slice(0, 4)
+  const kommande = kommandeDatum(idag || '0000-00-00')
   const dagar = (iso: string) => Math.round((Date.parse(iso) - Date.parse(idag)) / 86400000)
   return (
     <section className="sd sd-nu" aria-label="Just nu i skärgården">
@@ -68,10 +62,11 @@ export function JustNu() {
           <div className="sd-nu-lista">
             {kommande.map(d => {
               const n = idag ? dagar(d.iso) : null
+              const b = datumBricka(d.iso)
               return (
-                <Link key={d.iso} href={d.href} className="sd-nu-rad">
-                  <span className="sd-nu-bricka"><b>{d.dag}</b>{d.man}</span>
-                  <span className="sd-nu-text">{n !== null && <small>{n === 0 ? 'Idag' : n === 1 ? 'Imorgon' : `Om ${n} dagar`}</small>}{d.vad}</span>
+                <Link key={d.iso + d.vad} href={d.lank.href} className="sd-nu-rad">
+                  <span className="sd-nu-bricka"><b>{b.dag}</b>{b.man}</span>
+                  <span className="sd-nu-text">{n !== null && <small>{n === 0 ? 'Idag' : n === 1 ? 'Imorgon' : `Om ${n} dagar`}</small>}{d.kort ?? d.vad}</span>
                 </Link>
               )
             })}
