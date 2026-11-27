@@ -1,4 +1,5 @@
 'use client'
+// Sparad version E1 av Navet (Max 2026-11-27). Jämförelsepunkt, ändras inte.
 /**
  * Förslag E, Navet (Max 2026-11-27): ösidan som ett kort nav i stället för ett långt dokument.
  *
