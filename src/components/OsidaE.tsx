@@ -264,6 +264,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
       Object.values(h).forEach(d => d.remove())
       if (c) {
         c.removeEventListener('click', klick)
+        c.style.removeProperty('max-width')
         for (const el of Array.from(c.children) as HTMLElement[]) { el.removeAttribute('data-eklamp'); el.style.removeProperty('display'); el.style.removeProperty('order') }
       }
     }
@@ -277,6 +278,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
     if (hero) hero.style.display = 'none'
     c.style.display = 'flex'
     c.style.flexDirection = 'column'
+    c.style.maxWidth = '1088px'
     let forstaEpost = true
     for (const el of Array.from(c.children) as HTMLElement[]) {
       el.style.removeProperty('display')
@@ -519,6 +521,7 @@ const CSS = `
 .e-valkort{position:relative;display:flex;align-items:flex-end;height:200px;padding:16px;border-radius:20px;overflow:hidden;border:0;cursor:pointer;text-align:left;color:#fff;background:#1e5c82 center/cover no-repeat;font:inherit;transition:transform .25s ease,box-shadow .25s ease}
 .e-valkort::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,0) 35%,rgba(8,24,38,.8) 100%);transition:opacity .25s ease}
 .e-valkort:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(13,36,64,.18)}
+.e-valkort:hover::before{opacity:.8}
 .e-valkort-mal{background:linear-gradient(160deg,#fffaf1,#efe4d0);color:#0d2440;border:1px solid rgba(150,110,60,.18)}
 .e-valkort-mal::before{display:none}
 .e-valkort-ikon{position:absolute;top:14px;right:14px;width:64px;height:64px;object-fit:contain}
@@ -571,6 +574,7 @@ a.e-bra-rad:hover{border-color:#1e5c82}
 .e-allt p{font-size:14px;color:#3d5865;margin:8px 0 0}
 .e-rad{display:flex;justify-content:space-between;align-items:center;width:100%;padding:16px 4px;border:0;border-top:1px solid rgba(13,36,64,.12);background:transparent;cursor:pointer;font:600 16px Inter,system-ui,sans-serif;color:#0d2440;text-align:left}
 .e-rad i{position:relative;width:14px;height:14px;flex-shrink:0}
+.e-rad:hover{color:#1e5c82}
 .e-rad i::before,.e-rad i::after{content:'';position:absolute;left:0;top:6px;width:14px;height:2px;background:#1e5c82;border-radius:2px;transition:transform .2s ease}
 .e-rad i::after{transform:rotate(90deg)}
 .e-rad-oppen i::after{transform:rotate(0)}
@@ -617,5 +621,9 @@ a.e-bra-rad:hover{border-color:#1e5c82}
   .e-sektion{padding-top:34px}
   .e-kredit{bottom:36px}
 }
+#osida-innehall>[data-osdel]:not([data-ehost]){max-width:860px;width:100%}
+.e-valkort:focus-visible,.e-kort:focus-visible,.e-rad:focus-visible,.e-forsta:focus-visible,.e-bra-rad:focus-visible,.e-snabb a:focus-visible,.e-chip-lank:focus-visible,.e-bak:focus-visible{outline:3px solid #f2a25c;outline-offset:3px}
+@media (min-width:901px){.e-sektion{padding-top:56px}.e-allt{padding-top:64px}}
+@media (max-width:700px){#osida-innehall{padding-left:16px !important;padding-right:16px !important}}
 @media (prefers-reduced-motion:reduce){.e-valkort,.e-kort{transition:none}}
 `
