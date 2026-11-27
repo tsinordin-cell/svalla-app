@@ -11,12 +11,13 @@ import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
 import ReportButton from '@/components/ReportButton'
 import {
-  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, IKON, Ikon, MeddelandeRad, RostBubbla, SamtalsHuvud, Sjokort, Skrivfalt,
+  Ark, ArkRad, Avatar, BildBubbla, DagAvdelare, dagEtikett, IKON, Ikon, MeddelandeRad, RostBubbla, SamtalsHuvud, Sjokort, Skrivfalt,
   TextBubbla, TomtLage, TurKort, TurValjare, type GeoMeta, type RostMeta, type TripMeta, type TurVal,
 } from '@/components/meddelanden/Delar'
 import { revalidateTrip } from '@/lib/revalidate-trip'
 import { Citat, MeddelandeMeny, ReaktionsRad, SvarsRad, type Reaktion } from '@/components/meddelanden/Meny'
 import { reverseGeocode } from '@/lib/reverse-geocode'
+import TurBildvisare from '@/components/TurBildvisare'
 import type { Message, Conversation } from '@/lib/supabase'
 
 type MsgWithMeta = Message & { reply_to_id?: string | null; username?: string; avatar?: string | null; optimistic?: boolean }
@@ -87,6 +88,14 @@ export default function ChatPage() {
 
   // Menyn vid långt tryck (per meddelande)
   const [meny, setMeny] = useState<MenyLage | null>(null)
+
+  // Bild som visas stort inne i Svalla. Listan låses när visaren öppnas, så att nya
+  // eller äldre meddelanden som laddas under tiden inte flyttar bilderna.
+  const [bildvisning, setBildvisning] = useState<{
+    bilder: { src: string; namn: string; tid: string }[]
+    start: number
+    i: number
+  } | null>(null)
 
   // Svar och reaktioner. Stödet känns av, så att sidan fungerar både före och
   // efter att databasändringen (20261126000004) är körd.
@@ -592,6 +601,15 @@ export default function ChatPage() {
     setMeny({ msgId, rect: { top: r.top, left: r.left, right: r.right, height: r.height } })
   }
 
+  // Tillbaka i webbläsaren medan en bild visas: stäng bilden, stanna i samtalet.
+  const bildOppen = bildvisning !== null
+  useEffect(() => {
+    if (!bildOppen) return
+    const onPop = () => setBildvisning(null)
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [bildOppen])
+
   function onLongPressStart(msgId: string, el: HTMLElement) {
     if (longPressTimer.current) clearTimeout(longPressTimer.current)
     longPressTimer.current = setTimeout(() => {
@@ -862,6 +880,37 @@ export default function ChatPage() {
     return url.startsWith(`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/`) ? url : undefined
   }
 
+  /**
+   * Öppnar bilden stort ovanpå chatten, med samma visare som turbilderna i flödet.
+   * Alla bilder i samtalet som har laddats följer med, så att man kan svepa mellan dem.
+   * Ett steg läggs i webbläsarens historik, så att tillbaka (svep från kanten på iPhone,
+   * tillbaka-knappen på Android) stänger bilden i stället för att lämna samtalet.
+   */
+  function oppnaBild(msgId: string) {
+    if (meny) return // ett långt tryck har just öppnat menyn
+    const bilder: { id: string; src: string; namn: string; tid: string }[] = []
+    for (const m of messages) {
+      if (m.attachment_type !== 'image' || !m.attachment_url) continue
+      const src = bildSrc(m.attachment_url as string)
+      if (src) bilder.push({ id: m.id, src, namn: vemNamn(m), tid: m.created_at })
+    }
+    const start = bilder.findIndex(b => b.id === msgId)
+    if (start < 0) return
+    try {
+      window.history.pushState({ ...(window.history.state ?? {}), svallaBild: true }, '')
+    } catch { /* utan historik stängs bilden ändå med krysset, Esc och tryck utanför */ }
+    setBildvisning({ bilder, start, i: start })
+  }
+
+  // Stabil, så att visaren inte kör om sin effekt (skrollås, tangenter) vid varje rendering.
+  const stangBild = useCallback(() => {
+    if (window.history.state?.svallaBild) {
+      window.history.back() // popstate stänger visaren
+    } else {
+      setBildvisning(null)
+    }
+  }, [])
+
   /** Innehållet i en bubbla. Används både i flödet och i den upplyfta menyn. */
   function bubblor(m: MsgWithMeta, iMeny = false) {
     const orig = m.reply_to_id ? msgById.get(m.reply_to_id) : undefined
@@ -874,6 +923,7 @@ export default function ChatPage() {
           const url = m.attachment_url as string
           return (
             <BildBubbla src={bildSrc(url)}
+              onTryck={iMeny || m.optimistic ? undefined : () => oppnaBild(m.id)}
               // Länken gäller en timme. Går den ut hämtas en ny.
               onFel={() => { if (arDmBildSokvag(url)) setBildLankar(prev => { const n = { ...prev }; delete n[url]; return n }) }} />
           )
@@ -1064,6 +1114,23 @@ export default function ChatPage() {
             : undefined}
         />
       )}
+
+      {bildvisning && (() => {
+        const b = bildvisning.bilder[bildvisning.i] ?? bildvisning.bilder[bildvisning.start]!
+        const d = new Date(b.tid)
+        const klocka = isNaN(d.getTime()) ? '' : d.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' })
+        return (
+          <TurBildvisare
+            bilder={bildvisning.bilder.map(x => x.src)}
+            start={bildvisning.start}
+            onByt={i => setBildvisning(prev => (prev ? { ...prev, i } : prev))}
+            onStang={stangBild}
+            namn={b.namn}
+            rad={[dagEtikett(b.tid), klocka].filter(Boolean).join(' · ')}
+            etikett="i samtalet"
+          />
+        )
+      })()}
 
       {turOppen && (
         <TurValjare turer={turer} fel={turFel} onValj={valjTur} onStang={() => setTurOppen(false)} />

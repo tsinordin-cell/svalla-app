@@ -273,6 +273,8 @@
 .md-tur-bild { position: relative; display: block; width: 100%; height: 118px; background: var(--md-deras); }
 .md-bild { display: block; border-radius: 16px; overflow: hidden; width: min(240px, 58vw); aspect-ratio: 4 / 3; background: var(--md-vald); box-shadow: 0 0 0 1px var(--md-linje); }
 .md-bild img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* Knappen ska se ut exakt som länken gjorde: inga webbläsarstandarder för knappar. */
+button.md-bild { padding: 0; border: 0; margin: 0; font: inherit; color: inherit; cursor: pointer; -webkit-appearance: none; appearance: none; }
 
 /* Skrivfält */
 .md-komp {
