@@ -29,7 +29,7 @@ export async function POST(req: Request) {
   const service = getAdminClient()
   const { data: rader, error } = await service
     .from('email_subscribers')
-    .update({ confirmed: true })
+    .update({ confirmed: true, confirmed_at: new Date().toISOString() })
     .eq('email', email)
     .eq('confirmed', false)
     .eq('unsubscribed', false)
