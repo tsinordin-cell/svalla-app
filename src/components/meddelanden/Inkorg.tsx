@@ -17,6 +17,7 @@ import NotificationBell from '@/components/NotificationBell'
 import { createClient, getViewer } from '@/lib/supabase'
 import { markConversationRead, leaveConversation, MEDDELANDEN_LASTA_HANDELSE } from '@/lib/dm'
 import { blockUser } from '@/lib/blocks'
+import { sparaKonvForhand } from '@/lib/konvForhand'
 import { toast } from '@/components/Toast'
 import { Ark, IKON, Ikon, KonvRad, SkelettRad, TomtLage, type KonvRadData } from './Delar'
 import { KonvMeny, useLangtTryck, type ForhandsRad } from './KonvMeny'
@@ -332,6 +333,8 @@ export default function Inkorg() {
 
       setConvs(filtered.map(c => {
         const o = otherMap[c.id]
+        // Chattsidan visar motpartens namn och bild direkt när chatten öppnas.
+        if (!c.is_group && o?.username) sparaKonvForhand(c.id, { username: o.username, avatar: o.avatar ?? null })
         return {
           ...(c as ConvRow),
           other_username: o?.username,

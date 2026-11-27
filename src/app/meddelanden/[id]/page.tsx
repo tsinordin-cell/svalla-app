@@ -5,7 +5,8 @@ import { ritaOmBildUtanMetadata } from '@/lib/komprimeraBild'
 import { DM_BILD_HINK, DM_BILD_LANK_SEKUNDER, arDmBildSokvag } from '@/lib/dmBilder'
 import { useRostInspelning, type RostKlipp } from '@/lib/useRostInspelning'
 import { useParams, useRouter } from 'next/navigation'
-import { createClient } from '@/lib/supabase'
+import { createClient, getViewer } from '@/lib/supabase'
+import { hamtaKonvForhand } from '@/lib/konvForhand'
 import { markConversationRead, acceptDMRequest, declineDMRequest, deleteMessage, leaveConversation } from '@/lib/dm'
 import { blockUser, arRegelstopp, BLOCKERAD_TEXT } from '@/lib/blocks'
 import { toast } from '@/components/Toast'
@@ -131,66 +132,113 @@ export default function ChatPage() {
   const userMapRef = useRef<Record<string, { username: string; avatar: string | null }>>({})
 
   // Bootstrap
+  // 2026-11-27: chatten hämtades förut med åtta frågor i följd (inloggning, chatt,
+  // deltagare, användare, meddelanden, läst, motpartens läst, läst igen). På en
+  // mobil i USA tog det cirka 2 sekunder innan meddelandena syntes, och huvudet
+  // visade "?" i cirka 1 sekund (mätt i Supabase-loggen 27 nov). Nu läses
+  // inloggningen lokalt, chatt, deltagare med namn och meddelanden hämtas samtidigt,
+  // och "läst" skrivs efter att sidan visats.
   useEffect(() => {
     let cancel = false
+    // Namn och bild som inkorgen redan har, så att huvudet stämmer direkt.
+    const forhand = hamtaKonvForhand(id)
+    if (forhand) {
+      setOtherName(forhand.username)
+      setOtherUsername(forhand.username)
+      setOtherAvatar(forhand.avatar)
+    }
     async function boot() {
       try {
-        const { data: authData } = await supabase.auth.getUser()
-        const user = authData?.user
+        // Sessionen finns redan i webbläsaren; den kontrolleras mot servern först
+        // om något ser fel ut nedan. Databasens regler gäller ändå varje fråga.
+        const { data: sessData } = await supabase.auth.getSession()
+        let userId: string | null = sessData?.session?.user?.id ?? null
+        let kontrollerad = false
+        if (!userId) {
+          const { data: { user } } = await getViewer(supabase)
+          kontrollerad = true
+          if (cancel) return
+          if (!user) { router.push('/logga-in'); return }
+          userId = user.id
+        }
         if (cancel) return
-        if (!user) { router.push('/logga-in'); return }
-        setMe(user.id)
+        setMe(userId)
 
-        // Konversationsinfo
-        const { data: c } = await supabase.from('conversations').select('id, is_group, created_by, status').eq('id', id).single()
+        const [cRes, pRes, mRes] = await Promise.all([
+          supabase.from('conversations').select('id, is_group, created_by, status').eq('id', id).maybeSingle(),
+          supabase
+            .from('conversation_participants')
+            .select('user_id, last_read_at, users(id, username, avatar)')
+            .eq('conversation_id', id),
+          supabase
+            .from('messages')
+            .select('*')
+            .eq('conversation_id', id)
+            .order('created_at', { ascending: true })
+            .limit(200),
+        ])
         if (cancel) return
-        if (!c) { router.push('/meddelanden'); return }
+
+        const c = cRes.data
+        if (!c) {
+          // En utgången inloggning ger också tomt svar. Fråga servern innan vi väljer väg.
+          if (!kontrollerad) {
+            const { data: { user } } = await getViewer(supabase)
+            if (cancel) return
+            if (!user) { router.push('/logga-in'); return }
+          }
+          router.push('/meddelanden')
+          return
+        }
         setConv(c as Conversation)
 
-        // Motpart (för 1-till-1) — hämta alla deltagare → visa den andra
+        // Motpart (för 1-till-1): deltagarna kommer med namn och bild i samma fråga.
         try {
-          const { data: parts } = await supabase
-            .from('conversation_participants')
-            .select('user_id')
-            .eq('conversation_id', id)
-          const otherIds = (parts ?? []).map((p: { user_id: string }) => p.user_id).filter(u => u !== user.id)
-          if (otherIds.length > 0) {
-            // Slå ihop egen + motpart i en enda IN-query → sparar 1 round-trip
-            // (förut: users + myU = 2 sekventiella queries)
-            const allUserIds = Array.from(new Set([user.id, ...otherIds]))
-            const { data: allUsers } = await supabase
-              .from('users')
-              .select('id, username, avatar')
-              .in('id', allUserIds)
-            for (const u of allUsers ?? []) {
-              userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
-            }
-            const otherUsers = (allUsers ?? []).filter(u => u.id !== user.id)
-
-            if (!c.is_group && otherUsers[0]) {
-              setOtherName(otherUsers[0].username ?? 'Seglare')
-              setOtherUsername(otherUsers[0].username ?? null)
-              setOtherAvatar(otherUsers[0].avatar ?? null)
-              setOtherId(otherUsers[0].id)
-            } else if (c.is_group) {
-              setOtherName((c as Conversation).title ?? 'Gruppchatt')
-            }
+          type Deltagare = {
+            user_id: string
+            last_read_at: string | null
+            users: { id: string; username: string; avatar: string | null } | { id: string; username: string; avatar: string | null }[] | null
           }
+          const parts = (pRes.data ?? []) as unknown as Deltagare[]
+          for (const p of parts) {
+            const u = Array.isArray(p.users) ? p.users[0] : p.users
+            if (u) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+          }
+          const andra = parts.filter(p => p.user_id !== userId)
+          const otherUsers = andra
+            .map(p => (Array.isArray(p.users) ? p.users[0] : p.users))
+            .filter((u): u is { id: string; username: string; avatar: string | null } => !!u)
+          if (!c.is_group && otherUsers[0]) {
+            setOtherName(otherUsers[0].username ?? 'Seglare')
+            setOtherUsername(otherUsers[0].username ?? null)
+            setOtherAvatar(otherUsers[0].avatar ?? null)
+            setOtherId(otherUsers[0].id)
+          } else if (c.is_group && andra.length > 0) {
+            setOtherName((c as Conversation).title ?? 'Gruppchatt')
+          }
+          // Motpartens "läst" (bara när det finns exakt en annan deltagare, som förut)
+          if (andra.length === 1 && andra[0].last_read_at) setOtherReadAt(andra[0].last_read_at)
         } catch { /* icke-kritisk — namninfo saknas men chatt fungerar */ }
 
-        await loadMessages(user.id)
-        // Hämta motpartens last_read_at för läskvitens
-        try {
-          const { data: rp } = await supabase
-            .from('conversation_participants')
-            .select('last_read_at')
-            .eq('conversation_id', id)
-            .neq('user_id', user.id)
-            .single()
-          if (rp?.last_read_at) setOtherReadAt(rp.last_read_at)
-        } catch { /* tyst */ }
-        try { await markConversationRead(supabase, user.id, id) } catch { /* tyst */ }
+        // Meddelandena. Avsändare som inte längre är deltagare hämtas separat (ovanligt).
+        const rows = (mRes.data ?? []) as MsgWithMeta[]
+        const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
+        if (missing.length > 0) {
+          try {
+            const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', missing)
+            for (const u of users ?? []) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+          } catch { /* tyst — fallback till 'Seglare' */ }
+          if (cancel) return
+        }
+        setMessages(rows.map(m => ({
+          ...m,
+          username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
+          avatar: userMapRef.current[m.user_id]?.avatar ?? null,
+        })))
         if (!cancel) setLoading(false)
+
+        // Markera läst efter att chatten visats; ingen väntan på svaret.
+        markConversationRead(supabase, userId, id).catch(() => { /* tyst */ })
       } catch (err) {
         // Logga felet men låt inte en ohanterad rejection krascha sidan
         console.error('[ChatPage] boot error:', err)
@@ -950,7 +998,8 @@ export default function ChatPage() {
   return (
     <div className="md-samtal md-rot">
       <SamtalsHuvud
-        namn={loading && otherName === 'Meddelanden' ? '' : otherName}
+        namn={otherName}
+        laddar={loading && otherName === 'Meddelanden'}
         nyckel={otherUsername ?? otherName ?? id}
         bild={otherAvatar}
         profilHref={otherUsername ? `/u/${encodeURIComponent(otherUsername)}` : null}
