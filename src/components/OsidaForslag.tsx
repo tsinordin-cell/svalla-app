@@ -7,6 +7,7 @@
  * A Välj själv: knapprad där besökaren väljer del av sidan. Översikten har mosaiker.
  * B Mosaik först: utvalda krogar, boenden och höjdpunkter som mosaik, sedan planeringen samlad.
  * C Kapitel: Upptäck, Ta dig dit, Ät och bo, På plats, Frågor och mer, med kapitelmeny.
+ * E Navet (standard): kort nav med val, urval och hopfällt Allt om ön, se OsidaE.tsx.
  * D Vad är du ute efter: sex snitslade banor (Över dagen, Bo över, Med egen båt, Med barn, Aktiv, Bor här).
  *   Valet sparas i webbläsaren så att nästa ö öppnas i samma bana. Varje bana har en exempelplats för en
  *   samarbetspartner (Max: verksamheter ska vilja betala för att synas), utom öbornas bana.
@@ -16,6 +17,7 @@
  */
 import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
+import OsidaE from './OsidaE'
 
 type Foto = { url: string; fotograf: string; licens: string }
 type Kort = { namn: string; typ: string; text: string; sasong?: string; foto?: Foto }
@@ -37,8 +39,9 @@ export type OsidaData = {
   gora: Gora[]
 }
 
-type V = 'a' | 'b' | 'c' | 'd' | 'nu'
+type V = 'a' | 'b' | 'c' | 'd' | 'e' | 'nu'
 const VARIANTER: { v: V; namn: string }[] = [
+  { v: 'e', namn: 'E Navet' },
   { v: 'd', namn: 'D Vad söker du?' },
   { v: 'a', namn: 'A Välj själv' },
   { v: 'b', namn: 'B Mosaik' },
@@ -47,7 +50,7 @@ const VARIANTER: { v: V; namn: string }[] = [
 ]
 
 /** Känner igen ett befintligt avsnitt på dess rubrik. */
-function nyckel(el: HTMLElement): string {
+export function nyckel(el: HTMLElement): string {
   if (el.dataset.osdel) return el.dataset.osdel
   const h = el.querySelector('h2')?.textContent?.trim() ?? ''
   const t = (el.textContent ?? '').trim().slice(0, 240)
@@ -231,7 +234,7 @@ function Mosaik({ rubrik, under, kort, ikon, alla, allaText, partner }: { rubrik
 }
 
 export default function OsidaForslag({ data }: { data: OsidaData }) {
-  const [v, setV] = useState<V>('d')
+  const [v, setV] = useState<V>('e')
   const [flik, setFlik] = useState('oversikt')
   const [bana, setBana] = useState<string | null>(null)
   const [mal, setMal] = useState<Record<string, HTMLElement>>({})
@@ -241,7 +244,7 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search).get('v')
-    if (p === 'a' || p === 'b' || p === 'c' || p === 'd' || p === 'nu') setV(p)
+    if (p === 'a' || p === 'b' || p === 'c' || p === 'd' || p === 'e' || p === 'nu') setV(p)
     try { const b = window.localStorage.getItem('svalla-bana'); if (b) setBana(b) } catch { /* privat läge */ }
     setKlar(true)
     const scroll = () => setForbiHero(window.scrollY > window.innerHeight * 0.55)
@@ -279,7 +282,7 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
   useEffect(() => {
     const c = document.getElementById('osida-innehall')
     const hero = document.getElementById('osida-hero')
-    if (!c) return
+    if (!c || v === 'e') return
     if (hero) hero.style.display = v === 'nu' ? 'block' : 'none'
     const barn = Array.from(c.children) as HTMLElement[]
     let forstaEpost = true
@@ -289,6 +292,7 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
       el.style.removeProperty('display')
       el.style.removeProperty('order')
       el.removeAttribute('data-kapitel')
+      el.removeAttribute('data-eklamp')
       if (/^(kapitel|steg)-/.test(el.id)) el.removeAttribute('id')
       if (v === 'nu') { if (VARIANT_BLOCK.includes(k)) el.style.display = 'none'; continue }
       if (ALLTID_DOLDA.includes(k)) { el.style.display = 'none'; continue }
@@ -366,7 +370,9 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
   return (
     <>
       <style>{CSS}</style>
-      {v !== 'nu' && (
+      {v === 'e' && <OsidaE data={data} nyckel={nyckel} />}
+
+      {v !== 'nu' && v !== 'e' && (
         <header className={'os-hero os-hero-' + v} style={data.foto ? { backgroundImage: `linear-gradient(180deg, rgba(8,24,38,.15) 0%, rgba(8,24,38,.72) 100%), url('${data.foto.url}')` } : undefined}>
           <div className="os-hero-inre">
             <nav className="os-smulor" aria-label="Brödsmulor"><a href="/">Hem</a> › <a href={data.regionHref}>{data.region}</a> › <span>{data.namn}</span></nav>
