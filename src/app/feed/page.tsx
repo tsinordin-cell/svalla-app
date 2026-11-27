@@ -219,9 +219,9 @@ export default async function FeedPage(
 
  {/* ── Greeting ── */}
  {feedUsername && (
+ <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 20px 4px' }}>
  {/* 2026-11-27 (Tom): tätare topp. NATT 8 px högre upp (luft ovan 20 → 12), luften
      under hälsningen 8 → 4 så väderraden kommer närmare. */}
- <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 20px 4px' }}>
  <div className="feed-time-label" style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
  {getTimeLabel()}
  </div>
