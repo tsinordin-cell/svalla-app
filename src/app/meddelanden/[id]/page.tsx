@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback, useMemo } from 'react'
+import { useEffect, useLayoutEffect, useState, useRef, useCallback, useMemo } from 'react'
 import { ritaOmBildUtanMetadata } from '@/lib/komprimeraBild'
 import { DM_BILD_HINK, DM_BILD_LANK_SEKUNDER, arDmBildSokvag } from '@/lib/dmBilder'
 import { useRostInspelning, type RostKlipp } from '@/lib/useRostInspelning'
@@ -22,6 +22,30 @@ import TurBildvisare from '@/components/TurBildvisare'
 import type { Message, Conversation } from '@/lib/supabase'
 
 type MsgWithMeta = Message & { reply_to_id?: string | null; username?: string; avatar?: string | null; optimistic?: boolean }
+
+/**
+ * Så många meddelanden hämtas åt gången (2026-11-27). Chatten öppnas med de senaste,
+ * och äldre hämtas i omgångar om lika många när man skrollar uppåt.
+ * Förut hämtades de 200 äldsta, så i långa chattar saknades de nyaste.
+ */
+const MEDD_SIDA = 50
+
+/** Senaste omgången, i tidsordning, ihop med de äldre meddelanden som redan visas. */
+function slaIhopSenaste(forut: MsgWithMeta[], senaste: MsgWithMeta[]): { lista: MsgWithMeta[]; luckaAterstalld: boolean } {
+  const forsta = senaste[0]
+  if (!forsta) return { lista: [], luckaAterstalld: false }
+  // Bara den här chattens egna, redan sparade meddelanden
+  const riktiga = forut.filter(m => !m.optimistic && m.conversation_id === forsta.conversation_id)
+  const sistForut = riktiga[riktiga.length - 1]
+  // Kom det fler nya än en omgång medan sidan låg i bakgrunden blir det en lucka.
+  // Då börjar listan om från de senaste, och äldre hämtas igen vid skroll.
+  if (senaste.length >= MEDD_SIDA && sistForut && sistForut.created_at < forsta.created_at) {
+    return { lista: senaste, luckaAterstalld: true }
+  }
+  const nyaIds = new Set(senaste.map(m => m.id))
+  const aldre = riktiga.filter(m => m.created_at < forsta.created_at && !nyaIds.has(m.id))
+  return { lista: [...aldre, ...senaste], luckaAterstalld: false }
+}
 
 type MenyLage = { msgId: string; rect: { top: number; left: number; right: number; height: number } }
 
@@ -63,6 +87,16 @@ export default function ChatPage() {
   const [otherAvatar, setOtherAvatar] = useState<string | null>(null)
   const [otherUsername, setOtherUsername] = useState<string | null>(null)
   const [messages, setMessages] = useState<MsgWithMeta[]>([])
+  // Finns det äldre meddelanden att hämta när man skrollar uppåt
+  const [harAldre, setHarAldre] = useState(false)
+  const laddarAldreRef = useRef(false)
+  // Skrollläget före en hämtning av äldre, så att listan står still när de läggs in ovanför
+  const fastHojdRef = useRef<{ hojd: number; top: number } | null>(null)
+  // Sista meddelandet som listan skrollats ner till
+  const sistNereRef = useRef<string | null>(null)
+  // Listan som den ser ut nu, för hämtningar som ska läggas ihop med den
+  const messagesRef = useRef<MsgWithMeta[]>([])
+  messagesRef.current = messages
   const [text, setText] = useState(() => {
     // Loppis-pre-fill: när användaren just kommit hit via "Kontakta säljare"
     // har vi sparat ett intro-meddelande i sessionStorage (sätts i
@@ -174,8 +208,8 @@ export default function ChatPage() {
             .from('messages')
             .select('*')
             .eq('conversation_id', id)
-            .order('created_at', { ascending: true })
-            .limit(200),
+            .order('created_at', { ascending: false })
+            .limit(MEDD_SIDA),
         ])
         if (cancel) return
 
@@ -223,7 +257,8 @@ export default function ChatPage() {
         } catch { /* icke-kritisk — namninfo saknas men chatt fungerar */ }
 
         // Meddelandena. Avsändare som inte längre är deltagare hämtas separat (ovanligt).
-        const rows = (mRes.data ?? []) as MsgWithMeta[]
+        const rows = ((mRes.data ?? []) as MsgWithMeta[]).reverse()
+        setHarAldre(rows.length >= MEDD_SIDA)
         const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
         if (missing.length > 0) {
           try {
@@ -258,9 +293,9 @@ export default function ChatPage() {
         .from('messages')
         .select('*')
         .eq('conversation_id', id)
-        .order('created_at', { ascending: true })
-        .limit(200)
-      const rows = (data ?? []) as MsgWithMeta[]
+        .order('created_at', { ascending: false })
+        .limit(MEDD_SIDA)
+      const rows = ((data ?? []) as MsgWithMeta[]).reverse()
 
       // Se till att alla user_ids finns i cache
       const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
@@ -271,11 +306,14 @@ export default function ChatPage() {
         } catch { /* tyst — fallback till 'Seglare' */ }
       }
 
-      setMessages(rows.map(m => ({
+      const senaste = rows.map(m => ({
         ...m,
         username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
         avatar: userMapRef.current[m.user_id]?.avatar ?? null,
-      })))
+      }))
+      const { lista, luckaAterstalld } = slaIhopSenaste(messagesRef.current, senaste)
+      setMessages(lista)
+      if (luckaAterstalld || senaste.length < MEDD_SIDA) setHarAldre(luckaAterstalld)
 
       // Markera läst
       try { await markConversationRead(supabase, userId, id) } catch { /* tyst */ }
@@ -454,11 +492,75 @@ export default function ChatPage() {
   // Auto-scroll till botten — beror på BÅDE messages.length och loading.
   // Meddelandena renderas bara när !loading, så vi måste vänta tills
   // loading blir false innan scrollHeight är korrekt.
+  // Skrollar bara ner när ett nytt meddelande kommit sist, inte när äldre läggs in ovanför.
   useEffect(() => {
     if (loading || !listRef.current) return
+    const sist = messages[messages.length - 1]
+    const sistId = sist ? sist.id : null
+    if (sistId === sistNereRef.current) return
+    sistNereRef.current = sistId
     const el = listRef.current
     requestAnimationFrame(() => { el.scrollTop = el.scrollHeight })
-  }, [messages.length, loading])
+  }, [messages, loading])
+
+  // Äldre meddelanden har lagts in ovanför: flytta skrollen lika mycket som listan växte,
+  // innan sidan ritas, så att det man läser står kvar på samma plats.
+  useLayoutEffect(() => {
+    const fast = fastHojdRef.current
+    const el = listRef.current
+    if (!fast || !el) return
+    fastHojdRef.current = null
+    el.scrollTop = el.scrollHeight - fast.hojd + fast.top
+  }, [messages])
+
+  const laddaAldre = useCallback(async () => {
+    if (laddarAldreRef.current || !harAldre) return
+    const forsta = messages.find(m => !m.optimistic)
+    if (!forsta) return
+    laddarAldreRef.current = true
+    try {
+      const { data } = await supabase
+        .from('messages')
+        .select('*')
+        .eq('conversation_id', id)
+        .lt('created_at', forsta.created_at)
+        .order('created_at', { ascending: false })
+        .limit(MEDD_SIDA)
+      const rows = ((data ?? []) as MsgWithMeta[]).reverse()
+      const missing = [...new Set(rows.map(r => r.user_id))].filter(u => !userMapRef.current[u])
+      if (missing.length > 0) {
+        try {
+          const { data: users } = await supabase.from('users').select('id, username, avatar').in('id', missing)
+          for (const u of users ?? []) userMapRef.current[u.id] = { username: u.username, avatar: u.avatar ?? null }
+        } catch { /* tyst — fallback till 'Seglare' */ }
+      }
+      const el = listRef.current
+      if (el) fastHojdRef.current = { hojd: el.scrollHeight, top: el.scrollTop }
+      setHarAldre(rows.length >= MEDD_SIDA)
+      if (rows.length === 0) { fastHojdRef.current = null; return }
+      setMessages(prev => {
+        const finns = new Set(prev.map(m => m.id))
+        const aldre = rows.filter(m => !finns.has(m.id)).map(m => ({
+          ...m,
+          username: userMapRef.current[m.user_id]?.username ?? 'Seglare',
+          avatar: userMapRef.current[m.user_id]?.avatar ?? null,
+        }))
+        return [...aldre, ...prev]
+      })
+    } catch (err) {
+      console.error('[ChatPage] laddaAldre error:', err)
+      fastHojdRef.current = null
+    } finally {
+      laddarAldreRef.current = false
+    }
+  }, [supabase, id, messages, harAldre])
+
+  // Hämta äldre i god tid innan man når toppen, så att det känns som en enda lång lista.
+  function onFlodeSkroll() {
+    const el = listRef.current
+    if (!el || loading || !harAldre) return
+    if (el.scrollTop < 800) laddaAldre()
+  }
 
   async function send(e?: React.FormEvent) {
     e?.preventDefault()
@@ -1030,7 +1132,7 @@ export default function ChatPage() {
         </div>
       )}
 
-      <div ref={listRef} className="md-flode">
+      <div ref={listRef} className="md-flode" onScroll={onFlodeSkroll}>
         <div className="md-flode-inre">
           {loading && <div className="md-snurra" aria-label="Laddar meddelandena" />}
 
