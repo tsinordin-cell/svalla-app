@@ -14,6 +14,10 @@ import Icon, { type IconName } from './Icon'
  * (JulkalenderFlodeKort). Därefter det här blocket: vintertrafik,
  * planera, Thorkel. Visas för alla, in- och utloggade. Inga påståenden om
  * tidtabeller här; de står i guiden med källa.
+ *
+ * STORLEK (2026-11-27, Tom: "gör rutorna mindre men behåll samma innehåll"):
+ * mindre luft, ikonruta 30 px, text ett halvt steg mindre, smalare kort på
+ * mobil (72 %). Samma texter, ikoner och pil.
  */
 
 const VINTERMANADER = new Set([11, 12, 1, 2, 3])
@@ -60,25 +64,25 @@ export default function VinterIFlodet({ manad = new Date().getMonth() + 1 }: { m
             href={r.href}
             className="vinter-kort"
             style={{
-              alignItems: 'center', gap: 12,
-              padding: '12px 14px', borderRadius: 14,
+              alignItems: 'center', gap: 10,
+              padding: '9px 11px', borderRadius: 12,
               background: 'var(--surface)',
               border: '1px solid var(--teal-12)',
               textDecoration: 'none', color: 'inherit',
             }}
           >
             <div style={{
-              width: 38, height: 38, flexShrink: 0, borderRadius: 11,
+              width: 30, height: 30, flexShrink: 0, borderRadius: 9,
               background: 'var(--teal-10)', color: 'var(--sea)',
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
             }} aria-hidden>
-              <Icon name={r.icon} size={20} stroke={1.9} malad />
+              <Icon name={r.icon} size={16} stroke={1.9} malad />
             </div>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.25 }}>{r.titel}</div>
-              <div style={{ fontSize: 12, color: 'var(--txt2)', lineHeight: 1.4, marginTop: 2 }}>{r.text}</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', lineHeight: 1.25 }}>{r.titel}</div>
+              <div style={{ fontSize: 11.5, color: 'var(--txt2)', lineHeight: 1.35, marginTop: 1 }}>{r.text}</div>
             </div>
-            <span style={{ color: 'var(--txt3)', fontSize: 16, flexShrink: 0 }} aria-hidden>›</span>
+            <span style={{ color: 'var(--txt3)', fontSize: 14, flexShrink: 0 }} aria-hidden>›</span>
           </Link>
         ))}
       </div>
