@@ -216,9 +216,6 @@ export default function UpptackExplorer() {
   // kartan och listan på namn (i stället för att gå till sajtens stora sök).
   const [sokOppen, setSokOppen] = useState(false)
   const sokInputRef = useRef<HTMLInputElement>(null)
-  // Regionraden tonar ut mot kategoriknappen först när den rullats (Tom
-  // 2026-11-27). Orullad ska första knappen "Alla" synas helt.
-  const [regionerRullade, setRegionerRullade] = useState(false)
   const oppnaSok = useCallback(() => {
     setSokOppen(true)
     requestAnimationFrame(() => sokInputRef.current?.focus())
@@ -883,10 +880,13 @@ export default function UpptackExplorer() {
         />
         {/* Region-toggle pills */}
         <div
-          className={`upx-regions-bar${regionerRullade ? ' rullad' : ''}`}
+          className="upx-regions-bar"
           onScroll={e => {
-            const rullad = e.currentTarget.scrollLeft > 2
-            if (rullad !== regionerRullade) setRegionerRullade(rullad)
+            // Toningen mot kategoriknappen växer med hur långt raden rullats
+            // (0–64 px), så att den kommer gradvis och inte slår på tvärt.
+            // Orullad syns "Alla" helt, som förut (Tom 2026-11-27).
+            const el = e.currentTarget
+            el.style.setProperty('--upx-toning', `${Math.min(el.scrollLeft, 64)}px`)
           }}
         >
           <button
@@ -1183,11 +1183,29 @@ export default function UpptackExplorer() {
           padding-left: 8px;
         }
         /* Mjuk toning in under kategoriknappen när raden rullats (Tom
-           2026-11-27). Masken arbetar på genomskinlighet, så den fungerar
-           likadant i ljust och mörkt tema. */
-        .upx-filterrow .upx-regions-bar.rullad {
-          -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32px);
-          mask-image: linear-gradient(to right, transparent 0, #000 32px);
+           2026-11-27). --upx-toning sätts vid rullning (0–64 px). Flera stopp
+           ger en mjuk kurva i stället för en rak ramp. Masken arbetar på
+           genomskinlighet, så den fungerar likadant i ljust och mörkt tema. */
+        .upx-filterrow .upx-regions-bar {
+          --upx-toning: 0px;
+          -webkit-mask-image: linear-gradient(to right,
+            rgba(0,0,0,0) 0,
+            rgba(0,0,0,0.04) calc(var(--upx-toning) * 0.15),
+            rgba(0,0,0,0.15) calc(var(--upx-toning) * 0.3),
+            rgba(0,0,0,0.35) calc(var(--upx-toning) * 0.45),
+            rgba(0,0,0,0.6) calc(var(--upx-toning) * 0.6),
+            rgba(0,0,0,0.82) calc(var(--upx-toning) * 0.75),
+            rgba(0,0,0,0.95) calc(var(--upx-toning) * 0.9),
+            #000 var(--upx-toning));
+          mask-image: linear-gradient(to right,
+            rgba(0,0,0,0) 0,
+            rgba(0,0,0,0.04) calc(var(--upx-toning) * 0.15),
+            rgba(0,0,0,0.15) calc(var(--upx-toning) * 0.3),
+            rgba(0,0,0,0.35) calc(var(--upx-toning) * 0.45),
+            rgba(0,0,0,0.6) calc(var(--upx-toning) * 0.6),
+            rgba(0,0,0,0.82) calc(var(--upx-toning) * 0.75),
+            rgba(0,0,0,0.95) calc(var(--upx-toning) * 0.9),
+            #000 var(--upx-toning));
         }
         /* Region-toggle pills — horisontell scroll-bar bredvid kategori-filtret */
         .upx-regions-bar {
