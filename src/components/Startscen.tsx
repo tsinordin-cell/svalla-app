@@ -1191,6 +1191,8 @@ const CSS = `
 /* Startsidan låser alla h2 till 28/24 px (rubrikskalan). Heron är ett steg större så att den blir sidans tydligaste rubrik (Max 2026-11-26) */
 .lp-start .ki-rubrik h2:not(.lp-dold){font-size:clamp(28px,5vw,52px)!important}
 .ki-tid-natt .ki-rubrik h2{color:#f5f4ef}.ki-tid-natt .ki-rubrik p{color:#c9d6e2}
+/* Dator och platta: heron är bara 380 px hög på en vanlig laptop och skyltarna sitter på 35 %. Rubriken börjar högre så att raden under får luft ovanför skyltarna (Max 2026-11-27). Mobilen (≤560 px) är oförändrad. */
+@media (min-width:561px){.ki-rubrik{top:5%}.ki-rubrik p{margin-top:6px;font-size:clamp(15px,1.6vw,18px)}}
 @keyframes kiRubrik{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:560px){.ki-logga{top:auto;bottom:14px;left:14px;color:#f5f4ef}.ki-logga svg{height:20px}}
 `
