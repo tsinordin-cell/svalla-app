@@ -90,7 +90,7 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
           : total > 0 ? `${total} tur${total !== 1 ? 'er' : ''} loggade`
           : ny ? 'Ny på Svalla'
           : hamn ? `Hemmahamn ${hamn}`
-          : 'Seglare på Svalla'
+          : 'Finns på Svalla'
         return { id: p.id, username: p.username, avatar: p.avatar ?? null, tripCount: total, recentCount: recent, score, orsak }
       })
       .sort((a, b) => b.score - a.score || a.username.localeCompare(b.username, 'sv'))

@@ -448,11 +448,11 @@ function SokPageInner() {
  <SuggestedUsers variant="lista" max={4} />
  </div>
 
- {/* Aktiva seglare */}
+ {/* Aktiva personer */}
  {activeSailors.length > 0 && (
  <div style={{ marginBottom: 28 }}>
  <div style={{ fontSize: 10, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 12 }}>
- Aktiva seglare denna vecka
+ Aktiva personer denna vecka
  </div>
  <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
  {activeSailors.map(s => (
