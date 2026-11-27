@@ -624,7 +624,7 @@ a.e-bra-rad:hover{border-color:#1e5c82}
   .e-kredit{bottom:36px}
 }
 #osida-innehall>[data-osdel]:not([data-ehost]){max-width:860px;width:100%}
-[data-ehubopen]>div:first-child:has(>h2),[data-ehubopen]>h2{display:none}
+[data-ehubopen]>div:first-child:has(>h2),[data-ehubopen]>h2{display:none !important}
 .e-valkort:focus-visible,.e-kort:focus-visible,.e-rad:focus-visible,.e-forsta:focus-visible,.e-bra-rad:focus-visible,.e-snabb a:focus-visible,.e-chip-lank:focus-visible,.e-bak:focus-visible{outline:3px solid #f2a25c;outline-offset:3px}
 @media (min-width:901px){.e-sektion{padding-top:56px}.e-allt{padding-top:64px}}
 @media (max-width:700px){#osida-innehall{padding-left:16px !important;padding-right:16px !important}}
