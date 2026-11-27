@@ -216,6 +216,9 @@ export default function UpptackExplorer() {
   // kartan och listan på namn (i stället för att gå till sajtens stora sök).
   const [sokOppen, setSokOppen] = useState(false)
   const sokInputRef = useRef<HTMLInputElement>(null)
+  // Regionraden tonar ut mot kategoriknappen först när den rullats (Tom
+  // 2026-11-27). Orullad ska första knappen "Alla" synas helt.
+  const [regionerRullade, setRegionerRullade] = useState(false)
   const oppnaSok = useCallback(() => {
     setSokOppen(true)
     requestAnimationFrame(() => sokInputRef.current?.focus())
@@ -879,7 +882,13 @@ export default function UpptackExplorer() {
           onClear={clearCats}
         />
         {/* Region-toggle pills */}
-        <div className="upx-regions-bar">
+        <div
+          className={`upx-regions-bar${regionerRullade ? ' rullad' : ''}`}
+          onScroll={e => {
+            const rullad = e.currentTarget.scrollLeft > 2
+            if (rullad !== regionerRullade) setRegionerRullade(rullad)
+          }}
+        >
           <button
             type="button"
             className={`upx-region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
@@ -1167,8 +1176,18 @@ export default function UpptackExplorer() {
         .upx-filterrow .upx-regions-bar {
           flex: 1;
           min-width: 0;
-          margin: 0 -18px 0 0;
-          padding-left: 0;
+          /* Raden börjar precis vid kategoriknappens kant. De 8 px glappet
+             ligger som padding i stället, så att det syns orullat men rullar
+             bort. Då glider namnen ända fram till knappen. */
+          margin: 0 -18px 0 -8px;
+          padding-left: 8px;
+        }
+        /* Mjuk toning in under kategoriknappen när raden rullats (Tom
+           2026-11-27). Masken arbetar på genomskinlighet, så den fungerar
+           likadant i ljust och mörkt tema. */
+        .upx-filterrow .upx-regions-bar.rullad {
+          -webkit-mask-image: linear-gradient(to right, transparent 0, #000 32px);
+          mask-image: linear-gradient(to right, transparent 0, #000 32px);
         }
         /* Region-toggle pills — horisontell scroll-bar bredvid kategori-filtret */
         .upx-regions-bar {
