@@ -281,11 +281,11 @@ export function kommandeDatum(idag: string, antal = 4): Skargardsdatum[] {
 }
 
 export function datumBricka(iso: string): { dag: string; man: string } {
-  return { dag: String(Number(iso.slice(8, 10))), man: MAN_KORT[Number(iso.slice(5, 7)) - 1] }
+  return { dag: String(Number(iso.slice(8, 10))), man: MAN_KORT[Number(iso.slice(5, 7)) - 1] ?? '' }
 }
 
 /** Rubrik per månad på /skargardsdatum, till exempel "December 2026". */
 export function manadsRubrik(iso: string): string {
-  const m = MAN_LANG[Number(iso.slice(5, 7)) - 1]
+  const m = MAN_LANG[Number(iso.slice(5, 7)) - 1] ?? ''
   return m.charAt(0).toUpperCase() + m.slice(1) + ' ' + iso.slice(0, 4)
 }
