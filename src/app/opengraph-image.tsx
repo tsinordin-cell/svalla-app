@@ -19,7 +19,8 @@ export const contentType = 'image/png'
  * startsidan): startsidans färger och scen i stället för den mörka mallen.
  * Sandfärgad himmel och blått hav som startscenen (#efe7d6, #1b57a0), loggan i
  * marinblått som i startsidans meny, och scenens egna målade bilder ur
- * public/kreativ (ön, fyren, solen, fiskarna och Thorkels båt). Rubriken och
+ * public/kreativ (ön, fyren, solen, fiskarna och Thorkels båt), och
+ * flaggstången med svenska flaggan till höger om huset som i startsidans scen (Tom 2026-11-28). Rubriken och
  * ingressen är startsidans egna. Övriga delningsbilder (tur, ö, plats, guide …)
  * använder fortfarande den gemensamma mörka mallen i src/app/api/og/_mall/kort.tsx.
  * Den tidigare bilden ligger kvar i git-historiken.
@@ -81,7 +82,7 @@ function Hav() {
 }
 
 export default async function OGImage() {
-  const [fonts, o, fyr, bat, sol, fisk1, fisk2] = await Promise.all([
+  const [fonts, o, fyr, bat, sol, fisk1, fisk2, flagga] = await Promise.all([
     ogTypsnitt(),
     bild('scen-o', 951),
     bild('scen-fyr', 484),
@@ -89,6 +90,7 @@ export default async function OGImage() {
     bild('scen-sol', 300),
     bild('scen-fisk1', 737),
     bild('scen-fisk2', 727),
+    bild('scen-flagga', 330),
   ])
 
   return new ImageResponse(
@@ -96,6 +98,7 @@ export default async function OGImage() {
       <div style={{ width: W, height: H, display: 'flex', position: 'relative', background: SAND, fontFamily: FONT, overflow: 'hidden' }}>
         {sol ? <img src={sol} alt="" width={92} height={92} style={{ position: 'absolute', left: 1050, top: 52, opacity: 0.92 }} /> : null}
         {o ? <img src={o} alt="" width={460} height={206} style={{ position: 'absolute', left: 640, top: HAV - 200 }} /> : null}
+        {flagga ? <img src={flagga} alt="" width={47} height={111} style={{ position: 'absolute', left: 932, top: 292 }} /> : null}
         {fyr ? <img src={fyr} alt="" width={150} height={149} style={{ position: 'absolute', left: 1080, top: HAV - 147 }} /> : null}
         <Hav />
         {bat ? <img src={bat} alt="" width={300} height={250} style={{ position: 'absolute', left: 470, top: HAV - 178 }} /> : null}
