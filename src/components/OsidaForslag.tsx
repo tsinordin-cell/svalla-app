@@ -1,20 +1,24 @@
 'use client'
 /**
- * Förhandsvisning av nya ösidor (Max 2026-11-27): tre förslag på samma adress, /o/[slug]?v=a|b|c, och ?v=nu
+ * Förhandsvisning av nya ösidor (Max 2026-11-27): fyra förslag på samma adress, /o/[slug]?v=a|b|c|d, och ?v=nu
  * för dagens sida. Komponenten ritar ny topp och nya mosaiker och ordnar om de befintliga avsnitten med
  * CSS (order och display). All text ligger kvar i sidans HTML från servern, så inget försvinner för Google.
  *
  * A Välj själv: knapprad där besökaren väljer del av sidan. Översikten har mosaiker.
  * B Mosaik först: utvalda krogar, boenden och höjdpunkter som mosaik, sedan planeringen samlad.
- * C Kundresan: fem kapitel (Upptäck, Ta dig dit, Ät och bo, På plats, Frågor och mer) med kapitelmeny.
+ * C Kapitel: Upptäck, Ta dig dit, Ät och bo, På plats, Frågor och mer, med kapitelmeny.
+ * D Vad är du ute efter: sex snitslade banor (Över dagen, Bo över, Med egen båt, Med barn, Aktiv, Bor här).
+ *   Valet sparas i webbläsaren så att nästa ö öppnas i samma bana. Varje bana har en exempelplats för en
+ *   samarbetspartner (Max: verksamheter ska vilja betala för att synas), utom öbornas bana.
  *
- * Underlag: tre UX-analyser 2026-11-27 (Svallas ösidor, 13 destinationssajter, Tripadvisor/Booking/Komoot m.fl.).
+ * Underlag: tre UX-analyser 2026-11-27 och Oskars fråga om hur olika besökare letar.
  * Ingen popularitetsdata finns, därför står det "Svallas urval" och inte "populärast".
  */
 import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-type Kort = { namn: string; typ: string; text: string; sasong?: string }
+type Foto = { url: string; fotograf: string; licens: string }
+type Kort = { namn: string; typ: string; text: string; sasong?: string; foto?: Foto }
 type Gora = { namn: string; text: string; ikon: string }
 export type OsidaData = {
   slug: string
@@ -23,7 +27,7 @@ export type OsidaData = {
   region: string
   regionHref: string
   ingress: string
-  foto: { url: string; fotograf: string; licens: string } | null
+  foto: Foto | null
   restid: string
   sasong: string
   perfekt: string
@@ -33,11 +37,12 @@ export type OsidaData = {
   gora: Gora[]
 }
 
-type V = 'a' | 'b' | 'c' | 'nu'
+type V = 'a' | 'b' | 'c' | 'd' | 'nu'
 const VARIANTER: { v: V; namn: string }[] = [
+  { v: 'd', namn: 'D Vad söker du?' },
   { v: 'a', namn: 'A Välj själv' },
-  { v: 'b', namn: 'B Mosaik först' },
-  { v: 'c', namn: 'C Kundresan' },
+  { v: 'b', namn: 'B Mosaik' },
+  { v: 'c', namn: 'C Kapitel' },
   { v: 'nu', namn: 'Dagens sida' },
 ]
 
@@ -71,7 +76,7 @@ function nyckel(el: HTMLElement): string {
   return 'ovrigt'
 }
 
-/* Vilka avsnitt som hör till vilken del. __mosaik är förslagets egna mosaiker. */
+/* Vilka avsnitt som hör till vilken del. __mosaik, __krogar, __boenden och __gora är förslagets egna block. */
 const FLIKAR: { id: string; namn: string; delar: string[] }[] = [
   { id: 'oversikt', namn: 'Översikt', delar: ['__mosaik', 'visste', 'om', 'sasong', 'fakta'] },
   { id: 'dit', namn: 'Ta dig dit', delar: ['avgang', 'sistabat', 'dit'] },
@@ -90,7 +95,81 @@ const KAPITEL: { id: string; namn: string; delar: string[] }[] = [
   { id: 'mer', namn: '5 Frågor och mer', delar: ['faq', 'mer', 'guider', 'besok', 'kallor', 'forum'] },
 ]
 const ORDNING_B = ['__mosaik', 'avgang', 'sistabat', 'dit', 'hamn', 'visste', 'om', 'sasong', 'fakta', 'faq', 'mat', 'bo', 'gora', 'tips', 'hantverk', 'mer', 'guider', 'besok', 'kallor', 'forum']
+const ORDNING_D_ALLA = ['visste', 'om', '__gora', '__krogar', '__boenden', 'avgang', 'sistabat', 'dit', 'hamn', 'sasong', 'fakta', 'faq', 'mat', 'bo', 'gora', 'tips', 'hantverk', 'mer', 'guider', 'besok', 'kallor', 'forum']
 const ALLTID_DOLDA = ['foto', 'lankar']
+const VARIANT_BLOCK = ['__mosaik', '__krogar', '__boenden', '__gora']
+
+type Bana = {
+  id: string
+  namn: string
+  fraga: string
+  ikon: string
+  partner?: '__krogar' | '__boenden' | '__gora'
+  steg: { rubrik: string; delar: string[] }[]
+  lankar: (slug: string, namn: string) => { text: string; href: string }[]
+}
+const BANOR: Bana[] = [
+  {
+    id: 'dag', namn: 'Över dagen', fraga: 'Hur kommer jag dit och hem igen?', ikon: 'ship', partner: '__krogar',
+    steg: [
+      { rubrik: 'Ta dig dit och hem igen', delar: ['avgang', 'sistabat', 'dit'] },
+      { rubrik: 'Ät lunch', delar: ['__krogar'] },
+      { rubrik: 'Upptäck ön', delar: ['__gora', 'tips'] },
+      { rubrik: 'Bra att veta', delar: ['sasong', 'faq'] },
+    ],
+    lankar: s => [{ text: 'Båtar och färjor', href: '/farjor' }, { text: 'Komma dit', href: `/o/${s}/komma-dit` }],
+  },
+  {
+    id: 'bo', namn: 'Bo över', fraga: 'Var kan jag sova?', ikon: 'bed', partner: '__boenden',
+    steg: [
+      { rubrik: 'Välj boende', delar: ['__boenden', 'bo'] },
+      { rubrik: 'Ät middag', delar: ['__krogar'] },
+      { rubrik: 'Vad gör man här', delar: ['__gora', 'tips'] },
+      { rubrik: 'Ta dig dit', delar: ['avgang', 'dit', 'sasong'] },
+    ],
+    lankar: s => [{ text: 'Alla boenden', href: `/o/${s}/boende` }],
+  },
+  {
+    id: 'bat', namn: 'Med egen båt', fraga: 'Var lägger jag till?', ikon: 'anchor', partner: '__krogar',
+    steg: [
+      { rubrik: 'Lägg till', delar: ['hamn'] },
+      { rubrik: 'Krogar nära bryggan', delar: ['__krogar'] },
+      { rubrik: 'Service på ön', delar: ['hantverk', 'tips'] },
+      { rubrik: 'Bra att veta', delar: ['sasong', 'faq'] },
+    ],
+    lankar: s => [{ text: 'Hamnar och bryggor', href: `/o/${s}/hamnar` }, { text: 'Alla hamnar', href: '/hamnar-och-bryggor' }],
+  },
+  {
+    id: 'barn', namn: 'Med barn', fraga: 'Blir det roligt för barnen?', ikon: 'child', partner: '__gora',
+    steg: [
+      { rubrik: 'Bada och leka', delar: ['__gora', 'gora'] },
+      { rubrik: 'Fika och mat', delar: ['__krogar'] },
+      { rubrik: 'Ta dig dit', delar: ['avgang', 'sistabat', 'dit'] },
+      { rubrik: 'Bra att veta', delar: ['tips', 'faq'] },
+    ],
+    lankar: s => [{ text: 'Med barn', href: `/o/${s}/med-barn` }, { text: 'Bad', href: `/o/${s}/bad` }],
+  },
+  {
+    id: 'aktiv', namn: 'Aktiv', fraga: 'Vandra, cykla eller paddla?', ikon: 'walk', partner: '__gora',
+    steg: [
+      { rubrik: 'Vad kan man göra', delar: ['__gora', 'gora'] },
+      { rubrik: 'Tips från oss', delar: ['tips'] },
+      { rubrik: 'Ta dig dit', delar: ['avgang', 'dit'] },
+      { rubrik: 'Mat på vägen', delar: ['__krogar'] },
+    ],
+    lankar: s => [{ text: 'Aktiviteter', href: `/o/${s}/aktiviteter` }, { text: 'Rutter', href: '/rutter' }],
+  },
+  {
+    id: 'bor', namn: 'Jag bor här', fraga: 'När går båten, vem fixar taket?', ikon: 'island',
+    steg: [
+      { rubrik: 'Båtarna', delar: ['avgang', 'sistabat', 'dit'] },
+      { rubrik: 'Hantverkare och service', delar: ['hantverk', 'hamn'] },
+      { rubrik: 'Fråga grannarna', delar: ['forum'] },
+      { rubrik: 'Om ön', delar: ['fakta', 'kallor'] },
+    ],
+    lankar: s => [{ text: 'Hantverkare', href: `/o/${s}/hantverkare` }, { text: 'Skärgårdens datum', href: '/skargardsdatum' }],
+  },
+]
 
 const FARGER = ['#0d2440', '#1e5c82', '#f3ece0', '#e7dcc8', '#2f6f73', '#f7f1e6']
 const MORKA = new Set(['#0d2440', '#1e5c82', '#2f6f73'])
@@ -102,9 +181,12 @@ function Ikon({ namn, stor }: { namn: string; stor?: boolean }) {
   return <img src={`/ikoner/${namn}.webp`} alt="" aria-hidden="true" className={stor ? 'os-ikon os-ikon-stor' : 'os-ikon'} onError={() => setSyns(false)} />
 }
 
-function Mosaik({ rubrik, under, kort, ikon, alla, allaText }: { rubrik: string; under: string; kort: { namn: string; typ?: string; text: string; sasong?: string; ikon?: string }[]; ikon: string; alla: string; allaText: string }) {
+type MKort = { namn: string; typ?: string; text: string; sasong?: string; ikon?: string; foto?: Foto }
+
+function Mosaik({ rubrik, under, kort, ikon, alla, allaText, partner }: { rubrik: string; under: string; kort: MKort[]; ikon: string; alla: string; allaText: string; partner?: boolean }) {
   if (kort.length === 0) return null
-  const visa = kort.slice(0, 5)
+  // Kort med foto först, så att mosaiken bär. Ordningen bygger inte på betyg.
+  const visa = [...kort.filter(k => k.foto), ...kort.filter(k => !k.foto)].slice(0, 5)
   return (
     <section className="os-mosaik">
       <div className="os-mosaik-topp">
@@ -114,18 +196,30 @@ function Mosaik({ rubrik, under, kort, ikon, alla, allaText }: { rubrik: string;
         </div>
         <a href={alla} className="os-alla">{allaText} →</a>
       </div>
+      {partner && (
+        <a href="/partner" className="os-partner">
+          <span className="os-partner-etikett">Samarbetspartner · exempel</span>
+          <b>Här syns en verksamhet som vill nå just dig</b>
+          <span>Riktigt foto, öppettider just nu, bokningsknapp och ett erbjudande. Tydligt märkt. Alla andra ställen visas som vanligt nedanför.</span>
+          <i>Driver du en verksamhet på ön? Synas här →</i>
+        </a>
+      )}
       <div className="os-rutnat">
         {visa.map((k, i) => {
           const bg = FARGER[i % FARGER.length]!
-          const mork = MORKA.has(bg)
+          const mork = MORKA.has(bg) || !!k.foto
+          const stil = k.foto
+            ? { backgroundImage: `linear-gradient(180deg, rgba(8,24,38,0) 30%, rgba(8,24,38,.82) 100%), url('${k.foto.url}')`, backgroundColor: '#0d2440' }
+            : { background: bg }
           return (
-            <a key={k.namn} href={alla} className={'os-ruta' + (i === 0 ? ' os-ruta-stor' : '') + (mork ? ' os-mork' : '')} style={{ background: bg }}>
-              <Ikon namn={k.ikon ?? ikon} stor={i === 0} />
+            <a key={k.namn} href={alla} className={'os-ruta' + (i === 0 ? ' os-ruta-stor' : '') + (mork ? ' os-mork' : '') + (k.foto ? ' os-ruta-foto' : '')} style={stil}>
+              {!k.foto && <Ikon namn={k.ikon ?? ikon} stor={i === 0} />}
               <span className="os-ruta-text">
                 {k.typ && <small>{k.typ}</small>}
                 <b>{k.namn}</b>
                 <span className="os-ruta-besk">{k.text}</span>
                 {k.sasong && <i>Säsong: {k.sasong}</i>}
+                {k.foto && <em className="os-kredit">Foto: {k.foto.fotograf}, {k.foto.licens}</em>}
               </span>
             </a>
           )
@@ -137,27 +231,33 @@ function Mosaik({ rubrik, under, kort, ikon, alla, allaText }: { rubrik: string;
 }
 
 export default function OsidaForslag({ data }: { data: OsidaData }) {
-  const [v, setV] = useState<V>('a')
+  const [v, setV] = useState<V>('d')
   const [flik, setFlik] = useState('oversikt')
-  const [mal, setMal] = useState<HTMLElement | null>(null)
+  const [bana, setBana] = useState<string | null>(null)
+  const [mal, setMal] = useState<Record<string, HTMLElement>>({})
   const [kapitelOppen, setKapitelOppen] = useState(false)
   const [klar, setKlar] = useState(false)
   const [forbiHero, setForbiHero] = useState(false)
 
   useEffect(() => {
     const p = new URLSearchParams(window.location.search).get('v')
-    if (p === 'a' || p === 'b' || p === 'c' || p === 'nu') setV(p)
+    if (p === 'a' || p === 'b' || p === 'c' || p === 'd' || p === 'nu') setV(p)
+    try { const b = window.localStorage.getItem('svalla-bana'); if (b) setBana(b) } catch { /* privat läge */ }
     setKlar(true)
     const scroll = () => setForbiHero(window.scrollY > window.innerHeight * 0.55)
     scroll()
     window.addEventListener('scroll', scroll, { passive: true })
     const c = document.getElementById('osida-innehall')
-    if (!c) return
-    const host = document.createElement('div')
-    host.dataset.osdel = '__mosaik'
-    c.appendChild(host)
-    setMal(host)
-    return () => { host.remove(); window.removeEventListener('scroll', scroll) }
+    if (!c) return () => window.removeEventListener('scroll', scroll)
+    const hosts: Record<string, HTMLElement> = {}
+    for (const k of VARIANT_BLOCK) {
+      const host = document.createElement('div')
+      host.dataset.osdel = k
+      c.appendChild(host)
+      hosts[k] = host
+    }
+    setMal(hosts)
+    return () => { Object.values(hosts).forEach(h => h.remove()); window.removeEventListener('scroll', scroll) }
   }, [])
 
   const byt = useCallback((nytt: V) => {
@@ -167,7 +267,15 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
     window.history.replaceState(null, '', u.toString())
   }, [])
 
-  // Ordna och visa de befintliga avsnitten efter förslag och vald flik.
+  const valjBana = (id: string | null) => {
+    setBana(id)
+    try { if (id) window.localStorage.setItem('svalla-bana', id); else window.localStorage.removeItem('svalla-bana') } catch { /* privat läge */ }
+    setTimeout(() => document.getElementById('os-banor')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30)
+  }
+
+  const aktivBana = BANOR.find(b => b.id === bana) ?? null
+
+  // Ordna och visa de befintliga avsnitten efter förslag, flik och bana.
   useEffect(() => {
     const c = document.getElementById('osida-innehall')
     const hero = document.getElementById('osida-hero')
@@ -181,9 +289,11 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
       el.style.removeProperty('display')
       el.style.removeProperty('order')
       el.removeAttribute('data-kapitel')
-      el.removeAttribute('id')
-      if (v === 'nu') { if (k === '__mosaik') el.style.display = 'none'; continue }
+      if (/^(kapitel|steg)-/.test(el.id)) el.removeAttribute('id')
+      if (v === 'nu') { if (VARIANT_BLOCK.includes(k)) el.style.display = 'none'; continue }
       if (ALLTID_DOLDA.includes(k)) { el.style.display = 'none'; continue }
+      if (v === 'd' && k === '__mosaik') { el.style.display = 'none'; continue }
+      if (v !== 'd' && (k === '__krogar' || k === '__boenden' || k === '__gora')) { el.style.display = 'none'; continue }
       if (k === 'epost') { if (forstaEpost) { el.style.display = 'none'; forstaEpost = false } else el.style.order = '900'; continue }
       if (k === 'ovrigt') { el.style.order = '950'; continue }
       if (v === 'a') {
@@ -194,38 +304,61 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
       } else if (v === 'b') {
         const i = ORDNING_B.indexOf(k)
         el.style.order = String(i < 0 ? 800 : i * 10)
-      } else {
+      } else if (v === 'c') {
         let ord = 800
         KAPITEL.forEach((kap, ki) => {
           const i = kap.delar.indexOf(k)
           if (i >= 0) ord = ki * 100 + i * 10
         })
         el.style.order = String(ord)
+      } else if (aktivBana) {
+        let ord = -1
+        aktivBana.steg.forEach((s, si) => {
+          const i = s.delar.indexOf(k)
+          if (i >= 0 && ord < 0) ord = si * 100 + i * 10
+        })
+        if (ord < 0) el.style.display = 'none'
+        else el.style.order = String(ord)
+      } else {
+        const i = ORDNING_D_ALLA.indexOf(k)
+        el.style.order = String(i < 0 ? 800 : i * 10)
       }
     }
-    if (v === 'c') {
-      KAPITEL.forEach(kap => {
-        const forsta = barn
-          .filter(el => kap.delar.includes(el.dataset.osdel ?? '') && el.style.display !== 'none')
-          .sort((a, b) => Number(a.style.order) - Number(b.style.order))[0]
-        if (forsta) { forsta.dataset.kapitel = kap.namn.replace(/^\d /, ''); forsta.id = 'kapitel-' + kap.id }
-      })
-    }
+    const rubriker = v === 'c'
+      ? KAPITEL.map(k => ({ id: 'kapitel-' + k.id, namn: k.namn.replace(/^\d /, ''), delar: k.delar }))
+      : v === 'd' && aktivBana
+        ? aktivBana.steg.map((s, i) => ({ id: 'steg-' + (i + 1), namn: `Steg ${i + 1} · ${s.rubrik}`, delar: s.delar }))
+        : []
+    rubriker.forEach(r => {
+      const forsta = barn
+        .filter(el => r.delar.includes(el.dataset.osdel ?? '') && el.style.display !== 'none')
+        .sort((a, b) => Number(a.style.order) - Number(b.style.order))[0]
+      if (forsta && !forsta.dataset.kapitel) { forsta.dataset.kapitel = r.namn; forsta.id = r.id }
+    })
     c.style.display = v === 'nu' ? '' : 'flex'
     c.style.flexDirection = 'column'
-  }, [v, flik, mal])
+  }, [v, flik, mal, aktivBana])
 
   const valjFlik = (id: string) => {
     setFlik(id)
     document.getElementById('os-flikar')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  const kort = {
+    gora: data.gora.map(g => ({ namn: g.namn, text: g.text, ikon: g.ikon })),
+    krogar: data.krogar.map(k => ({ ...k })),
+    boenden: data.boenden.map(k => ({ ...k })),
+  }
+  const goraM = (partner?: boolean) => <Mosaik rubrik={`Höjdpunkter på ${data.namn}`} under="Göra" kort={kort.gora} ikon="tower" alla={`/o/${data.slug}/aktiviteter`} allaText="Allt att göra" partner={partner} />
+  const krogM = (partner?: boolean) => <Mosaik rubrik={`Krogar och kaféer på ${data.namn}`} under="Äta" kort={kort.krogar} ikon="utensils" alla={`/o/${data.slug}/restauranger`} allaText="Alla krogar" partner={partner} />
+  const boM = (partner?: boolean) => <Mosaik rubrik={`Boenden på ${data.namn}`} under="Bo" kort={kort.boenden} ikon="bed" alla={`/o/${data.slug}/boende`} allaText="Alla boenden" partner={partner} />
+
   const mosaiker = (
     <div className={'os-mosaiker os-mosaiker-' + v}>
-      {v === 'b' && <Mosaik rubrik={`Höjdpunkter på ${data.namn}`} under="Att göra" kort={data.gora.map(g => ({ namn: g.namn, text: g.text, ikon: g.ikon }))} ikon="tower" alla={`/o/${data.slug}/aktiviteter`} allaText="Allt att göra" />}
-      <Mosaik rubrik={`Krogar och kaféer på ${data.namn}`} under="Äta" kort={data.krogar.map(k => ({ ...k }))} ikon="utensils" alla={`/o/${data.slug}/restauranger`} allaText="Alla krogar" />
-      <Mosaik rubrik={`Boenden på ${data.namn}`} under="Bo" kort={data.boenden.map(k => ({ ...k }))} ikon="bed" alla={`/o/${data.slug}/boende`} allaText="Alla boenden" />
-      {v === 'a' && <Mosaik rubrik={`Höjdpunkter på ${data.namn}`} under="Göra" kort={data.gora.map(g => ({ namn: g.namn, text: g.text, ikon: g.ikon }))} ikon="tower" alla={`/o/${data.slug}/aktiviteter`} allaText="Allt att göra" />}
+      {v === 'b' && goraM()}
+      {krogM()}
+      {boM()}
+      {v === 'a' && goraM()}
       {v === 'b' && <h2 className="os-h2 os-planera">Planera besöket</h2>}
     </div>
   )
@@ -247,6 +380,46 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
             {data.foto && <div className="os-foto">Foto: {data.foto.fotograf}, {data.foto.licens}</div>}
           </div>
         </header>
+      )}
+
+      {klar && v === 'd' && (
+        <div className="os-banor" id="os-banor">
+          <div className="os-banor-inre">
+            {!aktivBana ? (
+              <>
+                <div className="os-liten">Välj din väg</div>
+                <h2 className="os-h2">Vad är du ute efter på {data.namn}?</h2>
+                <div className="os-banval">
+                  {BANOR.map(b => (
+                    <button key={b.id} className="os-bankort" onClick={() => valjBana(b.id)}>
+                      <Ikon namn={b.ikon} />
+                      <b>{b.namn}</b>
+                      <span>{b.fraga}</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="os-not">Eller läs allt om {data.namn} nedanför. Svalla minns ditt val till nästa ö.</p>
+              </>
+            ) : (
+              <>
+                <div className="os-banrad">
+                  <span className="os-liten" style={{ margin: 0 }}>Din väg</span>
+                  {BANOR.map(b => (
+                    <button key={b.id} className={b.id === aktivBana.id ? 'os-flik os-flik-aktiv' : 'os-flik'} onClick={() => valjBana(b.id)}>{b.namn}</button>
+                  ))}
+                  <button className="os-flik os-flik-tom" onClick={() => valjBana(null)}>Allt om {data.namn}</button>
+                </div>
+                <div className="os-bantopp">
+                  <h2 className="os-h2">{aktivBana.namn} på {data.namn}</h2>
+                  <ol className="os-stegrad">
+                    {aktivBana.steg.map((s, i) => <li key={s.rubrik}><a href={'#steg-' + (i + 1)}><span>{i + 1}</span>{s.rubrik}</a></li>)}
+                  </ol>
+                  <div className="os-banlankar">{aktivBana.lankar(data.slug, data.namn).map(l => <a key={l.href} href={l.href}>{l.text} →</a>)}</div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       )}
 
       {klar && v === 'a' && (
@@ -281,7 +454,10 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
         </>
       )}
 
-      {mal && v !== 'nu' && createPortal(mosaiker, mal)}
+      {mal.__mosaik && v !== 'nu' && v !== 'd' && createPortal(mosaiker, mal.__mosaik)}
+      {mal.__krogar && v === 'd' && createPortal(krogM(aktivBana?.partner === '__krogar'), mal.__krogar)}
+      {mal.__boenden && v === 'd' && createPortal(boM(aktivBana?.partner === '__boenden'), mal.__boenden)}
+      {mal.__gora && v === 'd' && createPortal(goraM(aktivBana?.partner === '__gora'), mal.__gora)}
 
       <div className="os-vaxlare" role="group" aria-label="Välj förslag">
         <span>Förslag</span>
@@ -315,31 +491,56 @@ const CSS = `
 .os-flik{flex-shrink:0;font:600 14px Inter,system-ui,sans-serif;padding:9px 16px;border-radius:999px;border:1px solid rgba(13,36,64,.18);background:#fffdf8;color:#0d2440;cursor:pointer}
 .os-flik:hover{border-color:#1e5c82}
 .os-flik-aktiv{background:#0d2440;color:#fff;border-color:#0d2440}
+.os-flik-tom{background:transparent;border-style:dashed}
+.os-banor{background:#f3ece0;border-bottom:1px solid rgba(150,110,60,.18);scroll-margin-top:0}
+.os-banor-inre{max-width:900px;margin:0 auto;padding:28px 24px 24px}
+.os-banval{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.os-bankort{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:18px 18px 16px;min-height:132px;border-radius:18px;border:1px solid rgba(150,110,60,.2);background:#fffdf8;color:#0d2440;cursor:pointer;font:inherit;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.os-bankort:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(13,36,64,.12);border-color:#1e5c82}
+.os-bankort .os-ikon{top:12px;right:12px;width:46px;height:46px}
+.os-bankort b{font-family:'Playfair Display',Georgia,serif;font-size:21px;margin-top:auto}
+.os-bankort span{font-size:13.5px;line-height:1.4;color:#3d5865;max-width:22ch}
+.os-banrad{display:flex;gap:8px;align-items:center;overflow-x:auto;scrollbar-width:none;padding-bottom:4px}
+.os-banrad::-webkit-scrollbar{display:none}
+.os-bantopp{margin-top:18px}
+.os-stegrad{list-style:none;margin:12px 0 0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
+.os-stegrad a{display:inline-flex;align-items:center;gap:8px;font:600 14px Inter,system-ui,sans-serif;color:#0d2440;text-decoration:none;background:#fffdf8;border:1px solid rgba(150,110,60,.2);border-radius:999px;padding:6px 14px 6px 6px}
+.os-stegrad a span{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:#b5591a;color:#fff;font-size:12px}
+.os-banlankar{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px}
+.os-banlankar a{font-size:14px;font-weight:700;color:#1e5c82;text-decoration:none}
+.os-partner{display:flex;flex-direction:column;gap:4px;margin:0 0 12px;padding:16px 18px;border:2px dashed #b5591a;border-radius:18px;background:#fff7ec;color:#0d2440;text-decoration:none}
+.os-partner-etikett{font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#a8501a}
+.os-partner b{font-family:'Playfair Display',Georgia,serif;font-size:19px}
+.os-partner span{font-size:13.5px;line-height:1.5;color:#3d5865}
+.os-partner i{font-style:normal;font-size:13.5px;font-weight:700;color:#1e5c82}
 .os-ingress{max-width:900px;margin:0 auto;padding:28px 24px 0}
 .os-ingress p{font-family:'Playfair Display',Georgia,serif;font-size:clamp(19px,2.4vw,24px);line-height:1.45;color:#0d2440;margin:0}
 .os-mosaiker{display:flex;flex-direction:column;gap:36px;margin-bottom:40px}
+.os-mosaik{margin-bottom:36px}
 .os-liten{font-size:11.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a8501a;margin:0 0 6px}
 .os-h2{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(24px,3vw,30px);line-height:1.15;color:#0d2440;margin:0}
 .os-planera{margin-top:8px}
 .os-mosaik-topp{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:14px}
 .os-alla{flex-shrink:0;font-size:14px;font-weight:700;color:#1e5c82;text-decoration:none}
 .os-rutnat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:170px;gap:12px}
-.os-ruta{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;border-radius:18px;overflow:hidden;color:#0d2440;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;border:1px solid rgba(150,110,60,.14)}
+.os-ruta{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:16px;border-radius:18px;overflow:hidden;color:#0d2440;text-decoration:none;transition:transform .25s ease,box-shadow .25s ease;border:1px solid rgba(150,110,60,.14);background-size:cover !important;background-position:center !important}
 .os-ruta:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(13,36,64,.14)}
 .os-ruta-stor{grid-column:span 2;grid-row:span 2}
 .os-mork{color:#fff;border-color:transparent}
 .os-ikon{position:absolute;top:12px;right:12px;width:54px;height:54px;object-fit:contain;opacity:.95}
 .os-ikon-stor{width:120px;height:120px;top:20px;right:20px}
 .os-ruta-text{position:relative;display:flex;flex-direction:column;gap:3px}
-.os-ruta-text small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.os-ruta-text small{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.8}
 .os-ruta-text b{font-family:'Playfair Display',Georgia,serif;font-size:19px;line-height:1.15}
 .os-ruta-stor .os-ruta-text b{font-size:28px}
-.os-ruta-besk{font-size:13px;line-height:1.45;opacity:.9;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.os-ruta-stor .os-ruta-besk{-webkit-line-clamp:4;font-size:14.5px}
+.os-ruta-besk{font-size:13px;line-height:1.45;opacity:.92;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.os-ruta-stor .os-ruta-besk{-webkit-line-clamp:3;font-size:14.5px}
 .os-ruta-text i{font-style:normal;font-size:12px;font-weight:600;opacity:.85;margin-top:2px}
+.os-ruta-foto .os-ruta-text{text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.os-kredit{font-style:normal;font-size:10px;opacity:.75;margin-top:4px}
 .os-not{font-size:12px;color:#5b7280;margin:8px 0 0}
 [data-kapitel]::before{content:attr(data-kapitel);display:block;font:700 12px Inter,system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#a8501a;border-top:2px solid #0d2440;padding-top:14px;margin:12px 0 18px}
-[id^="kapitel-"]{scroll-margin-top:24px}
+[id^="kapitel-"],[id^="steg-"]{scroll-margin-top:24px}
 .os-kapitelmeny{display:none}
 .os-kapitelknapp{position:fixed;left:50%;transform:translateX(-50%);bottom:72px;z-index:45;display:flex;flex-direction:column;align-items:center;gap:8px}
 @media (min-width:1280px){
@@ -359,6 +560,12 @@ const CSS = `
 @media (max-width:700px){
   .os-hero{min-height:70vh}
   .os-hero-inre{padding:36px 16px 20px}
+  .os-banor-inre{padding:22px 16px 18px}
+  .os-banval{grid-template-columns:1fr 1fr;gap:10px}
+  .os-bankort{min-height:118px;padding:14px}
+  .os-bankort b{font-size:18px}
+  .os-bankort span{font-size:12.5px}
+  .os-bankort .os-ikon{width:38px;height:38px}
   .os-rutnat{grid-template-columns:1fr 1fr;grid-auto-rows:150px;gap:10px}
   .os-ruta-stor{grid-column:span 2;grid-row:span 2}
   .os-ikon{width:42px;height:42px}
