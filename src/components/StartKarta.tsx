@@ -18,6 +18,7 @@ import { hamtaLeaflet } from '@/app/upptack/leaflet'
 import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import SnabbSok, { hamtaSokindex, type Post } from './SnabbSok'
 import { platsKategori } from '@/lib/platskategori'
+import { pinHtml, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
 
 type Poi = { id: string; name: string; latitude: number; longitude: number; type: string | null; categories: string[] | null; description: string | null; image_url: string | null; slug: string | null; island: string | null }
 type Kat = 'o' | 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'annat'
@@ -44,10 +45,8 @@ const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt
 const ikonSvg = (k: Kat, farg: string, storlek: number) =>
   `<svg width="${storlek}" height="${storlek}" viewBox="0 0 24 24" fill="none" stroke="${farg}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${KAT[k].ikon}</svg>`
 
-function pinHtml(k: Kat) {
-  const f = KAT[k].farg
-  return `<div class="skn-pin" style="--f:${f}"><span>${ikonSvg(k, f, 16)}</span></div>`
-}
+// Nålarna ritas av src/lib/kartnal.ts, samma formfamiljer som Utforska.
+// KAT ovan styr bara förklaringen under kartan och popupens text.
 
 type LeafletNS = Awaited<ReturnType<typeof hamtaLeaflet>>
 type Karta = ReturnType<LeafletNS['map']>
@@ -148,7 +147,7 @@ export default function StartKarta() {
       if (avbruten) return
       k.clearLayers()
       const mark = visade.map(p => {
-        const ikon = L.divIcon({ html: pinHtml(p.kat), className: 'skn-pin-yttre', iconSize: [34, 42], iconAnchor: [17, 41], popupAnchor: [0, -38] })
+        const ikon = L.divIcon({ html: pinHtml(p.kat), className: 'skn-pin-yttre', iconSize: PIN_SIZE, iconAnchor: PIN_ANCHOR, popupAnchor: [0, -36] })
         const mk = L.marker([p.lat, p.lng], { icon: ikon, title: p.namn })
         mk.bindPopup(
           `<div class="skn-pop">${p.bild ? `<img src="${esc(p.bild)}" alt="" loading="lazy">` : ''}<div class="skn-pop-t"><strong>${esc(p.namn)}</strong><span>${esc(p.under)}</span>${p.href ? `<a href="${esc(p.href)}">${p.kat === 'o' ? 'Till ön' : 'Se mer'} →</a>` : ''}</div></div>`,
@@ -235,9 +234,6 @@ const SKN_CSS = `
 .skn-aktivera{position:absolute;inset:0;z-index:4;border:none;background:transparent;color:transparent;font:inherit;cursor:pointer}
 .skn-aktivera::after{content:'Tryck för att flytta i kartan';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(20,32,42,.82);color:#fff;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;white-space:nowrap}
 .skn-pin-yttre,.skn-kluster-yttre{background:none;border:none}
-.skn-pin{width:34px;height:42px;position:relative;filter:drop-shadow(0 3px 6px rgba(10,30,50,.35))}
-.skn-pin::before{content:'';position:absolute;left:1px;top:1px;width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--f);border:2px solid #fff;box-sizing:border-box}
-.skn-pin span{position:absolute;left:7px;top:7px;width:20px;height:20px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .skn-kluster{display:flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:#14202a;font:800 14px Inter,system-ui,sans-serif;border:4px solid #1e5c82;box-shadow:0 0 0 3px rgba(255,255,255,.75),0 4px 12px rgba(0,0,0,.28);box-sizing:border-box}
 .skn .leaflet-popup-content-wrapper{border-radius:14px;padding:0;overflow:hidden}
 .skn .leaflet-popup-content{margin:0;width:240px!important}
