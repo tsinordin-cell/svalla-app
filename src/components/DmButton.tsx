@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { createClient, getViewer } from '@/lib/supabase'
+import Icon from '@/components/Icon'
 
 /**
  * "Skicka meddelande"-knappen på en profil. Visas bara för inloggade, och
@@ -67,9 +68,12 @@ export default function DmButton({
         flexShrink: 0,
       }}
     >
-      <svg width={iHero ? 19 : 17} height={iHero ? 19 : 17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-      </svg>
+      {/* 2026-11-27 (Tom): på profilen samma pratbubbla som i den egna profilens topprad. */}
+      {iHero ? <Icon name="messageCircle" size={22} stroke={2} /> : (
+        <svg width={17} height={17} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+      )}
     </Link>
   )
 }
