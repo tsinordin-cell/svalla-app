@@ -31,6 +31,9 @@ const KANSLOR: [string, string][] = [
   ['havsbastu', 'Värme i bastun'], ['cykling', 'Vind i håret'], ['segling', 'Segel och frihet'], ['utan-bil', 'Enkelt utan bil'],
 ]
 
+// Handplockad ö per ruta, när den automatiska bilden inte passar. Krogar: Finnhamns hus hade master på taket, Furusunds värdshus visar en krog (Max 2026-11-27).
+const BILD_FOR: Record<string, string> = { krogar: 'furusund' }
+
 export const revalidate = 3600
 
 export const metadata: Metadata = {
@@ -52,7 +55,9 @@ export default async function Page() {
     const kat = OAR_CATEGORIES.find(k => k.slug === slug)
     const oar = kat ? islandsForCategory(slug) : []
     if (!kat || oar.length === 0) return []
-    const o = oar.find(x => OBILDER[x.slug] && !anvanda.has(x.slug)) ?? oar.find(x => OBILDER[x.slug])
+    const valt = BILD_FOR[slug]
+    const o = (valt ? oar.find(x => x.slug === valt && OBILDER[x.slug]) : undefined)
+      ?? oar.find(x => OBILDER[x.slug] && !anvanda.has(x.slug)) ?? oar.find(x => OBILDER[x.slug])
     if (o) anvanda.add(o.slug)
     const b = o ? OBILDER[o.slug] : undefined
     return [{ href: `/oar/${slug}`, kansla, rubrik: kat.kort, antal: oar.length, bild: b ? { url: commonsTumme(b.url, 960), fotograf: b.fotograf, licens: b.licens } : null }]
