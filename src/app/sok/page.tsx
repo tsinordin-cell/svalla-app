@@ -407,7 +407,7 @@ function SokPageInner() {
  {/* ── Filter tabs (only when results exist) ── */}
  {/* sok-filter: på dator bryts raden i stället för att skrollas i sidled (globals.css), annars klipptes Rutter och Taggar utan synlig skrollist. */}
  {results.length > 0 && !loading && (
- <div className="sok-filter" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingTop: 10, maxWidth: 520, margin: '0 auto', scrollbarWidth: 'none' }}>
+ <div className="sok-filter chiprad-kant-520" style={{ display: 'flex', gap: 5, overflowX: 'auto', paddingTop: 10, maxWidth: 520, margin: '0 auto', scrollbarWidth: 'none' }}>
  {FILTER_TABS.map(tab => (
  <button
  key={tab.value}

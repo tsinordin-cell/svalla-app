@@ -730,7 +730,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
  Senaste turer i skärgården
  </h2>
- <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
+ <div className="chiprad-kant" style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
  {recentTrips.map((t: { id: string; image: string; location_name: string | null; created_at: string; users?: { username: string } | { username: string }[] | null }) => (
  <Link key={t.id} href={`/tur/${t.id}`} style={{ textDecoration: 'none', flexShrink: 0 }}>
  <div style={{

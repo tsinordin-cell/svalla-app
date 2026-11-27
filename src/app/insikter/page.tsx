@@ -113,7 +113,7 @@ export default function InsikterPage() {
  </div>
 
  {/* Scope-toggle */}
- <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingTop: 10, maxWidth: 560, margin: '0 auto', scrollbarWidth: 'none' }}>
+ <div className="chiprad-kant-560" style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingTop: 10, maxWidth: 560, margin: '0 auto', scrollbarWidth: 'none' }}>
  {[...yearChoices, 'all' as const].map(v => {
  const active = scope === v
  const label = v === 'all' ? 'Hela tiden' : String(v)
