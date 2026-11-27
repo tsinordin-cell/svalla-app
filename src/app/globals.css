@@ -1635,7 +1635,7 @@ img {
   }
   .vinter-rad::-webkit-scrollbar { display: none; }
   .vinter-kort {
-    flex: 0 0 78%;
+    flex: 0 0 72%;
     scroll-snap-align: start;
   }
 }
