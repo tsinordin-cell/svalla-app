@@ -450,14 +450,8 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         const ls = c as unknown as { letterSpacing?: string }
         // Startscenen: "Skärgården börjar här" som rubrik i halva SVALLA-storleken, med en rad om vilka Svalla är till för (Max 2026-11-26).
         // Loggan i menyraden visar redan SVALLA. Introt i del 1 är oförändrat.
-        if (varld) {
-          const rub = stor * 0.5
-          c.font = `700 ${rub}px ${serif}`
-          if ('letterSpacing' in c) ls.letterSpacing = '0px'
-          c.fillText('Skärgården börjar här', W / 2, H * 0.2)
-          c.font = `500 ${Math.max(12, rub * 0.42)}px ${sans}`
-          c.fillText('För öbon, företagaren, besökaren och familjen.', W / 2, H * 0.2 + rub * 0.95)
-        } else {
+        // I startscenen ritas rubriken och raden under som HTML (.ki-rubrik) i sajtens typsnittstråd: Playfair 700 i rubrikfärgen, Inter 400 i brödtextfärgen (Max 2026-11-26)
+        if (!varld) {
         // SVALLA med optiskt jämn luft (Max 2026-11-25): mellanrum per par S–V, V–A, A–L, L–L och L–A i em,
         // uppmätt mot bläcket i Playfair Display 700 så att alla mellanrum ser lika stora ut. En bokstav i taget.
         if ('letterSpacing' in c) ls.letterSpacing = '0px'
@@ -969,6 +963,12 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
         // Svallas logga i hörnet av startscenen hela tiden, samma komponent som i menyn på svalla.se (Max 2026-11-24)
         <div className="ki-logga"><SvallaLogo height={26} color="currentColor" /></div>
       )}
+      {varld && (
+        <div className="ki-rubrik">
+          <h2>Skärgården börjar här</h2>
+          <p>För öbon, företagaren, besökaren och familjen</p>
+        </div>
+      )}
       <div className="ki-topp">
         <span className={tips ? 'ki-tips syns' : 'ki-tips'}>Bäst med ljud</span>
         <button type="button" className="ki-ljud" onClick={vaxlaLjud} aria-pressed={ljud}>{ljud ? 'Ljud på' : 'Ljud av'}</button>
@@ -1184,5 +1184,13 @@ const CSS = `
 /* Loggan: uppe till vänster på himlen, i mobilen nere till vänster på havet där knapparna inte sitter */
 .ki-logga{position:absolute;left:22px;top:20px;z-index:4;display:flex;align-items:center;gap:8px;color:#0a2540;pointer-events:none}
 .ki-logga svg{height:26px;width:auto}
+/* Startscenens rubrik i sajtens typsnittstråd: Playfair Display 700, -0.01em, och Inter 400 under. Färgen är havets blå (BLA_VARLD #4472ab); raden under en nyans mörkare (#375e96) så att den klarar kontrastkravet 4,5:1 i liten storlek (Max 2026-11-26) */
+.ki-rubrik{position:absolute;left:0;right:0;top:12%;z-index:3;text-align:center;pointer-events:none;padding:0 18px;animation:kiRubrik .9s .3s both}
+.ki-rubrik h2{margin:0;font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(28px,5vw,52px);line-height:1.1;letter-spacing:-0.01em;color:#4472ab}
+.ki-rubrik p{margin:8px 0 0;font-family:Inter,system-ui,sans-serif;font-weight:400;font-size:clamp(13px,4vw,19px);line-height:1.45;color:#375e96;white-space:nowrap}
+/* Startsidan låser alla h2 till 28/24 px (rubrikskalan). Heron är ett steg större så att den blir sidans tydligaste rubrik (Max 2026-11-26) */
+.lp-start .ki-rubrik h2:not(.lp-dold){font-size:clamp(28px,5vw,52px)!important}
+.ki-tid-natt .ki-rubrik h2{color:#f5f4ef}.ki-tid-natt .ki-rubrik p{color:#c9d6e2}
+@keyframes kiRubrik{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:560px){.ki-logga{top:auto;bottom:14px;left:14px;color:#f5f4ef}.ki-logga svg{height:20px}}
 `
