@@ -354,6 +354,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
     ...kort.__gora.filter(g => g.foto).slice(0, 2),
   ]
 
+  const restidKort = (data.restid.split(' · ')[0] ?? data.restid).trim()
   const topbild = aktiv ? (vagbild(slug, aktiv.id) ?? data.foto) : data.foto
 
   return (
@@ -368,7 +369,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
               <h1 className="e-h1">{data.namn}</h1>
               <p className="e-tagline">{data.tagline}</p>
               <div className="e-chips">
-                {data.restid && <span className="e-chip"><Ikon namn="ship" klass="e-chip-ikon" /><span>{data.restid}</span></span>}
+                {data.restid && <a href={'/o/' + slug + '/komma-dit'} className="e-chip e-chip-lank" title={data.restid} aria-label={'Ta dig till ' + data.namn + ': ' + data.restid}><Ikon namn="ship" klass="e-chip-ikon" /><span>{restidKort}</span><i aria-hidden="true">→</i></a>}
                 {data.sasong && <span className="e-chip"><Ikon namn="sun" klass="e-chip-ikon" /><span>{data.sasong}</span></span>}
               </div>
             </div>
@@ -379,6 +380,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
             <div className="e-inre">
               <div className="e-liten">Välj din väg</div>
               <h2 className="e-h2">Vad vill du göra på {data.namn}?</h2>
+              {data.perfekt && <p className="e-passar"><b>Passar för</b> {data.perfekt}</p>}
               <div className="e-valgrid">
                 {VAGAR.map(v => {
                   const f = vagbild(slug, v.id)
@@ -418,7 +420,6 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
                 <a href={'/o/' + slug + '/komma-dit'} className="e-bra-rad"><Ikon namn="ship" klass="e-bra-ikon" /><span><b>Ta dig hit</b><span>{data.restid || 'Båtar, tider och bryggor'}</span></span><i>→</i></a>
                 <a href={'/o/' + slug + '/hamnar'} className="e-bra-rad"><Ikon namn="anchor" klass="e-bra-ikon" /><span><b>Hamnar och bryggor</b><span>Gästhamn och service för båtfolket</span></span><i>→</i></a>
                 <a href={'/o/' + slug + '/hantverkare'} className="e-bra-rad"><Ikon namn="map" klass="e-bra-ikon" /><span><b>Hantverkare och service</b><span>För dig som bor eller har stuga här</span></span><i>→</i></a>
-                {data.perfekt && <div className="e-bra-rad"><Ikon namn="sun" klass="e-bra-ikon" /><span><b>Perfekt för</b><span>{data.perfekt}</span></span></div>}
               </div>
             </div>
           </section>
@@ -487,7 +488,7 @@ const CSS = `
 .e-h2{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,36px);line-height:1.12;color:#0d2440;margin:0;letter-spacing:-.01em}
 .e-topp,.e-vagtopp{position:relative;display:flex;align-items:flex-end;color:#fff;background:#1e5c82 center/cover no-repeat}
 .e-topp{height:clamp(380px,58vh,620px)}
-.e-vagtopp{height:clamp(260px,36vh,380px)}
+.e-vagtopp{height:clamp(220px,32vh,340px)}
 .e-topp::before,.e-vagtopp::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,.12) 0%,rgba(8,24,38,.3) 45%,rgba(8,24,38,.84) 100%)}
 .e-topp-inre{text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .e-topp-inre{position:relative;width:100%;max-width:1080px;margin:0 auto;padding:0 20px 64px}
@@ -501,6 +502,11 @@ const CSS = `
 .e-chip{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:7px 14px 7px 8px;border-radius:18px;text-shadow:none;background:rgba(255,253,248,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);font:600 13px Inter,system-ui,sans-serif}
 .e-chip>span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .e-chip-ikon{width:22px;height:22px;object-fit:contain}
+.e-chip-lank{color:#fff;text-decoration:none;cursor:pointer;transition:background .2s ease}
+.e-chip-lank:hover{background:rgba(255,253,248,.28)}
+.e-chip i{font-style:normal;opacity:.9}
+.e-passar{margin:8px 0 0;font-size:15px;line-height:1.5;color:#3d5865}
+.e-passar b{color:#0d2440;margin-right:4px}
 .e-kredit{position:absolute;right:12px;bottom:40px;font-size:10px;color:rgba(255,255,255,.7)}
 .e-vagtopp .e-kredit{bottom:8px}
 .e-val{position:relative;margin-top:-30px;background:#f7f1e7;border-radius:28px 28px 0 0;padding:26px 0 8px;scroll-margin-top:calc(var(--e-topp,0px) + 8px)}
@@ -545,7 +551,7 @@ const CSS = `
 .e-partner i{font-style:normal;font-size:14px;font-weight:700;color:#1e5c82}
 .e-pilar{display:none}
 .e-not{font-size:12px;color:#5b7280;margin:10px 0 0}
-.e-bra{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:8px}
+.e-bra{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:8px}
 .e-bra-rad{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:18px;background:#fffdf8;border:1px solid rgba(150,110,60,.16);color:#0d2440;text-decoration:none}
 a.e-bra-rad:hover{border-color:#1e5c82}
 .e-bra-ikon{width:40px;height:40px;object-fit:contain;flex-shrink:0}
@@ -588,6 +594,7 @@ a.e-bra-rad:hover{border-color:#1e5c82}
 }
 @media (max-width:700px){
   .e-topp{height:clamp(340px,50svh,460px)}
+  .e-vagtopp{height:210px}
   .e-topp-inre{padding:0 16px 52px}
   .e-inre{padding:0 16px}
   .e-valgrid{grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
