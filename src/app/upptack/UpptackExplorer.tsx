@@ -865,7 +865,7 @@ export default function UpptackExplorer() {
     const rad = filterRowRef.current
     const knapp = rad?.querySelector<HTMLElement>('.upx-fdd')
     if (!rad || !knapp || typeof ResizeObserver === 'undefined') return
-    const satt = () => rad.style.setProperty('--upx-fdd-w', `${Math.ceil(knapp.getBoundingClientRect().width)}px`)
+    const satt = () => rad.style.setProperty('--upx-fdd-w', `${knapp.getBoundingClientRect().width}px`)
     satt()
     const ro = new ResizeObserver(satt)
     ro.observe(knapp)
@@ -1193,10 +1193,10 @@ export default function UpptackExplorer() {
           scroll-padding-left: calc(var(--upx-fdd-w, 0px) + 8px);
         }
         /* Täcker det som rullar in bakom knappen. Samma färg som rubrikytan,
-           så knappen ser ut som i dag även när den är tonad (hover, filter). */
+           så knappen ser ut som i dag även när den är tonad (hover, filter).
+           Rak, inte rundad: annars tittar raden fram i knappens hörn. */
         .upx-filterrow .upx-fdd {
           background: var(--white, #fff);
-          border-radius: 12px;
         }
         /* Region-toggle pills — horisontell scroll-bar bredvid kategori-filtret */
         .upx-regions-bar {
