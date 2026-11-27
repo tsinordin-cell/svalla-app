@@ -208,16 +208,18 @@ export default function ChatPage() {
           const otherUsers = andra
             .map(p => (Array.isArray(p.users) ? p.users[0] : p.users))
             .filter((u): u is { id: string; username: string; avatar: string | null } => !!u)
-          if (!c.is_group && otherUsers[0]) {
-            setOtherName(otherUsers[0].username ?? 'Seglare')
-            setOtherUsername(otherUsers[0].username ?? null)
-            setOtherAvatar(otherUsers[0].avatar ?? null)
-            setOtherId(otherUsers[0].id)
+          const forsta = otherUsers[0]
+          if (!c.is_group && forsta) {
+            setOtherName(forsta.username ?? 'Seglare')
+            setOtherUsername(forsta.username ?? null)
+            setOtherAvatar(forsta.avatar ?? null)
+            setOtherId(forsta.id)
           } else if (c.is_group && andra.length > 0) {
             setOtherName((c as Conversation).title ?? 'Gruppchatt')
           }
           // Motpartens "läst" (bara när det finns exakt en annan deltagare, som förut)
-          if (andra.length === 1 && andra[0].last_read_at) setOtherReadAt(andra[0].last_read_at)
+          const enda = andra.length === 1 ? andra[0] : undefined
+          if (enda?.last_read_at) setOtherReadAt(enda.last_read_at)
         } catch { /* icke-kritisk — namninfo saknas men chatt fungerar */ }
 
         // Meddelandena. Avsändare som inte längre är deltagare hämtas separat (ovanligt).
