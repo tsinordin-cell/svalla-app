@@ -451,7 +451,7 @@ export default function Inkorg() {
   function radera(id: string, arGrupp: boolean) {
     stangMeny()
     setBekrafta({
-      title: arGrupp ? 'Lämna gruppen' : 'Radera meddelandena',
+      title: arGrupp ? 'Lämna gruppen' : 'Radera chatt',
       body: arGrupp
         ? 'Du lämnar gruppen. Meddelandena finns kvar för de andra.'
         : 'Meddelandena försvinner för dig. När ni båda har raderat dem tas de bort helt, även bilderna.',

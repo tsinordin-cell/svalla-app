@@ -45,7 +45,7 @@ export const IKON = {
   kuvert: 'M4 6h16a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V7a1 1 0 011-1zM3.5 7l8.5 6 8.5-6',
   kuvertOppet: 'M3 10l9-6 9 6v9a1 1 0 01-1 1H4a1 1 0 01-1-1zM3.5 10.5l8.5 5.5 8.5-5.5',
   klocka: 'M6 16V11a6 6 0 0112 0v5l1.5 2h-15zM10 20.5a2 2 0 004 0',
-  klockaAv: 'M6 16V11a6 6 0 019.3-5M18 11v5l1.5 2H8M10 20.5a2 2 0 004 0M4 4l16 16',
+  klockaAv: 'M14.6 18H4.5L6 16v-5a6 6 0 01.18-1.44M9.13 5.73A6 6 0 0118 11v3.6M10 20.5a2 2 0 004 0M4 4l16 16',
 } as const
 
 export function Ikon({ d, s = 20, w = 2 }: { d: string; s?: number; w?: number }) {
