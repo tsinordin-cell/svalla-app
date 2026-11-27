@@ -6,6 +6,7 @@ import { createClient, getViewer } from '@/lib/supabase'
 import ReportButton from '@/components/ReportButton'
 import BlockButton from '@/components/BlockButton'
 import { isBlocked } from '@/lib/blocks'
+import Icon from '@/components/Icon'
 
 interface Props {
   targetUserId: string
@@ -49,9 +50,12 @@ export default function ProfileMoreMenu({ targetUserId, targetUsername, iHero = 
           flexShrink: 0,
         }}
       >
-        <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: iHero ? '#fff' : 'var(--sea)' }}>
-          <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
-        </svg>
+        {/* 2026-11-27 (Tom): på profilen samma ikonfamilj (Lucide, 22 px) som den egna profilens topprad. */}
+        {iHero ? <Icon name="more" size={22} stroke={2} /> : (
+          <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: 18, height: 18, color: 'var(--sea)' }}>
+            <circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/>
+          </svg>
+        )}
       </button>
 
       {open && createPortal(
