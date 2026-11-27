@@ -1,5 +1,6 @@
 'use client'
 import { ruttArAnvandbar, harTal } from '@/lib/dela-klistermarken'
+import { kortPlats, oarForPlats } from '@/lib/loggade-oar'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
@@ -228,7 +229,7 @@ function PhotoCarousel({
 /**
  * variant 'kort' (standard): det rundade kortet, som på /tagg och tidigare i flödet.
  * variant 'band' (flödet, 2026-11-27, förhandsvisning): "loggbok i band". Inlägget
- * går kant i kant i kolumnen, platsen blir rubrik, siffrorna står under texten och
+ * går kant i kant i kolumnen, platsen är en tagg (2026-11-27), siffrorna står under texten och
  * bilden eller kartan ligger kant i kant. Bara FeedTabs skickar 'band'.
  */
 export default function TripCard({ trip, priority = false, variant = 'kort' }: { trip: Trip; priority?: boolean; variant?: 'kort' | 'band' }) {
@@ -287,17 +288,61 @@ export default function TripCard({ trip, priority = false, variant = 'kort' }: {
     ? caption.slice(0, MAX_CAPTION) + '…'
     : caption
 
-  // ── Delarna. Kortet visar media, siffror, text. Bandet visar rubrik, text, siffror, media.
-  // Bandet: platsen (och startplatsen om den skiljer sig) blir rubrik.
-  const titel = band
-    ? (trip.start_location && trip.location_name && trip.start_location !== trip.location_name
-        ? `${trip.start_location} → ${trip.location_name}`
-        : (trip.location_name ?? null))
-    : null
+  // ── Delarna. Kortet visar media, siffror, text. Bandet visar taggar, text, siffror, media.
+  // Bandet (2026-11-27, Toms önskan): platsen är en tagg, inte en rubrik. Bara första
+  // delen av det geokodade namnet ("Vaxholm, Stockholms län, Sverige" → "Vaxholm").
+  // Finns platsen som ösida på Svalla blir taggen en länk dit.
+  const malPlats   = trip.location_name ? kortPlats(trip.location_name) : ''
+  const startPlats = trip.start_location ? kortPlats(trip.start_location) : ''
+  const platsText  = startPlats && malPlats && startPlats !== malPlats
+    ? `${startPlats} → ${malPlats}`
+    : (malPlats || startPlats)
+  const platsSlug  = band && malPlats ? (oarForPlats(malPlats)[0] ?? null) : null
+  const magisk     = trip.pinnar_rating === 3
 
-  const titelEl = titel ? (
-    <div style={{ padding: '10px 16px 0', fontSize: 19, fontWeight: 700, color: 'var(--ink, #162d3a)', letterSpacing: '-0.01em', lineHeight: 1.25 }}>
-      {titel}
+  const magiskEl = magisk ? (
+    <div style={{
+      flexShrink: 0,
+      display: 'inline-flex', alignItems: 'center', gap: 5,
+      padding: '4px 10px 4px 8px',
+      borderRadius: 999,
+      background: 'var(--amber-50, #fbefe4)',
+      border: '1px solid rgba(201,110,42,0.18)',
+      color: 'var(--amber, #c96e2a)',
+      fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
+    }}>
+      <span style={{ display: 'inline-flex', gap: 1 }}>
+        {[0,1,2].map(i => (
+          <svg key={i} width={9} height={9} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
+            <path d="M2 20c4-4 16-4 20 0M12 4C8 8 4 10 2 20M12 4c4 4 8 6 10 16" />
+          </svg>
+        ))}
+      </span>
+      Magisk tur
+    </div>
+  ) : null
+
+  const platsTaggStil: React.CSSProperties = {
+    display: 'inline-flex', alignItems: 'center', gap: 4, minWidth: 0, maxWidth: '100%',
+    padding: '4px 10px 4px 8px', borderRadius: 999,
+    background: 'var(--teal-12)', color: 'var(--ink, #162d3a)',
+    fontSize: 12, fontWeight: 600, lineHeight: 1.3, textDecoration: 'none',
+  }
+  const platsInnehall = (
+    <>
+      <svg width={12} height={12} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, opacity: 0.75 }} aria-hidden="true">
+        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0Z" /><circle cx="12" cy="10" r="3" />
+      </svg>
+      <span style={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{platsText}</span>
+    </>
+  )
+
+  const taggarEl = band && (platsText || magisk) ? (
+    <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 6, padding: '10px 16px 0' }}>
+      {platsText && (platsSlug
+        ? <Link href={`/o/${platsSlug}`} onClick={e => e.stopPropagation()} aria-label={`Plats: ${platsText}. Öppna ${malPlats} på Svalla`} style={platsTaggStil}>{platsInnehall}</Link>
+        : <span aria-label={`Plats: ${platsText}`} style={platsTaggStil}>{platsInnehall}</span>)}
+      {magiskEl}
     </div>
   ) : null
 
@@ -474,7 +519,7 @@ export default function TripCard({ trip, priority = false, variant = 'kort' }: {
       </div>
 
   const captionEl = caption ? (
-        <div style={{ padding: band ? `${titel ? 4 : 10}px 16px 0` : '14px 22px 4px', fontSize: 14, color: 'var(--ink, #162d3a)', lineHeight: band ? 1.5 : 1.55 }}>
+        <div style={{ padding: band ? `${taggarEl ? 8 : 10}px 16px 0` : '14px 22px 4px', fontSize: 14, color: 'var(--ink, #162d3a)', lineHeight: band ? 1.5 : 1.55 }}>
           {!band && <><span style={{ fontWeight: 600 }}>{username}</span>{' '}</>}
           <span>{renderMentions(captionTruncated)}</span>
           {caption.length > MAX_CAPTION && (
@@ -556,7 +601,7 @@ export default function TripCard({ trip, priority = false, variant = 'kort' }: {
               overflow: 'hidden', whiteSpace: 'nowrap',
             }}>
               <span suppressHydrationWarning title={absoluteDate(trip.created_at)} style={{ flexShrink: 0, cursor: 'help' }}>{timeAgoKompakt(trip.created_at)}</span>
-              {trip.boat_type && (
+              {trip.boat_type && !(band && trip.boat_type === 'Annat') && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
                   <span style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', gap: 3 }}>
@@ -582,28 +627,8 @@ export default function TripCard({ trip, priority = false, variant = 'kort' }: {
           </div>
         </Link>
 
-        {/* Magisk badge */}
-        {trip.pinnar_rating === 3 && (
-          <div style={{
-            flexShrink: 0,
-            display: 'inline-flex', alignItems: 'center', gap: 5,
-            padding: '4px 10px 4px 8px',
-            borderRadius: 999,
-            background: 'var(--amber-50, #fbefe4)',
-            border: '1px solid rgba(201,110,42,0.18)',
-            color: 'var(--amber, #c96e2a)',
-            fontSize: 11, fontWeight: 600, letterSpacing: '0.04em',
-          }}>
-            <span style={{ display: 'inline-flex', gap: 1 }}>
-              {[0,1,2].map(i => (
-                <svg key={i} width={9} height={9} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M2 20c4-4 16-4 20 0M12 4C8 8 4 10 2 20M12 4c4 4 8 6 10 16" />
-                </svg>
-              ))}
-            </span>
-            Magisk tur
-          </div>
-        )}
+        {/* Magisk badge: i kortet uppe i huvudet, i bandet i taggraden. */}
+        {!band && magiskEl}
 
         {/* Tre-punkts-meny. Dela och kopiera syns för alla.
             Egna turer: redigera, exportera, ta bort. Andras: anmälan sist. */}
@@ -620,7 +645,7 @@ export default function TripCard({ trip, priority = false, variant = 'kort' }: {
       </div>
 
       {band
-        ? <>{titelEl}{captionEl}{statsEl}{mediaEl}</>
+        ? <>{taggarEl}{captionEl}{statsEl}{mediaEl}</>
         : <>{mediaEl}{statsEl}{captionEl}</>}
 
       {/* ── 5. Actions ── */}
