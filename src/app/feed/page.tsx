@@ -219,12 +219,15 @@ export default async function FeedPage(
 
  {/* ── Greeting ── */}
  {feedUsername && (
- <div style={{ maxWidth: 640, margin: '0 auto', padding: '20px 20px 8px' }}>
+ {/* 2026-11-27 (Tom): tätare topp. NATT 8 px högre upp (luft ovan 20 → 12), luften
+     under hälsningen 8 → 4 så väderraden kommer närmare. */}
+ <div style={{ maxWidth: 640, margin: '0 auto', padding: '12px 20px 4px' }}>
  <div className="feed-time-label" style={{ fontSize: 10.5, fontWeight: 600, color: 'rgba(22,45,58,0.45)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 5 }}>
  {getTimeLabel()}
  </div>
- {/* 2026-11-24 (Tom): hälsningen 26 px (var 32). Tre rader som förut: tid på dygnet, hälsning, väder. */}
- <div style={{ fontSize: 26, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
+ {/* 2026-11-24 (Tom): hälsningen 26 px (var 32). 2026-11-27 (Tom): ett steg mindre, 24 px.
+     Tre rader som förut: tid på dygnet, hälsning, väder. */}
+ <div style={{ fontSize: 24, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, letterSpacing: '-0.02em' }}>
  {getGreeting()}, {feedUsername}
  </div>
  </div>

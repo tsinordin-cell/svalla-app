@@ -48,7 +48,8 @@ export default function FeedWeatherRow() {
 
   return (
     <div style={{
-      maxWidth: 640, margin: '0 auto', padding: '2px 20px 10px',
+      // 2026-11-27 (Tom): tätare mot hälsningen (2 → 0) och mot I vinter under (10 → 4).
+      maxWidth: 640, margin: '0 auto', padding: '0 20px 4px',
       display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'nowrap', overflow: 'hidden',
       fontSize: 13, color: 'var(--txt3)', fontWeight: 500,
     }}>
