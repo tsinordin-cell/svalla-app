@@ -198,7 +198,7 @@ export function KonvMeny({
           {onLast && <Val refen={forsta} ikon={IKON.kuvertOppet} label="Markera som läst" onClick={onLast} />}
           {onOlast && <Val refen={onLast ? undefined : forsta} ikon={IKON.kuvert} label="Markera som oläst" onClick={onOlast} />}
           <Val refen={onLast || onOlast ? undefined : forsta} ikon={tyst ? IKON.klocka : IKON.klockaAv} label={tyst ? 'Slå på aviseringar' : 'Tysta'} onClick={onTysta} />
-          <Val ikon={arGrupp ? IKON.lamna : IKON.soptunna} label={arGrupp ? 'Lämna gruppen' : 'Radera meddelandena'} fara onClick={onRadera} />
+          <Val ikon={arGrupp ? IKON.lamna : IKON.soptunna} label={arGrupp ? 'Lämna gruppen' : 'Radera chatt'} fara onClick={onRadera} />
           {onBlockera && <Val ikon={IKON.blockera} label={`Blockera ${rad.namn}`} fara onClick={onBlockera} />}
         </div>
       </div>
