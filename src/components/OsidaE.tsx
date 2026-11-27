@@ -107,7 +107,6 @@ const ALLA_VAGAR = [...VAGAR, FORSTA]
 const ALLT: { k: string; etikett: string }[] = [
   { k: 'om', etikett: 'Om ön' },
   { k: 'dit', etikett: 'Ta sig dit' },
-  { k: 'avgang', etikett: 'Nästa avgångar' },
   { k: 'sistabat', etikett: 'Sista båten' },
   { k: 'mat', etikett: 'Mat och dryck' },
   { k: 'bo', etikett: 'Boende' },
@@ -489,7 +488,8 @@ const CSS = `
 .e-topp,.e-vagtopp{position:relative;display:flex;align-items:flex-end;color:#fff;background:#1e5c82 center/cover no-repeat}
 .e-topp{height:clamp(380px,58vh,620px)}
 .e-vagtopp{height:clamp(260px,36vh,380px)}
-.e-topp::before,.e-vagtopp::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,.05) 25%,rgba(8,24,38,.78) 100%)}
+.e-topp::before,.e-vagtopp::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,38,.12) 0%,rgba(8,24,38,.3) 45%,rgba(8,24,38,.84) 100%)}
+.e-topp-inre{text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .e-topp-inre{position:relative;width:100%;max-width:1080px;margin:0 auto;padding:0 20px 64px}
 .e-vagtopp .e-topp-inre{padding-bottom:28px}
 .e-smulor{font-size:12.5px;color:rgba(255,255,255,.85);margin-bottom:10px}
@@ -498,8 +498,8 @@ const CSS = `
 .e-h1-vag{font-size:clamp(34px,6vw,60px);line-height:1.02}
 .e-tagline{font-size:clamp(16px,2vw,20px);line-height:1.45;margin:0 0 16px;max-width:44ch;color:rgba(255,255,255,.95)}
 .e-chips{display:flex;flex-wrap:wrap;gap:8px}
-.e-chip{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(255,253,248,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);font:600 13px Inter,system-ui,sans-serif}
-.e-chip>span{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.e-chip{display:inline-flex;align-items:center;gap:8px;max-width:100%;padding:7px 14px 7px 8px;border-radius:18px;text-shadow:none;background:rgba(255,253,248,.16);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);font:600 13px Inter,system-ui,sans-serif}
+.e-chip>span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .e-chip-ikon{width:22px;height:22px;object-fit:contain}
 .e-kredit{position:absolute;right:12px;bottom:40px;font-size:10px;color:rgba(255,255,255,.7)}
 .e-vagtopp .e-kredit{bottom:8px}
@@ -566,7 +566,7 @@ a.e-bra-rad:hover{border-color:#1e5c82}
 .e-bar-steg::-webkit-scrollbar{display:none}
 .e-bar-steg a{flex-shrink:0;display:inline-flex;align-items:center;gap:7px;font:600 13px Inter,system-ui,sans-serif;color:#0d2440;text-decoration:none;background:#fffdf8;border:1px solid rgba(150,110,60,.2);border-radius:999px;padding:5px 12px 5px 5px}
 .e-bar-steg a span,.e-stegnr{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#b5591a;color:#fff;font-size:11.5px;font-weight:700}
-.e-steghuvud{display:flex;align-items:center;gap:14px;padding:36px 0 14px;scroll-margin-top:calc(var(--e-topp,0px) + 64px)}
+.e-steghuvud{display:flex;align-items:center;gap:14px;padding:28px 0 12px;scroll-margin-top:calc(var(--e-topp,0px) + 64px)}
 .e-stegnr{width:40px;height:40px;font-size:17px;flex-shrink:0}
 .e-steghuvud small{font:700 11px Inter,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#a8501a}
 .e-steghuvud h2{font-family:'Playfair Display',Georgia,serif;font-size:clamp(24px,3vw,30px);line-height:1.15;color:#0d2440;margin:2px 0 0}
