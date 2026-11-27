@@ -19,7 +19,7 @@ import { createPortal } from 'react-dom'
  * inuti ett element med transform hamnar inuti kortet (bde5b83f, 2026-11-07).
  */
 export default function TurBildvisare({
-  bilder, start, onByt, onStang, namn, rad, tal, text,
+  bilder, start, onByt, onStang, namn, rad, tal, text, etikett,
 }: {
   bilder: string[]
   start: number
@@ -33,7 +33,10 @@ export default function TurBildvisare({
   tal?: string[]
   /** Turens text, visas på högst två rader. */
   text?: string | null
+  /** Vad bilderna är, för skärmläsare. Standard: "från {namn}s tur". */
+  etikett?: string
 }) {
+  const vad = etikett ?? `från ${namn}s tur`
   const [i, setI] = useState(Math.min(Math.max(start, 0), Math.max(bilder.length - 1, 0)))
   const [ren, setRen] = useState(false)          // true = bara bilden, texten dold
   const [drag, setDrag] = useState(0)            // px nedåt medan man drar
@@ -76,7 +79,7 @@ export default function TurBildvisare({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`Bild ${i + 1} av ${bilder.length} från ${namn}s tur`}
+      aria-label={`Bild ${i + 1} av ${bilder.length} ${vad}`}
       className="tbv"
       style={{ position: 'fixed', inset: 0, zIndex: 2000, background: `rgba(5,11,18,${0.96 * tona})`, overflow: 'hidden', touchAction: 'pinch-zoom' }}
       // Klick i en portal bubblar ändå upp genom React-trädet till turkortet, som då
@@ -152,7 +155,7 @@ export default function TurBildvisare({
             <img
               className="tbv-bild"
               src={src}
-              alt={`Bild ${n + 1} från ${namn}s tur`}
+              alt={`Bild ${n + 1} ${vad}`}
               onClick={e => { e.stopPropagation(); setRen(r => !r) }}
               draggable={false}
               style={{

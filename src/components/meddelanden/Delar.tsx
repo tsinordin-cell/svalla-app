@@ -282,14 +282,22 @@ export function TextBubbla({ text }: { text: string }) {
   return <div className="md-bubbla">{text}</div>
 }
 
-export function BildBubbla({ src, onFel }: { src: string | undefined; onFel?: () => void }) {
+/**
+ * Bild i ett meddelande. Med onTryck öppnas bilden stort inne i Svalla (Tom 2026-11-27:
+ * tidigare var bilden en länk till själva lagringsadressen, så man lämnade sajten och
+ * fick en nedladdningsrad i webbläsaren). Utan onTryck, t.ex. i den upplyfta menyn, går
+ * den inte att trycka på.
+ */
+export function BildBubbla({ src, onFel, onTryck }: { src: string | undefined; onFel?: () => void; onTryck?: () => void }) {
   if (!src) return <div className="md-bild" aria-label="Bilden laddas" />
+  /* Privat hink: visas via tidsbegränsad länk, inte via Next bildtjänst (som annars kunde cacha den öppet). */
+  // eslint-disable-next-line @next/next/no-img-element
+  const bild = <img src={src} alt="Skickad bild" onError={onFel} />
+  if (!onTryck) return <div className="md-bild">{bild}</div>
   return (
-    <a href={src} target="_blank" rel="noopener noreferrer" className="md-bild">
-      {/* Privat hink: visas via tidsbegränsad länk, inte via Next bildtjänst (som annars kunde cacha den öppet). */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt="Skickad bild" onError={onFel} />
-    </a>
+    <button type="button" className="md-bild" onClick={onTryck} aria-label="Visa bilden stort">
+      {bild}
+    </button>
   )
 }
 

@@ -262,7 +262,7 @@ export default function NotificationBell() {
        letterSpacing: '0.02em',
      }}
    >
-     Hitta seglare att följa
+     Hitta personer att följa
    </Link>
  </div>
  ) : (
