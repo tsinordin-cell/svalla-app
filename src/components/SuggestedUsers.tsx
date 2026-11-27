@@ -153,6 +153,8 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
 
   const visible = users.filter(u => !dismissed.has(u.id))
   if (loading || visible.length === 0 || hidden) return null
+  // Raden i flödets band visas bara med minst två förslag (2026-11-27).
+  if (iBand && visible.length < 2) return null
 
   if (variant === 'rad') {
     return (

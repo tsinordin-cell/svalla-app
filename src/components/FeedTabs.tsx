@@ -221,8 +221,9 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
       {/* ── Discovery — seglare att följa, visas om inloggad men följer ingen ── */}
       {/* .feed-suggested-mobile döljs vid ≥1280px där sidopanelen visar samma lista
           (granskningen 2026-11-22: listan syntes två gånger på desktop). */}
-      {/* 2026-11-27: förslagen ligger efter andra inlägget i bandet (se nedan).
-          Ovanför listan bara när listan är tom. Villkoret för vem som ser dem är oförändrat. */}
+      {/* 2026-11-27: i bandet visas förslagen för alla inloggade efter tredje inlägget
+          (se nedan), även för den som följer folk. Ovanför listan bara när listan är tom
+          och man saknar turer från folk man följer, som förut. */}
       {!initialLoad && visaForslag && trips.length === 0 && (
         <div className="feed-suggested-mobile"><SuggestedUsers /></div>
       )}
@@ -253,7 +254,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
                 {trips.map((trip, idx) => (
                   <Fragment key={trip.id}>
                     <TripCard trip={trip} priority={idx === 0} variant="band" />
-                    {visaForslag && idx === Math.min(1, trips.length - 1) && (
+                    {isLoggedIn && idx === Math.min(2, trips.length - 1) && (
                       <div className="feed-suggested-mobile"><SuggestedUsers iBand /></div>
                     )}
                   </Fragment>
