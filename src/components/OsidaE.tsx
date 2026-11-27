@@ -61,7 +61,7 @@ const VAGAR: Vag[] = [
     lankar: s => [{ text: 'Hamnar och bryggor', href: '/o/' + s + '/hamnar' }, { text: 'Alla hamnar', href: '/hamnar-och-bryggor' }],
   },
   {
-    id: 'barn', namn: 'Med barn', fraga: 'Bad, lek och glass', ikon: 'child', partner: '__gora',
+    id: 'barn', namn: 'Med barn', fraga: 'Bad och lek', ikon: 'child', partner: '__gora',
     steg: [
       { rubrik: 'Bada och leka', delar: ['__gora'] },
       { rubrik: 'Fika och mat', delar: ['__krogar'] },
@@ -71,7 +71,7 @@ const VAGAR: Vag[] = [
     lankar: s => [{ text: 'Med barn', href: '/o/' + s + '/med-barn' }, { text: 'Bad', href: '/o/' + s + '/bad' }],
   },
   {
-    id: 'aktiv', namn: 'Aktiv', fraga: 'Vandra, cykla, paddla', ikon: 'walk', partner: '__gora',
+    id: 'aktiv', namn: 'Aktiv', fraga: 'Natur, stigar och vatten', ikon: 'walk', partner: '__gora',
     steg: [
       { rubrik: 'Vad kan man göra', delar: ['__gora'] },
       { rubrik: 'Tips från oss', delar: ['tips'] },
@@ -405,8 +405,13 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
             <section className="e-sektion">
               <div className="e-inre">
                 <div className="e-rubrikrad">
-                  <div><div className="e-liten">Svallas urval</div><h2 className="e-h2">Det bästa på {data.namn}</h2></div>
+                  <div><div className="e-liten">Svallas urval</div><h2 className="e-h2">Ett smakprov av {data.namn}</h2></div>
                 </div>
+                <nav className="e-snabb" aria-label={'Allt på ' + data.namn}>
+                  {data.krogar.length > 0 && <a href={'/o/' + slug + '/restauranger'}>Äta <span>{data.krogar.length}</span></a>}
+                  {data.boenden.length > 0 && <a href={'/o/' + slug + '/boende'}>Bo <span>{data.boenden.length}</span></a>}
+                  {data.gora.length > 0 && <a href={'/o/' + slug + '/aktiviteter'}>Göra <span>{data.gora.length}</span></a>}
+                </nav>
                 <Karusell kort={urval} partner />
                 <p className="e-not">Utvalt av Svalla. Ordningen bygger inte på betyg eller betalning.</p>
               </div>
@@ -417,8 +422,8 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
             <div className="e-inre">
               <div className="e-liten">Bra att veta</div>
               <div className="e-bra">
-                <a href={'/o/' + slug + '/komma-dit'} className="e-bra-rad"><Ikon namn="ship" klass="e-bra-ikon" /><span><b>Ta dig hit</b><span>{data.restid || 'Båtar, tider och bryggor'}</span></span><i>→</i></a>
-                <a href={'/o/' + slug + '/hamnar'} className="e-bra-rad"><Ikon namn="anchor" klass="e-bra-ikon" /><span><b>Hamnar och bryggor</b><span>Gästhamn och service för båtfolket</span></span><i>→</i></a>
+                <a href={'/o/' + slug + '/komma-dit'} className="e-bra-rad"><Ikon namn="ship" klass="e-bra-ikon" /><span><b>Ta dig hit och hem</b><span>{data.restid || 'Båtar, tider och bryggor'}</span></span><i>→</i></a>
+                <a href={'/o/' + slug + '/hamnar'} className="e-bra-rad"><Ikon namn="anchor" klass="e-bra-ikon" /><span><b>Hamnar och bryggor</b><span>För dig som kommer med egen båt</span></span><i>→</i></a>
                 <a href={'/o/' + slug + '/hantverkare'} className="e-bra-rad"><Ikon namn="map" klass="e-bra-ikon" /><span><b>Hantverkare och service</b><span>För dig som bor eller har stuga här</span></span><i>→</i></a>
               </div>
             </div>
@@ -529,7 +534,11 @@ const CSS = `
 .e-forsta>span>span{font-size:13.5px;color:#3d5865}
 .e-forsta i,.e-bra-rad i{font-style:normal;font-size:20px;color:#1e5c82}
 .e-sektion{padding:40px 0 0}
-.e-rubrikrad{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:14px}
+.e-rubrikrad{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:12px}
+.e-snabb{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.e-snabb a{display:inline-flex;align-items:center;gap:8px;font:600 14px Inter,system-ui,sans-serif;color:#0d2440;text-decoration:none;background:#fffdf8;border:1px solid rgba(150,110,60,.22);border-radius:999px;padding:8px 10px 8px 16px;transition:border-color .2s ease}
+.e-snabb a:hover{border-color:#1e5c82}
+.e-snabb span{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;padding:0 6px;border-radius:999px;background:#f3ece0;color:#a8501a;font-size:12px;font-weight:700}
 .e-kar-ram{position:relative}
 .e-kar{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,1fr);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
 .e-kar::-webkit-scrollbar{display:none}
