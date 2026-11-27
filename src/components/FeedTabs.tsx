@@ -124,7 +124,7 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
       {/* Flikarna Flöde · Forum · Topplista ligger sedan 2026-11-24 överst på sidan (feed/page.tsx). */}
       {/* ── Filters — sort pills + en båttyp-chip som öppnar sheet ── */}
       <div style={{ marginBottom: 16 }}>
-        <div className="filter-scroll" style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
+        <div className="filter-scroll flode-sortrad" style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 2, scrollbarWidth: 'none' }}>
           {SORT_OPTIONS.map(s => (
             <Pill
               key={s.value}

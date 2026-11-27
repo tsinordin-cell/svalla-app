@@ -528,6 +528,19 @@ img {
   -ms-overflow-style: none;
 }
 .filter-scroll::-webkit-scrollbar { display: none; }
+/* Sorteringsraden i flödet (Nyast, Längst ...): på mobil rullar den ut till skärmkanten
+   i stället för att kapas vid kolumnens 16 px marginal (Tom 2026-11-27, bilder).
+   Stilla börjar och slutar den i linje med innehållet. Samma brytpunkt som .flode-band. */
+@media (max-width: 671px) {
+  .flode-sortrad {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    scroll-padding-left: 16px;
+    scroll-padding-right: 16px;
+  }
+}
 
 /* ── Critical text — invisible in dark mode (near-black on dark cards) ── */
 [data-theme="dark"] [style*="color: #0d2a3e"],
