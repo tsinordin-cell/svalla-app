@@ -225,7 +225,14 @@ function PhotoCarousel({
   )
 }
 
-export default function TripCard({ trip, priority = false }: { trip: Trip; priority?: boolean }) {
+/**
+ * variant 'kort' (standard): det rundade kortet, som på /tagg och tidigare i flödet.
+ * variant 'band' (flödet, 2026-11-27, förhandsvisning): "loggbok i band". Inlägget
+ * går kant i kant i kolumnen, platsen blir rubrik, siffrorna står under texten och
+ * bilden eller kartan ligger kant i kant. Bara FeedTabs skickar 'band'.
+ */
+export default function TripCard({ trip, priority = false, variant = 'kort' }: { trip: Trip; priority?: boolean; variant?: 'kort' | 'band' }) {
+  const band = variant === 'band'
   const router = useRouter()
   const [imgErr,        setImgErr]        = useState(false)
   const [expanded,      setExpanded]      = useState(false)
@@ -280,11 +287,220 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
     ? caption.slice(0, MAX_CAPTION) + '…'
     : caption
 
+  // ── Delarna. Kortet visar media, siffror, text. Bandet visar rubrik, text, siffror, media.
+  // Bandet: platsen (och startplatsen om den skiljer sig) blir rubrik.
+  const titel = band
+    ? (trip.start_location && trip.location_name && trip.start_location !== trip.location_name
+        ? `${trip.start_location} → ${trip.location_name}`
+        : (trip.location_name ?? null))
+    : null
+
+  const titelEl = titel ? (
+    <div style={{ padding: '10px 16px 0', fontSize: 19, fontWeight: 700, color: 'var(--ink, #162d3a)', letterSpacing: '-0.01em', lineHeight: 1.25 }}>
+      {titel}
+    </div>
+  ) : null
+
+  const mediaEl = hasMedia && (
+        <div style={band ? { marginTop: 12 } : undefined}>
+          {hasPhoto && hasRoute ? (
+            /* 50/50 grid med padding och rundade inre hörn */
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gap: band ? 2 : 3,
+              padding: band ? 0 : '0 16px',
+              marginBottom: band ? 0 : 12,
+            }}>
+              <div
+                style={{
+                  aspectRatio: '1/1',
+                  borderRadius: band ? 0 : '14px 4px 4px 14px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  background: 'var(--teal-12)',
+                  cursor: 'zoom-in',
+                }}
+                onClick={e => { e.stopPropagation(); setLightbox('photo') }}
+              >
+                {allPhotos.length > 1 ? (
+                  <PhotoCarousel
+                    photos={allPhotos}
+                    alt={trip.location_name ?? `Tur av ${username}`}
+                    priority={priority}
+                    onError={i => setPhotoErrors(prev => new Set([...prev, i]))}
+                    idx={photoIdx}
+                    onIdxChange={setPhotoIdx}
+                    sizes="(max-width: 640px) 50vw, 320px"
+                  />
+                ) : isNextImageSafe(allPhotos[0]!) ? (
+                  <Image
+                    src={allPhotos[0]!}
+                    alt={trip.location_name ?? `Tur av ${username}`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 50vw, 320px"
+                    priority={priority}
+                    onError={() => setImgErr(true)}
+                  />
+                ) : (
+                  /* eslint-disable-next-line @next/next/no-img-element */
+                  <img
+                    src={allPhotos[0]!}
+                    alt={trip.location_name ?? `Tur av ${username}`}
+                    loading={priority ? 'eager' : 'lazy'}
+                    decoding="async"
+                    onError={() => setImgErr(true)}
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                )}
+              </div>
+              <div
+                style={{
+                  aspectRatio: '1/1',
+                  borderRadius: band ? 0 : '4px 14px 14px 4px',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  background: 'var(--map-preview-bg)',
+                  cursor: 'zoom-in',
+                }}
+                onClick={e => { e.stopPropagation(); setLightbox('map') }}
+              >
+                <RouteMapSVG points={routePoints!} w={300} h={300} />
+              </div>
+            </div>
+          ) : hasPhoto ? (
+            /* Foto(n) — karusell eller enskilt 4:3 */
+            <div
+              style={{ position: 'relative', width: '100%', aspectRatio: '4/3', background: 'var(--teal-12)', overflow: 'hidden', cursor: 'zoom-in' }}
+              onClick={e => { e.stopPropagation(); setLightbox('photo') }}
+            >
+              {allPhotos.length > 1 ? (
+                <PhotoCarousel
+                  photos={allPhotos}
+                  alt={trip.location_name ?? `Tur av ${username}`}
+                  priority={priority}
+                  onError={i => setPhotoErrors(prev => new Set([...prev, i]))}
+                  idx={photoIdx}
+                  onIdxChange={setPhotoIdx}
+                  sizes="(max-width: 640px) 100vw, 640px"
+                />
+              ) : isNextImageSafe(allPhotos[0]!) ? (
+                <Image
+                  src={allPhotos[0]!}
+                  alt={trip.location_name ?? `Tur av ${username}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 640px"
+                  priority={priority}
+                  onError={() => setImgErr(true)}
+                />
+              ) : (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={allPhotos[0]!}
+                  alt={trip.location_name ?? `Tur av ${username}`}
+                  loading={priority ? 'eager' : 'lazy'}
+                  decoding="async"
+                  onError={() => setImgErr(true)}
+                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              )}
+            </div>
+          ) : (
+            /* Bara rutt */
+            <div style={band ? undefined : { padding: '0 16px', marginBottom: 12 }}>
+              <div
+                style={{ position: 'relative', width: '100%', aspectRatio: band ? '16/8' : '16/7', borderRadius: band ? 0 : 14, overflow: 'hidden', background: 'var(--map-preview-bg)', cursor: 'zoom-in' }}
+                onClick={e => { e.stopPropagation(); setLightbox('map') }}
+              >
+                <RouteMapSVG points={routePoints!} w={600} h={262} />
+              </div>
+            </div>
+          )}
+        </div>
+      )
+
+  // Bandet: siffrorna vänsterställda, etikett över värdet, utan ram runt raden.
+  const statsEl = band
+    ? statsRow.length > 0 && (
+      <div style={{ display: 'flex', flexWrap: 'wrap', columnGap: 22, rowGap: 6, padding: '10px 16px 0' }}>
+        {statsRow.map(s => (
+          <div key={s.label}>
+            <div style={{ fontSize: 11, color: 'var(--ink-muted, #54737f)', fontWeight: 500 }}>{s.label}</div>
+            <div style={{ fontSize: 19, fontWeight: 700, color: 'var(--ink, #162d3a)', lineHeight: 1.15, fontVariantNumeric: 'tabular-nums' }}>
+              {s.value}
+              {s.unit && (
+                <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink-muted, #54737f)', marginLeft: 2 }}>{s.unit}</span>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+    : statsRow.length > 0 && <div style={{
+        display: 'flex',
+        borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
+        borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
+        background: 'var(--stats-row-bg)',
+      }}>
+        {statsRow.map((s, i) => (
+          <div key={s.label} style={{
+            flex: 1,
+            padding: '12px 8px 11px',
+            textAlign: 'center',
+            borderLeft: i > 0 ? '1px solid var(--hairline, rgba(22,45,58,0.08))' : 'none',
+          }}>
+            <div style={{
+              fontSize: 22, fontWeight: 750,
+              color: s.value === '—' ? 'var(--ink-soft, #8ea7b1)' : 'var(--ink, #162d3a)',
+              lineHeight: 1, letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums',
+            }}>
+              {s.value}
+              {s.unit && s.value !== '—' && (
+                <span style={{ fontSize: 11, fontWeight: 500, color: 'var(--ink-muted, #6a8a96)', marginLeft: 2 }}>
+                  {s.unit}
+                </span>
+              )}
+            </div>
+            <div style={{
+              fontSize: 10.5, color: 'var(--ink-soft, #8ea7b1)', marginTop: 3,
+              fontWeight: 500, letterSpacing: '0.09em', textTransform: 'uppercase',
+            }}>
+              {s.label}
+            </div>
+          </div>
+        ))}
+      </div>
+
+  const captionEl = caption ? (
+        <div style={{ padding: band ? `${titel ? 4 : 10}px 16px 0` : '14px 22px 4px', fontSize: 14, color: 'var(--ink, #162d3a)', lineHeight: band ? 1.5 : 1.55 }}>
+          {!band && <><span style={{ fontWeight: 600 }}>{username}</span>{' '}</>}
+          <span>{renderMentions(captionTruncated)}</span>
+          {caption.length > MAX_CAPTION && (
+            <button
+              onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}
+              style={{
+                background: 'none', border: 'none', cursor: 'pointer',
+                fontSize: 13, color: 'var(--ink-muted, #6a8a96)', padding: '0 0 0 4px', fontWeight: 500,
+              }}
+            >
+              {expanded ? 'Visa mindre' : 'Visa mer'}
+            </button>
+          )}
+        </div>
+      ) : null
+
   return (
     <article
       onClick={() => router.push(`/tur/${trip.id}`)}
-      className="trip-card card-hover"
-      style={{
+      className={band ? 'trip-band' : 'trip-card card-hover'}
+      style={band ? {
+        background: 'var(--surface, #ffffff)',
+        overflow: 'hidden',
+        WebkitTapHighlightColor: 'transparent',
+        cursor: 'pointer',
+      } : {
         background: 'var(--surface, #ffffff)',
         borderRadius: 22,
         overflow: 'hidden',
@@ -307,7 +523,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       </Link>
 
       {/* ── 1. Header ── */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '16px 20px 14px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: band ? '14px 16px 0' : '16px 20px 14px' }}>
         <Link
           href={`/u/${encodeURIComponent(username)}`}
           onClick={e => e.stopPropagation()}
@@ -331,11 +547,11 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
           {/* Name + meta */}
           <div style={{ minWidth: 0 }}>
-            <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--ink, #162d3a)', lineHeight: 1.2 }}>
+            <div style={{ fontSize: band ? 14 : 15, fontWeight: 600, color: 'var(--ink, #162d3a)', lineHeight: 1.2 }}>
               {username}
             </div>
             <div style={{
-              fontSize: 12.5, color: 'var(--ink-muted, #6a8a96)', marginTop: 2, fontWeight: 500,
+              fontSize: band ? 12 : 12.5, color: 'var(--ink-muted, #6a8a96)', marginTop: 2, fontWeight: 500,
               display: 'flex', alignItems: 'center', gap: 5,
               overflow: 'hidden', whiteSpace: 'nowrap',
             }}>
@@ -349,7 +565,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
                   </span>
                 </>
               )}
-              {trip.location_name && (
+              {trip.location_name && !band && (
                 <>
                   <span style={{ opacity: 0.35, flexShrink: 0 }}>·</span>
                   {/* minWidth 0 + en egen textspann: annars klipps namnet tvärt utan
@@ -403,186 +619,13 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
 
       </div>
 
-      {/* ── 2. Media (foto + karta) ── */}
-      {hasMedia && (
-        <div>
-          {hasPhoto && hasRoute ? (
-            /* 50/50 grid med padding och rundade inre hörn */
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: 3,
-              padding: '0 16px',
-              marginBottom: 12,
-            }}>
-              <div
-                style={{
-                  aspectRatio: '1/1',
-                  borderRadius: '14px 4px 4px 14px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  background: 'var(--teal-12)',
-                  cursor: 'zoom-in',
-                }}
-                onClick={e => { e.stopPropagation(); setLightbox('photo') }}
-              >
-                {allPhotos.length > 1 ? (
-                  <PhotoCarousel
-                    photos={allPhotos}
-                    alt={trip.location_name ?? `Tur av ${username}`}
-                    priority={priority}
-                    onError={i => setPhotoErrors(prev => new Set([...prev, i]))}
-                    idx={photoIdx}
-                    onIdxChange={setPhotoIdx}
-                    sizes="(max-width: 640px) 50vw, 320px"
-                  />
-                ) : isNextImageSafe(allPhotos[0]!) ? (
-                  <Image
-                    src={allPhotos[0]!}
-                    alt={trip.location_name ?? `Tur av ${username}`}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 50vw, 320px"
-                    priority={priority}
-                    onError={() => setImgErr(true)}
-                  />
-                ) : (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={allPhotos[0]!}
-                    alt={trip.location_name ?? `Tur av ${username}`}
-                    loading={priority ? 'eager' : 'lazy'}
-                    decoding="async"
-                    onError={() => setImgErr(true)}
-                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                  />
-                )}
-              </div>
-              <div
-                style={{
-                  aspectRatio: '1/1',
-                  borderRadius: '4px 14px 14px 4px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  background: 'var(--map-preview-bg)',
-                  cursor: 'zoom-in',
-                }}
-                onClick={e => { e.stopPropagation(); setLightbox('map') }}
-              >
-                <RouteMapSVG points={routePoints!} w={300} h={300} />
-              </div>
-            </div>
-          ) : hasPhoto ? (
-            /* Foto(n) — karusell eller enskilt 4:3 */
-            <div
-              style={{ position: 'relative', width: '100%', aspectRatio: '4/3', background: 'var(--teal-12)', overflow: 'hidden', cursor: 'zoom-in' }}
-              onClick={e => { e.stopPropagation(); setLightbox('photo') }}
-            >
-              {allPhotos.length > 1 ? (
-                <PhotoCarousel
-                  photos={allPhotos}
-                  alt={trip.location_name ?? `Tur av ${username}`}
-                  priority={priority}
-                  onError={i => setPhotoErrors(prev => new Set([...prev, i]))}
-                  idx={photoIdx}
-                  onIdxChange={setPhotoIdx}
-                  sizes="(max-width: 640px) 100vw, 640px"
-                />
-              ) : isNextImageSafe(allPhotos[0]!) ? (
-                <Image
-                  src={allPhotos[0]!}
-                  alt={trip.location_name ?? `Tur av ${username}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 100vw, 640px"
-                  priority={priority}
-                  onError={() => setImgErr(true)}
-                />
-              ) : (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                  src={allPhotos[0]!}
-                  alt={trip.location_name ?? `Tur av ${username}`}
-                  loading={priority ? 'eager' : 'lazy'}
-                  decoding="async"
-                  onError={() => setImgErr(true)}
-                  style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              )}
-            </div>
-          ) : (
-            /* Bara rutt */
-            <div style={{ padding: '0 16px', marginBottom: 12 }}>
-              <div
-                style={{ position: 'relative', width: '100%', aspectRatio: '16/7', borderRadius: 14, overflow: 'hidden', background: 'var(--map-preview-bg)', cursor: 'zoom-in' }}
-                onClick={e => { e.stopPropagation(); setLightbox('map') }}
-              >
-                <RouteMapSVG points={routePoints!} w={600} h={262} />
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ── 3. Stats row ── */}
-      {statsRow.length > 0 && <div style={{
-        display: 'flex',
-        borderTop: '1px solid var(--hairline, rgba(22,45,58,0.08))',
-        borderBottom: '1px solid var(--hairline, rgba(22,45,58,0.08))',
-        background: 'var(--stats-row-bg)',
-      }}>
-        {statsRow.map((s, i) => (
-          <div key={s.label} style={{
-            flex: 1,
-            padding: '12px 8px 11px',
-            textAlign: 'center',
-            borderLeft: i > 0 ? '1px solid var(--hairline, rgba(22,45,58,0.08))' : 'none',
-          }}>
-            <div style={{
-              fontSize: 22, fontWeight: 750,
-              color: s.value === '—' ? 'var(--ink-soft, #8ea7b1)' : 'var(--ink, #162d3a)',
-              lineHeight: 1, letterSpacing: '-0.02em', fontVariantNumeric: 'tabular-nums',
-            }}>
-              {s.value}
-              {s.unit && s.value !== '—' && (
-                <span style={{ fontSize: 11, fontWeight: 500, color: 'var(--ink-muted, #6a8a96)', marginLeft: 2 }}>
-                  {s.unit}
-                </span>
-              )}
-            </div>
-            <div style={{
-              fontSize: 10.5, color: 'var(--ink-soft, #8ea7b1)', marginTop: 3,
-              fontWeight: 500, letterSpacing: '0.09em', textTransform: 'uppercase',
-            }}>
-              {s.label}
-            </div>
-          </div>
-        ))}
-      </div>}
-
-      {/* ── 4. Caption ── */}
-      {caption ? (
-        <div style={{ padding: '14px 22px 4px', fontSize: 14, color: 'var(--ink, #162d3a)', lineHeight: 1.55 }}>
-          <span style={{ fontWeight: 600 }}>{username}</span>
-          {' '}
-          <span>{renderMentions(captionTruncated)}</span>
-          {caption.length > MAX_CAPTION && (
-            <button
-              onClick={e => { e.stopPropagation(); setExpanded(v => !v) }}
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                fontSize: 13, color: 'var(--ink-muted, #6a8a96)', padding: '0 0 0 4px', fontWeight: 500,
-              }}
-            >
-              {expanded ? 'Visa mindre' : 'Visa mer'}
-            </button>
-          )}
-        </div>
-      ) : null}
+      {band
+        ? <>{titelEl}{captionEl}{statsEl}{mediaEl}</>
+        : <>{mediaEl}{statsEl}{captionEl}</>}
 
       {/* ── 5. Actions ── */}
-      <div onClick={e => e.stopPropagation()} style={{ padding: '12px 22px 16px' }}>
-        <div style={{ display: 'flex', gap: 20, alignItems: 'center' }}>
+      <div onClick={e => e.stopPropagation()} style={{ padding: band ? '10px 16px 12px' : '12px 22px 16px' }}>
+        <div style={{ display: 'flex', gap: band ? 18 : 20, alignItems: 'center' }}>
           <LikeButton
             tripId={trip.id}
             initialCount={trip.likes_count}
@@ -619,7 +662,7 @@ export default function TripCard({ trip, priority = false }: { trip: Trip; prior
       {trip.tagged_users && trip.tagged_users.length > 0 && (
         <div
           onClick={e => e.stopPropagation()}
-          style={{ padding: '0 22px 14px', fontSize: 12.5, color: 'var(--ink-muted, #6a8a96)', display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}
+          style={{ padding: band ? '0 16px 12px' : '0 22px 14px', fontSize: 12.5, color: 'var(--ink-muted, #6a8a96)', display: 'flex', alignItems: 'center', gap: 5, flexWrap: 'wrap' }}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} style={{ width: 13, height: 13, flexShrink: 0, opacity: 0.6 }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
