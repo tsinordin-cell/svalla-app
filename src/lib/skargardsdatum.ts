@@ -264,6 +264,98 @@ export const SKARGARDSDATUM: Skargardsdatum[] = [
     regel: 'Fristående skolor kan ha andra datum.',
     lank: { href: '/guider/jul-skargarden', text: 'Jul i skärgården' },
   },
+  // ---- Evenemang, runda 2 (Max 2026-11-27: "stora konserter, festivaler"). Granskade av tre granskare. ----
+  // KÄLLA: https://www.medeltidsveckan.se/jul/ — "Välkommen till en historisk julstämning i S:t Nicolai ruin 4-6 december 2026." (läst 2026-11-27)
+  {
+    iso: '2026-12-04', slut: '2026-12-06', nar: '4 till 6 december 2026', vad: 'Medeltida julmarknad i S:t Nicolai ruin i Visby',
+    kort: 'Medeltida julmarknad i Visby',
+    regel: 'Arrangeras av Medeltidsveckan.',
+    lank: { href: '/gotland', text: 'Gotland' },
+  },
+  // KÄLLA: https://www.utovardshus.se/julbord/ — "Julbord 2026 … 27 november – 19 december"; https://www.stromma.com/sv-se/stockholm/julbord/jul-pa-kastellet/ — "Eftermiddagssittning … 26 november - 22 december, 2026", "Kvällssittning … 25 november - 21 december, 2026", "vissa datum blir snabbt fullbokade"; https://www.sandhamn.com/sv/kalender/julbord — "Julbord 2026: 26 november – 24 december", "v. 52: 24 december (julafton)" (läst 2026-11-27)
+  {
+    iso: '2026-12-19', slut: '2026-12-24', nar: '19 till 24 december 2026', vad: 'Sista julborden på Utö, Vaxholms Kastell och Sandhamn',
+    kort: 'Sista julborden i skärgården',
+    regel: 'Utö Värdshus serverar till 19 december, Vaxholms Kastell till 22 december (kvällssittning till 21 december) och Sandhamn Seglarhotell till julafton. Boka i förväg.',
+    lank: { href: '/guider/julbord-skargarden', text: 'Julbord i skärgården' },
+  },
+  // KÄLLA: https://paskonoland.nu/ — "Välkommen till Påskön på Öland 25-29 mars 2027!" (läst 2026-11-27)
+  {
+    iso: '2027-03-25', slut: '2027-03-29', nar: '25 till 29 mars 2027', vad: 'Påskön på Öland',
+    regel: 'Påskfirande över hela Öland med öppna gårdar och ateljéer.',
+    lank: { href: '/oland', text: 'Öland' },
+  },
+  // KÄLLA: https://olandspirar.nu/ — "Välkommen till Öland Spirar 14-16 maj 2027!", "Invigning torsdag 13 maj kl 18 i Årets Ölandsby." (läst 2026-11-27)
+  {
+    iso: '2027-05-14', slut: '2027-05-16', nar: '14 till 16 maj 2027', vad: 'Öland Spirar',
+    kort: 'Öland Spirar, vårhelg med öppna trädgårdar',
+    regel: 'Vårhelg med öppna trädgårdar och gårdar. Invigning torsdag 13 maj.',
+    lank: { href: '/oland', text: 'Öland' },
+  },
+  // KÄLLA: https://gotland.se/rg/almedalsveckan/det-har-ar-almedalsveckan/almedalsveckan-in-english — "In 2027, Almedalsveckan will be held in Visby from June 28 to July 2.", "Admission is free" (läst 2026-11-27)
+  {
+    iso: '2027-06-28', slut: '2027-07-02', nar: '28 juni till 2 juli 2027', vad: 'Almedalsveckan i Visby',
+    regel: 'Politisk mötesplats i Visby med fri entré.',
+    lank: { href: '/gotland', text: 'Gotland' },
+  },
+  // KÄLLA: https://gotlandrunt.se — "4 juli 2027 Sandhamn"; https://ksss.se/ssyr-2027/gotland-runt/ — "Gotland Runt Offshore Race 2-7 July"; Notice of Race publiceras 1 december 2026 (läst 2026-11-27). Kontrollera mot inbjudan efter 1 december.
+  {
+    iso: '2027-07-04', nar: '4 juli 2027', vad: 'Gotland Runt startar i Sandhamn',
+    regel: 'Arrangeras av KSSS. Inbjudan till seglingen publiceras 1 december 2026.',
+    lank: { href: '/o/sandhamn', text: 'Sandhamn' },
+  },
+  // KÄLLA: https://via.tt.se/pressmeddelande/4605433/gronwall-pa-stor-sommarturne-2027?publisherId=3237072 — "20 juli – Borgholm, Slottsruinen", Nöjet Konsert lokal arrangör (läst 2026-11-27)
+  {
+    iso: '2027-07-20', nar: '20 juli 2027', vad: 'Erik Grönwall i Borgholms slottsruin',
+    regel: 'Nöjet Konsert är lokal arrangör.',
+    lank: { href: '/oland', text: 'Öland' },
+  },
+  // KÄLLA: https://via.tt.se/pressmeddelande/4609626/the-cardigans-gor-comeback-pa-den-svenska-turnescenen-fem-exklusiva-konserter-sommaren-2027?publisherId=3237072 — "THE CARDIGANS – SOMMAREN 2027 … 29 juli – Borgholm, Slottsruinen" (läst 2026-11-27)
+  {
+    iso: '2027-07-29', nar: '29 juli 2027', vad: 'The Cardigans i Borgholms slottsruin',
+    regel: 'En av fem svenska sommarkonserter.',
+    lank: { href: '/oland', text: 'Öland' },
+  },
+  // KÄLLA: https://via.tt.se/pressmeddelande/4607089/erik-gronwall-tillbaka-till-naturscen-2027?publisherId=3237109 — "Den 30 juli står han på nytt på Naturscen Skuleberget som en del av en omfattande sommarturné 2027" (läst 2026-11-27)
+  {
+    iso: '2027-07-30', nar: '30 juli 2027', vad: 'Erik Grönwall på Naturscen Skuleberget i Höga kusten',
+    kort: 'Erik Grönwall vid Skuleberget i Höga kusten',
+    regel: 'En del av Grönwalls sommarturné 2027.',
+    lank: { href: '/guider/hoga-kusten-guide', text: 'Höga kusten' },
+  },
+  // KÄLLA: https://karlskronaskargardsfest.se/ — "Karlskrona Skärgårdsfest 3–8 augusti 2027"; https://karlskronaskargardsfest.se/program/roxette/ — "Tisdag 3 augusti 2027 … på Stora Scenen på Stortorget" (läst 2026-11-27)
+  {
+    iso: '2027-08-03', slut: '2027-08-08', nar: '3 till 8 augusti 2027', vad: 'Karlskrona Skärgårdsfest',
+    regel: 'Sex dagars stadsfest med musik, mat och skärgård. Roxette spelar på Stortorget 3 augusti.',
+    lank: { href: '/sasong/sommar', text: 'Skärgården på sommaren' },
+  },
+  // KÄLLA: https://www.hallberg-rassy.com/news/open-yard — "Open Boatyard/Öppet Varv in Ellös will take place 27-29 August 2027.", "Scandinavia's largest sailboat show" (läst 2026-11-27)
+  {
+    iso: '2027-08-27', slut: '2027-08-29', nar: '27 till 29 augusti 2027', vad: 'Öppet Varv hos Hallberg Rassy i Ellös på Orust',
+    kort: 'Öppet Varv i Ellös på Orust',
+    regel: 'Stor segelbåtsmässa i varvets hamn.',
+    lank: { href: '/o/orust', text: 'Orust' },
+  },
+  // KÄLLA: https://ostronakademien.se/ — "Ostronets Dag i Grebbestad firas numera alltid lördag v37! År 2027 blir det 18 september." (läst 2026-11-27)
+  {
+    iso: '2027-09-18', nar: '18 september 2027', vad: 'Ostronets dag i Grebbestad',
+    regel: 'Lördag vecka 37 varje år, enligt Ostronakademien.',
+    lank: { href: '/o/grebbestad', text: 'Grebbestad' },
+  },
+  // KÄLLA: https://skordefest.nu/ — "Välkommen till Ölands Skördefest 29/9 – 3/10 2027 då vi firar 30-årsjubiléum!", "Ölands Skördefest pågår 30/9 – 3/10 2027." (läst 2026-11-27)
+  {
+    iso: '2027-09-29', slut: '2027-10-03', nar: '29 september till 3 oktober 2027', vad: 'Ölands Skördefest fyller 30 år',
+    kort: 'Ölands Skördefest',
+    regel: 'Invigning 29 september, festen pågår 30 september till 3 oktober.',
+    lank: { href: '/oland', text: 'Öland' },
+  },
+  // KÄLLA: https://www.utovardshus.se/oppettider/ — "Öppet alla dagar från 30 april till 3 oktober 2027." (läst 2026-11-27)
+  {
+    iso: '2027-04-30', slut: '2027-10-03', nar: '30 april till 3 oktober 2027', vad: 'Utö Vandrarhem har öppet alla dagar',
+    kort: 'Utö Vandrarhem öppnar för säsongen',
+    regel: 'Säsongen enligt Utö Värdshus.',
+    lank: { href: '/o/uto', text: 'Utö' },
+  },
 ]
 
 const MAN_KORT = ['jan', 'feb', 'mars', 'april', 'maj', 'juni', 'juli', 'aug', 'sep', 'okt', 'nov', 'dec']
