@@ -5,8 +5,8 @@
  * ett eget `openGraph`-objekt. Sidor som satte titel och beskrivning men inte
  * `images` saknade därför og:image helt (mätt 2026-11-19: /karta, /oar,
  * /guider, /om, /krogar-och-mat m.fl.), och WhatsApp, Facebook och iMessage
- * visade länken utan bild. Bilden är src/app/opengraph-image.tsx, i samma
- * mall som alla andra delningsbilder (src/app/api/og/_mall/kort.tsx).
+ * visade länken utan bild. Bilden är src/app/opengraph-image.tsx (sedan
+ * 2026-11-28 i startsidans stil, inte i den mörka gemensamma mallen).
  *
  * Sidor med en egen bild (tur, ö, plats, guide, forum, rutt …) ska inte
  * använda den här.
