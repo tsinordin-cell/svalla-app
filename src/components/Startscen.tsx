@@ -836,9 +836,11 @@ export default function Intro({ efter, varld = false, dygn }: { efter?: () => vo
 
   if (!stod) {
     return (
-      <div className="ki-scen ki-reserv" ref={scen}>
+      // Reservvyn när WebGL2 saknas: samma stil och samma himmel som scenen, annars blir ytan tom (2026-11-27)
+      <div className={'ki-scen ki-reserv' + (varld ? ' ki-scen-varld ki-tid-' + tidNu : '')} ref={scen}>
         <div className="ki-reserv-hav" />
         <p>Svalla · Skärgården börjar här</p>
+        <style>{CSS}</style>
       </div>
     )
   }
