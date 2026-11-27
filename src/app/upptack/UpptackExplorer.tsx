@@ -857,6 +857,21 @@ export default function UpptackExplorer() {
     return () => ro.disconnect()
   }, [])
 
+  // 2026-11-27 (Tom): regionraden ska glida in under kategoriknappen, utan
+  // glapp och utan toning. Raden sträcker sig därför in bakom knappen, och
+  // knappens bredd mäts så att "Alla" orullad står där den alltid stått.
+  const filterRowRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const rad = filterRowRef.current
+    const knapp = rad?.querySelector<HTMLElement>('.upx-fdd')
+    if (!rad || !knapp || typeof ResizeObserver === 'undefined') return
+    const satt = () => rad.style.setProperty('--upx-fdd-w', `${knapp.getBoundingClientRect().width}px`)
+    satt()
+    const ro = new ResizeObserver(satt)
+    ro.observe(knapp)
+    return () => ro.disconnect()
+  }, [])
+
   // ── Render ──────────────────────────────────────────────────────────────
   return (
     <div className="upx-shell" ref={shellRef}>
@@ -870,7 +885,7 @@ export default function UpptackExplorer() {
         {/* En rad (2026-11-23, mer karta): kategorifiltret först, regionerna
             scrollar bredvid. Filtret ligger utanför den scrollande raden så att
             dess meny inte klipps. */}
-        <div className="upx-filterrow">
+        <div className="upx-filterrow" ref={filterRowRef}>
         <FilterDropdown
           chips={FILTER_CHIPS}
           counts={categoryCounts}
@@ -1167,8 +1182,21 @@ export default function UpptackExplorer() {
         .upx-filterrow .upx-regions-bar {
           flex: 1;
           min-width: 0;
-          margin: 0 -18px 0 0;
-          padding-left: 0;
+          /* Raden sträcker sig in bakom kategoriknappen (Tom 2026-11-27), så
+             att namnen försvinner under knappen utan glapp och utan toning.
+             --upx-fdd-w är knappens uppmätta bredd. Orullad står "Alla" som
+             förut, 8 px från knappen. Utan mätning blir det som en vanlig
+             klippning vid knappens kant. Knappen ligger ovanpå eftersom den
+             är positionerad och raden inte är det. */
+          margin: 0 -18px 0 calc(-1 * var(--upx-fdd-w, 0px) - 8px);
+          padding-left: calc(var(--upx-fdd-w, 0px) + 8px);
+          scroll-padding-left: calc(var(--upx-fdd-w, 0px) + 8px);
+        }
+        /* Täcker det som rullar in bakom knappen. Samma färg som rubrikytan,
+           så knappen ser ut som i dag även när den är tonad (hover, filter).
+           Rak, inte rundad: annars tittar raden fram i knappens hörn. */
+        .upx-filterrow .upx-fdd {
+          background: var(--white, #fff);
         }
         /* Region-toggle pills — horisontell scroll-bar bredvid kategori-filtret */
         .upx-regions-bar {
