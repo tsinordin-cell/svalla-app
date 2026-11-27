@@ -18,7 +18,7 @@ import { hamtaLeaflet } from '@/app/upptack/leaflet'
 import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
 import SnabbSok, { hamtaSokindex, type Post } from './SnabbSok'
 import { platsKategori } from '@/lib/platskategori'
-import { pinHtml, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
+import { pinHtml, pinMiniSvg, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
 
 type Poi = { id: string; name: string; latitude: number; longitude: number; type: string | null; categories: string[] | null; description: string | null; image_url: string | null; slug: string | null; island: string | null }
 type Kat = 'o' | 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'annat'
@@ -27,26 +27,25 @@ type Punkt = { id: string; namn: string; lat: number; lng: number; kat: Kat; und
 /** Samma indelning som /upptack (src/lib/platskategori.ts), plus öarna. */
 const kategori = (p: Poi): Kat => platsKategori(p)
 
-const KAT: Record<Kat, { namn: string; farg: string; ikon: string }> = {
-  o:         { namn: 'Öar',         farg: '#1e5c82', ikon: '<path d="M2 19h20"/><path d="M4 19c1-4 4-7 8-7s7 3 8 7"/><path d="M12 12V5"/><path d="M12 5c-2-1-4-.5-5 1 2-.5 3.5 0 5 1 1.5-1 3-1.5 5-1-1-1.5-3-2-5-1Z"/>' },
-  krog:      { namn: 'Krogar och caféer', farg: '#c96e2a', ikon: '<path d="M3 2v7c0 1.1.9 2 2 2h0a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>' },
-  butik:     { namn: 'Butiker',     farg: '#b42318', ikon: '<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>' },
-  hamn:      { namn: 'Gästhamnar',  farg: '#1d4ed8', ikon: '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>' },
-  naturhamn: { namn: 'Naturhamnar', farg: '#0a7b3c', ikon: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>' },
-  boende:    { namn: 'Boende',      farg: '#6d28d9', ikon: '<path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 16h20"/><path d="M2 12h20"/><circle cx="7" cy="10" r="2"/><path d="M9 12h11v-2H9"/>' },
-  bad:       { namn: 'Bad',         farg: '#0a7b8c', ikon: '<path d="M22 12a10 10 0 0 0-20 0"/><path d="M12 12V2"/><path d="M2 12h20"/><path d="M2 18c.5.4 1 .8 2.5.8s1.5-.8 3-.8 1.5.8 3 .8 1.5-.8 3-.8 1.5.8 3 .8 2-.4 2.5-.8"/>' },
-  bastu:     { namn: 'Bastu',       farg: '#9d174d', ikon: '<path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>' },
-  bensin:    { namn: 'Sjömackar',   farg: '#525252', ikon: '<line x1="3" x2="15" y1="22" y2="22"/><line x1="4" x2="14" y1="9" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>' },
-  annat:     { namn: 'Övrigt',      farg: '#0891b2', ikon: '<path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>' },
+const KAT: Record<Kat, { namn: string }> = {
+  o:         { namn: 'Öar' },
+  krog:      { namn: 'Krogar och caféer' },
+  butik:     { namn: 'Butiker' },
+  hamn:      { namn: 'Gästhamnar' },
+  naturhamn: { namn: 'Naturhamnar' },
+  boende:    { namn: 'Boende' },
+  bad:       { namn: 'Bad' },
+  bastu:     { namn: 'Bastu' },
+  bensin:    { namn: 'Sjömackar' },
+  annat:     { namn: 'Övrigt' },
 }
 const ORDNING: Kat[] = ['o', 'krog', 'butik', 'hamn', 'naturhamn', 'boende', 'bad', 'bastu', 'bensin', 'annat']
 
 const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!))
-const ikonSvg = (k: Kat, farg: string, storlek: number) =>
-  `<svg width="${storlek}" height="${storlek}" viewBox="0 0 24 24" fill="none" stroke="${farg}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${KAT[k].ikon}</svg>`
 
 // Nålarna ritas av src/lib/kartnal.ts, samma formfamiljer som Utforska.
-// KAT ovan styr bara förklaringen under kartan och popupens text.
+// Förklaringen i panelen visar samma nålar i liten storlek (pinMiniSvg).
+// KAT ovan styr bara namnen i förklaringen och popupens text.
 
 type LeafletNS = Awaited<ReturnType<typeof hamtaLeaflet>>
 type Karta = ReturnType<LeafletNS['map']>
@@ -185,7 +184,7 @@ export default function StartKarta() {
             <div className="skn-linje" />
             {ORDNING.filter(k => (antal.get(k) ?? 0) > 0).map(k => (
               <button key={k} type="button" role="radio" aria-checked={vald === k} className={vald === k ? 'pa' : undefined} onClick={() => setVald(k)}>
-                <span className="skn-prick" style={{ borderColor: KAT[k].farg }} aria-hidden="true" dangerouslySetInnerHTML={{ __html: ikonSvg(k, KAT[k].farg, 13) }} />
+                <span className="skn-nal" aria-hidden="true" dangerouslySetInnerHTML={{ __html: pinMiniSvg(k, 22) }} />
                 <span className="skn-namn">{KAT[k].namn}</span><span className="skn-antal">{antal.get(k)}</span>
               </button>
             ))}
@@ -223,6 +222,7 @@ const SKN_CSS = `
 .skn-lista button:hover{background:rgba(255,255,255,.07)}
 .skn-lista button.pa{background:rgba(255,255,255,.14);font-weight:700}
 .skn-prick{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#fff;border:2px solid #fff}
+.skn-nal{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px}
 .skn-alla{background:conic-gradient(#1e5c82 0 25%,#c96e2a 0 50%,#0a7b3c 0 75%,#6d28d9 0)}
 .skn-namn{flex:1;min-width:0}
 .skn-antal{font-variant-numeric:tabular-nums;color:#c9d2d8;font-size:12.5px}

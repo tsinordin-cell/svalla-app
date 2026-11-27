@@ -64,3 +64,11 @@ export function pinHtml(cat: KartnalKategori, isActive = false): string {
     </div>
   `
 }
+
+/** Nålen i liten storlek, utan skugga, för förklaringen på startsidans karta. */
+export function pinMiniSvg(cat: KartnalKategori, hojd: number): string {
+  const { color, form, icon } = PIN_META[cat]
+  const [tx, ty, sc] = PIN_ICON_POS[form]
+  const bredd = Math.round((hojd * PIN_SIZE[0]) / PIN_SIZE[1] * 10) / 10
+  return `<svg width="${bredd}" height="${hojd}" viewBox="0 0 ${PIN_SIZE[0]} ${PIN_SIZE[1]}" overflow="visible" xmlns="http://www.w3.org/2000/svg"><path d="${PIN_PATHS[form]}" fill="${color}" stroke="#fff" stroke-width="2"/><g transform="translate(${tx} ${ty}) scale(${sc})" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">${icon}</g></svg>`
+}
