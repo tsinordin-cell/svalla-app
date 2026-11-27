@@ -78,6 +78,9 @@ export async function POST(request: Request) {
     })(),
     user_id: user?.id ?? null,
     confirmed: verifierad,
+    // Bekräftelsedatum (2026-11-27): sätts samtidigt som confirmed, annars
+    // går andelen som bekräftar inte att följa över tid.
+    confirmed_at: verifierad ? new Date().toISOString() : null,
   }).select('id')
 
   const isDuplicate = error?.message?.toLowerCase().includes('duplicate')
@@ -120,7 +123,7 @@ export async function POST(request: Request) {
   // Inloggad med bekräftad adress och en obekräftad rad: bekräfta direkt.
   if (befintlig && vantarPaBekraftelse && verifierad) {
     await service.from('email_subscribers')
-      .update({ confirmed: true, user_id: user?.id ?? null })
+      .update({ confirmed: true, confirmed_at: new Date().toISOString(), user_id: user?.id ?? null })
       .eq('id', befintlig.id)
   }
 

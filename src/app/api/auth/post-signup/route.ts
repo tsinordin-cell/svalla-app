@@ -49,7 +49,7 @@ export async function POST(_req: NextRequest) {
       const service = getAdminClient()
       const { data: rader } = await service
         .from('email_subscribers')
-        .update({ confirmed: true, user_id: user.id })
+        .update({ confirmed: true, confirmed_at: new Date().toISOString(), user_id: user.id })
         .eq('email', user.email.toLowerCase())
         .eq('source', 'registrering')
         .eq('confirmed', false)
