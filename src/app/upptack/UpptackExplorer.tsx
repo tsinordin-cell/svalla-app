@@ -32,6 +32,7 @@ import { STANDARD_VADERPUNKT } from '@/lib/weatherGrid'
 import { samladVaderpunkt } from '@/lib/samladVaderpunkt'
 import { track } from '@/lib/analytics-events'
 import { platsKategori, type PlatsKategori } from '@/lib/platskategori'
+import { pinHtml, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
 
 // ── Types ────────────────────────────────────────────────────────────────
 interface Poi {
@@ -97,6 +98,9 @@ const CATEGORY_ICONS: Record<Category, string> = {
   annat:     '<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>',
 }
 
+// Kartnålarna (formfamiljer) ligger i src/lib/kartnal.ts och delas med
+// startsidans karta och minikartan på platssidan.
+
 const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
   { id: 'all',       label: 'Allt' },
   { id: 'krog',      label: 'Krogar' },
@@ -149,33 +153,9 @@ const REGION_CONFIG = {
   },
 } as const satisfies Record<RegionKey, { label: string; center: readonly [number, number]; zoom: number; archRegions: readonly string[] }>
 
-// ── Premium-pin (SVG som divIcon) ────────────────────────────────────────
-// Pin 36×44 — färgad droppe med Lucide-ikon i vit cirkel (r=10).
-// Större än standard så ikonen får andas och syns tydligt på avstånd.
-// Path för droppen är handritad bezier för en perfekt avsmalnande pärla,
-// inte en geometrisk gurka.
-function pinHtml(color: string, iconSvg: string, isActive = false): string {
-  const scale = isActive ? 1.2 : 1
-  const ring = isActive
-    ? `<circle cx="18" cy="18" r="17" fill="none" stroke="${color}" stroke-width="2.4" opacity="0.35"/>`
-    : ''
-  // Lucide-ikoner har viewBox 24×24, center vid (12,12).
-  // Vi placerar dem centrerat vid (18,15) i pin med scale 0.83 → ikonen
-  // hamnar exakt i mitten av den vita cirkeln med liten luft runt.
-  return `
-    <div style="transform:scale(${scale});transform-origin:center bottom;transition:transform .18s ease;filter:drop-shadow(0 4px 8px rgba(10,30,50,0.35))">
-      <svg width="36" height="44" viewBox="0 0 36 44" xmlns="http://www.w3.org/2000/svg">
-        ${ring}
-        <path d="M18 1 C8.6 1 1 8.6 1 18 C1 27 18 43 18 43 C18 43 35 27 35 18 C35 8.6 27.4 1 18 1 Z" fill="${color}" stroke="rgba(255,255,255,0.9)" stroke-width="1.5"/>
-        <circle cx="18" cy="15" r="10" fill="#fff"/>
-        <g transform="translate(8 5) scale(0.83)" stroke="${color}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          ${iconSvg}
-        </g>
-      </svg>
-    </div>
-  `
-}
-
+// ── Kartnål (SVG som divIcon) ────────────────────────────────────────────
+// 32×40, fylld form i kategorins färg med vit ikon direkt på färgen och
+// vit kant. Aktiv nål (hover i listan) förstoras och får en halo i samma form.
 // ── Initial map view (Stockholms skärgård som default) ───────────────────
 // Samma punkt som flödets väderrad använder utan GPS (STANDARD_VADERPUNKT).
 const INITIAL_CENTER: [number, number] = [STANDARD_VADERPUNKT.lat, STANDARD_VADERPUNKT.lng]
@@ -614,13 +594,12 @@ export default function UpptackExplorer() {
 
       const newMarkers = visiblePois.map(p => {
         const cat = categorize(p)
-        const color = CATEGORY_META[cat].color
         const icon = L.divIcon({
-          html: pinHtml(color, CATEGORY_ICONS[cat], false),
+          html: pinHtml(cat, false),
           className: 'svalla-pin',
-          iconSize: [36, 44],
-          iconAnchor: [18, 43],
-          popupAnchor: [0, -40],
+          iconSize: PIN_SIZE,
+          iconAnchor: PIN_ANCHOR,
+          popupAnchor: [0, -36],
         })
         const m = L.marker([p.latitude, p.longitude], { icon })
         // revision 2026-10-02: Leaflet gör nålen till role="button" med tabindex
@@ -743,10 +722,10 @@ export default function UpptackExplorer() {
         if (m?._poi && m.setIcon) {
           const cat = categorize(m._poi)
           m.setIcon(L.divIcon({
-            html: pinHtml(CATEGORY_META[cat].color, CATEGORY_ICONS[cat], false),
+            html: pinHtml(cat, false),
             className: 'svalla-pin',
-            iconSize: [32, 40],
-            iconAnchor: [16, 40],
+            iconSize: PIN_SIZE,
+            iconAnchor: PIN_ANCHOR,
             popupAnchor: [0, -36],
           }))
         }
@@ -757,10 +736,10 @@ export default function UpptackExplorer() {
         if (m?._poi && m.setIcon) {
           const cat = categorize(m._poi)
           m.setIcon(L.divIcon({
-            html: pinHtml(CATEGORY_META[cat].color, CATEGORY_ICONS[cat], true),
+            html: pinHtml(cat, true),
             className: 'svalla-pin svalla-pin-active',
-            iconSize: [32, 40],
-            iconAnchor: [16, 40],
+            iconSize: PIN_SIZE,
+            iconAnchor: PIN_ANCHOR,
             popupAnchor: [0, -36],
           }))
         }
