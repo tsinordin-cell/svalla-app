@@ -119,7 +119,7 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
           fontSize: 10, fontWeight: 700, color: 'var(--sea)',
           textTransform: 'uppercase', letterSpacing: '0.7px',
         }}>
-          {variant === 'lista' ? 'Seglare att följa' : 'Föreslagna att följa'}
+          {variant === 'lista' ? 'Personer att följa' : 'Föreslagna att följa'}
         </span>
         <button
           onClick={() => setHidden(true)}
