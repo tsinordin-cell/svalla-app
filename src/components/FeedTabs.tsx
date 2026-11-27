@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
+import { Fragment, useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
 import Link from 'next/link'
 import { Sparkles } from '@/components/icons/LucideIcons'
 import TripCard from '@/components/TripCard'
@@ -100,6 +100,8 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
     return (Number.isFinite(bMs) ? bMs : 0) - (Number.isFinite(aMs) ? aMs : 0)
   })
   const trips   = sorted.slice(0, visible)
+  // Förslagen syns som förut bara för inloggade utan turer från folk de följer.
+  const visaForslag = isLoggedIn && followingTrips.length === 0
   const hasMore = visible < sorted.length
 
   // Infinite scroll via IntersectionObserver
@@ -219,7 +221,9 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
       {/* ── Discovery — seglare att följa, visas om inloggad men följer ingen ── */}
       {/* .feed-suggested-mobile döljs vid ≥1280px där sidopanelen visar samma lista
           (granskningen 2026-11-22: listan syntes två gånger på desktop). */}
-      {!initialLoad && isLoggedIn && followingTrips.length === 0 && (
+      {/* 2026-11-27: förslagen ligger efter andra inlägget i bandet (se nedan).
+          Ovanför listan bara när listan är tom. Villkoret för vem som ser dem är oförändrat. */}
+      {!initialLoad && visaForslag && trips.length === 0 && (
         <div className="feed-suggested-mobile"><SuggestedUsers /></div>
       )}
 
@@ -244,7 +248,17 @@ export default function FeedTabs({ allTrips, followingTrips, isLoggedIn }: { all
             )
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-              {trips.map((trip, idx) => <TripCard key={trip.id} trip={trip} priority={idx === 0} />)}
+              {/* Loggbok i band (2026-11-27): inläggen kant i kant med en smal sandrand emellan. */}
+              <div className="flode-band">
+                {trips.map((trip, idx) => (
+                  <Fragment key={trip.id}>
+                    <TripCard trip={trip} priority={idx === 0} variant="band" />
+                    {visaForslag && idx === Math.min(1, trips.length - 1) && (
+                      <div className="feed-suggested-mobile"><SuggestedUsers iBand /></div>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
 
               {/* Infinite scroll sentinel */}
               <div ref={sentinelRef} style={{ height: 1 }} />

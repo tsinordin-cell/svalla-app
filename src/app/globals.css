@@ -1598,6 +1598,20 @@ img {
 /* Hitta seglare i main column — synlig på mobil/tablet */
 .feed-suggested-mobile { display: block; }
 
+/* Loggbok i band (2026-11-27, förhandsvisning): inläggen i flödet går kant i kant
+   med en smal sandrand emellan. Bara .flode-band i FeedTabs använder färgen. På
+   mobil går bandet ut över kolumnens 16 px marginal, på bredare skärmar fyller det kolumnen. */
+.flode-band {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #ebe3d4;
+}
+[data-theme="dark"] .flode-band { background: #04090f; }
+@media (max-width: 671px) {
+  .flode-band { margin-left: -16px; margin-right: -16px; }
+}
+
 /* Feed header logo — dold på desktop (finns i sidebaren) */
 @media (min-width: 1024px) {
   .feed-header-logo { display: none; }

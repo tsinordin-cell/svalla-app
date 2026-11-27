@@ -5,7 +5,9 @@ import { createClient } from '@/lib/supabase'
 import { toast } from '@/components/Toast'
 import { track } from '@/lib/analytics-events'
 
-export default function FollowButton({ targetUserId, darkBg = false, hideCount = false, stacked = false }: { targetUserId: string; darkBg?: boolean; hideCount?: boolean; stacked?: boolean }) {
+// platt (2026-11-27, förslagskorten i flödet): knappen över hela bredden, raka
+// hörn (8 px), ingen skugga och inget antal följare.
+export default function FollowButton({ targetUserId, darkBg = false, hideCount = false, stacked = false, platt = false }: { targetUserId: string; darkBg?: boolean; hideCount?: boolean; stacked?: boolean; platt?: boolean }) {
  const supabase = useRef(createClient()).current
  const [myId, setMyId] = useState<string | null>(null)
  const [following, setFollowing] = useState(false)
@@ -67,7 +69,9 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  return (
  // stacked: knappen över hela bredden och antalet under, för smala kort där
  // "1 följare" annars bröts på två rader bredvid knappen (granskningen 2026-11-23).
- <div style={stacked
+ <div style={platt
+ ? { width: '100%' }
+ : stacked
  ? { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, width: '100%' }
  : { display: 'flex', alignItems: 'center', gap: 10 }}>
  <button
@@ -76,7 +80,14 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  aria-label={following ? 'Sluta följa' : 'Följ'}
  aria-pressed={following}
  className="press-feedback"
- style={{
+ style={platt ? {
+ padding: '7px 0', borderRadius: 8, cursor: myId ? 'pointer' : 'default',
+ width: '100%', fontSize: 14, fontWeight: 700, transition: 'all .15s',
+ ...(following
+ ? { background: 'rgba(10,123,140,0.08)', border: '1.5px solid rgba(10,123,140,0.20)', color: 'var(--sea)', boxShadow: 'none' }
+ : { background: 'var(--sea-knapp)', border: '1.5px solid transparent', color: '#fff', boxShadow: 'none' }
+ ),
+ } : {
  padding: stacked ? '8px 12px' : '10px 24px', borderRadius: 20, cursor: myId ? 'pointer' : 'default',
  width: stacked ? '100%' : undefined,
  fontSize: 13, fontWeight: 700, transition: 'all .15s',
@@ -90,7 +101,7 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
  >
  {loading ? 'Laddar...' : following ? 'Följer' : 'Följ'}
  </button>
- {count > 0 && !hideCount && (
+ {count > 0 && !hideCount && !platt && (
  <span style={{
  fontSize: stacked ? 11 : 12, fontWeight: 600, whiteSpace: 'nowrap',
  color: darkBg ? 'rgba(255,255,255,0.75)' : 'var(--txt3)',

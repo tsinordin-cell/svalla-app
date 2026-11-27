@@ -16,6 +16,11 @@
  *
  * variant 'rad' (flödet): horisontell kortrad, max 5. variant 'lista' (/sok):
  * en lista med fler rader och Följ-knapp.
+ *
+ * 2026-11-27 (förhandsvisning, "S2"): korten i raden visar personens senaste
+ * publika tur, bilden överst och "plats · datum" under namnet. Saknas bild
+ * syns ett mönster; saknas tur syns skälet som förut. Vem som ser raden är
+ * oförändrat.
  */
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
@@ -31,11 +36,26 @@ type SuggestedUser = {
   tripCount: number
   recentCount: number
   orsak: string
+  foto: string | null
+  turRad: string | null
+}
+
+type SenasteTur = { user_id: string; image: string | null; images: string[] | null; location_name: string | null; created_at: string }
+
+function isNextImageSafe(url: string): boolean {
+  try {
+    const u = new URL(url)
+    return u.hostname.endsWith('.supabase.co') || u.hostname === 'images.unsplash.com'
+  } catch { return false }
+}
+
+function kortDatum(iso: string): string {
+  return new Date(iso).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }).replace('.', '')
 }
 
 const MAX_SUGGESTIONS = 5
 
-export default function SuggestedUsers({ variant = 'rad', max = variant === 'lista' ? 8 : MAX_SUGGESTIONS }: { variant?: 'rad' | 'lista'; max?: number } = {}) {
+export default function SuggestedUsers({ variant = 'rad', max = variant === 'lista' ? 8 : MAX_SUGGESTIONS, iBand = false }: { variant?: 'rad' | 'lista'; max?: number; iBand?: boolean } = {}) {
   const supabase    = useRef(createClient()).current
   const [users,   setUsers]   = useState<SuggestedUser[]>([])
   const [myId,    setMyId]    = useState<string | null>(null)
@@ -91,10 +111,33 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
           : ny ? 'Ny på Svalla'
           : hamn ? `Hemmahamn ${hamn}`
           : 'Finns på Svalla'
-        return { id: p.id, username: p.username, avatar: p.avatar ?? null, tripCount: total, recentCount: recent, score, orsak }
+        return { id: p.id, username: p.username, avatar: p.avatar ?? null, tripCount: total, recentCount: recent, score, orsak, foto: null as string | null, turRad: null as string | null }
       })
       .sort((a, b) => b.score - a.score || a.username.localeCompare(b.username, 'sv'))
       .slice(0, max)
+
+    // Kortraden: senaste publika turen per person, helst en med bild.
+    if (variant === 'rad' && scored.length > 0) {
+      const { data: turer } = await supabase
+        .from('trips')
+        .select('user_id, image, images, location_name, created_at')
+        .in('user_id', scored.map(u => u.id))
+        .eq('visibility', 'public')
+        .eq('status', 'done')
+        .is('deleted_at', null)
+        .order('created_at', { ascending: false })
+        .limit(200)
+      const perPerson: Record<string, SenasteTur[]> = {}
+      for (const t of (turer ?? []) as SenasteTur[]) (perPerson[t.user_id] ??= []).push(t)
+      for (const u of scored) {
+        const lista = perPerson[u.id] ?? []
+        const medBild = lista.find(t => t.image || (t.images ?? []).length > 0)
+        const tur = medBild ?? lista[0]
+        if (!tur) continue
+        u.foto = medBild ? (medBild.image || medBild.images![0]!) : null
+        u.turRad = [tur.location_name, kortDatum(tur.created_at)].filter(Boolean).join(' · ')
+      }
+    }
 
     setUsers(scored)
     setLoading(false)
@@ -111,6 +154,28 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
   const visible = users.filter(u => !dismissed.has(u.id))
   if (loading || visible.length === 0 || hidden) return null
 
+  if (variant === 'rad') {
+    return (
+      <div style={iBand
+        ? { background: 'var(--surface, #fffdf8)', padding: '12px 0 14px' }
+        : { background: 'var(--surface, #fffdf8)', padding: '12px 0 14px', borderRadius: 16, border: '1px solid var(--hairline)', marginBottom: 16 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 16px 10px' }}>
+          <span style={{ fontSize: 15, fontWeight: 700, color: 'var(--ink, #162d3a)' }}>Förslag till dig</span>
+          <Link href="/sok" style={{ fontSize: 14, fontWeight: 600, color: 'var(--sea)', textDecoration: 'none' }}>Se alla</Link>
+        </div>
+        <div className="forslag-rad" style={{
+          display: 'flex', gap: 10,
+          overflowX: 'auto', padding: '0 16px',
+          scrollbarWidth: 'none', msOverflowStyle: 'none',
+        } as React.CSSProperties}>
+          {visible.map(u => (
+            <SuggestedUserCard key={u.id} user={u} myId={myId} onDismiss={() => dismiss(u.id)} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div style={{ marginBottom: 16 }}>
       {/* Header */}
@@ -119,7 +184,7 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
           fontSize: 10, fontWeight: 700, color: 'var(--sea)',
           textTransform: 'uppercase', letterSpacing: '0.7px',
         }}>
-          {variant === 'lista' ? 'Personer att följa' : 'Föreslagna att följa'}
+          Personer att följa
         </span>
         <button
           onClick={() => setHidden(true)}
@@ -134,24 +199,11 @@ export default function SuggestedUsers({ variant = 'rad', max = variant === 'lis
         </button>
       </div>
 
-      {variant === 'lista' ? (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          {visible.map(u => (
-            <SuggestedUserRow key={u.id} user={u} myId={myId} />
-          ))}
-        </div>
-      ) : (
-        /* Horizontal scroll row */
-        <div style={{
-          display: 'flex', gap: 10,
-          overflowX: 'auto', paddingBottom: 4,
-          scrollbarWidth: 'none', msOverflowStyle: 'none',
-        } as React.CSSProperties}>
-          {visible.map(u => (
-            <SuggestedUserCard key={u.id} user={u} myId={myId} onDismiss={() => dismiss(u.id)} />
-          ))}
-        </div>
-      )}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {visible.map(u => (
+          <SuggestedUserRow key={u.id} user={u} myId={myId} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -196,36 +248,30 @@ function SuggestedUserRow({ user, myId }: { user: SuggestedUser; myId: string | 
 
 function SuggestedUserCard({ user, myId, onDismiss }: { user: SuggestedUser; myId: string | null; onDismiss: () => void }) {
   const grad = avatarGradient(user.username)
-  const activityLabel = user.orsak
+  const href = `/u/${encodeURIComponent(user.username)}`
 
   return (
     <div style={{
-      flexShrink: 0,
-      width: 136,
-      background: 'var(--card-bg, var(--white))',
-      borderRadius: 16,
-      boxShadow: '0 1px 8px rgba(0,30,50,0.07)',
-      border: '1px solid var(--border)',
-      padding: '14px 10px 12px',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      gap: 7,
+      flex: '0 0 168px',
+      background: 'var(--surface, #fffdf8)',
+      borderRadius: 12,
+      border: '1px solid var(--hairline)',
+      overflow: 'hidden',
       position: 'relative',
+      textAlign: 'center',
+      display: 'flex', flexDirection: 'column',
     }}>
-      {/* Dismiss */}
+      {/* Dölj */}
       <button
         onClick={onDismiss}
         aria-label="Dölj förslag"
         style={{
-          position: 'absolute', top: 6, right: 6,
-          background: 'var(--surface2, rgba(10,123,140,0.07))',
-          border: 'none', cursor: 'pointer',
-          color: 'var(--txt3)', padding: 0,
-          width: 20, height: 20, borderRadius: '50%',
+          position: 'absolute', top: 6, right: 6, zIndex: 2,
+          background: 'rgba(0,0,0,0.35)', border: 'none', cursor: 'pointer',
+          color: '#fff', padding: 0,
+          width: 22, height: 22, borderRadius: '50%',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           WebkitTapHighlightColor: 'transparent',
-          transition: 'background 0.15s',
         }}
       >
         <svg width={10} height={10} viewBox="0 0 10 10" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
@@ -233,45 +279,53 @@ function SuggestedUserCard({ user, myId, onDismiss }: { user: SuggestedUser; myI
         </svg>
       </button>
 
-      {/* Avatar */}
-      <Link href={`/u/${encodeURIComponent(user.username)}`} style={{ textDecoration: 'none' }}>
+      {/* Senaste turens bild, eller ett mönster */}
+      <Link href={href} aria-hidden tabIndex={-1} style={{ display: 'block', position: 'relative', height: 92, overflow: 'hidden',
+        background: user.foto ? 'var(--teal-12)' : 'repeating-linear-gradient(135deg, rgba(255,255,255,0.12) 0 6px, transparent 6px 14px), var(--grad-sea)' }}>
+        {user.foto && (isNextImageSafe(user.foto)
+          ? <Image src={user.foto} alt="" fill sizes="168px" style={{ objectFit: 'cover' }} />
+          /* eslint-disable-next-line @next/next/no-img-element */
+          : <img src={user.foto} alt="" loading="lazy" decoding="async" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />)}
+      </Link>
+
+      {/* Avatar över bildkanten */}
+      <Link href={href} style={{ textDecoration: 'none', alignSelf: 'center', marginTop: -28, position: 'relative' }}>
         <div style={{
-          width: 54, height: 54, borderRadius: '50%',
+          width: 56, height: 56, borderRadius: '50%',
           background: grad, position: 'relative',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 20, fontWeight: 700, color: '#fff',
           overflow: 'hidden',
-          boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
+          border: '3px solid var(--surface, #fffdf8)',
+          boxSizing: 'content-box',
         }}>
           {user.avatar
-            ? <Image src={user.avatar} alt="" fill sizes="54px" style={{ objectFit: 'cover' }} />
+            ? <Image src={user.avatar} alt="" fill sizes="56px" style={{ objectFit: 'cover' }} />
             : user.username[0]?.toUpperCase()}
         </div>
       </Link>
 
-      {/* Name */}
-      <Link href={`/u/${encodeURIComponent(user.username)}`} style={{ textDecoration: 'none' }}>
+      <Link href={href} style={{ textDecoration: 'none' }}>
         <div style={{
-          fontSize: 13, fontWeight: 600, color: 'var(--txt)',
-          textAlign: 'center', lineHeight: 1.2,
-          maxWidth: 112, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+          fontSize: 14, fontWeight: 700, color: 'var(--ink, #162d3a)',
+          marginTop: 8, padding: '0 8px',
+          overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
         }}>
           {user.username}
         </div>
       </Link>
 
-      {/* Activity */}
       <div style={{
-        fontSize: 10, color: 'var(--txt3)', fontWeight: 500,
-        textAlign: 'center', lineHeight: 1.3,
+        fontSize: 12, color: 'var(--ink-muted, #54737f)',
+        marginTop: 2, padding: '0 8px',
+        overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
       }}>
-        {activityLabel}
+        {user.turRad ?? user.orsak}
       </div>
 
-      {/* Follow */}
       {myId && myId !== user.id && (
-        <div style={{ width: '100%', marginTop: 2 }}>
-          <FollowButton targetUserId={user.id} stacked />
+        <div style={{ padding: 10, marginTop: 'auto' }}>
+          <FollowButton targetUserId={user.id} platt />
         </div>
       )}
     </div>
