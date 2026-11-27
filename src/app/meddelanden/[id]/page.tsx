@@ -708,7 +708,7 @@ export default function ChatPage() {
     setConvMenu(false)
     if (!me || !conv) return
     setConfirmSheet({
-      title: conv.is_group ? 'Lämna gruppen' : 'Radera meddelandena',
+      title: conv.is_group ? 'Lämna gruppen' : 'Radera chatt',
       body: conv.is_group
         ? 'Du lämnar gruppen. Meddelandena finns kvar för de andra.'
         : 'Meddelandena försvinner för dig. När ni båda har raderat dem tas de bort helt, även bilderna.',
@@ -1240,7 +1240,7 @@ export default function ChatPage() {
       {/* Samtalets meny (⋯ uppe till höger) */}
       {convMenu && (
         <Ark onStang={stangMeny} etikett="Fler val">
-          <ArkRad ikon={conv?.is_group ? IKON.lamna : IKON.soptunna} label={conv?.is_group ? 'Lämna gruppen' : 'Radera meddelandena'} fara onClick={handleLeaveConversation} />
+          <ArkRad ikon={conv?.is_group ? IKON.lamna : IKON.soptunna} label={conv?.is_group ? 'Lämna gruppen' : 'Radera chatt'} fara onClick={handleLeaveConversation} />
           {!conv?.is_group && otherId && conv && (
             <ArkRad ikon={IKON.flagga} label={`Anmäl ${otherName}`} fara onClick={() => { setConvMenu(false); setAnmalan({ typ: 'conversation', id: conv.id }) }} />
           )}
