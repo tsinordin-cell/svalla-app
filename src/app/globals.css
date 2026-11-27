@@ -542,6 +542,46 @@ img {
   }
 }
 
+/* Övriga chiprader (Sök, Insikter, Forum, platssidorna): samma rättelse som
+   sorteringsraden i Flödet. Raden rullar ut till skärmkanten på mobil i stället
+   för att kapas vid förälderns 16 px marginal; stilla ligger den i linje med
+   innehållet (Tom 2026-11-27, "Rätta alla"). Rader med maxWidth och margin auto
+   får sin egen brytpunkt (maxWidth + 32 px), där raden fyller kolumnen, annars
+   skulle den hamna ur linje med rubriken ovanför. !important behövs där, eftersom
+   raderna har margin inline. */
+@media (max-width: 671px) {
+  .chiprad-kant {
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    scroll-padding-left: 16px;
+    scroll-padding-right: 16px;
+  }
+}
+@media (max-width: 592px) {
+  .chiprad-kant-560 {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    max-width: none !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    scroll-padding-left: 16px;
+    scroll-padding-right: 16px;
+  }
+}
+@media (max-width: 552px) {
+  .chiprad-kant-520 {
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    max-width: none !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    scroll-padding-left: 16px;
+    scroll-padding-right: 16px;
+  }
+}
+
 /* ── Critical text — invisible in dark mode (near-black on dark cards) ── */
 [data-theme="dark"] [style*="color: #0d2a3e"],
 [data-theme="dark"] [style*="color:#0d2a3e"] {

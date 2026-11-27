@@ -117,7 +117,7 @@ export default async function ForumPage() {
   </div>
 
   {/* Scrollbar rad med populära öar */}
-  <div style={{
+  <div className="chiprad-kant" style={{
    display: 'flex',
    gap: 8,
    overflowX: 'auto',
