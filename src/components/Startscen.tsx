@@ -335,7 +335,7 @@ function skapaLjud() {
 /* Vägarna in från startscenen. Öar, boende, krogar, färjor, karta och aktiviteter finns redan i menyn ovanför,
    så scenen har bara två skyltar, en på var sida om båten (Max 2026-11-23). Båda leder till sidor som finns på Svalla. */
 const SKYLTAR = [
-  { id: 'samarbete', namn: 'Intresserad av samarbete?', href: '/partner' },
+  { id: 'samarbete', namn: 'Samarbeta med oss!', href: '/partner' },
   { id: 'planera', namn: 'Planera din tur', href: '/planera-tur' },
 ] as const
 // Startscenen hoppar över prickarna och Sverige och börjar när havet stiger (beslut Max 2026-11-22)
