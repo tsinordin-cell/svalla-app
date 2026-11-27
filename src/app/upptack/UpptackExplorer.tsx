@@ -857,6 +857,21 @@ export default function UpptackExplorer() {
     return () => ro.disconnect()
   }, [])
 
+  // 2026-11-27 (Tom): regionraden ska glida in under kategoriknappen, utan
+  // glapp och utan toning. Raden sträcker sig därför in bakom knappen, och
+  // knappens bredd mäts så att "Alla" orullad står där den alltid stått.
+  const filterRowRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const rad = filterRowRef.current
+    const knapp = rad?.querySelector<HTMLElement>('.upx-fdd')
+    if (!rad || !knapp || typeof ResizeObserver === 'undefined') return
+    const satt = () => rad.style.setProperty('--upx-fdd-w', `${Math.ceil(knapp.getBoundingClientRect().width)}px`)
+    satt()
+    const ro = new ResizeObserver(satt)
+    ro.observe(knapp)
+    return () => ro.disconnect()
+  }, [])
+
   // ── Render ──────────────────────────────────────────────────────────────
   return (
     <div className="upx-shell" ref={shellRef}>
@@ -870,7 +885,7 @@ export default function UpptackExplorer() {
         {/* En rad (2026-11-23, mer karta): kategorifiltret först, regionerna
             scrollar bredvid. Filtret ligger utanför den scrollande raden så att
             dess meny inte klipps. */}
-        <div className="upx-filterrow">
+        <div className="upx-filterrow" ref={filterRowRef}>
         <FilterDropdown
           chips={FILTER_CHIPS}
           counts={categoryCounts}
@@ -879,16 +894,7 @@ export default function UpptackExplorer() {
           onClear={clearCats}
         />
         {/* Region-toggle pills */}
-        <div
-          className="upx-regions-bar"
-          onScroll={e => {
-            // Toningen mot kategoriknappen växer med hur långt raden rullats
-            // (0–64 px), så att den kommer gradvis och inte slår på tvärt.
-            // Orullad syns "Alla" helt, som förut (Tom 2026-11-27).
-            const el = e.currentTarget
-            el.style.setProperty('--upx-toning', `${Math.min(el.scrollLeft, 64)}px`)
-          }}
-        >
+        <div className="upx-regions-bar">
           <button
             type="button"
             className={`upx-region-pill ${selectedRegion === 'all' ? 'active' : ''}`}
@@ -1176,36 +1182,21 @@ export default function UpptackExplorer() {
         .upx-filterrow .upx-regions-bar {
           flex: 1;
           min-width: 0;
-          /* Raden börjar precis vid kategoriknappens kant. De 8 px glappet
-             ligger som padding i stället, så att det syns orullat men rullar
-             bort. Då glider namnen ända fram till knappen. */
-          margin: 0 -18px 0 -8px;
-          padding-left: 8px;
+          /* Raden sträcker sig in bakom kategoriknappen (Tom 2026-11-27), så
+             att namnen försvinner under knappen utan glapp och utan toning.
+             --upx-fdd-w är knappens uppmätta bredd. Orullad står "Alla" som
+             förut, 8 px från knappen. Utan mätning blir det som en vanlig
+             klippning vid knappens kant. Knappen ligger ovanpå eftersom den
+             är positionerad och raden inte är det. */
+          margin: 0 -18px 0 calc(-1 * var(--upx-fdd-w, 0px) - 8px);
+          padding-left: calc(var(--upx-fdd-w, 0px) + 8px);
+          scroll-padding-left: calc(var(--upx-fdd-w, 0px) + 8px);
         }
-        /* Mjuk toning in under kategoriknappen när raden rullats (Tom
-           2026-11-27). --upx-toning sätts vid rullning (0–64 px). Flera stopp
-           ger en mjuk kurva i stället för en rak ramp. Masken arbetar på
-           genomskinlighet, så den fungerar likadant i ljust och mörkt tema. */
-        .upx-filterrow .upx-regions-bar {
-          --upx-toning: 0px;
-          -webkit-mask-image: linear-gradient(to right,
-            rgba(0,0,0,0) 0,
-            rgba(0,0,0,0.04) calc(var(--upx-toning) * 0.15),
-            rgba(0,0,0,0.15) calc(var(--upx-toning) * 0.3),
-            rgba(0,0,0,0.35) calc(var(--upx-toning) * 0.45),
-            rgba(0,0,0,0.6) calc(var(--upx-toning) * 0.6),
-            rgba(0,0,0,0.82) calc(var(--upx-toning) * 0.75),
-            rgba(0,0,0,0.95) calc(var(--upx-toning) * 0.9),
-            #000 var(--upx-toning));
-          mask-image: linear-gradient(to right,
-            rgba(0,0,0,0) 0,
-            rgba(0,0,0,0.04) calc(var(--upx-toning) * 0.15),
-            rgba(0,0,0,0.15) calc(var(--upx-toning) * 0.3),
-            rgba(0,0,0,0.35) calc(var(--upx-toning) * 0.45),
-            rgba(0,0,0,0.6) calc(var(--upx-toning) * 0.6),
-            rgba(0,0,0,0.82) calc(var(--upx-toning) * 0.75),
-            rgba(0,0,0,0.95) calc(var(--upx-toning) * 0.9),
-            #000 var(--upx-toning));
+        /* Täcker det som rullar in bakom knappen. Samma färg som rubrikytan,
+           så knappen ser ut som i dag även när den är tonad (hover, filter). */
+        .upx-filterrow .upx-fdd {
+          background: var(--white, #fff);
+          border-radius: 12px;
         }
         /* Region-toggle pills — horisontell scroll-bar bredvid kategori-filtret */
         .upx-regions-bar {
