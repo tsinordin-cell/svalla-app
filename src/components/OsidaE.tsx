@@ -285,6 +285,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
       el.style.removeProperty('order')
       el.removeAttribute('data-eklamp')
       el.removeAttribute('data-kapitel')
+      el.removeAttribute('data-ehubopen')
       const id = el.dataset.ehost
       if (id) {
         let ord = -1
@@ -317,6 +318,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
         const i = rader.findIndex(r => r.k === k)
         if (i < 0 || !oppna[k] || (k === 'avgang' && tomAvgang(el))) { el.style.display = 'none'; continue }
         el.style.order = String(300 + 4 * i + 2)
+        el.dataset.ehubopen = '1'
       } else {
         const pos = plats(aktiv, k)
         if (pos < 0 || (k === 'avgang' && tomAvgang(el))) { el.style.display = 'none'; continue }
@@ -461,7 +463,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
           <span>{r.etikett}</span><i aria-hidden="true" />
         </button>, hosts['rad-' + r.k]!, r.k) : null)}
       {hosts.fler && createPortal(
-        <button type="button" className="e-fler" onClick={() => setFlerRader(true)}>Visa fler rubriker ({Math.max(0, rader.length - SYNLIGA_RADER)})</button>, hosts.fler)}
+        <button type="button" className="e-fler" onClick={() => setFlerRader(true)}>Fler ämnen om {data.namn} ({Math.max(0, rader.length - SYNLIGA_RADER)})</button>, hosts.fler)}
 
       {aktiv && aktiv.steg.map((s, si) => hosts['steg-' + si] ? createPortal(
         <div className="e-steghuvud" id={'e-steg-' + si}>
@@ -622,6 +624,7 @@ a.e-bra-rad:hover{border-color:#1e5c82}
   .e-kredit{bottom:36px}
 }
 #osida-innehall>[data-osdel]:not([data-ehost]){max-width:860px;width:100%}
+[data-ehubopen]>div:first-child:has(>h2),[data-ehubopen]>h2{display:none}
 .e-valkort:focus-visible,.e-kort:focus-visible,.e-rad:focus-visible,.e-forsta:focus-visible,.e-bra-rad:focus-visible,.e-snabb a:focus-visible,.e-chip-lank:focus-visible,.e-bak:focus-visible{outline:3px solid #f2a25c;outline-offset:3px}
 @media (min-width:901px){.e-sektion{padding-top:56px}.e-allt{padding-top:64px}}
 @media (max-width:700px){#osida-innehall{padding-left:16px !important;padding-right:16px !important}}
