@@ -208,10 +208,19 @@ export function dagEtikett(iso: string | null | undefined): string {
   return `${d.getDate()} ${d.toLocaleDateString('sv-SE', { month: 'long' })}`
 }
 
-export function SamtalsHuvud({ namn, nyckel, bild, profilHref, under, onMer }: {
+export function SamtalsHuvud({ namn, nyckel, bild, profilHref, under, onMer, laddar }: {
   namn: string; nyckel: string; bild: string | null; profilHref: string | null; under?: string; onMer: () => void
+  /** Namnet är inte hämtat än: visa en neutral platshållare i stället för "?" (2026-11-27) */
+  laddar?: boolean
 }) {
-  const vem = (
+  const vem = laddar ? (
+    <>
+      <div className="md-skel" style={{ width: 40, height: 40, borderRadius: '50%', flexShrink: 0 }} aria-hidden="true" />
+      <div className="md-sam-text" style={{ flex: 1 }}>
+        <div className="md-skel" style={{ width: 120, maxWidth: '60%', height: 14 }} aria-label="Laddar" />
+      </div>
+    </>
+  ) : (
     <>
       <Avatar namn={namn} nyckel={nyckel} bild={bild} s={40} />
       <div className="md-sam-text">
@@ -225,7 +234,7 @@ export function SamtalsHuvud({ namn, nyckel, bild, profilHref, under, onMer }: {
       <Link href="/meddelanden" className="md-rund md-bara-mobil" aria-label="Tillbaka till meddelanden">
         <Ikon d={IKON.bak} s={22} w={2.4} />
       </Link>
-      {profilHref
+      {profilHref && !laddar
         ? <Link href={profilHref} className="md-sam-vem">{vem}</Link>
         : <div className="md-sam-vem">{vem}</div>}
       <button type="button" className="md-rund" aria-label="Fler val" onClick={onMer}>
