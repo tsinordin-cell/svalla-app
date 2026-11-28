@@ -37,7 +37,9 @@ export function tillGuiden(nasta: string | null | undefined): string {
  * konton som gick igenom den gamla guiden ska se den nya).
  * Höj siffran bara när guiden ändras så mycket att alla ska se den igen.
  */
-export const GUIDE_VERSION = 2
+// 2 = nya guiden (2026-11-28). 3 = med guidefilmen i steg 2 (Tom 28 nov: "en gång för alla tidigare
+// användare som inte sett den"; två konton hade sett version 2 utan film).
+export const GUIDE_VERSION = 3
 
 /** Behöver kontot se guiden? */
 export function behoverGuiden(guideVersion: number | null | undefined): boolean {
