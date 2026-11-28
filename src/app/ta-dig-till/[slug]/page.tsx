@@ -64,23 +64,13 @@ export default async function TaDigTillPage({ params }: Props) {
   const busTrips = gt
     .filter(t => t.method.toLowerCase().includes('båt') || t.method.toLowerCase().includes('waxholm') || t.method.toLowerCase().includes('cinderella'))
     .map(t => ({
-      '@type': 'BusTrip',
+      // RUNDA 2 (2026-11-28, f300b-0109): reserven Waxholmsbolaget/Stockholm gav fel operatör och ort för öar utanför
+      // Stockholm, och båtresor hade typen BusTrip. Nu bara de uppgifter som finns i datan.
+      '@type': 'BoatTrip',
       name: `${t.method} till ${island.name}`,
-      departureBusStop: {
-        '@type': 'BusStop',
-        name: t.from ?? 'Stockholm',
-        address: { '@type': 'PostalAddress', addressLocality: 'Stockholm', addressCountry: 'SE' },
-      },
-      arrivalBusStop: {
-        '@type': 'BusStop',
-        name: `${island.name} brygga`,
-        address: { '@type': 'PostalAddress', addressLocality: island.name, addressCountry: 'SE' },
-      },
-      provider: {
-        '@type': 'Organization',
-        name: tm?.operator ?? 'Waxholmsbolaget',
-        url: tm?.booking_url ?? 'https://waxholmsbolaget.se',
-      },
+      ...(t.from ? { departureBoatTerminal: { '@type': 'BoatTerminal', name: t.from } } : {}),
+      arrivalBoatTerminal: { '@type': 'BoatTerminal', name: island.name },
+      ...(tm?.operator ? { provider: { '@type': 'Organization', name: tm.operator, ...(tm.booking_url ? { url: tm.booking_url } : {}) } } : {}),
       ...(t.time ? { estimatedFlightDuration: `PT${tm?.from_city_min ?? 90}M` } : {}),
     }))
 
@@ -108,12 +98,13 @@ export default async function TaDigTillPage({ params }: Props) {
           ? `${tm.operator} trafikerar ${island.name}. ${tm.frequency}. Restid från ${tm.nearest_hub}: ca ${tm.from_nearest_hub_min} min.`
           : `Ta båten till ${island.name}.`,
       },
-      {
+      // RUNDA 2 (2026-11-28, f300b-0111): "Du kliver av vid öns brygga" stämde inte för orter och öar som nås på väg.
+      ...(factTravelTime ? [{
         '@type': 'HowToStep',
         position: 3,
         name: `Anländer till ${island.name}`,
-        text: `Du kliver av vid ${island.name}s brygga.${factTravelTime ? ` ${factTravelTime}.` : ''}`,
-      },
+        text: `${factTravelTime}.`,
+      }] : []),
     ],
   }
 

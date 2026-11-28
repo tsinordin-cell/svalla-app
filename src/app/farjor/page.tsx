@@ -15,7 +15,9 @@ import { ogSida } from '@/lib/og-standard'
 export const metadata: Metadata = {
   // absolute: utan " – Svalla" så att Google inte klipper Waxholmsbolaget/Cinderella (≈60 tecken)
   title: { absolute: 'Färjetider Stockholms skärgård: Waxholmsbolaget & Cinderella' },
-  description: 'Kommande avgångar, linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna, och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett sextiotal andra öar.',
+  // RÄTTAD 2026-11-28 (fas 3, f300b-0002, f300b-0003): kommande avgångar finns bara för Waxholmsbolaget, och listan
+  // "Båt till öarna" har 58 öar, alltså 53 utöver de fem som nämns (MÄTT: STOCKHOLMSOAR på main 5e0a08d).
+  description: 'Linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna, kommande avgångar för Waxholmsbolaget och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett femtiotal andra öar.',
   keywords: [
     'färjetider stockholms skärgård',
     'båt till sandhamn',
@@ -60,14 +62,14 @@ const ferryTripsJsonLd = SEED_FERRY_ROUTES.map(r => ({
     url: r.operator === 'Cinderella'
       ? 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/'
       : 'https://www.waxholmsbolaget.se',
-    sameAs: r.operator === 'Cinderella'
-      ? 'https://www.cinderellabatarna.com'
-      : 'https://sl.se',
+    // RÄTTAD 2026-11-28 (fas 3, f300b-0027): sameAs sa att Waxholmsbolaget är samma organisation som SL. Borttaget.
+    // Runda 3 (f300b-0028): Cinderellas sameAs (cinderellabatarna.com) är också borttaget. Sidan gick inte att nå,
+    // varken här eller i Toms webbläsare, och Strömmas egen sida står redan som url.
   },
+  // availability InStock borttaget (f300b-0029): Cinderellabåtarna står som "ÅTER APRIL 2027" hos Strömma.
   offers: {
     '@type': 'Offer',
     url: r.infoUrl,
-    availability: 'https://schema.org/InStock',
   },
   itinerary: r.stops.map(stop => ({
     '@type': 'BoatTerminal',
@@ -82,17 +84,22 @@ const faqJsonLd = {
     {
       '@type': 'Question',
       name: 'Hur länge tar resan med Cinderella till Sandhamn?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn på 2 timmar och 30 minuter enligt operatören Strömma. Båten stannar på vägen vid Vaxholm, Grinda och Gällnö.' },
+      // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — "Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.", "2. Nacka Strand", "3. Gåshaga", "4. Vaxholm", "6. Södra Grinda", "7. Gällnö", "8. Eknö", "9. Telegrafholmen" (läst 2026-11-28)
+      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn på 2 timmar och 30 minuter enligt operatören Strömma. På vägen angör båten Nacka strand, Gåshaga, Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen.' },
     },
     {
       '@type': 'Question',
       name: 'Kan man ta SL-kortet med Waxholmsbolaget?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19
+      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Under lågsäsongen, 14 september till 29 april, gäller SL:s periodbiljetter på 30 dagar eller längre i hela Waxholmsbolagets trafik. Annars kompletterar du med en Waxholmsbolaget-biljett för den del av resan som går utanför SL-området. På linje 17, 18 och 19 mot södra skärgården via Baggensstäket gäller inte SL-biljetter, utom lågsäsongens periodbiljetter, som enligt Waxholmsbolaget gäller i hela trafiken.' }, // KÄLLA: se KÄLLA-raderna vid samma fråga längre ned (läst 2026-11-28)
     },
     {
       '@type': 'Question',
       name: 'Vad skiljer Cinderella från Waxholmsbolaget?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbolaget är skärgårdens kollektivtrafik med SL-kort. Cinderella är turistinriktad med längre dagsrutter och bar ombord. Cinderella passar bäst för dagstur; Waxholmsbolaget för pendlare.' },
+      // RÄTTAD 2026-11-28 (fas 3, f300b-0037 till f300b-0040): SL-biljett gäller bara i en del av trafiken, och "längre dagsrutter" är obelagt.
+      // KÄLLA: https://waxholmsbolaget.se/om-oss — "Allt sedan dess har vi trafikerat Stockholms skärgård varenda dag året runt." (läst 2026-11-28)
+      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Alla SL-biljetter gäller mellan 44 bryggor i Waxholmsbolagets trafik" (läst 2026-11-28)
+      // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — "Säsongen löper från slutet av april till slutet av september.", "Ombord finns café och bar med något för alla" (läst 2026-11-28)
+      acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och går året runt. SL-biljetter gäller mellan 44 bryggor i dess trafik. Cinderellabåtarna drivs av Strömma, går från slutet av april till slutet av september och har café och bar ombord.' },
     },
     {
       '@type': 'Question',
@@ -168,7 +175,10 @@ export default async function FarjorPage() {
           </h1>
           <p id="farjor-intro" style={{ color: 'rgba(255,255,255,0.82)', fontSize: 15, margin: 0, maxWidth: 640, lineHeight: 1.5 }}>
             {/* revision 2026-10-02: "kommande avgångar" gäller bara Waxholmsbolagets linjer — ingen Cinderella-resa har setts i Trafiklabs data */}
-            Waxholmsbolaget och Cinderellabåtarna: linjer och bryggor i Stockholms skärgård, och kommande avgångar för Waxholmsbolagets linjer. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget täcker hundratals bryggor med SL-kort.
+            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0006): SL-biljett gäller inte vid alla bryggor.
+                KÄLLA: https://waxholmsbolaget.se/om-oss — "Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården." (läst 2026-11-28)
+                KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Mellan dessa bryggor kan du året runt resa med Waxholmsbolaget på alla sorters SL-biljetter:" (läst 2026-11-28) */}
+            Waxholmsbolaget och Cinderellabåtarna: linjer och bryggor i Stockholms skärgård, och kommande avgångar för Waxholmsbolagets linjer. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget trafikerar 299 bryggor sommartid, och mellan 44 av dem gäller alla SL-biljetter året runt.
           </p>
           <p style={{ margin: '12px 0 0', fontSize: 14 }}>
             <Link href="/vintertidtabeller" style={{ color: '#fff', fontWeight: 600, textDecoration: 'underline' }}>Vintertidtabeller 2026/27: vad som gäller efter 12 december</Link>
@@ -189,8 +199,11 @@ export default async function FarjorPage() {
             lineHeight: 1.5,
           }}>
             {/* revision 2026-10-02: "(Waxholmsbolaget & Cinderella)" borttaget — ingen Cinderella-resa har setts i Trafiklabs data */}
-            <strong style={{ color: 'var(--txt)' }}>Live.</strong> Avgångar hämtas från Trafiklab.
-            Uppdateras löpande. Dubbelkolla alltid mot operatören inför avgång.
+            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0008): "Live" och "uppdateras löpande" lovade realtid. Avgångarna kommer ur ResRobot,
+                vars tidtabellsdata uppdateras högst en gång per dygn; sidan hämtar på nytt var tionde minut (revalidate = 600).
+                KÄLLA: https://www.trafiklab.se/api/our-apis/resrobot-v21/route-planner/ — "The static data used for this API is updated when changes are made, at most once per day." (läst 2026-11-28) */}
+            <strong style={{ color: 'var(--txt)' }}>Från Trafiklab.</strong> Avgångarna kommer ur Trafiklabs reseplanerare ResRobot
+            och följer tidtabellen. Sidan hämtar dem på nytt var tionde minut. Dubbelkolla alltid mot operatören inför avgång.
           </div>
         ) : (
           <div style={{
@@ -260,7 +273,8 @@ export default async function FarjorPage() {
                       gap: 4,
                     }}>
                       <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />
-                      LIVE
+                      {/* f300b-0009: tidtabellsdata, inte realtid */}
+                      TIDTABELL
                     </span>
                   )}
                 </div>
@@ -390,12 +404,15 @@ export default async function FarjorPage() {
           boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
         }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: 'var(--txt)', margin: '0 0 8px', letterSpacing: -0.2 }}>
-            Cinderellabåtarna 2026, vart går de och när?
+            Cinderellabåtarna 2027, vart går de och när?
           </h2>
           <p style={{ fontSize: 14, color: 'var(--txt2)', margin: '0 0 24px', lineHeight: 1.6 }}>
             Cinderellabåtarna avgår från <strong>Strandvägen</strong> i centrala Stockholm: inte
-            från Strömkajen, som är Waxholmsbolagets kaj. Linjen går till Vaxholm, Grinda,
-            Gällnö och Sandhamn. Säsongen löper från slutet av april till slutet av september.
+            från Strömkajen, som är Waxholmsbolagets kaj. På väg till Sandhamn angör båten Nacka strand, Gåshaga,
+            Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen. Säsongen 2027 är 30 april till 26 september.
+            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0043, f300b-0044).
+                KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — "Från Stockholm till Sandhamn - bryggor & restider", "2. Nacka Strand", "3. Gåshaga", "6. Södra Grinda", "8. Eknö", "9. Telegrafholmen" (läst 2026-11-28)
+                KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — "30 apr - 26 sep 2027" (läst 2026-11-28) */}
           </p>
           <p style={{ fontSize: 14, margin: '-12px 0 24px' }}>
             <Link href="/cinderella-baaten" style={{ color: 'var(--sea)', fontWeight: 700, textDecoration: 'none' }}>
@@ -403,12 +420,14 @@ export default async function FarjorPage() {
             </Link>
           </p>
 
-          {/* KÄLLA: Strömma/Cinderellabåtarna — restid och pris avlästa på operatörens egen sida (2026-08-05) */}
+          {/* RÄTTAD 2026-11-28 (fas 3, f300b-0046 till f300b-0048): priserna är Strömmas prisexempel för 2027, enkel resa från Strandvägen.
+              KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — "Priser 2027", "Prisexempel - enkel resa från Strandvägen:", "Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter." (läst 2026-11-28)
+              KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — "Båt till Grinda - snabbt & lätt med Cinderellabåtarna", "Med Cinderella tar resan till Gällnö ca 1 tim och 45 min." (läst 2026-11-28) */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 24 }}>
             {[
-              { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 255 kr' },
-              { mal: 'Gällnö',   tid: '1 tim 45 min', pris: 'från 235 kr' },
-              { mal: 'Grinda',   tid: '1 tim 30 min', pris: 'från 235 kr' },
+              { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 265 kr (2027)' },
+              { mal: 'Gällnö',   tid: '1 tim 45 min', pris: 'från 245 kr (2027)' },
+              { mal: 'Grinda',   tid: '1 tim 30 min', pris: 'från 245 kr (2027)' },
             ].map(r => (
               <div key={r.mal} style={{
                 background: 'rgba(201,110,42,0.06)',
@@ -431,7 +450,10 @@ export default async function FarjorPage() {
               Varför vi inte listar avgångstiderna här
             </div>
             <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.55, margin: 0 }}>
-              Cinderella rapporterar inte till Trafiklab, och tidtabellen varierar per datum.
+              {/* RÄTTAD 2026-11-28 (fas 3, f300b-0050): att Cinderella inte rapporterar till Trafiklab är obelagt (Trafiklab skriver
+                  "All operators which operate in Sweden are covered by the ResRobot APIs."). Det vi vet är att Svalla inte har sett
+                  någon Cinderellaresa i datan (revision 2026-10-02, se kommentaren vid sidans inledning). */}
+              Vi visar bara avgångar som vi kan hämta från Trafiklab, och där har vi inte sett några turer med Cinderellabåtarna.
               En kopia här skulle bli fel utan att vi märkte det. Aktuella avgångar finns hos
               operatören:{' '}
               <a
@@ -450,15 +472,24 @@ export default async function FarjorPage() {
               Waxholmsbolaget: pendlarbåtarna
             </h3>
             <p style={{ fontSize: 13, color: 'var(--txt2)', lineHeight: 1.6, margin: '0 0 12px' }}>
-              Waxholmsbolaget är skärgårdens kollektivtrafik och täcker hundratals bryggor.
-              Till skillnad från Cinderella, som är turistinriktad, går Waxholmsbolaget från
-              tidig morgon till sen kväll. Linjerna nedan är hämtade ur faktiska reseförslag
-              i Trafiklab, inte ur en broschyr.
+              {/* RÄTTAD 2026-11-28 (fas 3, f300b-0052 till f300b-0054).
+                  KÄLLA: https://waxholmsbolaget.se/om-oss — "Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården.", "Allt sedan dess har vi trafikerat Stockholms skärgård varenda dag året runt." (läst 2026-11-28)
+                  KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — "Säsongen löper från slutet av april till slutet av september." (läst 2026-11-28) */}
+              Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och trafikerar 299 bryggor sommartid.
+              Till skillnad från Cinderellabåtarna, som går från slutet av april till slutet av september, går
+              Waxholmsbolaget året runt. Linjerna nedan är kontrollerade mot operatörernas egna tidtabeller.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: 10 }}>
               {[
-                { name: 'Färja 16', desc: 'Stavsnäs vinterhamn → Sandhamn, ca 50 min' },
-                { name: 'Färja 17-1', desc: 'Stavsnäs vinterhamn → Nämdö' },
+                // RÄTTAD 2026-11-28 (fas 3, f300b-0055): "ca 50 min" stämde inte med tabellen. Restiden är uppmätt i vintertabellen 16
+                // (13 december 2026 till 11 april 2027), 15 turer Stavsnäs till Sandhamn: 54 till 70 min. Året runt: h16, s16 och w16.
+                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027" (läst 2026-11-28)
+                // RUNDA 2 (2026-11-28): bryggan heter "Stavsnäs" i Waxholmsbolagets tabeller 16 och 17; "vinterhamn" står inte där.
+                // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-11-28)
+                // KÄLLA: https://kund.printhuset-sthlm.se/wa/s16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026" (läst 2026-11-28)
+                { name: 'Färja 16', desc: 'Stavsnäs → Sandhamn året runt, 54 till 70 min i vintertabellen från 13 dec 2026' },
+                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w17.pdf — "17A STAVSNÄS – NÄMDÖ – MÖRTÖ", "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027" (läst 2026-11-28)
+                { name: 'Färja 17-1', desc: 'Stavsnäs → Nämdö' },
                 // Rättad 2026-11-09 (P0 21): linje 40 är Nord/Sydlinjen, som bara går sommartid. Vår och höst går båten till Fjärdlång från Dalarö (tabell 19).
                 // KÄLLA: https://kund.printhuset-sthlm.se/wa/s40.pdf — "GÄLLER 22 JUNI 2026 – 16 AUGUSTI 2026", "40B NORDSYDLINJEN: NYNÄSHAMN – SANDHAMN – ARHOLMA / NORRTÄLJE", "Fjärdlång"; uppmätt i tabellen: Nynäshamn–Fjärdlång 110 min, utan byte (läst 2026-11-09)
                 { name: 'Färja 40', desc: 'Sommartid (2026: 22 juni till 16 augusti): Nord/Sydlinjen Nynäshamn → Fjärdlång, 1 tim 50 min utan byten' },
@@ -503,20 +534,29 @@ export default async function FarjorPage() {
             {[
               {
                 q: 'Hur länge tar resan med Cinderella till Sandhamn?',
-                a: 'Cinderellabåtarna går från Strandvägen i Stockholm: inte Strömkajen, som är Waxholmsbolagets kaj. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören Strömma, med stopp vid Vaxholm, Grinda och Gällnö. Dagstur är fullt möjlig, men avgångstiderna varierar per datum, så vi hänvisar till Strömmas tidtabell i stället för att gissa.',
+                // RÄTTAD 2026-11-28 (fas 3, f300b-0066): stoppen var ofullständiga. Runda 2 (f300b-0067): "fullt möjlig" var starkare än källan.
+                // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — "Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.", "2. Nacka Strand", "3. Gåshaga", "6. Södra Grinda", "8. Eknö", "9. Telegrafholmen" (läst 2026-11-28)
+                // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — "Oavsett om du planerar en dagsutflykt eller vill stanna några dagar är Cinderellabåtarna din naturliga startpunkt." (läst 2026-11-28)
+                a: 'Cinderellabåtarna går från Strandvägen i Stockholm: inte Strömkajen, som är Waxholmsbolagets kaj. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören Strömma, med stopp vid Nacka strand, Gåshaga, Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen. Strömma beskriver båtarna som en startpunkt för en dagsutflykt. Avgångstiderna finns i Strömmas tidtabell, så vi hänvisar dit i stället för att gissa.',
               },
               {
                 q: 'Kan man ta SL-kortet med Waxholmsbolaget?',
-                // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. "SL Access" finns inte längre som namn; Utö går från Årsta brygga, inte Nynäshamn.
-                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.',
+                // RUNDA 2 (2026-11-28): lågsäsongen och linje 17 till 19 enligt Waxholmsbolagets egna sidor.
+                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt ombord på Waxholmsbolagets fartyg i området och för alla sorters SL-biljetter.", "Det är totalt 44 bryggor som ingår i området." (läst 2026-11-28)
+                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "För resor som delvis sker inom SL-området behöver du komplettera med en Waxholmsbolaget-biljett för den delsträcka som är utanför området.", "Under lågsäsongen, 14 september–29 april, gäller vissa SL-biljetter i hela Waxholmsbolagets trafik." (läst 2026-11-28)
+                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — "På båtar som går mot södra skärgården (till exempel Utö och Nämdö) via Baggensstäket (eller i omvänd riktning från södra skärgården till innerstaden) gäller inte SL-biljetter. Detta avser linje 17, 18 och 19." (läst 2026-11-28)
+                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/sa-galler-sl-biljetten-pa-baten — "Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april", "Under lågsäsong kan du resa med Waxholmsbolaget med SL:s periodbiljetter som gäller för 30 dagar eller längre." (läst 2026-11-28)
+                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Under lågsäsongen, 14 september till 29 april, gäller SL:s periodbiljetter på 30 dagar eller längre i hela Waxholmsbolagets trafik. Annars kompletterar du med en Waxholmsbolaget-biljett för den del av resan som går utanför SL-området. På linje 17, 18 och 19 mot södra skärgården via Baggensstäket gäller inte SL-biljetter, utom lågsäsongens periodbiljetter, som enligt Waxholmsbolaget gäller i hela trafiken.',
               },
               {
                 q: 'Vad skiljer Cinderella från Waxholmsbolaget?',
-                a: 'Waxholmsbolaget är skärgårdens kollektivtrafik: många linjer, fler avgångar, SL-biljett gäller i SL-området runt Vaxholm. Cinderella är mer turistinriktad med längre dagsrutter, bar ombord och mer festlig stämning. Cinderella passar bäst för dagstur eller helgresa; Waxholmsbolaget passar bättre för att pendla till sommarstugan.',
+                // RÄTTAD 2026-11-28 (fas 3, f300b-0068 till f300b-0072): värdeord och obelagda jämförelser borttagna; KÄLLA-raderna vid JSON-LD-frågan ovan.
+                a: 'Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och går året runt, och SL-biljetter gäller i SL-området mellan Strömkajen och Vaxholm med omnejd. Cinderellabåtarna drivs av Strömma, går från slutet av april till slutet av september och har café och bar ombord. Strömma beskriver båtarna som en startpunkt både för en dagsutflykt och för den som vill stanna några dagar.',
               },
               {
                 q: 'När börjar och slutar Cinderellabåtarnas säsong?',
-                a: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma. Exakta datum varierar år till år, se stromma.com för aktuell säsongsinfo.',
+                // RÄTTAD 2026-11-28 (fas 3, f300b-0074). KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — "30 apr - 26 sep 2027", "Säsongen löper från slutet av april till slutet av september." (läst 2026-11-28)
+                a: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma. Säsongen 2027 är 30 april till 26 september.',
               },
             ].map((faq, i) => (
               <div key={i} style={{ marginBottom: 16 }}>
