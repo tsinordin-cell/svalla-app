@@ -84,7 +84,7 @@ const securityHeaders = [
       // PR 674, så Sentry-värden här är bara en reserv om tunneln skulle tas bort.
       // wss://*.supabase.co KRÄVS separat — Safari/WebKit mappar INTE https:// → wss://
       // (Chrome gör det, därav att desktop fungerar men iOS kraschar med SecurityError).
-      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4511271467483136.ingest.de.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org https://us.i.posthog.com https://us-assets.i.posthog.com",
+      "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.anthropic.com https://o4511271467483136.ingest.de.sentry.io https://api.open-meteo.com https://api.stripe.com https://nominatim.openstreetmap.org https://tiles.openfreemap.org https://tiles.openseamap.org https://us.i.posthog.com https://us-assets.i.posthog.com",
       "frame-src 'self' https://js.stripe.com https://hooks.stripe.com",
       "frame-ancestors 'self'",
       "upgrade-insecure-requests",

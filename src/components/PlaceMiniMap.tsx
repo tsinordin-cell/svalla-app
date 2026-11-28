@@ -2,22 +2,30 @@
 /**
  * PlaceMiniMap — fullbredds mini-karta som visar var platsen ligger.
  *
- * - Leaflet med OpenStreetMap baslager + OpenSeaMap (sjökortsmärken) ovanpå
- * - Samma nål som på /upptack (src/lib/kartnal.ts), centrerad på platsen
- * - 220px höjd på mobil, 280px på desktop
- * - Klick på pin öppnar plats i Google Maps (eller Apple Maps på iOS)
- * - "Vägbeskrivning"-knapp i hörnet — direkt till Google Maps directions
- * - Stänger ner zoom-kontroller på mobil för rent intryck
+ * Steg 1 och 2 i bytet av kartsystem (omtaget av /upptack, steg 6, 2026-11-28):
+ * MapLibre GL JS med vektorkartor från OpenFreeMap och Svallas egen kartstil i stället för Leaflet med
+ * rasterbilder från tile.openstreetmap.org. OpenSeaMaps sjömärken ligger kvar
+ * ovanpå. Samma nål som på /upptack (src/lib/kartnal.ts).
  *
- * Lazy-load Leaflet via dynamic import (ssr:false) — samma mönster som
- * UpptackExplorer.
+ * - 220px höjd på mobil, 280px på desktop
+ * - "Vägbeskrivning"-knapp i hörnet
+ * - Ingen zoom med mushjulet, så sidan går att skrolla förbi kartan
+ *
+ * MapLibre laddas först när komponenten visas (dynamisk import).
  */
 import { useEffect, useRef } from 'react'
-import 'leaflet/dist/leaflet.css'
-import { baseTile, SEAMARK_TILE } from '@/lib/map-tiles'
+import 'maplibre-gl/dist/maplibre-gl.css'
+import { SEAMARK_TILE, SEAMARK_ATTR } from '@/lib/map-tiles'
 import { track } from '@/lib/analytics-events'
-import { pinHtml, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
+import { pinHtml } from '@/lib/kartnal'
 import type { PlatsKategori } from '@/lib/platskategori'
+
+/**
+ * Svallas egen kartstil (steg 2): land och vatten i Svallas toner, dämpade
+ * vägar och etiketter. Bygger på OpenFreeMaps stil positron och hämtar
+ * kartbitar, typsnitt och symboler därifrån. Se public/kartstil/svalla.json.
+ */
+const KARTSTIL = '/kartstil/svalla.json'
 
 interface Props {
   lat: number
@@ -31,61 +39,61 @@ interface Props {
 
 export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Props) {
   const mapDivRef = useRef<HTMLDivElement>(null)
-  const mapRef = useRef<unknown>(null)
 
   useEffect(() => {
     let cancelled = false
-    let map: { remove: () => void } | null = null
+    let map: import('maplibre-gl').Map | null = null
 
     ;(async () => {
-      const L = (await import('leaflet')).default
+      const maplibregl = (await import('maplibre-gl')).default
       if (cancelled || !mapDivRef.current) return
 
-      const { url, attr } = baseTile()
-
-      map = L.map(mapDivRef.current, {
-        center: [lat, lng],
-        zoom: 13,
-        zoomControl: false,
-        scrollWheelZoom: false,            // tillåt scroll på sidan, inte zoom
-        attributionControl: true,
-        dragging: true,
-      }) as unknown as { remove: () => void }
-
-      L.tileLayer(url, { attribution: attr, maxZoom: 19 }).addTo(map as never)
-      // Sjökortsmärken-overlay
-      L.tileLayer(SEAMARK_TILE, { maxZoom: 18, opacity: 0.85, attribution: '' }).addTo(map as never)
-
-      // Custom pin
-      const icon = L.divIcon({
-        html: pinHtml(kategori),
-        className: 'place-mini-pin',
-        iconSize: PIN_SIZE,
-        iconAnchor: PIN_ANCHOR,
+      map = new maplibregl.Map({
+        container: mapDivRef.current,
+        style: KARTSTIL,
+        center: [lng, lat],
+        zoom: 12.5,
+        scrollZoom: false,             // tillåt scroll på sidan, inte zoom
+        dragRotate: false,
+        pitchWithRotate: false,
+        attributionControl: false,
       })
-      // revision 2026-10-02: nålen gör inget när man klickar på den, men Leaflet
-      // gjorde den ändå till en fokuserbar knapp utan namn (axe aria-command-name).
-      // keyboard: false tar bort knapprollen och tabbstoppet; musen påverkas inte.
-      L.marker([lat, lng], { icon, keyboard: false }).addTo(map as never)
+      // Källhänvisningen nere till vänster, så att den inte hamnar under
+      // knappen Vägbeskrivning nere till höger.
+      map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: SEAMARK_ATTR }), 'bottom-left')
+      map.touchZoomRotate.disableRotation()
 
-      mapRef.current = map
+      map.on('load', () => {
+        if (!map) return
+        // Sjökortsmärken-overlay
+        map.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
+        // Bara när man zoomat in: på översiktsnivån tog bågar och stolpar fokus från platsen (Tom 2026-11-28).
+        map.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: 14, paint: { 'raster-opacity': 0.85 } })
+      })
 
-      // Belt-and-suspenders: efter mount kan containern ha haft 0px höjd för
-      // en kort stund (CSS som laddats parallellt, Suspense-boundary, etc.).
-      // invalidateSize() tvingar Leaflet att läsa om containerns dimensioner
-      // och rendera tiles i rätt rutnät.
-      setTimeout(() => {
-        try { (map as unknown as { invalidateSize: () => void })?.invalidateSize() } catch {}
-      }, 80)
-      setTimeout(() => {
-        try { (map as unknown as { invalidateSize: () => void })?.invalidateSize() } catch {}
-      }, 400)
+      // Nålen: samma SVG som på Utforska. Spetsen sitter längst ned i mitten.
+      // revision 2026-10-02: nålen gör inget när man klickar, så den får ingen knapproll.
+      const el = document.createElement('div')
+      el.innerHTML = pinHtml(kategori)
+      el.setAttribute('aria-hidden', 'true')
+      new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, 1] })
+        .setLngLat([lng, lat])
+        .addTo(map)
+      // MapLibre gör nålen till en fokuserbar knapp med namnet "Map marker".
+      // Den gör inget vid klick, så knapprollen tas bort (samma som för Leaflet 2026-10-02).
+      el.removeAttribute('role')
+      el.removeAttribute('tabindex')
+      el.removeAttribute('aria-label')
+
+      // Källhänvisningen startar ihopfälld, som en i-knapp.
+      map.once('load', () => {
+        mapDivRef.current?.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show')
+      })
     })()
 
     return () => {
       cancelled = true
-      map?.remove?.()
-      mapRef.current = null
+      map?.remove()
     }
   }, [lat, lng, kategori])
 
@@ -142,19 +150,13 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
         .place-mini-map {
           width: 100%;
           height: 220px;
-          background: #cfdde2;
+          background: #aad3df;
         }
         @media (min-width: 720px) {
           .place-mini-map { height: 280px; }
         }
-        /* Stäng av Leaflet's bilder för pin-icon (vi använder SVG via divIcon) */
-        .leaflet-marker-icon.place-mini-pin { background: transparent; border: none; }
-        .leaflet-container { font-family: inherit; }
-        .leaflet-control-attribution {
-          background: rgba(255,255,255,0.78) !important;
-          font-size: 10px;
-          padding: 1px 5px;
-        }
+        .place-mini-map .maplibregl-ctrl-attrib { font-size: 10px; }
+        .place-mini-map .maplibregl-map { font-family: inherit; }
       `}</style>
     </div>
   )
