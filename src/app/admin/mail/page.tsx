@@ -48,6 +48,7 @@ const EXEMPELVARDEN: Record<EmailTemplate, Record<string, string | number>> = {
     lucka_url: 'https://svalla.se/julkalender/2',
   },
   prenumeration_bekrafta: { bekrafta_url: 'https://svalla.se/nyhetsbrev/bekrafta?e=exempel&t=exempel' },
+  uppgift_delegerad: { avsandare: 'Tom', titel: 'Skriv gästblogginlägg (10 stycken)', lank: 'https://svalla.se/team?uppgift=exempel' },
 }
 
 const BESKRIVNING: Record<EmailTemplate, string> = {
@@ -67,13 +68,14 @@ const BESKRIVNING: Record<EmailTemplate, string> = {
   weekly_island: 'Tisdagar april till september, en ö per vecka. Går bara till bekräftade prenumeranter',
   julkalender: '1 till 24 december kl 10. Går bara till konton som själva kryssat i påminnelsen på /julkalender (samtycket är raden i julkalender_paminnelser)',
   prenumeration_bekrafta: 'Direkt vid anmälan till nyhetsbrevet via formulär. Adressen blir prenumerant först när länken bekräftas',
+  uppgift_delegerad: 'Direkt när någon på /team ger en uppgift till en annan i teamet. Går bara till admin-konton, aldrig till den som delegerar',
 }
 
 const ORDNING: EmailTemplate[] = [
   'welcome', 'day7', 'season_open', 'season_close', 'weather_tip',
   'newsletter_welcome', 'day3_newsletter', 'day14_newsletter', 'day30_newsletter',
   'manadsbrev', 'day60', 'day90', 'saved_island', 'weekly_island', 'julkalender',
-  'prenumeration_bekrafta',
+  'prenumeration_bekrafta', 'uppgift_delegerad',
 ]
 
 export default async function AdminMailPage() {
