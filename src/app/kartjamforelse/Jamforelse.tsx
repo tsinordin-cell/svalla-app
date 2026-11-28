@@ -32,7 +32,9 @@ export default function Jamforelse() {
     let stad: (() => void) | null = null
     ;(async () => {
       const svar = await fetch('/api/discovery?type=poi')
-      const pois: Poi[] = svar.ok ? await svar.json() : []
+      const allaPois: Poi[] = svar.ok ? await svar.json() : []
+      // Utforska klustrar under zoom 13, så nålarna visas bara i närvyn.
+      const pois = vy.zoom >= 13 ? allaPois : []
       if (!div.current) return
       if (stil === 'idag') {
         const L = (await import('leaflet')).default
