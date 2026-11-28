@@ -1,0 +1,164 @@
+[
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 12 av 35",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0099): noten sa \"Båt från Stavsnäs vinterhamn\". Gällnö står i tabell 11 och 14, och ingen av dem har Stavsnäs.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", \"11B SOLLENKROKA – BODA – GRINDA – VAXHOLM – STOCKHOLM\", \"Strömkajen (Stockholm)\", \"Boda brygga avg.\", \"Gällnö\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Gällnö\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets båtar till Gällnö går från Strömkajen via Vaxholm, från Boda brygga och från Sollenkroka (tabell 11 och 14).',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 12 av 35",
+  "rader": [
+   "f300a-0099"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 19",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0115): noten sa \"Båt från Stavsnäs vinterhamn\". Norra Svartsö står i tabell 10, 12 och 13, och ingen av dem har Stavsnäs.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Strömkajen (Stockholm)\", \"Norra Svartsö\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"Norra Svartsö\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Åsättra brygga\", \"Norra Svartsö\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets båtar till Norra Svartsö går från Strömkajen via Vaxholm (tabell 12 och 13) och från Åsättra brygga (tabell 10).',\n    // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har\n    // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 19",
+  "rader": [
+   "f300a-0115"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Bilbro från Vaxholm, buss 670 + 689 från Tekniska högskolan.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0120–0100): buss 689 går Höganäs brygga/Norra Tynningö–Östra Tynningö, inte till Resarö, och bilbron var obelagd. Noten säger nu hur båten till bryggan i rutan går.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h689.pdf — \"689 Höganäs brygga/Norra Tynningö–Östra Tynningö (–Gustavsbergs centrum)\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG\", \"Strömkajen (Stockholm)\", \"Ytterby (Resarö)\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets linje 5 går från Strömkajen via Vaxholm till Ytterby på Resarö.',",
+  "rader": [
+   "f300a-0120",
+   "f300a-0121",
+   "f300a-0122"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 5',\n  },",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 5',\n    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0125): Ytterby är märkt X på de flesta turer i tabell 5 (MÄTT med skript/scan.py), men rutorna visade reseplanerarens tider som tidtabellens.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — \"Ytterby (Resarö)\", \"X\", \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Ytterby på Resarö på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-0125"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa. Planera dagen efter båten.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0205): båten angör Eknö före Sandhamn i 16A, inte via Sandhamn.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — \"433 Slussen–Djurö\", \"Stavsnäs vinterhamn\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"Eknö\" (läst 2026-11-28)\n    note: 'Buss 433 från Slussen till Stavsnäs vinterhamn och Waxholmsbolagets båt, tabell 16. Lång resa. Planera dagen efter båten.',",
+  "rader": [
+   "f300a-0205"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 16',\n  },\n\n  // ── Utanför Stockholm",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 16',\n    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0209): Eknö är märkt X på de flesta turer i tabell 16 (MÄTT med skript/scan.py), men rutorna visade reseplanerarens tider som tidtabellens.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"Eknö\", \"X\", \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Eknö på de flesta turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n  },\n\n  // ── Utanför Stockholm",
+  "rader": [
+   "f300a-0209"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Yttersta ön i norra skärgården, båt från Simpnäs (buss 631 från Norrtälje).',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0062–0052): buss 631 går Norrtälje–Rådmansö och har ingen hållplats i Simpnäs; det har 636. \"Yttersta ön\" var obelagt.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h631.pdf — \"631 Norrtälje–Rådmansö–Norrtälje\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h636.pdf — \"636 Norrtälje–Björkö\", \"NORRTÄLJE BUSSTATION\", \"Simpnäs brygga\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"30A SIMPNÄS – ARHOLMA\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets båt, linje 30, går från Simpnäs brygga. Dit går buss 636 från Norrtälje busstation.',",
+  "rader": [
+   "f300a-0062",
+   "f300a-0063",
+   "f300a-0064"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Knutpunkten för norra skärgården, buss 626/634 från Norrtälje.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0078–0066): buss 626 går Danderyds sjukhus–Ljusterö och inte från Norrtälje till Furusund. \"Knutpunkten\" var obelagt.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h626.pdf — \"626 Danderyds sjukhus–Ljusterö\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h634.pdf — \"634 Norrtälje–Blidö\", \"NORRTÄLJE BUSSTATION\", \"Furusunds färjeläge\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"25A FURUSUND – HÖGMARSÖ – SOLÖ\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\" (läst 2026-11-28)\n    note: 'Buss 634 från Norrtälje busstation går via Furusund. Härifrån går Waxholmsbolagets båtar i tabell 25 och 28.',",
+  "rader": [
+   "f300a-0078",
+   "f300a-0079",
+   "f300a-0080"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    // KÄLLA: https://www.stromma.com/sv-se/stockholm/utflykter/dagsutflykter/fjaderholmarna/ — \"Fjäderholmarna är Stockholms närmaste skärgårdsö\" (läst 2026-10-29). https://kund.printhuset-sthlm.se/wa/h2.pdf (Waxholmsbolaget, linje 2) — \"Strömkajen (Stockholm)\", Fjäderholmarna med X = \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-10-29)\n    note: 'Närmaste skärgårdsön: Waxholmsbolagets linje 2 från Strömkajen lägger till på vissa turer, utan fast tid vid bryggan.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0038): \"Närmaste skärgårdsön\" var en superlativ med bara Strömma som källa och är struken. Efter 19 november lägger färre turer till (anmärkning u), men turer utan den anmärkningen finns kvar (MÄTT med skript/kol.py, till exempel tur 1306 i 2B).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h2.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"Strömkajen (Stockholm)\", \"Fjäderholmarna\", \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets linje 2 från Strömkajen lägger till på vissa turer, utan fast tid vid bryggan.',",
+  "rader": [
+   "f300a-0038"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Båtarna till Möja går från Sollenkroka brygga, Boda brygga och Strömkajen, inte från Stavsnäs.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0043): tabell 10 går också till Möja, från Åsättra brygga.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Strömkajen (Stockholm)\", \"Boda brygga avg.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Åsättra brygga\" (läst 2026-11-28)\n    note: 'Båtarna till Möja går från Strömkajen, Boda brygga och Sollenkroka (tabell 14) och från Åsättra brygga (tabell 10), inte från Stavsnäs.',",
+  "rader": [
+   "f300a-0043"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Saltkråkan-ön, Waxholmsbåt från Furusund.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0085): \"Saltkråkan-ön\" var obelagt och är struket.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Norröra\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets båt från Furusund, tabell 28.',",
+  "rader": [
+   "f300a-0085",
+   "f300a-0086"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Yttersta ytterskärgården, direktbåt från Furusund.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0091): \"Yttersta ytterskärgården\" var obelagt, och båten i 28A angör flera bryggor före Rödlöga, så den är ingen direktbåt.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA\", \"Rödlöga\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets båt från Furusund, tabell 28.',",
+  "rader": [
+   "f300a-0091",
+   "f300a-0092"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Skärgårdsbåt från Karlskrona. Aspö hör till världsarvet Örlogsstaden Karlskrona.',",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0246, f300a-0247): överfarten är Trafikverkets vägfärja; världsarvsuppgiften saknade nivå 1-källa och är struken.\n    // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/aspoleden/ — \"Aspöleden går mellan Karlskrona och Aspö i Karlskrona skärgård.\" (läst 2026-11-28)\n    note: 'Trafikverkets vägfärja Aspöleden går mellan Karlskrona och Aspö.',",
+  "rader": [
+   "f300a-0246",
+   "f300a-0247"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "// KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/ — \"Här finns Västtrafiks tidtabeller. Du hittat tidtabeller för buss, tåg, spårvagn, båt och förbeställd trafik.\" (läst 2026-11-17)",
+  "ny": "// KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/ — \"Här finns Västtrafiks tidtabeller. Du hittar tidtabeller för buss, tåg, spårvagn, båt och förbeställd trafik.\" (läst 2026-11-28)",
+  "rader": [
+   "f300a-0251"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "  'lilla-karlso': 'ingen hållplats inom 5 km — ön nås bara med Naturskyddsföreningens turbåt från Klintehamn',",
+  "ny": "  // Faktagranskning fas 3 (2026-11-28, P0, f300a-0252): \"bara med Naturskyddsföreningens turbåt\" stämde inte (båten körs av Gotland Sea Guides, och egen båt är tillåten med regler), och rutan sa \"nås med egen båt eller taxibåt\" utan reservatets regler för landstigning.\n  // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — \"Färjetrafik går från Klintehamn.\", \"landstiga på annan plats än vid bryggan på öns östra sida utan tillstånd av länsstyrelsen\", \"under tiden 1/3–31/8 vistas på ön utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet\", \"Under tiden 1/9–28/2 äger allmänheten rätt att vistas på ön efter skriftlig anmälan.\" (läst 2026-11-28)\n  // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — \"Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland\", \"Guidad rundvandring ingår i priset\", \"Under säsongen har vi regelbunden båttrafik till och från ön.\" (läst 2026-11-28)\n  'lilla-karlso': 'ingen hållplats inom 5 km — under säsongen går båten till ön från Klintehamn, med Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland, och en guidad rundvandring ingår. Med egen båt får du utan tillstånd bara landstiga vid bryggan på öns östra sida. Den 1 mars till 31 augusti krävs tillstånd från Länsstyrelsen eller reservatets tillsynsman för att vistas på ön, och den 1 september till 28 februari en skriftlig anmälan direkt efter ilandstigningen',",
+  "rader": [
+   "f300a-0252"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "  'morko': 'ingen hållplats inom 5 km',",
+  "ny": "  // Faktagranskning fas 3 (2026-11-28, f300a-0255): rutan sa \"Mörkö nås med egen båt eller taxibåt\", men ön har bro och vägfärja.\n  // KÄLLA: https://www.sodertalje.se/contentassets/801b52a57aed44f592a5d6bf3ff8bb96/1-morko.pdf — \"Mörkö har förbindelse med fastlandet via en bro vid Kasholmsundet på öns västra del\" (läst 2026-11-28)\n  // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/skanssundsleden/ — \"Skanssundsleden går mellan Hörningsnäs på Södertörn och Mörkö.\", \"Resan med vägfärjan är avgiftsfri.\" (läst 2026-11-28)\n  'morko': 'ingen hållplats inom 5 km — Mörkö nås med bil över bron vid Kasholmsundet eller med Trafikverkets avgiftsfria vägfärja Skanssundsleden från Hörningsnäs',",
+  "rader": [
+   "f300a-0255"
+  ]
+ },
+ {
+  "fil": "src/lib/ingen-trafik.test.ts",
+  "gammal": "    expect(ingenTrafikText(ISLAND_NO_TRANSIT['lilla-karlso']!))\n      .toBe('Ingen kollektivtrafik hit: ön nås bara med Naturskyddsföreningens turbåt från Klintehamn.')",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0252): tillägget för Lilla Karlsö skrevs om.\n    const t = ingenTrafikText(ISLAND_NO_TRANSIT['lilla-karlso']!)\n    expect(t.startsWith('Ingen kollektivtrafik hit: under säsongen går båten till ön från Klintehamn')).toBe(true)\n    expect(t).toContain('bryggan på öns östra sida')",
+  "rader": [
+   "f300a-0252"
+  ]
+ },
+ {
+  "fil": "src/components/LastBoatPanel.tsx",
+  "gammal": "          Tiden kan gälla en tur som bara går eller stannar här om resan har beställts i förväg. Är det så, går sista båten utan beställning tidigare. Se turens anmärkning i {bestallningTabell}.",
+  "ny": "          {/* Faktagranskning fas 3 (2026-11-28, P0, f300a-0266): \"går sista båten utan beställning tidigare\" stämmer inte\n              där alla turer har anmärkning, till exempel Rödlöga 2 november till 12 december.\n              KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"28B RÖDLÖGA – SÖDERÖRA – ÖSTERNÄS – FURUSUND\", \"Går under perioden 2 november - 12\" (läst 2026-11-28) */}\n          Tiden kan gälla en tur som bara går eller stannar här om resan har beställts i förväg. Är det så, går sista båten utan beställning tidigare den dagen, eller inte alls. Se turens anmärkning i {bestallningTabell}.",
+  "rader": [
+   "f300a-0266"
+  ]
+ },
+ {
+  "fil": "src/components/DepartureWidget.tsx",
+  "gammal": "    return (\n      <div style={{\n        border: '1px solid var(--border)', borderRadius: 14,\n        padding: '16px 18px', background: 'var(--white)',\n      }}>\n        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>\n          Hit går ingen kollektivtrafik\n        </div>",
+  "ny": "    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0278): rutan sa \"Hit går ingen kollektivtrafik\" och\n    // \"nås med egen båt eller taxibåt\" för varje ö i ISLAND_NO_TRANSIT. Gålö har SL-buss 845 och Hasselö\n    // Waxholmsbolagets tabell 16; de står i listan för att närmaste hållplats inte kunde knytas till ön.\n    // Nu gäller den texten bara öar utan hållplats inom 5 km och utan tillägg efter \" — \" i listan.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — \"845 Västerhaninge station–Gålö\", \"Giltig 18 mars–18 juni samt 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"Hasselö\" (läst 2026-11-28)\n    const skal = data.skal ?? ''\n    const knytsInte = skal.includes('kunde inte knytas')\n    const tillagg = skal.split(' — ')[1]?.trim().replace(/\\.$/, '')\n    if (knytsInte || tillagg) {\n      return (\n        <div style={{\n          border: '1px solid var(--border)', borderRadius: 14,\n          padding: '16px 18px', background: 'var(--white)',\n        }}>\n          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>\n            Båttider till {islandName} visas inte här\n          </div>\n          <div style={{ fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.55 }}>\n            {tillagg\n              ? `${tillagg.charAt(0).toUpperCase()}${tillagg.slice(1)}.`\n              : 'Båttider hit finns inte hos Trafiklab. Se ösidan för hur du tar dig hit.'}\n          </div>\n        </div>\n      )\n    }\n    return (\n      <div style={{\n        border: '1px solid var(--border)', borderRadius: 14,\n        padding: '16px 18px', background: 'var(--white)',\n      }}>\n        <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>\n          Hit går ingen kollektivtrafik\n        </div>",
+  "rader": [
+   "f300a-0278",
+   "f300a-0279"
+  ]
+ }
+]
