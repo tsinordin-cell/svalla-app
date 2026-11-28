@@ -37,6 +37,7 @@ const TYPE_LABEL: Record<string, string> = {
  forum_best_answer: 'markerade ditt svar som bäst',
  listing_saved: 'sparade din annons',
  dm_accepted: 'accepterade din meddelandeförfrågan',
+ task_assigned: 'gav dig en uppgift på /team',
 }
 
 // SVG-ikon per typ (badge i hörnet av avatar)
@@ -53,6 +54,7 @@ const TYPE_ICON: Record<string, IconName> = {
  forum_mention: 'atSign',
  forum_best_answer: 'check',
  listing_saved: 'bookmark',
+ task_assigned: 'clipboard',
  dm_accepted: 'mail',
 }
 
@@ -298,7 +300,9 @@ export default function NotiserPage() {
      (n.type === 'forum_reply' || n.type === 'forum_like' || n.type === 'forum_mention' || n.type === 'forum_best_answer') && n.reference_id
        ? `/forum/t/${n.reference_id}`
        : n.type === 'follow' ? `/u/${encodeURIComponent(n.actor_username)}`
-       : n.type === 'listing_saved' && n.reference_id ? `/forum/loppis/${n.reference_id}`
+       : n.type === 'task_assigned' && n.reference_id
+ ? `/team?uppgift=${n.reference_id}`
+ : n.type === 'listing_saved' && n.reference_id ? `/forum/loppis/${n.reference_id}`
        : n.type === 'dm_accepted' && n.reference_id ? `/meddelanden/${n.reference_id}`
        : n.type === 'message' ? '/meddelanden'
        : n.type === 'friend_visit' && n.related_island_slug ? `/o/${n.related_island_slug}`
