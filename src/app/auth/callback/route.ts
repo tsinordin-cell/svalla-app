@@ -4,6 +4,7 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { appensTillbakaLank, sakerNasta } from '@/lib/appInloggning'
 import { arGiltigVillkorsversion } from '@/lib/villkor'
 import { HAR_KONTO_KAKA, NY_REGISTRERING_KAKA, franSokvag } from '@/lib/kontoLage'
+import { tillGuiden } from '@/lib/guidenForst'
 
 /**
  * Sidan Safari visar när Google-inloggningen startades i appen: skickar
@@ -68,6 +69,7 @@ export async function GET(request: NextRequest) {
 
     if (!error) {
       let nyRegistrering: string | null = null
+      let forstaInloggning = false
       // Trigga välkomstmail för nyligen skapade konton (icke-blockerande, fail-silent).
       // post-signup-endpointen är idempotent och rate-limitad (1/dygn) + verifierar 5-min-fönster.
       try {
@@ -77,6 +79,7 @@ export async function GET(request: NextRequest) {
         // e-postregistreringen sätter), om den inte redan finns.
         const villkor = searchParams.get('villkor')
         const nyttKonto = !!user && (Date.now() - new Date(user.created_at).getTime()) < 5 * 60_000
+        forstaInloggning = nyttKonto
         // Kontotratten (2026-11-23): markera ny registrering så att nästa sida
         // kan skicka user_signup med samtycke (lib/nyRegistrering.ts).
         if (user && nyttKonto) {
@@ -105,7 +108,10 @@ export async function GET(request: NextRequest) {
 
       // Säkerhetskontroll: tillåt bara interna sökvägar
       const safeNext = sakerNasta(next)
-      const svar = NextResponse.redirect(`${origin}${safeNext}`)
+      // Nytt konto: guiden först, sedan sidan personen var på väg till (2026-11-28).
+      // Har kontot redan gått igenom guiden skickar /onboarding vidare direkt.
+      const mal = forstaInloggning ? tillGuiden(safeNext) : safeNext
+      const svar = NextResponse.redirect(`${origin}${mal}`)
       // Webbläsaren har nu ett konto: /logga-in visar inloggning nästa gång.
       svar.cookies.set(HAR_KONTO_KAKA, '1', { maxAge: 60 * 60 * 24 * 365, path: '/', sameSite: 'lax', secure: true })
       if (nyRegistrering) {
