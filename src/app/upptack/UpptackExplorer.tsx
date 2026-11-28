@@ -729,7 +729,8 @@ export default function UpptackExplorer() {
       const m = markersRef.current.get(id)
       if (!m?.poi) return
       m.el.innerHTML = pinHtml(categorize(m.poi), aktiv)
-      m.el.className = aktiv ? 'svalla-pin svalla-pin-active' : 'svalla-pin'
+      // classList, inte className: MapLibre har egna klasser på elementet som styr placeringen.
+      m.el.classList.toggle('svalla-pin-active', aktiv)
       m.el.style.zIndex = aktiv ? '10' : ''
     }
     const prev = lastHoveredRef.current
