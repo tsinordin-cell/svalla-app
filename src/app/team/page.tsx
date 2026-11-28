@@ -8,7 +8,7 @@ import { REVENUE_YEARLY_SEK, TRAFFIC_OVERRIDE } from '@/app/admin/malet/config'
 import { baraManniskor } from '@/lib/analytics-filter'
 import { getGsc, summarize } from '@/lib/gsc'
 import { getStripeIntakt } from '@/lib/stripe-intakt'
-import type { KpiValues } from './roadmap-config'
+import type { KpiValues, KpiKey, KpiMal } from './roadmap-config'
 import type { Milestone, RoadmapMerits, RoadmapTraffic } from './RoadmapView'
 import { adminRad } from '@/lib/adminRad'
 
@@ -23,8 +23,8 @@ export const dynamic = 'force-dynamic'
 const TEAM_DISPLAY: Record<string, { name: string; initials: string }> = {
   tsinordin: { name: 'Tom', initials: 'TN' },
   matte: { name: 'Max', initials: 'MB' },
-  // Claes blev admin 2026-11-28 (Toms ja). Efternamn okänt, därför bara C.
-  claes: { name: 'Claes', initials: 'C' },
+  // Claes Dahlstrand blev admin 2026-11-28 (Toms ja).
+  claes: { name: 'Claes', initials: 'CD' },
 }
 
 type TeamDisplayUser = {
@@ -70,6 +70,7 @@ export default async function TeamPage() {
     { data: prompts },
     { data: activity },
     { data: milestones },
+    { data: malRader },
     usersCount,
     subsCount,
     partnersCount,
@@ -88,6 +89,8 @@ export default async function TeamPage() {
     service.from('team_activity').select('*').order('created_at', { ascending: false }).limit(60),
     // ── Roadmap: milstolpar + live-siffror (samma räkning som /admin/malet) ──
     service.from('team_milestones').select('*').order('sort', { ascending: true }),
+    // Teamets ändrade mål (2026-11-28). Saknas tabellen eller rader gäller standardmålen.
+    service.from('team_kpi_mal').select('kpi, steg1, steg2, steg3'),
     service.from('users').select('*', { count: 'exact', head: true }),
     service.from('email_subscribers').select('*', { count: 'exact', head: true }).eq('unsubscribed', false),
     // Betalande = Stripe-prenumeration aktiv. Webhooken sätter status='closed'
@@ -144,6 +147,9 @@ export default async function TeamPage() {
       : { ok: false, reason: gsc.reason, clientEmail: gsc.clientEmail ?? null },
   }
 
+  const mal: KpiMal = Object.fromEntries((malRader ?? []).map(r =>
+    [r.kpi as KpiKey, [Number(r.steg1), Number(r.steg2), Number(r.steg3)] as [number, number, number]]))
+
   return (
     <TeamDashboardClient
       currentUser={applyTeamDisplay({ id: user.id, username: userRow.username })}
@@ -152,7 +158,7 @@ export default async function TeamPage() {
       initialTasks={tasks ?? []}
       initialPrompts={prompts ?? []}
       initialActivity={activity ?? []}
-      roadmap={{ kpis, merits, traffic, milestones: (milestones ?? []) as Milestone[] }}
+      roadmap={{ kpis, merits, traffic, milestones: (milestones ?? []) as Milestone[], mal }}
     />
   )
 }

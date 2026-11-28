@@ -1,7 +1,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 //  ROADMAP — värdetrappan Tom och Max följer på /team
 //  Samma trappa som 04_Rapporter/SVALLA_EXIT_BRIEF.md och /admin/malet.
-//  Ändra målen här om trappan ändras — siffrorna i sig räknas live.
+//  Målen här är standardvärden. Teamet kan ändra dem på /team (tabellen
+//  team_kpi_mal, 2026-11-28); siffrorna i sig räknas alltid live.
 // ═══════════════════════════════════════════════════════════════════════════
 
 export type KpiKey = 'sessions' | 'subs' | 'partners' | 'revenue' | 'users' | 'guides' | 'islands'
@@ -42,10 +43,26 @@ export function targetFor(k: Kpi, stage: 1 | 2 | 3): number {
   return k.targets[(stage - 1) as 0 | 1 | 2]
 }
 
+/** Ändrade mål från tabellen team_kpi_mal, per nyckeltal. */
+export type KpiMal = Partial<Record<KpiKey, [number, number, number]>>
+
+/** Nyckeltalen med teamets ändrade mål där sådana finns, annars standardmålen. */
+export function medMal(mal: KpiMal | null | undefined): Kpi[] {
+  return KPIS.map(k => {
+    const t = mal?.[k.key]
+    return t ? { ...k, targets: t } : k
+  })
+}
+
+/** Är tre mål giltiga? Större än noll och stigande från 1 till 5 MSEK. */
+export function giltigaMal(t: [number, number, number]): boolean {
+  return t.every(n => Number.isFinite(n) && n > 0) && t[0] <= t[1] && t[1] <= t[2]
+}
+
 /** Första steget (1–3) där minst ett mål inte är nått. 4 = hela trappan klar. */
-export function currentStage(v: KpiValues): 1 | 2 | 3 | 4 {
+export function currentStage(v: KpiValues, kpis: readonly Kpi[] = KPIS): 1 | 2 | 3 | 4 {
   for (const s of [1, 2, 3] as const) {
-    if (KPIS.some(k => v[k.key] < targetFor(k, s))) return s
+    if (kpis.some(k => v[k.key] < targetFor(k, s))) return s
   }
   return 4
 }

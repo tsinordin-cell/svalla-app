@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 import type { createClient } from '@/lib/supabase'
-import { STAGES, KPIS, EXIT_GOAL, currentStage, targetFor, type KpiValues, type KpiKey } from './roadmap-config'
+import { STAGES, KPIS, EXIT_GOAL, currentStage, targetFor, medMal, giltigaMal, type KpiValues, type KpiKey, type KpiMal } from './roadmap-config'
 import type { GscSummary, GscQuery, GscPage } from '@/lib/gsc'
 
 // ── Roadmap ────────────────────────────────────────────────────────────────
@@ -79,19 +79,24 @@ function sortMilestones(a: Milestone, b: Milestone) {
 }
 
 export default function RoadmapView({
-  supabase, kpis, merits, traffic, initialMilestones, currentUserId, onLog,
+  supabase, kpis, merits, traffic, initialMilestones, initialMal, currentUserId, onLog,
 }: {
   supabase: Supa
   kpis: KpiValues
   merits: RoadmapMerits
   traffic: RoadmapTraffic
   initialMilestones: Milestone[]
+  /** Teamets ändrade mål (team_kpi_mal). Saknas ett nyckeltal gäller standardmålet. */
+  initialMal: KpiMal
   currentUserId: string
   onLog: (message: string) => void
 }) {
   const [milestones, setMilestones] = useState<Milestone[]>(initialMilestones)
+  const [mal, setMal] = useState<KpiMal>(initialMal)
+  const [andrarMal, setAndrarMal] = useState(false)
+  const kpiLista = useMemo(() => medMal(mal), [mal])
   const [newTitle, setNewTitle] = useState('')
-  const stage = currentStage(kpis)
+  const stage = currentStage(kpis, kpiLista)
   const activeStage = Math.min(stage, 3) as 1 | 2 | 3
   const [newStage, setNewStage] = useState<number>(activeStage)
   const [openLater, setOpenLater] = useState(false)
@@ -123,13 +128,33 @@ export default function RoadmapView({
 
   // Ärligt framsteg: hur många av målen för steget som är nådda. Ett snitt
   // av andelar döljer flaskhalsen — 250 guider väger då upp 0 partners.
-  const malStatus = useMemo(() => KPIS.map(k => ({
+  const malStatus = useMemo(() => kpiLista.map(k => ({
     k, nadd: kpis[k.key] >= targetFor(k, activeStage),
-  })), [kpis, activeStage])
+  })), [kpis, activeStage, kpiLista])
   const kpisMet = malStatus.filter(m => m.nadd).length
 
-  const weakest = useMemo(() => [...KPIS].sort((a, b) =>
-    kpis[a.key] / targetFor(a, activeStage) - kpis[b.key] / targetFor(b, activeStage))[0], [kpis, activeStage])
+  const weakest = useMemo(() => [...kpiLista].sort((a, b) =>
+    kpis[a.key] / targetFor(a, activeStage) - kpis[b.key] / targetFor(b, activeStage))[0], [kpis, activeStage, kpiLista])
+
+  async function sparaMal(nya: KpiMal) {
+    const andrade = (Object.keys(nya) as KpiKey[]).filter(k => {
+      const fore = kpiLista.find(x => x.key === k)!.targets
+      return nya[k]!.some((n, i) => n !== fore[i])
+    })
+    if (andrade.length === 0) { setAndrarMal(false); return }
+    const rader = andrade.map(k => ({
+      kpi: k, steg1: nya[k]![0], steg2: nya[k]![1], steg3: nya[k]![2],
+      updated_by: currentUserId, updated_at: new Date().toISOString(),
+    }))
+    const { error } = await supabase.from('team_kpi_mal').upsert(rader, { onConflict: 'kpi' })
+    if (error) { setFel('Målen sparades inte. Försök igen.'); return }
+    setMal(m => ({ ...m, ...Object.fromEntries(andrade.map(k => [k, nya[k]!])) }))
+    setAndrarMal(false)
+    onLog(`Ändrade målen i Roadmap: ${andrade.map(k => {
+      const kpi = KPIS.find(x => x.key === k)!
+      return `${kpi.label} ${nya[k]!.map(n => fmt(n)).join(' / ')}`
+    }).join('; ')}.`)
+  }
 
   const nowList = milestones.filter(m => m.stage === activeStage && m.status !== 'done').sort(sortMilestones)
   const laterStages = ([1, 2, 3] as const).filter(s => s > activeStage)
@@ -190,22 +215,27 @@ export default function RoadmapView({
 
       {fel && <div className="rm-toast" role="status">{fel}</div>}
 
-      <Farled stage={stage} activeStage={activeStage} kpisMet={kpisMet} total={KPIS.length} days={merits.daysSinceStart} />
+      <Farled stage={stage} activeStage={activeStage} kpisMet={kpisMet} total={kpiLista.length} days={merits.daysSinceStart} />
 
       {/* ── Var vi är ──────────────────────────────────────────────────── */}
       <section aria-labelledby="rm-lage">
         <div className="rm-h">
           <h2 id="rm-lage">Var vi är</h2>
-          <div className="rm-goals" aria-label={`${kpisMet} av ${KPIS.length} mål nådda`}>
-            <span>{kpisMet} av {KPIS.length} mål klara för {stageMeta.value}</span>
+          <div className="rm-goals" aria-label={`${kpisMet} av ${kpiLista.length} mål nådda`}>
+            <span>{kpisMet} av {kpiLista.length} mål klara för {stageMeta.value}</span>
             <span className="rm-goal-dots" aria-hidden>
               {[...malStatus].sort((a, b) => Number(b.nadd) - Number(a.nadd)).map(({ k, nadd }) => <i key={k.key} className={nadd ? 'on' : ''} title={`${k.label}: ${nadd ? 'nått' : 'inte nått'}`} />)}
             </span>
+            {!andrarMal && <button type="button" className="rm-malknapp" onClick={() => setAndrarMal(true)}>Ändra mål</button>}
           </div>
         </div>
 
+        {andrarMal && (
+          <MalRedigerare kpiLista={kpiLista} onSpara={sparaMal} onAvbryt={() => setAndrarMal(false)} />
+        )}
+
         <div className="rm-drivers">
-          {KPIS.filter(k => DRIVARE.includes(k.key)).map(k => {
+          {kpiLista.filter(k => DRIVARE.includes(k.key)).map(k => {
             const v = kpis[k.key]
             const target = targetFor(k, activeStage)
             const p = Math.min(1, v / target)
@@ -233,7 +263,7 @@ export default function RoadmapView({
         </div>
 
         <ul className="rm-base">
-          {KPIS.filter(k => !DRIVARE.includes(k.key)).map(k => {
+          {kpiLista.filter(k => !DRIVARE.includes(k.key)).map(k => {
             const v = kpis[k.key]
             const target = targetFor(k, activeStage)
             const p = Math.min(1, v / target)
@@ -732,6 +762,76 @@ function Pen() {
   )
 }
 
+// ── Ändra mål ───────────────────────────────────────────────────────────────
+// Bara målen går att ändra. Mätvärdena räknas live och skrivs aldrig över här
+// (Toms val 2026-11-28).
+
+function MalRedigerare({ kpiLista, onSpara, onAvbryt }: {
+  kpiLista: readonly (typeof KPIS)[number][]
+  onSpara: (mal: KpiMal) => Promise<void>
+  onAvbryt: () => void
+}) {
+  const [utkast, setUtkast] = useState<Record<string, [string, string, string]>>(() =>
+    Object.fromEntries(kpiLista.map(k => [k.key, k.targets.map(String) as [string, string, string]])))
+  const [sparar, setSparar] = useState(false)
+
+  const tolkat = Object.fromEntries(Object.entries(utkast).map(([k, t]) =>
+    [k, t.map(v => Number(v.replace(/\s/g, '').replace(',', '.'))) as [number, number, number]]))
+  const felaktiga = kpiLista.filter(k => !giltigaMal(tolkat[k.key]!))
+
+  async function spara() {
+    if (felaktiga.length > 0) return
+    setSparar(true)
+    await onSpara(tolkat as KpiMal)
+    setSparar(false)
+  }
+
+  return (
+    <div className="rm-malpanel">
+      <p className="rm-malhjalp">Målen för varje steg. Siffrorna ovanför räknas fortfarande live. Varje mål måste vara större än noll och minst lika stort som steget före.</p>
+      <div className="rm-maltabell" role="table" aria-label="Mål per nyckeltal och steg">
+        <div className="rm-malrad rm-malhuvud" role="row">
+          <span role="columnheader">Nyckeltal</span>
+          {STAGES.filter(s => s.n > 0).map(s => <span key={s.n} role="columnheader">{s.value}</span>)}
+        </div>
+        {kpiLista.map(k => {
+          const fel = felaktiga.includes(k)
+          return (
+            <div key={k.key} className={`rm-malrad${fel ? ' fel' : ''}`} role="row">
+              <span role="rowheader">{k.label}{k.unit ? ` (${k.unit})` : ''}</span>
+              {([0, 1, 2] as const).map(i => (
+                <input
+                  key={i}
+                  id={`mal-${k.key}-${i + 1}`}
+                  inputMode="numeric"
+                  value={utkast[k.key]![i]}
+                  aria-label={`${k.label}, mål för ${STAGES[i + 1]!.value}`}
+                  aria-invalid={fel || undefined}
+                  onChange={e => {
+                    const v = e.target.value
+                    setUtkast(u => {
+                      const rad = [...u[k.key]!] as [string, string, string]
+                      rad[i] = v
+                      return { ...u, [k.key]: rad }
+                    })
+                  }}
+                />
+              ))}
+            </div>
+          )
+        })}
+      </div>
+      {felaktiga.length > 0 && (
+        <p className="rm-malfel" role="alert">Kontrollera {felaktiga.map(k => k.label.toLowerCase()).join(', ')}: målen ska vara större än noll och stiga från 1 till 5 MSEK.</p>
+      )}
+      <div className="rm-edit-actions">
+        <button type="button" className="primary" onClick={spara} disabled={sparar || felaktiga.length > 0}>{sparar ? 'Sparar…' : 'Spara mål'}</button>
+        <button type="button" onClick={onAvbryt} disabled={sparar}>Avbryt</button>
+      </div>
+    </div>
+  )
+}
+
 const CSS = `
 .rm { display: flex; flex-direction: column; gap: 40px; padding-bottom: 48px; }
 .rm h2 { font-size: 19px; font-weight: 700; color: var(--txt); margin: 0; font-family: var(--font-display), var(--font-display-fallback); letter-spacing: -.01em; }
@@ -844,6 +944,21 @@ const CSS = `
 .rm-edit-actions button.danger { margin-left: auto; color: var(--red, #c0392b); border-color: transparent; }
 .rm-edit-actions button:disabled, .rm-add button:disabled { opacity: .45; cursor: default; }
 
+.rm-malknapp { border: 1.5px solid var(--svt-border-strong); background: transparent; color: var(--txt2); font-size: 12.5px; font-weight: 600; padding: 5px 11px; border-radius: 8px; cursor: pointer; font-family: inherit; }
+.rm-malknapp:hover { border-color: var(--sea); color: var(--sea); }
+.rm-malpanel { background: var(--white); border: 1px solid var(--svt-border); border-radius: 14px; box-shadow: var(--shadow-xs); padding: 16px 18px; margin-bottom: 14px; display: flex; flex-direction: column; gap: 12px; }
+.rm-malhjalp { margin: 0; font-size: 12.5px; color: var(--txt3); line-height: 1.5; }
+.rm-maltabell { display: flex; flex-direction: column; gap: 6px; overflow-x: auto; }
+.rm-malrad { display: grid; grid-template-columns: minmax(150px, 1.4fr) repeat(3, minmax(90px, 1fr)); gap: 8px; align-items: center; font-size: 13px; color: var(--txt2); }
+.rm-malhuvud { font-size: 11.5px; font-weight: 700; color: var(--txt3); text-transform: uppercase; letter-spacing: .04em; }
+.rm-malrad input { width: 100%; font-variant-numeric: tabular-nums; }
+.rm-malrad.fel input { border-color: var(--red, #c0392b); }
+.rm-malfel { margin: 0; font-size: 12.5px; color: var(--red, #c0392b); }
+@media (max-width: 640px) {
+  .rm-malrad { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 8px; }
+  .rm-malrad > [role="rowheader"] { grid-column: 1 / -1; font-weight: 600; margin-top: 6px; }
+  .rm-malhuvud > :first-child { display: none; }
+}
 .rm-add { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
 .rm-add input { flex: 1 1 260px; }
 .rm-later { margin-top: 14px; }
