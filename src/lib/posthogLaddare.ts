@@ -8,7 +8,8 @@
  * 2026-10-10: 63 av ≈400 kB). Nu hämtas biblioteket med import() när det
  * behövs, och bara då.
  *
- * Konfigurationen är oförändrad (se PostHogProvider för bakgrunden).
+ * Sessionsinspelning är avstängd (disable_session_recording). Biblioteket
+ * startas bara efter samtycke, se PostHogProvider.
  */
 import type { PostHog } from 'posthog-js'
 
@@ -34,8 +35,6 @@ export function laddaPostHog(): Promise<PostHog | null> {
         // AdBlock som annars skulle blockera *.posthog.com och tappa data.
         // ui_host pekar fortfarande på riktiga PostHog så toolbar/links funkar.
         //
-        // OBS: tilläggsskripten (recorder, surveys m.m.) hämtas i praktiken från
-        // us-assets.i.posthog.com (uppmätt 2026-10-02), inte via proxyn.
         api_host:           process.env.NEXT_PUBLIC_POSTHOG_HOST ?? 'https://svalla.se/ingest',
         ui_host:            'https://us.posthog.com',
         capture_pageview:   false,           // PostHogPageView hanterar detta
@@ -44,10 +43,8 @@ export function laddaPostHog(): Promise<PostHog | null> {
         persistence:        'localStorage+cookie',
         // Efter opt-out sparas inget alls i webbläsaren.
         opt_out_persistence_by_default: true,
-        session_recording: {
-          maskAllInputs:     true,           // dölj lösenord, e-post etc.
-          maskTextSelector:  '[data-ph-mask]',
-        },
+        // Ingen sessionsinspelning, oavsett vad projektet har påslaget i PostHog.
+        disable_session_recording: true,
       })
       instans = posthog
       return posthog

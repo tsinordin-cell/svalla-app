@@ -124,7 +124,6 @@ export type Vidareklickkategori = 'mat' | 'boende' | 'resa' | 'hamn' | 'hantverk
 
 interface PostHogLike {
   capture: (eventName: string, properties?: Record<string, unknown>) => void
-  identify?: (id: string, props?: Record<string, unknown>) => void
 }
 
 declare global {
@@ -233,13 +232,3 @@ function ursprungForSession(): string | undefined {
   }
 }
 
-/**
- * Identifierar inloggad användare för PostHog. Anropa efter login.
- */
-export function identifyUser(userId: string, traits?: Record<string, unknown>): void {
-  if (typeof window === 'undefined') return
-  if (!hasAnalyticsConsent()) return
-  const ph = window.posthog
-  if (!ph?.identify) return
-  ph.identify(userId, traits)
-}

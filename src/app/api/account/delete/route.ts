@@ -12,6 +12,7 @@ import { arDmBildSokvag } from '@/lib/dmBilder'
 import { taBortDmBilder, rensaBilderForRaderadeSamtal } from '@/lib/dmBilderRensning'
 import { checkRateLimit } from '@/lib/rateLimit'
 import { harLosenord, farskInloggning, raderingBekraftad } from '@/lib/kontoBekraftelse'
+import { rapporteraRaderingsfel, stadaPersonuppgifter } from '@/lib/kontoRadering'
 // TODO: wrap handlers with withSentrySimple(handler, 'account/delete') — se src/lib/api-handler.ts
 
 /**
@@ -274,6 +275,15 @@ export async function POST(req: NextRequest) {
   } catch (e) {
     logger.error('account-delete', 'trips storage cleanup failed', { e: String(e), userId })
   }
+
+  // ─── Steg 3c: Mejllogg, nyhetsbrev och användarens bildmappar ─────────
+  // email_log (konto och adress), email_subscribers, forum-images/{id}
+  // och trip-images/stories/{id}. Ett steg som fallerar stoppar inte
+  // raderingen. Felet går till Sentry. PostHog-personen tas inte bort:
+  // ingen personlig API-nyckel finns i koden eller i env-exemplet.
+  await stadaPersonuppgifter(s, userId, userEmail ?? null, (steg, fel) => {
+    rapporteraRaderingsfel(steg, fel, userId)
+  })
 
   // ─── Steg 4: Skicka bekräftelse-email ─────────────────────────────────
   if (userEmail && process.env.RESEND_API_KEY) {
