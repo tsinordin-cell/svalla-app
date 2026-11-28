@@ -9,6 +9,8 @@ export const REGION_LABEL: Record<string, string> = {
   outer: 'Ytterskärgården', bohuslan: 'Bohuslän', bohuslan_nord: 'Norra Bohuslän',
   goteborg: 'Göteborgs skärgård', west_coast: 'Västkusten', aland: 'Åland', gotland: 'Gotland',
   oland: 'Öland', blekinge: 'Blekinge', oresund: 'Öresund',
+  // Omtaget av /upptack steg 9 (2026-11-28): Halmstads och Laholms kust, Båstads kommun.
+  halland: 'Hallandskusten', bjare: 'Bjärehalvön',
 }
 
 export function regionEtikett(kod: string | null | undefined): string | null {

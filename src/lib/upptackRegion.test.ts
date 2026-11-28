@@ -9,6 +9,8 @@ describe('upptackRegion', () => {
   it('sorterar kända platser rätt', () => {
     expect(upptackRegion({ latitude: 60.097, longitude: 19.934 })).toBe('aland') // Mariehamn
     expect(upptackRegion({ latitude: 57.634, longitude: 18.296 })).toBe('gotland') // Visby
+    expect(upptackRegion({ latitude: 56.4279, longitude: 12.6257 })).toBe('halland') // Torekovs hamn
+    expect(upptackRegion({ latitude: 56.6593, longitude: 12.8497 })).toBe('halland') // Halmstad Gästhamn
     expect(upptackRegion({ latitude: 56.879, longitude: 16.656 })).toBe('oland') // Borgholm
     expect(upptackRegion({ latitude: 57.61, longitude: 11.77 })).toBe('goteborg') // Styrsö
     expect(upptackRegion({ latitude: 58.35, longitude: 11.22 })).toBe('bohuslan') // Smögen
