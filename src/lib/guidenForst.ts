@@ -30,3 +30,32 @@ export function tillGuiden(nasta: string | null | undefined): string {
   const tillbaka = tolkaTillbaka(nasta)
   return tillbaka ? `/onboarding?tillbaka=${encodeURIComponent(tillbaka)}` : '/onboarding'
 }
+
+/**
+ * Versionen av onboardingen. Konton med lägre guide_version (eller null) får
+ * guiden nästa gång de öppnar Svalla inloggade (Toms beslut 2026-11-28: även
+ * konton som gick igenom den gamla guiden ska se den nya).
+ * Höj siffran bara när guiden ändras så mycket att alla ska se den igen.
+ */
+export const GUIDE_VERSION = 2
+
+/** Behöver kontot se guiden? */
+export function behoverGuiden(guideVersion: number | null | undefined): boolean {
+  return typeof guideVersion !== 'number' || guideVersion < GUIDE_VERSION
+}
+
+/*
+ * Sidor där guiden inte tar över: inloggning, guiden själv, juridiska sidor,
+ * radering och admin. Den som är mitt i något av det ska inte avbrytas.
+ */
+const INTE_HAR = [
+  '/onboarding', '/logga-in', '/kom-igang', '/registrera', '/auth', '/bekrafta-epost',
+  '/glomt-losenord', '/nytt-losenord', '/admin', '/team', '/goodbye', '/profil/installningar',
+  '/anvandarvillkor', '/integritetspolicy', '/cookies', '/api', '/nyhetsbrev', '/avregistrera', '/offline',
+]
+
+/** Får guiden ta över på den här sidan? */
+export function guidenFarVisasPa(sokvag: string): boolean {
+  if (!sokvag.startsWith('/')) return false
+  return !INTE_HAR.some(p => sokvag === p || sokvag.startsWith(`${p}/`))
+}

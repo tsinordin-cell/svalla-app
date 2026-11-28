@@ -23,6 +23,7 @@ import { listRecentAchievementEvents } from '@/lib/achievementEvents'
 import { fetchFeedTrips, enrichWithTags } from '@/lib/feed'
 import { getViewerId } from '@/lib/authClaims'
 import { timmeIStockholm } from '@/lib/svenskTid'
+import { behoverGuiden } from '@/lib/guidenForst'
 
 export const dynamic = 'force-dynamic'
 
@@ -109,7 +110,7 @@ export default async function FeedPage(
  let shouldRedirectOnboarding = false
  let followsResult: { following_id: string }[] = []
  try {
- let profilRes: { data: { username: string | null; onboarded_at?: string | null } | null } = { data: null }
+ let profilRes: { data: { username: string | null; onboarded_at?: string | null; guide_version?: number | null } | null } = { data: null }
  // follows behöver också bara user.id — den låg tidigare i nästa våg och
  // gjorde att achievements (som behöver följlistan) startade ett helt led
  // senare. Nu: allt som bara kräver user.id går i EN våg.
@@ -119,7 +120,7 @@ export default async function FeedPage(
  ? fetchFeedTrips(supabase!, { viewerId: user.id, limit: 20, followOnly: true })
  : Promise.resolve({ trips: [], error: null }),
  user
- ? supabase!.from('users').select('username, onboarded_at').eq('id', user.id).single()
+ ? supabase!.from('users').select('username, onboarded_at, guide_version').eq('id', user.id).single()
  : Promise.resolve({ data: null }),
  user
  ? supabase!.from('follows').select('following_id').eq('follower_id', user.id).then(r => r.data ?? [])
@@ -127,7 +128,8 @@ export default async function FeedPage(
  ])
  if (user && profilRes.data) {
  // Redirect till onboarding om inte slutfört (kolumn kan saknas tills migration kört)
- if (profilRes.data.onboarded_at === null) shouldRedirectOnboarding = true
+ // 2026-11-28: alla konton som inte sett aktuell guide (lib/guidenForst.ts), även de som gick igenom den gamla.
+ if (behoverGuiden(profilRes.data.guide_version)) shouldRedirectOnboarding = true
  else feedUsername = profilRes.data.username ?? null
  }
  } catch (err) {

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
@@ -8,6 +8,8 @@ import { rangordnaForslag } from '@/lib/rangordnaForslag'
 import { DEPARTURES } from '@/lib/planner-client'
 import { validateUsername } from '@/lib/username'
 import { komprimeraBild, AVATAR_MAX_PX } from '@/lib/komprimeraBild'
+import { GUIDE_VERSION } from '@/lib/guidenForst'
+import { GUIDE_OK_NYCKEL } from '@/components/GuideKontroll'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /onboarding, version 2 (2026-11-28, Toms uppdrag 27 nov)
@@ -47,6 +49,11 @@ interface Props {
   userId: string
   /** Förnamn till hälsningen, eller ett eget användarnamn. Tomt om inget passar. */
   halsning: string
+  /** Kontot fanns före guiden (version 2): annan välkomsttext. */
+  befintligt?: boolean
+  /** Båttyp och hemmahamn som kontot redan har, förifyllda. */
+  startBat?: string | null
+  startHamn?: string
   /** Användarnamnet som kontot har nu. */
   nuvarandeNamn: string
   /** Förifyllt i namnsteget: nuvarande namn om det är eget, annars ett förslag ur personens namn (kan vara tomt). */
@@ -350,7 +357,7 @@ function Framsteg({ current }: { current: Step }) {
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false }: Props) {
+export default function OnboardingFlow({ userId, halsning, befintligt = false, startBat = null, startHamn = '', nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false }: Props) {
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
@@ -362,8 +369,8 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
   const [bildFil, setBildFil] = useState<File | null>(null)
   const [bildVisning, setBildVisning] = useState<string | null>(avatar)
   const bildRef = useRef<HTMLInputElement>(null)
-  const [boatType, setBoatType] = useState<string | null>(null)
-  const [homePort, setHomePort] = useState('')
+  const [boatType, setBoatType] = useState<string | null>(BOAT_OPTIONS.some(o => o.value === startBat) ? startBat : null)
+  const [homePort, setHomePort] = useState(startHamn)
   const [followIds, setFollowIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
@@ -374,7 +381,17 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
   )
 
   const spara = !forhandsvisning
-  useEffect(() => { if (spara) track('onboarding_started', { step: 1, version: VERSION }) }, [spara])
+  useEffect(() => { if (spara) track('onboarding_started', { step: 1, version: VERSION, befintligt }) }, [spara, befintligt])
+
+  // Kontot har sett guiden: guide_version sätts (alltid), onboarded_at bara om den
+  // saknas, så att datumet för första guiden finns kvar. Två frågor, eftersom
+  // .is('onboarded_at', null) annars skulle stoppa guide_version för gamla konton.
+  const markeraSedd = useCallback(async (): Promise<boolean> => {
+    const { error: e1 } = await supabase.from('users').update({ guide_version: GUIDE_VERSION }).eq('id', userId)
+    await supabase.from('users').update({ onboarded_at: new Date().toISOString() }).eq('id', userId).is('onboarded_at', null)
+    if (!e1) { try { sessionStorage.setItem(GUIDE_OK_NYCKEL, '1') } catch { /* ignoreras */ } }
+    return !e1
+  }, [supabase, userId])
 
   // Guiden räknas som klar när slutskärmen visas, inte först när man trycker en
   // knapp där. Annars kom hela guiden tillbaka för den som stängde appen på
@@ -384,9 +401,8 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
     if (!spara || step !== 'klar' || klarMarkerad.current) return
     klarMarkerad.current = true
     // .then() krävs: frågan skickas först när den awaitas eller får en then.
-    supabase.from('users').update({ onboarded_at: new Date().toISOString() }).eq('id', userId).is('onboarded_at', null)
-      .then(({ error }) => { if (error) klarMarkerad.current = false })
-  }, [spara, step, supabase, userId])
+    markeraSedd().then(ok => { if (!ok) klarMarkerad.current = false })
+  }, [spara, step, markeraSedd])
 
   // Ny skärm: börja överst, så att rubriken syns först på små telefoner.
   useEffect(() => { window.scrollTo({ top: 0 }) }, [step])
@@ -504,7 +520,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
     setSaving(true)
     setError('')
     try {
-      await supabase.from('users').update({ onboarded_at: new Date().toISOString() }).eq('id', userId)
+      await markeraSedd()
 
       // Skapa följningar och notiser
       if (followIds.size > 0) {
@@ -519,7 +535,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
         ))
       }
 
-      track('onboarding_completed', { duration_seconds: Math.round((Date.now() - startedAt) / 1000), version: VERSION })
+      track('onboarding_completed', { duration_seconds: Math.round((Date.now() - startedAt) / 1000), version: VERSION, befintligt })
       router.replace(target)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Något gick fel')
@@ -539,11 +555,12 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
   if (step === 'valkomst') innehall = (
     <>
       <ValkomstScen />
-      <p className="ob-etikett">Välkommen till Svalla</p>
-      <h1 className="ob-rubrik">Välkommen ombord{halsning ? `, ${halsning}` : ''}</h1>
+      <p className="ob-etikett">{befintligt ? 'Nytt på Svalla' : 'Välkommen till Svalla'}</p>
+      <h1 className="ob-rubrik">{befintligt ? 'Välkommen tillbaka' : 'Välkommen ombord'}{halsning ? `, ${halsning}` : ''}</h1>
       <p className="ob-text">
-        Här planerar du turen, hittar öar, krogar och bryggor och följer andra på sjön.
-        Vi visar det viktigaste på en minut.
+        {befintligt
+          ? 'Det har hänt mycket på Svalla. Ta en minut och se vad som är nytt, och välj hur du vill synas för andra.'
+          : 'Här planerar du turen, hittar öar, krogar och bryggor och följer andra på sjön. Vi visar det viktigaste på en minut.'}
       </p>
       <div className="ob-rad">
         <button type="button" onClick={goNext} className="ob-knapp">Kasta loss <Pil /></button>

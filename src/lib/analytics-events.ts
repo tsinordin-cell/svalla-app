@@ -30,9 +30,9 @@ export type SvallaEvent =
   | { name: 'account_deleted'; props: Record<string, never> }
 
   // Onboarding
-  | { name: 'onboarding_started';  props: { step: number; version?: number } }
+  | { name: 'onboarding_started';  props: { step: number; version?: number; befintligt?: boolean } }
   | { name: 'onboarding_step';     props: { step: number; skipped?: boolean; steg?: string; version?: number } }
-  | { name: 'onboarding_completed'; props: { duration_seconds: number; version?: number } }
+  | { name: 'onboarding_completed'; props: { duration_seconds: number; version?: number; befintligt?: boolean } }
 
   // Trips (logging)
   | { name: 'trip_logging_started'; props: Record<string, never> }
