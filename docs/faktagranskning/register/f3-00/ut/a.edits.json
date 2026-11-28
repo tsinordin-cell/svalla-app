@@ -27,14 +27,6 @@
  },
  {
   "fil": "src/lib/transit-stops.ts",
-  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 5',\n  },",
-  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 5',\n    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0125): Ytterby är märkt X på de flesta turer i tabell 5 (MÄTT med skript/scan.py), men rutorna visade reseplanerarens tider som tidtabellens.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — \"Ytterby (Resarö)\", \"X\", \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Ytterby på Resarö på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n  },",
-  "rader": [
-   "f300a-0125"
-  ]
- },
- {
-  "fil": "src/lib/transit-stops.ts",
   "gammal": "    note: 'Buss till Stavsnäs och Waxholmsbåt via Sandhamn. Lång resa. Planera dagen efter båten.',",
   "ny": "    // Faktagranskning fas 3 (2026-11-28, f300a-0205): båten angör Eknö före Sandhamn i 16A, inte via Sandhamn.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — \"433 Slussen–Djurö\", \"Stavsnäs vinterhamn\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"Eknö\" (läst 2026-11-28)\n    note: 'Buss 433 från Slussen till Stavsnäs vinterhamn och Waxholmsbolagets båt, tabell 16. Lång resa. Planera dagen efter båten.',",
   "rader": [
@@ -211,14 +203,6 @@
  },
  {
   "fil": "src/lib/transit-stops.ts",
-  "gammal": "    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg.",
-  "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0286): vintertabellen 5 har inte Ytterby (Resarö). Texten gäller därför bara turer som angör bryggan.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w5.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG\" (läst 2026-11-28)\n    bestallning: 'Många turer som angör Ytterby på Resarö stannar där bara om resan har beställts i förväg. Waxholmsbolagets tabell 5 från 13 december 2026 angör inte Ytterby.",
-  "rader": [
-   "f300a-0286"
-  ]
- },
- {
-  "fil": "src/lib/transit-stops.ts",
   "gammal": "    note: 'Pendeltåg till Nynäshamn + Waxholmsbolaget därifrån.',\n  },",
   "ny": "    note: 'Pendeltåg till Nynäshamn + Waxholmsbolaget därifrån.',\n    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0287): i vintertabellen 22 har Nåttarö anmärkning b på alla turer i 22A och en del i 22B (MÄTT); tabellen till 12 december har ingen.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w22.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ\", \"22B ÅLÖ – NÅTTARÖ – NYNÄSHAMN\", \"Nåttarö\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (läst 2026-11-28)\n    bestallning: 'I Waxholmsbolagets tabell 22 från 13 december 2026 stannar turerna mot Ålö vid Nåttarö bara om resan har beställts i förväg (anmärkning b), och det gäller också en del turer mot Nynäshamn. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 22 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 22',\n  },",
   "rader": [
@@ -271,6 +255,510 @@
   "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0293): vintertabellen 19 angör inte Fjärdlång, så texten gäller nu bara turer som angör bryggan.\n    bestallning: 'När Waxholmsbolagets tabell 19 angör Fjärdlång stannar de flesta turer där bara om resan har beställts i förväg, och någon tur går bara efter beställning.",
   "rader": [
    "f300a-0293"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Dalarö går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0058): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Dalarö ank.\", \"Dalarö avg.\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h20.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Dalarö\", \"Dalarö Skans\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w19.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Dalarö\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w20.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Dalarö\", \"Dalarö Skans\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Dalarö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 20) och med anmärkning B minst två timmar före (tabell 19 och 20), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 19 och 20). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 19 och 20). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0058"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Fejan går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0074): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Fejan\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w31.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Fejan\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Fejan kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 31) och med anmärkning B minst två timmar före (tabell 31), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C eller c ska den beställas senast kl. 19.00 dagen före resdagen (tabell 31). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 31). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0074"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Furusund går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 25 eller 28 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0081): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Furusund\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026\", \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"Furusund\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w25.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Furusund\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Furusund\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Furusund kan gå bara om resan har beställts i förväg. Med anmärkning B ska den beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (tabell 25 och 28). Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 28 till 12 december 2026 och tabell 25 och 28 från 13 december 2026). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 28). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 25 eller 28 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0081"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Gällnö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 14 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0100): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gällnö\", \"Gällnönäs (Gällnö)\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gällnö\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gällnö\", \"Gällnönäs (Gällnö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Gällnö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 14 till 12 december 2026 och tabell 11 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 11), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 11). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 11). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 14 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0100"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Gräskö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0242): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026\", \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"Gräskö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gräskö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Gräskö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 28) och med anmärkning B minst två timmar före (tabell 28), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 28). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 28). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0242"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Någon tur stannar vid Södra Grinda bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 13 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0020): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Södra Grinda\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norra Grinda\", \"Södra Grinda\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Grinda kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 13 till 12 december 2026 och tabell 11 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 11 från 13 december 2026), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 11 från 13 december 2026). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 11). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 11 eller 13 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0020"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Flera turer till och från Husarö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0049): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Husarö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Husarö\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Husarö\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Husarö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Husarö\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Husarö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 10 och 12 till 12 december 2026 och tabell 10 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 10 och 13), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C eller c ska den beställas senast kl. 19.00 dagen före resdagen (tabell 10 och 13). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 13). Under isperiod gäller de turer som tabell 10 har för isperioden. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0049"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Norra Ingmarsö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0053): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Norra Ingmarsö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Norra Ingmarsö\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Brottö (Ingmarsö)\", \"Södra Ingmarsö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norra Ingmarsö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Brottö (Ingmarsö)\", \"Södra Ingmarsö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Ingmarsö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 10, 12 och 13 till 12 december 2026 och tabell 10 och 13 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 10 och 13), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 10 och 13). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 13). Under isperiod gäller de turer som tabell 10 har för isperioden. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0053"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Turer till och från Ingmarsö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 10, 12 och 13 till 12 december 2026 och tabell 10 och 13 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 10 och 13), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 10 och 13). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 13). Under isperiod gäller de turer som tabell 10 har för isperioden. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n",
+  "ny": "    bestallning: 'Turer till och från Ingmarsö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 10, 12 och 13 till 12 december 2026 och tabell 10 och 13 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 10 och 13), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 10 och 13). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 13). Under isperiod gäller de turer som tabell 10 har för isperioden. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0054): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 13',\n",
+  "rader": [
+   "f300a-0054"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Kymmendö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0144): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Kymmendö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w19.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Kymmendö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Kymmendö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 19) och med anmärkning B minst två timmar före (tabell 19), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 19). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 19). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0144"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Några turer till och från Landsort går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 29 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0129): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h29.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Landsort\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w29.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Landsort\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Landsort kan gå bara om resan har beställts i förväg. Med anmärkning B ska den beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (tabell 29). Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 29 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 29 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0129"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Många turer till och från Lidö går eller stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0159): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Lidö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w31.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Lidö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Lidö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 31) och med anmärkning B minst två timmar före (tabell 31), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 31). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 31). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 31 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0159"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Några turer till och från Åsättra brygga går bara om resan har beställts i förväg. Den ska beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (anmärkning B), eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0106): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h8.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Grundvik (Ljusterö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h9.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Laggarsvik (Ljusterö)\", \"Linanäs (Ljusterö)\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Åsättra brygga\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Hummelmora (Ljusterö)\", \"Staveström (Ljusterö)\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w8.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Grundvik (Ljusterö)\", \"isläggning\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w9.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Linanäs (Ljusterö)\", \"Öran (Ljusterö)\", \"minst 1 timme innan avgång\", \"isläggning\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Åsättra brygga\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — \"GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3\", \"Hummelmora (Ljusterö)\", \"Staveström (Ljusterö)\", \"minst 1 timme innan avgång\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Ljusterö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 8, 9 och 12 till 12 december 2026 och tabell 9 och 12 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 8 och 10 till 12 december 2026 och tabell 10 från 13 december 2026), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 10 till 12 december 2026 och tabell 10 och 12 från 13 december 2026). Under isperiod gäller de turer som tabell 10 och 12 har för isperioden. Vid kraftig isläggning trafikeras en del bryggor inte (anmärkning h, tabell 8 och 9 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 8, 9, 10 eller 12 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0106"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 10',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0107): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 8, 9, 10 eller 12',\n",
+  "rader": [
+   "f300a-0107"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Flera turer till och från Möja går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 14 i god tid innan du åker. Långvik och Dragedet trafikeras även av tabell 10 och under en del av året av tabell 12.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0044): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Dragedet (Möja)\", \"Långvik (Möja)\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Dragedet (Möja)\", \"Långvik (Möja)\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Berg (Möja)\", \"Dragedet (Möja)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Dragedet (Möja)\", \"Långvik (Möja)\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Berg (Möja)\", \"Dragedet (Möja)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Möja kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 10, 12 och 14 till 12 december 2026 och tabell 10 och 14 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 14), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C eller c ska den beställas senast kl. 19.00 dagen före resdagen (tabell 14). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 14). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 14 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0044"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 14',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0045): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 14',\n",
+  "rader": [
+   "f300a-0045"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Norröra går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0087): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026\", \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"Norröra\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norröra\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Norröra kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 28) och med anmärkning B minst två timmar före (tabell 28), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 28). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 28). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0087"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Många turer till och från Ornö kyrka går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0138): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Ornö Kyrka\", \"Ornöboda (Ornö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h20.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Björkösund (Ornö)\", \"Hässelmara (Ornö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w19.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Ornöboda (Ornö)\", \"Söderviken (Ornö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w20.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Björkösund (Ornö)\", \"Hässelmara (Ornö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"isläggning\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Ornö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 19 och 20) och med anmärkning B minst två timmar före (tabell 19 och 20), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C eller c ska den beställas senast kl. 19.00 dagen före resdagen (tabell 19 och 20). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 19 och 20). Vid isläggning kan trafiken till och från en del bryggor ställas in (anmärkning h, tabell 20 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0138"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Turer till och från Ornö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 19 och 20) och med anmärkning B minst två timmar före (tabell 19 och 20), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C eller c ska den beställas senast kl. 19.00 dagen före resdagen (tabell 19 och 20). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 19 och 20). Vid isläggning kan trafiken till och från en del bryggor ställas in (anmärkning h, tabell 20 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 19',\n",
+  "ny": "    bestallning: 'Turer till och från Ornö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 19 och 20) och med anmärkning B minst två timmar före (tabell 19 och 20), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C eller c ska den beställas senast kl. 19.00 dagen före resdagen (tabell 19 och 20). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 19 och 20). Vid isläggning kan trafiken till och från en del bryggor ställas in (anmärkning h, tabell 20 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0139): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 20',\n",
+  "rader": [
+   "f300a-0139"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Turer till och från Rödlöga kan ha anmärkning b i Waxholmsbolagets tabell 28: de stannar där bara om resan har beställts i förväg. Vid kraftig isläggning kan trafiken till och från bryggan ställas in (anmärkning h). Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0285): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026\", \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"Rödlöga\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Rödlöga\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"Går under isfri period\", \"isläggning\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Rödlöga kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 28) och med anmärkning B minst två timmar före (tabell 28 från 13 december 2026), i båda fallen senast kl. 17.00 samma dag. Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 28). Vid kraftig isläggning kan trafiken till och från bryggan ställas in (anmärkning h, tabell 28 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0285"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Några turer till och från Långvik på Runmarö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 eller 23 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0111): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gatan (Runmarö)\", \"Långvik (Runmarö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h17.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Styrsvik (Runmarö)\", \"senast kl. 19.00 dag före\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h23.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gatan (Runmarö)\", \"Långvik (Runmarö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w16.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gatan (Runmarö)\", \"Långvik (Runmarö)\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w17.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Styrsvik (Runmarö)\", \"senast kl. 19.00 dag före\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w23.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gatan (Runmarö)\", \"Långvik (Runmarö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Runmarö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 16 och 23 till 12 december 2026 och tabell 23 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 16 och 23), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 17). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16, 17 eller 23 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0111"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 16 eller 23',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0112): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 16, 17 eller 23',\n",
+  "rader": [
+   "f300a-0112"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En stor del av turerna till och från Norra Svartsö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10 eller 12 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0116): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Norra Svartsö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Norra Svartsö\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Alsvik (Svartsö)\", \"Norra Svartsö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norra Svartsö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — \"GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3\", \"Norra Svartsö\", \"minst 1 timme innan avgång\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Alsvik (Svartsö)\", \"Skälvik (Svartsö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Svartsö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 10, 12 och 13) och med anmärkning B minst två timmar före (tabell 10 och 13), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 10 och 13 till 12 december 2026 och tabell 10, 12 och 13 från 13 december 2026). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 13). Under isperiod gäller de turer som tabell 10 har för isperioden. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0116"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0117): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 13',\n",
+  "rader": [
+   "f300a-0117"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Flera turer till och från Tynningö går eller stannar vid bryggorna bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0236): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Höganäs (Tynningö)\", \"Norehill (Tynningö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w2.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Höganäs (Tynningö)\", \"Går under isfri period\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w4.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norra Tynningö\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Tynningö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 4) och med anmärkning B minst två timmar före (tabell 4), i båda fallen senast kl. 17.00 samma dag. Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 2 och 4). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 4 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0236"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'I Waxholmsbolagets tabell 21 har en del turer till och från Gruvbryggan på Utö anmärkning b: de stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 21 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0280): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gruvbryggan (Utö)\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gruvbryggan (Utö)\", \"Näsudden (Utö)\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w21.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gruvbryggan (Utö)\", \"Näsudden (Utö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Utö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 21) och med anmärkning B minst två timmar före (tabell 19 till 12 december 2026 och tabell 21 från 13 december 2026), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 21 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 21 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0280"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 21',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0031): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 21',\n",
+  "rader": [
+   "f300a-0031"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En stor del av turerna till och från Finnhamn går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C eller c). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0034): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Finnhamn\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Finnhamn\", \"minst 1 timme innan avgång\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Finnhamn\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Finnhamn\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Finnhamn\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Finnhamn kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 10, 12 och 13 till 12 december 2026 och tabell 10 och 13 från 13 december 2026) och med anmärkning B minst två timmar före (tabell 10 och 13), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C eller c ska den beställas senast kl. 19.00 dagen före resdagen (tabell 10 och 13). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 13). Under isperiod gäller de turer som tabell 10 har för isperioden. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 10, 12 eller 13 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0034"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Båt direkt från Strömkajen, eller buss 670 från Tekniska högskolan.',\n  },",
+  "ny": "    note: 'Båt direkt från Strömkajen, eller buss 670 från Tekniska högskolan.',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R201): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h8.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"minst 2 timmar innan\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w2.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm\", \"senast kl. 19.00 dag före\", \"Går under isfri period\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w3.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"Går under isfri period\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w4.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w5.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w7.pdf — \"7A STOCKHOLM – VAXHOLM – LINDALSSUNDET\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"minst 2 timmar innan\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w8.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"Går under isfri period\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w9.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"Går under isfri period\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"minst 2 timmar innan\", \"Går under isfri period\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"Går under isfri period\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Vaxholm ank.\", \"Vaxholm avg.\", \"Går under isfri period\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Vaxholm kan gå bara om resan har beställts i förväg. Med anmärkning B ska den beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (tabell 4, 5 och 8 till 12 december 2026 och tabell 4, 5, 7 och 11 från 13 december 2026). Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 2, 4 och 5 från 13 december 2026). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 2, 3, 4, 5, 7, 8, 9, 11, 13 och 14). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 2, 4, 5, 7, 8 eller 11 i god tid innan du åker.',\n  },",
+  "rader": [
+   "f300a-R201"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Turer till och från Vaxholm kan gå bara om resan har beställts i förväg. Med anmärkning B ska den beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (tabell 4, 5 och 8 till 12 december 2026 och tabell 4, 5, 7 och 11 från 13 december 2026). Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 2, 4 och 5 från 13 december 2026). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 2, 3, 4, 5, 7, 8, 9, 11, 13 och 14). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 2, 4, 5, 7, 8 eller 11 i god tid innan du åker.',\n  },",
+  "ny": "    bestallning: 'Turer till och från Vaxholm kan gå bara om resan har beställts i förväg. Med anmärkning B ska den beställas minst två timmar före avgång från bryggan, dock senast kl. 17.00 samma dag (tabell 4, 5 och 8 till 12 december 2026 och tabell 4, 5, 7 och 11 från 13 december 2026). Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 2, 4 och 5 från 13 december 2026). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 2, 3, 4, 5, 7, 8, 9, 11, 13 och 14). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 2, 4, 5, 7, 8 eller 11 i god tid innan du åker.',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R202): tabellerna med beställningsturer vid öns bryggor; KÄLLA-raderna står vid bestallning.\n    bestallningTabell: 'Waxholmsbolagets tabell 2, 4, 5, 7, 8 eller 11',\n  },",
+  "rader": [
+   "f300a-R202"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'En del turer till och från Östanvik på Nämdö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 17 i god tid innan du åker.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0149): genomgång av beställningsreglerna vid öns bryggor i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/genomgang.py, kolumnerna lästa med pdftotext -bbox).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h17.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Bunkvik (Nämdö)\", \"Kalkberget (Nämdö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w17.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Bunkvik (Nämdö)\", \"Nämdöböte (Nämdö)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"isläggning\", \"dock senast kl.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Nämdö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 17) och med anmärkning B minst två timmar före (tabell 17), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 17). Vid kraftig isläggning kan trafiken till och från en del bryggor ställas in (anmärkning h, tabell 17 från 13 december 2026). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 17 i god tid innan du åker.',\n",
+  "rader": [
+   "f300a-0149"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Turer till och från Dalarö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 20) och med anmärkning B minst två timmar före (tabell 19 och 20), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 19 och 20). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 19 och 20). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 20',\n  },",
+  "ny": "    bestallning: 'Turer till och från Dalarö kan gå eller stanna bara om resan har beställts i förväg. Med anmärkning b ska den beställas minst en timme före avgång från bryggan (tabell 20) och med anmärkning B minst två timmar före (tabell 19 och 20), i båda fallen senast kl. 17.00 samma dag. Med anmärkning C ska den beställas senast kl. 19.00 dagen före resdagen (tabell 19 och 20). Från 13 december 2026 går turer med anmärkning H bara under isfri period (tabell 19 och 20). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 19 eller 20 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 20',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R203): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h20.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Dalarö Skans\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w20.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Dalarö Skans\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Dalarö Skans (tabell 20) på en del turer utan fast avgångstid (anmärkning X). Där kommer reseplanerarens tider inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-R203"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 11 eller 14',\n  },",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 11 eller 14',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R204): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gällnö\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Gällnö (tabell 11 från 13 december 2026) på en del turer utan fast avgångstid (anmärkning X). Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-R204"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 8, 9, 10 eller 12',\n  },",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 8, 9, 10 eller 12',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R205): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h9.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Öran (Ljusterö)\", \"Laggarsvik (Ljusterö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Stensvik (Ljusterö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w9.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Öran (Ljusterö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — \"GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3\", \"Stensvik (Ljusterö)\", \"Hummelmora (Ljusterö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Stensvik (tabell 12), Öran (tabell 9), Laggarsvik och Skuggan (tabell 9 till 12 december 2026) samt Hummelmora (tabell 12 från 13 december 2026) på en del turer utan fast avgångstid (anmärkning X). Där kommer reseplanerarens tider inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-R205"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 17',\n  },",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 17',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R206): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h17.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Kalkberget (Nämdö)\", \"Västanvik (Nämdö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w17.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Västanvik (Nämdö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Kalkberget och Sand (tabell 17 till 12 december 2026) samt Västanvik (tabell 17) på en del turer utan fast avgångstid (anmärkning X). Där kommer reseplanerarens tider inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-R206"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 20',\n  },",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 20',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R207): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Ornöboda (Ornö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w19.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Ornöboda (Ornö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Ornöboda (tabell 19) på en del turer utan fast avgångstid (anmärkning X). Där kommer reseplanerarens tider inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-R207"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 16, 17 eller 23',\n  },",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 16, 17 eller 23',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R208): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gatan (Runmarö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h23.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Gatan (Runmarö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w16.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gatan (Runmarö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w23.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Gatan (Runmarö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Gatan (tabell 16 och 23) på en del turer utan fast avgångstid (anmärkning X). Där kommer reseplanerarens tider inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-R208"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 21',\n  },",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 19 eller 21',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R209): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h21.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Näsudden (Utö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w21.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Näsudden (Utö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Näsudden (tabell 21) på en del turer utan fast avgångstid (anmärkning X). Där kommer reseplanerarens tider inte från tidtabellen, så var på bryggan i god tid.',\n  },",
+  "rader": [
+   "f300a-R209"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    tidsObs: 'Waxholmsbolaget angör Möjaström på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0046): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Södermöja\", \"Möjaström (Möja)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Södermöja\", \"Möjaström (Möja)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Löka, Möjaström, Ramsmora och Södermöja (tabell 14) på en del turer utan fast avgångstid (anmärkning X). Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "rader": [
+   "f300a-0046"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    tidsObs: 'När Waxholmsbolaget angör Norehill på Tynningö är det på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0292): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h4.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Norehill (Tynningö)\", \"Norra Tynningö\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w4.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norra Tynningö\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Norehill (tabell 4 till 12 december 2026) samt Norra Tynningö (tabell 4) på en del turer utan fast avgångstid (anmärkning X). Där kommer reseplanerarens tider inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "rader": [
+   "f300a-0292"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    tidsObs: 'Vid kraftig isläggning går tabell 10 enligt isperioden, och då angör Waxholmsbolaget Finnhamn utan fast avgångstid på flera turer. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0282): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Finnhamn\", \"utan fast avgångstid.\", \"ISPERIOD\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Finnhamn\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Finnhamn (tabell 10 från 13 december 2026 vid kraftig is och tabell 13 från 13 december 2026) på en del turer utan fast avgångstid (anmärkning X). Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "rader": [
+   "f300a-0282"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    tidsObs: 'Vid kraftig isläggning går tabell 10 enligt isperioden, och då angör Waxholmsbolaget Norra Ingmarsö utan fast avgångstid på flera turer. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0283): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Brottö (Ingmarsö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norra Ingmarsö\", \"utan fast avgångstid.\", \"ISPERIOD\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Brottö (Ingmarsö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Brottö (tabell 13) samt Norra Ingmarsö (tabell 10 från 13 december 2026 vid kraftig is) på en del turer utan fast avgångstid (anmärkning X). Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "rader": [
+   "f300a-0283"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    tidsObs: 'Vid kraftig isläggning går tabell 10 enligt isperioden, och då angör Waxholmsbolaget Norra Svartsö utan fast avgångstid på flera turer. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0284): bryggorna med anmärkning X i tabellerna till 12 december 2026 och från 13 december 2026 (MÄTT med runda2a/skript/xbryggor.py).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Söderboudd (Svartsö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Norra Svartsö\", \"utan fast avgångstid.\", \"ISPERIOD\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Söderboudd (Svartsö)\", \"Skälvik (Svartsö)\", \"utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Waxholmsbolaget angör Söderboudd (tabell 13), Norra Svartsö (tabell 10 från 13 december 2026 vid kraftig is) samt Alsvik och Skälvik (tabell 13 från 13 december 2026) på en del turer utan fast avgångstid (anmärkning X). Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n",
+  "rader": [
+   "f300a-0284"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Pendeltåg till Handen, sedan buss 839 från Rudsjöterrassen till Dalarö.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0057): linje 839 börjar vid Handens station i SL:s tabell från 13 december 2026, inte vid Rudsjöterrassen (MÄTT).\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h839.pdf — \"Rudsjöterrassen–Dalarö (–Smådalarö)\", \"Giltig 17 augusti–12 december 2026\", \"Handens station.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v839.pdf — \"Handens station–Dalarö (–Smådalarö)\", \"Giltig 13 december 2026–20 juni 2027\" (läst 2026-11-28)\n    note: 'Pendeltåg till Handen och buss 839 till Dalarö. Till 12 december 2026 går bussen från Rudsjöterrassen och från 13 december 2026 från Handens station.',\n",
+  "rader": [
+   "f300a-0057"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0110): \"Stavsnäs vinterhamn\" står inte i Waxholmsbolagets tabeller; de skriver Stavsnäs.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Långvik (Runmarö)\", \"Stavsnäs\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h23.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"Långvik (Runmarö)\", \"Stavsnäs\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w16.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Långvik (Runmarö)\", \"Stavsnäs\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w23.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Långvik (Runmarö)\", \"Stavsnäs\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets båtar från Stavsnäs, tabell 16 och 23.',\n",
+  "rader": [
+   "f300a-0110"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Landvägen hela sträckan, buss via Norrtälje. Singö nås över bro, ingen båt behövs.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0154): \"Singö nås över bro, ingen båt behövs\" hade ingen källa och är struket; linjen och hållplatsen är belagda.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h637.pdf — \"Norrtälje–Singö\", \"Åmyran\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v637.pdf — \"Norrtälje–Singö\", \"Åmyran\", \"Giltig 13 december 2026–20 juni 2027\" (läst 2026-11-28)\n    note: 'Buss till Norrtälje och vidare med buss 637 från Norrtälje till Åmyran.',\n",
+  "rader": [
+   "f300a-0154"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss från Slussen ända fram. Djurö nås över broar via Värmdö.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0197, f300a-0198): \"Djurö nås över broar via Värmdö\" hade ingen källa och är struket. SL har ingen tabell 433 eller 434 för tiden efter 12 december 2026 (v433.pdf och v434.pdf gäller till 12 december 2026, MÄTT).\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h433.pdf — \"Slussen–Djurö\", \"Djurö skola\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h434.pdf — \"Slussen–Överby\", \"Djurö skola\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    note: 'Buss 433 och 434 från Slussen stannar vid Djurö skola enligt SL:s tabeller till 12 december 2026.',\n",
+  "rader": [
+   "f300a-0197",
+   "f300a-0198"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss från Slussen ända fram. Vindö nås över broar via Värmdö.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0185): \"ända fram\" och \"Vindö nås över broar via Värmdö\" hade ingen källa och är strukna. Ingen tabell 434 för tiden efter 12 december 2026 (MÄTT).\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h434.pdf — \"Slussen–Överby\", \"Fjällsvik\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    note: 'Buss 434 från Slussen stannar vid Fjällsvik enligt SL:s tabell till 12 december 2026.',\n",
+  "rader": [
+   "f300a-0185"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss 852 från Nynäshamn station. Torö nås över bro.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0171, f300a-0172): \"Torö nås över bro\" hade ingen källa och är struket.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h852.pdf — \"Nynäshamns station–Torö\", \"Eneby affär\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v852.pdf — \"Nynäshamns station–Torö\", \"Eneby affär\", \"Giltig 13 december 2026–20 juni 2027\" (läst 2026-11-28)\n    note: 'Buss 852 från Nynäshamns station stannar vid Eneby affär.',\n",
+  "rader": [
+   "f300a-0171",
+   "f300a-0172"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss via Norrtälje. Väddö nås över bro.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0167, f300a-0168): \"Väddö nås över bro\" hade ingen källa och är struket.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h637.pdf — \"Norrtälje–Singö\", \"Edeby torg\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v637.pdf — \"Norrtälje–Singö\", \"Edeby torg\", \"Giltig 13 december 2026–20 juni 2027\" (läst 2026-11-28)\n    note: 'Buss till Norrtälje och vidare med buss 637 från Norrtälje till Edeby torg.',\n",
+  "rader": [
+   "f300a-0167",
+   "f300a-0168"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss via Norrtälje. Gräddö ligger på fastlandet, härifrån går båtarna vidare ut i Rådmansöskärgården.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0163, f300a-0164): \"Gräddö ligger på fastlandet, härifrån går båtarna vidare ut i Rådmansöskärgården\" hade ingen källa och är struket.\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h631.pdf — \"Norrtälje–Rådmansö–Norrtälje\", \"Gräddö torg\", \"Giltig 17 augusti–12 december 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v631.pdf — \"Norrtälje–Rådmansö–Norrtälje\", \"Gräddö torg\", \"Giltig 13 december 2026–20 juni 2027\" (läst 2026-11-28)\n    note: 'Buss via Norrtälje: buss 631 från Norrtälje stannar vid Gräddö torg.',\n",
+  "rader": [
+   "f300a-0163",
+   "f300a-0164"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss från Slussen, knappt en timme. Ingarö nås över bro.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0193): \"Ingarö nås över bro\" hade ingen källa och är struket.\n    note: 'Buss från Slussen, knappt en timme.',\n",
+  "rader": [
+   "f300a-0193"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Direkt Styrsöbåt från Saltholmen, spårvagn 11 dit från Göteborg C. Brännö är bilfri.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0212, f300a-0213, f300a-0214): \"Styrsöbåt\", \"spårvagn 11 dit från Göteborg C\" och \"Brännö är bilfri\" hade ingen källa och är strukna.\n    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5283__0__LINE__20260824__20261212__247f5756-c8cb-4894-9e61-df69039cf68b__0,0__.pdf — \"Saltholmen–Asperö–Brännö Rödsten och omvänt\", \"Gäller 24 aug – 12 dec 2026\" (läst 2026-11-28)\n    note: 'Västtrafiks linje 283 går från Saltholmen till Brännö Rödsten.',\n",
+  "rader": [
+   "f300a-0212",
+   "f300a-0213",
+   "f300a-0214"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Direkt Styrsöbåt från Saltholmen. Donsö och Styrsö binds ihop av en gångbro.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0221, f300a-0222): \"Styrsöbåt\" och \"Donsö och Styrsö binds ihop av en gångbro\" hade ingen källa och är strukna.\n    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\", \"Gäller 24 aug – 12 dec 2026\" (läst 2026-11-28)\n    note: 'Västtrafiks linje 281 går från Saltholmen till Donsö.',\n",
+  "rader": [
+   "f300a-0221",
+   "f300a-0222"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Direkt Styrsöbåt från Saltholmen, ytterst i södra skärgården, sista anhalten.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0225, f300a-0226): \"Styrsöbåt\" och \"ytterst i södra skärgården\" hade ingen källa och är strukna.\n    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5281__0__LINE__20260824__20261212__1c833ee0-201d-4ad4-b4c7-07f379ae2238__0%2C0__.pdf — \"Stenpiren–Saltholmen–Köpstadsö–Styrsö Bratten–Donsö–Vrångö\", \"Gäller 24 aug – 12 dec 2026\" (läst 2026-11-28)\n    note: 'Västtrafiks linje 281 går från Saltholmen till Vrångö, linjens sista anhalt.',\n",
+  "rader": [
+   "f300a-0225",
+   "f300a-0226"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Direkt Styrsöbåt från Saltholmen, knappt 20 minuter.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0231): \"Styrsöbåt\" stod inte i källan; restiden är uppmätt i tabellen (Saltholmen 05:20, Asperö Norra 05:34; Saltholmen 09:24, Asperö Norra 09:43).\n    // KÄLLA: https://vtstorage002.blob.core.windows.net/vtstoragecontainer01/5283__0__LINE__20260824__20261212__247f5756-c8cb-4894-9e61-df69039cf68b__0,0__.pdf — \"Saltholmen–Asperö–Brännö Rödsten och omvänt\", \"Asperö\", \"Norra\", \"Gäller 24 aug – 12 dec 2026\" (läst 2026-11-28)\n    note: 'Västtrafiks linje 283 går direkt från Saltholmen till Asperö Norra på 14 till 19 minuter enligt tidtabellen 24 augusti till 12 december 2026.',\n",
+  "rader": [
+   "f300a-0231"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Waxholmsbolagets linje 2 från Strömkajen lägger till på vissa turer, utan fast tid vid bryggan.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0038): anmärkning H vid Fjäderholmarna i tabell 2 från 13 december 2026 (MÄTT).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w2.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Fjäderholmarna\", \"Går under isfri period\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets linje 2 från Strömkajen lägger till på vissa turer, utan fast tid vid bryggan. Från 13 december 2026 går turer med anmärkning H i tabell 2 bara under isfri period.',\n",
+  "rader": [
+   "f300a-0038"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n  },",
+  "ny": "    originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',\n    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0096): Vagnsunda finns bara i tabell 24, som gällde till 1 november 2026; ingen av tabellerna 2 till 31 för perioderna till 12 december 2026 och från 13 december 2026 har Vagnsunda (MÄTT). Rutan är en P0-kandidat, se runda2-till-p0.md.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026\", \"Vagnsunda (Yxlan)\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026\", \"GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026\", \"Köpmanholm (Yxlan)\", \"minst 1 timme innan avgång\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"utan fast avgångstid.\", \"dock senast kl.\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Köpmanholm (Yxlan)\", \"minst 2 timmar innan\", \"senast kl. 19.00 dag före\", \"Går under isfri period\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets tabell 24, som angör Vagnsunda på Yxlan, gällde till 1 november 2026. Tabell 28 angör Köpmanholm på Yxlan, både till 12 december 2026 och från 13 december 2026. Där har en del turer anmärkning b, B eller C, och till 12 december 2026 angörs Köpmanholm på en del turer utan fast avgångstid (X). Från 13 december 2026 går turer med anmärkning H bara under isfri period. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 28.',\n  },",
+  "rader": [
+   "f300a-0096"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Båtarna till Möja går från Strömkajen, Boda brygga och Sollenkroka (tabell 14) och från Åsättra brygga (tabell 10), inte från Stavsnäs.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0043): \"inte från Stavsnäs\" stämde inte sommartid: Nordsydlinjen (tabell 40) gick 22 juni till 16 augusti 2026 från Stavsnäs till Möja (Kontrollanten a-k060). Ledet är struket; resten är belagt av KÄLLA-raderna ovan.\n    note: 'Båtarna till Möja går från Strömkajen, Boda brygga och Sollenkroka (tabell 14) och från Åsättra brygga (tabell 10).',\n",
+  "rader": [
+   "f300a-0043"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Pendeltåg till Ösmo och buss genom Muskötunneln.',\n",
+  "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0190): noten \"Pendeltåg till Ösmo och buss genom Muskötunneln.\" hade ingen källa, och ingen SL-tabell jag läst nämner Risdalsvägen eller Muskö (h858 och v858 har bara hållplatsen Musköten). Noten är struken.\n",
+  "rader": [
+   "f300a-0190"
+  ]
+ },
+ {
+  "fil": "src/components/DepartureWidget.tsx",
+  "gammal": "  trips: TripSummary[]\n  error?: string\n}",
+  "ny": "  trips: TripSummary[]\n  error?: string\n  /** Satt när Trafiklab inte svarade (route.ts): tom trips betyder då \"vi vet inte\", inte \"inga avgångar\". */\n  fel?: string | null\n}",
+  "rader": [
+   "f300a-R210"
+  ]
+ },
+ {
+  "fil": "src/components/DepartureWidget.tsx",
+  "gammal": "        setData(json)\n        setError(false)\n",
+  "ny": "        setData(json)\n        // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R210, Redaktören): svaret {fel: 'api_fel', trips: []} visades som\n        // \"Inga avgångar hittade just nu\", som låter som att ingen båt går. Ett svar med fältet fel är \"vi vet inte\"\n        // (se route.ts för /api/transit/departures) och visas nu som felet, med länken till reseplaneraren.\n        setError(Boolean(json.fel))\n",
+  "rader": [
+   "f300a-R210"
   ]
  }
 ]
