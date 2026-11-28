@@ -23,7 +23,8 @@ const NAMN: Record<string, string> = { tsinordin: 'Tom', matte: 'Max', claes: 'C
  *  - den som anropar är i teamet (is_admin_user),
  *  - uppgiften har en mottagare som är någon annan och som också är i teamet,
  *  - samma uppgift inte gett samma person en notis de senaste 10 minuterna.
- * Då skapas en notis i klockan, en push (om mottagaren har push på) och ett mejl.
+ * Då skapas en notis i klockan, en push (om mottagaren har push på) och ett mejl
+ * (till adressen i team_notisadress om den finns, annars kontots).
  */
 export async function POST(req: NextRequest) {
   const supabase = await createServerSupabaseClient()
@@ -42,7 +43,10 @@ export async function POST(req: NextRequest) {
   if (!task) return NextResponse.json({ error: 'Uppgiften finns inte' }, { status: 404 })
 
   const mottagare = task.assignee_id as string | null
-  if (!skaNotifiera(user.id, mottagare)) return NextResponse.json({ ok: true, skickat: false, orsak: 'ingen annan mottagare' })
+  // { prov: true } låter den som anropar skicka notisen till sig själv, för att se att
+  // klockan och mejlet kommer fram (Tom 2026-11-28). Det går bara att prova på sig själv.
+  const prov = body?.prov === true && mottagare === user.id
+  if (!prov && !skaNotifiera(user.id, mottagare)) return NextResponse.json({ ok: true, skickat: false, orsak: 'ingen annan mottagare' })
 
   // Mottagaren måste vara i teamet. is_admin används bara som filter, läses aldrig ut
   // (src/lib/profilfaltGenomVyn.test.ts).
@@ -70,10 +74,15 @@ export async function POST(req: NextRequest) {
   const { sendPushToUsers } = await import('@/lib/push-server')
   await notifyWithRetry('uppgift-push', () => sendPushToUsers([mottagare!], uppgiftPush(avsandare, titel, taskId)))
 
-  // 3. Mejl till adressen på kontot
+  // 3. Mejl: till teamadressen om den finns (tabellen team_notisadress, 2026-11-28),
+  //    annars till adressen på kontot.
   let mejl: string = 'ej skickat'
-  const { data: auth } = await svc.auth.admin.getUserById(mottagare!)
-  const adress = auth?.user?.email
+  const { data: egen } = await svc.from('team_notisadress').select('epost').eq('user_id', mottagare!).maybeSingle()
+  let adress = egen?.epost as string | undefined
+  if (!adress) {
+    const { data: auth } = await svc.auth.admin.getUserById(mottagare!)
+    adress = auth?.user?.email ?? undefined
+  }
   if (adress) {
     const r = await sendEmail({
       template: 'uppgift_delegerad',
