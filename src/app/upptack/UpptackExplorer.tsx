@@ -177,6 +177,13 @@ function vyFor(region: RegionKey | 'all'): { center: [number, number]; zoom: num
   return { center: [c.center[0], c.center[1]], zoom: c.zoom }
 }
 
+/** Popupens avstånd från nålen (40 px hög, spetsen nederst) åt varje håll MapLibre kan välja. */
+const POPUP_FORSKJUTNING: Record<string, [number, number]> = {
+  bottom: [0, -40], 'bottom-left': [0, -40], 'bottom-right': [0, -40],
+  top: [0, 4], 'top-left': [0, 4], 'top-right': [0, 4],
+  left: [16, -20], right: [-16, -20],
+}
+
 /** Platsnamn kommer från databasen och sätts i popupens HTML. */
 function escapeHtml(t: string): string {
   return t.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string))
@@ -595,7 +602,7 @@ export default function UpptackExplorer() {
         el.setAttribute('role', 'button')
         el.setAttribute('tabindex', '0')
         el.setAttribute('aria-label', `${p.name}, ${CATEGORY_META[cat].label}`)
-        const popup: MLPopup = new maplibregl.Popup({ offset: [0, -38], closeButton: true, maxWidth: '240px' }).setHTML(`
+        const popup: MLPopup = new maplibregl.Popup({ offset: POPUP_FORSKJUTNING, closeButton: true, maxWidth: '240px' }).setHTML(`
           <div style="min-width:180px;font-family:'Inter',sans-serif">
             <div style="font-weight:700;font-size:13px;color:#162d3a;margin-bottom:2px">${escapeHtml(p.name)}</div>
             <div style="font-size:11px;color:#6a8a96;margin-bottom:6px">${CATEGORY_META[cat].label}${p.island ? ' &middot; ' + escapeHtml(p.island) : ''}</div>
