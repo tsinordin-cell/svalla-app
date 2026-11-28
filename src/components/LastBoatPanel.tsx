@@ -258,7 +258,10 @@ export default function LastBoatPanel({ islandSlug, islandName }: Props) {
           margin: '10px 0 0', padding: '8px 10px', borderRadius: 8,
           background: 'rgba(0,0,0,0.30)', border: '1px solid rgba(253,230,138,0.55)',
         }}>
-          Tiden kan gälla en tur som bara går eller stannar här om resan har beställts i förväg. Är det så, går sista båten utan beställning tidigare. Se turens anmärkning i {bestallningTabell}.
+          {/* Faktagranskning fas 3 (2026-11-28, P0, f300a-0266): "går sista båten utan beställning tidigare" stämmer inte
+              där alla turer har anmärkning, till exempel Rödlöga 2 november till 12 december.
+              KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28B RÖDLÖGA – SÖDERÖRA – ÖSTERNÄS – FURUSUND", "Går under perioden 2 november - 12" (läst 2026-11-28) */}
+          Tiden kan gälla en tur som bara går eller stannar här om resan har beställts i förväg. Är det så, går sista båten utan beställning tidigare den dagen, eller inte alls. Se turens anmärkning i {bestallningTabell}.
         </p>
       )}
 
