@@ -1157,7 +1157,8 @@ export default function TeamDashboardClient({
                   {memberInitials(m)}
                 </div>
               ))}
-              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>Tom &amp; Max</span>
+              {/* Namnen ur teamlistan, inte hårdkodade: Claes kom med 2026-11-28. */}
+              <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{teamMembers.map(m => m.username).join(', ').replace(/, ([^,]*)$/, ' och $1')}</span>
             </div>
             <Link href="/feed" style={{
               display: 'flex', alignItems: 'center', gap: 6, padding: '8px 10px',
@@ -2734,7 +2735,7 @@ function ActivityFeed({ activity, projects, memberById, currentUser, onPost }: {
           value={message}
           onChange={e => setMessage(e.target.value)}
           onKeyDown={e => { if (e.key === 'Enter') submit() }}
-          placeholder="Dela en uppdatering med Max/Tom…"
+          placeholder="Dela en uppdatering med teamet…"
           className="svt-input"
           style={{ ...inputStyle, flex: 1, minWidth: 200 }}
         />
