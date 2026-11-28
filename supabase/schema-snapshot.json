@@ -1,6 +1,6 @@
 {
  "_om": "Ögonblicksbild av public-schemat i Supabase (tabell → kolumner), använd av scripts/schemakontroll.mjs. Uppdatera efter varje migration: kör SQL:en i _sql i Supabase SQL Editor och klistra in resultatet i tabeller.",
- "_hamtad": "2026-09-29 (+ passerade_oar 2026-10-26 ur migrationen) (+ email_log.last_event,event_at ur migrationen 20261108000000, körs av Tom) (+ visited_islands.fran_tur, finns i produktion, kontrollerat 2026-11-20) (+ vyn users_publik ur migrationen 20261120000001) (+ anmalan_underlag ur migrationen 20261126000002, körs av Tom) (+ messages.reply_to_id och message_reactions ur migrationen 20261126000004, körs av Tom) (+ team_kpi_mal ur migrationen 20261128000003, körd 2026-11-28)",
+ "_hamtad": "2026-09-29 (+ passerade_oar 2026-10-26 ur migrationen) (+ email_log.last_event,event_at ur migrationen 20261108000000, körs av Tom) (+ visited_islands.fran_tur, finns i produktion, kontrollerat 2026-11-20) (+ vyn users_publik ur migrationen 20261120000001) (+ anmalan_underlag ur migrationen 20261126000002, körs av Tom) (+ messages.reply_to_id och message_reactions ur migrationen 20261126000004, körs av Tom) (+ team_kpi_mal ur migrationen 20261128000003, körd 2026-11-28) (+ team_notisadress ur migrationen 20261128000005, körd 2026-11-28)",
  "_sql": "select json_object_agg(table_name, cols) from (select table_name, string_agg(column_name, ',' order by ordinal_position) as cols from information_schema.columns where table_schema='public' group by table_name) t;",
  "tabeller": {
   "account_deletions": "id,user_id_hash,deleted_at",
@@ -30,6 +30,7 @@
   "messages": "id,conversation_id,user_id,content,attachment_type,attachment_url,attachment_meta,created_at,reply_to_id",
   "message_reactions": "id,message_id,conversation_id,user_id,emoji,created_at",
   "team_kpi_mal": "kpi,steg1,steg2,steg3,updated_by,updated_at",
+  "team_notisadress": "user_id,epost,updated_at",
   "notifications": "id,user_id,actor_id,type,trip_id,read,created_at,related_island_slug,reference_id",
   "partner_inquiries": "id,business_name,contact_name,email,phone,category,island_slug,tier,message,status,source,created_at,contacted_at,stripe_subscription_id,stripe_customer_id,stripe_status,activated_at",
   "passerade_oar": "user_id,island_slug,trip_id,passerad_at",
