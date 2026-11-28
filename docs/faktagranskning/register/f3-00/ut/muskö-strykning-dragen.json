@@ -1,0 +1,8 @@
+{
+ "fil": "src/lib/transit-stops.ts",
+ "gammal": "    note: 'Pendeltåg till Ösmo och buss genom Muskötunneln.',\n",
+ "ny": "    // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-0190): noten \"Pendeltåg till Ösmo och buss genom Muskötunneln.\" hade ingen källa, och ingen SL-tabell jag läst nämner Risdalsvägen eller Muskö (h858 och v858 har bara hållplatsen Musköten). Noten är struken.\n",
+ "rader": [
+  "f300a-0190"
+ ]
+}
