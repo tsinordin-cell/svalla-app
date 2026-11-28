@@ -1177,7 +1177,15 @@ export default function UpptackExplorer() {
           padding: 14px 18px 12px;
           background: var(--white);
           border-bottom: 1px solid rgba(10, 123, 140, 0.08);
-          z-index: 10;
+          /* z-index utan position gäller inte. .upx-fdd har z-index 2 så att
+             knappen ligger över regionraden (Safari, 2026-11-27). Det skapar
+             ett eget lager: panelens z-index 1000 gäller bara där inne, och
+             hela menyn målas som lager 2. Kartans rutor ligger på 400 och
+             listan på mobil på 500, så menyn hamnar under dem fast den är
+             öppen. Rubriken är lagret menyn hör till. 640 är över de lagren,
+             under zoomknapparna (1000) och "Tipsa oss" (800). */
+          position: relative;
+          z-index: 640;
         }
         /* 2026-11-25: ingen topprad ovanför längre (Tom). Sök finns på kartan,
            meddelanden och notiser via Profil i bottenmenyn. */
