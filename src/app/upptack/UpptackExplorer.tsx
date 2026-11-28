@@ -1655,9 +1655,9 @@ export default function UpptackExplorer() {
           .upx-map .maplibregl-ctrl-top-right { top: 54px; }
           /* Ovanför listans minsta läge, GPS-knappen och cookieremsan.
              Vädret och "Tipsa oss" tar höger sida. */
-          .upx-attr { left: 54px; right: auto; bottom: 118px; }
-          .upx-split.sheet-half .upx-attr { bottom: calc(50dvh + 14px); }
-          .upx-split.sheet-full .upx-attr { top: 4px; bottom: auto; left: 8px; }
+          /* Mobil (2026-11-28): källraden längst upp till vänster i alla lägen.
+             Nere till vänster krockade den med vädret till höger. */
+          .upx-attr { top: 4px; bottom: auto; left: 8px; right: auto; }
           .upx-empty-cta-dator { display: none; }
           .upx-sok-hela {
             display: block;

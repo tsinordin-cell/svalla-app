@@ -180,7 +180,8 @@ export default function PlaceFactsSection({
   // utan källa på nästan alla andra. Fältet saknar källa per rad, så hellre tomt.
   void seasonality; void SEASONALITY_LABEL
 
-  if (groups.length === 0) return null
+  // Bara typen står redan i rubrikkortet; då behövs ingen ruta (2026-11-28).
+  if (groups.length === 0 || (groups.length === 1 && groups[0]!.label === 'Typ')) return null
 
   return (
     <section style={{

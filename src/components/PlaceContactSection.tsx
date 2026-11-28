@@ -21,6 +21,8 @@ interface Props {
   formattedAddress?: string | null
   googleRating?: number | null
   googleRatingsTotal?: number | null
+  /** Visar raden "Information från Google Places" även när betyget står i rubrikkortet. */
+  googleKalla?: boolean
   googlePlaceId?: string | null
   /** Fritext-öppettider (kommer från manuell admin-input eller Google) */
   openingHours?: string | null
@@ -39,7 +41,7 @@ interface Props {
 
 export default function PlaceContactSection({
   phone, email, website, menuUrl, bookingUrl, instagram, facebook,
-  formattedAddress, googleRating, googleRatingsTotal, googlePlaceId,
+  formattedAddress, googleRating, googleRatingsTotal, googleKalla, googlePlaceId,
   openingHours, openingHoursJson, hoursVerifiedAt, harObekraftadeTider,
   latitude, longitude, name,
 }: Props) {
@@ -315,7 +317,7 @@ export default function PlaceContactSection({
       )}
 
       {/* Powered by Google — KRÄVS av Google ToS när vi visar deras data */}
-      {(googleRating || googlePlaceId) && (
+      {(googleRating || googleKalla || googlePlaceId) && (
         <div style={{
           fontSize: 10.5,
           color: 'var(--txt3)',

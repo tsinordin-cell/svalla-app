@@ -79,14 +79,15 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
     return (
       <div style={{
         width: '100%',
-        minHeight: 280,
+        // 180 i stället för 280 (2026-11-28): ytan utan bild tog en halv mobilskärm.
+        minHeight: 180,
         background: 'linear-gradient(180deg, var(--sea-l, #d8e9f0) 0%, var(--bg) 100%)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         gap: 10,
-        padding: '32px 16px',
+        padding: 'calc(56px + env(safe-area-inset-top, 0px)) 16px 24px',
       }}>
         <svg viewBox="0 0 24 24" width="42" height="42" fill="none"
           stroke="rgba(10, 123, 140, 0.45)" strokeWidth={1.6}
