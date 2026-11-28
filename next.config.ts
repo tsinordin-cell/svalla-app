@@ -68,7 +68,8 @@ const securityHeaders = [
       // Följden var att "Redaktionens val"-kortet på /guider (GuiderClient.tsx:230) saknade
       // bild för varje besökare. Lägger man till en ny wikimedia-URL: kontrollera var den
       // faktiskt hamnar, inte var den pekar.
-      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://upload.wikimedia.org https://commons.wikimedia.org https://thumb.wikimedia.org https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
+      // live.staticflickr.com tillagd 2026-11-28: ösidornas foton med fri licens från Flickr (CC BY, CC BY-SA, CC0, PDM).
+      "img-src 'self' data: blob: https://*.supabase.co https://images.unsplash.com https://upload.wikimedia.org https://commons.wikimedia.org https://thumb.wikimedia.org https://live.staticflickr.com https://tile.openstreetmap.org https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com https://tiles.openseamap.org",
       "font-src 'self' data:",
       "media-src 'self' blob: https://*.supabase.co",
       "worker-src 'self' blob:", // service worker + Capacitor
@@ -145,6 +146,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      // Ösidornas museibilder med fri licens (Kringla, RAÄ, DigitaltMuseum, Sörmlands och Norrbottens museum), 2026-11-28.
+      // Originalen är stora, så de visas via Next bildoptimering i stället för direkt.
+      { protocol: 'https', hostname: 'pub.raa.se' },
+      { protocol: 'https', hostname: 'ems.dimu.org' },
+      { protocol: 'https', hostname: 'sokisamlingar.sormlandsmuseum.se' },
+      { protocol: 'https', hostname: 'samlingar.norrbottensmuseum.se' },
     ],
   },
   experimental: {

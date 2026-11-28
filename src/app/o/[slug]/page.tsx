@@ -39,6 +39,10 @@ import { SCB_OAR, SCB_OAR_KALLA } from '../scb-oar.generated'
 import { pekarBort, omBad, boendeOrd, klockslagsregler, arOrt } from '@/lib/mallRegler'
 import { stryksKlockslag } from '@/lib/klockslagStrykning'
 import { krogarIDatabasen } from '@/lib/islandPlaces'
+// Ösidan Navet (förslag E), godkänd av Max 2026-11-28. Förslagsväxlaren finns bara på grenen forslag/osidor.
+import OsidaForslag from '@/components/OsidaForslag'
+import { commonsTumme } from '@/lib/commonsTumme'
+import { platsbild } from '@/lib/platsbilder'
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -305,8 +309,26 @@ export default async function IslandPage({ params }: Props) {
  {/* revision 2026-10-02: mork-yta = vit fokusring (globals.css), --sea syntes inte här. */}
  <SidHuvud />
 
+ {/* Ösidan Navet: toppbild, vägval med foton och Allt om ön (Max 2026-11-28). */}
+ <OsidaForslag data={{
+   slug: island.slug,
+   namn: island.name,
+   tagline: island.tagline,
+   region: regionForIsland(island.regionLabel).namn,
+   regionHref: regionForIsland(island.regionLabel).href,
+   ingress: island.description?.[0] ?? island.tagline,
+   foto: OBILDER[island.slug] ? { url: commonsTumme(OBILDER[island.slug]!.url, 1280), fotograf: OBILDER[island.slug]!.fotograf, licens: OBILDER[island.slug]!.licens } : null,
+   restid: klockslagsregler(stryksKlockslag(slug, 'ösidan')).utanKlockslag(island.facts.travel_time ?? ''),
+   sasong: island.facts.season ?? '',
+   perfekt: island.facts.best_for ?? '',
+   karaktar: island.facts.character ?? '',
+   krogar: island.restaurants.map(r => ({ namn: r.name, typ: r.type, text: r.desc, ...(r.open_season ? { sasong: r.open_season } : {}), ...(platsbild(island.slug, r.name) ? { foto: platsbild(island.slug, r.name)! } : {}) })),
+   boenden: island.accommodation.map(a => ({ namn: a.name, typ: a.type, text: a.desc, ...(platsbild(island.slug, a.name) ? { foto: platsbild(island.slug, a.name)! } : {}) })),
+   gora: island.activities.map(a => ({ namn: a.name, text: a.desc, ikon: String(emojiToIcon(a.icon) ?? 'tower') })),
+ }} />
+
  {/* ── HERO ────────────────────────────────────────────────── */}
- <div className="mork-yta" style={{
+ <div id="osida-hero" className="mork-yta" style={{
  background: `linear-gradient(170deg, ${regionColor} 0%, #2d7d8a 60%, #1a9ab0 100%)`,
  padding: '52px 24px 44px',
  color: '#fff',
@@ -454,7 +476,7 @@ export default async function IslandPage({ params }: Props) {
  </div>
 
  {/* ── MAIN CONTENT ────────────────────────────────────────── */}
- <div style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px 80px' }}>
+ <div id="osida-innehall" style={{ maxWidth: 900, margin: '0 auto', padding: '40px 24px 80px' }}>
  	{/* Fotot av ön. Fotograf och licens står under bilden — villkoret för
  	    att vi får använda den. Genereras av scripts/hamta-obilder.mjs. */}
  	<IslandFoto slug={island.slug} islandName={island.name} />
