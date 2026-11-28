@@ -33,6 +33,7 @@ const TYPE_LABEL: Record<string, string> = {
  message: 'skickade ett meddelande',
  listing_saved: 'sparade din annons',
  dm_accepted: 'accepterade din meddelandeförfrågan',
+ task_assigned: 'gav dig en uppgift på /team',
 }
 
 // SVG-ikon per notif-typ — kompletterar avatar med visuell typing-cue
@@ -49,6 +50,7 @@ const TYPE_ICON: Record<string, IconName> = {
  friend_visit: 'pin',
  message: 'mail',
  listing_saved: 'bookmark',
+ task_assigned: 'clipboard',
  dm_accepted: 'mail',
 }
 
@@ -279,6 +281,8 @@ export default function NotificationBell() {
  ? `/u/${encodeURIComponent(n.actor_username)}`
  : n.type === 'friend_visit' && n.related_island_slug
  ? `/o/${n.related_island_slug}`
+ : n.type === 'task_assigned' && n.reference_id
+ ? `/team?uppgift=${n.reference_id}`
  : n.type === 'listing_saved' && n.reference_id
  ? `/forum/loppis/${n.reference_id}`
  : n.type === 'dm_accepted' && n.reference_id
