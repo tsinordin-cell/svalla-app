@@ -1,6 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import { getAdminClient } from '@/lib/supabase-admin'
+import { faltFranKalla } from '@/lib/platsKort'
 import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
@@ -59,7 +60,7 @@ export async function GET(req: Request) {
   if (type === 'poi') {
     const { data, error } = await supabase
       .from('restaurants')
-      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, archipelago_region, google_photo_refs, endast_medlemmar')
+      .select('id, name, latitude, longitude, type, categories, description, image_url, slug, island, archipelago_region, google_photo_refs, endast_medlemmar, google_rating, google_ratings_total, opening_hours, verified_at')
       .not('latitude', 'is', null)
       .not('longitude', 'is', null)
 
@@ -82,6 +83,10 @@ export async function GET(req: Request) {
       archipelago_region: string | null;
       google_photo_refs: { reference: string }[] | null;
       endast_medlemmar: boolean | null;
+      google_rating: number | string | null;
+      google_ratings_total: number | string | null;
+      opening_hours: string | null;
+      verified_at: string | null;
     }
     const projected = (data as RawRow[] | null ?? []).map((r) => {
       let imageUrl = r.image_url
@@ -101,8 +106,11 @@ export async function GET(req: Request) {
         description: r.description ? r.description.slice(0, 300) : null,
         image_url: imageUrl, slug: r.slug, island: r.island,
         archipelago_region: r.archipelago_region,
-        // Skickas bara när den är sann — håller listsvaret litet.
+        // Skickas bara när den är sann. Håller listsvaret litet.
         ...(r.endast_medlemmar ? { endast_medlemmar: true } : {}),
+        // Betyg och öppettider bara när källan redan har dem. Öppettider
+        // kräver verified_at, samma regel som platssidan.
+        ...faltFranKalla(r),
       }
     })
 

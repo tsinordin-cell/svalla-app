@@ -44,17 +44,22 @@ export const PIN_ICON_POS: Record<PinForm, [number, number, number]> = {
 export const PIN_SIZE: [number, number] = [32, 40]
 export const PIN_ANCHOR: [number, number] = [16, 39]
 
-export function pinHtml(cat: KartnalKategori, isActive = false): string {
+export function pinHtml(cat: KartnalKategori, isActive = false, medRing = false): string {
   const { color, form, icon } = PIN_META[cat]
   const path = PIN_PATHS[form]
   const [tx, ty, sc] = PIN_ICON_POS[form]
   const scale = isActive ? 1.2 : 1
-  const halo = isActive
+  // Ringen hör till nålen vars platskort är öppet. Hover behåller halo.
+  const halo = isActive && !medRing
     ? `<path d="${path}" fill="none" stroke="${color}" stroke-width="6" stroke-linejoin="round" opacity="0.35"/>`
+    : ''
+  const ring = medRing
+    ? `<circle class="pin-ring" cx="16" cy="16" r="23" fill="${color}" fill-opacity="0.22" stroke="${color}" stroke-width="2.5"/>`
     : ''
   return `
     <div style="transform:scale(${scale});transform-origin:center bottom;transition:transform .18s ease;filter:drop-shadow(0 4px 8px rgba(10,30,50,0.35))">
       <svg width="${PIN_SIZE[0]}" height="${PIN_SIZE[1]}" viewBox="0 0 ${PIN_SIZE[0]} ${PIN_SIZE[1]}" overflow="visible" xmlns="http://www.w3.org/2000/svg">
+        ${ring}
         ${halo}
         <path d="${path}" fill="${color}" stroke="#fff" stroke-width="2"/>
         <g transform="translate(${tx} ${ty}) scale(${sc})" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">

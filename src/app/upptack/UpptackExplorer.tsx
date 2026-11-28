@@ -33,6 +33,7 @@ import { samladVaderpunkt } from '@/lib/samladVaderpunkt'
 import { track } from '@/lib/analytics-events'
 import { platsKategori, type PlatsKategori } from '@/lib/platskategori'
 import { pinHtml, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
+import PlatsPopup from './PlatsPopup'
 
 // ── Types ────────────────────────────────────────────────────────────────
 interface Poi {
@@ -48,6 +49,11 @@ interface Poi {
   island: string | null
   archipelago_region: string | null
   endast_medlemmar?: boolean
+  /** Finns bara när restaurants.google_rating redan är satt. */
+  google_rating?: number | null
+  google_ratings_total?: number | null
+  /** Finns bara när öppettiderna är kontrollerade (verified_at). */
+  opening_hours?: string | null
 }
 
 type Category = PlatsKategori
@@ -231,6 +237,15 @@ export default function UpptackExplorer() {
   // Map state — listan följer kartans bounds automatiskt vid varje pan/zoom
   const [bounds, setBounds] = useState<Bounds | null>(null)
   const [hoveredId, setHoveredId] = useState<string | null>(null)
+  // Nålen vars platskort är öppet. Hover i listan är ett annat tillstånd.
+  const [valdId, setValdId] = useState<string | null>(null)
+  const [smal, setSmal] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
+  )
+  const [kortPos, setKortPos] = useState<{ id: string; x: number; y: number } | null>(null)
+  // null tills /api/saves svarat. Nyckel: s:slug eller k:namn|lat|lng.
+  const [sparade, setSparade] = useState<Set<string> | null>(null)
+  const [spararId, setSpararId] = useState<string | null>(null)
   // Startvyn följer regionen i adressen (?region=gotland). Tidigare startade
   // kartan alltid i Stockholm medan listan filtrerades på regionen, så en delad
   // eller omladdad regionlänk visade "0 platser i denna vy" (kontrollerat live
@@ -309,6 +324,11 @@ export default function UpptackExplorer() {
   const mapRef = useRef<unknown>(null)
   const clusterRef = useRef<unknown>(null)
   const markersRef = useRef<Map<string, unknown>>(new Map())
+  const valdIdRef = useRef<string | null>(null)
+  const hoverIdRef = useRef<string | null>(null)
+  const valdOppnadRef = useRef(0)
+  valdIdRef.current = valdId
+  hoverIdRef.current = hoveredId
   // revision 2026-10-02: kartan initieras asynkront. Kom datan före kartan
   // returnerade markör-effekten tidigt och kördes inte om när kartan blev klar,
   // så inga nålar ritades förrän ett filter ändrades. kartaKlar kör om den.
@@ -594,14 +614,16 @@ export default function UpptackExplorer() {
 
       const newMarkers = visiblePois.map(p => {
         const cat = categorize(p)
+        const valdNu = valdIdRef.current === p.id
+        const aktivNu = valdNu || hoverIdRef.current === p.id
         const icon = L.divIcon({
-          html: pinHtml(cat, false),
-          className: 'svalla-pin',
+          html: pinHtml(cat, aktivNu, valdNu),
+          className: valdNu ? 'svalla-pin upx-pin-vald' : 'svalla-pin',
           iconSize: PIN_SIZE,
           iconAnchor: PIN_ANCHOR,
           popupAnchor: [0, -36],
         })
-        const m = L.marker([p.latitude, p.longitude], { icon })
+        const m = L.marker([p.latitude, p.longitude], { icon, zIndexOffset: valdNu ? 900 : 0 })
         // revision 2026-10-02: Leaflet gör nålen till role="button" med tabindex
         // men utan namn (axe aria-command-name: 51 nålar). Namnet sätts när nålen
         // läggs på kartan (även efter klustring); DivIcon återanvänder samma
@@ -609,14 +631,9 @@ export default function UpptackExplorer() {
         m.on('add', () => m.getElement()?.setAttribute('aria-label', `${p.name}, ${CATEGORY_META[cat].label}`))
         // Stash POI på markören så hover-effekten kan läsa kategorin
         ;(m as unknown as { _poi: Poi })._poi = p
-        m.bindPopup(`
-          <div style="min-width:180px;font-family:'Inter',sans-serif">
-            <div style="font-weight:700;font-size:13px;color:#162d3a;margin-bottom:2px">${p.name}</div>
-            <div style="font-size:11px;color:#6a8a96;margin-bottom:6px">${CATEGORY_META[cat].label}${p.island ? ' &middot; ' + p.island : ''}</div>
-            ${p.slug ? `<a href="/upptack/${p.slug}" style="color:#1e5c82;font-size:12px;font-weight:600;text-decoration:none">Se mer &rarr;</a>` : ''}
-          </div>
-        `)
         m.on('click', () => {
+          valdOppnadRef.current = Date.now()
+          setValdId(p.id)
           setHoveredId(p.id)
           // Scrolla in motsvarande kort
           const el = document.getElementById(`upptack-card-${p.id}`)
@@ -704,50 +721,47 @@ export default function UpptackExplorer() {
     return () => clearTimeout(id)
   }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query, sheetState])
 
-  // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
-  // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
-  // aktiva markörens icon mot den med ringen runt — och återställer den
-  // tidigare. Leaflet hämtas via hamtaLeaflet (redan laddad här).
+  // ── Hover och vald nål ────────────────────────────────────────────────
+  // Hover i listan förstorar nålen. Medan platskortet är öppet växer
+  // den valda nålen och får en ring, även om musen går vidare.
   const lastHoveredRef = useRef<string | null>(null)
+  const lastValdRef = useRef<string | null>(null)
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       const L = await hamtaLeaflet()
       if (cancelled) return
 
-      // Återställ tidigare aktiv pin
-      const prev = lastHoveredRef.current
-      if (prev && prev !== hoveredId) {
-        const m = markersRef.current.get(prev) as { _poi?: Poi; setIcon?: (icon: unknown) => void } | undefined
-        if (m?._poi && m.setIcon) {
-          const cat = categorize(m._poi)
-          m.setIcon(L.divIcon({
-            html: pinHtml(cat, false),
-            className: 'svalla-pin',
-            iconSize: PIN_SIZE,
-            iconAnchor: PIN_ANCHOR,
-            popupAnchor: [0, -36],
-          }))
-        }
-      }
-      // Sätt ny aktiv
-      if (hoveredId) {
-        const m = markersRef.current.get(hoveredId) as { _poi?: Poi; setIcon?: (icon: unknown) => void } | undefined
-        if (m?._poi && m.setIcon) {
-          const cat = categorize(m._poi)
-          m.setIcon(L.divIcon({
-            html: pinHtml(cat, true),
-            className: 'svalla-pin svalla-pin-active',
-            iconSize: PIN_SIZE,
-            iconAnchor: PIN_ANCHOR,
-            popupAnchor: [0, -36],
-          }))
-        }
+      const raorda = new Set<string>()
+      if (lastHoveredRef.current) raorda.add(lastHoveredRef.current)
+      if (lastValdRef.current) raorda.add(lastValdRef.current)
+      if (hoveredId) raorda.add(hoveredId)
+      if (valdId) raorda.add(valdId)
+
+      for (const id of raorda) {
+        const m = markersRef.current.get(id) as {
+          _poi?: Poi
+          setIcon?: (icon: unknown) => void
+          setZIndexOffset?: (n: number) => void
+        } | undefined
+        if (!m?._poi || !m.setIcon) continue
+        const cat = categorize(m._poi)
+        const vald = id === valdId
+        const aktiv = vald || id === hoveredId
+        m.setIcon(L.divIcon({
+          html: pinHtml(cat, aktiv, vald),
+          className: vald ? 'svalla-pin upx-pin-vald' : aktiv ? 'svalla-pin svalla-pin-active' : 'svalla-pin',
+          iconSize: PIN_SIZE,
+          iconAnchor: PIN_ANCHOR,
+          popupAnchor: [0, -36],
+        }))
+        m.setZIndexOffset?.(vald ? 900 : 0)
       }
       lastHoveredRef.current = hoveredId
+      lastValdRef.current = valdId
     })()
     return () => { cancelled = true }
-  }, [hoveredId])
+  }, [hoveredId, valdId])
 
   // ── Mobile tab-byte: vid switch till "map" måste Leaflet få veta att
   // dess container nu har storlek (var display:none innan). Annars
@@ -835,12 +849,169 @@ export default function UpptackExplorer() {
     const map = mapRef.current as { flyTo: (latlng: [number, number], zoom: number, opts?: object) => void }
     map.flyTo([poi.latitude, poi.longitude], 15, { duration: 0.8 })
     setHoveredId(poi.id)
-    // Öppna popup efter fly
-    setTimeout(() => {
-      const m = markersRef.current.get(poi.id) as { openPopup?: () => void } | undefined
-      m?.openPopup?.()
-    }, 850)
+    valdOppnadRef.current = Date.now()
+    setValdId(poi.id)
   }, [])
+
+  const vald = useMemo(() => pois.find(p => p.id === valdId) ?? null, [pois, valdId])
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const satt = () => setSmal(mq.matches)
+    satt()
+    mq.addEventListener('change', satt)
+    return () => mq.removeEventListener('change', satt)
+  }, [])
+
+  // Stäng kortet om platsen filtreras bort. Panorering lämnar det öppet.
+  useEffect(() => {
+    if (!valdId) return
+    const p = pois.find(x => x.id === valdId)
+    if (!p || (!isAllMode && !activeCats.has(categorize(p))) || (sokTraffar && !sokTraffar.has(p))) {
+      setValdId(null)
+    }
+  }, [valdId, pois, isAllMode, activeCats, sokTraffar])
+
+  useEffect(() => {
+    if (!valdId) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      // Kategorimenyn stänger sig själv på Escape. Kortet får stå kvar.
+      if (document.querySelector('.upx-fdd-panel')) return
+      setValdId(null)
+    }
+    // Fångas före menyns lyssnare, så Escape stänger menyn och lämnar kortet.
+    window.addEventListener('keydown', onKey, true)
+    return () => window.removeEventListener('keydown', onKey, true)
+  }, [valdId])
+
+  useEffect(() => {
+    if (!valdId || !kartaKlar) return
+    const map = mapRef.current as { on?: (e: string, fn: () => void) => void; off?: (e: string, fn: () => void) => void } | null
+    if (!map?.on || !map.off) return
+    const stang = () => {
+      // Nålklick stoppar normalt händelsen. Spärren fångar om den ändå når kartan.
+      if (Date.now() - valdOppnadRef.current < 280) return
+      setValdId(null)
+    }
+    map.on('click', stang)
+    return () => map.off?.('click', stang)
+  }, [valdId, kartaKlar])
+
+  useEffect(() => {
+    if (!vald || smal) return
+    const map = mapRef.current as {
+      latLngToContainerPoint?: (ll: [number, number]) => { x: number; y: number }
+      getContainer?: () => HTMLElement
+      on?: (e: string, fn: () => void) => void
+      off?: (e: string, fn: () => void) => void
+    } | null
+    if (!map?.latLngToContainerPoint || !map.getContainer || !map.on || !map.off) return
+    const plats = vald
+    let ram: number | null = null
+    const uppdatera = () => {
+      const behallare = map.getContainer?.()
+      const split = behallare?.closest('.upx-split') as HTMLElement | null
+      if (!behallare || !split || !map.latLngToContainerPoint) return
+      const punkt = map.latLngToContainerPoint([plats.latitude, plats.longitude])
+      const karta = behallare.getBoundingClientRect()
+      const yta = split.getBoundingClientRect()
+      const x = punkt.x + (karta.left - yta.left)
+      const y = punkt.y + (karta.top - yta.top)
+      // Kortet ligger bredvid nålen så att ringen syns.
+      const bredd = 300
+      const hojd = (split.querySelector('.upx-platspop') as HTMLElement | null)?.offsetHeight || 340
+      let left = x + 36
+      if (left + bredd > yta.width - 12) left = x - 36 - bredd
+      left = Math.max(12, Math.min(left, yta.width - bredd - 12))
+      let top = y - Math.round(hojd * 0.72)
+      top = Math.max(12, Math.min(top, yta.height - hojd - 12))
+      setKortPos({ id: plats.id, x: left, y: top })
+    }
+    uppdatera()
+    const efterRitning = requestAnimationFrame(() => uppdatera())
+    const vidFlytt = () => {
+      if (ram != null) return
+      ram = requestAnimationFrame(() => { ram = null; uppdatera() })
+    }
+    map.on('move', vidFlytt)
+    map.on('zoom', vidFlytt)
+    map.on('resize', vidFlytt)
+    window.addEventListener('resize', vidFlytt)
+    return () => {
+      cancelAnimationFrame(efterRitning)
+      if (ram != null) cancelAnimationFrame(ram)
+      map.off?.('move', vidFlytt)
+      map.off?.('zoom', vidFlytt)
+      map.off?.('resize', vidFlytt)
+      window.removeEventListener('resize', vidFlytt)
+    }
+  }, [vald, smal, kartaKlar, listCollapsed])
+
+  useEffect(() => {
+    let cancelled = false
+    fetch('/api/saves')
+      .then(r => r.ok ? r.json() : { saves: [] })
+      .then((data: { saves?: Array<{ place_slug: string | null; place_name: string | null; lat: number | null; lng: number | null }> }) => {
+        if (cancelled) return
+        const set = new Set<string>()
+        for (const s of data.saves ?? []) {
+          if (s.place_slug) set.add(`s:${s.place_slug}`)
+          else if (s.place_name && typeof s.lat === 'number' && typeof s.lng === 'number') {
+            set.add(`k:${s.place_name}|${s.lat}|${s.lng}`)
+          }
+        }
+        setSparade(set)
+      })
+      .catch(() => { if (!cancelled) setSparade(new Set()) })
+    return () => { cancelled = true }
+  }, [])
+
+  const sparaPlats = useCallback(async (p: Poi) => {
+    if (!sparade || spararId) return
+    const nyckel = p.slug ? `s:${p.slug}` : `k:${p.name}|${p.latitude}|${p.longitude}`
+    const fanns = sparade.has(nyckel)
+    setSpararId(p.id)
+    setSparade(prev => {
+      const next = new Set(prev ?? [])
+      if (fanns) next.delete(nyckel)
+      else next.add(nyckel)
+      return next
+    })
+    try {
+      const r = await fetch('/api/saves/toggle', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          placeSlug: p.slug,
+          placeName: p.name,
+          placeType: p.type,
+          lat: p.latitude,
+          lng: p.longitude,
+          imageUrl: p.image_url,
+          island: p.island,
+        }),
+      })
+      if (!r.ok) {
+        setSparade(prev => {
+          const next = new Set(prev ?? [])
+          if (fanns) next.add(nyckel)
+          else next.delete(nyckel)
+          return next
+        })
+        if (r.status === 401) window.location.href = '/logga-in?returnTo=/upptack'
+      }
+    } catch {
+      setSparade(prev => {
+        const next = new Set(prev ?? [])
+        if (fanns) next.add(nyckel)
+        else next.delete(nyckel)
+        return next
+      })
+    } finally {
+      setSpararId(null)
+    }
+  }, [sparade, spararId])
 
   // 2026-11-23 (menyförslaget): toppraden och upx-header mäts, så att kartans och
   // listans höjd på mobil räknas från den verkliga höjden. Förut stod en gissning
@@ -1159,6 +1330,21 @@ export default function UpptackExplorer() {
             <WeatherPill lat={(vaderLas ?? mapCenter).lat} lng={(vaderLas ?? mapCenter).lng} />
           </div>
         </div>
+        {vald && (smal || kortPos?.id === vald.id) && (
+          <PlatsPopup
+            key={vald.id}
+            plats={vald}
+            kategori={categorize(vald)}
+            bildTrasig={trasigaBilder.has(vald.id)}
+            onBildTrasig={() => setTrasigaBilder(prev => new Set(prev).add(vald.id))}
+            onStang={() => setValdId(null)}
+            sparad={!!sparade?.has(vald.slug ? `s:${vald.slug}` : `k:${vald.name}|${vald.latitude}|${vald.longitude}`)}
+            sparKand={sparade !== null}
+            sparar={spararId === vald.id}
+            onSpara={() => { void sparaPlats(vald) }}
+            lage={smal || !kortPos ? { typ: 'ark' } : { typ: 'kort', x: kortPos.x, y: kortPos.y }}
+          />
+        )}
       </div>
 
       {/* Inline styles — Svalla design tokens */}
@@ -1177,7 +1363,10 @@ export default function UpptackExplorer() {
           padding: 14px 18px 12px;
           background: var(--white);
           border-bottom: 1px solid rgba(10, 123, 140, 0.08);
-          z-index: 10;
+          position: relative;
+          /* Ovanför listarket (500) och platskortet (560), så att
+             kategorimenyn går att använda medan ett kort är öppet. */
+          z-index: 640;
         }
         /* 2026-11-25: ingen topprad ovanför längre (Tom). Sök finns på kartan,
            meddelanden och notiser via Profil i bottenmenyn. */
@@ -1336,8 +1525,17 @@ export default function UpptackExplorer() {
           grid-template-columns: minmax(260px, 300px) 1fr;
           flex: 1;
           min-height: 0;
+          position: relative;
           transition: grid-template-columns 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        /* Platskortet (z-index 560) ligger i splitten, under rubriken.
+           Listarket är 500. Kategorimenyn sitter i rubriken och går att
+           använda medan kortet är öppet. */
+        @media (prefers-reduced-motion: reduce) {
+          .svalla-pin div { transition: none !important; }
+        }
+        .leaflet-marker-icon.svalla-pin,
+        .leaflet-marker-icon.upx-pin-vald { overflow: visible !important; }
         .upx-split.list-collapsed {
           grid-template-columns: 0 1fr;
         }
@@ -1355,6 +1553,8 @@ export default function UpptackExplorer() {
           flex-direction: column;
           gap: 10px;
           border-right: 1px solid rgba(10, 123, 140, 0.08);
+          position: relative;
+          z-index: 500;
         }
         .upx-list-meta {
           padding: 0 4px 4px;
@@ -1527,6 +1727,7 @@ export default function UpptackExplorer() {
 
         .upx-map-wrap {
           position: relative;
+          z-index: 400;
           background: rgba(10, 123, 140, 0.04);
         }
         .upx-map {
