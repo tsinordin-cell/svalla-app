@@ -16,7 +16,7 @@ import { createPortal } from 'react-dom'
 import type { OsidaData } from './OsidaForslag'
 import { platsbild, vagbild, toppbild } from '@/lib/platsbilder'
 
-type Foto = { url: string; fotograf: string; licens: string }
+type Foto = { url: string; fotograf: string; licens: string; ovrig?: boolean }
 type EKort = { namn: string; etikett?: string; text: string; sasong?: string; foto?: Foto; ikon: string; href: string }
 type VirtKey = '__krogar' | '__boenden' | '__gora'
 type Vag = {
@@ -146,7 +146,7 @@ function Ikon({ namn, klass }: { namn: string; klass?: string }) {
   return <img src={src} alt="" aria-hidden="true" className={klass ?? 'e-ikon'} onError={() => { if (src.endsWith('/island.webp')) setSyns(false); else setSrc('/ikoner/island.webp') }} />
 }
 
-function FotoKort({ k }: { k: EKort }) {
+function FotoKort({ k, ort }: { k: EKort; ort: string }) {
   return (
     <a href={k.href} className={'e-kort ' + (k.foto ? 'e-kort-foto' : 'e-kort-mal')} style={k.foto ? { backgroundImage: "url('" + k.foto.url + "')" } : undefined}>
       {!k.foto && <Ikon namn={k.ikon} klass="e-kort-ikon" />}
@@ -155,7 +155,7 @@ function FotoKort({ k }: { k: EKort }) {
         <b>{k.namn}</b>
         <span className="e-kort-besk">{k.text}</span>
         {k.sasong && <i>Säsong: {k.sasong}</i>}
-        {k.foto && <em>Foto: {k.foto.fotograf}, {k.foto.licens}</em>}
+        {k.foto && <em>{k.foto.ovrig ? 'Bild från ' + ort + '. ' : ''}Foto: {k.foto.fotograf}, {k.foto.licens}</em>}
       </span>
     </a>
   )
@@ -172,7 +172,7 @@ function PartnerKort() {
   )
 }
 
-function Karusell({ kort, partner }: { kort: EKort[]; partner?: boolean }) {
+function Karusell({ kort, partner, ort }: { kort: EKort[]; partner?: boolean; ort: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const flytta = (d: number) => { const el = ref.current; if (el) el.scrollBy({ left: d * el.clientWidth * 0.8, behavior: 'smooth' }) }
   const lista: (EKort | 'partner')[] = [...kort.filter(k => k.foto), ...kort.filter(k => !k.foto)]
@@ -180,7 +180,7 @@ function Karusell({ kort, partner }: { kort: EKort[]; partner?: boolean }) {
   return (
     <div className="e-kar-ram">
       <div className="e-kar" ref={ref}>
-        {lista.map((k, i) => k === 'partner' ? <PartnerKort key="partner" /> : <FotoKort key={k.namn + i} k={k} />)}
+        {lista.map((k, i) => k === 'partner' ? <PartnerKort key="partner" /> : <FotoKort key={k.namn + i} k={k} ort={ort} />)}
       </div>
       {lista.length > 3 && (
         <div className="e-pilar">
@@ -394,6 +394,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
                       {!f && <Ikon namn={v.ikon} klass="e-valkort-ikon" />}
                       {senast === v.id && <span className="e-senast">Ditt senaste val</span>}
                       <span className="e-valkort-text"><b>{v.namn}</b><span>{v.fraga}</span></span>
+                      {f && <span className="e-valkort-kredit">{f.ovrig ? 'Bild från ' + data.namn + '. ' : ''}Foto: {f.fotograf}, {f.licens}</span>}
                     </button>
                   )
                 })}
@@ -417,7 +418,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
                   {data.boenden.length > 0 && <a href={'/o/' + slug + '/boende'}>Bo <span>{data.boenden.length}</span></a>}
                   {data.gora.length > 0 && <a href={'/o/' + slug + '/aktiviteter'}>Göra <span>{data.gora.length}</span></a>}
                 </nav>
-                <Karusell kort={urval} partner />
+                <Karusell kort={urval} partner ort={data.namn} />
                 <p className="e-not">Utvalt av Svalla. Ordningen bygger inte på betyg eller betalning.</p>
               </div>
             </section>
@@ -448,7 +449,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
               <h1 className="e-h1 e-h1-vag">{aktiv.id === 'visa' ? 'Första gången på ' + data.namn : aktiv.namn + ' på ' + data.namn}</h1>
               <p className="e-tagline">{aktiv.fraga}</p>
             </div>
-            {topbild && <div className="e-kredit">Foto: {topbild.fotograf}, {topbild.licens}</div>}
+            {topbild && <div className="e-kredit">{topbild.ovrig ? 'Bild från ' + data.namn + '. ' : ''}Foto: {topbild.fotograf}, {topbild.licens}</div>}
           </header>
         </>
       )}
@@ -473,7 +474,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
         </div>, hosts['steg-' + si]!, 'steg' + si) : null)}
       {aktiv && (['__krogar', '__boenden', '__gora'] as VirtKey[]).map(k => hosts['v' + k] && plats(aktiv, k) >= 0 ? createPortal(
         <div className="e-stegblock">
-          <Karusell kort={kort[k]} partner={aktiv.partner === k} />
+          <Karusell kort={kort[k]} partner={aktiv.partner === k} ort={data.namn} />
           <a className="e-allalank" href={kort[k][0]?.href ?? '/o/' + slug}>{k === '__krogar' ? 'Alla krogar och kaféer' : k === '__boenden' ? 'Alla boenden' : 'Allt att göra'} →</a>
         </div>, hosts['v' + k]!, k) : null)}
       {aktiv && hosts.slut && createPortal(
@@ -529,6 +530,7 @@ const CSS = `
 .e-valkort-mal::before{display:none}
 .e-valkort-ikon{position:absolute;top:14px;right:14px;width:64px;height:64px;object-fit:contain}
 .e-valkort-text{position:relative;display:flex;flex-direction:column;gap:2px}
+.e-valkort-kredit{position:absolute;top:10px;right:12px;max-width:70%;text-align:right;font-size:10px;line-height:1.3;color:rgba(255,255,255,.8);text-shadow:0 1px 2px rgba(0,0,0,.55)}
 .e-valkort-text b{font-family:'Playfair Display',Georgia,serif;font-size:24px;line-height:1.1}
 .e-valkort-text span{font-size:13.5px;opacity:.92}
 .e-senast{position:absolute;top:12px;left:12px;z-index:1;font:700 10.5px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:#f2a25c;color:#0d2440;border-radius:999px;padding:5px 10px}
