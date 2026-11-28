@@ -3,7 +3,7 @@
 import { useEffect, useId, useState } from 'react'
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Guidefilmen (PROTOTYP 2026-11-28, Tom: "Onboarding-video ... som visar runt
+   Guidefilmen (live 2026-11-28 efter Toms ja; Tom: "Onboarding-video ... som visar runt
    lite i appen"). Ingen videofil: en animation i koden med de målade bilderna
    i public/kreativ, så att den laddar snabbt, går att ändra och följer
    startsidans stil. Ersätter steg 2 ("Det här kan du göra") i onboardingen.

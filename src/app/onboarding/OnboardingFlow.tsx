@@ -32,7 +32,7 @@ import GuideFilm from '@/components/GuideFilm'
    6. folj      Följ andra på sjön (hoppas över om inga förslag finns)
    7. klar      Klar för avgång
 
-   Spårningen skickar steget som namn (steg) och version 2, så att siffrorna
+   Spårningen skickar steget som namn (steg) och versionen (GUIDE_VERSION), så att siffrorna
    inte blandas ihop med den gamla guiden, där steg 2 betydde något annat.
 ───────────────────────────────────────────────────────────────────────────── */
 
@@ -50,7 +50,7 @@ interface Props {
   userId: string
   /** Förnamn till hälsningen, eller ett eget användarnamn. Tomt om inget passar. */
   halsning: string
-  /** Kontot fanns före guiden (version 2): annan välkomsttext. */
+  /** Kontot fanns före den nya guiden (2026-11-28): annan välkomsttext. */
   befintligt?: boolean
   /** Båttyp och hemmahamn som kontot redan har, förifyllda. */
   startBat?: string | null
@@ -64,7 +64,7 @@ interface Props {
   /** Sidan personen var på väg till när kontot skapades. Dit går "Hoppa över" och "Fortsätt". */
   tillbaka?: string | null
   suggestions: Suggestion[]
-  /** PROTOTYP 2026-11-28: steg 2 som animerad film i stället för tre kort. */
+  /** Steg 2 som animerad film (live 2026-11-28, Toms ja). false ger de tre korten. */
   film?: boolean
   /** Bara för förhandsvisning av utseendet (t.ex. en tillfällig sida på en preview): inget sparas, inget spåras, ingen omdirigering. */
   forhandsvisning?: boolean
@@ -75,7 +75,7 @@ type Step = 'valkomst' | 'visning' | 'namn' | 'bat' | 'hamn' | 'folj' | 'klar'
 const STEG: Step[] = ['valkomst', 'visning', 'namn', 'bat', 'hamn', 'folj', 'klar']
 const MELLANSTEG: Step[] = ['visning', 'namn', 'bat', 'hamn', 'folj']
 const stegNr = (s: Step) => STEG.indexOf(s) + 1
-const VERSION = 2
+const VERSION = GUIDE_VERSION // 3 = med guidefilmen (2026-11-28)
 
 /* ── Startsidans färger (Startscen.tsx, ThorkelHero.tsx) ─────────────────── */
 const F = {
@@ -360,7 +360,7 @@ function Framsteg({ current }: { current: Step }) {
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, halsning, befintligt = false, startBat = null, startHamn = '', nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false, film = false }: Props) {
+export default function OnboardingFlow({ userId, halsning, befintligt = false, startBat = null, startHamn = '', nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false, film = true }: Props) {
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
