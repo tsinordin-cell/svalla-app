@@ -298,13 +298,26 @@ ${preheader ? `<div style="display:none;max-height:0;overflow:hidden;color:#e8ee
 </html>`
 }
 
+/**
+ * Mallar som börjar med namnet ("{{first_name}}, alla åker till Sandhamn") blev
+ * "där, alla åker till Sandhamn" när mottagaren saknar namn, till exempel en
+ * prenumerant utan konto (uppmätt i Resend 2026-11-28, dag 7-mejlet). Saknas namnet
+ * tas "{{first_name}}," eller "{{first_name}}:" bort och nästa ord får stor bokstav.
+ * "Hej {{first_name}}" lämnas som det är ("Hej där").
+ */
+export function utanNamnOmDetSaknas(mall: string, namn: string | number | undefined): string {
+  const finns = typeof namn === 'number' || (typeof namn === 'string' && namn.trim() !== '' && namn.trim() !== 'där')
+  if (finns) return mall
+  return mall.replace(/\{\{\s*first_name\s*\}\}\s*[,:]\s*(\S)/g, (_, c: string) => c.toUpperCase())
+}
+
 /** Bygg subject + html för en mall (utan att skicka) */
 function build(
   template: EmailTemplate,
   vars: Record<string, string | number | undefined>,
   logoSrc?: string,
 ): { subject: string; html: string; meta: Frontmatter } {
-  const raw = MAIL_MALLAR[template]
+  const raw = utanNamnOmDetSaknas(MAIL_MALLAR[template], vars.first_name)
   const { meta, body } = parseFrontmatter(raw)
   // avreg_url sätts av sendEmail (signerad länk). I förhandsvisningen på
   // /admin/mail finns ingen mottagare – då pekar länken på utskicksinställningarna.
