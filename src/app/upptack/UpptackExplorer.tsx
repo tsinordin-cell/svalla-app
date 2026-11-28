@@ -638,8 +638,10 @@ export default function UpptackExplorer() {
       return true
     })
     const index = new Supercluster<{ id: string }>({
-      // Leaflet-klustrets radier var 55/35/25/18 px beroende på zoom.
-      radius: 40,
+      // Leaflet-klustrets radier var 55/35/25/18 px beroende på zoom, räknat på
+      // 256 px rutor. extent 256 gör att radien räknas i samma pixlar.
+      radius: 42,
+      extent: 256,
       maxZoom: 12,
     })
     index.load(visiblePois.map(p => ({
