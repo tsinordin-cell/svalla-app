@@ -10,6 +10,7 @@ import { validateUsername } from '@/lib/username'
 import { komprimeraBild, AVATAR_MAX_PX } from '@/lib/komprimeraBild'
 import { GUIDE_VERSION } from '@/lib/guidenForst'
 import { GUIDE_OK_NYCKEL } from '@/components/GuideKontroll'
+import GuideFilm from '@/components/GuideFilm'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /onboarding, version 2 (2026-11-28, Toms uppdrag 27 nov)
@@ -63,6 +64,8 @@ interface Props {
   /** Sidan personen var på väg till när kontot skapades. Dit går "Hoppa över" och "Fortsätt". */
   tillbaka?: string | null
   suggestions: Suggestion[]
+  /** PROTOTYP 2026-11-28: steg 2 som animerad film i stället för tre kort. */
+  film?: boolean
   /** Bara för förhandsvisning av utseendet (t.ex. en tillfällig sida på en preview): inget sparas, inget spåras, ingen omdirigering. */
   forhandsvisning?: boolean
 }
@@ -357,7 +360,7 @@ function Framsteg({ current }: { current: Step }) {
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, halsning, befintligt = false, startBat = null, startHamn = '', nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false }: Props) {
+export default function OnboardingFlow({ userId, halsning, befintligt = false, startBat = null, startHamn = '', nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false, film = false }: Props) {
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
@@ -381,6 +384,11 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
   )
 
   const spara = !forhandsvisning
+  // Filmen visas inte för den som valt mindre rörelse i systemet; då blir det korten.
+  const [visaFilm, setVisaFilm] = useState(false)
+  useEffect(() => {
+    setVisaFilm(film && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+  }, [film])
   useEffect(() => { if (spara) track('onboarding_started', { step: 1, version: VERSION, befintligt }) }, [spara, befintligt])
 
   // Kontot har sett guiden: guide_version sätts (alltid), onboarded_at bara om den
@@ -572,6 +580,16 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
   )
 
   /* ── 2. Det här kan du göra ───────────────────────────────────────── */
+  else if (step === 'visning' && visaFilm) innehall = (
+    <>
+      {/* Filmen har ett eget band med sina fem delar; guidens prickar skulle bli två framstegsrader. */}
+      <GuideFilm />
+      <div className="ob-rad">
+        {tillbakaKnapp}
+        <button type="button" onClick={goNext} className="ob-knapp">Nästa <Pil /></button>
+      </div>
+    </>
+  )
   else if (step === 'visning') innehall = (
     <>
       <Framsteg current={step} />
