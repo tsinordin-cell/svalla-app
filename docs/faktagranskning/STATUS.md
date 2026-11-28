@@ -4,6 +4,15 @@ Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
 
 
+## 2026-11-28 kväll — fas 3 batch 00 publicerad
+
+- PR #814 (7c8e096): transit-stops.ts, rutorna Avgångar och Sista båten, /farjor, /ta-dig-till, /vintertidtabeller, komma-dit-mallen. Fyra kontrollomgångar utan kvarstående FEL. Verifierat på svalla.se.
+- P0 28 (#801), P0 29 (#805), P0 30 (i #814: "samma dag" struket), P0 31 (#807, buss 839 från Handens station från 13 december).
+- Toms beslut 12: mejlrutan på /vintertidtabeller är en anmälan till nyhetsbrevet utan löfte.
+- Hälsovakt (#811, #813): GitHub Actions var tredje timme. Saknar GitHub-hemligheten SUPABASE_SERVICE_ROLE_KEY, så den kan inte skriva kort; samma brist stoppar backup-arbetsflödet (MÄTT i loggen 23 november).
+- Schemalagt 13 december 08.00: byt sex tidtabellslänkar och läs SL:s och Västtrafiks nya tabeller.
+- Nästa: fas 3 batch 01 (mellersta skärgården, 21 öar).
+
 ## 2026-11-28 — fas 3 (trafiken) startad före batch 02
 
 - Tom 2026-11-28 01:47 New York: "Följ din rekommendation" (trafiken först, frys från dag ett, färre och större omgångar).
