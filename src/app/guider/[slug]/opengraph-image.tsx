@@ -5,7 +5,7 @@ import { ritaOgKort } from '@/app/api/og/_mall/kort'
 // nodejs: typsnitten i mallen läses med Buffer (edge saknar det).
 export const runtime = 'nodejs'
 export const size = { width: 1200, height: 630 }
-export const contentType = 'image/png'
+export const contentType = 'image/jpeg'
 export const alt = 'Guide på Svalla'
 
 /**

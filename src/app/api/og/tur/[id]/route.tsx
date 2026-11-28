@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase'
 import { platsRubrik, datumLang, formatTid, ruttArAnvandbar, type Punkt } from '@/lib/dela-klistermarken'
 import { hamtaFoto } from '../../share/tur/[id]/rita'
-import { ritaOgKort, OgRutt, OG_W, OG_H, type OgTal } from '../../_mall/kort'
+import { ritaOgKort, OgRutt, PANEL, type OgTal } from '../../_mall/kort'
 
 export const runtime = 'nodejs'
 export const revalidate = 3600 // 1 h: sociala medier cachar OG-bilder länge ändå
@@ -9,8 +9,8 @@ export const revalidate = 3600 // 1 h: sociala medier cachar OG-bilder länge ä
 /**
  * Länkförhandsvisningen för en tur (1200×630, WhatsApp, iMessage, Facebook, X).
  * Ritas med den gemensamma mallen i ../../_mall/kort.tsx (2026-11-19).
- * Fotot fyller hela bilden (EXIF-roterat via hamtaFoto, bara egen lagring),
- * annars rutten till höger, annars seglet.
+ * Fotot som vykort till höger (EXIF-roterat via hamtaFoto, bara egen lagring),
+ * annars rutten på ett papperskort, annars startscenen. Ljust tema 2026-11-28.
  */
 export async function GET(
   _req: Request,
@@ -45,7 +45,7 @@ export async function GET(
 
   const rutt = trip && ruttArAnvandbar(trip.route_points as Punkt[] | null) ? (trip.route_points as Punkt[]) : null
   const fotoUrl = typeof trip?.image === 'string' ? trip.image : null
-  const foto = fotoUrl ? await hamtaFoto(fotoUrl, OG_W, OG_H) : null
+  const foto = fotoUrl ? await hamtaFoto(fotoUrl, PANEL.w * 2, PANEL.h * 2) : null
 
   return ritaOgKort({
     rubrik: plats,
