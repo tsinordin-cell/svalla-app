@@ -18,7 +18,7 @@
 import { upptackRegion } from '@/lib/upptackRegion'
 import 'leaflet/dist/leaflet.css'
 import 'leaflet.markercluster/dist/MarkerCluster.css'
-import { useEffect, useMemo, useRef, useState, useCallback } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -970,6 +970,39 @@ export default function UpptackExplorer() {
       window.removeEventListener('resize', vidFlytt)
     }
   }, [vald, smal, kartaKlar, listCollapsed])
+
+  // Arket slutar 12 px ovanför bottenmenyn, inklusive dyningen och Logga tur
+  // som sticker upp ur menyn. Höjden mäts, den gissas inte.
+  useLayoutEffect(() => {
+    if (!smal || !valdId) return
+    const GLIPA = 12
+    const satt = () => {
+      const ark = document.querySelector<HTMLElement>('.upx-platspop-ankare--ark')
+      const nav = document.querySelector<HTMLElement>('nav[aria-label="Navigering"]')
+      const parent = ark?.offsetParent as HTMLElement | null
+      if (!ark || !nav || !parent) return
+      const navBox = nav.getBoundingClientRect()
+      const parentBot = parent.getBoundingClientRect().bottom
+      // Bara det som sticker upp ur menyn, nära menyn. En dold länk kan
+      // rapportera top 0 och skulle annars skjuta arket ur bild.
+      let hogst = navBox.top
+      nav.querySelectorAll<HTMLElement>('.nav-fab-mobile, .nav-dyning, .nav-vag').forEach(el => {
+        const r = el.getBoundingClientRect()
+        if (r.width < 1 || r.height < 1) return
+        if (r.top < hogst && r.top > navBox.top - 80) hogst = r.top
+      })
+      ark.style.bottom = `${Math.max(0, Math.ceil(parentBot - hogst + GLIPA))}px`
+    }
+    satt()
+    const ro = new ResizeObserver(satt)
+    const nav = document.querySelector('nav[aria-label="Navigering"]')
+    if (nav) ro.observe(nav)
+    window.addEventListener('resize', satt)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', satt)
+    }
+  }, [smal, valdId])
 
   // På mobil täcker arket nederkanten. Nålen ska ligga kvar i kartan ovanför.
   useEffect(() => {
