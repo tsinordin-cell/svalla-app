@@ -67,6 +67,9 @@ export async function generateStaticParams() {
  * Slugs är kortare och innehåller bara a-z/0-9/-. Vi försöker slug först
  * (snyggare URL), fallback till UUID för bakåtkompatibilitet.
  */
+// Platstyper som ingen driver som verksamhet.
+const UTAN_DRIFT = new Set(['pier', 'nature_harbor', 'anchorage', 'beach', 'pumpout', 'nature'])
+
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 async function fetchRestaurant(rawIdOrSlug: string, columns: string) {
   // Next avkodar inte dynamiska segment (CLAUDE.md p13/p33): /upptack/svartsö-…
@@ -264,7 +267,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      .is('deleted_at', null)
      .not('image', 'is', null)
      .order('created_at', { ascending: false })
-     .limit(6),
+     .limit(60),
    r.latitude && r.longitude
      ? supabase
          .from('tours')
@@ -288,7 +291,18 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  const placePhotoRows = (placePhotoRowsRaw ?? []) as Array<{ url: string; credit: string | null; sort_order: number | null; is_hero: boolean | null }>
 
- const tripUids = [...new Set((recentTripsRaw ?? []).map((t: { user_id: string }) => t.user_id).filter(Boolean))]
+ // Turer på platssidan (2026-11-28): förut visades de sex senaste turerna i
+ // hela skärgården på varje platssida, även på en brygga på Möja. Nu bara
+ // turer vars plats (första delen av location_name) är platsens ö eller namn.
+ // Inga träffar ger ingen sektion.
+ const platsOrd = [r.island, r.name].filter(Boolean).map(v => String(v).toLowerCase().trim())
+ const tripsHar = ((recentTripsRaw ?? []) as Array<{ location_name: string | null; user_id: string }>)
+   .filter(t => {
+     const plats = ((t.location_name ?? '').split(',')[0] ?? '').toLowerCase().trim()
+     return plats.length > 0 && platsOrd.includes(plats)
+   })
+   .slice(0, 6)
+ const tripUids = [...new Set(tripsHar.map((t: { user_id: string }) => t.user_id).filter(Boolean))]
  const { data: tripUserRows } = tripUids.length
  ? await supabase.from('users').select('id, username').in('id', tripUids)
  : { data: [] }
@@ -297,7 +311,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  if (u?.id) tripUmap[u.id] = u.username ?? 'Seglare'
  }
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
- const recentTrips = (recentTripsRaw ?? []).map((t: any) => ({ ...t, users: { username: tripUmap[t.user_id] ?? 'Seglare' } }))
+ const recentTrips = tripsHar.map((t: any) => ({ ...t, users: { username: tripUmap[t.user_id] ?? 'Seglare' } }))
 
  // Rutter som passerar nära platsen (allTours hämtas parallellt ovan)
  function haversineNM(lat1: number, lon1: number, lat2: number, lon2: number): number {
@@ -308,14 +322,22 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
  }
 
+ // Rutter som passar (2026-11-28): gränsen var 25 sjömil, vilket gav
+ // Stockholm–Fjäderholmarna på Möjas sidor. Nu krävs att rutten har en
+ // punkt inom 3 sjömil, och de närmaste visas först.
  type TourRad = { waypoints: { lat: number; lng: number }[] }
+ const RUTT_MAX_NM = 3
  const nearbyTours = r.latitude && r.longitude
- ? ((allTours ?? []) as TourRad[]).filter((t: TourRad) =>
- Array.isArray(t.waypoints) &&
- t.waypoints.some((wp: { lat: number; lng: number }) =>
- haversineNM(r.latitude!, r.longitude!, wp.lat, wp.lng) <= 25
- )
- ).slice(0, 3)
+ ? ((allTours ?? []) as TourRad[])
+     .filter((t: TourRad) => Array.isArray(t.waypoints) && t.waypoints.length > 0)
+     .map((t: TourRad) => ({
+       t,
+       nm: Math.min(...t.waypoints.map((wp: { lat: number; lng: number }) => haversineNM(r.latitude!, r.longitude!, wp.lat, wp.lng))),
+     }))
+     .filter(x => x.nm <= RUTT_MAX_NM)
+     .sort((a, b) => a.nm - b.nm)
+     .slice(0, 3)
+     .map(x => x.t)
  : []
 
  // I närheten (SEO + nytta, Tom 2026-09-23): de sex närmaste synliga
@@ -613,8 +635,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    facebook={(r as Restaurant & { facebook?: string | null }).facebook}
    formattedAddress={
      (r as Restaurant & { formatted_address?: string | null }).formatted_address
-       ?? [r.postal_code, r.city].filter(Boolean).join(' ')
-       ?? null
+       || [r.postal_code, r.city].filter(Boolean).join(' ')
+       || null
    }
    googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
    googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
@@ -632,10 +654,12 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  {/* Väg att rätta eller ta bort uppgifter (2026-10-07). Platssidorna visar
      verksamheters kontaktuppgifter, ibland ett mobilnummer. Policyn lovar att
      den som driver stället kan få det ändrat eller borttaget. */}
+ {/* Bryggor, naturhamnar, badplatser m.fl. har ingen som "driver" dem
+     (2026-11-28). Där frågar vi efter fel i stället; vägen att rätta finns kvar. */}
  <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '-4px 2px 14px', lineHeight: 1.5 }}>
-   Driver du {r.name}? Skriv till{' '}
+   {UTAN_DRIFT.has(r.type ?? '') ? <>Ser något fel ut om {r.name}?</> : <>Driver du {r.name}?</>} Skriv till{' '}
    <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 600 }}>info@svalla.se</a>{' '}
-   om du vill ändra eller ta bort något.
+   {UTAN_DRIFT.has(r.type ?? '') ? 'så rättar vi.' : 'om du vill ändra eller ta bort något.'}
  </p>
 
  {/* ── Mini-karta — visar var platsen ligger, knapp för vägbeskrivning ── */}
@@ -732,7 +756,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  {recentTrips && recentTrips.length > 0 && (
  <div style={{ marginBottom: 14 }}>
  <h2 style={{ fontSize: 11, fontWeight: 600, color: 'var(--txt3)', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: 10 }}>
- Senaste turer i skärgården
+ Turer till {r.island ?? r.name}
  </h2>
  <div className="chiprad-kant" style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 4 }}>
  {recentTrips.map((t: { id: string; image: string; location_name: string | null; created_at: string; users?: { username: string } | { username: string }[] | null }) => (
