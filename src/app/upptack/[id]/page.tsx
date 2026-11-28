@@ -254,7 +254,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  ] = await Promise.all([
    supabase
      .from('place_photos')
-     .select('url, credit, sort_order, is_hero')
+     .select('url, credit, source, source_ref, sort_order, is_hero')
      .eq('place_id', id)
      .order('is_hero', { ascending: false })
      .order('sort_order', { ascending: true })
@@ -289,7 +289,11 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
      : Promise.resolve({ data: null }),
  ])
 
- const placePhotoRows = (placePhotoRowsRaw ?? []) as Array<{ url: string; credit: string | null; sort_order: number | null; is_hero: boolean | null }>
+ const placePhotoRows = (placePhotoRowsRaw ?? []) as Array<{ url: string; credit: string | null; source: string | null; source_ref: string | null; sort_order: number | null; is_hero: boolean | null }>
+ // Fotograf och licens för bilder som kräver det (Wikimedia Commons, 2026-11-28).
+ const fotoKrediter: Record<string, { text: string; href: string | null }> = Object.fromEntries(
+   placePhotoRows.filter(p => p.credit && p.source === 'wikimedia').map(p => [p.url, { text: p.credit!, href: p.source_ref }]),
+ )
 
  // Turer på platssidan (2026-11-28): förut visades de sex senaste turerna i
  // hela skärgården på varje platssida, även på en brygga på Möja. Nu bara
@@ -545,6 +549,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    ) : (
      <PlaceHeroGallery
        photos={placePhotos}
+       credits={fotoKrediter}
        alt={`${r.name}${typeLabel ? ': ' + typeLabel : ''}${r.island ? ' på ' + r.island : ''}`}
      />
    )}

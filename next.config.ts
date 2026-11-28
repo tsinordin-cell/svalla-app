@@ -145,6 +145,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      // Fritt licensierade platsbilder från Wikimedia Commons (2026-11-28),
+      // med fotograf och licens i place_photos.credit.
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        pathname: '/wikipedia/commons/**',
+      },
     ],
   },
   experimental: {
