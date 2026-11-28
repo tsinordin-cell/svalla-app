@@ -1094,6 +1094,14 @@ export default function UpptackExplorer() {
         {/* Karta */}
         <div className={`upx-map-wrap ${mobileTab === 'map' ? 'mob-show' : 'mob-hide'}`}>
           <div ref={mapDivRef} className="upx-map" />
+          <a
+            className="upx-attr"
+            href="https://www.openstreetmap.org/copyright"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            © OpenStreetMap
+          </a>
           {/* Återöppna-flik (visas bara när lista collapsad) */}
           {listCollapsed && (
             <button
@@ -1169,7 +1177,15 @@ export default function UpptackExplorer() {
           padding: 14px 18px 12px;
           background: var(--white);
           border-bottom: 1px solid rgba(10, 123, 140, 0.08);
-          z-index: 10;
+          /* z-index utan position gäller inte. .upx-fdd har z-index 2 så att
+             knappen ligger över regionraden (Safari, 2026-11-27). Det skapar
+             ett eget lager: panelens z-index 1000 gäller bara där inne, och
+             hela menyn målas som lager 2. Kartans rutor ligger på 400 och
+             listan på mobil på 500, så menyn hamnar under dem fast den är
+             öppen. Rubriken är lagret menyn hör till. 640 är över de lagren,
+             under zoomknapparna (1000) och "Tipsa oss" (800). */
+          position: relative;
+          z-index: 640;
         }
         /* 2026-11-25: ingen topprad ovanför längre (Tom). Sök finns på kartan,
            meddelanden och notiser via Profil i bottenmenyn. */
@@ -1526,6 +1542,37 @@ export default function UpptackExplorer() {
           height: 100%;
           background: #b8d4dc;
         }
+        /* OSM-attribution. Liten rad i nederkanten, som på en vanlig karta.
+           På dator sitter den till vänster om "Tipsa oss" och under vädret.
+           Ingen kapsel och ingen skugga. */
+        .upx-attr {
+          position: absolute;
+          z-index: 500;
+          right: 168px;
+          bottom: 6px;
+          left: auto;
+          top: auto;
+          padding: 0 2px;
+          border-radius: 2px;
+          background: rgba(255, 253, 248, 0.45);
+          color: rgba(30, 48, 58, 0.7);
+          border: none;
+          box-shadow: none;
+          font-family: 'Inter', sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          line-height: 1.2;
+          letter-spacing: 0;
+          text-decoration: none;
+          white-space: nowrap;
+        }
+        .upx-attr:hover { color: rgba(30, 48, 58, 0.88); }
+        [data-theme="dark"] .upx-attr {
+          background: rgba(8, 16, 24, 0.4);
+          color: rgba(236, 244, 250, 0.82);
+          box-shadow: none;
+        }
+        [data-theme="dark"] .upx-attr:hover { color: rgba(255, 255, 255, 0.92); }
 
         /* Sökknappen på kartan (2026-11-25). Bara på mobil, se mediefrågan nedan. */
         .upx-sokknapp { display: none; }
@@ -1614,6 +1661,11 @@ export default function UpptackExplorer() {
           }
           .upx-sokknapp:active { background: var(--sea, #1e5c82); color: #fff; }
           .upx-map .leaflet-top.leaflet-right { top: 54px; }
+          /* Ovanför listans minsta läge, GPS-knappen och cookieremsan.
+             Vädret och "Tipsa oss" tar höger sida. */
+          .upx-attr { left: 54px; right: auto; bottom: 118px; }
+          .upx-split.sheet-half .upx-attr { bottom: calc(50dvh + 14px); }
+          .upx-split.sheet-full .upx-attr { top: 4px; bottom: auto; left: 8px; }
           .upx-empty-cta-dator { display: none; }
           .upx-sok-hela {
             display: block;

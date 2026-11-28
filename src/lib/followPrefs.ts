@@ -22,36 +22,24 @@ export const DEFAULT_FOLLOW_PREF: Omit<FollowPref, 'follower_id' | 'following_id
 }
 
 export async function getFollowPref(
- supabase: SupabaseClient,
- followerId: string,
- followingId: string,
+ _supabase: SupabaseClient,
+ _followerId: string,
+ _followingId: string,
 ): Promise<FollowPref | null> {
- const { data } = await supabase
- .from('follow_prefs')
- .select('follower_id, following_id, notify_any, only_magic, min_distance, updated_at')
- .eq('follower_id', followerId)
- .eq('following_id', followingId)
- .maybeSingle()
- return (data as FollowPref) ?? null
+ // Tabellen follow_prefs finns inte. Frågan gav 404 och tomt svar, så profilen
+ // visar standardläget (inte anpassade notiser) utan att anropa databasen.
+ return null
 }
 
 export async function upsertFollowPref(
- supabase: SupabaseClient,
- followerId: string,
- followingId: string,
- patch: Partial<Omit<FollowPref, 'follower_id' | 'following_id' | 'updated_at'>>,
+ _supabase: SupabaseClient,
+ _followerId: string,
+ _followingId: string,
+ _patch: Partial<Omit<FollowPref, 'follower_id' | 'following_id' | 'updated_at'>>,
 ): Promise<boolean> {
- const { error } = await supabase
- .from('follow_prefs')
- .upsert({
- follower_id: followerId,
- following_id: followingId,
- notify_any: patch.notify_any ?? true,
- only_magic: patch.only_magic ?? false,
- min_distance: patch.min_distance ?? null,
- updated_at: new Date().toISOString(),
- }, { onConflict: 'follower_id,following_id' })
- return !error
+ // Sparning slog också mot den saknade tabellen och misslyckades. Knappen
+ // stannar öppen, samma som när upsert svarade med fel.
+ return false
 }
 
 /** Avgör om en notis ska skickas baserat på tur + pref. */
