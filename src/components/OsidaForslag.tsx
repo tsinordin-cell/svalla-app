@@ -15,7 +15,7 @@
  * Underlag: tre UX-analyser 2026-11-27 och Oskars fråga om hur olika besökare letar.
  * Ingen popularitetsdata finns, därför står det "Svallas urval" och inte "populärast".
  */
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import OsidaE from './OsidaE'
 
@@ -40,14 +40,6 @@ export type OsidaData = {
 }
 
 type V = 'a' | 'b' | 'c' | 'd' | 'e' | 'nu'
-const VARIANTER: { v: V; namn: string }[] = [
-  { v: 'e', namn: 'E Navet' },
-  { v: 'd', namn: 'D Vad söker du?' },
-  { v: 'a', namn: 'A Välj själv' },
-  { v: 'b', namn: 'B Mosaik' },
-  { v: 'c', namn: 'C Kapitel' },
-  { v: 'nu', namn: 'Dagens sida' },
-]
 
 /** Känner igen ett befintligt avsnitt på dess rubrik. */
 export function nyckel(el: HTMLElement): string {
@@ -234,7 +226,7 @@ function Mosaik({ rubrik, under, kort, ikon, alla, allaText, partner }: { rubrik
 }
 
 export default function OsidaForslag({ data }: { data: OsidaData }) {
-  const [v, setV] = useState<V>('e')
+  const [v] = useState<V>('e')
   const [flik, setFlik] = useState('oversikt')
   const [bana, setBana] = useState<string | null>(null)
   const [mal, setMal] = useState<Record<string, HTMLElement>>({})
@@ -243,8 +235,7 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
   const [forbiHero, setForbiHero] = useState(false)
 
   useEffect(() => {
-    const p = new URLSearchParams(window.location.search).get('v')
-    if (p === 'a' || p === 'b' || p === 'c' || p === 'd' || p === 'e' || p === 'nu') setV(p)
+    // Live (2026-11-28): ösidan visar alltid Navet (E). Växlaren och ?v= finns bara på förhandsgrenen forslag/osidor.
     try { const b = window.localStorage.getItem('svalla-bana'); if (b) setBana(b) } catch { /* privat läge */ }
     setKlar(true)
     const scroll = () => setForbiHero(window.scrollY > window.innerHeight * 0.55)
@@ -263,12 +254,6 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
     return () => { Object.values(hosts).forEach(h => h.remove()); window.removeEventListener('scroll', scroll) }
   }, [])
 
-  const byt = useCallback((nytt: V) => {
-    setV(nytt)
-    const u = new URL(window.location.href)
-    u.searchParams.set('v', nytt)
-    window.history.replaceState(null, '', u.toString())
-  }, [])
 
   const valjBana = (id: string | null) => {
     setBana(id)
@@ -465,12 +450,6 @@ export default function OsidaForslag({ data }: { data: OsidaData }) {
       {mal.__boenden && v === 'd' && createPortal(boM(aktivBana?.partner === '__boenden'), mal.__boenden)}
       {mal.__gora && v === 'd' && createPortal(goraM(aktivBana?.partner === '__gora'), mal.__gora)}
 
-      <div className="os-vaxlare" role="group" aria-label="Välj förslag">
-        <span>Förslag</span>
-        {VARIANTER.map(x => (
-          <button key={x.v} className={v === x.v ? 'os-vx-aktiv' : ''} onClick={() => byt(x.v)}>{x.namn}</button>
-        ))}
-      </div>
     </>
   )
 }
