@@ -209,7 +209,13 @@ const TASK_COLORS: { value: string; label: string }[] = [
 
 const AVATAR_PALETTE = ['#1e5c82', '#c96e2a', '#0a7b8c', '#7c3aed', '#0a7b3c', '#9d174d']
 
+// Fasta färger för den som valt en (Tom 2026-11-28: Claes rosa). Övriga får en ur paletten.
+const AVATAR_FARG: Record<string, string> = {
+  '08b47ca6-cfb0-4b52-9458-f4b7f67b76d3': '#c75b82', // Claes Dahlstrand
+}
+
 function avatarColor(id: string): string {
+  if (AVATAR_FARG[id]) return AVATAR_FARG[id]!
   let hash = 0
   for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) >>> 0
   return AVATAR_PALETTE[hash % AVATAR_PALETTE.length]!
@@ -805,7 +811,7 @@ export default function TeamDashboardClient({
 }) {
   const supabase = useMemo(() => createClient(), [])
 
-  const [tab, setTab] = useState<Tab>('roadmap')
+  const [tab, setTab] = useState<Tab>('tasks')
   const [projects, setProjects] = useState<Project[]>(initialProjects)
   const [tasks, setTasks] = useState<Task[]>(initialTasks)
   const [prompts, setPrompts] = useState<Prompt[]>(initialPrompts)
@@ -1028,10 +1034,11 @@ export default function TeamDashboardClient({
   const TAB_TITLE: Record<Tab, string> = { roadmap: 'Roadmap', tasks: 'Uppgifter', routines: 'Rutiner', prompts: 'Promptbibliotek', activity: 'Aktivitet' }
 
   const navItems: Array<{ key: Tab; label: string; icon: React.ReactNode }> = [
-    { key: 'roadmap', label: 'Roadmap', icon: <IcoRoadmap /> },
+    // Ordning enligt Tom 2026-11-28: Uppgifter först, Roadmap ovanför Aktivitet.
     { key: 'tasks', label: 'Uppgifter', icon: <IcoTasks /> },
     { key: 'routines', label: 'Rutiner', icon: <IcoRoutine /> },
     { key: 'prompts', label: 'Promptbibliotek', icon: <IcoPrompt /> },
+    { key: 'roadmap', label: 'Roadmap', icon: <IcoRoadmap /> },
     { key: 'activity', label: 'Aktivitet', icon: <IcoActivity /> },
   ]
 
