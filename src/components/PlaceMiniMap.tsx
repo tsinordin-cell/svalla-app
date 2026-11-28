@@ -2,8 +2,8 @@
 /**
  * PlaceMiniMap — fullbredds mini-karta som visar var platsen ligger.
  *
- * Steg 1 i bytet av kartsystem (omtaget av /upptack, steg 6, 2026-11-28):
- * MapLibre GL JS med vektorkartor från OpenFreeMap i stället för Leaflet med
+ * Steg 1 och 2 i bytet av kartsystem (omtaget av /upptack, steg 6, 2026-11-28):
+ * MapLibre GL JS med vektorkartor från OpenFreeMap och Svallas egen kartstil i stället för Leaflet med
  * rasterbilder från tile.openstreetmap.org. OpenSeaMaps sjömärken ligger kvar
  * ovanpå. Samma nål som på /upptack (src/lib/kartnal.ts).
  *
@@ -20,8 +20,12 @@ import { track } from '@/lib/analytics-events'
 import { pinHtml } from '@/lib/kartnal'
 import type { PlatsKategori } from '@/lib/platskategori'
 
-/** OpenFreeMaps färdiga stil. Ersätts av Svallas egen stil i steg 2. */
-const KARTSTIL = 'https://tiles.openfreemap.org/styles/liberty'
+/**
+ * Svallas egen kartstil (steg 2): land och vatten i Svallas toner, dämpade
+ * vägar och etiketter. Bygger på OpenFreeMaps stil positron och hämtar
+ * kartbitar, typsnitt och symboler därifrån. Se public/kartstil/svalla.json.
+ */
+const KARTSTIL = '/kartstil/svalla.json'
 
 interface Props {
   lat: number
@@ -52,8 +56,11 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
         scrollZoom: false,             // tillåt scroll på sidan, inte zoom
         dragRotate: false,
         pitchWithRotate: false,
-        attributionControl: { compact: true, customAttribution: SEAMARK_ATTR },
+        attributionControl: false,
       })
+      // Källhänvisningen nere till vänster, så att den inte hamnar under
+      // knappen Vägbeskrivning nere till höger.
+      map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: SEAMARK_ATTR }), 'bottom-left')
       map.touchZoomRotate.disableRotation()
 
       map.on('load', () => {
@@ -132,7 +139,7 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
         .place-mini-map {
           width: 100%;
           height: 220px;
-          background: #cfdde2;
+          background: #aad3df;
         }
         @media (min-width: 720px) {
           .place-mini-map { height: 280px; }
