@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { sakerNasta } from '@/lib/epostbekraftelse'
+import { tillGuiden } from '@/lib/guidenForst'
 
 type Lage = 'bekraftar' | 'klar' | 'fel'
 
@@ -53,7 +54,9 @@ function Bekrafta() {
       // Välkomstmejlet går först nu, när adressen är bekräftad (post-signup
       // godtar ett konto som bekräftats de senaste minuterna).
       try { await fetch('/api/auth/post-signup', { method: 'POST', keepalive: true }) } catch { /* ignoreras */ }
-      router.replace(mal)
+      // Nytt konto: guiden först, sedan målet (2026-11-28). /onboarding skickar
+      // vidare direkt om kontot redan har gått igenom guiden.
+      router.replace(tillGuiden(mal))
     })()
   }, [sp, router])
 

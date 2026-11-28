@@ -4,6 +4,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import OnboardingFlow from './OnboardingFlow'
 import { arAutomatisktNamn, namnForslag, fornamnAv } from '@/lib/onboardingNamn'
 import { ilikeExakt } from '@/lib/username'
+import { tolkaTillbaka } from '@/lib/guidenForst'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
 
 export const dynamic = 'force-dynamic'
 
-export default async function OnboardingPage() {
+export default async function OnboardingPage({ searchParams }: { searchParams: Promise<{ tillbaka?: string | string[] }> }) {
+  // Sidan personen var på väg till när kontot skapades (lib/guidenForst.ts).
+  const sp = await searchParams
+  const tillbaka = tolkaTillbaka(Array.isArray(sp.tillbaka) ? sp.tillbaka[0] : sp.tillbaka)
   const supabase = await createServerSupabaseClient()
   const { data: { user } } = await supabase.auth.getUser()
 
@@ -28,7 +32,7 @@ export default async function OnboardingPage() {
     .maybeSingle<{ id: string; username: string | null; avatar: string | null; onboarded_at: string | null; vessel_model: string | null; home_port: string | null }>()
 
   if (profile?.onboarded_at) {
-    redirect('/feed')
+    redirect(tillbaka ?? '/feed')
   }
 
   // Förslag i "Följ några seglare": konton som har minst en publik tur, senaste
@@ -119,6 +123,7 @@ export default async function OnboardingPage() {
           nuvarandeNamn={nuvarandeNamn}
           namnForslag={forslag}
           avatar={profile?.avatar ?? null}
+          tillbaka={tillbaka}
           suggestions={suggestions.map(s => ({
             id: s.id,
             username: s.username ?? '',

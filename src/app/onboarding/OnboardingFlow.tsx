@@ -53,6 +53,8 @@ interface Props {
   namnForslag: string
   /** Profilbild som kontot redan har. */
   avatar: string | null
+  /** Sidan personen var på väg till när kontot skapades. Dit går "Hoppa över" och "Fortsätt". */
+  tillbaka?: string | null
   suggestions: Suggestion[]
   /** Bara för förhandsvisning av utseendet (t.ex. en tillfällig sida på en preview): inget sparas, inget spåras, ingen omdirigering. */
   forhandsvisning?: boolean
@@ -348,7 +350,7 @@ function Framsteg({ current }: { current: Step }) {
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnForslag, avatar, suggestions, forhandsvisning = false }: Props) {
+export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false }: Props) {
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
@@ -526,7 +528,10 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
   }
 
   const fel = error ? <div role="alert" className="ob-fel">{error}</div> : null
-  const tillbaka = <button type="button" onClick={goBack} className="ob-tillbaka">Tillbaka</button>
+  const tillbakaKnapp = <button type="button" onClick={goBack} className="ob-tillbaka">Tillbaka</button>
+
+  const planMal = boatType === 'Charter' ? '/utflykt' : '/planera/ny'
+  const planText = boatType === 'Charter' ? 'Planera en dag i skärgården' : 'Planera din första tur'
 
   let innehall: React.ReactNode
 
@@ -543,7 +548,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
       <div className="ob-rad">
         <button type="button" onClick={goNext} className="ob-knapp">Kasta loss <Pil /></button>
       </div>
-      <button type="button" onClick={() => finish('/feed')} disabled={saving} className="ob-lank">
+      <button type="button" onClick={() => finish(tillbaka ?? '/feed')} disabled={saving} className="ob-lank">
         {saving ? 'Sparar…' : 'Hoppa över guiden'}
       </button>
     </>
@@ -567,7 +572,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
         ))}
       </div>
       <div className="ob-rad">
-        {tillbaka}
+        {tillbakaKnapp}
         <button type="button" onClick={goNext} className="ob-knapp">Nästa <Pil /></button>
       </div>
     </>
@@ -608,7 +613,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
       </p>
       {fel}
       <div className="ob-rad">
-        {tillbaka}
+        {tillbakaKnapp}
         <button type="button" onClick={handleSaveName} disabled={saving || alias.trim().length < 3} className="ob-knapp">
           {saving ? 'Sparar…' : <>Nästa <Pil /></>}
         </button>
@@ -642,7 +647,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
       </div>
       {fel}
       <div className="ob-rad">
-        {tillbaka}
+        {tillbakaKnapp}
         <button type="button" onClick={handleSaveBoat} disabled={saving || !boatType} className="ob-knapp">
           {saving ? 'Sparar…' : <>Nästa <Pil /></>}
         </button>
@@ -676,7 +681,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
       </div>
       {fel}
       <div className="ob-rad">
-        {tillbaka}
+        {tillbakaKnapp}
         <button type="button" onClick={handleSavePort} disabled={saving} className="ob-knapp">
           {saving ? 'Sparar…' : homePort.trim().length >= 2 ? <>Nästa <Pil /></> : <>Hoppa över <Pil /></>}
         </button>
@@ -719,7 +724,7 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
       </div>
       {fel}
       <div className="ob-rad">
-        {tillbaka}
+        {tillbakaKnapp}
         <button type="button" onClick={goNext} disabled={saving} className="ob-knapp">
           {followIds.size > 0 ? <>Nästa <Pil /></> : <>Hoppa över <Pil /></>}
         </button>
@@ -733,19 +738,27 @@ export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnFo
       <AvgangScen />
       <p className="ob-etikett">Allt klart</p>
       <h2 className="ob-rubrik">Klar för avgång</h2>
-      <p className="ob-text">Planera din första tur, eller se dig omkring först.</p>
+      <p className="ob-text">{tillbaka ? 'Fortsätt där du var, eller planera din första tur.' : 'Planera din första tur, eller se dig omkring först.'}</p>
       {fel}
       {/* Planering i stället för "logga första turen": av 97 nya konton hade 14
           planerat en rutt och 1 sparat en tur (mätt 19 nov 2026). Den som valt
-          "Utan egen båt" får dagsplaneraren, som utgår från färjor. */}
+          "Utan egen båt" får dagsplaneraren, som utgår från färjor.
+          Kom personen från en annan sida när kontot skapades är den förstavalet (2026-11-28). */}
       <div className="ob-rad">
-        <button type="button" onClick={() => finish(boatType === 'Charter' ? '/utflykt' : '/planera/ny')} disabled={saving} className="ob-knapp">
-          {saving ? 'Sparar…' : <>{boatType === 'Charter' ? 'Planera en dag i skärgården' : 'Planera din första tur'} <Pil /></>}
-        </button>
+        {tillbaka ? (
+          <button type="button" onClick={() => finish(tillbaka)} disabled={saving} className="ob-knapp">
+            {saving ? 'Sparar…' : <>Fortsätt där du var <Pil /></>}
+          </button>
+        ) : (
+          <button type="button" onClick={() => finish(planMal)} disabled={saving} className="ob-knapp">
+            {saving ? 'Sparar…' : <>{planText} <Pil /></>}
+          </button>
+        )}
       </div>
       <p className="ob-etikett" style={{ margin: '26px 0 12px', color: F.havMork }}>Eller börja här</p>
       <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8 }}>
         {[
+          ...(tillbaka ? [{ label: planText, path: planMal }] : []),
           { label: 'Flödet', path: '/feed' },
           { label: 'Utforska', path: '/upptack' },
           { label: 'Forum', path: '/forum' },
