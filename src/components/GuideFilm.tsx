@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useId, useState } from 'react'
+import { PIN_META, PIN_PATHS, PIN_ICON_POS, type KartnalKategori } from '@/lib/kartnal'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    Guidefilmen (live 2026-11-28 efter Toms ja; Tom: "Onboarding-video ... som visar runt
@@ -54,12 +55,12 @@ const CSS = `
 @keyframes gf-fyll{to{width:100%}}
 @keyframes gf-tona{from{opacity:0}to{opacity:1}}
 @keyframes gf-upp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-@keyframes gf-in{from{transform:translateX(-330px)}to{transform:translateX(0)}}
+@keyframes gf-in{from{transform:translateX(330px)}to{transform:translateX(0)}}
 @keyframes gf-gung{0%,100%{transform:translateY(0) rotate(-1.3deg)}50%{transform:translateY(-3px) rotate(1.3deg)}}
 @keyframes gf-snurr{to{transform:rotate(360deg)}}
 @keyframes gf-zoom{from{transform:scale(.55);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes gf-pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-@keyframes gf-ror{from{transform:translateX(-150px)}to{transform:translateX(330px)}}
+@keyframes gf-ror{from{transform:translateX(400px)}to{transform:translateX(80px)}}
 @keyframes gf-kort{from{transform:translateY(-190px)}to{transform:translateY(0)}}
 `
 
@@ -97,15 +98,36 @@ function Bild({ href, x, y, b, h, className, style }: { href: string; x: number;
 }
 
 /* Skylt i startscenens stil (.ki-skylt): papper, bläckkant, förskjuten skugga. */
-function Skylt({ x, y, text, ikon, fordrojning }: { x: number; y: number; text: string; ikon: React.ReactNode; fordrojning: number }) {
-  const b = 40 + text.length * 9.2
+function Skylt({ x, y, text, fordrojning }: { x: number; y: number; text: string; fordrojning: number }) {
+  const b = 24 + text.length * 8.8
   return (
     <g className="gf-pop" style={{ animationDelay: `${fordrojning}s` }}>
       <line x1={x + 18} y1={y + 30} x2={x + 18} y2={y + 52} stroke={F.black} strokeWidth="2" strokeLinecap="round" />
       <rect x={x + 3} y={y + 3} width={b} height={30} rx="12" fill={F.black} />
       <rect x={x} y={y} width={b} height={30} rx="12" fill={F.kort} stroke={F.black} strokeWidth="2" />
-      <g transform={`translate(${x + 9} ${y + 7})`} fill="none" stroke={F.orange} strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">{ikon}</g>
-      <text x={x + 30} y={y + 20.5} fontFamily="'Playfair Display',Georgia,serif" fontSize="15" fill={F.black}>{text}</text>
+      <text x={x + 12} y={y + 20.5} fontFamily="'Playfair Display',Georgia,serif" fontSize="15" fill={F.black}>{text}</text>
+    </g>
+  )
+}
+
+/*
+ * Kartnål exakt som på kartorna i appen (lib/kartnal.ts: samma form, färg och
+ * ikon som Utforska, startsidans karta och platssidans minikarta), 1,25 gånger
+ * större. (spetsX, spetsY) är där nålen pekar. Etiketten står till höger.
+ */
+function Kartnal({ spetsX, spetsY, kat, etikett, fordrojning }: { spetsX: number; spetsY: number; kat: KartnalKategori; etikett: string; fordrojning: number }) {
+  const { color, form, icon } = PIN_META[kat]
+  const [tx, ty, sc] = PIN_ICON_POS[form]
+  const b = 20 + etikett.length * 7.4
+  return (
+    <g className="gf-pop" style={{ animationDelay: `${fordrojning}s` }}>
+      <svg x={spetsX - 20} y={spetsY - 49} width={40} height={50} viewBox="0 0 32 40" overflow="visible">
+        <path d={PIN_PATHS[form]} fill={color} stroke="#fff" strokeWidth="2" />
+        <g transform={`translate(${tx} ${ty}) scale(${sc})`} stroke="#fff" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeLinejoin="round"
+          dangerouslySetInnerHTML={{ __html: icon }} />
+      </svg>
+      <rect x={spetsX + 20} y={spetsY - 46} width={b} height={24} rx="12" fill="#fff" stroke={color} strokeWidth="1.6" />
+      <text x={spetsX + 30} y={spetsY - 29.5} fontFamily="Inter,system-ui,sans-serif" fontWeight="700" fontSize="12.5" fill={color}>{etikett}</text>
     </g>
   )
 }
@@ -115,12 +137,12 @@ function Skylt({ x, y, text, ikon, fordrojning }: { x: number; y: number; text: 
 function Valkommen() {
   return (
     <svg viewBox="0 0 400 360" aria-hidden>
-      <Bild href="/kreativ/scen-sol.webp" x={24} y={22} b={72} h={72} className="gf-snurr" />
-      <Bild href="/kreativ/scen-vastkust.webp" x={262} y={196} b={118} h={52} />
+      <Bild href="/kreativ/scen-sol.webp" x={304} y={22} b={72} h={72} className="gf-snurr" />
+      <Bild href="/kreativ/scen-vastkust.webp" x={16} y={196} b={104} h={46} />
       <Vatten x={8} y={230} b={384} h={112} />
       <g className="gf-in">
         <g className="gf-gung">
-          <Bild href="/kreativ/thorkel-bat-v.webp" x={86} y={108} b={228} h={190} />
+          <Bild href="/kreativ/thorkel-bat-v.webp" x={124} y={108} b={228} h={190} />
         </g>
       </g>
     </svg>
@@ -148,8 +170,8 @@ function Planera() {
         <image href="/kreativ/scen-angbat.webp" x={-44} y={-40} width={88} height={44} />
         <animateMotion path={rutt} begin="0.6s" dur="4.4s" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines=".4 0 .4 1" />
       </g>
-      <Skylt x={26} y={112} text="Stockholm" fordrojning={0.2} ikon={<circle cx="8" cy="8" r="4.5" />} />
-      <Skylt x={252} y={100} text="Sandhamn" fordrojning={4.6} ikon={<path d="M8 2v12M3 9l5 5 5-5" />} />
+      <Skylt x={30} y={112} text="Stockholm" fordrojning={0.2} />
+      <Skylt x={262} y={100} text="Sandhamn" fordrojning={4.6} />
     </svg>
   )
 }
@@ -161,9 +183,9 @@ function Hitta() {
       <g className="gf-zoom">
         <Bild href="/kreativ/scen-vastkust.webp" x={30} y={150} b={340} h={151} />
       </g>
-      <Skylt x={34} y={96} text="Krog" fordrojning={1.8} ikon={<><path d="M4 2v6a3 3 0 0 0 6 0V2M7 8v8" /><path d="M14 2c-2 2-2 6 0 7v7" /></>} />
-      <Skylt x={146} y={56} text="Gästhamn" fordrojning={2.9} ikon={<><circle cx="8" cy="4" r="2.4" /><path d="M8 6.5V16M3 11c0 3 2.4 5 5 5s5-2 5-5" /></>} />
-      <Skylt x={268} y={104} text="Bastu" fordrojning={4} ikon={<path d="M3 15c3-3 0-6 3-9M8 15c3-3 0-6 3-9M13 15c2-2 0-5 2-7" />} />
+      <Kartnal spetsX={138} spetsY={176} kat="krog" etikett="Krog" fordrojning={1.8} />
+      <Kartnal spetsX={84} spetsY={262} kat="hamn" etikett="Gästhamn" fordrojning={2.9} />
+      <Kartnal spetsX={300} spetsY={186} kat="bastu" etikett="Bastu" fordrojning={4} />
     </svg>
   )
 }
@@ -175,16 +197,17 @@ function Logga() {
       <Vatten x={-6} y={196} b={412} h={150} />
       <defs>
         <mask id={`${id}m`}>
-          <rect x="0" y="0" height="360" width="0" fill="#fff">
-            <animate attributeName="width" from="0" to="400" begin="0s" dur="5.5s" fill="freeze" />
+          <rect x="400" y="0" height="360" width="0" fill="#fff">
+            <animate attributeName="x" from="400" to="140" begin="0s" dur="5.5s" fill="freeze" />
+            <animate attributeName="width" from="0" to="260" begin="0s" dur="5.5s" fill="freeze" />
           </rect>
         </mask>
       </defs>
       <path d="M-10 286 C60 270 120 300 190 280 S320 262 420 276" fill="none" stroke={F.kort} strokeWidth="3" strokeDasharray="6 7" strokeLinecap="round" mask={`url(#${id}m)`} />
       <g className="gf-ror" style={{ animationDelay: '.4s' }}>
-        <Bild href="/kreativ/scen-ejder.webp" x={-100} y={276} b={52} h={28} />
-        <Bild href="/kreativ/scen-ejderunge.webp" x={-140} y={286} b={26} h={19} />
-        <Bild href="/kreativ/scen-ejderunge.webp" x={-168} y={288} b={24} h={17} />
+        <Bild href="/kreativ/scen-ejder.webp" x={150} y={276} b={52} h={28} />
+        <Bild href="/kreativ/scen-ejderunge.webp" x={208} y={286} b={26} h={19} />
+        <Bild href="/kreativ/scen-ejderunge.webp" x={238} y={288} b={24} h={17} />
       </g>
       <g className="gf-ror">
         <Bild href="/kreativ/scen-eka.webp" x={0} y={250} b={130} h={46} />
@@ -200,8 +223,11 @@ function Logga() {
         <path d="M78 116 C110 108 140 124 176 114 S226 104 250 112" fill="none" stroke={F.orange} strokeWidth="2.6" strokeDasharray="5 5" strokeLinecap="round" />
         <g transform="translate(290 98)">
           <g className="gf-hjarta" style={{ animationDelay: '4.6s' }}>
-            <circle r="16" fill={F.orange} stroke={F.black} strokeWidth="2" />
-            <path d="M0 6 C-9 0 -9 -7 -4 -8 C-2 -8.5 -0.5 -7 0 -5.5 C0.5 -7 2 -8.5 4 -8 C9 -7 9 0 0 6 Z" fill={F.kort} />
+            {/* Gilla-knappen i flödet (LikeButton.tsx), ifylld, 1,25 gånger större. */}
+            <g transform="translate(-15 -15) scale(1.25)">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                fill="#e0454a" stroke="#e0454a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </g>
           </g>
         </g>
       </g>
