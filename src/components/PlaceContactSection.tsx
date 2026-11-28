@@ -143,9 +143,10 @@ export default function PlaceContactSection({
         </a>
       )}
 
-      {/* Adress */}
+      {/* Adress. Utan gatuadress (bryggor, naturhamnar) visas läget som
+          koordinater, då heter raden Position. */}
       {hasAddress && (
-        <ContactRow icon="map-pin" label="Adress" content={
+        <ContactRow icon="map-pin" label={formattedAddress ? 'Adress' : 'Position'} content={
           mapsUrl ? (
             <a href={mapsUrl} target="_blank" rel="noopener noreferrer" style={LINK}>
               {formattedAddress ?? `${latitude?.toFixed(5)}, ${longitude?.toFixed(5)}`}
