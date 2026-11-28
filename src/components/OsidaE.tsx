@@ -14,7 +14,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { OsidaData } from './OsidaForslag'
-import { platsbild, vagbild } from '@/lib/platsbilder'
+import { platsbild, vagbild, toppbild } from '@/lib/platsbilder'
 
 type Foto = { url: string; fotograf: string; licens: string }
 type EKort = { namn: string; etikett?: string; text: string; sasong?: string; foto?: Foto; ikon: string; href: string }
@@ -359,7 +359,8 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
   ]
 
   const restidKort = (data.restid.split(' · ')[0] ?? data.restid).trim()
-  const topbild = aktiv ? (vagbild(slug, aktiv.id) ?? data.foto) : data.foto
+  const hubfoto = toppbild(slug) ?? data.foto
+  const topbild = aktiv ? (vagbild(slug, aktiv.id) ?? hubfoto) : hubfoto
 
   return (
     <>
@@ -367,7 +368,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
 
       {!aktiv ? (
         <>
-          <header className="e-topp" style={data.foto ? { backgroundImage: "url('" + data.foto.url + "')" } : undefined}>
+          <header className="e-topp" style={hubfoto ? { backgroundImage: "url('" + hubfoto.url + "')" } : undefined}>
             <div className="e-topp-inre">
               <nav className="e-smulor" aria-label="Brödsmulor"><a href="/">Hem</a> › <a href={data.regionHref}>{data.region}</a> › <span>{data.namn}</span></nav>
               <h1 className="e-h1">{data.namn}</h1>
@@ -377,7 +378,7 @@ export default function OsidaE({ data, nyckel }: { data: OsidaData; nyckel: (el:
                 {data.sasong && <span className="e-chip"><Ikon namn="sun" klass="e-chip-ikon" /><span>{data.sasong}</span></span>}
               </div>
             </div>
-            {data.foto && <div className="e-kredit">Foto: {data.foto.fotograf}, {data.foto.licens}</div>}
+            {hubfoto && <div className="e-kredit">Foto: {hubfoto.fotograf}, {hubfoto.licens}</div>}
           </header>
 
           <section className="e-val" id="e-val">
