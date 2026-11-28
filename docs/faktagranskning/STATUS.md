@@ -4,6 +4,13 @@ Senaste raden överst. Varje session börjar här. Tider är svensk tid.
 
 
 
+## 2026-11-28 — fas 3 (trafiken) startad före batch 02
+
+- Tom 2026-11-28 01:47 New York: "Följ din rekommendation" (trafiken först, frys från dag ett, färre och större omgångar).
+- MÄTT på main 5e0a08d: 144 öar, 300 getting_there-poster, 53 hållplatsposter i transit-stops.ts. Batch 01:s nio öar är klara; 135 öar återstår.
+- Batchlista: 00 gemensamma trafiksidor och sista båten, 01 mellersta (21 öar), 02 norra (16), 03 södra (13), 04 Göteborg och Bohuslän (25), 05 och 06 övriga (60). Kort på /team, frys-kort f029b637.
+- Pågår: batch 00 del A (transit-stops.ts, LastBoatPanel, DepartureWidget, api/transit) och del B (/farjor, /ta-dig-till, /vintertidtabeller, komma-dit-mallen). Register: register/f3-00/.
+
 ## 2026-11-26 — batch 01 helt publicerad
 
 - Databasändringarna körda efter Toms ja (110 UPDATE, SELECT efter varje fil). Verifierat på svalla.se efter cachens timme: Isbolaget på Donsö, Strindberg's Champagne Club på Sandhamn, PUB Alma, Glassigaste och Lilla Haket dolda (404).
