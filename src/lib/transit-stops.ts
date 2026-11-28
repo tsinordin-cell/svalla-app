@@ -242,7 +242,14 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   arholma: {
     destStopId: '740024314', destStopName: 'Arholma brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Yttersta ön i norra skärgården, båt från Simpnäs (buss 631 från Norrtälje).',
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0062–0052): buss 631 går Norrtälje–Rådmansö och har ingen hållplats i Simpnäs; det har 636. "Yttersta ön" var obelagt.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h631.pdf — "631 Norrtälje–Rådmansö–Norrtälje", "Giltig 17 augusti–12 december 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h636.pdf — "636 Norrtälje–Björkö", "NORRTÄLJE BUSSTATION", "Simpnäs brygga", "Giltig 17 augusti–12 december 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "30A SIMPNÄS – ARHOLMA" (läst 2026-11-28)
+    // Rättelse P0 28 (2026-11-28, k36 och k37): från 13 december 2026 går linje 30 från Simpnäs bara när det är isfritt; under isperioden går 30C från Östersjö till Granö. Buss 636 har tabell också för 13 december 2026 till 20 juni 2027.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w30.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "30A SIMPNÄS – ARHOLMA", "GÄLLER ISFRI PERIOD", "30C ÖSTERSJÖ – GRANÖ (ARHOLMA)", "GÄLLER ISPERIOD", "Simpnäs (Björkö)", "Östersjö (Björkö)", "Granö (Arholma)" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v636.pdf — "636 Norrtälje–Björkö", "NORRTÄLJE BUSSTATION", "Simpnäs brygga", "Östersjö brygga", "Alla hållplatser för buss 636 mot Östersjö brygga finns", "Giltig 13 december 2026–20 juni 2027" (läst 2026-11-28)
+    note: 'Till 12 december 2026 går Waxholmsbolagets båt, linje 30, från Simpnäs brygga, och dit går buss 636 från Norrtälje busstation. Från 13 december 2026 till 11 april 2027 går linje 30 från Simpnäs när det är isfritt och från Östersjö till Granö på Arholma under isperioden. Buss 636 från Norrtälje busstation går till både Simpnäs brygga och Östersjö brygga.',
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 3014 och 3078 (B) i 30B, 3013 och 3077 (B) i 30A, 3001 och 3002 (C).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h30.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "30A SIMPNÄS – ARHOLMA", "Arholma", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "resdag." (vid Arholma: B (turen går bara efter beställning), C (turen, beställ dagen före)) (läst 2026-11-17)
@@ -278,7 +285,16 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   furusund: {
     destStopId: '740025063', destStopName: 'Furusund brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Knutpunkten för norra skärgården, buss 626/634 från Norrtälje.',
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0078–0066): buss 626 går Danderyds sjukhus–Ljusterö och inte från Norrtälje till Furusund. "Knutpunkten" var obelagt.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h626.pdf — "626 Danderyds sjukhus–Ljusterö", "Giltig 17 augusti–12 december 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h634.pdf — "634 Norrtälje–Blidö", "NORRTÄLJE BUSSTATION", "Furusunds färjeläge", "Giltig 17 augusti–12 december 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "25A FURUSUND – HÖGMARSÖ – SOLÖ" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA" (läst 2026-11-28)
+    // Rättelse P0 28 (2026-11-28, k37 och k38): noten gäller också från 13 december 2026.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/v634.pdf — "634 Norrtälje–Blidö", "NORRTÄLJE BUSSTATION", "Furusunds färjeläge", "Giltig 13 december 2026–20 juni 2027" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w25.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "25A FURUSUND – HÖGMARSÖ – HEMMARÖ (SÖDERÄNG)" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA" (läst 2026-11-28)
+    note: 'Buss 634 från Norrtälje busstation går via Furusund. Härifrån går Waxholmsbolagets båtar i tabell 25 och 28.',
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): turer 2868, 2820 och 2882 (B) i 28B, 2501 och 2502 (B) i tabell 25; tabell 28 är avsnittet 1 oktober till 12 december i h28.pdf.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h25.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "25A FURUSUND – HÖGMARSÖ – SOLÖ", "Furusund", "Beställ resan i SL-appen, på", "minst 2 timmar innan" (vid Furusund: B (turen går bara efter beställning)) (läst 2026-11-17)
@@ -322,7 +338,13 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   gallno: {
     destStopId: '740024302', destStopName: 'Gällnö brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0099): noten sa "Båt från Stavsnäs vinterhamn". Gällnö står i tabell 11 och 14, och ingen av dem har Stavsnäs.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA", "11B SOLLENKROKA – BODA – GRINDA – VAXHOLM – STOCKHOLM", "Strömkajen (Stockholm)", "Boda brygga avg.", "Gällnö" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA", "Gällnö" (läst 2026-11-28)
+    // Rättelse P0 28 (2026-11-28, k33): tabell 14 för 13 december 2026 till 11 april 2027 har inte Gällnö; tabell 11 har det i båda perioderna.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA", "Strömkajen (Stockholm)", "Boda brygga avg.", "Gällnö", "Sollenkroka" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA" (Gällnö finns inte i tabellen) (läst 2026-11-28)
+    note: 'Waxholmsbolagets båtar till Gällnö går från Strömkajen via Vaxholm, från Boda brygga och från Sollenkroka. Till 12 december 2026 står de i tabell 11 och 14, och från 13 december 2026 till 11 april 2027 i tabell 11.',
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 12 av 35 turer i 11A, 3 av 33 i 11B, 1 av 6 i 14A.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA", "Gällnö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Gällnö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
@@ -376,14 +398,24 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   resaro: {
     destStopId: '740034517', destStopName: 'Ytterby (Resarö) brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Bilbro från Vaxholm, buss 670 + 689 från Tekniska högskolan.',
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0120–0100): buss 689 går Höganäs brygga/Norra Tynningö–Östra Tynningö, inte till Resarö, och bilbron var obelagd. Noten säger nu hur båten till bryggan i rutan går.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h689.pdf — "689 Höganäs brygga/Norra Tynningö–Östra Tynningö (–Gustavsbergs centrum)", "Giltig 17 augusti–12 december 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG", "Strömkajen (Stockholm)", "Ytterby (Resarö)" (läst 2026-11-28)
+    // Rättelse P0 28 (2026-11-28, k35): tabell 5 för 13 december 2026 till 11 april 2027 har inte Ytterby.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w5.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG", "5B VIKINGSBORG – STEGESUND – VAXHOLM – STOCKHOLM" (varken Ytterby eller Resarö finns i tabellen) (läst 2026-11-28)
+    note: 'Till 12 december 2026 går Waxholmsbolagets linje 5 från Strömkajen via Vaxholm till Ytterby på Resarö. I tabell 5 för 13 december 2026 till 11 april 2027 finns inte Ytterby.',
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 27 turer i 5A och 13 av 34 i 5B har b.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG", "Ytterby (Resarö)", "Beställ resan i SL-appen, på", "minst 1 timme innan avgång" (vid Ytterby (Resarö): b (bryggan, beställ minst en timme före)) (läst 2026-11-17)
     // P0 27 (2026-11-19, Redaktörens beslut): fristen skrivs med tabellens klockslag; "senast på eftermiddagen" lät en beställning kl. 17.30 se giltig ut.
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (anmärkning b minst en timme före avgång, dock senast kl. 17.00) (läst 2026-11-19)
-    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 5 i god tid innan du åker.',
+    // Rättelse P0 28 (2026-11-28, k35): från 13 december 2026 finns Ytterby inte i tabell 5; KÄLLA w5.pdf vid noten ovan.
+    bestallning: 'Till 12 december 2026 stannar många turer till och från Ytterby på Resarö där bara om resan har beställts i förväg. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 5 i god tid innan du åker. I tabell 5 för 13 december 2026 till 11 april 2027 finns inte Ytterby.',
     bestallningTabell: 'Waxholmsbolagets tabell 5',
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0125): Ytterby är märkt X på de flesta turer i tabell 5 (MÄTT med skript/scan.py), men rutorna visade reseplanerarens tider som tidtabellens.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h5.pdf — "Ytterby (Resarö)", "X", "Bryggorna trafikeras utan fast avgångstid." (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w5.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG" (Ytterby finns inte i tabellen) (läst 2026-11-28)
+    tidsObs: 'Till 12 december 2026 angör Waxholmsbolaget Ytterby på Resarö på flera turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid. I tabell 5 för 13 december 2026 till 11 april 2027 finns inte Ytterby.',
   },
 
   // ── Södra skärgården (Nynäshamn) ─────────────────────────────────────
@@ -561,6 +593,9 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00.", "minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "17.00.", "senast kl. 19.00 dag före", "resdag." (anmärkning b minst en timme före avgång, dock senast kl. 17.00; B minst två timmar före avgång, dock senast kl. 17.00; C senast kl. 19.00 dagen före resdagen) (läst 2026-11-19)
     bestallning: 'En del turer till och från Eknö går eller stannar bara om resan har beställts i förväg. Den ska beställas minst en timme (anmärkning b) eller två timmar (anmärkning B) före avgång från bryggan, dock senast kl. 17.00 samma dag, eller senast kl. 19.00 dagen före resdagen (anmärkning C). Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 16 i god tid innan du åker.',
     bestallningTabell: 'Waxholmsbolagets tabell 16',
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0209): Eknö är märkt X på de flesta turer i tabell 16 (MÄTT med skript/scan.py), men rutorna visade reseplanerarens tider som tidtabellens.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "Eknö", "X", "Bryggorna trafikeras utan fast avgångstid." (läst 2026-11-28)
+    tidsObs: 'Waxholmsbolaget angör Eknö på de flesta turer utan fast avgångstid. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',
   },
 
   // ── Utanför Stockholm, tillagda 2026-08-05 ────────────────────────────
@@ -709,17 +744,35 @@ export function getReseplanerare(slug: string): Reseplanerare {
  * "ingen kollektivtrafik" (ingen-trafik.ts).
  */
 export const ISLAND_NO_TRANSIT: Record<string, string> = {
-  'lilla-karlso': 'ingen hållplats inom 5 km — ön nås bara med Naturskyddsföreningens turbåt från Klintehamn',
+  // Faktagranskning fas 3 (2026-11-28, P0, f300a-0252): "bara med Naturskyddsföreningens turbåt" stämde inte (båten körs av Gotland Sea Guides, och egen båt är tillåten med regler), och rutan sa "nås med egen båt eller taxibåt" utan reservatets regler för landstigning.
+  // Rättelse P0 28 (2026-11-28, k16): båten går från Djupvik enligt Naturskyddsföreningen Gotland, inte från Klintehamn.
+  // KÄLLA: https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Turlista Lilla Karlsö 2026", "Du kan boka resor under perioden 15 juni 2026 - 15 augusti 2026", "från Djupvik", "Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland", "Guidad rundvandring ingår i priset", "Under säsongen har vi regelbunden båttrafik till och från ön." (läst 2026-11-28)
+  // KÄLLA: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "landstiga på annan plats än vid bryggan på öns östra sida utan tillstånd av länsstyrelsen", "under tiden 1/3–31/8 vistas på ön utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet", "Under tiden 1/9–28/2 äger allmänheten rätt att vistas på ön efter skriftlig anmälan.", "Besökare skall därvid göra sådan anmälan omedelbart efter ilandstigning vid bryggan på öns östra sida." (läst 2026-11-28)
+  'lilla-karlso': 'ingen hållplats inom 5 km — under säsongen går båten till ön från Djupvik, med Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland, och en guidad rundvandring ingår. Turlistan för 2026 gällde 15 juni till 15 augusti. Med egen båt får du utan tillstånd bara landstiga vid bryggan på öns östra sida. Den 1 mars till 31 augusti krävs tillstånd från Länsstyrelsen eller reservatets tillsynsman för att vistas på ön, och den 1 september till 28 februari en skriftlig anmälan direkt efter ilandstigningen',
 
-  'asko': 'ingen hållplats inom 5 km',
+  // Rättelse P0 28 (2026-11-28, k29): rutan sa "nås med egen båt eller taxibåt" och "ingen kollektivtrafik". Länsstyrelsen anger egen båt eller båttaxi; ösidan har sommarbåten från Trosa, men trosa.com gav 403 i dag och är inte läst.
+  // KÄLLA: https://www.lansstyrelsen.se/sodermanland/besoksmal/naturreservat/asko.html — "Askö ligger i Trosa skärgård. Hit tar du dig med egen båt eller med båttaxi." (läst 2026-11-28)
+  'asko': 'ingen hållplats inom 5 km — enligt Länsstyrelsen tar du dig hit med egen båt eller med båttaxi. Se ösidan för hur du tar dig hit',
   'galo': 'närmaste hållplats (Nor, 533 m) kunde inte knytas till ön',
-  'morko': 'ingen hållplats inom 5 km',
+  // Faktagranskning fas 3 (2026-11-28, f300a-0255): rutan sa "Mörkö nås med egen båt eller taxibåt", men ön har bro och vägfärja.
+  // Rättelse P0 28 (2026-11-28, k24): SL-buss 727 går via Hörningsnäs till Skanssundet, så texten säger inte längre "Ingen kollektivtrafik" (ingenTrafikText i ingen-trafik.ts). Mätningen "ingen hållplats inom 5 km" är inte gjord om.
+  // KÄLLA: https://www.sodertalje.se/contentassets/801b52a57aed44f592a5d6bf3ff8bb96/1-morko.pdf — "Mörkö har förbindelse med fastlandet via en bro vid Kasholmsundet på öns västra del" (läst 2026-11-28)
+  // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/skanssundsleden/ — "Skanssundsleden går mellan Hörningsnäs på Södertörn och Mörkö.", "Resan med vägfärjan är avgiftsfri." (läst 2026-11-28)
+  // KÄLLA: https://kund.printhuset-sthlm.se/sl/h727.pdf — "Tumba station–Skanssundet", "Hörningsnäs", "SKANSSUNDET", "Giltig 7 april–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-28)
+  // KÄLLA: https://kund.printhuset-sthlm.se/sl/v727.pdf — "Tumba station–Skanssundet", "Hörningsnäs", "SKANSSUNDET", "Giltig 13 december 2026–20 juni 2027 samt 16 augusti–11 december 2027" (läst 2026-11-28)
+  'morko': 'ingen hållplats inom 5 km — Mörkö nås med bil över bron vid Kasholmsundet eller med Trafikverkets avgiftsfria vägfärja Skanssundsleden, som går mellan Hörningsnäs och Mörkö. SL-buss 727 går från Tumba station via Hörningsnäs till Skanssundet',
   'birka': 'närmaste hållplats (Lökholmen, 1398 m) kunde inte knytas till ön', // 2026-10-21: nyckeln hette bjorko
   'svenska-hogarna': 'ingen hållplats inom 5 km',
-  'huvudskar': 'ingen hållplats inom 5 km',
+  // Rättelse P0 28 (2026-11-28, k29): Dalarö Sjötransporter körde sommaren 2026 Dalarö till Huvudskär, så "nås med egen båt eller taxibåt" gällde inte hela året.
+  // Andra rättelsen P0 28 (2026-11-28, k56): "Andra tider ... egen båt eller taxibåt" var fel, eftersom samma sida listar sex turer till efter 16 augusti. Texten återger nu bolagets plan för 2026 som en plan.
+  // KÄLLA: https://skargardsstiftelsen.se/omraden/huvudskar/ — "Hit tar du dig med egen båt eller taxibåt. Under sommaren finns även vissa säsongsanpassade båtturer från Dalarö." (läst 2026-11-28)
+  // KÄLLA: https://www.dalarosjotransporter.se/kontakt/ — "Under sommaren 2026 kommer vi återigen att trafikera Dalarö - Huvudskär på torsdagar och söndagar mellan 14 juni-16 augusti", "Vi kommer även att trafikera Huvudskär: 21/8 23/8 28/8 30/8 4/9 6/9" (läst 2026-11-28)
+  'huvudskar': 'ingen hållplats inom 5 km — enligt Skärgårdsstiftelsen tar du dig hit med egen båt eller taxibåt, och under sommaren finns även vissa säsongsanpassade båtturer från Dalarö. Dalarö Sjötransporter angav för 2026 turer från Dalarö till Huvudskär på torsdagar och söndagar mellan 14 juni och 16 augusti och den 21, 23, 28 och 30 augusti och den 4 och 6 september',
   'hasselo': 'närmaste hållplats (Lökholmen, 4865 m) kunde inte knytas till ön',
   'ormskar': 'närmaste hållplats (Kalkberget (Nämdö) brygga, 2969 m) kunde inte knytas till ön',
-  'norrpada': 'ingen hållplats inom 5 km',
+  // Rättelse P0 28 (2026-11-28, k29): rutan sa "nås med egen båt eller taxibåt"; Länsstyrelsen skriver endast egen båt.
+  // KÄLLA: https://www.lansstyrelsen.se/stockholm/besoksmal/naturreservat/norrpada.html — "Hit kommer du endast med egen båt." (läst 2026-11-28)
+  'norrpada': 'ingen hållplats inom 5 km — enligt Länsstyrelsen kommer du hit endast med egen båt',
   'langviksskaret': 'ingen hållplats inom 5 km',
   // 'storholmen' borttagen 2026-10-29: mätningen 2026-08-05 gjordes med fel koordinater (59.2803, 18.8090 vid Runmarö). SL:s pendelbåt 80 angör Storholmen södra, östra och norra. Lägg in ön i ISLAND_TRANSIT när hållplats-ID verifierats mot ResRobot.
   // KÄLLA: https://kund.printhuset-sthlm.se/sl/h80.pdf — "Ropsten–Storholmen", "Pendelbåt", "Storholmen södra", "Storholmen östra", "Storholmen norra", "Giltig 17 augusti–12 december 2026" (läst 2026-11-10)
