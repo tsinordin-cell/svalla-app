@@ -22,3 +22,19 @@ Main 5e0a08d. Rättelserna står i ut/a.edits.json (register-id inom parentes).
    Källa: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "Hasselö"; https://kund.printhuset-sthlm.se/sl/h845.pdf — "845 Västerhaninge station–Gålö"; https://www.trafikverket.se/resa-och-trafik/farjetrafik/skanssundsleden/ — "Skanssundsleden går mellan Hörningsnäs på Södertörn och Mörkö."
 10. **src/lib/transit-stops.ts:712 (lilla-karlso) och DepartureWidget.tsx:161, f300a-0252.** Rutan säger "Lilla Karlsö nås med egen båt eller taxibåt" utan reservatets regler: utan tillstånd får man bara landstiga vid bryggan på östra sidan, och 1 mars till 31 augusti krävs tillstånd för att vistas på ön. Skälet "bara med Naturskyddsföreningens turbåt" stämmer inte heller.
     Källa: https://www.lansstyrelsen.se/gotland/besoksmal/naturreservat/lilla-karlso.html — "landstiga på annan plats än vid bryggan på öns östra sida utan tillstånd av länsstyrelsen", "under tiden 1/3–31/8 vistas på ön utan tillstånd av länsstyrelsen eller av länsstyrelsen förordnad tillsynsman för reservatet"; https://naturskyddsforeningengotland.se/fastigheter/lilla_karlso — "Resan erbjuds av Gotland Sea Guides i samarbete med Naturskyddsföreningen Gotland".
+
+## Efter 13 december
+
+Mätt mot Waxholmsbolagets vintertabeller (https://kund.printhuset-sthlm.se/wa/w<tabell>.pdf, "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027"; tabell 12 "GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3"), läst 2026-11-28. P0-posterna i p0-28.edits.json är inte ändrade. Felen nedan gäller deras text från 13 december:
+
+1. **Resarö (P0-posterna f300a-0120–0122, f300a-0125).** Vintertabellen 5 har inte Ytterby (Resarö). Noten "Waxholmsbolagets linje 5 går från Strömkajen via Vaxholm till Ytterby på Resarö" blir fel från 13 december, och tidsObs gäller en brygga utan turer. Förslag: lägg till "Waxholmsbolagets tabell 5 från 13 december 2026 angör inte Ytterby." Bestallning-texten är rättad så i a.edits.json (f300a-0286).
+   Källa: https://kund.printhuset-sthlm.se/wa/w5.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG" (Ytterby saknas i alla sex tabellsidor).
+2. **Gällnö (f300a-0099).** Noten säger "(tabell 11 och 14)". Vintertabellen 14 har inte Gällnö, men vintertabellen 11 har Strömkajen, Boda brygga, Sollenkroka och Gällnö. Förslag: "(tabell 11, och under en del av året tabell 14)".
+   Källa: https://kund.printhuset-sthlm.se/wa/w11.pdf — "11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA", "Gällnö".
+3. **Norra Svartsö (f300a-0115).** Noten säger "(tabell 12 och 13)". Vintertabellen 13 har inte Norra Svartsö, men tabell 12 och tabell 10 (Åsättra) har det. Förslag: "från Strömkajen via Vaxholm (tabell 12, och under en del av året tabell 13)".
+   Källa: https://kund.printhuset-sthlm.se/wa/w12.pdf — "12A STOCKHOLM – LILLSVED – NORRA INGMARSÖ", "Norra Svartsö".
+4. **Nåttarö (ny P0, rättad i a.edits.json, f300a-0287).** Vintertabellen 22 har anmärkning b vid Nåttarö på alla turer i 22A och 4 av 12 i 22B. Posten hade ingen bestallning, så från 13 december skulle en beställningstur visas som vanlig tur, också som sista båt.
+   Källa: https://kund.printhuset-sthlm.se/wa/w22.pdf — "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ", "Nåttarö", "minst 1 timme innan avgång".
+5. **Kommentarer i P0-posterna** (inte sakfel): platshållar-id efter tankstrecket blev inte omskrivna, så "f300a-0120–0100", "f300a-0062–0052" och "f300a-0078–0066" ska vara f300a-0120–0122, f300a-0062–0064 och f300a-0078–0080.
+
+Övriga P0-poster håller efter 13 december: Eknö är X på alla tider i w16, 30A och 31 går, 25 och 28 går från Furusund, Hasselö står i w16 med tider och b, och Rödlöga har b i w28 (LastBoatPanel-texten "eller inte alls" håller).

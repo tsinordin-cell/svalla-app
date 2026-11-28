@@ -160,5 +160,117 @@
    "f300a-0278",
    "f300a-0279"
   ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'I Waxholmsbolagets tabell 21, som gäller till 12 december 2026, har en del turer till Gruvbryggan på Utö anmärkning b:",
+  "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0280): texten nämnde tabellens slutdatum; vintertabellen 21 har också b vid Gruvbryggan (MÄTT), så texten hänvisar nu bara till tabellens nummer.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w21.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"21A ÅRSTA – UTÖ\", \"Gruvbryggan (Utö)\", \"minst 1 timme innan avgång\" (läst 2026-11-28)\n    bestallning: 'I Waxholmsbolagets tabell 21 har en del turer till och från Gruvbryggan på Utö anmärkning b:",
+  "rader": [
+   "f300a-0280"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "Långvik och Dragedet trafikeras även av tabell 10 och 12.',",
+  "ny": "Långvik och Dragedet trafikeras även av tabell 10 och under en del av året av tabell 12.',",
+  "rader": [
+   "f300a-0281"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 13',\n  },\n  fjaderholmarna: {",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 10, 12 eller 13',\n    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0282): i vintertabellen 10 är Finnhamn märkt X på alla turer i isperioden vid kraftig is (MÄTT med skript/sektion.py, sidorna 5 och 6).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"GÄLLER ISPERIOD (VID KRAFTIG IS)\", \"Finnhamn\", \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Vid kraftig isläggning går tabell 10 enligt isperioden, och då angör Waxholmsbolaget Finnhamn utan fast avgångstid på flera turer. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n  },\n  fjaderholmarna: {",
+  "rader": [
+   "f300a-0282"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n  },\n  dalaro: {",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0283): i vintertabellen 10 är Norra Ingmarsö märkt X på alla turer i isperioden vid kraftig is (MÄTT med skript/sektion.py, sidorna 5 och 6).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"GÄLLER ISPERIOD (VID KRAFTIG IS)\", \"Norra Ingmarsö\", \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Vid kraftig isläggning går tabell 10 enligt isperioden, och då angör Waxholmsbolaget Norra Ingmarsö utan fast avgångstid på flera turer. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n  },\n  dalaro: {",
+  "rader": [
+   "f300a-0283"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n  },\n  resaro: {",
+  "ny": "    bestallningTabell: 'Waxholmsbolagets tabell 10 eller 12',\n    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0284): i vintertabellen 10 är Norra Svartsö märkt X på alla turer i isperioden vid kraftig is (MÄTT med skript/sektion.py, sidorna 5 och 6).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"GÄLLER ISPERIOD (VID KRAFTIG IS)\", \"Norra Svartsö\", \"Bryggorna trafikeras utan fast avgångstid.\" (läst 2026-11-28)\n    tidsObs: 'Vid kraftig isläggning går tabell 10 enligt isperioden, och då angör Waxholmsbolaget Norra Svartsö utan fast avgångstid på flera turer. Tiderna här kommer från reseplaneraren och inte från tidtabellen, så var på bryggan i god tid.',\n  },\n  resaro: {",
+  "rader": [
+   "f300a-0284"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'I Waxholmsbolagets tabell 28 för 2 november till 12 december 2026 har alla turer från Rödlöga anmärkning b: de stannar där bara om resan har beställts i förväg.",
+  "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0285): \"alla turer från Rödlöga\" gällde bara 2 november till 12 december; i vintertabellen 28 har en del turer b och några h (MÄTT).\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"28B RÖDLÖGA – SÖDERÖRA – ÖSTERNÄS – FURUSUND\", \"Rödlöga\", \"Vid kraftig isläggning kan trafiken till och från bryggan komma att ställas in.\" (läst 2026-11-28)\n    bestallning: 'Turer till och från Rödlöga kan ha anmärkning b i Waxholmsbolagets tabell 28: de stannar där bara om resan har beställts i förväg. Vid kraftig isläggning kan trafiken till och från bryggan ställas in (anmärkning h).",
+  "rader": [
+   "f300a-0285"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'Många turer till och från Ytterby på Resarö stannar där bara om resan har beställts i förväg.",
+  "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0286): vintertabellen 5 har inte Ytterby (Resarö). Texten gäller därför bara turer som angör bryggan.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w5.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"5A STOCKHOLM – VAXHOLM – STEGESUND – VIKINGSBORG\" (läst 2026-11-28)\n    bestallning: 'Många turer som angör Ytterby på Resarö stannar där bara om resan har beställts i förväg. Waxholmsbolagets tabell 5 från 13 december 2026 angör inte Ytterby.",
+  "rader": [
+   "f300a-0286"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Pendeltåg till Nynäshamn + Waxholmsbolaget därifrån.',\n  },",
+  "ny": "    note: 'Pendeltåg till Nynäshamn + Waxholmsbolaget därifrån.',\n    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0287): i vintertabellen 22 har Nåttarö anmärkning b på alla turer i 22A och en del i 22B (MÄTT); tabellen till 12 december har ingen.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w22.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ\", \"22B ÅLÖ – NÅTTARÖ – NYNÄSHAMN\", \"Nåttarö\", \"Beställ resan i SL-appen, på\", \"minst 1 timme innan avgång\", \"från aktuell brygga, dock senast kl. 17.00.\" (läst 2026-11-28)\n    bestallning: 'I Waxholmsbolagets tabell 22 från 13 december 2026 stannar turerna mot Ålö vid Nåttarö bara om resan har beställts i förväg (anmärkning b), och det gäller också en del turer mot Nynäshamn. Den ska beställas minst en timme före avgång från bryggan, dock senast kl. 17.00 samma dag. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 22 i god tid innan du åker.',\n    bestallningTabell: 'Waxholmsbolagets tabell 22',\n  },",
+  "rader": [
+   "f300a-0287"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Bilfärja från Dalarö, pendeltåg till Handen + buss 839 + färja.',",
+  "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0288): vintertabellen 19 angör inte Ornö kyrka, bryggan i rutan.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w19.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"19A DALARÖ – ORNÖ (ÖSTRA SIDAN) – MEFJÄRD\", \"Söderviken (Ornö)\", \"Ornöboda (Ornö)\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w20.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"20A DALARÖ – ORNÖ (VÄSTRA SIDAN)\" (läst 2026-11-28)\n    note: 'Bilfärja från Dalarö, pendeltåg till Handen + buss 839 + färja. Waxholmsbolagets tabell 19 från 13 december 2026 angör inte Ornö kyrka utan Söderviken och Ornöboda; tabell 20 går till Ornös västra sida.',",
+  "rader": [
+   "f300a-0288"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    // P0 2026-10-29: noten sa \"från Dalarö eller Nynäshamn\" utan säsong. Från Nynäshamn går båten bara sommartid.\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen.",
+  "ny": "    // P0 2026-10-29: noten sa \"från Dalarö eller Nynäshamn\" utan säsong. Från Nynäshamn går båten bara sommartid.\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0289): vintertabellen 19 går Dalarö–Ornö–Mefjärd, utan turer från Strömkajen.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\", \"Strömkajen (Stockholm)\", \"Kymmendö\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w19.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"19A DALARÖ – ORNÖ (ÖSTRA SIDAN) – MEFJÄRD\", \"Kymmendö\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets linje 19 från Dalarö; tabellen till 12 december 2026 har också enstaka turer från Strömkajen, tabellen från 13 december 2026 inte.",
+  "rader": [
+   "f300a-0289"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    // P0 2026-10-29: noten sa \"Direkt Waxholmsbåt från Nynäshamn\" utan säsong. Den båten går bara sommartid.\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    note: 'Waxholmsbolagets linje 19 från Dalarö; enstaka turer går från Strömkajen.",
+  "ny": "    // P0 2026-10-29: noten sa \"Direkt Waxholmsbåt från Nynäshamn\" utan säsong. Den båten går bara sommartid.\n    originStopId: CENTRALEN_ID, originStopName: 'Stockholm Centralstation',\n    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0290): vintertabellen 19 har inte Fjärdlång och inga turer från Strömkajen.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h19.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\", \"19A STOCKHOLM – DALARÖ – ORNÖ (ÖSTRA SIDAN) – UTÖ\", \"Strömkajen (Stockholm)\", \"Fjärdlång\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w19.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"19A DALARÖ – ORNÖ (ÖSTRA SIDAN) – MEFJÄRD\" (läst 2026-11-28)\n    note: 'Waxholmsbolagets linje 19 från Dalarö; tabellen till 12 december 2026 har också enstaka turer från Strömkajen. Tabellen från 13 december 2026 angör inte Fjärdlång.",
+  "rader": [
+   "f300a-0290"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    note: 'Buss till Vaxholm och båt över. Tynningö har också vägfärja från Lagnö på Värmdö.',",
+  "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0291): vintertabellen 4 angör bara Norra Tynningö, inte Orrlunda (bryggan i rutan) eller Norehill.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w4.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"4A STOCKHOLM – VAXHOLM – RAMSÖSUND – ÅLSTÄKET\", \"Norra Tynningö\" (läst 2026-11-28)\n    note: 'Buss till Vaxholm och båt över. Tynningö har också vägfärja från Lagnö på Värmdö. Waxholmsbolagets tabell 4 från 13 december 2026 angör bara Norra Tynningö, inte Orrlunda och Norehill.',",
+  "rader": [
+   "f300a-0291"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    tidsObs: 'Waxholmsbolaget angör Norehill på Tynningö på flera turer utan fast avgångstid.",
+  "ny": "    tidsObs: 'När Waxholmsbolaget angör Norehill på Tynningö är det på flera turer utan fast avgångstid.",
+  "rader": [
+   "f300a-0292"
+  ]
+ },
+ {
+  "fil": "src/lib/transit-stops.ts",
+  "gammal": "    bestallning: 'De flesta turer stannar vid Fjärdlång bara om resan har beställts i förväg, och någon tur går bara efter beställning.",
+  "ny": "    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0293): vintertabellen 19 angör inte Fjärdlång, så texten gäller nu bara turer som angör bryggan.\n    bestallning: 'När Waxholmsbolagets tabell 19 angör Fjärdlång stannar de flesta turer där bara om resan har beställts i förväg, och någon tur går bara efter beställning.",
+  "rader": [
+   "f300a-0293"
+  ]
  }
 ]
