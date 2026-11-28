@@ -2158,8 +2158,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Haninge centrum, Hotellbryggan, Alla hållplatser för buss 839 mot Smådalarö finns ovan., Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37). Handens station finns inte bland hållplatserna.",
-      "last": "2026-11-17",
+      "vad": "Rudsjöterrassen–Dalarö (–Smådalarö), Haninge centrum, Alla hållplatser för buss 839 mot Smådalarö finns ovan., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37). Handens station finns inte bland hållplatserna.",
+      "last": "2026-11-28",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Handens station–Dalarö (–Smådalarö), Haninge centrum, Alla hållplatser för buss 839 mot Smådalarö finns ovan., Tidtabellen är anpassad till pendeltåg från Stockholm vid, Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 13 december 2026–20 juni 2027 samt 16 augusti–11 december 2027 ; Handens station → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)",
+      "last": "2026-11-28",
       "myndighet": false
     },
     {
@@ -5865,8 +5872,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Gålövägen, Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Gålövägen 16 till 19 min (MÄTT i tabellen: måndag till fredag 18 till 19, lördag, söndag och helgdag …)",
-      "last": "2026-11-17",
+      "vad": "Rudsjöterrassen–Dalarö (–Smådalarö), Gålövägen, Tidtabellen är anpassad till pendeltåg från Stockholm vid, Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Gålövägen 16 till 19 min (MÄTT i tabellen: måndag till fredag 18 till 19, lördag, söndag och helgdag …)",
+      "last": "2026-11-28",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Handens station–Dalarö (–Smådalarö), Gålövägen, Tidtabellen är anpassad till pendeltåg från Stockholm vid, Handens station., Måndag–fredag, Lördag, söndag helgdag, Giltig 13 december 2026–20 juni 2027 samt 16 augusti–11 december 2027 ; Handens station → Gålövägen 16 till 19 min (MÄTT i tabellen: måndag till fredag 18 till 19, lördag, söndag och helgdag …)",
+      "last": "2026-11-28",
       "myndighet": false
     },
     {
@@ -6288,8 +6302,15 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
     {
       "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
-      "vad": "839 Rudsjöterrassen–Dalarö (–Smådalarö), Hotellbryggan, Tidtabellen är anpassad till pendeltåg från Stockholm vid Handens station., Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)",
-      "last": "2026-11-17",
+      "vad": "Rudsjöterrassen–Dalarö (–Smådalarö), Hotellbryggan, Tidtabellen är anpassad till pendeltåg från Stockholm vid, Handens station., Giltig 17 augusti–12 december 2026 ; Rudsjöterrassen → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)",
+      "last": "2026-11-28",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Handens station–Dalarö (–Smådalarö), Hotellbryggan, Tidtabellen är anpassad till pendeltåg från Stockholm vid, Handens station., Giltig 13 december 2026–20 juni 2027 samt 16 augusti–11 december 2027 ; Handens station → Hotellbryggan 33 till 39 min (MÄTT i tabellen: måndag till fredag 34 till 39, lördag, söndag och helgdag 33 till 37)",
+      "last": "2026-11-28",
       "myndighet": false
     },
     {
