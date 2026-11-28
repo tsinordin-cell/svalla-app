@@ -18,18 +18,18 @@
  * (lib/posthogLaddare.ts, import()). Tidigare låg posthog-js (≈63 kB) i varje
  * sidas JavaScript för alla besökare, även de som aldrig godkänt analys.
  *
- * Konfiguration (oförändrad, i lib/posthogLaddare.ts):
+ * Konfiguration (i lib/posthogLaddare.ts):
  *  - US-region (PostHog US Cloud) via vår /ingest-proxy
- *  - capture_pageview: false  → hanteras manuellt via PostHogPageView
- *  - session_recording med maskAllInputs → lösenord/e-post loggas aldrig
- *  - autocapture: true → klick, formulär, navigering fångas utan extra kod
+ *  - capture_pageview: false, hanteras manuellt via PostHogPageView
+ *  - disable_session_recording: ingen inspelning av besöket
+ *  - autocapture: true, klick fångas utan extra kod
  *
- * User identification: lyssnar på Supabase auth-state och kopplar
- * analytics-händelser till rätt användare — bara efter samtycke.
+ * Ingen identify med e-post eller namn. Vid utloggning nollställs det
+ * anonyma id:t, bara efter att biblioteket har startats.
  */
 
 import { useEffect } from 'react'
-import { createClient, getViewer } from '@/lib/supabase'
+import { createClient } from '@/lib/supabase'
 import { hasAnalyticsConsent } from '@/components/CookieConsent'
 import { laddaPostHog, posthogOmLaddad } from '@/lib/posthogLaddare'
 import { rapporteraNyRegistrering } from '@/lib/nyRegistrering'
@@ -66,36 +66,17 @@ export default function PostHogProvider({ children }: { children: React.ReactNod
     let startad = false
     let avregistrera: (() => void) | null = null
 
-    // Laddar biblioteket (bara efter samtycke, se lib/posthogLaddare.ts) och
-    // kopplar händelser till den inloggade användaren.
+    // Laddar biblioteket bara efter samtycke (lib/posthogLaddare.ts).
+    // Ingen identify: sidvisningarna ska förbli anonyma, utan e-post eller namn.
     const starta = async () => {
       if (startad) return
       startad = true
       const posthog = await laddaPostHog()
       if (!posthog || avbruten) { startad = false; return }
 
-      // Identifiera inloggad användare → kopplar events till rätt person i PostHog
       const supabase = createClient()
-      getViewer(supabase).then(({ data }) => {
-        if (data.user) {
-          posthog.identify(data.user.id, {
-            email: data.user.email,
-            username: data.user.user_metadata?.username,
-          })
-        }
-      })
-
-      // Lyssna på login/logout under session
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' && session?.user) {
-          posthog.identify(session.user.id, {
-            email: session.user.email,
-            username: session.user.user_metadata?.username,
-          })
-        }
-        if (event === 'SIGNED_OUT') {
-          posthog.reset()
-        }
+      const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+        if (event === 'SIGNED_OUT') posthog.reset()
       })
       avregistrera = () => subscription.unsubscribe()
     }
