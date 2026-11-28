@@ -29,9 +29,10 @@ export default function FollowButton({ targetUserId, darkBg = false, hideCount =
 
  if (user && user.id !== targetUserId) {
  const { data } = await supabase.from('follows')
- .select('id').eq('follower_id', user.id).eq('following_id', targetUserId).single()
+ .select('id').eq('follower_id', user.id).eq('following_id', targetUserId).maybeSingle()
  if (cancelled) return
- setFollowing(!!data)
+ // Ingen rad är inte ett fel: då följer man inte.
+ setFollowing(data != null)
  }
  }
  load()
