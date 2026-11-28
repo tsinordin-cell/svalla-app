@@ -507,6 +507,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  // Mini-kartans nål: samma kategori och samma nål som på Utforska.
  const kartKategori = platsKategori(r as Restaurant & { categories?: string[] | null })
+ // Naturreservat har typen attraction men ingen som driver dem (2026-11-28).
+ const utanDrift = UTAN_DRIFT.has(r.type ?? '') || /naturreservat/i.test(r.name)
  const kartaSomToppbild = placePhotos.length === 0 && !!r.latitude && !!r.longitude
 
  return (
@@ -677,9 +679,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  {/* Bryggor, naturhamnar, badplatser m.fl. har ingen som "driver" dem
      (2026-11-28). Där frågar vi efter fel i stället; vägen att rätta finns kvar. */}
  <p style={{ fontSize: 12.5, color: 'var(--txt3)', margin: '-4px 2px 14px', lineHeight: 1.5 }}>
-   {UTAN_DRIFT.has(r.type ?? '') ? <>Ser något fel ut om {r.name}?</> : <>Driver du {r.name}?</>} Skriv till{' '}
+   {utanDrift ? <>Ser något fel ut om {r.name}?</> : <>Driver du {r.name}?</>} Skriv till{' '}
    <a href="mailto:info@svalla.se" style={{ color: 'var(--sea)', fontWeight: 600 }}>info@svalla.se</a>{' '}
-   {UTAN_DRIFT.has(r.type ?? '') ? 'så rättar vi.' : 'om du vill ändra eller ta bort något.'}
+   {utanDrift ? 'så rättar vi.' : 'om du vill ändra eller ta bort något.'}
  </p>
 
  {/* ── Mini-karta — visar var platsen ligger, knapp för vägbeskrivning ── */}
