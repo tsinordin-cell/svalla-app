@@ -39,7 +39,7 @@ import { SCB_OAR, SCB_OAR_KALLA } from '../scb-oar.generated'
 import { pekarBort, omBad, boendeOrd, klockslagsregler, arOrt } from '@/lib/mallRegler'
 import { stryksKlockslag } from '@/lib/klockslagStrykning'
 import { krogarIDatabasen } from '@/lib/islandPlaces'
-// Förhandsvisning av nya ösidor (Max 2026-11-27). Bara på grenen forslag/osidor, mergas inte utan Max beslut.
+// Ösidan Navet (förslag E), godkänd av Max 2026-11-28. Förslagsväxlaren finns bara på grenen forslag/osidor.
 import OsidaForslag from '@/components/OsidaForslag'
 import { commonsTumme } from '@/lib/commonsTumme'
 import { platsbild } from '@/lib/platsbilder'
@@ -309,7 +309,7 @@ export default async function IslandPage({ params }: Props) {
  {/* revision 2026-10-02: mork-yta = vit fokusring (globals.css), --sea syntes inte här. */}
  <SidHuvud />
 
- {/* Förhandsvisning: tre förslag på ny ösida, ?v=a|b|c, ?v=nu visar dagens sida. */}
+ {/* Ösidan Navet: toppbild, vägval med foton och Allt om ön (Max 2026-11-28). */}
  <OsidaForslag data={{
    slug: island.slug,
    namn: island.name,
