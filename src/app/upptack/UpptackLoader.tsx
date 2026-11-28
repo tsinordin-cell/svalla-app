@@ -2,7 +2,7 @@
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { startaPlatshamtning } from './platsdata'
-import { hamtaLeaflet } from './leaflet'
+import { hamtaMaplibre } from './maplibre'
 
 // Ny STF-style split-explorer (karta + filterbar lista)
 const UpptackExplorer = dynamic(() => import('./UpptackExplorer'), {
@@ -49,7 +49,7 @@ export default function UpptackLoader() {
   // Preloaden i page.tsx gör att svaret ofta redan är på väg.
   useEffect(() => {
     startaPlatshamtning().catch(() => { /* explorern visar felet */ })
-    hamtaLeaflet().catch(() => { /* explorern försöker igen och visar felet */ })
+    hamtaMaplibre().catch(() => { /* explorern försöker igen och visar felet */ })
   }, [])
   return <UpptackExplorer />
 }
