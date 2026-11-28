@@ -1,475 +1,492 @@
 [
- {
-  "fil": "src/lib/ferries.ts",
-  "gammal": "    stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Ramsö', 'Tynningö', 'Vaxholm'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
-  "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0011): Ramsö och Tynningö stod som stopp före Vaxholm. Ramsö angörs efter\n    // Vaxholm på linje 4; mellan Strömkajen och Vaxholm går linje 11 till 14 via Nacka strand och Gåshaga brygga.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA\", \"Nacka strand\", \"Gåshaga brygga\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w4.pdf — \"Vaxholm avg.\", \"Ramsö\", \"Ålstäket\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s2.pdf — \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (helår: också h2 och w2) (läst 2026-11-28)\n    stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Vaxholm'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
-  "rader": [
-   "f300b-0011",
-   "f300b-0012"
-  ]
- },
- {
-  "fil": "src/lib/ferries.ts",
-  "gammal": "    stops: ['Strömkajen', 'Vaxholm', 'Sippsö', 'Lillsved', 'Grinda'],\n    operator: 'Waxholmsbolaget',\n    season: 'Tabell 11: 2 apr–18 jun, 17 aug–12 dec 2026',",
-  "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0014, f300b-0015): vintertabellen för linje 11 är publicerad och angör Grinda.\n    // Sippsö står inte mellan Vaxholm och Lillsved i vintertabellen, så stoppen är de som finns i båda tabellerna.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Lillsved ank.\", \"Södra Grinda\", \"Norra Grinda\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n    stops: ['Strömkajen', 'Vaxholm', 'Lillsved', 'Grinda'],\n    operator: 'Waxholmsbolaget',\n    season: 'Tabell 11: hösten till 12 dec 2026, vintern 13 dec 2026 till 11 apr 2027',",
-  "rader": [
-   "f300b-0014",
-   "f300b-0015"
-  ]
- },
- {
-  "fil": "src/lib/ferries.ts",
-  "gammal": "    stops: ['Strömkajen', 'Vaxholm', 'Ljusterö', 'Husarö', 'Finnhamn'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
-  "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0019): Ljusterö och Husarö före Finnhamn gäller linje 12, som i vintertabellen\n    // slutar vid Norra Ingmarsö. I vinter går Strömkajen till Finnhamn med linje 13, via Boda och Svartsö.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Finnhamn\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — \"12A STOCKHOLM – LILLSVED – NORRA INGMARSÖ GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"Finnhamn\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (läst 2026-11-28)\n    stops: ['Strömkajen', 'Vaxholm', 'Finnhamn'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
-  "rader": [
-   "f300b-0019",
-   "f300b-0020"
-  ]
- },
- {
-  "fil": "src/lib/ferries.ts",
-  "gammal": "    stops: ['Sollenkroka', 'Svartsö', 'Norra Stavsudda', 'Berg (Möja)'],",
-  "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0022): Svartsö angörs inte av linje 14 (Sollenkroka till Möja); Svartsö har linje 10, 12 och 13.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Sollenkroka ank.\", \"Norra Stavsudda\", \"Berg (Möja)\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (läst 2026-11-28)\n    stops: ['Sollenkroka', 'Norra Stavsudda', 'Berg (Möja)'],",
-  "rader": [
-   "f300b-0022",
-   "f300b-0023"
-  ]
- },
- {
-  "fil": "src/lib/ferries.ts",
-  "gammal": "    stops: ['Strandvägen', 'Vaxholm', 'Grinda', 'Gällnö', 'Sandhamn'],",
-  "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0016): Strömma listar fler bryggor på vägen.\n    // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"1. Strandvägen (Startpunkt)\", \"2. Nacka Strand\", \"3. Gåshaga\", \"4. Vaxholm\", \"6. Södra Grinda\", \"7. Gällnö\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n    stops: ['Strandvägen', 'Nacka strand', 'Gåshaga', 'Vaxholm', 'Södra Grinda', 'Gällnö', 'Eknö', 'Telegrafholmen', 'Sandhamn'],",
-  "rader": [
-   "f300b-0016"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "  description: 'Kommande avgångar, linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna, och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett sextiotal andra öar.',",
-  "ny": "  // RÄTTAD 2026-11-28 (fas 3, f300b-0002, f300b-0003): kommande avgångar finns bara för Waxholmsbolaget, och listan\n  // \"Båt till öarna\" har 58 öar, alltså 53 utöver de fem som nämns (MÄTT: STOCKHOLMSOAR på main 5e0a08d).\n  description: 'Linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna, kommande avgångar för Waxholmsbolaget och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett femtiotal andra öar.',",
-  "rader": [
-   "f300b-0002",
-   "f300b-0003"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "    url: r.operator === 'Cinderella'\n      ? 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/'\n      : 'https://www.waxholmsbolaget.se',\n    sameAs: r.operator === 'Cinderella'\n      ? 'https://www.cinderellabatarna.com'\n      : 'https://sl.se',\n  },\n  offers: {\n    '@type': 'Offer',\n    url: r.infoUrl,\n    availability: 'https://schema.org/InStock',\n  },",
-  "ny": "    url: r.operator === 'Cinderella'\n      ? 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/'\n      : 'https://www.waxholmsbolaget.se',\n    // RÄTTAD 2026-11-28 (fas 3, f300b-0027): sameAs sa att Waxholmsbolaget är samma organisation som SL. Borttaget för\n    // Waxholmsbolaget. Cinderellas sameAs står kvar: cinderellabatarna.com svarade 502 vid läsningen (EJ NÅBAR, f300b-0028).\n    ...(r.operator === 'Cinderella' ? { sameAs: 'https://www.cinderellabatarna.com' } : {}),\n  },\n  // availability InStock borttaget (f300b-0029): Cinderellabåtarna står som \"ÅTER APRIL 2027\" hos Strömma.\n  offers: {\n    '@type': 'Offer',\n    url: r.infoUrl,\n  },",
-  "rader": [
-   "f300b-0027",
-   "f300b-0029"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn på 2 timmar och 30 minuter enligt operatören Strömma. Båten stannar på vägen vid Vaxholm, Grinda och Gällnö.' },",
-  "ny": "      // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.\", \"2. Nacka Strand\", \"3. Gåshaga\", \"4. Vaxholm\", \"6. Södra Grinda\", \"7. Gällnö\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn på 2 timmar och 30 minuter enligt operatören Strömma. På vägen angör båten Nacka strand, Gåshaga, Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen.' },",
-  "rader": [
-   "f300b-0032"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "SL-biljett gäller inte.' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19",
-  "ny": "SL-biljett gäller inte.' }, // KÄLLA: se KÄLLA-raderna vid samma fråga längre ned (läst 2026-11-28)",
-  "rader": [
-   "f300b-0033",
-   "f300b-0034",
-   "f300b-0035",
-   "f300b-0036"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "      acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbolaget är skärgårdens kollektivtrafik med SL-kort. Cinderella är turistinriktad med längre dagsrutter och bar ombord. Cinderella passar bäst för dagstur; Waxholmsbolaget för pendlare.' },",
-  "ny": "      // RÄTTAD 2026-11-28 (fas 3, f300b-0037 till f300b-0040): SL-biljett gäller bara i en del av trafiken, och \"längre dagsrutter\" är obelagt.\n      // KÄLLA: https://waxholmsbolaget.se/om-oss — \"Allt sedan dess har vi trafikerat Stockholms skärgård varenda dag året runt.\" (läst 2026-11-28)\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Alla SL-biljetter gäller mellan 44 bryggor i Waxholmsbolagets trafik\" (läst 2026-11-28)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Säsongen löper från slutet av april till slutet av september.\", \"Ombord finns café och bar med något för alla\" (läst 2026-11-28)\n      acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och går året runt. SL-biljetter gäller mellan 44 bryggor i dess trafik. Cinderellabåtarna drivs av Strömma, går från slutet av april till slutet av september och har café och bar ombord.' },",
-  "rader": [
-   "f300b-0037",
-   "f300b-0038",
-   "f300b-0039",
-   "f300b-0040"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "            Waxholmsbolaget och Cinderellabåtarna: linjer och bryggor i Stockholms skärgård, och kommande avgångar för Waxholmsbolagets linjer. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget täcker hundratals bryggor med SL-kort.",
-  "ny": "            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0006): SL-biljett gäller inte vid alla bryggor.\n                KÄLLA: https://waxholmsbolaget.se/om-oss — \"Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården.\" (läst 2026-11-28)\n                KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Mellan dessa bryggor kan du året runt resa med Waxholmsbolaget på alla sorters SL-biljetter:\" (läst 2026-11-28) */}\n            Waxholmsbolaget och Cinderellabåtarna: linjer och bryggor i Stockholms skärgård, och kommande avgångar för Waxholmsbolagets linjer. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget trafikerar 299 bryggor sommartid, och mellan 44 av dem gäller alla SL-biljetter året runt.",
-  "rader": [
-   "f300b-0006"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "            <strong style={{ color: 'var(--txt)' }}>Live.</strong> Avgångar hämtas från Trafiklab.\n            Uppdateras löpande. Dubbelkolla alltid mot operatören inför avgång.",
-  "ny": "            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0008): \"Live\" och \"uppdateras löpande\" lovade realtid. Avgångarna kommer ur ResRobot,\n                vars tidtabellsdata uppdateras högst en gång per dygn; sidan hämtar på nytt var tionde minut (revalidate = 600).\n                KÄLLA: https://www.trafiklab.se/api/our-apis/resrobot-v21/route-planner/ — \"The static data used for this API is updated when changes are made, at most once per day.\" (läst 2026-11-28) */}\n            <strong style={{ color: 'var(--txt)' }}>Från Trafiklab.</strong> Avgångarna kommer ur Trafiklabs reseplanerare ResRobot\n            och följer tidtabellen. Sidan hämtar dem på nytt var tionde minut. Dubbelkolla alltid mot operatören inför avgång.",
-  "rader": [
-   "f300b-0008"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />\n                      LIVE",
-  "ny": "                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />\n                      {/* f300b-0009: tidtabellsdata, inte realtid */}\n                      TIDTABELL",
-  "rader": [
-   "f300b-0009"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "            Cinderellabåtarna 2026, vart går de och när?",
-  "ny": "            Cinderellabåtarna 2027, vart går de och när?",
-  "rader": [
-   "f300b-0041"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "            från Strömkajen, som är Waxholmsbolagets kaj. Linjen går till Vaxholm, Grinda,\n            Gällnö och Sandhamn. Säsongen löper från slutet av april till slutet av september.",
-  "ny": "            från Strömkajen, som är Waxholmsbolagets kaj. På väg till Sandhamn angör båten Nacka strand, Gåshaga,\n            Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen. Säsongen 2027 är 30 april till 26 september.\n            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0043, f300b-0044).\n                KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Från Stockholm till Sandhamn - bryggor & restider\", \"2. Nacka Strand\", \"3. Gåshaga\", \"6. Södra Grinda\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n                KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"30 apr - 26 sep 2027\" (läst 2026-11-28) */}",
-  "rader": [
-   "f300b-0043",
-   "f300b-0044"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "          {/* KÄLLA: Strömma/Cinderellabåtarna — restid och pris avlästa på operatörens egen sida (2026-08-05) */}\n          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 24 }}>\n            {[\n              { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 255 kr' },\n              { mal: 'Gällnö',   tid: '1 tim 45 min', pris: 'från 235 kr' },\n              { mal: 'Grinda',   tid: '1 tim 30 min', pris: 'från 235 kr' },",
-  "ny": "          {/* RÄTTAD 2026-11-28 (fas 3, f300b-0046 till f300b-0048): priserna är Strömmas prisexempel för 2027, enkel resa från Strandvägen.\n              KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Priser 2027\", \"Prisexempel - enkel resa från Strandvägen:\", \"Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.\" (läst 2026-11-28)\n              KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Båt till Grinda - snabbt & lätt med Cinderellabåtarna\", \"Med Cinderella tar resan till Gällnö ca 1 tim och 45 min.\" (läst 2026-11-28) */}\n          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 24 }}>\n            {[\n              { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 265 kr (2027)' },\n              { mal: 'Gällnö',   tid: '1 tim 45 min', pris: 'från 245 kr (2027)' },\n              { mal: 'Grinda',   tid: '1 tim 30 min', pris: 'från 245 kr (2027)' },",
-  "rader": [
-   "f300b-0046",
-   "f300b-0047",
-   "f300b-0048"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "              Cinderella rapporterar inte till Trafiklab, och tidtabellen varierar per datum.\n              En kopia här skulle bli fel utan att vi märkte det. Aktuella avgångar finns hos",
-  "ny": "              {/* RÄTTAD 2026-11-28 (fas 3, f300b-0050): att Cinderella inte rapporterar till Trafiklab är obelagt (Trafiklab skriver\n                  \"All operators which operate in Sweden are covered by the ResRobot APIs.\"). Det vi vet är att Svalla inte har sett\n                  någon Cinderellaresa i datan (revision 2026-10-02, se kommentaren vid sidans inledning). */}\n              Vi visar bara avgångar som vi kan hämta från Trafiklab, och där har vi inte sett några turer med Cinderellabåtarna.\n              En kopia här skulle bli fel utan att vi märkte det. Aktuella avgångar finns hos",
-  "rader": [
-   "f300b-0050"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "              Waxholmsbolaget är skärgårdens kollektivtrafik och täcker hundratals bryggor.\n              Till skillnad från Cinderella, som är turistinriktad, går Waxholmsbolaget från\n              tidig morgon till sen kväll. Linjerna nedan är hämtade ur faktiska reseförslag\n              i Trafiklab, inte ur en broschyr.",
-  "ny": "              {/* RÄTTAD 2026-11-28 (fas 3, f300b-0052 till f300b-0054).\n                  KÄLLA: https://waxholmsbolaget.se/om-oss — \"Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården.\", \"Allt sedan dess har vi trafikerat Stockholms skärgård varenda dag året runt.\" (läst 2026-11-28)\n                  KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Säsongen löper från slutet av april till slutet av september.\" (läst 2026-11-28) */}\n              Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och trafikerar 299 bryggor sommartid.\n              Till skillnad från Cinderellabåtarna, som går från slutet av april till slutet av september, går\n              Waxholmsbolaget året runt. Linjerna nedan är kontrollerade mot operatörernas egna tidtabeller.",
-  "rader": [
-   "f300b-0052",
-   "f300b-0053",
-   "f300b-0054"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                { name: 'Färja 16', desc: 'Stavsnäs vinterhamn → Sandhamn, ca 50 min' },\n                { name: 'Färja 17-1', desc: 'Stavsnäs vinterhamn → Nämdö' },",
-  "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0055): \"ca 50 min\" stämde inte med tabellen. Restiden är uppmätt i vintertabellen 16\n                // (13 december 2026 till 11 april 2027), 15 turer Stavsnäs till Sandhamn: 54 till 70 min. Året runt: h16, s16 och w16.\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w16.pdf — \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n                // RUNDA 2 (2026-11-28): bryggan heter \"Stavsnäs\" i Waxholmsbolagets tabeller 16 och 17; \"vinterhamn\" står inte där.\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/s16.pdf — \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (läst 2026-11-28)\n                { name: 'Färja 16', desc: 'Stavsnäs → Sandhamn året runt, 54 till 70 min i vintertabellen från 13 dec 2026' },\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w17.pdf — \"17A STAVSNÄS – NÄMDÖ – MÖRTÖ\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n                { name: 'Färja 17-1', desc: 'Stavsnäs → Nämdö' },",
-  "rader": [
-   "f300b-0055",
-   "f300b-0056",
-   "f300b-0057"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                { name: 'Färja 941', desc: 'Vaxholm → Rindö, vägfärja, avgiftsfri' },\n                { name: 'Färja 31-1', desc: 'Räfsnäs brygga → Lidö, ca 15 min' },",
-  "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0060): vägfärjan Vaxholm till Rindö är Trafikverkets Vaxholmsleden, inte Waxholmsbolaget.\n                // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/vaxholmsleden/ — \"Vaxholmsleden går mellan Vaxholm och Rindö i Stockholms skärgård. Färjeledens längd är 970 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri.\" (läst 2026-11-28)\n                { name: 'Vaxholmsleden', desc: 'Vaxholm → Rindö, Trafikverkets vägfärja (inte Waxholmsbolaget), sex minuter, avgiftsfri' },\n                // RÄTTAD 2026-11-28 (P0, fas 3, f300b-0062): varje tur från Räfsnäs till Lidö är beställningstur (märkt b) i höst-,\n                // vinter- och sommartabellen 2026 utom en sommartur. Restiden uppmätt i w31: 10 till 15 min.\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w31.pdf — \"31A RÄFSNÄS – TJOCKÖ – FEJAN\", \"Beställ resan i SL-appen, på\", \"08-600 10 00 minst 2 timmar innan\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"31A RÄFSNÄS – TJOCKÖ – FEJAN\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n                { name: 'Färja 31-1', desc: 'Räfsnäs brygga → Lidö, 10 till 15 min. Båten angör Lidö bara om du beställt resan i förväg, i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00' },",
-  "rader": [
-   "f300b-0060",
-   "f300b-0061",
-   "f300b-0062",
-   "f300b-0063"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                a: 'Cinderellabåtarna går från Strandvägen i Stockholm: inte Strömkajen, som är Waxholmsbolagets kaj. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören Strömma, med stopp vid Vaxholm, Grinda och Gällnö. Dagstur är fullt möjlig, men avgångstiderna varierar per datum, så vi hänvisar till Strömmas tidtabell i stället för att gissa.',",
-  "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0066): stoppen var ofullständiga. Runda 2 (f300b-0067): \"fullt möjlig\" var starkare än källan.\n                // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.\", \"2. Nacka Strand\", \"3. Gåshaga\", \"6. Södra Grinda\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n                // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Oavsett om du planerar en dagsutflykt eller vill stanna några dagar är Cinderellabåtarna din naturliga startpunkt.\" (läst 2026-11-28)\n                a: 'Cinderellabåtarna går från Strandvägen i Stockholm: inte Strömkajen, som är Waxholmsbolagets kaj. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören Strömma, med stopp vid Nacka strand, Gåshaga, Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen. Strömma beskriver båtarna som en startpunkt för en dagsutflykt. Avgångstiderna finns i Strömmas tidtabell, så vi hänvisar dit i stället för att gissa.',",
-  "rader": [
-   "f300b-0066",
-   "f300b-0067"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. \"SL Access\" finns inte längre som namn; Utö går från Årsta brygga, inte Nynäshamn.",
-  "ny": "                // RUNDA 2 (2026-11-28): lågsäsongen och linje 17 till 19 enligt Waxholmsbolagets egna sidor.\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt ombord på Waxholmsbolagets fartyg i området och för alla sorters SL-biljetter.\", \"Det är totalt 44 bryggor som ingår i området.\" (läst 2026-11-28)\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"För resor som delvis sker inom SL-området behöver du komplettera med en Waxholmsbolaget-biljett för den delsträcka som är utanför området.\", \"Under lågsäsongen, 14 september–29 april, gäller vissa SL-biljetter i hela Waxholmsbolagets trafik.\" (läst 2026-11-28)\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"På båtar som går mot södra skärgården (till exempel Utö och Nämdö) via Baggensstäket (eller i omvänd riktning från södra skärgården till innerstaden) gäller inte SL-biljetter. Detta avser linje 17, 18 och 19.\" (läst 2026-11-28)\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/sa-galler-sl-biljetten-pa-baten — \"Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april\", \"Under lågsäsong kan du resa med Waxholmsbolaget med SL:s periodbiljetter som gäller för 30 dagar eller längre.\" (läst 2026-11-28)",
-  "rader": [
-   "f300b-0033",
-   "f300b-0034",
-   "f300b-0035",
-   "f300b-0036"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                a: 'Waxholmsbolaget är skärgårdens kollektivtrafik: många linjer, fler avgångar, SL-biljett gäller i SL-området runt Vaxholm. Cinderella är mer turistinriktad med längre dagsrutter, bar ombord och mer festlig stämning. Cinderella passar bäst för dagstur eller helgresa; Waxholmsbolaget passar bättre för att pendla till sommarstugan.',",
-  "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0068 till f300b-0072): värdeord och obelagda jämförelser borttagna; KÄLLA-raderna vid JSON-LD-frågan ovan.\n                a: 'Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och går året runt, och SL-biljetter gäller i SL-området mellan Strömkajen och Vaxholm med omnejd. Cinderellabåtarna drivs av Strömma, går från slutet av april till slutet av september och har café och bar ombord. Strömma beskriver båtarna som en startpunkt både för en dagsutflykt och för den som vill stanna några dagar.',",
-  "rader": [
-   "f300b-0068",
-   "f300b-0069",
-   "f300b-0070",
-   "f300b-0071",
-   "f300b-0072"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                a: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma. Exakta datum varierar år till år, se stromma.com för aktuell säsongsinfo.',",
-  "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0074). KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"30 apr - 26 sep 2027\", \"Säsongen löper från slutet av april till slutet av september.\" (läst 2026-11-28)\n                a: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma. Säsongen 2027 är 30 april till 26 september.',",
-  "rader": [
-   "f300b-0073",
-   "f300b-0074"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": " * VARFÖR: höstens tabeller tar slut 12 december och vinterns är inte\n * publicerade än.",
-  "ny": " * VARFÖR (2026-10-02): höstens tabeller tar slut 12 december och vinterns var inte\n * publicerade då. Granskningen 2026-11-28 (fas 3, f300b-0080 och framåt): vinterns\n * tabeller är nu publicerade hos Waxholmsbolaget, Styrsöbolaget och Västtrafik. Runda 2 (2026-11-28):\n * sidan skriver perioderna utan \"nu\", så att den stämmer också efter 13 december, och mejlrutan\n * gäller nästa tidtabellsbyte.",
-  "rader": [
-   "f300b-0080"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": " * KÄLLOR (alla lästa 2026-10-02):",
-  "ny": " * KÄLLOR 2026-11-28 (fas 3):\n *  (waxholmsbolaget.linjetidtabeller.se: EJ NÅBAR i runda 2, 2026-11-28; Chromium visade en verifieringssida.)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n *    (MÄTT 2026-11-28: 28 av 30 vintertabeller har den raden; w12 har egna perioder och w7:s rubrik går inte att läsa ur pdf:en.)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — \"12A STOCKHOLM – LILLSVED – NORRA INGMARSÖ\", \"GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — \"24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — \"26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — \"27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"Hösttidtabell L 285, 286, 287 20260817-20261213\", \"Vintertidtabell L 285, 286, 287 20261213-20270614\" (läst 2026-11-28)\n *  KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — \"Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period.\" (läst 2026-11-28)\n *  KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/fore-och-under-resan — \"Under vintertidtabellen (december till april) har vissa fartyg bara försäljning av varma och kalla drycker ombord.\" (läst 2026-11-28)\n *  KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"Tidtabellskifte sker tre gånger om året: sommar, höst och vinter\", \"Hösttidtabell L 281-282 20260824-20261212\", \"Vinterttidtabell L 281-282 20261213-20270606\", \"Vinterttidtabell L 283 20261213-20270606\", \"Vinterttidtabell L 284 20261213-20270606\" (läst 2026-11-28)\n *  KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014489900000/ — \"Tidtabell linje 899\", \"Strömstad - Kosteröarna - Strömstad\", \"Gäller 2026-09-27 till 2026-12-12\", \"Gäller 2026-12-13 till 2027-05-15\" (läst 2026-11-28)\n *  KÄLLA: https://www.vasttrafik.se/info/kosterbatarna/ — \"Kosterbåtarna - linje 899 och 898\", \"Kosterbåtarna kör mellan Strömstad och Kosteröarna.\", \"Från januari 2027 kommer Kosteröarna istället ingå i zon C.\" (läst 2026-11-28)\n *\n * KÄLLOR (alla lästa 2026-10-02, före fas 3):",
-  "rader": [
-   "f300b-0080",
-   "f300b-0076",
-   "f300b-0083",
-   "f300b-0084",
-   "f300b-0088"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "    'Höstens tidtabeller för Waxholmsbolaget och Styrsöbolaget gäller till 12 december. Vinterns är inte publicerade än. Här är vad som gäller nu, och vi mejlar länkarna när de kommer.',",
-  "ny": "    'Vinterns tidtabeller för Waxholmsbolaget, Styrsöbolaget och Kosterbåtarna är publicerade och gäller från 13 december 2026. Här är perioderna för hösten och vintern 2026/27, med länkar till rederiernas tabeller.',",
-  "rader": [
-   "f300b-0076",
-   "f300b-0077"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "    description: 'Vad som gäller nu, när höstens tabeller tar slut och hur du får vinterns så fort de publiceras.',",
-  "ny": "    description: 'Perioderna för höstens och vinterns tidtabeller 2026/27 hos Waxholmsbolaget, Styrsöbolaget och Kosterbåtarna, med länkar till rederiernas tabeller.',",
-  "rader": [
-   "f300b-0078"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "const KONTROLLERAD = '2 oktober 2026'",
-  "ny": "const KONTROLLERAD = '28 november 2026'",
-  "rader": [
-   "f300b-0094"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "    nu: 'Hösttidtabellerna gäller 17 augusti till 12 december 2026. Linje 24 (Blidösundet), 26 (Rödlöga) och 27 (Arholma) slutar redan 1 november.',\n    vinter: 'Inte publicerad än. Förra vintern gällde vintertabellerna 14 december 2025 till 1 april 2026.',",
-  "ny": "    nu: 'Höstperioden för de flesta linjer: 17 augusti till 12 december 2026. Linje 28 hade höstperiod till 30 september 2026, och linje 24 (Blidösundet), 26 (Rödlöga) och 27 (Arholma) till 1 november 2026.',\n    vinter: 'Publicerad. För de flesta linjer gäller vintertabellen 13 december 2026 till 11 april 2027. Linje 12 följer vintertabellen 13 december till 6 januari och 25 mars till 11 april, och 7 januari till 24 mars när det är isfritt.',",
-  "rader": [
-   "f300b-0083",
-   "f300b-0084",
-   "f300b-0085"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "    vinter: 'Inte publicerad än.',\n    extra: 'Styrsöbolaget byter tidtabell tre gånger om året: sommar, höst och vinter.',",
-  "ny": "    vinter: 'Publicerad. Vintertidtabellen för linje 281 till 284 gäller 13 december 2026 till 6 juni 2027, och för linje 285, 286 och 287 13 december 2026 till 14 juni 2027.',\n    extra: 'Styrsöbolaget byter tidtabell tre gånger om året: sommar, höst och vinter.',",
-  "rader": [
-   "f300b-0089"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "    nu: 'Linje 899 och 898 går mellan Strömstad och Kosteröarna. Tiderna finns i Västtrafiks reseplanerare, inte som egen tabell.',\n    vinter: 'Sök resan på det datum du ska åka.',",
-  "ny": "    nu: 'Linje 899 och 898 går mellan Strömstad och Kosteröarna. Höstperioden i Västtrafiks tabell för linje 899: 27 september till 12 december 2026.',\n    vinter: 'Tabellen för linje 899 gäller 13 december 2026 till 15 maj 2027. I Västtrafiks reseplanerare får du tiderna i realtid.',",
-  "rader": [
-   "f300b-0091",
-   "f300b-0092"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "    lank: { text: 'Kosterbåtarna hos Västtrafik', url: 'https://www.vasttrafik.se/info/kosterbatarna/' },",
-  "ny": "    lank: { text: 'Tidtabell linje 899 hos Västtrafik', url: 'https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014489900000/' },",
-  "rader": [
-   "f300b-0092"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "            Höstens tidtabeller för skärgårdsbåtarna i Stockholm och Göteborg gäller till 12 december.\n            Vinterns tabeller är inte publicerade än. Lämna din mejladress så skickar vi länkarna när rederierna lagt ut dem.",
-  "ny": "            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0079; runda 2, f300b-0076): vinterns tabeller är publicerade; texten säger inte \"nu\",\n                så att den stämmer också efter 13 december. KÄLLA-raderna i kommentaren överst. */}\n            Vinterns tidtabeller för skärgårdsbåtarna i Stockholm och Göteborg är publicerade och gäller från 13 december 2026.\n            Här är perioderna för hösten och vintern, med länkar till rederiernas tabeller.",
-  "rader": [
-   "f300b-0079"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/page.tsx",
-  "gammal": "export const metadata: Metadata = {\n  title: 'Hur tar man sig till skärgården? Transport till alla öar',\n  description: 'Komplett guide till hur du tar dig till skärgårdens öar. Färja, snabbåt, buss och egen båt: med restider, linjer och praktiska tips.',\n  alternates: { canonical: 'https://svalla.se/ta-dig-till' },\n  openGraph: {\n    images: ogSida('https://svalla.se/ta-dig-till'),\n    title: 'Transport till skärgårdens öar',\n    description: 'Restider, linjer och tips för alla skärgårdsöar.',",
-  "ny": "// RÄTTAD 2026-11-28 (fas 3, f300b-0097, f300b-0098): \"Komplett guide\" och \"alla skärgårdsöar\" lovade mer än sidan har.\n// Runda 2 (f300b-0097 till f300b-0099): ingen ö har snabbåt som färdsätt, 40 öar saknar restid, och \"alla öar\" lovade mer än listan.\nexport const metadata: Metadata = {\n  title: `Hur tar man sig till öarna? Transport till ${ALL_ISLANDS.length} öar och kustorter`,\n  description: `Så tar du dig till ${ALL_ISLANDS.length} öar och kustorter med färja, buss eller egen båt. Linjer, restider och praktiska tips står med där de finns.`,\n  alternates: { canonical: 'https://svalla.se/ta-dig-till' },\n  openGraph: {\n    images: ogSida('https://svalla.se/ta-dig-till'),\n    title: 'Transport till skärgårdens öar',\n    description: `Hur du tar dig till ${ALL_ISLANDS.length} öar och kustorter, med linjer och restider där de finns.`,",
-  "rader": [
-   "f300b-0097",
-   "f300b-0098",
-   "f300b-0099"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/page.tsx",
-  "gammal": "  const byRegion: Record<string, typeof ALL_ISLANDS> = {\n    mellersta: [],\n    norra: [],\n    södra: [],\n    bohuslan: [],\n  }",
-  "ny": "  // RÄTTAD 2026-11-28 (fas 3, f300b-0100): goteborg och ovriga saknades, så 68 av öarna i räkningen syntes inte.\n  // Etiketterna är desamma som på /oar (src/app/oar/page.tsx).\n  const byRegion: Record<string, typeof ALL_ISLANDS> = {\n    mellersta: [],\n    norra: [],\n    södra: [],\n    goteborg: [],\n    bohuslan: [],\n    ovriga: [],\n  }",
-  "rader": [
-   "f300b-0100"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/page.tsx",
-  "gammal": "    bohuslan: { label: 'Bohuslän & Västkusten', color: '#2e6878' },\n  }",
-  "ny": "    goteborg: { label: 'Göteborgs skärgård', color: '#2e6878' },\n    bohuslan: { label: 'Bohuslän & Västkusten', color: '#2e6878' },\n    ovriga: { label: 'Övriga Sverige', color: '#1e5c82' },\n  }",
-  "rader": [
-   "f300b-0100"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/page.tsx",
-  "gammal": "      url: `https://svalla.se/ta-dig-till/${i.slug}`,",
-  "ny": "      // f300b-0101: /ta-dig-till/[ö] skickas vidare (308) till komma-dit; listan pekar dit direkt, som korten.\n      url: `https://svalla.se/o/${i.slug}/komma-dit`,",
-  "rader": [
-   "f300b-0101"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/page.tsx",
-  "gammal": "              Restid, linjer, biljetter och praktiska tips för {ALL_ISLANDS.length} öar och kustorter längs hela kusten.",
-  "ny": "              {/* f300b-0103: \"längs hela kusten\" stämde inte för öar i sjöar (Visingsö i Vättern).\n                  Runda 2 (f300b-0102): 40 öar saknar restid, så restid och linjer står med där de finns. */}\n              Hur du tar dig till {ALL_ISLANDS.length} öar och kustorter. Linjer, restider och biljetter står med där de finns.",
-  "rader": [
-   "f300b-0102",
-   "f300b-0103"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/page.tsx",
-  "gammal": "                                Live tidtabell",
-  "ny": "                                {/* f300b-0104: avgångarna visas på ösidan, inte på komma-dit som kortet länkar till, och de är tidtabellsdata. */}\n                                Avgångar på ösidan",
-  "rader": [
-   "f300b-0104"
-  ]
- },
- {
-  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
-  "gammal": "                        {/\\.pdf(\\?|$)/i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\\.se|vasttrafik\\.se\\/reseplanering\\/tidtabeller\\/linje\\//i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell →' : 'Tidtabell och biljettinformation →'}",
-  "ny": "                        {/* f300b-0131 (fas 3, 2026-11-28): \"Tidtabell och biljettinformation\" stod också på länkar till Länsstyrelsens\n                            reservatssidor, en kontaktsida och en kommunal nyhet. Nu namnges sajten länken går till. */}\n                        {/\\.pdf(\\?|$)/i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\\.se|vasttrafik\\.se\\/reseplanering\\/tidtabeller\\/linje\\//i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell →' : (() => { try { return `Mer hos ${new URL(lankFor(t.method, island.getting_there[i]!.desc, t.url)!).hostname.replace(/^www\\./, '')} →` } catch { return 'Mer om resan →' } })()}",
-  "rader": [
-   "f300b-0131"
-  ]
- },
- {
-  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
-  "gammal": "              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"ANMÄRKNING TUR\", \"ANMÄRKNING BRYGGA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\" (tabell 10, gäller 2 april–18 juni och 17 augusti–12 december 2026; tabell 24 gällde till 1 november) (läst 2026-10-29) */}",
-  "ny": "              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"ANMÄRKNING TUR\", \"ANMÄRKNING BRYGGA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\" (tabell 10, gäller 2 april–18 juni och 17 augusti–12 december 2026; tabell 24 gällde till 1 november) (läst 2026-10-29) */}\n              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Beställ resan i SL-appen, på\", \"08-600 10 00 minst 2 timmar innan\" (läst 2026-11-28; f300b-0127) */}",
-  "rader": [
-   "f300b-0127"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": " * vill veta så fort de kommer. Det är ett ärligt skäl att lämna adressen:\n * vi skickar länkarna när rederierna publicerat dem, inget annat.",
-  "ny": " * vill veta så fort de kommer. Det är ett ärligt skäl att lämna adressen:\n * vi skickar länkarna när rederierna publicerat nästa periods tabeller, inget annat.",
-  "rader": [
-   "f300b-0081",
-   "f300b-0082"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "    nu: 'Hösttidtabellen för linje 281 till 284 gäller 24 augusti till 12 december 2026.',",
-  "ny": "    nu: 'Höstperioden för linje 281 till 284: 24 augusti till 12 december 2026. För linje 285, 286 och 287: 17 augusti till 13 december 2026.',",
-  "rader": [
-   "f300b-0076",
-   "f300b-0088"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "<h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>Det här gäller just nu</h2>",
-  "ny": "<h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>Hösten 2026 och vintern 2026/27</h2>",
-  "rader": [
-   "f300b-0083"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Nu</dt>",
-  "ny": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Hösten 2026</dt>",
-  "rader": [
-   "f300b-0083"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Vinter</dt>",
-  "ny": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Vintern 2026/27</dt>",
-  "rader": [
-   "f300b-0085"
-  ]
- },
- {
-  "fil": "src/app/vintertidtabeller/page.tsx",
-  "gammal": "          title=\"Få vintertidtabellerna när de kommer\"\n          description=\"Ett mejl med länkarna när Waxholmsbolaget och Styrsöbolaget publicerat vinterns tabeller. Du hamnar också på vårt nyhetsbrev och kan avregistrera dig i varje utskick.\"",
-  "ny": "          // RUNDA 2 (2026-11-28, f300b-0081, f300b-0082): vinterns tabeller är redan publicerade, så rutan gäller nästa tidtabellsbyte.\n          // KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — \"Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period.\" (läst 2026-11-28)\n          // KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"Tidtabellskifte sker tre gånger om året: sommar, höst och vinter och tidtabellerna publiceras här.\" (läst 2026-11-28)\n          title=\"Få ett mejl vid nästa tidtabellsbyte\"\n          description=\"Ett mejl med länkarna när Waxholmsbolaget och Styrsöbolaget publicerat tabellerna för nästa period. Du hamnar också på vårt nyhetsbrev och kan avregistrera dig i varje utskick.\"",
-  "rader": [
-   "f300b-0081",
-   "f300b-0082"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.' }, // KÄLLA: se KÄLLA-raderna vid samma fråga längre ned (läst 2026-11-28)",
-  "ny": "      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Under lågsäsongen, 14 september till 29 april, gäller SL:s periodbiljetter på 30 dagar eller längre i hela Waxholmsbolagets trafik. Resten av året kompletterar du med en Waxholmsbolaget-biljett för den del av resan som går utanför SL-området. På linje 17, 18 och 19 mot södra skärgården via Baggensstäket gäller inte SL-biljetter, utom lågsäsongens periodbiljetter, som enligt Waxholmsbolaget gäller i hela trafiken.' }, // KÄLLA: se KÄLLA-raderna vid samma fråga längre ned (läst 2026-11-28)",
-  "rader": [
-   "f300b-0034",
-   "f300b-0035",
-   "f300b-0036"
-  ]
- },
- {
-  "fil": "src/app/farjor/page.tsx",
-  "gammal": "                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.',",
-  "ny": "                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Under lågsäsongen, 14 september till 29 april, gäller SL:s periodbiljetter på 30 dagar eller längre i hela Waxholmsbolagets trafik. Resten av året kompletterar du med en Waxholmsbolaget-biljett för den del av resan som går utanför SL-området. På linje 17, 18 och 19 mot södra skärgården via Baggensstäket gäller inte SL-biljetter, utom lågsäsongens periodbiljetter, som enligt Waxholmsbolaget gäller i hela trafiken.',",
-  "rader": [
-   "f300b-0034",
-   "f300b-0035",
-   "f300b-0036"
-  ]
- },
- {
-  "fil": "src/app/o/[slug]/komma-dit/page.tsx",
-  "gammal": "                  Se tidtabell →\n",
-  "ny": "                  {/* RUNDA 2 (2026-11-28, f300b-0120): \"Se tidtabell\" stod också på länkar till startsidor och sidor utan tidtabell\n                      (sl.se, waxholmsbolaget.se, destinationgotland.se, solkustturer.se med flera). Samma etikettregel som färdsättskorten. */}\n                  {((u: string) => /\\.pdf(\\?|$)/i.test(u) ? 'Tidtabell (pdf) →' : /trafikverket\\.se|vasttrafik\\.se\\/reseplanering\\/tidtabeller\\/linje\\//i.test(u) ? 'Tidtabell →' : (() => { try { return `Mer hos ${new URL(u).hostname.replace(/^www\\./, '')} →` } catch { return 'Mer om resan →' } })())(island.transport_meta.booking_url)}\n",
-  "rader": [
-   "f300b-0120"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/[slug]/page.tsx",
-  "gammal": "      '@type': 'BusTrip',\n      name: `${t.method} till ${island.name}`,\n      departureBusStop: {\n        '@type': 'BusStop',\n        name: t.from ?? 'Stockholm',\n        address: { '@type': 'PostalAddress', addressLocality: 'Stockholm', addressCountry: 'SE' },\n      },\n      arrivalBusStop: {\n        '@type': 'BusStop',\n        name: `${island.name} brygga`,\n        address: { '@type': 'PostalAddress', addressLocality: island.name, addressCountry: 'SE' },\n      },\n      provider: {\n        '@type': 'Organization',\n        name: tm?.operator ?? 'Waxholmsbolaget',\n        url: tm?.booking_url ?? 'https://waxholmsbolaget.se',\n      },\n",
-  "ny": "      // RUNDA 2 (2026-11-28, f300b-0109): reserven Waxholmsbolaget/Stockholm gav fel operatör och ort för öar utanför\n      // Stockholm, och båtresor hade typen BusTrip. Nu bara de uppgifter som finns i datan.\n      '@type': 'BoatTrip',\n      name: `${t.method} till ${island.name}`,\n      ...(t.from ? { departureBoatTerminal: { '@type': 'BoatTerminal', name: t.from } } : {}),\n      arrivalBoatTerminal: { '@type': 'BoatTerminal', name: island.name },\n      ...(tm?.operator ? { provider: { '@type': 'Organization', name: tm.operator, ...(tm.booking_url ? { url: tm.booking_url } : {}) } } : {}),\n",
-  "rader": [
-   "f300b-0109"
-  ]
- },
- {
-  "fil": "src/app/ta-dig-till/[slug]/page.tsx",
-  "gammal": "      {\n        '@type': 'HowToStep',\n        position: 3,\n        name: `Anländer till ${island.name}`,\n        text: `Du kliver av vid ${island.name}s brygga.${factTravelTime ? ` ${factTravelTime}.` : ''}`,\n      },\n",
-  "ny": "      // RUNDA 2 (2026-11-28, f300b-0111): \"Du kliver av vid öns brygga\" stämde inte för orter och öar som nås på väg.\n      ...(factTravelTime ? [{\n        '@type': 'HowToStep',\n        position: 3,\n        name: `Anländer till ${island.name}`,\n        text: `${factTravelTime}.`,\n      }] : []),\n",
-  "rader": [
-   "f300b-0111"
-  ]
- }
+  {
+    "fil": "src/lib/ferries.ts",
+    "gammal": "    stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Ramsö', 'Tynningö', 'Vaxholm'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
+    "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0011): Ramsö och Tynningö stod som stopp före Vaxholm. Ramsö angörs efter\n    // Vaxholm på linje 4; mellan Strömkajen och Vaxholm går linje 11 till 14 via Nacka strand och Gåshaga brygga.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA\", \"Nacka strand\", \"Gåshaga brygga\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w4.pdf — \"Vaxholm avg.\", \"Ramsö\", \"Ålstäket\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s2.pdf — \"2A STOCKHOLM – HÖGANÄS – VAXHOLM\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (helår: också h2 och w2) (läst 2026-11-28)\n    stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Vaxholm'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
+    "rader": [
+      "f300b-0011",
+      "f300b-0012"
+    ]
+  },
+  {
+    "fil": "src/lib/ferries.ts",
+    "gammal": "    stops: ['Strömkajen', 'Vaxholm', 'Sippsö', 'Lillsved', 'Grinda'],\n    operator: 'Waxholmsbolaget',\n    season: 'Tabell 11: 2 apr–18 jun, 17 aug–12 dec 2026',",
+    "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0014, f300b-0015): vintertabellen för linje 11 är publicerad och angör Grinda.\n    // Sippsö står inte mellan Vaxholm och Lillsved i vintertabellen, så stoppen är de som finns i båda tabellerna.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Lillsved ank.\", \"Södra Grinda\", \"Norra Grinda\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n    stops: ['Strömkajen', 'Vaxholm', 'Lillsved', 'Grinda'],\n    operator: 'Waxholmsbolaget',\n    season: 'Tabell 11: hösten till 12 dec 2026, vintern 13 dec 2026 till 11 apr 2027',",
+    "rader": [
+      "f300b-0014",
+      "f300b-0015"
+    ]
+  },
+  {
+    "fil": "src/lib/ferries.ts",
+    "gammal": "    stops: ['Strömkajen', 'Vaxholm', 'Ljusterö', 'Husarö', 'Finnhamn'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
+    "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0019): Ljusterö och Husarö före Finnhamn gäller linje 12, som i vintertabellen\n    // slutar vid Norra Ingmarsö. I vinter går Strömkajen till Finnhamn med linje 13, via Boda och Svartsö.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — \"12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA\", \"Finnhamn\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — \"12A STOCKHOLM – LILLSVED – NORRA INGMARSÖ GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"Finnhamn\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s13.pdf — \"13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (läst 2026-11-28)\n    stops: ['Strömkajen', 'Vaxholm', 'Finnhamn'],\n    operator: 'Waxholmsbolaget',\n    season: 'Helår',",
+    "rader": [
+      "f300b-0019",
+      "f300b-0020"
+    ]
+  },
+  {
+    "fil": "src/lib/ferries.ts",
+    "gammal": "    stops: ['Sollenkroka', 'Svartsö', 'Norra Stavsudda', 'Berg (Möja)'],",
+    "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0022): Svartsö angörs inte av linje 14 (Sollenkroka till Möja); Svartsö har linje 10, 12 och 13.\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"Sollenkroka ank.\", \"Norra Stavsudda\", \"Berg (Möja)\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — \"14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (läst 2026-11-28)\n    stops: ['Sollenkroka', 'Norra Stavsudda', 'Berg (Möja)'],",
+    "rader": [
+      "f300b-0022",
+      "f300b-0023"
+    ]
+  },
+  {
+    "fil": "src/lib/ferries.ts",
+    "gammal": "    stops: ['Strandvägen', 'Vaxholm', 'Grinda', 'Gällnö', 'Sandhamn'],",
+    "ny": "    // RÄTTAD 2026-11-28 (fas 3, f300b-0016): Strömma listar fler bryggor på vägen.\n    // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"1. Strandvägen (Startpunkt)\", \"2. Nacka Strand\", \"3. Gåshaga\", \"4. Vaxholm\", \"6. Södra Grinda\", \"7. Gällnö\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n    stops: ['Strandvägen', 'Nacka strand', 'Gåshaga', 'Vaxholm', 'Södra Grinda', 'Gällnö', 'Eknö', 'Telegrafholmen', 'Sandhamn'],",
+    "rader": [
+      "f300b-0016"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "  description: 'Kommande avgångar, linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna, och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett sextiotal andra öar.',",
+    "ny": "  // RÄTTAD 2026-11-28 (fas 3, f300b-0002, f300b-0003): kommande avgångar finns bara för Waxholmsbolaget, och listan\n  // \"Båt till öarna\" har 58 öar, alltså 53 utöver de fem som nämns (MÄTT: STOCKHOLMSOAR på main 5e0a08d).\n  description: 'Linjer och bryggor för Waxholmsbolaget och Cinderellabåtarna, kommande avgångar för Waxholmsbolaget och hur du tar båten till Sandhamn, Möja, Finnhamn, Grinda, Utö och ett femtiotal andra öar.',",
+    "rader": [
+      "f300b-0002",
+      "f300b-0003"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "    url: r.operator === 'Cinderella'\n      ? 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/'\n      : 'https://www.waxholmsbolaget.se',\n    sameAs: r.operator === 'Cinderella'\n      ? 'https://www.cinderellabatarna.com'\n      : 'https://sl.se',\n  },\n  offers: {\n    '@type': 'Offer',\n    url: r.infoUrl,\n    availability: 'https://schema.org/InStock',\n  },",
+    "ny": "    url: r.operator === 'Cinderella'\n      ? 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/'\n      : 'https://www.waxholmsbolaget.se',\n    // RÄTTAD 2026-11-28 (fas 3, f300b-0027): sameAs sa att Waxholmsbolaget är samma organisation som SL. Borttaget.\n    // Runda 3 (f300b-0028): Cinderellas sameAs (cinderellabatarna.com) är också borttaget. Sidan gick inte att nå,\n    // varken här eller i Toms webbläsare, och Strömmas egen sida står redan som url.\n  },\n  // availability InStock borttaget (f300b-0029): Cinderellabåtarna står som \"ÅTER APRIL 2027\" hos Strömma.\n  offers: {\n    '@type': 'Offer',\n    url: r.infoUrl,\n  },",
+    "rader": [
+      "f300b-0027",
+      "f300b-0029",
+      "f300b-0028"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn på 2 timmar och 30 minuter enligt operatören Strömma. Båten stannar på vägen vid Vaxholm, Grinda och Gällnö.' },",
+    "ny": "      // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.\", \"2. Nacka Strand\", \"3. Gåshaga\", \"4. Vaxholm\", \"6. Södra Grinda\", \"7. Gällnö\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n      acceptedAnswer: { '@type': 'Answer', text: 'Cinderellabåtarna går från Strandvägen i Stockholm till Sandhamn på 2 timmar och 30 minuter enligt operatören Strömma. På vägen angör båten Nacka strand, Gåshaga, Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen.' },",
+    "rader": [
+      "f300b-0032"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "SL-biljett gäller inte.' }, // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19",
+    "ny": "SL-biljett gäller inte.' }, // KÄLLA: se KÄLLA-raderna vid samma fråga längre ned (läst 2026-11-28)",
+    "rader": [
+      "f300b-0033",
+      "f300b-0034",
+      "f300b-0035",
+      "f300b-0036"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "      acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbolaget är skärgårdens kollektivtrafik med SL-kort. Cinderella är turistinriktad med längre dagsrutter och bar ombord. Cinderella passar bäst för dagstur; Waxholmsbolaget för pendlare.' },",
+    "ny": "      // RÄTTAD 2026-11-28 (fas 3, f300b-0037 till f300b-0040): SL-biljett gäller bara i en del av trafiken, och \"längre dagsrutter\" är obelagt.\n      // KÄLLA: https://waxholmsbolaget.se/om-oss — \"Allt sedan dess har vi trafikerat Stockholms skärgård varenda dag året runt.\" (läst 2026-11-28)\n      // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Alla SL-biljetter gäller mellan 44 bryggor i Waxholmsbolagets trafik\" (läst 2026-11-28)\n      // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Säsongen löper från slutet av april till slutet av september.\", \"Ombord finns café och bar med något för alla\" (läst 2026-11-28)\n      acceptedAnswer: { '@type': 'Answer', text: 'Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och går året runt. SL-biljetter gäller mellan 44 bryggor i dess trafik. Cinderellabåtarna drivs av Strömma, går från slutet av april till slutet av september och har café och bar ombord.' },",
+    "rader": [
+      "f300b-0037",
+      "f300b-0038",
+      "f300b-0039",
+      "f300b-0040"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "            Waxholmsbolaget och Cinderellabåtarna: linjer och bryggor i Stockholms skärgård, och kommande avgångar för Waxholmsbolagets linjer. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget täcker hundratals bryggor med SL-kort.",
+    "ny": "            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0006): SL-biljett gäller inte vid alla bryggor.\n                KÄLLA: https://waxholmsbolaget.se/om-oss — \"Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården.\" (läst 2026-11-28)\n                KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Mellan dessa bryggor kan du året runt resa med Waxholmsbolaget på alla sorters SL-biljetter:\" (läst 2026-11-28) */}\n            Waxholmsbolaget och Cinderellabåtarna: linjer och bryggor i Stockholms skärgård, och kommande avgångar för Waxholmsbolagets linjer. Cinderella avgår från Strandvägen till Sandhamn på 2 tim 30 min. Waxholmsbolaget trafikerar 299 bryggor sommartid, och mellan 44 av dem gäller alla SL-biljetter året runt.",
+    "rader": [
+      "f300b-0006"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "            <strong style={{ color: 'var(--txt)' }}>Live.</strong> Avgångar hämtas från Trafiklab.\n            Uppdateras löpande. Dubbelkolla alltid mot operatören inför avgång.",
+    "ny": "            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0008): \"Live\" och \"uppdateras löpande\" lovade realtid. Avgångarna kommer ur ResRobot,\n                vars tidtabellsdata uppdateras högst en gång per dygn; sidan hämtar på nytt var tionde minut (revalidate = 600).\n                KÄLLA: https://www.trafiklab.se/api/our-apis/resrobot-v21/route-planner/ — \"The static data used for this API is updated when changes are made, at most once per day.\" (läst 2026-11-28) */}\n            <strong style={{ color: 'var(--txt)' }}>Från Trafiklab.</strong> Avgångarna kommer ur Trafiklabs reseplanerare ResRobot\n            och följer tidtabellen. Sidan hämtar dem på nytt var tionde minut. Dubbelkolla alltid mot operatören inför avgång.",
+    "rader": [
+      "f300b-0008"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />\n                      LIVE",
+    "ny": "                      <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#fff' }} />\n                      {/* f300b-0009: tidtabellsdata, inte realtid */}\n                      TIDTABELL",
+    "rader": [
+      "f300b-0009"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "            Cinderellabåtarna 2026, vart går de och när?",
+    "ny": "            Cinderellabåtarna 2027, vart går de och när?",
+    "rader": [
+      "f300b-0041"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "            från Strömkajen, som är Waxholmsbolagets kaj. Linjen går till Vaxholm, Grinda,\n            Gällnö och Sandhamn. Säsongen löper från slutet av april till slutet av september.",
+    "ny": "            från Strömkajen, som är Waxholmsbolagets kaj. På väg till Sandhamn angör båten Nacka strand, Gåshaga,\n            Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen. Säsongen 2027 är 30 april till 26 september.\n            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0043, f300b-0044).\n                KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Från Stockholm till Sandhamn - bryggor & restider\", \"2. Nacka Strand\", \"3. Gåshaga\", \"6. Södra Grinda\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n                KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"30 apr - 26 sep 2027\" (läst 2026-11-28) */}",
+    "rader": [
+      "f300b-0043",
+      "f300b-0044"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "          {/* KÄLLA: Strömma/Cinderellabåtarna — restid och pris avlästa på operatörens egen sida (2026-08-05) */}\n          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 24 }}>\n            {[\n              { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 255 kr' },\n              { mal: 'Gällnö',   tid: '1 tim 45 min', pris: 'från 235 kr' },\n              { mal: 'Grinda',   tid: '1 tim 30 min', pris: 'från 235 kr' },",
+    "ny": "          {/* RÄTTAD 2026-11-28 (fas 3, f300b-0046 till f300b-0048): priserna är Strömmas prisexempel för 2027, enkel resa från Strandvägen.\n              KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Priser 2027\", \"Prisexempel - enkel resa från Strandvägen:\", \"Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.\" (läst 2026-11-28)\n              KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Båt till Grinda - snabbt & lätt med Cinderellabåtarna\", \"Med Cinderella tar resan till Gällnö ca 1 tim och 45 min.\" (läst 2026-11-28) */}\n          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 12, marginBottom: 24 }}>\n            {[\n              { mal: 'Sandhamn', tid: '2 tim 30 min', pris: 'från 265 kr (2027)' },\n              { mal: 'Gällnö',   tid: '1 tim 45 min', pris: 'från 245 kr (2027)' },\n              { mal: 'Grinda',   tid: '1 tim 30 min', pris: 'från 245 kr (2027)' },",
+    "rader": [
+      "f300b-0046",
+      "f300b-0047",
+      "f300b-0048"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "              Cinderella rapporterar inte till Trafiklab, och tidtabellen varierar per datum.\n              En kopia här skulle bli fel utan att vi märkte det. Aktuella avgångar finns hos",
+    "ny": "              {/* RÄTTAD 2026-11-28 (fas 3, f300b-0050): att Cinderella inte rapporterar till Trafiklab är obelagt (Trafiklab skriver\n                  \"All operators which operate in Sweden are covered by the ResRobot APIs.\"). Det vi vet är att Svalla inte har sett\n                  någon Cinderellaresa i datan (revision 2026-10-02, se kommentaren vid sidans inledning). */}\n              Vi visar bara avgångar som vi kan hämta från Trafiklab, och där har vi inte sett några turer med Cinderellabåtarna.\n              En kopia här skulle bli fel utan att vi märkte det. Aktuella avgångar finns hos",
+    "rader": [
+      "f300b-0050"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "              Waxholmsbolaget är skärgårdens kollektivtrafik och täcker hundratals bryggor.\n              Till skillnad från Cinderella, som är turistinriktad, går Waxholmsbolaget från\n              tidig morgon till sen kväll. Linjerna nedan är hämtade ur faktiska reseförslag\n              i Trafiklab, inte ur en broschyr.",
+    "ny": "              {/* RÄTTAD 2026-11-28 (fas 3, f300b-0052 till f300b-0054).\n                  KÄLLA: https://waxholmsbolaget.se/om-oss — \"Under sommaren trafikerar vi 299 bryggor, allt från den norra till den södra skärgården, samt den inre mellanskärgården.\", \"Allt sedan dess har vi trafikerat Stockholms skärgård varenda dag året runt.\" (läst 2026-11-28)\n                  KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Säsongen löper från slutet av april till slutet av september.\" (läst 2026-11-28) */}\n              Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och trafikerar 299 bryggor sommartid.\n              Till skillnad från Cinderellabåtarna, som går från slutet av april till slutet av september, går\n              Waxholmsbolaget året runt. Linjerna nedan är kontrollerade mot operatörernas egna tidtabeller.",
+    "rader": [
+      "f300b-0052",
+      "f300b-0053",
+      "f300b-0054"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                { name: 'Färja 16', desc: 'Stavsnäs vinterhamn → Sandhamn, ca 50 min' },\n                { name: 'Färja 17-1', desc: 'Stavsnäs vinterhamn → Nämdö' },",
+    "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0055): \"ca 50 min\" stämde inte med tabellen. Restiden är uppmätt i vintertabellen 16\n                // (13 december 2026 till 11 april 2027), 15 turer Stavsnäs till Sandhamn: 54 till 70 min. Året runt: h16, s16 och w16.\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w16.pdf — \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n                // RUNDA 2 (2026-11-28): bryggan heter \"Stavsnäs\" i Waxholmsbolagets tabeller 16 och 17; \"vinterhamn\" står inte där.\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/s16.pdf — \"16A STAVSNÄS – SANDHAMN – HAGEDE\", \"GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026\" (läst 2026-11-28)\n                { name: 'Färja 16', desc: 'Stavsnäs → Sandhamn året runt, 54 till 70 min i vintertabellen från 13 dec 2026' },\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w17.pdf — \"17A STAVSNÄS – NÄMDÖ – MÖRTÖ\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n                { name: 'Färja 17-1', desc: 'Stavsnäs → Nämdö' },",
+    "rader": [
+      "f300b-0055",
+      "f300b-0056",
+      "f300b-0057"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                { name: 'Färja 941', desc: 'Vaxholm → Rindö, vägfärja, avgiftsfri' },\n                { name: 'Färja 31-1', desc: 'Räfsnäs brygga → Lidö, ca 15 min' },",
+    "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0060): vägfärjan Vaxholm till Rindö är Trafikverkets Vaxholmsleden, inte Waxholmsbolaget.\n                // KÄLLA: https://www.trafikverket.se/resa-och-trafik/farjetrafik/vaxholmsleden/ — \"Vaxholmsleden går mellan Vaxholm och Rindö i Stockholms skärgård. Färjeledens längd är 970 meter och överfartstiden är sex minuter. Resan med vägfärjan är avgiftsfri.\" (läst 2026-11-28)\n                { name: 'Vaxholmsleden', desc: 'Vaxholm → Rindö, Trafikverkets vägfärja (inte Waxholmsbolaget), sex minuter, avgiftsfri' },\n                // RÄTTAD 2026-11-28 (P0, fas 3, f300b-0062): varje tur från Räfsnäs till Lidö är beställningstur (märkt b) i höst-,\n                // vinter- och sommartabellen 2026 utom en sommartur. Restiden uppmätt i w31: 10 till 15 min.\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/w31.pdf — \"31A RÄFSNÄS – TJOCKÖ – FEJAN\", \"Beställ resan i SL-appen, på\", \"08-600 10 00 minst 2 timmar innan\", \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n                // KÄLLA: https://kund.printhuset-sthlm.se/wa/h31.pdf — \"31A RÄFSNÄS – TJOCKÖ – FEJAN\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n                { name: 'Färja 31-1', desc: 'Räfsnäs brygga → Lidö, 10 till 15 min. Båten angör Lidö bara om du beställt resan i förväg, i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00' },",
+    "rader": [
+      "f300b-0060",
+      "f300b-0061",
+      "f300b-0062",
+      "f300b-0063"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                a: 'Cinderellabåtarna går från Strandvägen i Stockholm: inte Strömkajen, som är Waxholmsbolagets kaj. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören Strömma, med stopp vid Vaxholm, Grinda och Gällnö. Dagstur är fullt möjlig, men avgångstiderna varierar per datum, så vi hänvisar till Strömmas tidtabell i stället för att gissa.',",
+    "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0066): stoppen var ofullständiga. Runda 2 (f300b-0067): \"fullt möjlig\" var starkare än källan.\n                // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — \"Hela resan till Sandhamn tar ungefär 2 timmar och 30 minuter.\", \"2. Nacka Strand\", \"3. Gåshaga\", \"6. Södra Grinda\", \"8. Eknö\", \"9. Telegrafholmen\" (läst 2026-11-28)\n                // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"Oavsett om du planerar en dagsutflykt eller vill stanna några dagar är Cinderellabåtarna din naturliga startpunkt.\" (läst 2026-11-28)\n                a: 'Cinderellabåtarna går från Strandvägen i Stockholm: inte Strömkajen, som är Waxholmsbolagets kaj. Resan till Sandhamn tar 2 timmar och 30 minuter enligt operatören Strömma, med stopp vid Nacka strand, Gåshaga, Vaxholm, Södra Grinda, Gällnö, Eknö och Telegrafholmen. Strömma beskriver båtarna som en startpunkt för en dagsutflykt. Avgångstiderna finns i Strömmas tidtabell, så vi hänvisar dit i stället för att gissa.',",
+    "rader": [
+      "f300b-0066",
+      "f300b-0067"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                // KÄLLA: waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor; sl.se/biljetter/sortiment-och-regler/biljetter-for-resor-med-waxholmsbolagets-skargardsbatar; läst 2026-09-19. \"SL Access\" finns inte längre som namn; Utö går från Årsta brygga, inte Nynäshamn.",
+    "ny": "                // RUNDA 2 (2026-11-28): lågsäsongen och linje 17 till 19 enligt Waxholmsbolagets egna sidor.\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"Du kan resa med SL-biljett i skärgårdstrafiken mellan Strömkajen i innerstan och Vaxholm med omnejd. Det här gäller året runt ombord på Waxholmsbolagets fartyg i området och för alla sorters SL-biljetter.\", \"Det är totalt 44 bryggor som ingår i området.\" (läst 2026-11-28)\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"För resor som delvis sker inom SL-området behöver du komplettera med en Waxholmsbolaget-biljett för den delsträcka som är utanför området.\", \"Under lågsäsongen, 14 september–29 april, gäller vissa SL-biljetter i hela Waxholmsbolagets trafik.\" (läst 2026-11-28)\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/alla-sl-biljetter-galler-mellan-44-bryggor — \"På båtar som går mot södra skärgården (till exempel Utö och Nämdö) via Baggensstäket (eller i omvänd riktning från södra skärgården till innerstaden) gäller inte SL-biljetter. Detta avser linje 17, 18 och 19.\" (läst 2026-11-28)\n                // KÄLLA: https://waxholmsbolaget.se/biljetter-och-priser/mer-om-biljetter/sa-galler-sl-biljetten-pa-baten — \"Lågsäsong: Vissa SL-biljetter gäller i hela trafiken 14 september–29 april\", \"Under lågsäsong kan du resa med Waxholmsbolaget med SL:s periodbiljetter som gäller för 30 dagar eller längre.\" (läst 2026-11-28)",
+    "rader": [
+      "f300b-0033",
+      "f300b-0034",
+      "f300b-0035",
+      "f300b-0036"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                a: 'Waxholmsbolaget är skärgårdens kollektivtrafik: många linjer, fler avgångar, SL-biljett gäller i SL-området runt Vaxholm. Cinderella är mer turistinriktad med längre dagsrutter, bar ombord och mer festlig stämning. Cinderella passar bäst för dagstur eller helgresa; Waxholmsbolaget passar bättre för att pendla till sommarstugan.',",
+    "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0068 till f300b-0072): värdeord och obelagda jämförelser borttagna; KÄLLA-raderna vid JSON-LD-frågan ovan.\n                a: 'Waxholmsbolaget är kollektivtrafiken på vattnet i Stockholms skärgård och går året runt, och SL-biljetter gäller i SL-området mellan Strömkajen och Vaxholm med omnejd. Cinderellabåtarna drivs av Strömma, går från slutet av april till slutet av september och har café och bar ombord. Strömma beskriver båtarna som en startpunkt både för en dagsutflykt och för den som vill stanna några dagar.',",
+    "rader": [
+      "f300b-0068",
+      "f300b-0069",
+      "f300b-0070",
+      "f300b-0071",
+      "f300b-0072"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                a: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma. Exakta datum varierar år till år, se stromma.com för aktuell säsongsinfo.',",
+    "ny": "                // RÄTTAD 2026-11-28 (fas 3, f300b-0074). KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/ — \"30 apr - 26 sep 2027\", \"Säsongen löper från slutet av april till slutet av september.\" (läst 2026-11-28)\n                a: 'Cinderellabåtarna trafikerar skärgården från slutet av april till slutet av september enligt operatören Strömma. Säsongen 2027 är 30 april till 26 september.',",
+    "rader": [
+      "f300b-0073",
+      "f300b-0074"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": " * VARFÖR: höstens tabeller tar slut 12 december och vinterns är inte\n * publicerade än.",
+    "ny": " * VARFÖR (2026-10-02): höstens tabeller tar slut 12 december och vinterns var inte\n * publicerade då. Granskningen 2026-11-28 (fas 3, f300b-0080 och framåt): vinterns\n * tabeller är nu publicerade hos Waxholmsbolaget, Styrsöbolaget och Västtrafik. Runda 2 (2026-11-28):\n * sidan skriver perioderna utan \"nu\", så att den stämmer också efter 13 december, och mejlrutan\n * gäller nästa tidtabellsbyte.",
+    "rader": [
+      "f300b-0080"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": " * KÄLLOR (alla lästa 2026-10-02):",
+    "ny": " * KÄLLOR 2026-11-28 (fas 3):\n *  (waxholmsbolaget.linjetidtabeller.se: EJ NÅBAR i runda 2, 2026-11-28; Chromium visade en verifieringssida.)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\" (läst 2026-11-28)\n *    (MÄTT 2026-11-28: 28 av 30 vintertabeller har den raden; w12 har egna perioder och w7:s rubrik går inte att läsa ur pdf:en.)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — \"12A STOCKHOLM – LILLSVED – NORRA INGMARSÖ\", \"GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — \"24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h26.pdf — \"26A STOCKHOLM – VAXHOLM – NORRSUND – RÖDLÖGA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h27.pdf — \"27A STOCKHOLM – VAXHOLM – NORRSUND – ARHOLMA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — \"28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – BROMSKÄR / RÖDLÖGA\", \"GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 30 SEPTEMBER 2026\" (läst 2026-11-28)\n *  KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"Hösttidtabell L 285, 286, 287 20260817-20261213\", \"Vintertidtabell L 285, 286, 287 20261213-20270614\" (läst 2026-11-28)\n *  KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — \"Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period.\" (läst 2026-11-28)\n *  KÄLLA: https://waxholmsbolaget.se/att-resa-med-oss/fore-och-under-resan — \"Under vintertidtabellen (december till april) har vissa fartyg bara försäljning av varma och kalla drycker ombord.\" (läst 2026-11-28)\n *  KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"Tidtabellskifte sker tre gånger om året: sommar, höst och vinter\", \"Hösttidtabell L 281-282 20260824-20261212\", \"Vinterttidtabell L 281-282 20261213-20270606\", \"Vinterttidtabell L 283 20261213-20270606\", \"Vinterttidtabell L 284 20261213-20270606\" (läst 2026-11-28)\n *  KÄLLA: https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014489900000/ — \"Tidtabell linje 899\", \"Strömstad - Kosteröarna - Strömstad\", \"Gäller 2026-09-27 till 2026-12-12\", \"Gäller 2026-12-13 till 2027-05-15\" (läst 2026-11-28)\n *  KÄLLA: https://www.vasttrafik.se/info/kosterbatarna/ — \"Kosterbåtarna - linje 899 och 898\", \"Kosterbåtarna kör mellan Strömstad och Kosteröarna.\", \"Från januari 2027 kommer Kosteröarna istället ingå i zon C.\" (läst 2026-11-28)\n *\n * KÄLLOR (alla lästa 2026-10-02, före fas 3):",
+    "rader": [
+      "f300b-0080",
+      "f300b-0076",
+      "f300b-0083",
+      "f300b-0084",
+      "f300b-0088"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "    'Höstens tidtabeller för Waxholmsbolaget och Styrsöbolaget gäller till 12 december. Vinterns är inte publicerade än. Här är vad som gäller nu, och vi mejlar länkarna när de kommer.',",
+    "ny": "    'Vinterns tidtabeller för Waxholmsbolaget, Styrsöbolaget och Kosterbåtarna är publicerade och gäller från 13 december 2026. Här är perioderna för hösten och vintern 2026/27, med länkar till rederiernas tabeller.',",
+    "rader": [
+      "f300b-0076",
+      "f300b-0077"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "    description: 'Vad som gäller nu, när höstens tabeller tar slut och hur du får vinterns så fort de publiceras.',",
+    "ny": "    description: 'Perioderna för höstens och vinterns tidtabeller 2026/27 hos Waxholmsbolaget, Styrsöbolaget och Kosterbåtarna, med länkar till rederiernas tabeller.',",
+    "rader": [
+      "f300b-0078"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "const KONTROLLERAD = '2 oktober 2026'",
+    "ny": "const KONTROLLERAD = '28 november 2026'",
+    "rader": [
+      "f300b-0094"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "    nu: 'Hösttidtabellerna gäller 17 augusti till 12 december 2026. Linje 24 (Blidösundet), 26 (Rödlöga) och 27 (Arholma) slutar redan 1 november.',\n    vinter: 'Inte publicerad än. Förra vintern gällde vintertabellerna 14 december 2025 till 1 april 2026.',",
+    "ny": "    nu: 'Höstperioden för de flesta linjer: 17 augusti till 12 december 2026. Linje 28 hade höstperiod till 30 september 2026, och linje 24 (Blidösundet), 26 (Rödlöga) och 27 (Arholma) till 1 november 2026.',\n    vinter: 'Publicerad. För de flesta linjer gäller vintertabellen 13 december 2026 till 11 april 2027. Linje 12 följer vintertabellen 13 december till 6 januari och 25 mars till 11 april, och 7 januari till 24 mars när det är isfritt.',",
+    "rader": [
+      "f300b-0083",
+      "f300b-0084",
+      "f300b-0085"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "    vinter: 'Inte publicerad än.',\n    extra: 'Styrsöbolaget byter tidtabell tre gånger om året: sommar, höst och vinter.',",
+    "ny": "    vinter: 'Publicerad. Vintertidtabellen för linje 281 till 284 gäller 13 december 2026 till 6 juni 2027, och för linje 285, 286 och 287 13 december 2026 till 14 juni 2027.',\n    extra: 'Styrsöbolaget byter tidtabell tre gånger om året: sommar, höst och vinter.',",
+    "rader": [
+      "f300b-0089"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "    nu: 'Linje 899 och 898 går mellan Strömstad och Kosteröarna. Tiderna finns i Västtrafiks reseplanerare, inte som egen tabell.',\n    vinter: 'Sök resan på det datum du ska åka.',",
+    "ny": "    nu: 'Linje 899 och 898 går mellan Strömstad och Kosteröarna. Höstperioden i Västtrafiks tabell för linje 899: 27 september till 12 december 2026.',\n    vinter: 'Tabellen för linje 899 gäller 13 december 2026 till 15 maj 2027. I Västtrafiks reseplanerare får du tiderna i realtid.',",
+    "rader": [
+      "f300b-0091",
+      "f300b-0092"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "    lank: { text: 'Kosterbåtarna hos Västtrafik', url: 'https://www.vasttrafik.se/info/kosterbatarna/' },",
+    "ny": "    lank: { text: 'Tidtabell linje 899 hos Västtrafik', url: 'https://www.vasttrafik.se/reseplanering/tidtabeller/linje/9011014489900000/' },",
+    "rader": [
+      "f300b-0092"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "            Höstens tidtabeller för skärgårdsbåtarna i Stockholm och Göteborg gäller till 12 december.\n            Vinterns tabeller är inte publicerade än. Lämna din mejladress så skickar vi länkarna när rederierna lagt ut dem.",
+    "ny": "            {/* RÄTTAD 2026-11-28 (fas 3, f300b-0079; runda 2, f300b-0076): vinterns tabeller är publicerade; texten säger inte \"nu\",\n                så att den stämmer också efter 13 december. KÄLLA-raderna i kommentaren överst. */}\n            Vinterns tidtabeller för skärgårdsbåtarna i Stockholm och Göteborg är publicerade och gäller från 13 december 2026.\n            Här är perioderna för hösten och vintern, med länkar till rederiernas tabeller.",
+    "rader": [
+      "f300b-0079"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/page.tsx",
+    "gammal": "export const metadata: Metadata = {\n  title: 'Hur tar man sig till skärgården? Transport till alla öar',\n  description: 'Komplett guide till hur du tar dig till skärgårdens öar. Färja, snabbåt, buss och egen båt: med restider, linjer och praktiska tips.',\n  alternates: { canonical: 'https://svalla.se/ta-dig-till' },\n  openGraph: {\n    images: ogSida('https://svalla.se/ta-dig-till'),\n    title: 'Transport till skärgårdens öar',\n    description: 'Restider, linjer och tips för alla skärgårdsöar.',",
+    "ny": "// RÄTTAD 2026-11-28 (fas 3, f300b-0097, f300b-0098): \"Komplett guide\" och \"alla skärgårdsöar\" lovade mer än sidan har.\n// Runda 2 (f300b-0097 till f300b-0099): ingen ö har snabbåt som färdsätt, 40 öar saknar restid, och \"alla öar\" lovade mer än listan.\n// Runda 3 (f300b-0097 till f300b-0099, f300b-0102): ALL_ISLANDS har 144 poster, 133 öar, 7 orter, 3 naturreservat och nationalparken Kosterhavet (MÄTT), därför \"öar och platser\".\nexport const metadata: Metadata = {\n  title: `Hur tar man sig till öarna? Transport till ${ALL_ISLANDS.length} öar och platser`,\n  description: `Så tar du dig till ${ALL_ISLANDS.length} öar och platser med färja, buss eller egen båt. Linjer, restider och praktiska tips står med där de finns.`,\n  alternates: { canonical: 'https://svalla.se/ta-dig-till' },\n  openGraph: {\n    images: ogSida('https://svalla.se/ta-dig-till'),\n    title: 'Transport till skärgårdens öar',\n    description: `Hur du tar dig till ${ALL_ISLANDS.length} öar och platser, med linjer och restider där de finns.`,",
+    "rader": [
+      "f300b-0097",
+      "f300b-0098",
+      "f300b-0099"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/page.tsx",
+    "gammal": "  const byRegion: Record<string, typeof ALL_ISLANDS> = {\n    mellersta: [],\n    norra: [],\n    södra: [],\n    bohuslan: [],\n  }",
+    "ny": "  // RÄTTAD 2026-11-28 (fas 3, f300b-0100): goteborg och ovriga saknades, så 68 av öarna i räkningen syntes inte.\n  // Etiketterna är desamma som på /oar (src/app/oar/page.tsx).\n  const byRegion: Record<string, typeof ALL_ISLANDS> = {\n    mellersta: [],\n    norra: [],\n    södra: [],\n    goteborg: [],\n    bohuslan: [],\n    ovriga: [],\n  }",
+    "rader": [
+      "f300b-0100"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/page.tsx",
+    "gammal": "    bohuslan: { label: 'Bohuslän & Västkusten', color: '#2e6878' },\n  }",
+    "ny": "    goteborg: { label: 'Göteborgs skärgård', color: '#2e6878' },\n    bohuslan: { label: 'Bohuslän & Västkusten', color: '#2e6878' },\n    ovriga: { label: 'Övriga Sverige', color: '#1e5c82' },\n  }",
+    "rader": [
+      "f300b-0100"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/page.tsx",
+    "gammal": "      url: `https://svalla.se/ta-dig-till/${i.slug}`,",
+    "ny": "      // f300b-0101: /ta-dig-till/[ö] skickas vidare (308) till komma-dit; listan pekar dit direkt, som korten.\n      url: `https://svalla.se/o/${i.slug}/komma-dit`,",
+    "rader": [
+      "f300b-0101"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/page.tsx",
+    "gammal": "              Restid, linjer, biljetter och praktiska tips för {ALL_ISLANDS.length} öar och kustorter längs hela kusten.",
+    "ny": "              {/* f300b-0103: \"längs hela kusten\" stämde inte för öar i sjöar (Visingsö i Vättern).\n                  Runda 2 (f300b-0102): 40 öar saknar restid, så restid och linjer står med där de finns.\n                  Runda 3: listan har öar, orter, naturreservat och en nationalpark, därför \"öar och platser\". */}\n              Hur du tar dig till {ALL_ISLANDS.length} öar och platser. Linjer, restider och biljetter står med där de finns.",
+    "rader": [
+      "f300b-0102",
+      "f300b-0103"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/page.tsx",
+    "gammal": "                                Live tidtabell",
+    "ny": "                                {/* f300b-0104: avgångarna visas på ösidan, inte på komma-dit som kortet länkar till, och de är tidtabellsdata. */}\n                                Avgångar på ösidan",
+    "rader": [
+      "f300b-0104"
+    ]
+  },
+  {
+    "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+    "gammal": "                        {/\\.pdf(\\?|$)/i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\\.se|vasttrafik\\.se\\/reseplanering\\/tidtabeller\\/linje\\//i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell →' : 'Tidtabell och biljettinformation →'}",
+    "ny": "                        {/* f300b-0131 (fas 3, 2026-11-28): \"Tidtabell och biljettinformation\" stod också på länkar till Länsstyrelsens\n                            reservatssidor, en kontaktsida och en kommunal nyhet. Nu namnges sajten länken går till. */}\n                        {/\\.pdf(\\?|$)/i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\\.se|vasttrafik\\.se\\/reseplanering\\/tidtabeller\\/linje\\//i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell →' : (() => { try { return `Mer hos ${new URL(lankFor(t.method, island.getting_there[i]!.desc, t.url)!).hostname.replace(/^www\\./, '')} →` } catch { return 'Mer om resan →' } })()}",
+    "rader": [
+      "f300b-0131"
+    ]
+  },
+  {
+    "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+    "gammal": "              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"ANMÄRKNING TUR\", \"ANMÄRKNING BRYGGA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\" (tabell 10, gäller 2 april–18 juni och 17 augusti–12 december 2026; tabell 24 gällde till 1 november) (läst 2026-10-29) */}",
+    "ny": "              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — \"ANMÄRKNING TUR\", \"ANMÄRKNING BRYGGA\", \"Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00\" (tabell 10, gäller 2 april–18 juni och 17 augusti–12 december 2026; tabell 24 gällde till 1 november) (läst 2026-10-29) */}\n              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — \"GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027\", \"Beställ resan i SL-appen, på\", \"08-600 10 00 minst 2 timmar innan\" (läst 2026-11-28; f300b-0127) */}",
+    "rader": [
+      "f300b-0127"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": " * vill veta så fort de kommer. Det är ett ärligt skäl att lämna adressen:\n * vi skickar länkarna när rederierna publicerat dem, inget annat.",
+    "ny": " * vill veta så fort de kommer. Det är ett ärligt skäl att lämna adressen:\n * vi skickar länkarna när rederierna publicerat nästa periods tabeller, inget annat.",
+    "rader": [
+      "f300b-0081",
+      "f300b-0082"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "    nu: 'Hösttidtabellen för linje 281 till 284 gäller 24 augusti till 12 december 2026.',",
+    "ny": "    nu: 'Höstperioden för linje 281 till 284: 24 augusti till 12 december 2026. För linje 285, 286 och 287: 17 augusti till 13 december 2026.',",
+    "rader": [
+      "f300b-0076",
+      "f300b-0088"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "<h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>Det här gäller just nu</h2>",
+    "ny": "<h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--txt)', margin: '0 0 12px' }}>Hösten 2026 och vintern 2026/27</h2>",
+    "rader": [
+      "f300b-0083"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Nu</dt>",
+    "ny": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Hösten 2026</dt>",
+    "rader": [
+      "f300b-0083"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Vinter</dt>",
+    "ny": "<dt style={{ fontWeight: 700, color: 'var(--txt)' }}>Vintern 2026/27</dt>",
+    "rader": [
+      "f300b-0085"
+    ]
+  },
+  {
+    "fil": "src/app/vintertidtabeller/page.tsx",
+    "gammal": "          title=\"Få vintertidtabellerna när de kommer\"\n          description=\"Ett mejl med länkarna när Waxholmsbolaget och Styrsöbolaget publicerat vinterns tabeller. Du hamnar också på vårt nyhetsbrev och kan avregistrera dig i varje utskick.\"",
+    "ny": "          // RUNDA 2 (2026-11-28, f300b-0081, f300b-0082): vinterns tabeller är redan publicerade, så rutan gäller nästa tidtabellsbyte.\n          // KÄLLA: https://waxholmsbolaget.se/reseplanering/tidtabeller — \"Waxholmsbolaget byter tidtabell fyra gånger om året, men vissa linjer går bara delar av en period.\" (läst 2026-11-28)\n          // KÄLLA: https://styrsobolaget.se/tidtabeller/ — \"Tidtabellskifte sker tre gånger om året: sommar, höst och vinter och tidtabellerna publiceras här.\" (läst 2026-11-28)\n          title=\"Få ett mejl vid nästa tidtabellsbyte\"\n          description=\"Ett mejl med länkarna när Waxholmsbolaget och Styrsöbolaget publicerat tabellerna för nästa period. Du hamnar också på vårt nyhetsbrev och kan avregistrera dig i varje utskick.\"",
+    "rader": [
+      "f300b-0081",
+      "f300b-0082"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.' }, // KÄLLA: se KÄLLA-raderna vid samma fråga längre ned (läst 2026-11-28)",
+    "ny": "      acceptedAnswer: { '@type': 'Answer', text: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Under lågsäsongen, 14 september till 29 april, gäller SL:s periodbiljetter på 30 dagar eller längre i hela Waxholmsbolagets trafik. Annars kompletterar du med en Waxholmsbolaget-biljett för den del av resan som går utanför SL-området. På linje 17, 18 och 19 mot södra skärgården via Baggensstäket gäller inte SL-biljetter, utom lågsäsongens periodbiljetter, som enligt Waxholmsbolaget gäller i hela trafiken.' }, // KÄLLA: se KÄLLA-raderna vid samma fråga längre ned (läst 2026-11-28)",
+    "rader": [
+      "f300b-0034",
+      "f300b-0035",
+      "f300b-0036"
+    ]
+  },
+  {
+    "fil": "src/app/farjor/page.tsx",
+    "gammal": "                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken. Linje 17, 18 och 19 mot södra skärgården: SL-biljett gäller inte.',",
+    "ny": "                a: 'Delvis. Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd (44 bryggor), året runt. Under lågsäsongen, 14 september till 29 april, gäller SL:s periodbiljetter på 30 dagar eller längre i hela Waxholmsbolagets trafik. Annars kompletterar du med en Waxholmsbolaget-biljett för den del av resan som går utanför SL-området. På linje 17, 18 och 19 mot södra skärgården via Baggensstäket gäller inte SL-biljetter, utom lågsäsongens periodbiljetter, som enligt Waxholmsbolaget gäller i hela trafiken.',",
+    "rader": [
+      "f300b-0034",
+      "f300b-0035",
+      "f300b-0036"
+    ]
+  },
+  {
+    "fil": "src/app/o/[slug]/komma-dit/page.tsx",
+    "gammal": "                  Se tidtabell →\n",
+    "ny": "                  {/* RUNDA 2 (2026-11-28, f300b-0120): \"Se tidtabell\" stod också på länkar till startsidor och sidor utan tidtabell\n                      (sl.se, waxholmsbolaget.se, destinationgotland.se, solkustturer.se med flera). Samma etikettregel som färdsättskorten. */}\n                  {((u: string) => /\\.pdf(\\?|$)/i.test(u) ? 'Tidtabell (pdf) →' : /trafikverket\\.se|vasttrafik\\.se\\/reseplanering\\/tidtabeller\\/linje\\//i.test(u) ? 'Tidtabell →' : (() => { try { return `Mer hos ${new URL(u).hostname.replace(/^www\\./, '')} →` } catch { return 'Mer om resan →' } })())(island.transport_meta.booking_url)}\n",
+    "rader": [
+      "f300b-0120"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/[slug]/page.tsx",
+    "gammal": "      '@type': 'BusTrip',\n      name: `${t.method} till ${island.name}`,\n      departureBusStop: {\n        '@type': 'BusStop',\n        name: t.from ?? 'Stockholm',\n        address: { '@type': 'PostalAddress', addressLocality: 'Stockholm', addressCountry: 'SE' },\n      },\n      arrivalBusStop: {\n        '@type': 'BusStop',\n        name: `${island.name} brygga`,\n        address: { '@type': 'PostalAddress', addressLocality: island.name, addressCountry: 'SE' },\n      },\n      provider: {\n        '@type': 'Organization',\n        name: tm?.operator ?? 'Waxholmsbolaget',\n        url: tm?.booking_url ?? 'https://waxholmsbolaget.se',\n      },\n",
+    "ny": "      // RUNDA 2 (2026-11-28, f300b-0109): reserven Waxholmsbolaget/Stockholm gav fel operatör och ort för öar utanför\n      // Stockholm, och båtresor hade typen BusTrip. Nu bara de uppgifter som finns i datan.\n      '@type': 'BoatTrip',\n      name: `${t.method} till ${island.name}`,\n      ...(t.from ? { departureBoatTerminal: { '@type': 'BoatTerminal', name: t.from } } : {}),\n      arrivalBoatTerminal: { '@type': 'BoatTerminal', name: island.name },\n      ...(tm?.operator ? { provider: { '@type': 'Organization', name: tm.operator, ...(tm.booking_url ? { url: tm.booking_url } : {}) } } : {}),\n",
+    "rader": [
+      "f300b-0109"
+    ]
+  },
+  {
+    "fil": "src/app/ta-dig-till/[slug]/page.tsx",
+    "gammal": "      {\n        '@type': 'HowToStep',\n        position: 3,\n        name: `Anländer till ${island.name}`,\n        text: `Du kliver av vid ${island.name}s brygga.${factTravelTime ? ` ${factTravelTime}.` : ''}`,\n      },\n",
+    "ny": "      // RUNDA 2 (2026-11-28, f300b-0111): \"Du kliver av vid öns brygga\" stämde inte för orter och öar som nås på väg.\n      ...(factTravelTime ? [{\n        '@type': 'HowToStep',\n        position: 3,\n        name: `Anländer till ${island.name}`,\n        text: `${factTravelTime}.`,\n      }] : []),\n",
+    "rader": [
+      "f300b-0111"
+    ]
+  },
+  {
+    "fil": "scripts/seed-tips-articles.mjs",
+    "gammal": "    body_md_file: 'farjor-skargard.md',\n",
+    "ny": "    body_md_file: 'farjor-skargard.md',\n    // Faktagranskning fas 3, runda 3 (2026-11-28, f300b-0139): publiceras inte. Texten har sakfel (bland annat om Cinderellabåtarna) och priser från 2023.\n    published: false,\n",
+    "rader": [
+      "f300b-0139"
+    ]
+  },
+  {
+    "fil": "scripts/seed-tips-articles.mjs",
+    "gammal": "      published: true,\n",
+    "ny": "      published: art.published ?? true,\n",
+    "rader": [
+      "f300b-0139"
+    ]
+  }
 ]
