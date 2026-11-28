@@ -5,20 +5,22 @@
  *
  * Platserna är samma som på /upptack (/api/discovery?type=poi) och öarna kommer
  * ur island-data via /api/sokindex. Antalen räknas ur datan, inget skrivs in för hand.
- * Leaflet och kartrutorna laddas först när kartan närmar sig skärmen, så startsidan
- * blir inte långsammare.
+ * Kartmotorn (MapLibre, sedan 2026-11-28 samma karta och stil som Utforska) och
+ * kartdatan laddas först när kartan närmar sig skärmen, så startsidan blir inte
+ * långsammare.
  *
  * På mobil följer sidan med när man drar med ett finger; kartan tar över först
  * när man tryckt på den.
  */
-import 'leaflet/dist/leaflet.css'
-import 'leaflet.markercluster/dist/MarkerCluster.css'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { hamtaLeaflet } from '@/app/upptack/leaflet'
-import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
+import 'maplibre-gl/dist/maplibre-gl.css'
+import Supercluster from 'supercluster'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { Map as MLMap, Marker as MLMarker } from 'maplibre-gl'
+import { hamtaMaplibre, tillMaplibreZoom, tillLeafletZoom } from '@/app/upptack/maplibre'
+import { SEAMARK_TILE } from '@/lib/map-tiles'
 import SnabbSok, { hamtaSokindex, type Post } from './SnabbSok'
 import { platsKategori } from '@/lib/platskategori'
-import { pinHtml, pinMiniSvg, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
+import { pinHtml, pinMiniSvg } from '@/lib/kartnal'
 
 type Poi = { id: string; name: string; latitude: number; longitude: number; type: string | null; categories: string[] | null; description: string | null; image_url: string | null; slug: string | null; island: string | null }
 type Kat = 'o' | 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'brygga' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'sevardhet' | 'annat'
@@ -47,18 +49,27 @@ const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt
 
 // Nålarna ritas av src/lib/kartnal.ts, samma formfamiljer som Utforska.
 // Förklaringen i panelen visar samma nålar i liten storlek (pinMiniSvg).
-// KAT ovan styr bara namnen i förklaringen och popupens text.
 
-type LeafletNS = Awaited<ReturnType<typeof hamtaLeaflet>>
-type Karta = ReturnType<LeafletNS['map']>
-type Kluster = { clearLayers(): void; addLayers(m: unknown[]): void; addTo(m: Karta): void }
+/** Popupens avstånd från nålen (40 px hög, spetsen nederst), samma som Utforska. */
+const POPUP_FORSKJUTNING: { [k in 'center' | 'bottom' | 'bottom-left' | 'bottom-right' | 'top' | 'top-left' | 'top-right' | 'left' | 'right']: [number, number] } = {
+  center: [0, -20],
+  bottom: [0, -40], 'bottom-left': [0, -40], 'bottom-right': [0, -40],
+  top: [0, 4], 'top-left': [0, 4], 'top-right': [0, 4],
+  left: [16, -20], right: [-16, -20],
+}
+
+/** Startvy: hela kusten från Bohuslän till Höga kusten (Leaflet-zoom 6). */
+const START = { center: [16.5, 59.0] as [number, number], zoom: tillMaplibreZoom(6) }
 
 export default function StartKarta() {
   const rot = useRef<HTMLDivElement>(null)
   const kartDiv = useRef<HTMLDivElement>(null)
-  const karta = useRef<Karta | null>(null)
-  const kluster = useRef<Kluster | null>(null)
+  const karta = useRef<MLMap | null>(null)
+  const index = useRef<Supercluster<{ i: number }> | null>(null)
+  const visadeRef = useRef<Punkt[]>([])
+  const markorer = useRef(new Map<string, MLMarker>())
   const [synlig, setSynlig] = useState(false)
+  const [kartaKlar, setKartaKlar] = useState(false)
   const [punkter, setPunkter] = useState<Punkt[] | null>(null)
   const [fel, setFel] = useState(false)
   const [vald, setVald] = useState<Kat | 'alla'>('alla')
@@ -81,9 +92,9 @@ export default function StartKarta() {
     Promise.all([
       fetch('/api/discovery?type=poi').then(r => (r.ok ? r.json() : [])).catch(() => []),
       hamtaSokindex().catch(() => [] as Post[]),
-    ]).then(([pois, index]: [Poi[], Post[]]) => {
+    ]).then(([pois, idx]: [Poi[], Post[]]) => {
       const p: Punkt[] = []
-      for (const o of index) {
+      for (const o of idx) {
         if (o.k === 'Ö' && typeof o.la === 'number' && typeof o.lo === 'number') {
           p.push({ id: 'o-' + o.h, namn: o.t, lat: o.la, lng: o.lo, kat: 'o', under: o.u ?? 'Ö', bild: o.b, href: o.h })
         }
@@ -105,69 +116,128 @@ export default function StartKarta() {
   }, [punkter])
   const visade = useMemo(() => (punkter ?? []).filter(p => vald === 'alla' || p.kat === vald), [punkter, vald])
 
-  // Skapa kartan.
+  // Skapa kartan (MapLibre och skärgårdsstilen, samma som Utforska sedan 2026-11-28).
   useEffect(() => {
     if (!synlig || !kartDiv.current || karta.current) return
     let avbruten = false
-    hamtaLeaflet().then(L => {
+    hamtaMaplibre().then(ml => {
       if (avbruten || !kartDiv.current || karta.current) return
-      const ar_mobil = window.matchMedia('(max-width: 820px)').matches
-      const m = L.map(kartDiv.current, { center: [59.0, 16.5], zoom: 6, zoomControl: false, scrollWheelZoom: false, dragging: !ar_mobil, attributionControl: true })
-      const t = baseTile()
-      L.tileLayer(t.url, { maxZoom: 18, attribution: t.attr }).addTo(m)
-      L.tileLayer(SEAMARK_TILE, { opacity: 0.45, maxZoom: 18 }).addTo(m)
-      L.control.zoom({ position: 'topright', ...ZOOM_SV }).addTo(m)
-      const La = L as unknown as { markerClusterGroup: (o: object) => Kluster }
-      const k = La.markerClusterGroup({
-        showCoverageOnHover: false,
-        spiderfyOnMaxZoom: true,
-        disableClusteringAtZoom: 13,
-        maxClusterRadius: (z: number) => (z < 8 ? 70 : z < 11 ? 45 : 25),
-        iconCreateFunction: (c: { getChildCount(): number }) => {
-          const n = c.getChildCount()
-          const s = n >= 100 ? 50 : n >= 20 ? 44 : 38
-          return L.divIcon({ html: `<div class="skn-kluster" style="width:${s}px;height:${s}px">${n}</div>`, className: 'skn-kluster-yttre', iconSize: [s, s] })
-        },
+      const arMobil = window.matchMedia('(max-width: 820px)').matches
+      const m = new ml.Map({
+        container: kartDiv.current,
+        style: '/kartstil/svalla.json',
+        center: START.center,
+        zoom: START.zoom,
+        maxZoom: tillMaplibreZoom(18),
+        attributionControl: false,
+        dragRotate: false,
+        pitchWithRotate: false,
+        scrollZoom: false,
+        locale: { 'NavigationControl.ZoomIn': 'Zooma in', 'NavigationControl.ZoomOut': 'Zooma ut' },
       })
-      k.addTo(m)
+      m.touchZoomRotate.disableRotation()
+      m.keyboard.disableRotation()
+      // På mobil följer sidan med när man drar med ett finger; kartan tar över
+      // först när man tryckt på den (se aktivera nedan).
+      if (arMobil) { m.dragPan.disable(); m.touchZoomRotate.disable() }
+      m.addControl(new ml.NavigationControl({ showCompass: false }), 'top-right')
+      m.on('load', () => {
+        m.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
+        m.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: 10, paint: { 'raster-opacity': 0.6 } })
+      })
+      m.on('moveend', () => { void ritaRef.current() })
       karta.current = m
-      kluster.current = k
-      setPunkter(p => (p ? [...p] : p)) // rita markörerna om datan redan kommit
+      setKartaKlar(true)
     }).catch(() => setFel(true))
     return () => { avbruten = true }
   }, [synlig])
 
   useEffect(() => () => { karta.current?.remove(); karta.current = null }, [])
 
-  // Rita markörerna när datan eller valet ändras.
-  useEffect(() => {
-    const m = karta.current, k = kluster.current
-    if (!m || !k || !punkter) return
-    let avbruten = false
-    hamtaLeaflet().then(L => {
-      if (avbruten) return
-      k.clearLayers()
-      const mark = visade.map(p => {
-        const ikon = L.divIcon({ html: pinHtml(p.kat), className: 'skn-pin-yttre', iconSize: PIN_SIZE, iconAnchor: PIN_ANCHOR, popupAnchor: [0, -36] })
-        const mk = L.marker([p.lat, p.lng], { icon: ikon, title: p.namn })
-        mk.bindPopup(
+  // Rita nålar och kluster för det som syns. Klustringen räknas i Leaflet-skala
+  // (256 px rutor) som förut och släpps från zoomnivå 13.
+  const rita = useCallback(async () => {
+    const m = karta.current, idx = index.current
+    if (!m || !idx) return
+    const ml = await hamtaMaplibre()
+    const b = m.getBounds()
+    const z = Math.round(tillLeafletZoom(m.getZoom()))
+    const delar = idx.getClusters([b.getWest() - 0.5, b.getSouth() - 0.3, b.getEast() + 0.5, b.getNorth() + 0.3], Math.min(Math.max(z, 0), 20))
+    const kvar = new Set<string>()
+    for (const d of delar) {
+      const [lng, lat] = d.geometry.coordinates as [number, number]
+      const pr = d.properties as { cluster?: boolean; cluster_id?: number; point_count?: number; i?: number }
+      if (pr.cluster && pr.cluster_id !== undefined) {
+        const nyckel = `k${pr.cluster_id}-${z}`
+        kvar.add(nyckel)
+        if (markorer.current.has(nyckel)) continue
+        const n = pr.point_count ?? 0
+        const s = n >= 100 ? 50 : n >= 20 ? 44 : 38
+        const el = document.createElement('button')
+        el.type = 'button'
+        el.className = 'skn-kluster'
+        el.style.width = el.style.height = `${s}px`
+        el.textContent = String(n)
+        el.setAttribute('aria-label', `${n} platser, zooma in`)
+        const kid = pr.cluster_id
+        el.addEventListener('click', e => {
+          e.stopPropagation()
+          const zIn = idx.getClusterExpansionZoom(kid)
+          m.easeTo({ center: [lng, lat], zoom: tillMaplibreZoom(Math.min(zIn, 13)), duration: 500 })
+        })
+        markorer.current.set(nyckel, new ml.Marker({ element: el }).setLngLat([lng, lat]).addTo(m))
+      } else if (pr.i !== undefined) {
+        const p = visadeRef.current[pr.i]
+        if (!p) continue
+        kvar.add(p.id)
+        if (markorer.current.has(p.id)) continue
+        const el = document.createElement('div')
+        el.className = 'skn-pin'
+        el.innerHTML = pinHtml(p.kat)
+        el.setAttribute('role', 'button')
+        el.setAttribute('tabindex', '0')
+        el.setAttribute('aria-label', `${p.namn}, ${KAT[p.kat].namn}`)
+        const popup = new ml.Popup({ offset: POPUP_FORSKJUTNING, closeButton: true, maxWidth: '260px', className: 'skn-popup' }).setHTML(
           `<div class="skn-pop">${p.bild ? `<img src="${esc(p.bild)}" alt="" loading="lazy">` : ''}<div class="skn-pop-t"><strong>${esc(p.namn)}</strong><span>${esc(p.under)}</span>${p.href ? `<a href="${esc(p.href)}">${p.kat === 'o' ? 'Till ön' : 'Se mer'} →</a>` : ''}</div></div>`,
-          { maxWidth: 260, minWidth: 220 },
         )
-        return mk
-      })
-      k.addLayers(mark)
-      if (visade.length) {
-        const b = L.latLngBounds(visade.map(p => [p.lat, p.lng] as [number, number]))
-        const desk = window.matchMedia('(min-width: 821px)').matches
-        m.fitBounds(b, { paddingTopLeft: (desk ? [300, 30] : [20, 70]) as [number, number], paddingBottomRight: [30, 90] as [number, number], maxZoom: 11 })
+        markorer.current.set(p.id, new ml.Marker({ element: el, anchor: 'bottom', offset: [0, 1] }).setLngLat([p.lng, p.lat]).setPopup(popup).addTo(m))
       }
-    })
-    return () => { avbruten = true }
-  }, [punkter, visade])
+    }
+    for (const [nyckel, mk] of markorer.current) {
+      if (!kvar.has(nyckel)) { mk.remove(); markorer.current.delete(nyckel) }
+    }
+  }, [])
+  const ritaRef = useRef(rita)
+  ritaRef.current = rita
 
-  const aktivera = () => { setAktiv(true); karta.current?.dragging.enable() }
-  const aterstall = () => { setVald('alla'); karta.current?.closePopup() }
+  // Nytt urval: bygg om klustren, rita om och passa in vyn.
+  useEffect(() => {
+    const m = karta.current
+    if (!m || !kartaKlar || !punkter) return
+    const idx = new Supercluster<{ i: number }>({ radius: 50, extent: 256, maxZoom: 12 })
+    idx.load(visade.map((p, i) => ({ type: 'Feature' as const, properties: { i }, geometry: { type: 'Point' as const, coordinates: [p.lng, p.lat] } })))
+    index.current = idx
+    visadeRef.current = visade
+    for (const mk of markorer.current.values()) mk.remove()
+    markorer.current.clear()
+    if (visade.length) {
+      let v = visade[0]!.lng, o = v, s = visade[0]!.lat, n = s
+      for (const p of visade) { v = Math.min(v, p.lng); o = Math.max(o, p.lng); s = Math.min(s, p.lat); n = Math.max(n, p.lat) }
+      const desk = window.matchMedia('(min-width: 821px)').matches
+      m.fitBounds([[v, s], [o, n]], { padding: desk ? { top: 30, left: 300, right: 30, bottom: 90 } : { top: 70, left: 20, right: 30, bottom: 90 }, maxZoom: tillMaplibreZoom(11), duration: 0 })
+    }
+    void rita()
+  }, [punkter, visade, kartaKlar, rita])
+
+  const aktivera = () => {
+    setAktiv(true)
+    const m = karta.current
+    if (m) { m.dragPan.enable(); m.touchZoomRotate.enable(); m.touchZoomRotate.disableRotation() }
+  }
+  const aterstall = () => {
+    setVald('alla')
+    for (const mk of markorer.current.values()) { const p = mk.getPopup(); if (p?.isOpen()) p.remove() }
+  }
   const totalt = punkter?.length ?? 0
 
   return (
@@ -202,6 +272,11 @@ export default function StartKarta() {
         )}
 
         <div className="skn-sok"><SnabbSok lage="karta" /></div>
+
+        {/* Källhänvisning, alltid synlig (OSM:s riktlinjer, samma rad som Utforska). */}
+        <a className="skn-attr" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">
+          © OpenStreetMap · OpenMapTiles · OpenFreeMap · OpenSeaMap
+        </a>
       </div>
     </div>
   )
@@ -211,10 +286,11 @@ const SKN_CSS = `
 .skn{margin-top:8px}
 .skn-ram{position:relative;height:660px;border-radius:20px;overflow:hidden;border:1px solid rgba(150,110,60,.18);box-shadow:0 14px 40px rgba(60,40,15,.12);background:#dfe9ec}
 .skn-karta{position:absolute;inset:0;z-index:1}
-.skn-karta .leaflet-control-zoom{border:none;margin:16px 16px 0 0;box-shadow:0 4px 14px rgba(0,0,0,.25)}
-.skn-karta .leaflet-control-zoom a{background:#14202a;color:#fff;border-color:#2b3944;width:36px;height:36px;line-height:36px}
-.skn-karta .leaflet-control-zoom a:hover{background:#1e5c82}
-.skn-karta .leaflet-control-attribution{font-size:10px;background:rgba(255,253,248,.8)}
+.skn-karta .maplibregl-ctrl-top-right{margin:16px 16px 0 0}
+.skn-karta .maplibregl-ctrl-group{border-radius:6px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.skn-karta .maplibregl-ctrl-group button{width:36px;height:36px}
+.skn-attr{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);z-index:6;font-size:10px;line-height:1.4;color:rgba(30,48,58,.7);background:rgba(255,253,248,.75);padding:1px 7px;border-radius:4px;text-decoration:none;white-space:nowrap}
+.skn-attr:hover{color:rgba(30,48,58,.9)}
 .skn-panel{position:absolute;top:16px;left:16px;z-index:5;width:258px;pointer-events:none}
 .skn-panel>*{pointer-events:auto}
 .skn-tagg{display:inline-block;background:#14202a;color:#fff;font-weight:800;font-size:15px;padding:9px 13px;margin-bottom:8px;border-radius:4px}
@@ -232,14 +308,13 @@ const SKN_CSS = `
 .skn-laddar{font-size:12.5px;color:#c9d2d8;padding:8px}
 .skn-aterstall{position:absolute;top:100px;right:16px;z-index:5;background:#14202a;color:#fff;border:none;border-radius:4px;font:inherit;font-size:12.5px;font-weight:700;padding:9px 12px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.25)}
 .skn-aterstall:hover{background:#1e5c82}
-.skn-sok{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:6;width:min(620px,calc(100% - 32px))}
+.skn-sok{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:6;width:min(620px,calc(100% - 32px))}
 .skn-aktivera{position:absolute;inset:0;z-index:4;border:none;background:transparent;color:transparent;font:inherit;cursor:pointer}
 .skn-aktivera::after{content:'Tryck för att flytta i kartan';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(20,32,42,.82);color:#fff;font-size:13px;font-weight:700;padding:9px 14px;border-radius:999px;white-space:nowrap}
-.skn-pin-yttre,.skn-kluster-yttre{background:none;border:none}
-.skn-kluster{display:flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:#14202a;font:800 14px Inter,system-ui,sans-serif;border:4px solid #1e5c82;box-shadow:0 0 0 3px rgba(255,255,255,.75),0 4px 12px rgba(0,0,0,.28);box-sizing:border-box}
-.skn .leaflet-popup-content-wrapper{border-radius:14px;padding:0;overflow:hidden}
-.skn .leaflet-popup-content{margin:0;width:240px!important}
-.skn .leaflet-tile-pane{filter:saturate(.8) sepia(.1) brightness(1.02)}
+.skn-pin{cursor:pointer;line-height:0}
+.skn-kluster{display:flex;cursor:pointer;padding:0;align-items:center;justify-content:center;border-radius:50%;background:#fff;color:#14202a;font:800 14px Inter,system-ui,sans-serif;border:4px solid #1e5c82;box-shadow:0 0 0 3px rgba(255,255,255,.75),0 4px 12px rgba(0,0,0,.28);box-sizing:border-box}
+.skn-popup .maplibregl-popup-content{border-radius:14px;padding:0;overflow:hidden;width:240px;box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.skn-popup .maplibregl-popup-close-button{width:26px;height:26px;font-size:18px;color:#14202a;background:rgba(255,253,248,.85);border-radius:0 14px 0 8px}
 .skn-pop img{display:block;width:100%;height:120px;object-fit:cover}
 .skn-pop-t{display:flex;flex-direction:column;gap:3px;padding:10px 13px 12px;font-family:Inter,system-ui,sans-serif}
 .skn-pop-t strong{font-size:14px;color:#14202a}
@@ -253,8 +328,9 @@ const SKN_CSS = `
   .skn-lista::-webkit-scrollbar{display:none}
   .skn-lista-rubrik,.skn-linje{display:none}
   .skn-lista button{flex-shrink:0;width:auto;border-radius:999px;padding:6px 11px 6px 6px;font-size:12.5px;white-space:nowrap}
-  .skn-karta .leaflet-control-zoom{display:none}
+  .skn-karta .maplibregl-ctrl-top-right{display:none}
   .skn-aterstall{top:64px;right:10px}
-  .skn-sok{bottom:14px}
+  .skn-sok{bottom:24px}
+  .skn-attr{font-size:9px;bottom:3px}
 }
 `
