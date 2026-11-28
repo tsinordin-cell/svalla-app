@@ -10,7 +10,7 @@ import { validateUsername } from '@/lib/username'
 import { komprimeraBild, AVATAR_MAX_PX } from '@/lib/komprimeraBild'
 import { GUIDE_VERSION } from '@/lib/guidenForst'
 import { GUIDE_OK_NYCKEL } from '@/components/GuideKontroll'
-import GuideFilm from '@/components/GuideFilm'
+import GuideFilm, { FILMBILDER } from '@/components/GuideFilm'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /onboarding, version 2 (2026-11-28, Toms uppdrag 27 nov)
@@ -133,7 +133,7 @@ const CSS = `
 .ob-chip:hover{border-color:${F.black}}
 .ob-chip[aria-pressed=true]{background:${F.black};color:${F.kort};border-color:${F.black}}
 
-.ob-person{display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;cursor:pointer;font:inherit;text-align:left;color:${F.text};background:${F.kort};border:2px solid ${F.black};border-radius:${HANDKANT};box-shadow:3px 3px 0 ${F.black};transition:transform .2s,box-shadow .2s}
+.ob-person{display:flex;align-items:center;gap:12px;width:100%;min-width:0;padding:11px 14px;cursor:pointer;font:inherit;text-align:left;color:${F.text};background:${F.kort};border:2px solid ${F.black};border-radius:${HANDKANT};box-shadow:3px 3px 0 ${F.black};transition:transform .2s,box-shadow .2s}
 .ob-person:hover{transform:translate(-1px,-2px);box-shadow:5px 5px 0 ${F.black}}
 .ob-folj{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:999px;font:700 12.5px/1 Inter,system-ui,sans-serif;border:1.5px solid ${F.black};background:${F.black};color:${F.kort}}
 .ob-folj.pa{background:transparent;color:${F.black}}
@@ -169,6 +169,10 @@ const CSS = `
 @keyframes ob-gung{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-3px) rotate(1.2deg)}}
 @keyframes ob-snurr{to{transform:rotate(360deg)}}
 @keyframes ob-segla{0%,100%{transform:translateX(0)}50%{transform:translateX(14px)}}
+/* Låga skärmar (t.ex. 320 × 568): de små scenerna och båttexterna tar bort scroll i frågestegen (mätt 2026-11-28). */
+@media (max-height:700px){.ob-liten{display:none}.ob-framsteg{margin-bottom:14px}}
+@media (max-height:620px){.ob-val-text{display:none}.ob-val{padding:12px 8px 10px}}
+.ob h1:focus,.ob h2:focus{outline:none}
 @media (prefers-reduced-motion:reduce){.ob-steg,.ob-gung,.ob-snurr,.ob-segla{animation:none!important}.ob-knapp,.ob-val,.ob-person{transition:none}}
 `
 
@@ -238,7 +242,7 @@ function AvgangScen() {
 /* En liten scen ovanför frågestegen. */
 function LitenScen({ children }: { children: React.ReactNode }) {
   return (
-    <div className="ob-scen" aria-hidden style={{ height: 96, maxWidth: 300, marginBottom: 14 }}>
+    <div className="ob-scen ob-liten" aria-hidden style={{ height: 96, maxWidth: 300, marginBottom: 14 }}>
       {children}
       <Hav hojd={30} />
     </div>
@@ -318,6 +322,11 @@ function hamnForslagFor(skrivet: string): string[] {
   const q = skrivet.trim().toLowerCase()
   if (q.length === 0) return COMMON_PORTS.slice(0, 6)
   const alla = Array.from(new Set([...COMMON_PORTS, ...DEPARTURES.map(d => d.name)]))
+  // Ett valt förslag: visa samma rad som förut, med det valda markerat, i stället för att den försvinner.
+  if (alla.some(n => n.toLowerCase() === q)) {
+    const vanliga = COMMON_PORTS.slice(0, 6)
+    return vanliga.some(n => n.toLowerCase() === q) ? vanliga : [skrivet.trim(), ...vanliga.slice(0, 5)]
+  }
   const borjar = alla.filter(n => n.toLowerCase().startsWith(q))
   const innehaller = alla.filter(n => !n.toLowerCase().startsWith(q) && n.toLowerCase().includes(q))
   return [...borjar, ...innehaller].filter(n => n.toLowerCase() !== q).slice(0, 6)
@@ -387,7 +396,10 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
   // Filmen visas inte för den som valt mindre rörelse i systemet; då blir det korten.
   const [visaFilm, setVisaFilm] = useState(false)
   useEffect(() => {
-    setVisaFilm(film && !window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+    const med = film && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    setVisaFilm(med)
+    // Förladda filmens bilder medan välkomstsidan visas (ca 320 kB, cachas sedan).
+    if (med) FILMBILDER.forEach(src => { const bild = new Image(); bild.src = src })
   }, [film])
   useEffect(() => { if (spara) track('onboarding_started', { step: 1, version: VERSION, befintligt }) }, [spara, befintligt])
 
@@ -413,13 +425,27 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
   }, [spara, step, markeraSedd])
 
   // Ny skärm: börja överst, så att rubriken syns först på små telefoner.
-  useEffect(() => { window.scrollTo({ top: 0 }) }, [step])
+  const forstaSteget = useRef(true)
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+    // Skärmläsare och tangentbord: börja på det nya stegets rubrik.
+    if (forstaSteget.current) { forstaSteget.current = false; return }
+    const rubrik = document.querySelector<HTMLElement>('.ob-steg h1, .ob-steg h2')
+    if (rubrik) { rubrik.tabIndex = -1; rubrik.focus({ preventScroll: true }) }
+  }, [step])
 
+  // Hur långt filmen kom (0–4) och om den spelades klart, skickas med när steget lämnas.
+  const filmScen = useRef(-1)
+  const filmKlar = useRef(false)
   const goTo = (next: Step) => {
     setError('')
     setAnimKey(k => k + 1)
+    const franFilm = step === 'visning' && visaFilm
     setStep(next)
-    if (spara) track('onboarding_step', { step: stegNr(next), steg: next, version: VERSION })
+    if (spara) track('onboarding_step', {
+      step: stegNr(next), steg: next, version: VERSION,
+      ...(franFilm ? { film_scen: filmScen.current, film_klar: filmKlar.current } : {}),
+    })
   }
   const goBack = () => {
     const i = STEG.indexOf(step)
@@ -583,7 +609,7 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
   else if (step === 'visning' && visaFilm) innehall = (
     <>
       {/* Filmen har ett eget band med sina fem delar; guidens prickar skulle bli två framstegsrader. */}
-      <GuideFilm />
+      <GuideFilm onScen={i => { filmScen.current = Math.max(filmScen.current, i) }} onSlut={() => { filmKlar.current = true }} />
       <div className="ob-rad">
         {tillbakaKnapp}
         <button type="button" onClick={goNext} className="ob-knapp">Nästa <Pil /></button>
@@ -737,7 +763,7 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
       <p className="ob-text" style={{ marginBottom: 20 }}>
         Deras turer dyker upp i ditt flöde. Du kan sluta följa när som helst.
       </p>
-      <div style={{ display: 'grid', gap: 12, marginBottom: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr)', gap: 12, marginBottom: 24 }}>
         {sorteradeForslag.slice(0, 3).map(s => {
           const foljer = followIds.has(s.id)
           const bat = (s.boat_type ?? s.vessel_model) === 'Charter' ? 'Utan egen båt' : (s.boat_type || s.vessel_model)

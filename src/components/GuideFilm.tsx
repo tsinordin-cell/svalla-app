@@ -262,8 +262,13 @@ const SCEN_KOMPONENT = [Valkommen, Planera, Hitta, Logga, Profil]
  * Spelar de fem scenerna i följd. onSlut anropas när sista scenen är klar
  * (guiden går då inte vidare själv; personen trycker Nästa).
  */
-export default function GuideFilm({ onSlut }: { onSlut?: () => void }) {
+/** Alla bilder som filmen använder. Förladdas så att ingen scen blinkar fram tom. */
+export const FILMBILDER = ['scen-sol', 'scen-vastkust', 'thorkel-bat-v', 'scen-o', 'scen-angbat', 'scen-eka', 'scen-ejder', 'scen-ejderunge', 'scen-flagga', 'scen-fyr']
+  .map(n => `/kreativ/${n}.webp`)
+
+export default function GuideFilm({ onSlut, onScen }: { onSlut?: () => void; onScen?: (scen: number) => void }) {
   const [scen, setScen] = useState(0)
+  useEffect(() => { onScen?.(scen) }, [scen, onScen])
   const [omgang, setOmgang] = useState(0)
   const [paus, setPaus] = useState(false)
   const [slut, setSlut] = useState(false)
