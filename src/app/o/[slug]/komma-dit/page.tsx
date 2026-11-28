@@ -230,7 +230,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
               <div style={{ fontSize: 16, fontWeight: 700, color: 'var(--txt)' }}>{island.transport_meta.operator}{island.transport_meta.line ? ` · linje ${island.transport_meta.line}` : ''}</div>
               {island.transport_meta.booking_url && (
                 <a href={island.transport_meta.booking_url} target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, fontWeight: 700, color: 'var(--sea)', textDecoration: 'none' }}>
-                  Se tidtabell →
+                  {/* RUNDA 2 (2026-11-28, f300b-0120): "Se tidtabell" stod också på länkar till startsidor och sidor utan tidtabell
+                      (sl.se, waxholmsbolaget.se, destinationgotland.se, solkustturer.se med flera). Samma etikettregel som färdsättskorten. */}
+                  {((u: string) => /\.pdf(\?|$)/i.test(u) ? 'Tidtabell (pdf) →' : /trafikverket\.se|vasttrafik\.se\/reseplanering\/tidtabeller\/linje\//i.test(u) ? 'Tidtabell →' : (() => { try { return `Mer hos ${new URL(u).hostname.replace(/^www\./, '')} →` } catch { return 'Mer om resan →' } })())(island.transport_meta.booking_url)}
                 </a>
               )}
             </div>
@@ -284,7 +286,9 @@ export default async function IslandKommaDitPage({ params }: Props) {
                         {/* Trafikverkets vägfärjor har tidtabell men ingen biljettinformation (Nordöleden; mall-0172 omarbete 2). */}
                         {/* Västtrafiks linjesidor har ingen biljettinformation (mall-0172 omarbete 3). Höga Kusten-båtarnas startsida har
                             ingen tidtabell, så Ulvön länkar direkt till turlistan (pdf) (mall-0172 omarbete 4). */}
-                        {/\.pdf(\?|$)/i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\.se|vasttrafik\.se\/reseplanering\/tidtabeller\/linje\//i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell →' : 'Tidtabell och biljettinformation →'}
+                        {/* f300b-0131 (fas 3, 2026-11-28): "Tidtabell och biljettinformation" stod också på länkar till Länsstyrelsens
+                            reservatssidor, en kontaktsida och en kommunal nyhet. Nu namnges sajten länken går till. */}
+                        {/\.pdf(\?|$)/i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell (pdf) →' : /trafikverket\.se|vasttrafik\.se\/reseplanering\/tidtabeller\/linje\//i.test(lankFor(t.method, island.getting_there[i]!.desc, t.url)!) ? 'Tidtabell →' : (() => { try { return `Mer hos ${new URL(lankFor(t.method, island.getting_there[i]!.desc, t.url)!).hostname.replace(/^www\./, '')} →` } catch { return 'Mer om resan →' } })()}
                       </a>
                     ) : null}
                   </div>
@@ -329,6 +333,7 @@ export default async function IslandKommaDitPage({ params }: Props) {
               <li>Barn under 7 år åker gratis med Waxholmsbolaget i sällskap med en annan betalande resenär, och 7 till 19 år betalar rabatterat pris.</li>
               <li>Alla SL-biljetter gäller på Waxholmsbolaget mellan Strömkajen och Vaxholm med omnejd. Längre ut krävs Waxholmsbolagets biljett 30 april till 13 september; 14 september till 29 april gäller SL-periodbiljetter på 30 dagar eller mer i hela trafiken.</li>
               {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "ANMÄRKNING TUR", "ANMÄRKNING BRYGGA", "Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00" (tabell 10, gäller 2 april–18 juni och 17 augusti–12 december 2026; tabell 24 gällde till 1 november) (läst 2026-10-29) */}
+              {/* KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "Beställ resan i SL-appen, på", "08-600 10 00 minst 2 timmar innan" (läst 2026-11-28; f300b-0127) */}
               <li>Vissa bryggor och turer är beställningstrafik. Beställ resan i SL-appen, på Waxholmsbolagets webb eller på 08-600 10 00. Vilka turer och bryggor det gäller, och hur långt i förväg, står i anmärkningarna i linjens tidtabell.</li>
             </>)}
             {/* SL:s biljettregler (mall-N020, N021; mallarnas runda 8, 2026-11-17). Inga priser. */}
