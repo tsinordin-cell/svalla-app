@@ -85,10 +85,13 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
       el.removeAttribute('tabindex')
       el.removeAttribute('aria-label')
 
-      // Källhänvisningen startar ihopfälld, som en i-knapp.
-      map.once('load', () => {
+      // Källhänvisningen syns först och fälls ihop till en i-knapp efter fem
+      // sekunder. OSM:s riktlinjer kräver att den syns utan att man klickar,
+      // men tillåter att den fälls ihop efter fem sekunder (läst 2026-11-28).
+      const ihop = setTimeout(() => {
         mapDivRef.current?.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show')
-      })
+      }, 5000)
+      map.once('remove', () => clearTimeout(ihop))
     })()
 
     return () => {
