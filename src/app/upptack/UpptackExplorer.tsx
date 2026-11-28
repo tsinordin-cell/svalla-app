@@ -419,6 +419,21 @@ export default function UpptackExplorer() {
     })
   }, [pois, selectedRegion, isAllMode, activeCats, sokTraffar, bounds])
 
+  // Listan i ordning efter avstånd till kartans mitt (2026-11-28). Förut kom
+  // platserna i databasens ordning, så det första kortet kunde ligga i kanten
+  // av kartan. Räknat i grader med longituden krympt för latituden; det räcker
+  // för att ordna platser inom en vy.
+  const listaPois = useMemo(() => {
+    if (!mapCenter) return filteredPois
+    const k = Math.cos((mapCenter.lat * Math.PI) / 180)
+    const avst = (p: { latitude: number; longitude: number }) => {
+      const dy = p.latitude - mapCenter.lat
+      const dx = (p.longitude - mapCenter.lng) * k
+      return dy * dy + dx * dx
+    }
+    return [...filteredPois].sort((a, b) => avst(a) - avst(b))
+  }, [filteredPois, mapCenter])
+
   // Antal POIs per kategori (för chip-labels) — räknas på pois som matchar
   // region + sök + bounds, oavsett vald kategori
   const categoryCounts = useMemo(() => {
@@ -1029,7 +1044,7 @@ export default function UpptackExplorer() {
             </div>
           )}
 
-          {!loading && !error && filteredPois.map(p => {
+          {!loading && !error && listaPois.map(p => {
             const cat = categorize(p)
             const meta = CATEGORY_META[cat]
             return (
