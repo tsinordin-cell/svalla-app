@@ -1100,7 +1100,7 @@ export default function UpptackExplorer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            © OpenStreetMap contributors
+            © OpenStreetMap
           </a>
           {/* Återöppna-flik (visas bara när lista collapsad) */}
           {listCollapsed && (
@@ -1534,42 +1534,37 @@ export default function UpptackExplorer() {
           height: 100%;
           background: #b8d4dc;
         }
-        /* OSM-attribution. Uppe till vänster, så den inte ligger på zoom,
-           sök, GPS eller vädret. När listan är ihopfälld på dator flyttas den
-           under fliken som öppnar listan igen. */
+        /* OSM-attribution. Liten rad i nederkanten, som på en vanlig karta.
+           På dator sitter den till vänster om "Tipsa oss" och under vädret.
+           Ingen kapsel och ingen skugga. */
         .upx-attr {
           position: absolute;
-          top: 12px;
-          left: 12px;
           z-index: 500;
-          display: inline-flex;
-          align-items: center;
-          max-width: calc(100% - 72px);
-          padding: 4px 10px;
-          border-radius: 999px;
-          background: rgba(255, 253, 248, 0.92);
-          color: #3d5360;
-          border: 1px solid rgba(10, 37, 64, 0.1);
-          box-shadow: 0 1px 2px rgba(10, 30, 50, 0.06), 0 4px 14px rgba(10, 30, 50, 0.08);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
+          right: 168px;
+          bottom: 6px;
+          left: auto;
+          top: auto;
+          padding: 0 2px;
+          border-radius: 2px;
+          background: rgba(255, 253, 248, 0.45);
+          color: rgba(30, 48, 58, 0.7);
+          border: none;
+          box-shadow: none;
           font-family: 'Inter', sans-serif;
           font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.01em;
-          line-height: 1.3;
+          font-weight: 500;
+          line-height: 1.2;
+          letter-spacing: 0;
           text-decoration: none;
           white-space: nowrap;
         }
-        .upx-attr:hover { color: #1e5c82; }
-        .upx-split.list-collapsed .upx-attr { top: 62px; }
+        .upx-attr:hover { color: rgba(30, 48, 58, 0.88); }
         [data-theme="dark"] .upx-attr {
-          background: rgba(7, 15, 24, 0.78);
-          color: #d5e4ee;
-          border-color: rgba(255, 255, 255, 0.14);
-          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 6px 16px rgba(0, 0, 0, 0.28);
+          background: rgba(8, 16, 24, 0.4);
+          color: rgba(236, 244, 250, 0.82);
+          box-shadow: none;
         }
-        [data-theme="dark"] .upx-attr:hover { color: #fff; }
+        [data-theme="dark"] .upx-attr:hover { color: rgba(255, 255, 255, 0.92); }
 
         /* Sökknappen på kartan (2026-11-25). Bara på mobil, se mediefrågan nedan. */
         .upx-sokknapp { display: none; }
@@ -1658,10 +1653,11 @@ export default function UpptackExplorer() {
           }
           .upx-sokknapp:active { background: var(--sea, #1e5c82); color: #fff; }
           .upx-map .leaflet-top.leaflet-right { top: 54px; }
-          /* Sökknappen tar hörnet uppe till höger. Attributionen ligger kvar
-             uppe till vänster, och fliken för listan finns inte på mobil. */
-          .upx-attr { top: 12px; left: 12px; max-width: calc(100% - 78px); }
-          .upx-split.list-collapsed .upx-attr { top: 12px; }
+          /* Ovanför listans minsta läge, GPS-knappen och cookieremsan.
+             Vädret och "Tipsa oss" tar höger sida. */
+          .upx-attr { left: 54px; right: auto; bottom: 118px; }
+          .upx-split.sheet-half .upx-attr { bottom: calc(50dvh + 14px); }
+          .upx-split.sheet-full .upx-attr { top: 4px; bottom: auto; left: 8px; }
           .upx-empty-cta-dator { display: none; }
           .upx-sok-hela {
             display: block;
