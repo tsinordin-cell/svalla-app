@@ -41,6 +41,8 @@ const MALLAR = {
   julkalender: '15_julkalender.md',
   // Dubbel bekräftelse för nyhetsbrevet 2026-11-22: skickas av /api/subscribe.
   prenumeration_bekrafta: '16_prenumeration_bekrafta.md',
+  // Uppgift på /team given till någon annan i teamet, 2026-11-28 (Toms ja). Skickas av /api/team/delegera.
+  uppgift_delegerad: '17_uppgift_delegerad.md',
 }
 
 const saknade = []
