@@ -991,7 +991,10 @@ export default function UpptackExplorer() {
         if (r.width < 1 || r.height < 1) return
         if (r.top < hogst && r.top > navBox.top - 80) hogst = r.top
       })
-      ark.style.bottom = `${Math.max(0, Math.ceil(parentBot - hogst + GLIPA))}px`
+      // Innehållet stannar ovanför dyningen. Den vita ytan fortsätter ner till
+      // menyn så att listans minimerade rubrik inte tittar fram i glipan.
+      ark.style.bottom = '0px'
+      ark.style.paddingBottom = `${Math.max(0, Math.ceil(parentBot - hogst + GLIPA))}px`
     }
     satt()
     const ro = new ResizeObserver(satt)
@@ -1247,7 +1250,7 @@ export default function UpptackExplorer() {
           </button>
 
           <div className="upx-list-meta">
-            <span className="upx-list-count">{filteredPois.length} platser i denna vy</span>
+            <span className="upx-list-count">{filteredPois.length === 1 ? '1 plats i denna vy' : `${filteredPois.length} platser i denna vy`}</span>
             <button
               type="button"
               className="upx-list-toggle"
@@ -2017,6 +2020,12 @@ export default function UpptackExplorer() {
             display: none !important;
           }
           .upx-split.sheet-min .upx-list-meta { padding-top: 0; }
+          /* Platskortet är öppet: listans minimerade rubrik ska inte synas
+             mellan arket och menyn. Klassen tas bort när kortet stängs. */
+          body.upx-platskort-oppet .upx-list {
+            visibility: hidden;
+            pointer-events: none;
+          }
           .upx-split.sheet-min .upx-sheet-handle { height: 20px; margin: 4px 0 0; }
 
           /* Drag-handle */

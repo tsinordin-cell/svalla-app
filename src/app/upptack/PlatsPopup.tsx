@@ -193,6 +193,7 @@ const POPUP_CSS = `
   left: 0;
   right: 0;
   bottom: 0;
+  background: var(--white);
   max-height: min(30dvh, 210px);
 }
 .upx-platspop {
