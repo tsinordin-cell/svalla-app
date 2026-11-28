@@ -12,7 +12,7 @@
  * regionkoden används bara när punkten ligger utanför alla rutor.
  */
 
-export type UpptackRegion = 'stockholm' | 'goteborg' | 'bohuslan' | 'aland' | 'oland' | 'gotland'
+export type UpptackRegion = 'stockholm' | 'goteborg' | 'bohuslan' | 'halland' | 'aland' | 'oland' | 'gotland'
 
 // [minLat, maxLat, minLng, maxLng]. Ungefärliga rutor, grova med flit: de ska
 // sortera platser i rätt flik, inte dra administrativa gränser.
@@ -23,6 +23,8 @@ const RUTOR: Array<[UpptackRegion, number, number, number, number]> = [
   ['oland', 56.15, 57.4, 16.3, 17.2],
   ['goteborg', 57.4, 57.85, 11.4, 12.3],
   ['bohuslan', 57.85, 59.2, 10.9, 12.0],
+  // Bjärehalvön och Hallandskusten, Torekov till Stensjö (2026-11-28).
+  ['halland', 56.33, 56.85, 12.4, 13.1],
 ]
 
 const KODER: Record<string, UpptackRegion> = {
@@ -31,6 +33,7 @@ const KODER: Record<string, UpptackRegion> = {
   goteborg: 'goteborg',
   bohuslan: 'bohuslan', bohuslan_nord: 'bohuslan',
   aland: 'aland', oland: 'oland', gotland: 'gotland',
+  halland: 'halland', bjare: 'halland',
 }
 
 export function upptackRegion(p: { latitude?: number | null; longitude?: number | null; archipelago_region?: string | null }): UpptackRegion | null {

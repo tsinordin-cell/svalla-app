@@ -52,7 +52,7 @@ interface Poi {
 }
 
 type Category = PlatsKategori
-type RegionKey = 'stockholm' | 'goteborg' | 'bohuslan' | 'aland' | 'oland' | 'gotland'
+type RegionKey = 'stockholm' | 'goteborg' | 'bohuslan' | 'halland' | 'aland' | 'oland' | 'gotland'
 
 interface Bounds {
   swLat: number; swLng: number; neLat: number; neLng: number
@@ -141,6 +141,13 @@ const REGION_CONFIG = {
     center: [58.30, 11.40] as const,
     zoom: 9,
     archRegions: ['bohuslan'] as const,
+  },
+  // Bjärehalvön (Skåne) och Hallandskusten, steg 9 i omtaget 2026-11-28.
+  halland: {
+    label: 'Halland och Bjäre',
+    center: [56.57, 12.78] as const,
+    zoom: 9,
+    archRegions: ['halland', 'bjare'] as const,
   },
   aland: {
     label: 'Åland',
@@ -246,7 +253,7 @@ export default function UpptackExplorer() {
   // Region-filter state — sparas i URL som ?region=stockholm
   const [selectedRegion, setSelectedRegion] = useState<RegionKey | 'all'>(() => {
     const raw = searchParams.get('region')
-    const validRegions: Set<RegionKey | 'all'> = new Set(['all', 'stockholm', 'goteborg', 'bohuslan', 'aland', 'oland', 'gotland'])
+    const validRegions: Set<RegionKey | 'all'> = new Set(['all', 'stockholm', 'goteborg', 'bohuslan', 'halland', 'aland', 'oland', 'gotland'])
     return (validRegions.has(raw as RegionKey | 'all') ? raw : 'all') as RegionKey | 'all'
   })
 
