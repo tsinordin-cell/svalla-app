@@ -100,7 +100,7 @@ const F = {
 const HANDKANT = '15px 18px 14px 17px / 17px 14px 18px 15px'
 
 const CSS = `
-.ob{--ink:${F.black};color:${F.text};font-family:Inter,system-ui,sans-serif}
+.ob{--ink:${F.black};color:${F.text};font-family:Inter,system-ui,sans-serif;flex:1;display:flex;flex-direction:column;justify-content:center;width:100%}
 .ob *{box-sizing:border-box}
 .ob-steg{position:relative;z-index:1;width:100%;max-width:470px;margin:0 auto;display:flex;flex-direction:column;animation:ob-in .45s cubic-bezier(.22,1,.36,1) both}
 .ob-rubrik{font-family:'Playfair Display',Georgia,serif;font-weight:700;letter-spacing:-.01em;color:${F.hav};font-size:clamp(28px,7.4vw,36px);line-height:1.12;margin:0 0 10px;text-align:center}

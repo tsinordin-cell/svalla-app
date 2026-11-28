@@ -16,7 +16,8 @@ import { useEffect, useId, useState } from 'react'
 const F = { papper: '#f7f1e7', kort: '#fbf7ee', black: '#143c78', hav: '#4472ab', havMork: '#375e96', orange: '#c8642a', text2: '#3d5865' }
 
 export const SCENER = [
-  { tid: 4000, rubrik: 'Välkommen ombord', text: 'Så här fungerar Svalla, på en halv minut.' },
+  // Inte "Välkommen ombord": den rubriken står redan på steget före filmen.
+  { tid: 4000, rubrik: 'Så här funkar Svalla', text: 'En halv minut, sedan gör vi din profil.' },
   { tid: 8000, rubrik: 'Planera turen', text: 'Rutter längs kusten, färjor och båtlinjer på ett ställe.' },
   { tid: 8000, rubrik: 'Hitta öar och krogar', text: 'Gästhamnar, bryggor, bastur och mat, ö för ö.' },
   { tid: 7500, rubrik: 'Logga och dela', text: 'Spara turen med GPS och följ andra på sjön.' },
@@ -115,11 +116,11 @@ function Valkommen() {
   return (
     <svg viewBox="0 0 400 360" aria-hidden>
       <Bild href="/kreativ/scen-sol.webp" x={24} y={22} b={72} h={72} className="gf-snurr" />
-      <Bild href="/kreativ/scen-vastkust.webp" x={250} y={190} b={140} h={62} />
+      <Bild href="/kreativ/scen-vastkust.webp" x={262} y={196} b={118} h={52} />
       <Vatten x={8} y={230} b={384} h={112} />
       <g className="gf-in">
         <g className="gf-gung">
-          <Bild href="/kreativ/thorkel-bat-v.webp" x={70} y={108} b={228} h={190} />
+          <Bild href="/kreativ/thorkel-bat-v.webp" x={86} y={108} b={228} h={190} />
         </g>
       </g>
     </svg>
@@ -212,11 +213,11 @@ function Profil() {
   return (
     <svg viewBox="0 0 400 360" aria-hidden>
       <Bild href="/kreativ/scen-sol.webp" x={304} y={22} b={64} h={64} className="gf-snurr" />
-      <Bild href="/kreativ/scen-flagga.webp" x={36} y={150} b={34} h={80} />
-      <Bild href="/kreativ/scen-fyr.webp" x={56} y={168} b={86} h={85} />
+      <Bild href="/kreativ/scen-flagga.webp" x={22} y={150} b={34} h={80} />
+      <Bild href="/kreativ/scen-fyr.webp" x={42} y={168} b={86} h={85} />
       <Vatten x={8} y={230} b={384} h={112} />
       <g className="gf-gung">
-        <Bild href="/kreativ/thorkel-bat-v.webp" x={150} y={112} b={222} h={185} />
+        <Bild href="/kreativ/thorkel-bat-v.webp" x={136} y={112} b={222} h={185} />
       </g>
       <g className="gf-pop" style={{ animationDelay: '.8s' }}>
         <rect x={135} y={31} width={136} height={42} rx="21" fill={F.black} />
