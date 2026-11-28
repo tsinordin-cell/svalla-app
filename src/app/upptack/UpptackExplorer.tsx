@@ -589,7 +589,9 @@ export default function UpptackExplorer() {
         const aktiv = hoveredIdRef.current === p.id
         const el = document.createElement('div')
         el.className = aktiv ? 'svalla-pin svalla-pin-active' : 'svalla-pin'
-        el.innerHTML = pinHtml(cat, aktiv)
+        // Båda lägena ritas direkt och växlas med en klass. Byttes innehållet vid
+        // klick försvann klickmålet innan kartan hann öppna popupen.
+        el.innerHTML = `<div class="nal-vanlig">${pinHtml(cat, false)}</div><div class="nal-aktiv">${pinHtml(cat, true)}</div>`
         el.setAttribute('role', 'button')
         el.setAttribute('tabindex', '0')
         el.setAttribute('aria-label', `${p.name}, ${CATEGORY_META[cat].label}`)
@@ -615,8 +617,9 @@ export default function UpptackExplorer() {
           }
         }
         el.addEventListener('click', klick)
+        // Enter och mellanslag öppnar popupen via MapLibre; här skrollas listan.
         el.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); marker.togglePopup(); klick() }
+          if (e.key === 'Enter' || e.key === ' ') klick()
         })
         markersRef.current.set(p.id, { marker, el, poi: p })
       }
@@ -728,7 +731,6 @@ export default function UpptackExplorer() {
       if (!id) return
       const m = markersRef.current.get(id)
       if (!m?.poi) return
-      m.el.innerHTML = pinHtml(categorize(m.poi), aktiv)
       // classList, inte className: MapLibre har egna klasser på elementet som styr placeringen.
       m.el.classList.toggle('svalla-pin-active', aktiv)
       m.el.style.zIndex = aktiv ? '10' : ''
@@ -1517,6 +1519,10 @@ export default function UpptackExplorer() {
         /* OSM-attribution. Liten rad i nederkanten, som på en vanlig karta.
            På dator sitter den till vänster om "Tipsa oss" och under vädret.
            Ingen kapsel och ingen skugga. */
+        .svalla-pin .nal-aktiv { display: none; }
+        .svalla-pin.svalla-pin-active .nal-vanlig { display: none; }
+        .svalla-pin.svalla-pin-active .nal-aktiv { display: block; }
+        .svalla-pin { cursor: pointer; }
         .upx-attr {
           position: absolute;
           z-index: 500;
