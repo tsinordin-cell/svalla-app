@@ -45,6 +45,9 @@ const TYPE_LABEL: Record<string, string> = {
   pension: 'Pensionat',
   nature: 'Naturplats',
   attraction: 'Sevärdhet',
+  pier: 'Brygga',
+  pumpout: 'Tömning',
+  service: 'Service',
 }
 
 const CATEGORY_LABEL: Record<string, string> = {

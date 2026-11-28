@@ -22,6 +22,10 @@ export const PIN_META: Record<KartnalKategori, { color: string; form: PinForm; i
   bastu:     { color: '#be123c', form: 'skylt', icon: '<path d="M3 16h18"/><path d="M5.5 16v4.5"/><path d="M18.5 16v4.5"/><path d="M8 2.5c-1.6 1.6 1.6 3.2 0 4.8s1.6 3.2 0 4.8"/><path d="M12 2.5c-1.6 1.6 1.6 3.2 0 4.8s1.6 3.2 0 4.8"/><path d="M16 2.5c-1.6 1.6 1.6 3.2 0 4.8s1.6 3.2 0 4.8"/>' },
   bensin:    { color: '#18181b', form: 'stav', icon: '<path d="M4.5 21V5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v16"/><path d="M3 21h13"/><path d="M7.5 7h4v3.5h-4Z"/><path d="M14.5 10h2a1.5 1.5 0 0 1 1.5 1.5v5a1.5 1.5 0 0 0 3 0V8.5L18 5.5"/>' },
   boende:    { color: '#9333ea', form: 'skylt', icon: '<path d="M3 5v15"/><path d="M3 16h18v4"/><path d="M10 16v-4.5h8a3 3 0 0 1 3 3V16"/><circle cx="6.5" cy="12.5" r="2"/>' },
+  // Tillagda 2026-11-27. Uppmätt kontrast: brygga 3,41:1 mot vattnet och
+  // 5,47:1 mot ikonen, sevärdhet 5,14:1 och 8,24:1.
+  brygga:    { color: '#0f766e', form: 'stav', icon: '<path d="M3.5 9h17"/><path d="M7 9v7.5"/><path d="M12 9v7.5"/><path d="M17 9v7.5"/><path d="M2.5 19.5c1.2 0 1.8-1 3.2-1s2 1 3.2 1 1.8-1 3.1-1 1.9 1 3.2 1 1.8-1 3.2-1 2 1 3.1 1"/>' },
+  sevardhet: { color: '#86198f', form: 'skylt', icon: '<path d="M3 21h18"/><path d="M5.5 21V10.5"/><path d="M18.5 21V10.5"/><path d="M10 21V10.5"/><path d="M14 21V10.5"/><path d="M2.5 10.5 12 3.5l9.5 7Z"/>' },
   bad:       { color: '#0369a1', form: 'skylt', icon: '<circle cx="17" cy="5.5" r="2.2"/><path d="M3 13.5l5.5-3.5 3.5 2.5 4-2.5"/><path d="M2.5 15.5c1.2 0 1.8-1 3.2-1s2 1 3.2 1 1.8-1 3.1-1 1.9 1 3.2 1 1.8-1 3.2-1 2 1 3.1 1"/><path d="M2.5 19.5c1.2 0 1.8-1 3.2-1s2 1 3.2 1 1.8-1 3.1-1 1.9 1 3.2 1 1.8-1 3.2-1 2 1 3.1 1"/>' },
   // Öarna finns bara på startsidans karta. Samma blå som idag och samma
   // ö-ikon som i startsidans förklaring, i skyltform.
