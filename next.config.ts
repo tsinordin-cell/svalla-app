@@ -146,6 +146,12 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      // Ösidornas museibilder med fri licens (Kringla, RAÄ, DigitaltMuseum, Sörmlands och Norrbottens museum), 2026-11-28.
+      // Originalen är stora, så de visas via Next bildoptimering i stället för direkt.
+      { protocol: 'https', hostname: 'pub.raa.se' },
+      { protocol: 'https', hostname: 'ems.dimu.org' },
+      { protocol: 'https', hostname: 'sokisamlingar.sormlandsmuseum.se' },
+      { protocol: 'https', hostname: 'samlingar.norrbottensmuseum.se' },
     ],
   },
   experimental: {
