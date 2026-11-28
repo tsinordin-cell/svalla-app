@@ -149,6 +149,35 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
         </div>
       )
     }
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0278): rutan sa "Hit går ingen kollektivtrafik" och
+    // "nås med egen båt eller taxibåt" för varje ö i ISLAND_NO_TRANSIT. Gålö har SL-buss 845 och Hasselö
+    // Waxholmsbolagets tabell 16; de står i listan för att närmaste hållplats inte kunde knytas till ön.
+    // Nu gäller den texten bara öar utan hållplats inom 5 km och utan tillägg efter " — " i listan.
+    // KÄLLA: https://kund.printhuset-sthlm.se/sl/h845.pdf — "845 Västerhaninge station–Gålö", "Giltig 18 mars–18 juni samt 17 augusti–12 december 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h16.pdf — "16A STAVSNÄS – SANDHAMN – HAGEDE", "Hasselö" (läst 2026-11-28)
+    // Rättelse P0 28 (2026-11-28, Hasselö, k26): "Båttider hit finns inte hos Trafiklab" var inte mätt. För öar i
+    // ISLAND_NO_TRANSIT svarar /api/transit/departures med no_transit innan Trafiklab frågas (route.ts), så rutan
+    // kan aldrig visa båttider för dem. Rubriken "Båttider till X visas inte här" säger det; texten hänvisar till ösidan.
+    const skal = data.skal ?? ''
+    const knytsInte = skal.includes('kunde inte knytas')
+    const tillagg = skal.split(' — ')[1]?.trim().replace(/\.$/, '')
+    if (knytsInte || tillagg) {
+      return (
+        <div style={{
+          border: '1px solid var(--border)', borderRadius: 14,
+          padding: '16px 18px', background: 'var(--white)',
+        }}>
+          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--txt)', marginBottom: 6 }}>
+            Båttider till {islandName} visas inte här
+          </div>
+          <div style={{ fontSize: 13.5, color: 'var(--txt2)', lineHeight: 1.55 }}>
+            {tillagg
+              ? `${tillagg.charAt(0).toUpperCase()}${tillagg.slice(1)}.`
+              : 'Se ösidan för hur du tar dig hit.'}
+          </div>
+        </div>
+      )
+    }
     return (
       <div style={{
         border: '1px solid var(--border)', borderRadius: 14,

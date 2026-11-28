@@ -24,10 +24,14 @@ export function vagDitText(skal: string): string | null {
 export function ingenTrafikText(skal: string): string {
   const vagDit = vagDitText(skal)
   if (vagDit) return vagDit
+  // Rättelse P0 28 (2026-11-28, k26): "finns inte hos Trafiklab" var inte mätt. Dagsplaneraren visar inga båttider
+  // för öar i ISLAND_NO_TRANSIT (hasTransit i dagsplan.ts), och det är vad texten säger.
   if (skal.includes('kunde inte knytas') || skal.includes(UTAN_RESOR_I_TRAFIKLAB)) {
-    return 'Båttider hit finns inte hos Trafiklab. Se ösidan för hur du tar dig hit.'
+    return 'Båttider hit visas inte här. Se ösidan för hur du tar dig hit.'
   }
-  const tillagg = skal.split(' — ')[1]?.trim()
-  if (tillagg) return `Ingen kollektivtrafik hit: ${tillagg.replace(/\.$/, '')}.`
+  // Rättelse P0 28 (2026-11-28, k24): Mörkö har SL-buss 727 och vägfärja, så "Ingen kollektivtrafik hit:" stod fel framför
+  // tillägget. Tillägget i ISLAND_NO_TRANSIT säger själv hur ön nås och visas nu som det står, som i avgångsrutan.
+  const tillagg = skal.split(' — ')[1]?.trim().replace(/\.$/, '')
+  if (tillagg) return `${tillagg.charAt(0).toUpperCase()}${tillagg.slice(1)}.`
   return 'Ingen kollektivtrafik hit: egen båt eller taxibåt.'
 }
