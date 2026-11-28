@@ -23,8 +23,8 @@ export const dynamic = 'force-dynamic'
 const TEAM_DISPLAY: Record<string, { name: string; initials: string }> = {
   tsinordin: { name: 'Tom', initials: 'TN' },
   matte: { name: 'Max', initials: 'MB' },
-  // Claes blev admin 2026-11-28 (Toms ja). Efternamn okänt, därför bara C.
-  claes: { name: 'Claes', initials: 'C' },
+  // Claes Dahlstrand blev admin 2026-11-28 (Toms ja).
+  claes: { name: 'Claes', initials: 'CD' },
 }
 
 type TeamDisplayUser = {
