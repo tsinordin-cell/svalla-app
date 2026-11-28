@@ -51,11 +51,11 @@ export default function Jamforelse() {
         const map = new maplibregl.Map({
           container: div.current,
           style: stil === 'lugn' ? '/kartstil/svalla.json' : '/kartstil/svalla-skargard.json',
-          center: [vy.center[1], vy.center[0]], zoom: vy.zoom,
+          center: [vy.center[1], vy.center[0]], zoom: vy.zoom - 1, // MapLibre räknar zoom en nivå högre än Leaflet
         })
         map.on('load', () => {
           map.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
-          map.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: stil === 'lugn' ? 14 : 11, paint: { 'raster-opacity': 0.85 } })
+          map.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: stil === 'lugn' ? 13 : 10, paint: { 'raster-opacity': 0.85 } })
         })
         for (const p of pois) {
           const el = document.createElement('div')
