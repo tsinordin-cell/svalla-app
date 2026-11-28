@@ -224,7 +224,7 @@ export default function StartKarta() {
       let v = visade[0]!.lng, o = v, s = visade[0]!.lat, n = s
       for (const p of visade) { v = Math.min(v, p.lng); o = Math.max(o, p.lng); s = Math.min(s, p.lat); n = Math.max(n, p.lat) }
       const desk = window.matchMedia('(min-width: 821px)').matches
-      m.fitBounds([[v, s], [o, n]], { padding: desk ? { top: 30, left: 300, right: 30, bottom: 90 } : { top: 70, left: 20, right: 30, bottom: 90 }, maxZoom: tillMaplibreZoom(11), duration: 0 })
+      m.fitBounds([[v, s], [o, n]], { padding: desk ? { top: 30, left: 300, right: 30, bottom: 90 } : { top: 120, left: 30, right: 30, bottom: 100 }, maxZoom: tillMaplibreZoom(11), duration: 0 })
     }
     void rita()
   }, [punkter, visade, kartaKlar, rita])
