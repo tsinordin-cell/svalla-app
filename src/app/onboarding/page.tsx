@@ -2,6 +2,8 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import { createServerSupabaseClient } from '@/lib/supabase-server'
 import OnboardingFlow from './OnboardingFlow'
+import { arAutomatisktNamn, namnForslag, fornamnAv } from '@/lib/onboardingNamn'
+import { ilikeExakt } from '@/lib/username'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -23,7 +25,7 @@ export default async function OnboardingPage() {
   // Egen rad via min_profil() (integritet 2026-11-20).
   const { data: profile } = await supabase
     .rpc('min_profil')
-    .maybeSingle<{ id: string; username: string | null; onboarded_at: string | null; vessel_model: string | null; home_port: string | null }>()
+    .maybeSingle<{ id: string; username: string | null; avatar: string | null; onboarded_at: string | null; vessel_model: string | null; home_port: string | null }>()
 
   if (profile?.onboarded_at) {
     redirect('/feed')
@@ -81,6 +83,24 @@ export default async function OnboardingPage() {
 
   const suggestions: (Forslag & { van?: boolean })[] = [...(van ? [{ ...van, van: true }] : []), ...medTurer.filter(s => s.id !== van?.id)]
 
+  // Namnsteget (2026-11-28): ett namn som databasen tog från e-posten föreslås
+  // inte. I stället ett förslag ur personens namn (Google eller registreringen),
+  // om det är ledigt. Annars är fältet tomt och personen väljer själv.
+  const meta = (user.user_metadata ?? {}) as { full_name?: unknown; name?: unknown; given_name?: unknown }
+  const fulltNamn = [meta.full_name, meta.name].find((v): v is string => typeof v === 'string' && v.trim().length > 0) ?? ''
+  const nuvarandeNamn = profile?.username ?? ''
+  const automatiskt = arAutomatisktNamn(nuvarandeNamn, user.email)
+  let forslag = automatiskt ? namnForslag(fulltNamn) : nuvarandeNamn
+  if (automatiskt && forslag) {
+    const monster = ilikeExakt(forslag)
+    const { data: upptaget } = monster
+      ? await supabase.from('users').select('id').ilike('username', monster).neq('id', user.id).limit(1)
+      : { data: [{ id: '' }] }
+    if (upptaget && upptaget.length > 0) forslag = ''
+  }
+  const givet = typeof meta.given_name === 'string' ? meta.given_name.trim().slice(0, 30) : ''
+  const halsning = givet || fornamnAv(fulltNamn) || (automatiskt ? '' : nuvarandeNamn)
+
   // Startsidans papper i stället för den mörka havsbakgrunden (2026-11-28).
   return (
     <div style={{
@@ -95,7 +115,10 @@ export default async function OnboardingPage() {
       <div style={{ position: 'relative', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <OnboardingFlow
           userId={user.id}
-          initialUsername={profile?.username ?? ''}
+          halsning={halsning}
+          nuvarandeNamn={nuvarandeNamn}
+          namnForslag={forslag}
+          avatar={profile?.avatar ?? null}
           suggestions={suggestions.map(s => ({
             id: s.id,
             username: s.username ?? '',

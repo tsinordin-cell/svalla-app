@@ -6,6 +6,8 @@ import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
 import { rangordnaForslag } from '@/lib/rangordnaForslag'
 import { DEPARTURES } from '@/lib/planner-client'
+import { validateUsername } from '@/lib/username'
+import { komprimeraBild, AVATAR_MAX_PX } from '@/lib/komprimeraBild'
 
 /* ─────────────────────────────────────────────────────────────────────────────
    /onboarding, version 2 (2026-11-28, Toms uppdrag 27 nov)
@@ -14,16 +16,18 @@ import { DEPARTURES } from '@/lib/planner-client'
    (#143c78), havets blå (#4472ab), orange skyltar och de målade bilderna i
    public/kreativ (Thorkels båt, solen, fyren, ejdrarna m.fl.).
 
-   Sex steg i stället för åtta. De tre visningsstegen (logga, karta, menyn) är
+   Sju steg i stället för åtta. De tre visningsstegen (logga, karta, menyn) är
    ett steg. Mätt 27 nov (analytics_events sedan 16 maj): 43 personer nådde
-   första visningssteget och 35 kom förbi det tredje.
+   första visningssteget och 35 kom förbi det tredje. Namnsteget är nytt:
+   74 av 133 konton hade början på e-postadressen som publikt namn (mätt 27 nov).
 
    1. valkomst  Thorkels båt på havet, "Kasta loss" eller hoppa över
    2. visning   Tre saker du kan göra, var sin målad bild
-   3. bat       Båttyp (går att hoppa över, ändras i profilen)
-   4. hamn      Hemmahamn, fritext med förslag (går att hoppa över)
-   5. folj      Följ några seglare (hoppas över om inga förslag finns)
-   6. klar      Klar för avgång
+   3. namn      Namn på Svalla och profilbild (bilden är valfri)
+   4. bat       Båttyp (går att hoppa över, ändras i profilen)
+   5. hamn      Hemmahamn, fritext med förslag (går att hoppa över)
+   6. folj      Följ andra på sjön (hoppas över om inga förslag finns)
+   7. klar      Klar för avgång
 
    Spårningen skickar steget som namn (steg) och version 2, så att siffrorna
    inte blandas ihop med den gamla guiden, där steg 2 betydde något annat.
@@ -41,16 +45,23 @@ interface Suggestion {
 
 interface Props {
   userId: string
-  initialUsername: string
+  /** Förnamn till hälsningen, eller ett eget användarnamn. Tomt om inget passar. */
+  halsning: string
+  /** Användarnamnet som kontot har nu. */
+  nuvarandeNamn: string
+  /** Förifyllt i namnsteget: nuvarande namn om det är eget, annars ett förslag ur personens namn (kan vara tomt). */
+  namnForslag: string
+  /** Profilbild som kontot redan har. */
+  avatar: string | null
   suggestions: Suggestion[]
-  /** Bara för förhandsvisning av utseendet: inget sparas, inget spåras, ingen omdirigering. */
+  /** Bara för förhandsvisning av utseendet (t.ex. en tillfällig sida på en preview): inget sparas, inget spåras, ingen omdirigering. */
   forhandsvisning?: boolean
 }
 
-type Step = 'valkomst' | 'visning' | 'bat' | 'hamn' | 'folj' | 'klar'
+type Step = 'valkomst' | 'visning' | 'namn' | 'bat' | 'hamn' | 'folj' | 'klar'
 
-const STEG: Step[] = ['valkomst', 'visning', 'bat', 'hamn', 'folj', 'klar']
-const MELLANSTEG: Step[] = ['visning', 'bat', 'hamn', 'folj']
+const STEG: Step[] = ['valkomst', 'visning', 'namn', 'bat', 'hamn', 'folj', 'klar']
+const MELLANSTEG: Step[] = ['visning', 'namn', 'bat', 'hamn', 'folj']
 const stegNr = (s: Step) => STEG.indexOf(s) + 1
 const VERSION = 2
 
@@ -122,6 +133,11 @@ const CSS = `
 
 .ob-genvag{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1.5px solid ${F.black};background:${F.kort};color:${F.black};font:600 13.5px/1 Inter,system-ui,sans-serif;cursor:pointer;transition:background-color .15s}
 .ob-genvag:hover{background:#fff}
+
+.ob-bild{position:relative;width:96px;height:96px;border-radius:50%;padding:0;cursor:pointer;border:2px solid ${F.black};box-shadow:3px 3px 0 ${F.black};background:${F.hav};color:${F.kort};font:700 38px/1 'Playfair Display',Georgia,serif;display:flex;align-items:center;justify-content:center;overflow:visible}
+.ob-bild img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.ob-bild-kamera{position:absolute;right:-4px;bottom:-2px;width:32px;height:32px;border-radius:50%;background:${F.knapp};color:${F.kort};border:2px solid ${F.black};display:flex;align-items:center;justify-content:center}
+.ob-bild:focus-visible{outline:3px solid #f2c27a;outline-offset:3px}
 
 .ob-fel{margin:0 0 12px;padding:10px 14px;border-radius:12px;background:#fbe9e4;border:1.5px solid ${F.fel};color:${F.fel};font-size:13.5px;font-weight:600}
 
@@ -332,7 +348,7 @@ function Framsteg({ current }: { current: Step }) {
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, initialUsername, suggestions, forhandsvisning = false }: Props) {
+export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnForslag, avatar, suggestions, forhandsvisning = false }: Props) {
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
@@ -340,6 +356,10 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
   const [animKey, setAnimKey] = useState(0)
   const [startedAt] = useState(() => Date.now())
 
+  const [alias, setAlias] = useState(namnForslag)
+  const [bildFil, setBildFil] = useState<File | null>(null)
+  const [bildVisning, setBildVisning] = useState<string | null>(avatar)
+  const bildRef = useRef<HTMLInputElement>(null)
   const [boatType, setBoatType] = useState<string | null>(null)
   const [homePort, setHomePort] = useState('')
   const [followIds, setFollowIds] = useState<Set<string>>(new Set())
@@ -384,6 +404,47 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
   const goNext = () => {
     const i = STEG.indexOf(step)
     if (i < STEG.length - 1) goTo(STEG[i + 1]!)
+  }
+
+  /* Namn och bild. Samma regler och samma lagring som "Redigera profil" (profil/page.tsx). */
+  const valjBild = (fil: File | undefined) => {
+    if (!fil) return
+    if (!fil.type.startsWith('image/')) { setError('Välj en bild.'); return }
+    setError('')
+    setBildFil(fil)
+    setBildVisning(URL.createObjectURL(fil))
+  }
+  const handleSaveName = async () => {
+    const namn = alias.trim().toLowerCase()
+    const fel = validateUsername(namn)
+    if (fel) { setError(fel); return }
+    setSaving(true); setError('')
+    try {
+      if (spara) {
+        if (namn !== nuvarandeNamn.toLowerCase()) {
+          // Samma kontroll som profilen: utan skiftläge, \ % _ escapas.
+          const monster = namn.replace(/[\\%_]/g, '\\$&')
+          const { data: upptaget } = await supabase.from('users').select('id').ilike('username', monster).neq('id', userId).limit(1)
+          if (upptaget && upptaget.length > 0) throw new Error('Namnet är redan taget. Prova ett annat.')
+        }
+        let bildUrl: string | undefined
+        if (bildFil) {
+          const liten = await komprimeraBild(bildFil, AVATAR_MAX_PX)
+          const ext = liten.name.split('.').pop() ?? 'jpg'
+          const sokvag = `avatars/${userId}.${ext}`
+          const { error: upFel } = await supabase.storage.from('images').upload(sokvag, liten, { upsert: true })
+          if (upFel) throw new Error('Bilden gick inte att ladda upp. Försök igen eller hoppa över bilden.')
+          bildUrl = supabase.storage.from('images').getPublicUrl(sokvag).data.publicUrl
+        }
+        const { error: e } = await supabase.from('users').update({ username: namn, ...(bildUrl ? { avatar: bildUrl } : {}) }).eq('id', userId)
+        if (e) throw new Error(e.code === '23505' ? 'Namnet är redan taget. Prova ett annat.' : 'Kunde inte spara. Försök igen.')
+      }
+      setSaving(false)
+      goNext()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Något gick fel')
+      setSaving(false)
+    }
   }
 
   /* Spara båt och hemmahamn var för sig. */
@@ -474,7 +535,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
     <>
       <ValkomstScen />
       <p className="ob-etikett">Välkommen till Svalla</p>
-      <h1 className="ob-rubrik">Välkommen ombord{initialUsername ? `, ${initialUsername}` : ''}</h1>
+      <h1 className="ob-rubrik">Välkommen ombord{halsning ? `, ${halsning}` : ''}</h1>
       <p className="ob-text">
         Här planerar du turen, hittar öar, krogar och bryggor och följer andra på sjön.
         Vi visar det viktigaste på en minut.
@@ -493,7 +554,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
     <>
       <Framsteg current={step} />
       <h2 className="ob-rubrik">Det här kan du göra</h2>
-      <p className="ob-text">Allt finns i menyn längst ner, när du behöver det.</p>
+      <p className="ob-text">Allt finns i menyn, när du behöver det.</p>
       <div style={{ display: 'grid', gap: 12, marginBottom: 24 }}>
         {FUNKTIONER.map(f => (
           <div key={f.rubrik} className="ob-kort ob-funktion">
@@ -512,7 +573,50 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
     </>
   )
 
-  /* ── 3. Båt ───────────────────────────────────────────────────────── */
+  /* ── 3. Namn och bild ─────────────────────────────────────────────── */
+  else if (step === 'namn') innehall = (
+    <>
+      <Framsteg current={step} />
+      <h2 className="ob-rubrik">Vad ska vi kalla dig?</h2>
+      <p className="ob-text" style={{ marginBottom: 20 }}>
+        Namnet syns för andra på Svalla, på din profil och dina turer. Din e-post visas aldrig.
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginBottom: 22 }}>
+        <button type="button" onClick={() => bildRef.current?.click()} className="ob-bild" aria-label={bildVisning ? 'Byt profilbild' : 'Lägg till profilbild'}>
+          {bildVisning
+            // eslint-disable-next-line @next/next/no-img-element
+            ? <img src={bildVisning} alt="" />
+            : <span aria-hidden>{(alias.trim()[0] ?? '?').toUpperCase()}</span>}
+          <span className="ob-bild-kamera" aria-hidden>
+            <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+          </span>
+        </button>
+        <button type="button" onClick={() => bildRef.current?.click()} className="ob-lank" style={{ margin: 0 }}>
+          {bildVisning ? 'Byt bild' : 'Lägg till en bild (valfritt)'}
+        </button>
+        <input ref={bildRef} type="file" accept="image/*" hidden onChange={e => valjBild(e.target.files?.[0])} />
+      </div>
+      <label htmlFor="ob-namn" className="ob-etikett" style={{ textAlign: 'left', display: 'block', margin: '0 0 8px 4px' }}>Ditt namn på Svalla</label>
+      <div style={{ position: 'relative' }}>
+        <span aria-hidden style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: F.havMork, fontWeight: 700, fontSize: 16 }}>@</span>
+        <input id="ob-namn" type="text" value={alias} onChange={e => { setAlias(e.target.value.toLowerCase()); if (error) setError('') }}
+          placeholder="t.ex. anna-pa-sjon" autoComplete="off" autoCapitalize="none" spellCheck={false} maxLength={20}
+          className="ob-falt" style={{ paddingLeft: 34 }} aria-describedby="ob-namn-regel" />
+      </div>
+      <p id="ob-namn-regel" style={{ margin: '10px 4px 22px', fontSize: 12.5, lineHeight: 1.45, color: F.text3 }}>
+        3–20 tecken: a–z, siffror, _ . och -. Du kan ändra namnet senare i profilen.
+      </p>
+      {fel}
+      <div className="ob-rad">
+        {tillbaka}
+        <button type="button" onClick={handleSaveName} disabled={saving || alias.trim().length < 3} className="ob-knapp">
+          {saving ? 'Sparar…' : <>Nästa <Pil /></>}
+        </button>
+      </div>
+    </>
+  )
+
+  /* ── 4. Båt ───────────────────────────────────────────────────────── */
   else if (step === 'bat') innehall = (
     <>
       <Framsteg current={step} />
@@ -549,7 +653,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
     </>
   )
 
-  /* ── 4. Hemmahamn ─────────────────────────────────────────────────────
+  /* ── 5. Hemmahamn ─────────────────────────────────────────────────────
      Fritext med flit: hemmahamnen är ofta en klubbhamn eller brygga som
      inte finns i någon lista. Förslagen kommer från planerarens avgångsplatser. */
   else if (step === 'hamn') innehall = (
@@ -580,7 +684,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
     </>
   )
 
-  /* ── 5. Följ seglare (hoppas över automatiskt om inga förslag finns) ── */
+  /* ── 6. Följ andra (hoppas över automatiskt om inga förslag finns) ── */
   else if (step === 'folj') innehall = (
     <>
       <Framsteg current={step} />
@@ -589,7 +693,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
         <Bild src="/kreativ/scen-ejderunge.webp" className="ob-segla" style={{ left: '56%', bottom: '14%', width: '12%' }} />
         <Bild src="/kreativ/scen-ejderunge.webp" className="ob-segla" style={{ left: '70%', bottom: '14%', width: '11%' }} />
       </LitenScen>
-      <h2 className="ob-rubrik">Följ några seglare</h2>
+      <h2 className="ob-rubrik">Följ andra på sjön</h2>
       <p className="ob-text" style={{ marginBottom: 20 }}>
         Deras turer dyker upp i ditt flöde. Du kan sluta följa när som helst.
       </p>
@@ -623,7 +727,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions, f
     </>
   )
 
-  /* ── 6. Klar för avgång ───────────────────────────────────────────── */
+  /* ── 7. Klar för avgång ───────────────────────────────────────────── */
   else innehall = (
     <>
       <AvgangScen />
