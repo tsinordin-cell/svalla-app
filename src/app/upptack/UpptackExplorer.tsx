@@ -178,7 +178,8 @@ function vyFor(region: RegionKey | 'all'): { center: [number, number]; zoom: num
 }
 
 /** Popupens avstånd från nålen (40 px hög, spetsen nederst) åt varje håll MapLibre kan välja. */
-const POPUP_FORSKJUTNING: { [k in 'bottom' | 'bottom-left' | 'bottom-right' | 'top' | 'top-left' | 'top-right' | 'left' | 'right']: [number, number] } = {
+const POPUP_FORSKJUTNING: { [k in 'center' | 'bottom' | 'bottom-left' | 'bottom-right' | 'top' | 'top-left' | 'top-right' | 'left' | 'right']: [number, number] } = {
+  center: [0, -20],
   bottom: [0, -40], 'bottom-left': [0, -40], 'bottom-right': [0, -40],
   top: [0, 4], 'top-left': [0, 4], 'top-right': [0, 4],
   left: [16, -20], right: [-16, -20],
