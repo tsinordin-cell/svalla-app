@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect, useCallback, useRef, type CSSProperties, type ReactNode, type MouseEvent, type MutableRefObject } from 'react'
+import { useState, useEffect, useLayoutEffect, useCallback, useRef, type CSSProperties, type ReactNode, type MouseEvent, type MutableRefObject, type RefObject } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
@@ -74,6 +74,7 @@ export default function TripActions({
   const [blocked, setBlocked] = useState(false)
   const [blockKnown, setBlockKnown] = useState(false)
   const skipFocusRestore = useRef(false)
+  const anchorRef = useRef<HTMLButtonElement>(null)
   const pathname = usePathname()
   const closeMenu = useCallback(() => setMenu(false), [])
 
@@ -220,6 +221,7 @@ export default function TripActions({
   return (
     <>
       <button
+        ref={anchorRef}
         type="button"
         onClick={() => setMenu(true)}
         className="press-feedback"
@@ -253,7 +255,7 @@ export default function TripActions({
       </button>
 
       {menu && !editing && !confirm && (
-        <MenuLayer id="tur-meny" label="Alternativ för turen" onClose={closeMenu} skipFocusRestore={skipFocusRestore}>
+        <MenuLayer id="tur-meny" label="Alternativ för turen" onClose={closeMenu} skipFocusRestore={skipFocusRestore} anchorRef={anchorRef}>
           <Handle />
           {plats && (
             <p style={{ margin: '0 8px 8px', textAlign: 'center', fontSize: 13, fontWeight: 700, color: 'var(--txt3)' }}>
@@ -630,16 +632,105 @@ function ShareGlyph() {
   )
 }
 
+const ARK_MAX = 480
+
+type ArkPlats =
+  | { kind: 'full' }
+  | { kind: 'vy' }
+  | { kind: 'kort'; left: number; width: number }
+
+/**
+ * Turkortet ligger inte mitt i fönstret. Sidomenyn är 220 px, och från
+ * 1280 px har flödet en högerkolumn. En panel som centreras i hela
+ * fönstret hamnar då på kortets högerhalva.
+ *
+ * Panelen ritas i document.body. Kortets will-change: transform skulle
+ * annars bli ram för position: fixed, och overflow: hidden klipper arket.
+ * Bredd och left, inte translateX, så att en slide up med translateY
+ * inte skjuter panelen i sidled.
+ */
+function arkPlats(anchor: HTMLElement | null): ArkPlats {
+  const vw = window.innerWidth
+  const width = Math.min(ARK_MAX, vw)
+  if (width >= vw - 0.5) return { kind: 'full' }
+  const card = anchor?.closest('.trip-card') as HTMLElement | null
+  if (!card) return { kind: 'vy' }
+  const rect = card.getBoundingClientRect()
+  if (rect.width < 1) return { kind: 'vy' }
+  const w = Math.min(ARK_MAX, rect.width, vw)
+  const raw = rect.left + (rect.width - w) / 2
+  const left = Math.max(0, Math.min(raw, vw - w))
+  return { kind: 'kort', left, width: w }
+}
+
+function sammaPlats(a: ArkPlats, b: ArkPlats) {
+  if (a.kind !== b.kind) return false
+  if (a.kind === 'kort' && b.kind === 'kort') {
+    return Math.abs(a.left - b.left) < 0.5 && Math.abs(a.width - b.width) < 0.5
+  }
+  return true
+}
+
+function arkStyle(plats: ArkPlats): CSSProperties {
+  const base: CSSProperties = {
+    position: 'fixed',
+    bottom: 0,
+    zIndex: 1001,
+    background: 'var(--white)',
+    outline: 'none',
+    borderRadius: '24px 24px 0 0',
+    padding: '14px 12px calc(14px + env(safe-area-inset-bottom, 0px))',
+    boxShadow: '0 -8px 40px rgba(0,20,35,0.18)',
+    maxHeight: '88svh',
+    overflowY: 'auto',
+    boxSizing: 'border-box',
+    animation: 'turmeny-upp 0.34s cubic-bezier(0.16, 1, 0.3, 1)',
+  }
+  if (plats.kind === 'full') {
+    return { ...base, left: 0, right: 0, width: '100%' }
+  }
+  if (plats.kind === 'kort') {
+    return { ...base, left: plats.left, width: plats.width }
+  }
+  return {
+    ...base,
+    left: 0,
+    right: 0,
+    width: `min(100%, ${ARK_MAX}px)`,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+  }
+}
+
 function MenuLayer({
-  id, label, onClose, skipFocusRestore, children,
+  id, label, onClose, skipFocusRestore, anchorRef, children,
 }: {
   id: string
   label: string
   onClose: () => void
   skipFocusRestore: MutableRefObject<boolean>
+  anchorRef: RefObject<HTMLButtonElement | null>
   children: ReactNode
 }) {
   const panelRef = useRef<HTMLDivElement>(null)
+  const [plats, setPlats] = useState<ArkPlats>({ kind: 'vy' })
+
+  useLayoutEffect(() => {
+    const anchor = anchorRef.current
+    const card = anchor?.closest('.trip-card') as HTMLElement | null
+    const apply = () => {
+      const next = arkPlats(anchor)
+      setPlats(prev => sammaPlats(prev, next) ? prev : next)
+    }
+    apply()
+    window.addEventListener('resize', apply)
+    const ro = card ? new ResizeObserver(apply) : null
+    if (card && ro) ro.observe(card)
+    return () => {
+      window.removeEventListener('resize', apply)
+      ro?.disconnect()
+    }
+  }, [anchorRef])
 
   useEffect(() => {
     const panel = panelRef.current
@@ -686,6 +777,12 @@ function MenuLayer({
   if (typeof document === 'undefined') return null
   return createPortal(
     <div onClick={e => e.stopPropagation()}>
+      <style>{`
+        @keyframes turmeny-upp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+        }
+      `}</style>
       <div
         onClick={onClose}
         style={{
@@ -693,32 +790,19 @@ function MenuLayer({
           background: 'rgba(0,20,35,0.5)',
           backdropFilter: 'blur(4px)',
           WebkitBackdropFilter: 'blur(4px)',
-          display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
         }}
+      />
+      <div
+        ref={panelRef}
+        id={id}
+        role="dialog"
+        aria-modal="true"
+        aria-label={label}
+        tabIndex={-1}
+        onClick={e => e.stopPropagation()}
+        style={arkStyle(plats)}
       >
-        <div
-          ref={panelRef}
-          id={id}
-          role="dialog"
-          aria-modal="true"
-          aria-label={label}
-          tabIndex={-1}
-          onClick={e => e.stopPropagation()}
-          style={{
-            background: 'var(--white)',
-            outline: 'none',
-            borderRadius: '24px 24px 0 0',
-            padding: '14px 12px calc(14px + env(safe-area-inset-bottom, 0px))',
-            width: '100%',
-            maxWidth: 480,
-            boxShadow: '0 -8px 40px rgba(0,20,35,0.18)',
-            maxHeight: '88svh',
-            overflowY: 'auto',
-            boxSizing: 'border-box',
-          }}
-        >
-          {children}
-        </div>
+        {children}
       </div>
     </div>,
     document.body,
