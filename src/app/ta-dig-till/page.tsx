@@ -12,24 +12,31 @@ import Icon from '@/components/Icon'
 import { emojiToIcon } from '@/lib/iconMap'
 import { ogSida } from '@/lib/og-standard'
 
+// RÄTTAD 2026-11-28 (fas 3, f300b-0097, f300b-0098): "Komplett guide" och "alla skärgårdsöar" lovade mer än sidan har.
+// Runda 2 (f300b-0097 till f300b-0099): ingen ö har snabbåt som färdsätt, 40 öar saknar restid, och "alla öar" lovade mer än listan.
+// Runda 3 (f300b-0097 till f300b-0099, f300b-0102): ALL_ISLANDS har 144 poster, 133 öar, 7 orter, 3 naturreservat och nationalparken Kosterhavet (MÄTT), därför "öar och platser".
 export const metadata: Metadata = {
-  title: 'Hur tar man sig till skärgården? Transport till alla öar',
-  description: 'Komplett guide till hur du tar dig till skärgårdens öar. Färja, snabbåt, buss och egen båt: med restider, linjer och praktiska tips.',
+  title: `Hur tar man sig till öarna? Transport till ${ALL_ISLANDS.length} öar och platser`,
+  description: `Så tar du dig till ${ALL_ISLANDS.length} öar och platser med färja, buss eller egen båt. Linjer, restider och praktiska tips står med där de finns.`,
   alternates: { canonical: 'https://svalla.se/ta-dig-till' },
   openGraph: {
     images: ogSida('https://svalla.se/ta-dig-till'),
     title: 'Transport till skärgårdens öar',
-    description: 'Restider, linjer och tips för alla skärgårdsöar.',
+    description: `Hur du tar dig till ${ALL_ISLANDS.length} öar och platser, med linjer och restider där de finns.`,
     url: 'https://svalla.se/ta-dig-till',
   },
 }
 
 export default function TaDigTillIndex() {
+  // RÄTTAD 2026-11-28 (fas 3, f300b-0100): goteborg och ovriga saknades, så 68 av öarna i räkningen syntes inte.
+  // Etiketterna är desamma som på /oar (src/app/oar/page.tsx).
   const byRegion: Record<string, typeof ALL_ISLANDS> = {
     mellersta: [],
     norra: [],
     södra: [],
+    goteborg: [],
     bohuslan: [],
+    ovriga: [],
   }
   for (const island of ALL_ISLANDS) {
     byRegion[island.region]?.push(island)
@@ -39,7 +46,9 @@ export default function TaDigTillIndex() {
     mellersta: { label: 'Mellersta skärgården', color: '#1e5c82' },
     norra: { label: 'Norra skärgården', color: '#1a5276' },
     södra: { label: 'Södra skärgården', color: '#0d6e6e' },
+    goteborg: { label: 'Göteborgs skärgård', color: '#2e6878' },
     bohuslan: { label: 'Bohuslän & Västkusten', color: '#2e6878' },
+    ovriga: { label: 'Övriga Sverige', color: '#1e5c82' },
   }
 
   // Schema.org ItemList
@@ -51,7 +60,8 @@ export default function TaDigTillIndex() {
     itemListElement: ALL_ISLANDS.map((i, idx) => ({
       '@type': 'ListItem',
       position: idx + 1,
-      url: `https://svalla.se/ta-dig-till/${i.slug}`,
+      // f300b-0101: /ta-dig-till/[ö] skickas vidare (308) till komma-dit; listan pekar dit direkt, som korten.
+      url: `https://svalla.se/o/${i.slug}/komma-dit`,
       name: `Hur tar man sig till ${i.name}`,
     })),
   }
@@ -97,7 +107,10 @@ export default function TaDigTillIndex() {
               Hur tar man sig till skärgården?
             </h1>
             <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: 16, lineHeight: 1.6, margin: 0, maxWidth: 620 }}>
-              Restid, linjer, biljetter och praktiska tips för {ALL_ISLANDS.length} öar och kustorter längs hela kusten.
+              {/* f300b-0103: "längs hela kusten" stämde inte för öar i sjöar (Visingsö i Vättern).
+                  Runda 2 (f300b-0102): 40 öar saknar restid, så restid och linjer står med där de finns.
+                  Runda 3: listan har öar, orter, naturreservat och en nationalpark, därför "öar och platser". */}
+              Hur du tar dig till {ALL_ISLANDS.length} öar och platser. Linjer, restider och biljetter står med där de finns.
             </p>
           </div>
 
@@ -156,7 +169,8 @@ export default function TaDigTillIndex() {
                             </div>
                             {hasLive && (
                               <div style={{ fontSize: 11, color: '#16a34a', fontWeight: 700, marginTop: 2 }}>
-                                Live tidtabell
+                                {/* f300b-0104: avgångarna visas på ösidan, inte på komma-dit som kortet länkar till, och de är tidtabellsdata. */}
+                                Avgångar på ösidan
                               </div>
                             )}
                           </div>

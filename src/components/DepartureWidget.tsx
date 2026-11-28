@@ -65,6 +65,8 @@ interface ApiResponse {
   skal?: string
   trips: TripSummary[]
   error?: string
+  /** Satt när Trafiklab inte svarade (route.ts): tom trips betyder då "vi vet inte", inte "inga avgångar". */
+  fel?: string | null
 }
 
 interface Props {
@@ -86,7 +88,10 @@ export default function DepartureWidget({ islandSlug, islandName }: Props) {
         const json = (await res.json()) as ApiResponse
         if (cancelled) return
         setData(json)
-        setError(false)
+        // Faktagranskning fas 3, runda 2 (2026-11-28, f300a-R210, Redaktören): svaret {fel: 'api_fel', trips: []} visades som
+        // "Inga avgångar hittade just nu", som låter som att ingen båt går. Ett svar med fältet fel är "vi vet inte"
+        // (se route.ts för /api/transit/departures) och visas nu som felet, med länken till reseplaneraren.
+        setError(Boolean(json.fel))
       } catch {
         if (!cancelled) setError(true)
       } finally {

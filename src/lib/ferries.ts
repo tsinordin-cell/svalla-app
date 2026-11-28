@@ -90,7 +90,13 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     name: 'Strömkajen → Vaxholm',
     from: 'Strömkajen',
     to: 'Vaxholm',
-    stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Ramsö', 'Tynningö', 'Vaxholm'],
+    // RÄTTAD 2026-11-28 (fas 3, f300b-0011): Ramsö och Tynningö stod som stopp före Vaxholm. Ramsö angörs efter
+    // Vaxholm på linje 4; mellan Strömkajen och Vaxholm går linje 11 till 14 via Nacka strand och Gåshaga brygga.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — "11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA", "Nacka strand", "Gåshaga brygga", "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w4.pdf — "Vaxholm avg.", "Ramsö", "Ålstäket", "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s2.pdf — "2A STOCKHOLM – HÖGANÄS – VAXHOLM", "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026" (helår: också h2 och w2) (läst 2026-11-28)
+    stops: ['Strömkajen', 'Nacka strand', 'Gåshaga brygga', 'Vaxholm'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
@@ -111,9 +117,13 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     //   Ramsö och Vindö finns inte i tabell 11.
     // Ingen sommartabell (19 jun–16 aug) fanns publicerad vid läsningen, så
     // etiketten säger bara det tabellen säger och påstår inget om sommaren.
-    stops: ['Strömkajen', 'Vaxholm', 'Sippsö', 'Lillsved', 'Grinda'],
+    // RÄTTAD 2026-11-28 (fas 3, f300b-0014, f300b-0015): vintertabellen för linje 11 är publicerad och angör Grinda.
+    // Sippsö står inte mellan Vaxholm och Lillsved i vintertabellen, så stoppen är de som finns i båda tabellerna.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w11.pdf — "11A STOCKHOLM – VAXHOLM – BODA – SOLLENKROKA", "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "Lillsved ank.", "Södra Grinda", "Norra Grinda" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h11.pdf — "11A STOCKHOLM – VAXHOLM – GRINDA – BODA – SOLLENKROKA", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-11-28)
+    stops: ['Strömkajen', 'Vaxholm', 'Lillsved', 'Grinda'],
     operator: 'Waxholmsbolaget',
-    season: 'Tabell 11: 2 apr–18 jun, 17 aug–12 dec 2026',
+    season: 'Tabell 11: hösten till 12 dec 2026, vintern 13 dec 2026 till 11 apr 2027',
     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
   },
   {
@@ -129,7 +139,9 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     //
     // Stoppen är också rättade: Möja trafikeras INTE av Cinderella, och Gällnö
     // saknades. Strömma listar Vaxholm, Grinda, Gällnö och Sandhamn.
-    stops: ['Strandvägen', 'Vaxholm', 'Grinda', 'Gällnö', 'Sandhamn'],
+    // RÄTTAD 2026-11-28 (fas 3, f300b-0016): Strömma listar fler bryggor på vägen.
+    // KÄLLA: https://www.stromma.com/sv-se/stockholm/cinderellabatarna/tidtabeller/ — "1. Strandvägen (Startpunkt)", "2. Nacka Strand", "3. Gåshaga", "4. Vaxholm", "6. Södra Grinda", "7. Gällnö", "8. Eknö", "9. Telegrafholmen" (läst 2026-11-28)
+    stops: ['Strandvägen', 'Nacka strand', 'Gåshaga', 'Vaxholm', 'Södra Grinda', 'Gällnö', 'Eknö', 'Telegrafholmen', 'Sandhamn'],
     operator: 'Cinderella',
     season: 'Sommar (slutet av april till slutet av september)',
     infoUrl: 'https://www.stromma.com/sv-se/stockholm/cinderellabatarna/',
@@ -152,7 +164,13 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     name: 'Strömkajen → Finnhamn',
     from: 'Strömkajen',
     to: 'Finnhamn',
-    stops: ['Strömkajen', 'Vaxholm', 'Ljusterö', 'Husarö', 'Finnhamn'],
+    // RÄTTAD 2026-11-28 (fas 3, f300b-0019): Ljusterö och Husarö före Finnhamn gäller linje 12, som i vintertabellen
+    // slutar vid Norra Ingmarsö. I vinter går Strömkajen till Finnhamn med linje 13, via Boda och Svartsö.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Finnhamn" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — "12A STOCKHOLM – LILLSVED – NORRA INGMARSÖ GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "Finnhamn", "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s13.pdf — "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ", "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026" (läst 2026-11-28)
+    stops: ['Strömkajen', 'Vaxholm', 'Finnhamn'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
@@ -162,7 +180,11 @@ export const SEED_FERRY_ROUTES: FerryRoute[] = [
     name: 'Sollenkroka → Möja',
     from: 'Sollenkroka',
     to: 'Möja',
-    stops: ['Sollenkroka', 'Svartsö', 'Norra Stavsudda', 'Berg (Möja)'],
+    // RÄTTAD 2026-11-28 (fas 3, f300b-0022): Svartsö angörs inte av linje 14 (Sollenkroka till Möja); Svartsö har linje 10, 12 och 13.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w14.pdf — "14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA", "Sollenkroka ank.", "Norra Stavsudda", "Berg (Möja)", "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h14.pdf — "14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA", "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/s14.pdf — "14A STOCKHOLM – VAXHOLM – SOLLENKROKA – MÖJA", "GÄLLER 19 JUNI 2026 – 16 AUGUSTI 2026" (läst 2026-11-28)
+    stops: ['Sollenkroka', 'Norra Stavsudda', 'Berg (Möja)'],
     operator: 'Waxholmsbolaget',
     season: 'Helår',
     infoUrl: 'https://waxholmsbolaget.se/reseplanering/tidtabeller',
