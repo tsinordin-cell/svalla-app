@@ -179,7 +179,7 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId, hero =
         .place-mini-hero .maplibregl-ctrl-bottom-left { bottom: 30px; }
         /* Utfälld källrad (de första fem sekunderna) får inte gå in under
            knappen Vägbeskrivning till höger. */
-        @media (max-width: 480px) { .place-mini-map .maplibregl-ctrl-attrib.maplibregl-compact-show { max-width: 185px; } }
+        @media (max-width: 480px) { .place-mini-map .maplibregl-ctrl-attrib.maplibregl-compact-show { max-width: 165px; } }
         .place-mini-map .maplibregl-map { font-family: inherit; }
       `}</style>
     </div>
