@@ -25,7 +25,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { SEAMARK_TILE } from '@/lib/map-tiles'
 import { kartytaFor } from '@/lib/kartvy'
 import { tagPlatssvar } from './platsdata'
-import { hamtaMaplibre, tillMaplibreZoom, tillLeafletZoom, cirkelRing } from './maplibre'
+import { hamtaMaplibre, tillMaplibreZoom, tillLeafletZoom, cirkelRing, aktuellKartstil, foljTema } from './maplibre'
 import type { Map as MLMap, Marker as MLMarker, Popup as MLPopup } from 'maplibre-gl'
 import Icon from '@/components/Icon'
 import { WeatherPill } from '@/components/MapCornerPills'
@@ -282,6 +282,8 @@ export default function UpptackExplorer() {
   // GPS-state — "Visa min plats"
   const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
   const gpsMarkerRef = useRef<MLMarker | null>(null)
+  // Senaste GPS-cirkeln, så att den finns kvar när kartstilen byts vid temabyte.
+  const gpsDataRef = useRef<GeoJSON.FeatureCollection>({ type: 'FeatureCollection', features: [] })
 
   // Mobile state
   const [mobileTab, setMobileTab] = useState<'list' | 'map'>('list')
@@ -494,7 +496,7 @@ export default function UpptackExplorer() {
       const vy = vyFor(selectedRegionRef.current)
       const map = new maplibregl.Map({
         container: mapDivRef.current,
-        style: '/kartstil/svalla.json',
+        style: aktuellKartstil(),
         center: [vy.center[1], vy.center[0]],
         zoom: tillMaplibreZoom(vy.zoom),
         maxZoom: tillMaplibreZoom(18),
@@ -506,11 +508,14 @@ export default function UpptackExplorer() {
       map.touchZoomRotate.disableRotation()
       map.keyboard.disableRotation()
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
-      map.on('load', () => {
+      foljTema(map)
+      // 'style.load' körs också efter temabyte (ny kartstil), då läggs lagren om.
+      map.on('style.load', () => {
+        if (map.getSource('sjomarken')) return
         // Sjömärken från mellannivå: på översikten tog de fokus från nålarna.
         map.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
         map.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: 10, paint: { 'raster-opacity': 0.6 } })
-        map.addSource('gps-noggrannhet', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
+        map.addSource('gps-noggrannhet', { type: 'geojson', data: gpsDataRef.current })
         map.addLayer({ id: 'gps-noggrannhet', type: 'fill', source: 'gps-noggrannhet', paint: { 'fill-color': '#3b82f6', 'fill-opacity': 0.08, 'fill-outline-color': 'rgba(59,130,246,0.35)' } })
       })
 
@@ -775,12 +780,13 @@ export default function UpptackExplorer() {
         const { latitude: lat, longitude: lng, accuracy } = pos.coords
         gpsMarkerRef.current?.remove()
         const kalla = map.getSource('gps-noggrannhet') as { setData?: (d: unknown) => void } | undefined
-        kalla?.setData?.({
+        gpsDataRef.current = {
           type: 'FeatureCollection',
           features: accuracy && accuracy < 2000
             ? [{ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [cirkelRing(lat, lng, accuracy)] } }]
             : [],
-        })
+        }
+        kalla?.setData?.(gpsDataRef.current)
         const prick = document.createElement('div')
         prick.style.cssText = 'width:14px;height:14px;border-radius:50%;background:#3b82f6;border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)'
         prick.setAttribute('aria-hidden', 'true')

@@ -16,7 +16,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import Supercluster from 'supercluster'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Map as MLMap, Marker as MLMarker } from 'maplibre-gl'
-import { hamtaMaplibre, tillMaplibreZoom, tillLeafletZoom } from '@/app/upptack/maplibre'
+import { hamtaMaplibre, tillMaplibreZoom, tillLeafletZoom, aktuellKartstil, foljTema } from '@/app/upptack/maplibre'
 import { SEAMARK_TILE } from '@/lib/map-tiles'
 import SnabbSok, { hamtaSokindex, type Post } from './SnabbSok'
 import { platsKategori } from '@/lib/platskategori'
@@ -125,7 +125,7 @@ export default function StartKarta() {
       const arMobil = window.matchMedia('(max-width: 820px)').matches
       const m = new ml.Map({
         container: kartDiv.current,
-        style: '/kartstil/svalla.json',
+        style: aktuellKartstil(),
         center: START.center,
         zoom: START.zoom,
         maxZoom: tillMaplibreZoom(18),
@@ -141,7 +141,9 @@ export default function StartKarta() {
       // först när man tryckt på den (se aktivera nedan).
       if (arMobil) { m.dragPan.disable(); m.touchZoomRotate.disable() }
       m.addControl(new ml.NavigationControl({ showCompass: false }), 'top-right')
-      m.on('load', () => {
+      foljTema(m)
+      m.on('style.load', () => {
+        if (m.getSource('sjomarken')) return
         m.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
         m.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: 10, paint: { 'raster-opacity': 0.6 } })
       })

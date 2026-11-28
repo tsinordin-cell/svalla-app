@@ -18,6 +18,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import { SEAMARK_TILE, SEAMARK_ATTR } from '@/lib/map-tiles'
 import { track } from '@/lib/analytics-events'
 import { pinHtml } from '@/lib/kartnal'
+import { aktuellKartstil, foljTema } from '@/app/upptack/maplibre'
 import type { PlatsKategori } from '@/lib/platskategori'
 
 /**
@@ -25,7 +26,6 @@ import type { PlatsKategori } from '@/lib/platskategori'
  * vägar och etiketter. Bygger på OpenFreeMaps stil positron och hämtar
  * kartbitar, typsnitt och symboler därifrån. Se public/kartstil/svalla.json.
  */
-const KARTSTIL = '/kartstil/svalla.json'
 
 interface Props {
   lat: number
@@ -50,7 +50,7 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
 
       map = new maplibregl.Map({
         container: mapDivRef.current,
-        style: KARTSTIL,
+        style: aktuellKartstil(),
         center: [lng, lat],
         zoom: 12.5,
         scrollZoom: false,             // tillåt scroll på sidan, inte zoom
@@ -63,8 +63,9 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
       map.addControl(new maplibregl.AttributionControl({ compact: true, customAttribution: SEAMARK_ATTR }), 'bottom-left')
       map.touchZoomRotate.disableRotation()
 
-      map.on('load', () => {
-        if (!map) return
+      foljTema(map)
+      map.on('style.load', () => {
+        if (!map || map.getSource('sjomarken')) return
         // Sjökortsmärken-overlay
         map.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
         // Bara när man zoomat in: på översiktsnivån tog bågar och stolpar fokus från platsen (Tom 2026-11-28).
