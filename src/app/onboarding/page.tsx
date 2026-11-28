@@ -81,32 +81,17 @@ export default async function OnboardingPage() {
 
   const suggestions: (Forslag & { van?: boolean })[] = [...(van ? [{ ...van, van: true }] : []), ...medTurer.filter(s => s.id !== van?.id)]
 
+  // Startsidans papper i stället för den mörka havsbakgrunden (2026-11-28).
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(160deg, #061826 0%, #0e3848 30%, #1a5d72 65%, #24798e 100%)',
+      background: 'linear-gradient(180deg, #efe7d6 0%, #f7f1e7 60%)',
       display: 'flex',
       flexDirection: 'column',
-      padding: '32px 16px',
+      padding: '28px 18px 48px',
       position: 'relative',
       overflow: 'hidden',
     }}>
-      {/* Subtila ljuseffekter — premium-känsla */}
-      <div aria-hidden style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none',
-        background:
-          'radial-gradient(ellipse 60% 40% at 80% 10%, rgba(45,125,138,0.30) 0%, transparent 60%),' +
-          'radial-gradient(ellipse 50% 30% at 10% 90%, rgba(232,146,74,0.16) 0%, transparent 65%)',
-      }}/>
-      <div aria-hidden style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', opacity: 0.5,
-        backgroundImage:
-          'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),' +
-          'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
-        backgroundSize: '90px 90px, 56px 56px',
-        backgroundPosition: '0 0, 45px 45px',
-      }}/>
-
       <div style={{ position: 'relative', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <OnboardingFlow
           userId={user.id}
