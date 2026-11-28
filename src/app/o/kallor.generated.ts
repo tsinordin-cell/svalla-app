@@ -4091,21 +4091,35 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/wa/h12.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA, Går under perioden 2 april - 18 juni. . Tabellhuvudet är inte sökbar text i PDF:en; avläst i sidbilden gäller tabellen 2 april–18 juni och 17 augusti–12 december 2026. Restid Strömkajen–Husarö uppmätt tur för tur: söndag 2 tim 20 min (tur 1273, anmärkning I, bara 2 april–18 juni), lördag 2 tim 50 min (tur 1263, anmärkning T) och 3 tim (tur 1253, I); utan periodanmärkning söndag förmiddag 3 tim 5 min (tur 1271), fredag kväll 3 tim 5 min (tur 1227), lördag förmiddag 3 tim 15 min (tur 1251), måndag–torsdag förmiddag 3 tim 55 min (tur 1301) och onsdag 5 tim (tur 1201, gods ombord). 2 november–12 december alltså 3 tim 5 min–5 tim.",
-      "last": "2026-11-10",
+      "last": "2026-11-28",
       "myndighet": false
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h13.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ, GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026, Går under perioden 17 augusti - 13 september., Går under perioden 17 augusti - 1 november., Gods ombord, förseningar på upp till 30 minuter kan förekomma. . Anmärkning T gäller 17 augusti–13 september och S 17 augusti–1 november. Via Boda uppmätt: måndag–torsdag förmiddag 3 tim 55 min (tur 1341), lördag eftermiddag 3 tim 40 min (tur 1353), måndag och tisdag eftermiddag 4 tim 5 min (tur 1303); söndag 2 tim 30 min med byte i Vaxholm (tur 1373 och 1283, anmärkning S).",
-      "last": "2026-11-16",
+      "last": "2026-11-28",
       "myndighet": false
     },
     {
       "url": "https://kund.printhuset-sthlm.se/wa/h10.pdf",
       "org": "Waxholmsbolaget (tryckt tidtabell)",
       "vad": "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA, GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026, Beställ resan i SL-appen, på . Åsättra–Husarö uppmätt tur för tur: 35–60 min, 16 av 19 turer 45–55 min; de kortaste (C-turerna 1001 och 1021) och den längsta (B-turen 1011) går bara efter beställning.",
-      "last": "2026-11-16",
+      "last": "2026-11-28",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/w10.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027, Husarö, minst 1 timme innan avgång, minst 2 timmar innan, från aktuell brygga, dock senast …., senast … dag före",
+      "last": "2026-11-28",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/wa/w13.pdf",
+      "org": "Waxholmsbolaget (tryckt tidtabell)",
+      "vad": "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027, Husarö, minst 1 timme innan avgång, senast … dag före",
+      "last": "2026-11-28",
       "myndighet": false
     }
   ],
@@ -6554,7 +6568,14 @@ export const KALLOR_PER_O: Record<string, Kalla[]> = {
       "url": "https://kund.printhuset-sthlm.se/sl/h839.pdf",
       "org": "SL (tryckt tidtabell)",
       "vad": "Rudsjöterrassen–Dalarö (–Smådalarö); Hotellbryggan; Dalarö torg 1); Kanalbron 1); Friggavägen 1); Skärkarlshöjden 1); Bryggerivägen 1); Holmdal 1); Djupviksvägen 1); Vadviksvarv 1); Långuddsvägen 1); Almedalsvägen 1); Borgvik 1); Söderviken 1); SMÅDALARÖ 1); 1) Endast vissa turer.; Giltig 17 augusti–12 december 2026  Räknat ur tabellen: Hotellbryggan till Smådalarö 13 till 15 min måndag till fredag och 12 till 13 min lördag, söndag och helgdag; 14 turer till Smådalarö måndag till fredag och 9 lördag, söndag och helgdag.",
-      "last": "2026-11-17",
+      "last": "2026-11-28",
+      "myndighet": false
+    },
+    {
+      "url": "https://kund.printhuset-sthlm.se/sl/v839.pdf",
+      "org": "SL (tryckt tidtabell)",
+      "vad": "Handens station–Dalarö (–Smådalarö), Haninge centrum, 1) Endast vissa turer., Giltig 13 december 2026–20 juni 2027 samt 16 augusti–11 december 2027",
+      "last": "2026-11-28",
       "myndighet": false
     },
     {

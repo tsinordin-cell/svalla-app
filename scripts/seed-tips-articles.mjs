@@ -107,6 +107,8 @@ const ARTICLES = [
     tags: ['Färja', 'Waxholmsbolaget', 'Transportera', 'Skärgård', 'Utan båt'],
     reading_min: 8,
     body_md_file: 'farjor-skargard.md',
+    // Faktagranskning fas 3, runda 3 (2026-11-28, f300b-0139): publiceras inte. Texten har sakfel (bland annat om Cinderellabåtarna) och priser från 2023.
+    published: false,
   },
   {
     slug: 'havskajak-stockholm',
@@ -156,7 +158,7 @@ async function main() {
       tags: art.tags,
       reading_min: art.reading_min,
       author_name: 'Svalla redaktion',
-      published: true,
+      published: art.published ?? true,
       published_at: new Date().toISOString(),
     })
     if (error) { console.error(`✗ ${art.slug}: ${error.message}`); continue }
