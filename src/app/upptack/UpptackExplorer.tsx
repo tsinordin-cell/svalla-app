@@ -3,7 +3,7 @@
  * UpptackExplorer — STF-style split discovery view.
  *
  * Vänster: filterbar lista med kort (foto + namn + plats + kategori).
- * Höger:  Leaflet-karta med clustered pins, alltid synlig på desktop.
+ * Höger:  MapLibre-karta (Svallas egen kartstil) med klustrade nålar, alltid synlig på desktop.
  *
  * Två-vägs koppling:
  *   - Pannar/zoomar karta → listan filtreras till bbox
@@ -16,23 +16,24 @@
  */
 
 import { upptackRegion } from '@/lib/upptackRegion'
-import 'leaflet/dist/leaflet.css'
-import 'leaflet.markercluster/dist/MarkerCluster.css'
+import 'maplibre-gl/dist/maplibre-gl.css'
+import Supercluster from 'supercluster'
 import { useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { baseTile, SEAMARK_TILE, ZOOM_SV } from '@/lib/map-tiles'
+import { SEAMARK_TILE } from '@/lib/map-tiles'
 import { kartytaFor } from '@/lib/kartvy'
 import { tagPlatssvar } from './platsdata'
-import { hamtaLeaflet } from './leaflet'
+import { hamtaMaplibre, tillMaplibreZoom, tillLeafletZoom, cirkelRing } from './maplibre'
+import type { Map as MLMap, Marker as MLMarker, Popup as MLPopup } from 'maplibre-gl'
 import Icon from '@/components/Icon'
 import { WeatherPill } from '@/components/MapCornerPills'
 import { STANDARD_VADERPUNKT } from '@/lib/weatherGrid'
 import { samladVaderpunkt } from '@/lib/samladVaderpunkt'
 import { track } from '@/lib/analytics-events'
 import { platsKategori, type PlatsKategori } from '@/lib/platskategori'
-import { pinHtml, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
+import { pinHtml } from '@/lib/kartnal'
 
 // ── Types ────────────────────────────────────────────────────────────────
 interface Poi {
@@ -176,6 +177,19 @@ function vyFor(region: RegionKey | 'all'): { center: [number, number]; zoom: num
   return { center: [c.center[0], c.center[1]], zoom: c.zoom }
 }
 
+/** Popupens avstånd från nålen (40 px hög, spetsen nederst) åt varje håll MapLibre kan välja. */
+const POPUP_FORSKJUTNING: { [k in 'center' | 'bottom' | 'bottom-left' | 'bottom-right' | 'top' | 'top-left' | 'top-right' | 'left' | 'right']: [number, number] } = {
+  center: [0, -20],
+  bottom: [0, -40], 'bottom-left': [0, -40], 'bottom-right': [0, -40],
+  top: [0, 4], 'top-left': [0, 4], 'top-right': [0, 4],
+  left: [16, -20], right: [-16, -20],
+}
+
+/** Platsnamn kommer från databasen och sätts i popupens HTML. */
+function escapeHtml(t: string): string {
+  return t.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string))
+}
+
 // ── Komponent ────────────────────────────────────────────────────────────
 export default function UpptackExplorer() {
   const router = useRouter()
@@ -267,8 +281,7 @@ export default function UpptackExplorer() {
 
   // GPS-state — "Visa min plats"
   const [gpsState, setGpsState] = useState<'idle' | 'loading' | 'active' | 'denied'>('idle')
-  const gpsMarkerRef = useRef<{ remove?: () => void } | null>(null)
-  const gpsAccCircleRef = useRef<{ remove?: () => void } | null>(null)
+  const gpsMarkerRef = useRef<MLMarker | null>(null)
 
   // Mobile state
   const [mobileTab, setMobileTab] = useState<'list' | 'map'>('list')
@@ -303,20 +316,25 @@ export default function UpptackExplorer() {
     })
   }
   // Kartans höjd följer listans läge (halvöppen lista = lägre karta), även när
-  // läget läses in från förra besöket. Leaflet behöver då veta den nya storleken.
+  // läget läses in från förra besöket. Kartan behöver då veta den nya storleken.
   useEffect(() => {
     const id = setTimeout(() => {
-      const m = mapRef.current as { invalidateSize?: () => void } | null
-      m?.invalidateSize?.()
+      mapRef.current?.resize()
     }, 320)
     return () => clearTimeout(id)
   }, [sheetState])
 
   // Refs
   const mapDivRef = useRef<HTMLDivElement>(null)
-  const mapRef = useRef<unknown>(null)
-  const clusterRef = useRef<unknown>(null)
-  const markersRef = useRef<Map<string, unknown>>(new Map())
+  const mapRef = useRef<MLMap | null>(null)
+  // Klustringen räknas med supercluster i Leaflet-skala (samma radier som förut).
+  const klusterRef = useRef<Supercluster<{ id: string }> | null>(null)
+  // Synliga platser efter filter, i den ordning de lades in i klustret.
+  const synligaRef = useRef<Map<string, Poi>>(new Map())
+  // Nålar och kluster som ligger på kartan just nu, nyckel = plats-id eller "k<klusterid>".
+  const markersRef = useRef<Map<string, { marker: MLMarker; el: HTMLElement; poi?: Poi }>>(new Map())
+  const hoveredIdRef = useRef<string | null>(null)
+  const ritaRef = useRef<() => void>(() => {})
   // revision 2026-10-02: kartan initieras asynkront. Kom datan före kartan
   // returnerade markör-effekten tidigt och kördes inte om när kartan blev klar,
   // så inga nålar ritades förrän ett filter ändrades. kartaKlar kör om den.
@@ -443,25 +461,25 @@ export default function UpptackExplorer() {
   useEffect(() => {
     selectedRegionRef.current = selectedRegion
     if (!mapRef.current) return
-    const map = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void }
+    const map = mapRef.current
     if (selectedRegion !== 'all') {
       const regionConfig = REGION_CONFIG[selectedRegion]
-      map.flyTo?.([regionConfig.center[0], regionConfig.center[1]], regionConfig.zoom, { duration: 0.8 })
+      map.flyTo({ center: [regionConfig.center[1], regionConfig.center[0]], zoom: tillMaplibreZoom(regionConfig.zoom), duration: 800 })
     } else {
       // "Alla" — flyg tillbaka till initial view
-      map.flyTo?.(INITIAL_CENTER, INITIAL_ZOOM, { duration: 0.8 })
+      map.flyTo({ center: [INITIAL_CENTER[1], INITIAL_CENTER[0]], zoom: tillMaplibreZoom(INITIAL_ZOOM), duration: 800 })
     }
   }, [selectedRegion])
 
-  // ── Init Leaflet ───────────────────────────────────────────────────────
+  // ── Init MapLibre ──────────────────────────────────────────────────────
+  // 2026-11-28 (omtaget av /upptack, steg 6): Leaflet med rasterbilder från
+  // tile.openstreetmap.org är utbytt mot MapLibre med vektorkartor från
+  // OpenFreeMap och Svallas egen kartstil (public/kartstil/svalla.json).
   useEffect(() => {
     if (!mapDivRef.current || mapRef.current) return
     let cancelled = false
     // revision 2026-10-02 (P1-3): räkna ut kartans synliga yta redan nu, innan
-    // Leaflet (145 kB) laddats. Annars renderades alla ~560 kort först och
-    // byttes mot de ~70 synliga när kartan blev klar – 2–3 s extra på en
-    // långsam telefon och ett hopp i layouten. Leaflets egna bounds tar över
-    // nedan (updateBounds) så fort kartan finns.
+    // kartmotorn laddats, så att listan inte först visar alla kort.
     const startVy = startVyRef.current
     {
       const r = mapDivRef.current.getBoundingClientRect()
@@ -469,78 +487,46 @@ export default function UpptackExplorer() {
       if (yta) setBounds(prev => prev ?? yta)
     }
     ;(async () => {
-      // Leaflet-chunken började laddas redan i UpptackLoader (hamtaLeaflet).
-      const L = await hamtaLeaflet()
+      const maplibregl = await hamtaMaplibre()
       if (cancelled || !mapDivRef.current) return
 
-      // Hann besökaren välja en annan region medan Leaflet laddades? Region-
-      // effekten gjorde då ingenting (kartan fanns inte), så vyn sätts här.
+      // Hann besökaren välja en annan region medan kartan laddades? Då sätts vyn här.
       const vy = vyFor(selectedRegionRef.current)
-      const map = L.map(mapDivRef.current, {
-        center: vy.center,
-        zoom: vy.zoom,
-        zoomControl: false,
+      const map = new maplibregl.Map({
+        container: mapDivRef.current,
+        style: '/kartstil/svalla.json',
+        center: [vy.center[1], vy.center[0]],
+        zoom: tillMaplibreZoom(vy.zoom),
+        maxZoom: tillMaplibreZoom(18),
         attributionControl: false,
+        dragRotate: false,
+        pitchWithRotate: false,
+        locale: { 'NavigationControl.ZoomIn': 'Zooma in', 'NavigationControl.ZoomOut': 'Zooma ut' },
       })
-      const tile = baseTile()
-      L.tileLayer(tile.url, { maxZoom: 18, attribution: tile.attr }).addTo(map)
-      // Sjökorts-overlay — sänkt opacity så Svallas pins dominerar visuellt
-      L.tileLayer(SEAMARK_TILE, { opacity: 0.45, maxZoom: 18 }).addTo(map)
-      L.control.zoom({ position: 'topright', ...ZOOM_SV }).addTo(map)
-
-      // Cluster — markercluster augmenterar L runtime; cast så TS är glad
-      const Lany = L as unknown as { markerClusterGroup: (opts: object) => unknown }
-      const cluster = Lany.markerClusterGroup({
-        chunkedLoading: true,
-        showCoverageOnHover: false,
-        spiderfyOnMaxZoom: true,
-        disableClusteringAtZoom: 13,
-        // Dynamisk radius — bredare clusters när vi ser hela skärgården,
-        // tightare när vi zoomat in (annars är clusters meningslösa).
-        // Reducerade radier så fler individuella pins syns utan att behöva zooma maximalt.
-        maxClusterRadius: (zoom: number) => {
-          if (zoom < 9)  return 55
-          if (zoom < 11) return 35
-          if (zoom > 12) return 18
-          return 25
-        },
-        iconCreateFunction: (c: { getChildCount: () => number }) => {
-          const n = c.getChildCount()
-          const ikon = L.divIcon({
-            html: `<div style="background:#1e5c82;color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;font-family:'Inter',sans-serif;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)">${n}</div>`,
-            className: 'svalla-cluster',
-            iconSize: [34, 34],
-          })
-          // revision 2026-10-02: klustret är en knapp (role="button", tabindex)
-          // utan namn. Klick eller Enter zoomar in till platserna i klustret.
-          const skapa = ikon.createIcon.bind(ikon)
-          ikon.createIcon = (gammal?: HTMLElement) => {
-            const el = skapa(gammal)
-            el.setAttribute('aria-label', `${n} platser, zooma in`)
-            return el
-          }
-          return ikon
-        },
+      map.touchZoomRotate.disableRotation()
+      map.keyboard.disableRotation()
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right')
+      map.on('load', () => {
+        // Sjömärken från mellannivå: på översikten tog de fokus från nålarna.
+        map.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
+        map.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: 10, paint: { 'raster-opacity': 0.6 } })
+        map.addSource('gps-noggrannhet', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } })
+        map.addLayer({ id: 'gps-noggrannhet', type: 'fill', source: 'gps-noggrannhet', paint: { 'fill-color': '#3b82f6', 'fill-opacity': 0.08, 'fill-outline-color': 'rgba(59,130,246,0.35)' } })
       })
-      map.addLayer(cluster as Parameters<typeof map.addLayer>[0])
 
-      // Bounds tracking — kolla isValid() så vi inte sätter NaN-bounds
-      // (kan hända före karta är fullt initialiserad och då filtreras
-      // hela listan bort i ett förvirrande blink)
+      // Bounds tracking
       const updateBounds = () => {
         const b = map.getBounds()
-        if (!b.isValid()) return
         setBounds({
-          swLat: b.getSouthWest().lat,
-          swLng: b.getSouthWest().lng,
-          neLat: b.getNorthEast().lat,
-          neLng: b.getNorthEast().lng,
+          swLat: b.getSouth(),
+          swLng: b.getWest(),
+          neLat: b.getNorth(),
+          neLng: b.getEast(),
         })
         const c = map.getCenter()
         setMapCenter({ lat: c.lat, lng: c.lng })
       }
-      map.on('moveend', updateBounds)
-      map.on('zoomend', updateBounds)
+      map.on('moveend', () => { updateBounds(); ritaRef.current() })
       map.on('movestart', () => {
         if (autoFlyttRef.current) return
         anvandarFlyttatRef.current = true
@@ -550,99 +536,136 @@ export default function UpptackExplorer() {
       updateBounds()
 
       mapRef.current = map
-      clusterRef.current = cluster
       setKartaKlar(true)
 
-      // Säkerställ att Leaflet ser rätt container-storlek även när
-      // mobil-tab "Lista" är default (då är .upx-map-wrap display:none vid mount).
-      // Flera retries med ökande delay täcker både snabba och långsamma render.
+      // Containern kan sakna storlek vid montering (mobilens lista visas först).
       const retries = [50, 200, 500, 1000]
       retries.forEach(ms => {
-        setTimeout(() => {
-          const mm = mapRef.current as { invalidateSize?: () => void } | null
-          mm?.invalidateSize?.()
-        }, ms)
+        setTimeout(() => { mapRef.current?.resize() }, ms)
       })
     })()
-    // Cleanup: rensa Leaflet-instans + cluster vid unmount så vi inte
-    // läcker DOM-noder och event-listeners (markercluster är tung).
-    // Kopiera ref-Map till lokal variabel — annars varnar React att
-    // refen kan ha ändrats vid cleanup (i vårt fall säker, men fix:at).
     const markersMap = markersRef.current
     return () => {
       cancelled = true
-      const m = mapRef.current as { remove?: () => void } | null
-      if (m?.remove) m.remove()
+      mapRef.current?.remove()
       mapRef.current = null
-      clusterRef.current = null
+      klusterRef.current = null
       markersMap.clear()
       setKartaKlar(false)
     }
   }, [])
 
-  // ── Uppdatera markörer när data eller filter ändras ────────────────────
-  useEffect(() => {
-    if (!mapRef.current || !clusterRef.current) return
-    let cancelled = false
-    ;(async () => {
-      const L = await hamtaLeaflet()
-      if (cancelled) return
-      const cluster = clusterRef.current as { clearLayers: () => void; addLayers: (m: unknown[]) => void }
-      cluster.clearLayers()
-      markersRef.current.clear()
-
-      // Markörer på kartan följer ENDAST kategori + sök (inte bounds).
-      // Annars skulle pinnar försvinna när användaren panorerar bort, vilket
-      // gör det omöjligt att se vad som finns i intilliggande områden.
-      const visiblePois = pois.filter(p => {
-        if (!isAllMode && !activeCats.has(categorize(p))) return false
-        if (sokTraffar && !sokTraffar.has(p)) return false
-        return true
-      })
-
-      const newMarkers = visiblePois.map(p => {
-        const cat = categorize(p)
-        const icon = L.divIcon({
-          html: pinHtml(cat, false),
-          className: 'svalla-pin',
-          iconSize: PIN_SIZE,
-          iconAnchor: PIN_ANCHOR,
-          popupAnchor: [0, -36],
+  // ── Rita nålar och kluster för det som syns ────────────────────────────
+  // Klustringen räknas i Leaflet-skala med samma radier som förut och släpps
+  // från zoomnivå 13 (Leaflet), så att besökaren ser samma sak som tidigare.
+  const ritaNalar = useCallback(async () => {
+    const map = mapRef.current
+    const index = klusterRef.current
+    if (!map || !index) return
+    const maplibregl = await hamtaMaplibre()
+    const b = map.getBounds()
+    const z = Math.round(tillLeafletZoom(map.getZoom()))
+    const delar = index.getClusters([b.getWest() - 0.2, b.getSouth() - 0.1, b.getEast() + 0.2, b.getNorth() + 0.1], Math.min(Math.max(z, 0), 20))
+    const kvar = new Set<string>()
+    for (const d of delar) {
+      const [lng, lat] = d.geometry.coordinates as [number, number]
+      const props = d.properties as { cluster?: boolean; cluster_id?: number; point_count?: number; id?: string }
+      if (props.cluster && props.cluster_id !== undefined) {
+        const nyckel = `k${props.cluster_id}-${z}`
+        kvar.add(nyckel)
+        if (markersRef.current.has(nyckel)) continue
+        const n = props.point_count ?? 0
+        const el = document.createElement('button')
+        el.type = 'button'
+        el.className = 'svalla-cluster'
+        el.setAttribute('aria-label', `${n} platser, zooma in`)
+        el.innerHTML = `<span style="background:#1e5c82;color:#fff;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;font-family:'Inter',sans-serif;border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.3)">${n}</span>`
+        const klusterId = props.cluster_id
+        el.addEventListener('click', (e) => {
+          e.stopPropagation()
+          const zIn = index.getClusterExpansionZoom(klusterId)
+          map.easeTo({ center: [lng, lat], zoom: tillMaplibreZoom(Math.min(zIn, 13)), duration: 500 })
         })
-        const m = L.marker([p.latitude, p.longitude], { icon })
-        // revision 2026-10-02: Leaflet gör nålen till role="button" med tabindex
-        // men utan namn (axe aria-command-name: 51 nålar). Namnet sätts när nålen
-        // läggs på kartan (även efter klustring); DivIcon återanvänder samma
-        // element vid setIcon, så det ligger kvar när hover byter ikon.
-        m.on('add', () => m.getElement()?.setAttribute('aria-label', `${p.name}, ${CATEGORY_META[cat].label}`))
-        // Stash POI på markören så hover-effekten kan läsa kategorin
-        ;(m as unknown as { _poi: Poi })._poi = p
-        m.bindPopup(`
+        const marker = new maplibregl.Marker({ element: el }).setLngLat([lng, lat]).addTo(map)
+        markersRef.current.set(nyckel, { marker, el })
+      } else if (props.id) {
+        const p = synligaRef.current.get(props.id)
+        if (!p) continue
+        kvar.add(p.id)
+        if (markersRef.current.has(p.id)) continue
+        const cat = categorize(p)
+        const aktiv = hoveredIdRef.current === p.id
+        const el = document.createElement('div')
+        el.className = aktiv ? 'svalla-pin svalla-pin-active' : 'svalla-pin'
+        // Båda lägena ritas direkt och växlas med en klass. Byttes innehållet vid
+        // klick försvann klickmålet innan kartan hann öppna popupen.
+        el.innerHTML = `<div class="nal-vanlig">${pinHtml(cat, false)}</div><div class="nal-aktiv">${pinHtml(cat, true)}</div>`
+        el.setAttribute('role', 'button')
+        el.setAttribute('tabindex', '0')
+        el.setAttribute('aria-label', `${p.name}, ${CATEGORY_META[cat].label}`)
+        const popup: MLPopup = new maplibregl.Popup({ offset: POPUP_FORSKJUTNING, closeButton: true, maxWidth: '240px' }).setHTML(`
           <div style="min-width:180px;font-family:'Inter',sans-serif">
-            <div style="font-weight:700;font-size:13px;color:#162d3a;margin-bottom:2px">${p.name}</div>
-            <div style="font-size:11px;color:#6a8a96;margin-bottom:6px">${CATEGORY_META[cat].label}${p.island ? ' &middot; ' + p.island : ''}</div>
+            <div style="font-weight:700;font-size:13px;color:#162d3a;margin-bottom:2px">${escapeHtml(p.name)}</div>
+            <div style="font-size:11px;color:#6a8a96;margin-bottom:6px">${CATEGORY_META[cat].label}${p.island ? ' &middot; ' + escapeHtml(p.island) : ''}</div>
             ${p.slug ? `<a href="/upptack/${p.slug}" style="color:#1e5c82;font-size:12px;font-weight:600;text-decoration:none">Se mer &rarr;</a>` : ''}
           </div>
         `)
-        m.on('click', () => {
+        const marker = new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, 1] })
+          .setLngLat([p.longitude, p.latitude])
+          .setPopup(popup)
+          .addTo(map)
+        const klick = () => {
           setHoveredId(p.id)
-          // Scrolla in motsvarande kort
-          const el = document.getElementById(`upptack-card-${p.id}`)
+          const kort = document.getElementById(`upptack-card-${p.id}`)
           const lista = listScrollRef.current
-          if (el && lista) {
-            // Skrolla bara listan. scrollIntoView skrollade även sidan runt om,
-            // så filterraden försvann och kartan försköts uppåt på mobil.
-            const top = el.getBoundingClientRect().top - lista.getBoundingClientRect().top + lista.scrollTop
-            lista.scrollTo({ top: top - lista.clientHeight / 2 + el.clientHeight / 2, behavior: 'smooth' })
+          if (kort && lista) {
+            // Skrolla bara listan, inte sidan runt om.
+            const top = kort.getBoundingClientRect().top - lista.getBoundingClientRect().top + lista.scrollTop
+            lista.scrollTo({ top: top - lista.clientHeight / 2 + kort.clientHeight / 2, behavior: 'smooth' })
           }
+        }
+        el.addEventListener('click', klick)
+        // Enter och mellanslag öppnar popupen via MapLibre; här skrollas listan.
+        el.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') klick()
         })
-        markersRef.current.set(p.id, m)
-        return m
-      })
-      cluster.addLayers(newMarkers)
-    })()
-    return () => { cancelled = true }
-  }, [pois, isAllMode, activeCats, sokTraffar, kartaKlar])
+        markersRef.current.set(p.id, { marker, el, poi: p })
+      }
+    }
+    for (const [nyckel, m] of markersRef.current) {
+      if (!kvar.has(nyckel)) { m.marker.remove(); markersRef.current.delete(nyckel) }
+    }
+  }, [])
+  ritaRef.current = () => { void ritaNalar() }
+
+  // ── Uppdatera markörer när data eller filter ändras ────────────────────
+  useEffect(() => {
+    if (!mapRef.current) return
+    // Markörer på kartan följer ENDAST kategori + sök (inte bounds), så att
+    // nålar i intilliggande områden syns när man panorerar.
+    const visiblePois = pois.filter(p => {
+      if (!isAllMode && !activeCats.has(categorize(p))) return false
+      if (sokTraffar && !sokTraffar.has(p)) return false
+      return true
+    })
+    const index = new Supercluster<{ id: string }>({
+      // Leaflet-klustrets radier var 55/35/25/18 px beroende på zoom, räknat på
+      // 256 px rutor. extent 256 gör att radien räknas i samma pixlar.
+      radius: 42,
+      extent: 256,
+      maxZoom: 12,
+    })
+    index.load(visiblePois.map(p => ({
+      type: 'Feature' as const,
+      properties: { id: p.id },
+      geometry: { type: 'Point' as const, coordinates: [p.longitude, p.latitude] },
+    })))
+    klusterRef.current = index
+    synligaRef.current = new Map(visiblePois.map(p => [p.id, p]))
+    for (const m of markersRef.current.values()) m.marker.remove()
+    markersRef.current.clear()
+    void ritaNalar()
+  }, [pois, isAllMode, activeCats, sokTraffar, kartaKlar, ritaNalar])
 
   // ── Sök: visa ALLA träffar på kartan ───────────────────────────────────
   // Varje ny sökning (eller nytt kategorival under en sökning) zoomar kartan
@@ -666,11 +689,8 @@ export default function UpptackExplorer() {
     if (!sokTraffar) { senastZoomadRef.current = ''; senastSokRef.current = ''; return }
     if (!kartaKlar) return
     const id = setTimeout(async () => {
-      const map = mapRef.current as {
-        getBounds?: () => { contains: (ll: [number, number]) => boolean }
-        fitBounds?: (b: unknown, opts?: object) => void
-      } | null
-      if (!map?.getBounds || !map.fitBounds) return
+      const map = mapRef.current
+      if (!map) return
       // Samma träffar som listan och pinnarna (sokTraffar), inom valda kategorier.
       const traffar = pois.filter(p => sokTraffar.has(p) && (isAllMode || activeCats.has(categorize(p))))
       if (traffar.length === 0) return
@@ -693,68 +713,40 @@ export default function UpptackExplorer() {
       // Hur mycket av kartans nederkant listan täcker, så att träffarna hamnar
       // i den synliga delen ovanför listan och inte under den.
       let tacktNere = 0
-      const behallare = (map as { getContainer?: () => HTMLElement }).getContainer?.()
+      const behallare = map.getContainer()
       if (mobil && behallare) {
         const lista = behallare.closest('.upx-split')?.querySelector('.upx-list')
         if (lista) {
           tacktNere = Math.max(0, behallare.getBoundingClientRect().bottom - lista.getBoundingClientRect().top)
         }
       }
-      const L = await hamtaLeaflet()
+      const maplibregl = await hamtaMaplibre()
+      const ram = new maplibregl.LngLatBounds()
+      for (const p of traffar) ram.extend([p.longitude, p.latitude])
       autoFlyttRef.current = true
-      map.fitBounds(
-        L.latLngBounds(traffar.map(p => [p.latitude, p.longitude] as [number, number])),
-        { paddingTopLeft: [48, 48], paddingBottomRight: [48, 48 + tacktNere], maxZoom: 13, animate: true },
-      )
+      map.fitBounds(ram, { padding: { top: 48, left: 48, right: 48, bottom: 48 + tacktNere }, maxZoom: tillMaplibreZoom(13), duration: 600 })
       // Om kartan redan stod rätt kommer ingen moveend; släpp flaggan ändå.
       setTimeout(() => { autoFlyttRef.current = false }, 1200)
     }, 450)
     return () => clearTimeout(id)
   }, [sokTraffar, pois, isAllMode, activeCats, kartaKlar, query, sheetState])
 
-  // ── Hover-state: uppdatera pin-icon med isActive-styling ──────────────
-  // När hoveredId ändras (lista-hover eller pin-klick) byter vi ut den
-  // aktiva markörens icon mot den med ringen runt — och återställer den
-  // tidigare. Leaflet hämtas via hamtaLeaflet (redan laddad här).
+  // ── Hover-state: byt nålens utseende för aktiv plats ──────────────────
   const lastHoveredRef = useRef<string | null>(null)
   useEffect(() => {
-    let cancelled = false
-    ;(async () => {
-      const L = await hamtaLeaflet()
-      if (cancelled) return
-
-      // Återställ tidigare aktiv pin
-      const prev = lastHoveredRef.current
-      if (prev && prev !== hoveredId) {
-        const m = markersRef.current.get(prev) as { _poi?: Poi; setIcon?: (icon: unknown) => void } | undefined
-        if (m?._poi && m.setIcon) {
-          const cat = categorize(m._poi)
-          m.setIcon(L.divIcon({
-            html: pinHtml(cat, false),
-            className: 'svalla-pin',
-            iconSize: PIN_SIZE,
-            iconAnchor: PIN_ANCHOR,
-            popupAnchor: [0, -36],
-          }))
-        }
-      }
-      // Sätt ny aktiv
-      if (hoveredId) {
-        const m = markersRef.current.get(hoveredId) as { _poi?: Poi; setIcon?: (icon: unknown) => void } | undefined
-        if (m?._poi && m.setIcon) {
-          const cat = categorize(m._poi)
-          m.setIcon(L.divIcon({
-            html: pinHtml(cat, true),
-            className: 'svalla-pin svalla-pin-active',
-            iconSize: PIN_SIZE,
-            iconAnchor: PIN_ANCHOR,
-            popupAnchor: [0, -36],
-          }))
-        }
-      }
-      lastHoveredRef.current = hoveredId
-    })()
-    return () => { cancelled = true }
+    hoveredIdRef.current = hoveredId
+    const satt = (id: string | null, aktiv: boolean) => {
+      if (!id) return
+      const m = markersRef.current.get(id)
+      if (!m?.poi) return
+      // classList, inte className: MapLibre har egna klasser på elementet som styr placeringen.
+      m.el.classList.toggle('svalla-pin-active', aktiv)
+      m.el.style.zIndex = aktiv ? '10' : ''
+    }
+    const prev = lastHoveredRef.current
+    if (prev && prev !== hoveredId) satt(prev, false)
+    satt(hoveredId, true)
+    lastHoveredRef.current = hoveredId
   }, [hoveredId])
 
   // ── Mobile tab-byte: vid switch till "map" måste Leaflet få veta att
@@ -764,53 +756,38 @@ export default function UpptackExplorer() {
     setMobileTab(tab)
     if (tab === 'map') {
       // Vänta en tick så DOM hunnit uppdateras
-      setTimeout(() => {
-        const m = mapRef.current as { invalidateSize?: () => void } | null
-        m?.invalidateSize?.()
-      }, 50)
+      setTimeout(() => { mapRef.current?.resize() }, 50)
     }
   }, [])
 
-  // ── GPS: "Visa min plats" — centrera + blå punkt med accuracy-cirkel ───
+  // ── GPS: "Visa min plats" — centrera + blå punkt med noggrannhetscirkel ─
   const handleGps = useCallback(async () => {
     if (typeof navigator === 'undefined' || !navigator.geolocation) return
     if (gpsState === 'denied') return
-    const map = mapRef.current as { flyTo?: (latlng: [number, number], zoom: number, opts?: object) => void; getZoom?: () => number } | null
+    const map = mapRef.current
     if (!map) return
 
     setGpsState('loading')
-    const L = await hamtaLeaflet()
+    const maplibregl = await hamtaMaplibre()
 
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const { latitude: lat, longitude: lng, accuracy } = pos.coords
-        // Rensa tidigare GPS-grafik
-        gpsMarkerRef.current?.remove?.()
-        gpsAccCircleRef.current?.remove?.()
-        // Accuracy-cirkel om rimlig
-        if (accuracy && accuracy < 2000) {
-          const circle = L.circle([lat, lng], {
-            radius: accuracy,
-            color: '#3b82f6',
-            fillColor: '#3b82f6',
-            fillOpacity: 0.08,
-            weight: 1,
-            opacity: 0.35,
-            interactive: false,
-          })
-          ;(circle as unknown as { addTo: (m: unknown) => unknown }).addTo(mapRef.current)
-          gpsAccCircleRef.current = circle as unknown as { remove?: () => void }
-        }
-        // Blå GPS-prick med vit ring
-        const dot = L.circleMarker([lat, lng], {
-          radius: 7, fillColor: '#3b82f6', fillOpacity: 1,
-          color: '#fff', weight: 2.5, opacity: 1,
+        gpsMarkerRef.current?.remove()
+        const kalla = map.getSource('gps-noggrannhet') as { setData?: (d: unknown) => void } | undefined
+        kalla?.setData?.({
+          type: 'FeatureCollection',
+          features: accuracy && accuracy < 2000
+            ? [{ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [cirkelRing(lat, lng, accuracy)] } }]
+            : [],
         })
-        ;(dot as unknown as { addTo: (m: unknown) => unknown }).addTo(mapRef.current)
-        gpsMarkerRef.current = dot as unknown as { remove?: () => void }
+        const prick = document.createElement('div')
+        prick.style.cssText = 'width:14px;height:14px;border-radius:50%;background:#3b82f6;border:2.5px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.15)'
+        prick.setAttribute('aria-hidden', 'true')
+        gpsMarkerRef.current = new maplibregl.Marker({ element: prick }).setLngLat([lng, lat]).addTo(map)
 
-        const z = map.getZoom?.() ?? 13
-        map.flyTo?.([lat, lng], Math.max(z, 13), { duration: 0.9 })
+        const z = tillLeafletZoom(map.getZoom())
+        map.flyTo({ center: [lng, lat], zoom: tillMaplibreZoom(Math.max(z, 13)), duration: 900 })
         setGpsState('active')
       },
       (err) => {
@@ -821,18 +798,15 @@ export default function UpptackExplorer() {
     )
   }, [gpsState])
 
-  // ── Toggle sidobar (desktop) — Leaflet behöver invalidateSize ──────────
+  // ── Toggle sidobar (desktop) — kartan behöver räkna om sin storlek ─────
   const toggleList = useCallback(() => {
     setListCollapsed(prev => {
       const next = !prev
       if (typeof window !== 'undefined') {
         window.localStorage.setItem('upx-list-collapsed', next ? '1' : '0')
       }
-      // Vänta tills CSS-transition börjat så Leaflet räknar om container
-      setTimeout(() => {
-        const m = mapRef.current as { invalidateSize?: () => void } | null
-        m?.invalidateSize?.()
-      }, 280) // matchar grid-transition-duration
+      // Vänta tills CSS-transition börjat så kartan räknar om containern
+      setTimeout(() => { mapRef.current?.resize() }, 280) // matchar grid-transition-duration
       return next
     })
   }, [])
@@ -840,14 +814,14 @@ export default function UpptackExplorer() {
   // ── Klick på listrad → fly till plats ──────────────────────────────────
   const flyTo = useCallback(async (poi: Poi) => {
     if (!mapRef.current) return
-    const map = mapRef.current as { flyTo: (latlng: [number, number], zoom: number, opts?: object) => void }
-    map.flyTo([poi.latitude, poi.longitude], 15, { duration: 0.8 })
+    const map = mapRef.current
+    map.flyTo({ center: [poi.longitude, poi.latitude], zoom: tillMaplibreZoom(15), duration: 800 })
     setHoveredId(poi.id)
-    // Öppna popup efter fly
+    // Öppna popup efter flygturen, när nålen ritats ur sitt kluster
     setTimeout(() => {
-      const m = markersRef.current.get(poi.id) as { openPopup?: () => void } | undefined
-      m?.openPopup?.()
-    }, 850)
+      const m = markersRef.current.get(poi.id)
+      if (m && !m.marker.getPopup()?.isOpen()) m.marker.togglePopup()
+    }, 900)
   }, [])
 
   // 2026-11-23 (menyförslaget): toppraden och upx-header mäts, så att kartans och
@@ -1108,7 +1082,7 @@ export default function UpptackExplorer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            © OpenStreetMap
+            © OpenStreetMap · OpenMapTiles · OpenFreeMap · OpenSeaMap
           </a>
           {/* Återöppna-flik (visas bara när lista collapsad) */}
           {listCollapsed && (
@@ -1553,6 +1527,10 @@ export default function UpptackExplorer() {
         /* OSM-attribution. Liten rad i nederkanten, som på en vanlig karta.
            På dator sitter den till vänster om "Tipsa oss" och under vädret.
            Ingen kapsel och ingen skugga. */
+        .svalla-pin .nal-aktiv { display: none; }
+        .svalla-pin.svalla-pin-active .nal-vanlig { display: none; }
+        .svalla-pin.svalla-pin-active .nal-aktiv { display: block; }
+        .svalla-pin { cursor: pointer; }
         .upx-attr {
           position: absolute;
           z-index: 500;
@@ -1668,7 +1646,7 @@ export default function UpptackExplorer() {
             -webkit-tap-highlight-color: transparent;
           }
           .upx-sokknapp:active { background: var(--sea, #1e5c82); color: #fff; }
-          .upx-map .leaflet-top.leaflet-right { top: 54px; }
+          .upx-map .maplibregl-ctrl-top-right { top: 54px; }
           /* Ovanför listans minsta läge, GPS-knappen och cookieremsan.
              Vädret och "Tipsa oss" tar höger sida. */
           .upx-attr { left: 54px; right: auto; bottom: 118px; }
@@ -1808,7 +1786,7 @@ export default function UpptackExplorer() {
           .upx-split.sheet-full .upx-sokknapp,
           /* Kartans + och − hamnade ovanpå listans första kort i helskärm
              (Toms iPhone 2026-11-25). Kartan syns inte då, så knapparna gör inget. */
-          .upx-split.sheet-full .leaflet-control-zoom { display: none; }
+          .upx-split.sheet-full .maplibregl-ctrl-group { display: none; }
         }
       ` }} />
     </div>
