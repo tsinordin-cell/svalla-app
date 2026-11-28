@@ -331,6 +331,12 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   },
   yxlan: {
     destStopId: '740025023', destStopName: 'Yxlan Vagnsunda brygga',
+    // P0 29 (2026-11-28, Redaktörens tillägg, f300a-0096): Vagnsunda står bara i tabell 24, som gällde till 1 november 2026. Ingen av Waxholmsbolagets tabeller h2 till h31 och w2 till w31 har Vagnsunda
+    // för perioderna till 12 december 2026 och från 13 december 2026 (MÄTT 2026-11-28; w24 gäller 2024). Rutorna visade ändå reseplanerarens tider dit. Hållplats-id för Köpmanholm är inte uppmätt, så destStopId står kvar och rutorna visar texten.
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h24.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 1 NOVEMBER 2026", "24A STOCKHOLM – VAXHOLM – BLIDÖSUNDET", "Vagnsunda (Yxlan)" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h28.pdf — "GÄLLER 1 OKTOBER 2026 – 12 DECEMBER 2026", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Köpmanholm (Yxlan)" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w28.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "28A FURUSUND – ÖSTERNÄS – SÖDERÖRA – RÖDLÖGA", "Köpmanholm (Yxlan)" (Vagnsunda finns inte i tabellen) (läst 2026-11-28)
+    stangd: 'Waxholmsbolaget angör inte Vagnsunda på Yxlan nu. Tabell 24, som hade Vagnsunda, gällde till 1 november 2026, och ingen tabell till 12 december 2026 eller från 13 december 2026 har bryggan. Waxholmsbolagets tabell 28 angör Köpmanholm på Yxlan i båda perioderna.',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
   },
 
@@ -384,7 +390,18 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
   svartso: {
     destStopId: '740024872', destStopName: 'Svartsö Norra brygga',
     originStopId: STROMKAJEN_ID, originStopName: 'Stockholm Strömkajen',
-    note: 'Båt från Stavsnäs vinterhamn med Waxholmsbolaget.',
+    // Faktagranskning fas 3 (2026-11-28, P0, f300a-0115): noten sa "Båt från Stavsnäs vinterhamn". Norra Svartsö står i tabell 10, 12 och 13, och ingen av dem har Stavsnäs.
+    // P0 29 (2026-11-28, Kontrollanten k02, k04, k05): resvägen skrivs som tabellerna. Till 12 december går tabell 12 utan byte från Strömkajen via Vaxholm (tur 1201, 1223, 1227 i 12A, MÄTT).
+    // I h13 står Norra Svartsö bara i 13B; tur 1202 (H) gick till Stockholm bara till 13 september, 1346 (I) till 18 juni, och 1010 slutar vid Norra Svartsö (MÄTT med pdftotext -bbox).
+    // I w12 slutar Strömkajens turer (1421, 1323, 1351, 1371) i Lillsved; Norra Svartsö har tider på turer från Vaxholm (1201) och från Lillsved (1221, 1251, 1261, 1263, 1281, 1271).
+    // Mot Stockholm: 1152 från Lillsved, eller 1376 till Vaxholm och 0476 därifrån. U-turerna vid Norra Svartsö (1261, 1263, 1281, 1260, 1262, 1280, 1282) har alla C (MÄTT).
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h12.pdf — "12A STOCKHOLM – VAXHOLM – LILLSVED – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Strömkajen (Stockholm)", "Norra Svartsö" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h13.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "13B HUSARÖ – SÖDRA INGMARSÖ – BODA – VAXHOLM – STOCKHOLM", "Norra Svartsö", "Går under perioderna 2 april - 18 juni och 17 augusti - 13 september.", "Går under perioden 2 april - 18 juni." (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Åsättra brygga", "Norra Svartsö" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w10.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "GÄLLER ISFRI PERIOD", "10C ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ", "GÄLLER ISPERIOD (VID LÄTTARE IS)", "10E ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ", "GÄLLER ISPERIOD (VID KRAFTIG IS)", "Åsättra brygga", "Norra Svartsö" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w12.pdf — "12A STOCKHOLM – LILLSVED – NORRA INGMARSÖ", "12B NORRA INGMARSÖ – LILLSVED – STOCKHOLM", "GÄLLER 13/12 – 6/1 OCH 25/3 – 11/4 SAMT ISFRI PERIOD 7/1 – 24/3", "Strömkajen (Stockholm)", "Lillsved ank.", "Lillsved avg.", "Norra Svartsö", "Beställ resan i SL-appen, på", "Waxholmsbolagets webb eller via kundtjänst", "08-600 10 00 senast kl. 19.00 dag före", "resdag.", "Går under isfri period 7 januari - 24 mars.", "12C ÅSÄTTRA – ÖRSÖ", "GÄLLER ISPERIOD 7 JANUARI – 24 MARS" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w13.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "13A STOCKHOLM – VAXHOLM – BODA – SÖDRA INGMARSÖ – HUSARÖ" (Norra Svartsö finns inte i tabellen) (läst 2026-11-28)
+    note: 'Waxholmsbolagets båtar till Norra Svartsö går från Åsättra brygga (tabell 10) och från Strömkajen (tabell 12). Till 12 december 2026 går båtarna i tabell 12 från Strömkajen via Vaxholm till Norra Svartsö. I tabell 13 till 12 december 2026 står Norra Svartsö bara på turer mot Stockholm (13B), men efter 13 september 2026 går ingen av dem vidare från Norra Svartsö till Stockholm. Från 13 december 2026 till 11 april 2027 går ingen båt i tabell 12 hela vägen mellan Strömkajen och Norra Svartsö: du byter båt i Lillsved, mot Stockholm på en del turer också i Vaxholm. Turerna till och från Norra Svartsö i tabell 12 under isfri period 7 januari till 24 mars har anmärkning C: Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 senast kl. 19.00 dag före resdag. Under isperiod 7 januari till 24 mars har tabell 12 inte Norra Svartsö, men tabell 10 från Åsättra har det också under isperioden. Tabell 13 för 13 december 2026 till 11 april 2027 har inte Norra Svartsö.',
     // P0 24 (2026-11-17, Redaktörens beslut): samma fel som på Sandhamn. Tabellen har
     // beställningsturer vid bryggan (MÄTT med p0-24/skript/tabell.py): 19 av 19 turer i 10B, 14 av 18 i 10A (1073 och 1075 utan anmärkning) och 4 av 14 i 12A; inga i 12B och 13B (rättat efter Kontrollanten, k059).
     // KÄLLA: https://kund.printhuset-sthlm.se/wa/h10.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "10A ÅSÄTTRA – NORRA INGMARSÖ – HUSARÖ – MÖJA", "Norra Svartsö", "Beställ resan i SL-appen, på", "minst 2 timmar innan", "minst 1 timme innan avgång", "resdag." (vid Norra Svartsö: B (turen går bara efter beställning), b (bryggan, beställ minst en timme före), C (turen, beställ dagen före)) (läst 2026-11-17)
@@ -439,6 +456,13 @@ export const ISLAND_TRANSIT: Record<string, IslandTransitConfig> = {
     destStopId: '740024875', destStopName: 'Nåttarö brygga',
     originStopId: NYNASHAMN_ID, originStopName: 'Nynäshamn färjeterminal',
     note: 'Pendeltåg till Nynäshamn + Waxholmsbolaget därifrån.',
+    // Faktagranskning fas 3, vintertabellerna (2026-11-28, f300a-0287): i vintertabellen 22 har Nåttarö anmärkning b på alla turer i 22A och en del i 22B (MÄTT); tabellen till 12 december har ingen.
+    // Andra rättelsen P0 28 (2026-11-28, k40): bestallningTabell är borttagen för Nåttarö. Rutornas allmänna text om beställningsturer visades alla datum, men i tabell 22 till 12 december 2026 har ingen tur och ingen brygga anmärkning om beställning ("Beställ" finns inte i h22, MÄTT).
+    // I w22 har alla turer i 22A anmärkning b vid Nåttarö (en timme). I 22B har åtta av tolv turer turanmärkning B (två timmar) och de fyra övriga anmärkning b vid Nåttarö (MÄTT).
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/h22.pdf — "GÄLLER 2 APRIL 2026 – 18 JUNI 2026 OCH 17 AUGUSTI 2026 – 12 DECEMBER 2026", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ", "22B ÅLÖ – NÅTTARÖ – NYNÄSHAMN", "Nåttarö" (läst 2026-11-28)
+    // KÄLLA: https://kund.printhuset-sthlm.se/wa/w22.pdf — "GÄLLER 13 DECEMBER 2026 – 11 APRIL 2027", "22A NYNÄSHAMN – NÅTTARÖ – ÅLÖ", "22B ÅLÖ – NÅTTARÖ – NYNÄSHAMN", "Nåttarö", "ANMÄRKNING TUR", "B Beställ resan i SL-appen, på", "08-600 10 00 minst 2 timmar innan", "avgång från aktuell brygga, dock senast kl.", "ANMÄRKNING BRYGGA", "b Beställ resan i SL-appen, på", "minst 1 timme innan avgång", "från aktuell brygga, dock senast kl. 17.00." (läst 2026-11-28)
+    // P0 29 (2026-11-28, Kontrollanten k23): "samma dag" står inte i w22 och är struket; anmärkningarna b och B står som i tabellen (klockslag i beställningsregler enligt Redaktörens beslut P0 27).
+    bestallning: 'Till 12 december 2026 har ingen tur i Waxholmsbolagets tabell 22 någon anmärkning om beställning vid Nåttarö. Från 13 december 2026 till 11 april 2027 har alla turer mot Ålö anmärkning b vid Nåttarö: Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 1 timme innan avgång från aktuell brygga, dock senast kl. 17.00. Mot Nynäshamn har åtta av tolv turer anmärkning B: Beställ resan i SL-appen, på Waxholmsbolagets webb eller via kundtjänst 08-600 10 00 minst 2 timmar innan avgång från aktuell brygga, dock senast kl. 17.00. De övriga fyra har anmärkning b vid Nåttarö. Kontrollera anmärkningen för din tur i Waxholmsbolagets tabell 22 i god tid innan du åker.',
   },
   orno: {
     destStopId: '740034475', destStopName: 'Ornö Kyrka brygga',
