@@ -65,9 +65,10 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
 
       map.on('load', () => {
         if (!map) return
-        // Sjökortsmärken-overlay, samma som förut
+        // Sjökortsmärken-overlay
         map.addSource('sjomarken', { type: 'raster', tiles: [SEAMARK_TILE], tileSize: 256, maxzoom: 18 })
-        map.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', paint: { 'raster-opacity': 0.85 } })
+        // Bara när man zoomat in: på översiktsnivån tog bågar och stolpar fokus från platsen (Tom 2026-11-28).
+        map.addLayer({ id: 'sjomarken', type: 'raster', source: 'sjomarken', minzoom: 14, paint: { 'raster-opacity': 0.85 } })
       })
 
       // Nålen: samma SVG som på Utforska. Spetsen sitter längst ned i mitten.
