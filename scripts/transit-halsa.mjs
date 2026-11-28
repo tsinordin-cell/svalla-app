@@ -60,6 +60,15 @@ async function main() {
   console.log(rad)
   const allaFel = resultat.every(r => !r.ok)
 
+  // Saknas Supabase-hemligheterna kan kortet inte skrivas. Då blir körningen
+  // röd bara när tjänsten är trasig, så att ett rött kryss i GitHub alltid
+  // betyder att avgångsrutorna inte fungerar (2026-11-28).
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    if (allaFel) { console.error('Avgångsrutorna kan inte hämta tider. Kortet kunde inte skrivas: SUPABASE_URL eller SUPABASE_SERVICE_ROLE_KEY saknas i GitHub.'); process.exit(1) }
+    console.log('Tjänsten fungerar. Kortet kontrolleras inte, eftersom Supabase-hemligheterna saknas i GitHub.')
+    return
+  }
+
   const oppna = await supabase(`team_tasks?select=id,description&title=eq.${encodeURIComponent(LARM_TITEL)}&status=neq.done`)
 
   if (allaFel && oppna.length === 0) {
