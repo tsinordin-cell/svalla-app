@@ -8,8 +8,14 @@
  * "gästhamn", "bensin" eller "diesel" i beskrivningen över typen. Då stod 61
  * krogar, kaféer och barer under Gästhamnar (t.ex. Finnhamns Krog) och 8
  * gästhamnar under Bensin, mätt i tabellen restaurants samma dag.
+ *
+ * Ändrat 2026-11-27 (omtaget av /upptack, Toms beslut A): egna typer för
+ * brygga (pier), butik (shop), sevärdhet (attraction), tömning (pumpout) och
+ * service (service). Bryggor och sevärdheter får egna kategorier och filter.
+ * Tömning och service visas under Annat tills de har fler rader. Butiker med
+ * den gamla lösningen (typ café plus etiketten shop) fungerar som förut.
  */
-export type PlatsKategori = 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'annat'
+export type PlatsKategori = 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'brygga' | 'bastu' | 'bensin' | 'boende' | 'bad' | 'sevardhet' | 'annat'
 
 export interface PlatsForKategori {
   name?: string | null
@@ -40,11 +46,16 @@ export function platsKategori(p: PlatsForKategori): PlatsKategori {
   if (t === 'harbor' || t === 'marina') return harBoende ? 'boende' : 'hamn'
   if (t === 'nature_harbor' || t === 'anchorage') return 'naturhamn'
   if (['beach', 'bad', 'strand'].includes(t)) return 'bad'
+  if (t === 'pier' || t === 'brygga') return 'brygga'
+  if (t === 'shop' || t === 'butik') return 'butik'
+  // En fyr eller ett bryggeri med kaféetikett är en sevärdhet, ingen krog.
+  if (t === 'attraction' || t === 'sevardhet') return 'sevardhet'
+  if (t === 'pumpout' || t === 'service') return 'annat'
 
   // 2. Typ saknas eller är natur/sevärdhet: etiketter och beskrivning.
   const gissad = kategoriUtanTyp(p, cats)
-  // En fyr eller ett naturreservat med kaféetikett är ingen krog.
-  if ((t === 'nature' || t === 'attraction') && gissad === 'krog') return 'annat'
+  // Ett naturreservat med kaféetikett är ingen krog.
+  if (t === 'nature' && gissad === 'krog') return 'annat'
   return gissad
 }
 

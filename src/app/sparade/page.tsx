@@ -48,7 +48,7 @@ type Bokmarke = {
 /** restaurants.type → nycklarna i TYPE_LABELS/TYPE_COLORS. */
 const PLATSTYP: Record<string, string> = {
   restaurant: 'krog', cafe: 'krog', bar: 'krog',
-  marina: 'brygga', harbor: 'brygga', anchorage: 'naturhamn', nature_harbor: 'naturhamn',
+  marina: 'brygga', harbor: 'brygga', pier: 'brygga', anchorage: 'naturhamn', nature_harbor: 'naturhamn',
   sauna: 'bastu', fuel: 'bensin', fuel_station: 'bensin',
 }
 

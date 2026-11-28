@@ -66,10 +66,12 @@ const CATEGORY_META: Record<Category, { label: string; color: string }> = {
   butik:      { label: 'Butiker',     color: '#b42318' },
   hamn:       { label: 'Gästhamnar',  color: '#1d4ed8' },
   naturhamn:  { label: 'Naturhamnar', color: '#0a7b3c' },
+  brygga:     { label: 'Bryggor',     color: '#0f766e' },
   bastu:      { label: 'Bastu',       color: '#9d174d' },
   bensin:     { label: 'Bensin',      color: '#525252' },
   boende:     { label: 'Boende',      color: '#6d28d9' }, // lila — distinkt mot kategorierna ovan
   bad:        { label: 'Bad',         color: '#0a7b8c' }, // havsblå — passar strand/vatten
+  sevardhet:  { label: 'Sevärdheter', color: '#86198f' },
   annat:      { label: 'Annat',       color: '#0891b2' },
 }
 
@@ -85,6 +87,10 @@ const CATEGORY_ICONS: Record<Category, string> = {
   hamn:      '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
   // tree-pine — gran (klassisk skärgårds-symbol)
   naturhamn: '<path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z"/><path d="M12 22v-3"/>',
+  // brygga: bryggdäck på pålar över vatten (egen, samma stil som nålen)
+  brygga:    '<path d="M3.5 9h17"/><path d="M7 9v7.5"/><path d="M12 9v7.5"/><path d="M17 9v7.5"/><path d="M2.5 19.5c1.2 0 1.8-1 3.2-1s2 1 3.2 1 1.8-1 3.1-1 1.9 1 3.2 1 1.8-1 3.2-1 2 1 3.1 1"/>',
+  // sevärdhet: byggnad med pelare (egen, samma stil som nålen)
+  sevardhet: '<path d="M3 21h18"/><path d="M5.5 21V10.5"/><path d="M18.5 21V10.5"/><path d="M10 21V10.5"/><path d="M14 21V10.5"/><path d="M2.5 10.5 12 3.5l9.5 7Z"/>',
   // bastu — Lucide "thermometer" (universell värme-symbol, en path, läsbar på 20px)
   bastu:     '<path d="M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/>',
   // fuel — bensinpump
@@ -107,10 +113,12 @@ const FILTER_CHIPS: Array<{ id: 'all' | Category; label: string }> = [
   { id: 'butik',     label: 'Butiker' },
   { id: 'hamn',      label: 'Hamnar' },
   { id: 'naturhamn', label: 'Naturhamnar' },
+  { id: 'brygga',    label: 'Bryggor' },
   { id: 'boende',    label: 'Boende' },
   { id: 'bad',       label: 'Bad' },
   { id: 'bastu',     label: 'Bastu' },
   { id: 'bensin',    label: 'Bensin' },
+  { id: 'sevardhet', label: 'Sevärdheter' },
 ]
 
 // Region-konfiguration med center-koordinater för zoom
@@ -183,7 +191,7 @@ export default function UpptackExplorer() {
   const [activeCats, setActiveCats] = useState<Set<Category>>(() => {
     const raw = searchParams.get('typ')
     if (!raw || raw === 'all') return new Set()
-    const validCats: Set<Category> = new Set(['krog', 'butik', 'hamn', 'naturhamn', 'bastu', 'bensin', 'boende', 'bad', 'annat'])
+    const validCats: Set<Category> = new Set(['krog', 'butik', 'hamn', 'naturhamn', 'brygga', 'bastu', 'bensin', 'boende', 'bad', 'sevardhet', 'annat'])
     const result = new Set<Category>()
     for (const part of raw.split(',')) {
       const t = part.trim() as Category
@@ -395,7 +403,7 @@ export default function UpptackExplorer() {
   // region + sök + bounds, oavsett vald kategori
   const categoryCounts = useMemo(() => {
     const counts: Record<'all' | Category, number> = {
-      all: 0, krog: 0, butik: 0, hamn: 0, naturhamn: 0, bastu: 0, bensin: 0, boende: 0, bad: 0, annat: 0,
+      all: 0, krog: 0, butik: 0, hamn: 0, naturhamn: 0, brygga: 0, bastu: 0, bensin: 0, boende: 0, bad: 0, sevardhet: 0, annat: 0,
     }
     for (const p of pois) {
       // Region-filter

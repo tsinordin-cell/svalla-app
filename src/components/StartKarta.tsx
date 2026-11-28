@@ -21,7 +21,7 @@ import { platsKategori } from '@/lib/platskategori'
 import { pinHtml, pinMiniSvg, PIN_SIZE, PIN_ANCHOR } from '@/lib/kartnal'
 
 type Poi = { id: string; name: string; latitude: number; longitude: number; type: string | null; categories: string[] | null; description: string | null; image_url: string | null; slug: string | null; island: string | null }
-type Kat = 'o' | 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'annat'
+type Kat = 'o' | 'krog' | 'butik' | 'hamn' | 'naturhamn' | 'brygga' | 'boende' | 'bad' | 'bastu' | 'bensin' | 'sevardhet' | 'annat'
 type Punkt = { id: string; namn: string; lat: number; lng: number; kat: Kat; under: string; bild?: string; href?: string }
 
 /** Samma indelning som /upptack (src/lib/platskategori.ts), plus öarna. */
@@ -33,13 +33,15 @@ const KAT: Record<Kat, { namn: string }> = {
   butik:     { namn: 'Butiker' },
   hamn:      { namn: 'Gästhamnar' },
   naturhamn: { namn: 'Naturhamnar' },
+  brygga:    { namn: 'Bryggor' },
   boende:    { namn: 'Boende' },
   bad:       { namn: 'Bad' },
   bastu:     { namn: 'Bastu' },
   bensin:    { namn: 'Sjömackar' },
+  sevardhet: { namn: 'Sevärdheter' },
   annat:     { namn: 'Övrigt' },
 }
-const ORDNING: Kat[] = ['o', 'krog', 'butik', 'hamn', 'naturhamn', 'boende', 'bad', 'bastu', 'bensin', 'annat']
+const ORDNING: Kat[] = ['o', 'krog', 'butik', 'hamn', 'naturhamn', 'brygga', 'boende', 'bad', 'bastu', 'bensin', 'sevardhet', 'annat']
 
 const esc = (s: string) => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!))
 

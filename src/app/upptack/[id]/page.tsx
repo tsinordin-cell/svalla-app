@@ -95,6 +95,8 @@ const META_TYP_ORD: Record<string, string> = {
   // Vandrarhem och stugor fanns i databasen utan typord ("Möja vandrarhem · Hotell", full-19 k036), och camping
   // läggs till enligt Toms beslut 4 (mallarnas runda 5, 2026-11-10; boendetyperna i src/lib/platstyper.ts).
   hostel: 'vandrarhem', cabin: 'stugor', camping: 'camping',
+  // Omtaget av /upptack 2026-11-27 (Toms beslut A).
+  pier: 'brygga', pumpout: 'tömningsstation', service: 'båtservice',
 }
 
 /**
@@ -109,6 +111,7 @@ const SCHEMA_TYP: Record<string, string> = {
   nature: 'TouristAttraction', attraction: 'TouristAttraction', sauna: 'TouristAttraction',
   marina: 'TouristAttraction', harbor: 'TouristAttraction',
   anchorage: 'TouristAttraction', nature_harbor: 'TouristAttraction',
+  pier: 'TouristAttraction', shop: 'Store',
 }
 
 /** Öns sida på Svalla, om platsens ö-fält motsvarar en ö vi har (exakt namn). */
@@ -460,6 +463,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    beach: 'Bad', sauna: 'Bastu', shop: 'Butik', hotel: 'Hotell', nature: 'Naturplats',
    attraction: 'Sevärdhet',
    hostel: 'Vandrarhem', cabin: 'Stugor', camping: 'Camping',
+   pier: 'Brygga', pumpout: 'Tömning', service: 'Service',
  }
  const typeLabel = r.type ? (TYPE_LABEL_MAP[r.type] ?? null) : null
 
