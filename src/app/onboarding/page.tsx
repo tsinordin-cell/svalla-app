@@ -4,7 +4,7 @@ import { createServerSupabaseClient } from '@/lib/supabase-server'
 import OnboardingFlow from './OnboardingFlow'
 import { arAutomatisktNamn, namnForslag, fornamnAv } from '@/lib/onboardingNamn'
 import { ilikeExakt } from '@/lib/username'
-import { tolkaTillbaka } from '@/lib/guidenForst'
+import { tolkaTillbaka, behoverGuiden } from '@/lib/guidenForst'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -29,11 +29,16 @@ export default async function OnboardingPage({ searchParams }: { searchParams: P
   // Egen rad via min_profil() (integritet 2026-11-20).
   const { data: profile } = await supabase
     .rpc('min_profil')
-    .maybeSingle<{ id: string; username: string | null; avatar: string | null; onboarded_at: string | null; vessel_model: string | null; home_port: string | null }>()
+    .maybeSingle<{ id: string; username: string | null; avatar: string | null; onboarded_at: string | null; created_at: string | null; vessel_type: string | null; vessel_model: string | null; home_port: string | null }>()
 
-  if (profile?.onboarded_at) {
+  // Guiden visas tills kontot har sett aktuell version (guide_version, 2026-11-28),
+  // även för konton som gick igenom den gamla guiden.
+  const { data: guide } = await supabase.from('users').select('guide_version').eq('id', user.id).maybeSingle<{ guide_version: number | null }>()
+  if (!behoverGuiden(guide?.guide_version)) {
     redirect(tillbaka ?? '/feed')
   }
+  // Befintligt konto: gick igenom den gamla guiden eller skapades före i går.
+  const befintligt = !!profile?.onboarded_at || (!!profile?.created_at && Date.now() - new Date(profile.created_at).getTime() > 24 * 3600_000)
 
   // Förslag i "Följ några seglare": konton som har minst en publik tur, senaste
   // turen först. Tidigare föreslogs de senast skapade kontona, och inget av dem
@@ -120,6 +125,9 @@ export default async function OnboardingPage({ searchParams }: { searchParams: P
         <OnboardingFlow
           userId={user.id}
           halsning={halsning}
+          befintligt={befintligt}
+          startBat={profile?.vessel_type ?? null}
+          startHamn={profile?.home_port ?? ''}
           nuvarandeNamn={nuvarandeNamn}
           namnForslag={forslag}
           avatar={profile?.avatar ?? null}

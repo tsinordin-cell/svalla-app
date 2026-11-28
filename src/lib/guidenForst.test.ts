@@ -23,3 +23,25 @@ describe('nya konton till guiden först', () => {
     expect(tolkaTillbaka('/onboardingar')).toBe('/onboardingar')
   })
 })
+
+import { behoverGuiden, guidenFarVisasPa, GUIDE_VERSION } from './guidenForst'
+
+describe('guiden för befintliga konton', () => {
+  it('null och äldre version behöver guiden, aktuell gör det inte', () => {
+    expect(behoverGuiden(null)).toBe(true)
+    expect(behoverGuiden(undefined)).toBe(true)
+    expect(behoverGuiden(1)).toBe(true)
+    expect(behoverGuiden(GUIDE_VERSION)).toBe(false)
+    expect(behoverGuiden(GUIDE_VERSION + 1)).toBe(false)
+  })
+  it('tar inte över inloggning, admin, radering och juridik', () => {
+    for (const s of ['/onboarding', '/logga-in', '/admin/mail', '/team', '/profil/installningar/radera', '/integritetspolicy', '/auth/callback', '/goodbye']) {
+      expect(guidenFarVisasPa(s)).toBe(false)
+    }
+  })
+  it('tar över vanliga sidor', () => {
+    for (const s of ['/', '/feed', '/o/sandhamn', '/upptack', '/profil', '/teamet']) {
+      expect(guidenFarVisasPa(s)).toBe(true)
+    }
+  })
+})
