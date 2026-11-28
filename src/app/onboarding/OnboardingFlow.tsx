@@ -61,6 +61,8 @@ interface Props {
   namnForslag: string
   /** Profilbild som kontot redan har. */
   avatar: string | null
+  /** Namnet kommer från e-posten (eller seglare-…): då leder "Hoppa över" till namnsteget. */
+  automatisktNamn?: boolean
   /** Sidan personen var på väg till när kontot skapades. Dit går "Hoppa över" och "Fortsätt". */
   tillbaka?: string | null
   suggestions: Suggestion[]
@@ -369,7 +371,7 @@ function Framsteg({ current }: { current: Step }) {
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, halsning, befintligt = false, startBat = null, startHamn = '', nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false, film = true }: Props) {
+export default function OnboardingFlow({ userId, halsning, befintligt = false, startBat = null, startHamn = '', nuvarandeNamn, namnForslag, avatar, automatisktNamn = false, tillbaka = null, suggestions, forhandsvisning = false, film = true }: Props) {
   const router = useRouter()
   const supabase = useMemo(() => createClient(), [])
 
@@ -378,6 +380,8 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
   const [startedAt] = useState(() => Date.now())
 
   const [alias, setAlias] = useState(namnForslag)
+  // Hoppar över guiden men måste välja namn först (Toms ja 2026-11-28): bara namnsteget, sedan klar.
+  const [baraNamn, setBaraNamn] = useState(false)
   const [bildFil, setBildFil] = useState<File | null>(null)
   const [bildVisning, setBildVisning] = useState<string | null>(avatar)
   const bildRef = useRef<HTMLInputElement>(null)
@@ -448,6 +452,7 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
     })
   }
   const goBack = () => {
+    if (baraNamn && step === 'namn') { setBaraNamn(false); return goTo('valkomst') }
     const i = STEG.indexOf(step)
     // Tillbaka från avgång när följsteget hoppades över: till hamnen.
     if (step === 'klar' && suggestions.length === 0) return goTo('hamn')
@@ -492,6 +497,7 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
         if (e) throw new Error(e.code === '23505' ? 'Namnet är redan taget. Prova ett annat.' : 'Kunde inte spara. Försök igen.')
       }
       setSaving(false)
+      if (baraNamn) { await finish(tillbaka ?? '/feed'); return }
       goNext()
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Något gick fel')
@@ -599,7 +605,9 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
       <div className="ob-rad">
         <button type="button" onClick={goNext} className="ob-knapp">Kasta loss <Pil /></button>
       </div>
-      <button type="button" onClick={() => finish(tillbaka ?? '/feed')} disabled={saving} className="ob-lank">
+      {/* Den som har e-postens början som namn får välja namn även när guiden hoppas över
+          (Toms ja 2026-11-28); 74 av 133 konton hade ett sådant namn (mätt 27 nov). */}
+      <button type="button" onClick={() => automatisktNamn ? (setBaraNamn(true), goTo('namn')) : finish(tillbaka ?? '/feed')} disabled={saving} className="ob-lank">
         {saving ? 'Sparar…' : 'Hoppa över guiden'}
       </button>
     </>
@@ -642,10 +650,13 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
   /* ── 3. Namn och bild ─────────────────────────────────────────────── */
   else if (step === 'namn') innehall = (
     <>
-      <Framsteg current={step} />
+      {!baraNamn && <Framsteg current={step} />}
+      {baraNamn && <p className="ob-etikett">Ett sista steg</p>}
       <h2 className="ob-rubrik">Vad ska vi kalla dig?</h2>
       <p className="ob-text" style={{ marginBottom: 20 }}>
-        Namnet syns för andra på Svalla, på din profil och dina turer. Din e-post visas aldrig.
+        {baraNamn
+          ? 'Innan du går vidare: välj namnet som andra ser på Svalla. Din e-post visas aldrig.'
+          : 'Namnet syns för andra på Svalla, på din profil och dina turer. Din e-post visas aldrig.'}
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginBottom: 22 }}>
         <button type="button" onClick={() => bildRef.current?.click()} className="ob-bild" aria-label={bildVisning ? 'Byt profilbild' : 'Lägg till profilbild'}>
@@ -676,7 +687,7 @@ export default function OnboardingFlow({ userId, halsning, befintligt = false, s
       <div className="ob-rad">
         {tillbakaKnapp}
         <button type="button" onClick={handleSaveName} disabled={saving || alias.trim().length < 3} className="ob-knapp">
-          {saving ? 'Sparar…' : <>Nästa <Pil /></>}
+          {saving ? 'Sparar…' : baraNamn ? <>Spara och fortsätt <Pil /></> : <>Nästa <Pil /></>}
         </button>
       </div>
     </>

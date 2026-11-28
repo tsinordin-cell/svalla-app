@@ -130,6 +130,7 @@ export default async function OnboardingPage({ searchParams }: { searchParams: P
           startHamn={profile?.home_port ?? ''}
           nuvarandeNamn={nuvarandeNamn}
           namnForslag={forslag}
+          automatisktNamn={automatiskt}
           avatar={profile?.avatar ?? null}
           tillbaka={tillbaka}
           suggestions={suggestions.map(s => ({
