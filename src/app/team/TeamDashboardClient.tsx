@@ -1427,7 +1427,8 @@ function Pulse({
   const andra = teamMembers
     .filter(m => m.id !== currentUser.id)
     .map(m => ({ m, antal: aktiva.filter(t => t.assignee_id === m.id).length }))
-    .filter(x => x.antal > 0)
+  // Alla i teamet syns, även med 0 uppgifter (Tom 2026-11-28: Claes försvann ur raden
+  // eftersom han inte hade några uppgifter än).
 
   if (!aktiva.length && !granska) return null
 
