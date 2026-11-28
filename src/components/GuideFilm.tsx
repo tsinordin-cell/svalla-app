@@ -8,7 +8,7 @@ import { useEffect, useId, useState } from 'react'
    i public/kreativ, så att den laddar snabbt, går att ändra och följer
    startsidans stil. Ersätter steg 2 ("Det här kan du göra") i onboardingen.
 
-   Fem scener, ca 31 sekunder. Varje scen är en SVG (400 × 360) som skalar med
+   Ingen pausknapp (Tom 28 nov). Fem scener, ca 31 sekunder. Varje scen är en SVG (400 × 360) som skalar med
    skärmen. Rörelserna är CSS och SVG-animationer som startar när scenen visas.
    prefers-reduced-motion: filmen visas inte (OnboardingFlow visar korten).
 ───────────────────────────────────────────────────────────────────────────── */
@@ -273,17 +273,16 @@ export default function GuideFilm({ onSlut }: { onSlut?: () => void }) {
           </button>
         ))}
       </div>
-      <div key={`${scen}-${omgang}`} className={`gf-scen${paus ? ' gf-paus' : ''}`} onClick={() => setPaus(p => !p)}>
+      <div key={`${scen}-${omgang}`} className={`gf-scen${paus ? ' gf-paus' : ''}`}>
         <Scen />
       </div>
       <div key={`t-${scen}`} className="gf-text" aria-live="polite">
         <h2>{info.rubrik}</h2>
         <p>{info.text}</p>
       </div>
+      {/* Ingen pausknapp (Tom 28 nov). Filmen står bara still när fliken inte syns. */}
       <div className="gf-styr">
-        {slut
-          ? <button type="button" onClick={() => ga(0)}>Spela igen</button>
-          : <button type="button" onClick={() => setPaus(p => !p)}>{paus ? 'Spela' : 'Pausa'}</button>}
+        {slut ? <button type="button" onClick={() => ga(0)}>Spela igen</button> : <span aria-hidden style={{ height: 30 }} />}
       </div>
     </div>
   )
