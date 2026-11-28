@@ -78,6 +78,16 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
       new maplibregl.Marker({ element: el, anchor: 'bottom', offset: [0, 1] })
         .setLngLat([lng, lat])
         .addTo(map)
+      // MapLibre gör nålen till en fokuserbar knapp med namnet "Map marker".
+      // Den gör inget vid klick, så knapprollen tas bort (samma som för Leaflet 2026-10-02).
+      el.removeAttribute('role')
+      el.removeAttribute('tabindex')
+      el.removeAttribute('aria-label')
+
+      // Källhänvisningen startar ihopfälld, som en i-knapp.
+      map.once('load', () => {
+        mapDivRef.current?.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show')
+      })
     })()
 
     return () => {
