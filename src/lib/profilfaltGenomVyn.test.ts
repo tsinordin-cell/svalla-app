@@ -41,6 +41,7 @@ export const STANGDA_KOLUMNER = [
 const UNDANTAG = new Set([
   'app/admin/users/page.tsx', // adminlistan över konton, getAdminClient()
   'app/team/page.tsx', // listan över adminkonton hämtas med tjänsteklienten (service)
+  'app/api/team/delegera/route.ts', // kollar med tjänsteklienten att mottagaren är i teamet; is_admin bara som filter, lämnas aldrig ut (2026-11-28)
 ])
 
 const LASMETODER = new Set([

@@ -221,6 +221,15 @@ function avatarColor(id: string): string {
   return AVATAR_PALETTE[hash % AVATAR_PALETTE.length]!
 }
 
+// Notis i klockan, push och mejl till den som fick uppgiften (2026-11-28, Toms ja).
+// Servern läser uppgiften själv och avgör om något ska skickas. Går det fel
+// påverkar det inte uppgiften.
+function meddelaMottagare(taskId: string) {
+  void fetch('/api/team/delegera', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ taskId }),
+  }).catch(() => {})
+}
+
 function relativeTime(iso: string): string {
   const diffMs = Date.now() - new Date(iso).getTime()
   const min = Math.floor(diffMs / 60000)
@@ -873,6 +882,7 @@ export default function TeamDashboardClient({
       .single()
     if (error || !data) return null
     setTasks(prev => [data as Task, ...prev])
+    if (input.assignee_id && input.assignee_id !== currentUser.id) meddelaMottagare((data as Task).id)
     return (data as Task).id
   }, [supabase, currentUser.id])
 
@@ -896,8 +906,9 @@ export default function TeamDashboardClient({
 
   const updateTaskAssignee = useCallback(async (id: string, assignee_id: string | null) => {
     setTasks(prev => prev.map(t => t.id === id ? { ...t, assignee_id } : t))
-    await supabase.from('team_tasks').update({ assignee_id }).eq('id', id)
-  }, [supabase])
+    const { error } = await supabase.from('team_tasks').update({ assignee_id }).eq('id', id)
+    if (!error && assignee_id && assignee_id !== currentUser.id) meddelaMottagare(id)
+  }, [supabase, currentUser.id])
 
   const deleteTask = useCallback(async (id: string) => {
     // Läs bilagorna först — annars blir filerna kvar i bucketen för alltid
@@ -1477,6 +1488,11 @@ function TasksBoard({ tasks, projects, projectById, memberById, teamMembers, cur
   const [showForm, setShowForm] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
   const [openTaskId, setOpenTaskId] = useState<string | null>(null)
+  // Länken i notisen och mejlet: /team?uppgift=<id> öppnar uppgiften direkt.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('uppgift')
+    if (id) setOpenTaskId(id)
+  }, [])
   const [title, setTitle] = useState('')
   const [notes, setNotes] = useState('')
   const [projectId, setProjectId] = useState('')
