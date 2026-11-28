@@ -30,7 +30,8 @@ const TYPE_PLACEHOLDERS: Record<FeedbackType, string> = {
 // /guide: knappen täckte 84 % av Thorkels skicka-knapp (mätt 19 nov 2026).
 // /glomt-losenord och /nytt-losenord: knappen låg över hörnet på sidans enda knapp (20 nov 2026).
 // 2026-11-26: /meddelanden har skrivfältet längst ner, där knappen annars hamnade ovanpå skicka-knappen.
-const UTAN_FLYTANDE_KNAPP = ['/logga/manuell', '/spara', '/kom-igang', '/logga-in', '/glomt-losenord', '/nytt-losenord', '/bekrafta-epost', '/guide', '/meddelanden']
+// 2026-11-28: /onboarding, knappen låg över Nästa och Kasta loss på 320 och 360 px breda telefoner (mätt).
+const UTAN_FLYTANDE_KNAPP = ['/onboarding', '/logga/manuell', '/spara', '/kom-igang', '/logga-in', '/glomt-losenord', '/nytt-losenord', '/bekrafta-epost', '/guide', '/meddelanden']
 
 export default function FeedbackWidget() {
   const [open, setOpen]       = useState(false)
