@@ -476,6 +476,18 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  })()
 
  /**
+  * Beskrivningen under rubriken (2026-11-28): första meningen visas redan som
+  * one-liner i rubrikkortet. Rutan visar resten, så att samma text inte står
+  * två gånger. Kapades meningen (…) visas hela beskrivningen.
+  */
+ const beskrivningResten: string | null = (() => {
+   if (!r.description) return null
+   if (r.core_experience || !oneLiner || oneLiner.endsWith('…')) return r.description
+   const rest = r.description.slice(r.description.indexOf(oneLiner) + oneLiner.length).trim()
+   return rest.length > 0 ? rest : null
+ })()
+
+ /**
   * Mappa rå type → svensk label för PremiumHeader och FactsSection.
   */
  const TYPE_LABEL_MAP: Record<string, string> = {
@@ -598,29 +610,16 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  </div>
  )}
 
- {/* ── Tags ── */}
- {r.tags && r.tags.length > 0 && (
- <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 14 }}>
- {r.tags.map((tag: string) => (
- <span key={tag} style={{
- padding: '5px 12px', borderRadius: 20,
- background: 'rgba(10,123,140,0.07)',
- border: '1px solid rgba(10,123,140,0.13)',
- fontSize: 12, fontWeight: 600, color: 'var(--sea)',
- }}>
- {tag}
- </span>
- ))}
- </div>
- )}
+ {/* Taggraden borttagen 2026-11-28: rå taggar med liten bokstav ("boende",
+     "b&b") stod lösa under rubriken och upprepade Egenskaper längre ned. */}
 
- {/* ── Description ── */}
- {r.description && (
+ {/* ── Description (resten efter one-linern) ── */}
+ {beskrivningResten && (
  <div style={{
  background: 'var(--white)', borderRadius: 18, padding: '16px 18px', marginBottom: 14,
  boxShadow: '0 2px 10px rgba(0,45,60,0.06)',
  }}>
- <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65, margin: 0 }}>{r.description}</p>
+ <p style={{ fontSize: 14, color: 'var(--txt2)', lineHeight: 1.65, margin: 0 }}>{beskrivningResten}</p>
  </div>
  )}
 
@@ -630,7 +629,8 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
    email={(r as Restaurant & { email?: string | null }).email}
    website={r.website}
    menuUrl={(r as Restaurant & { menu_url?: string | null }).menu_url}
-   bookingUrl={(r as Restaurant & { booking_url?: string | null }).booking_url}
+   // Boka bord och Google-betyget står redan i rubrikkortet (2026-11-28).
+   bookingUrl={null}
    instagram={(r as Restaurant & { instagram?: string | null }).instagram}
    facebook={(r as Restaurant & { facebook?: string | null }).facebook}
    formattedAddress={
@@ -638,8 +638,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
        || [r.postal_code, r.city].filter(Boolean).join(' ')
        || null
    }
-   googleRating={(r as Restaurant & { google_rating?: number | null }).google_rating}
-   googleRatingsTotal={(r as Restaurant & { google_ratings_total?: number | null }).google_ratings_total}
+   googleRating={null}
+   googleRatingsTotal={null}
+   googleKalla={!!(r as Restaurant & { google_rating?: number | null }).google_rating}
    googlePlaceId={(r as Restaurant & { google_place_id?: string | null }).google_place_id}
    // Obekräftade öppettider skickas inte ens med till klienten (de hamnade annars i RSC-datat).
    openingHours={(r as Restaurant & { verified_at?: string | null }).verified_at ? (r as Restaurant & { opening_hours?: string | null }).opening_hours : null}
@@ -803,7 +804,9 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  width: 42, height: 42, borderRadius: 12, flexShrink: 0,
  background: 'var(--grad-sea)',
  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20,
- }}> </div>
+ }}>
+ <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" aria-hidden><circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h7a3.5 3.5 0 0 0 0-7H9a3.5 3.5 0 0 1 0-7h7"/></svg>
+ </div>
  <div style={{ flex: 1, minWidth: 0 }}>
  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--txt)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
  {t.title}
