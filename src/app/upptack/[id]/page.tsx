@@ -503,6 +503,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
 
  // Mini-kartans nål: samma kategori och samma nål som på Utforska.
  const kartKategori = platsKategori(r as Restaurant & { categories?: string[] | null })
+ const kartaSomToppbild = placePhotos.length === 0 && !!r.latitude && !!r.longitude
 
  return (
  <div style={{ minHeight: '100vh', background: 'var(--bg)', paddingBottom: 'calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 16px)' }}>
@@ -530,10 +531,23 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  <div style={{ position: 'relative' }}>
    {/* SEO: rikare alt-text för Google Image Search.
        Ex: "Bistro Sands — Restaurang på Sandhamn" */}
-   <PlaceHeroGallery
-     photos={placePhotos}
-     alt={`${r.name}${typeLabel ? ': ' + typeLabel : ''}${r.island ? ' på ' + r.island : ''}`}
-   />
+   {/* Utan foto visas kartan överst i stället för en tom yta (2026-11-28,
+       Tom: förslag A). Då visas den inte en gång till längre ned. */}
+   {kartaSomToppbild ? (
+     <PlaceMiniMap
+       lat={r.latitude!}
+       lng={r.longitude!}
+       name={r.name}
+       kategori={kartKategori}
+       placeId={r.id}
+       hero
+     />
+   ) : (
+     <PlaceHeroGallery
+       photos={placePhotos}
+       alt={`${r.name}${typeLabel ? ': ' + typeLabel : ''}${r.island ? ' på ' + r.island : ''}`}
+     />
+   )}
 
    {/* Knappar ovanpå bilden: tillbaka till vänster, dela + spara till höger.
        2026-11-23 (Tom: "kladdigt ... klumpigt"): förut fyra olika stilar
@@ -664,7 +678,7 @@ export default async function RestaurantPage({ params }: { params: Promise<{ id:
  </p>
 
  {/* ── Mini-karta — visar var platsen ligger, knapp för vägbeskrivning ── */}
- {r.latitude && r.longitude && (
+ {r.latitude && r.longitude && !kartaSomToppbild && (
    <PlaceMiniMap
      lat={r.latitude}
      lng={r.longitude}

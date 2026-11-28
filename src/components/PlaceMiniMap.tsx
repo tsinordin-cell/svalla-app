@@ -35,9 +35,15 @@ interface Props {
   kategori: PlatsKategori
   /** Plats-id för analytics (track 'directions_clicked'). */
   placeId?: string
+  /**
+   * Överst på sidan i stället för bild (2026-11-28, Tom: förslag A). Gäller
+   * platser utan foto. Full bredd, högre, och på mobil krävs två fingrar för
+   * att flytta kartan så att sidan går att skrolla förbi.
+   */
+  hero?: boolean
 }
 
-export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Props) {
+export default function PlaceMiniMap({ lat, lng, name, kategori, placeId, hero = false }: Props) {
   const mapDivRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -52,8 +58,14 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
         container: mapDivRef.current,
         style: aktuellKartstil(),
         center: [lng, lat],
-        zoom: 12.5,
+        zoom: hero ? 12 : 12.5,
         scrollZoom: false,             // tillåt scroll på sidan, inte zoom
+        cooperativeGestures: hero,
+        locale: {
+          'CooperativeGesturesHandler.WindowsHelpText': 'Håll Ctrl och skrolla för att zooma',
+          'CooperativeGesturesHandler.MacHelpText': 'Håll ⌘ och skrolla för att zooma',
+          'CooperativeGesturesHandler.MobileHelpText': 'Använd två fingrar för att flytta kartan',
+        },
         dragRotate: false,
         pitchWithRotate: false,
         attributionControl: false,
@@ -99,7 +111,7 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
       cancelled = true
       map?.remove()
     }
-  }, [lat, lng, kategori])
+  }, [lat, lng, kategori, hero])
 
   // URLs för riktnings-knappar
   const isIOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
@@ -108,7 +120,7 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
     : `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&destination_place_name=${encodeURIComponent(name)}`
 
   return (
-    <div style={{
+    <div className={hero ? 'place-mini-hero' : undefined} style={hero ? { position: 'relative' } : {
       position: 'relative',
       borderRadius: 16,
       overflow: 'hidden',
@@ -126,7 +138,7 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
         onClick={() => { if (placeId) track('directions_clicked', { place_id: placeId }) }}
         style={{
           position: 'absolute',
-          right: 12, bottom: 12,
+          right: 12, bottom: hero ? 40 : 12,
           background: 'var(--white, #fff)',
           color: 'var(--sea, #1e5c82)',
           textDecoration: 'none',
@@ -160,6 +172,11 @@ export default function PlaceMiniMap({ lat, lng, name, kategori, placeId }: Prop
           .place-mini-map { height: 280px; }
         }
         .place-mini-map .maplibregl-ctrl-attrib { font-size: 10px; }
+        /* Som toppbild: rubrikkortet lägger sig 28 px över kartans nederkant,
+           så knappen och källraden flyttas upp. */
+        .place-mini-hero .place-mini-map { height: 300px; }
+        @media (min-width: 720px) { .place-mini-hero .place-mini-map { height: 380px; } }
+        .place-mini-hero .maplibregl-ctrl-bottom-left { bottom: 30px; }
         .place-mini-map .maplibregl-map { font-family: inherit; }
       `}</style>
     </div>
