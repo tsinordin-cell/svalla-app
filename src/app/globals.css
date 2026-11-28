@@ -1854,8 +1854,10 @@ img {
 
 /* Medan notis- eller installrutan syns ligger den över "Tipsa oss" i samma
    hörn (granskningen 2026-11-22). Knappen göms tills rutan stängs; klassen
-   sätts i useForstaRuta.ts. */
-body.underkantsruta-oppen .fb-flytande {
+   sätts i useForstaRuta.ts. Platskortets ark på /upptack gör samma sak
+   (upx-platskort-oppet), annars ligger den runda knappen över "Visa plats". */
+body.underkantsruta-oppen .fb-flytande,
+body.upx-platskort-oppet .fb-flytande {
   visibility: hidden;
   opacity: 0;
   pointer-events: none;

@@ -242,7 +242,7 @@ export default function UpptackExplorer() {
   const [smal, setSmal] = useState(() =>
     typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches
   )
-  const [kortPos, setKortPos] = useState<{ id: string; x: number; y: number } | null>(null)
+  const [kortPos, setKortPos] = useState<{ id: string; x: number; y: number; pil: number } | null>(null)
   // null tills /api/saves svarat. Nyckel: s:slug eller k:namn|lat|lng.
   const [sparade, setSparade] = useState<Set<string> | null>(null)
   const [spararId, setSpararId] = useState<string | null>(null)
@@ -899,16 +899,24 @@ export default function UpptackExplorer() {
   }, [valdId, kartaKlar])
 
   useEffect(() => {
+    if (!smal || !valdId) return
+    document.body.classList.add('upx-platskort-oppet')
+    return () => document.body.classList.remove('upx-platskort-oppet')
+  }, [smal, valdId])
+
+  useEffect(() => {
     if (!vald || smal) return
     const map = mapRef.current as {
       latLngToContainerPoint?: (ll: [number, number]) => { x: number; y: number }
       getContainer?: () => HTMLElement
+      panBy?: (offset: [number, number], options?: { animate?: boolean }) => void
       on?: (e: string, fn: () => void) => void
       off?: (e: string, fn: () => void) => void
     } | null
     if (!map?.latLngToContainerPoint || !map.getContainer || !map.on || !map.off) return
     const plats = vald
     let ram: number | null = null
+    let panN = 0
     const uppdatera = () => {
       const behallare = map.getContainer?.()
       const split = behallare?.closest('.upx-split') as HTMLElement | null
@@ -916,20 +924,34 @@ export default function UpptackExplorer() {
       const punkt = map.latLngToContainerPoint([plats.latitude, plats.longitude])
       const karta = behallare.getBoundingClientRect()
       const yta = split.getBoundingClientRect()
-      const x = punkt.x + (karta.left - yta.left)
-      const y = punkt.y + (karta.top - yta.top)
-      // Kortet ligger bredvid nålen så att ringen syns.
-      const bredd = 300
-      const hojd = (split.querySelector('.upx-platspop') as HTMLElement | null)?.offsetHeight || 340
-      let left = x + 36
-      if (left + bredd > yta.width - 12) left = x - 36 - bredd
-      left = Math.max(12, Math.min(left, yta.width - bredd - 12))
-      let top = y - Math.round(hojd * 0.72)
-      top = Math.max(12, Math.min(top, yta.height - hojd - 12))
-      setKortPos({ id: plats.id, x: left, y: top })
+      const ox = karta.left - yta.left
+      const oy = karta.top - yta.top
+      const px = punkt.x + ox
+      const py = punkt.y + oy
+      const bredd = 260
+      const hojd = (split.querySelector('.upx-platspop') as HTMLElement | null)?.offsetHeight || 248
+      // Kortet sitter ovanför nålen och pekar på den. Ringen får inte hamna under kortet.
+      const luft = 72
+      const kant = 12
+      const behov = hojd + luft + kant
+      if (punkt.y < behov - 4 && panN < 3 && map.panBy) {
+        panN += 1
+        map.panBy([0, punkt.y - behov], { animate: false })
+        return
+      }
+      const minLeft = ox + kant
+      const maxLeft = Math.max(minLeft, ox + karta.width - bredd - kant)
+      const left = Math.max(minLeft, Math.min(px - bredd / 2, maxLeft))
+      const top = py - luft - hojd
+      const pil = Math.max(20, Math.min(bredd - 20, px - left))
+      setKortPos({ id: plats.id, x: left, y: top, pil })
     }
     uppdatera()
-    const efterRitning = requestAnimationFrame(() => uppdatera())
+    let senare: number | null = null
+    const efterRitning = requestAnimationFrame(() => {
+      uppdatera()
+      senare = requestAnimationFrame(() => uppdatera())
+    })
     const vidFlytt = () => {
       if (ram != null) return
       ram = requestAnimationFrame(() => { ram = null; uppdatera() })
@@ -940,6 +962,7 @@ export default function UpptackExplorer() {
     window.addEventListener('resize', vidFlytt)
     return () => {
       cancelAnimationFrame(efterRitning)
+      if (senare != null) cancelAnimationFrame(senare)
       if (ram != null) cancelAnimationFrame(ram)
       map.off?.('move', vidFlytt)
       map.off?.('zoom', vidFlytt)
@@ -947,6 +970,32 @@ export default function UpptackExplorer() {
       window.removeEventListener('resize', vidFlytt)
     }
   }, [vald, smal, kartaKlar, listCollapsed])
+
+  // På mobil täcker arket nederkanten. Nålen ska ligga kvar i kartan ovanför.
+  useEffect(() => {
+    if (!vald || !smal || !kartaKlar) return
+    const map = mapRef.current as {
+      latLngToContainerPoint?: (ll: [number, number]) => { x: number; y: number }
+      getContainer?: () => HTMLElement
+      panBy?: (offset: [number, number], options?: { animate?: boolean }) => void
+    } | null
+    if (!map?.latLngToContainerPoint || !map.getContainer || !map.panBy) return
+    let n = 0
+    const lyft = () => {
+      if (n >= 2) return
+      const el = map.getContainer?.()
+      if (!el || !map.latLngToContainerPoint || !map.panBy) return
+      const punkt = map.latLngToContainerPoint([vald.latitude, vald.longitude])
+      const tak = Math.max(120, el.clientHeight - 230)
+      if (punkt.y < 48 || punkt.y > tak) {
+        n += 1
+        map.panBy([0, punkt.y - Math.round(tak * 0.62)], { animate: false })
+      }
+    }
+    lyft()
+    const id = requestAnimationFrame(lyft)
+    return () => cancelAnimationFrame(id)
+  }, [vald, smal, kartaKlar])
 
   useEffect(() => {
     let cancelled = false
@@ -1342,7 +1391,7 @@ export default function UpptackExplorer() {
             sparKand={sparade !== null}
             sparar={spararId === vald.id}
             onSpara={() => { void sparaPlats(vald) }}
-            lage={smal || !kortPos ? { typ: 'ark' } : { typ: 'kort', x: kortPos.x, y: kortPos.y }}
+            lage={smal || !kortPos ? { typ: 'ark' } : { typ: 'kort', x: kortPos.x, y: kortPos.y, pil: kortPos.pil }}
           />
         )}
       </div>
