@@ -1,29 +1,36 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
-import { arInbyggdApp } from '@/lib/forstaRutor'
+import { useEffect, useId, useMemo, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import { track } from '@/lib/analytics-events'
 import { rangordnaForslag } from '@/lib/rangordnaForslag'
 import { DEPARTURES } from '@/lib/planner-client'
-import { IconCompass } from '@/components/icons/SvallaIcons'
+import { validateUsername } from '@/lib/username'
+import { komprimeraBild, AVATAR_MAX_PX } from '@/lib/komprimeraBild'
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   /onboarding — Premium skärgårds-tour
-   ────────────────────────────────────
-   8 steg som faktiskt LÄR användaren produkten:
+   /onboarding, version 2 (2026-11-28, Toms uppdrag 27 nov)
 
-   1. WELCOME    — Animerad horisont + sailboat + sol/fyrtorn. Brand-moment.
-   2. TOUR_LOG   — "Logga turer" — illustrerat sjökort med GPS-rutt.
-   3. TOUR_MAP   — "Hitta krogar, bryggor, bastur" — sjökort med markörer.
-   4. TOUR_COMM  — "Möt skärgårdsbor" — två båtar möts på vatten + forum-bubblor.
-   5. BAT        — Båttyp (krävs; "Utan egen båt" finns).
-   6. HAMN       — Hemmahamn, fritext med förslag (går att hoppa över).
-   7. FOLJ       — Följ aktiva seglare (hoppas över om inga förslag).
-   8. DONE       — "Klar för avgång" — båt seglar mot horisonten.
+   Samma färger och grafik som startsidan: papper (#efe7d6/#f7f1e7), bläckblått
+   (#143c78), havets blå (#4472ab), orange skyltar och de målade bilderna i
+   public/kreativ (Thorkels båt, solen, fyren, ejdrarna m.fl.).
 
-   Maritime känsla i varje pixel. Inga emojis. Allt är SVG.
+   Sju steg i stället för åtta. De tre visningsstegen (logga, karta, menyn) är
+   ett steg. Mätt 27 nov (analytics_events sedan 16 maj): 43 personer nådde
+   första visningssteget och 35 kom förbi det tredje. Namnsteget är nytt:
+   74 av 133 konton hade början på e-postadressen som publikt namn (mätt 27 nov).
+
+   1. valkomst  Thorkels båt på havet, "Kasta loss" eller hoppa över
+   2. visning   Tre saker du kan göra, var sin målad bild
+   3. namn      Namn på Svalla och profilbild (bilden är valfri)
+   4. bat       Båttyp (går att hoppa över, ändras i profilen)
+   5. hamn      Hemmahamn, fritext med förslag (går att hoppa över)
+   6. folj      Följ andra på sjön (hoppas över om inga förslag finns)
+   7. klar      Klar för avgång
+
+   Spårningen skickar steget som namn (steg) och version 2, så att siffrorna
+   inte blandas ihop med den gamla guiden, där steg 2 betydde något annat.
 ───────────────────────────────────────────────────────────────────────────── */
 
 interface Suggestion {
@@ -38,384 +45,254 @@ interface Suggestion {
 
 interface Props {
   userId: string
-  initialUsername: string
+  /** Förnamn till hälsningen, eller ett eget användarnamn. Tomt om inget passar. */
+  halsning: string
+  /** Användarnamnet som kontot har nu. */
+  nuvarandeNamn: string
+  /** Förifyllt i namnsteget: nuvarande namn om det är eget, annars ett förslag ur personens namn (kan vara tomt). */
+  namnForslag: string
+  /** Profilbild som kontot redan har. */
+  avatar: string | null
+  /** Sidan personen var på väg till när kontot skapades. Dit går "Hoppa över" och "Fortsätt". */
+  tillbaka?: string | null
   suggestions: Suggestion[]
+  /** Bara för förhandsvisning av utseendet (t.ex. en tillfällig sida på en preview): inget sparas, inget spåras, ingen omdirigering. */
+  forhandsvisning?: boolean
 }
 
-type Step = 'welcome' | 'tour_log' | 'tour_map' | 'tour_app' | 'bat' | 'hamn' | 'folj' | 'done'
+type Step = 'valkomst' | 'visning' | 'namn' | 'bat' | 'hamn' | 'folj' | 'klar'
 
-const TOUR_STEPS: Step[] = ['welcome', 'tour_log', 'tour_map', 'tour_app', 'bat', 'hamn', 'folj', 'done']
-const TOTAL_STEPS = TOUR_STEPS.length
-const stepIdx = (s: Step) => TOUR_STEPS.indexOf(s)
+const STEG: Step[] = ['valkomst', 'visning', 'namn', 'bat', 'hamn', 'folj', 'klar']
+const MELLANSTEG: Step[] = ['visning', 'namn', 'bat', 'hamn', 'folj']
+const stegNr = (s: Step) => STEG.indexOf(s) + 1
+const VERSION = 2
 
-/* ── Animationer ─────────────────────────────────────────────────────────── */
-const KEYFRAMES = `
-@keyframes ob-fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ── Startsidans färger (Startscen.tsx, ThorkelHero.tsx) ─────────────────── */
+const F = {
+  papper: '#f7f1e7',
+  scen: '#efe7d6',
+  kort: '#fbf7ee',
+  black: '#143c78',
+  hav: '#4472ab',
+  havMork: '#375e96',
+  text: '#192830',
+  text2: '#3d5865',
+  text3: '#6b7f88',
+  // Knappens orange är en nyans mörkare än startsidans #c8642a, så att den
+  // ljusa texten klarar 4,5:1 (4,65:1). Accenter i övrigt använder #c8642a.
+  knapp: '#b4541c',
+  knappHover: '#c25e22',
+  orange: '#c8642a',
+  fel: '#a3271b',
 }
-@keyframes ob-spin { to { transform: rotate(360deg); } }
-@keyframes ob-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
-@keyframes ob-wave-shift {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-120px); }
-}
-@keyframes ob-boat-bob {
-  0%, 100% { transform: translate(0, 0) rotate(-1.5deg); }
-  50%      { transform: translate(0, -3px) rotate(1.5deg); }
-}
-@keyframes ob-boat-sail {
-  0%   { transform: translateX(-30%); opacity: 0; }
-  20%  { opacity: 1; }
-  100% { transform: translateX(120%); opacity: 0.4; }
-}
-@keyframes ob-light-blink {
-  0%, 92%, 100% { opacity: 0.18; }
-  93%, 95%      { opacity: 1; }
-}
-@keyframes ob-marker-pop {
-  from { transform: translateY(8px) scale(0.5); opacity: 0; }
-  to   { transform: translateY(0) scale(1); opacity: 1; }
-}
-@keyframes ob-route-draw {
-  to { stroke-dashoffset: 0; }
-}
-@keyframes ob-bubble-rise {
-  0%   { transform: translateY(8px); opacity: 0; }
-  20%  { opacity: 1; }
-  100% { transform: translateY(0); opacity: 1; }
-}
+
+/* Handritad kant, samma form som skyltarna i startscenen (.ki-skylt). */
+const HANDKANT = '15px 18px 14px 17px / 17px 14px 18px 15px'
+
+const CSS = `
+.ob{--ink:${F.black};color:${F.text};font-family:Inter,system-ui,sans-serif}
+.ob *{box-sizing:border-box}
+.ob-steg{position:relative;z-index:1;width:100%;max-width:470px;margin:0 auto;display:flex;flex-direction:column;animation:ob-in .45s cubic-bezier(.22,1,.36,1) both}
+.ob-rubrik{font-family:'Playfair Display',Georgia,serif;font-weight:700;letter-spacing:-.01em;color:${F.hav};font-size:clamp(28px,7.4vw,36px);line-height:1.12;margin:0 0 10px;text-align:center}
+.ob-text{font-size:15.5px;line-height:1.55;color:${F.text2};margin:0 auto 24px;max-width:390px;text-align:center}
+.ob-etikett{font:700 11px/1 Inter,system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:${F.orange};text-align:center;margin:0 0 12px}
+
+.ob-knapp{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:14px 22px;border-radius:999px;border:2px solid ${F.black};background:${F.knapp};color:${F.kort};font:400 19px/1 'Playfair Display',Georgia,serif;cursor:pointer;box-shadow:3px 3px 0 ${F.black};transition:transform .2s,box-shadow .2s,background-color .2s}
+.ob-knapp:hover:not(:disabled),.ob-knapp:focus-visible{background:${F.knappHover};transform:translate(-1px,-2px);box-shadow:5px 5px 0 ${F.black}}
+.ob-knapp:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 ${F.black}}
+.ob-knapp:disabled{cursor:default;background:#e6dccb;color:#8a8f8c;border-color:#c9bfae;box-shadow:none}
+.ob-knapp:focus-visible,.ob-val:focus-visible,.ob-lank:focus-visible,.ob-tillbaka:focus-visible,.ob-chip:focus-visible,.ob-falt:focus-visible,.ob-genvag:focus-visible{outline:3px solid #f2c27a;outline-offset:3px}
+.ob-tillbaka{min-height:52px;padding:12px 14px;border:none;background:none;color:${F.havMork};font:600 14px/1 Inter,system-ui,sans-serif;cursor:pointer;border-radius:999px}
+.ob-tillbaka:hover{color:${F.black}}
+.ob-lank{display:block;margin:16px auto 0;padding:8px 12px;border:none;background:none;color:${F.havMork};font:600 14px/1.3 Inter,system-ui,sans-serif;text-decoration:underline;text-underline-offset:3px;cursor:pointer;border-radius:8px}
+.ob-lank:hover{color:${F.black}}
+.ob-rad{display:flex;gap:10px;align-items:center}
+
+.ob-kort{background:${F.kort};border:2px solid ${F.black};border-radius:${HANDKANT};box-shadow:3px 3px 0 ${F.black}}
+
+.ob-val{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px 10px 14px;cursor:pointer;font:inherit;color:${F.text};text-align:center;background:${F.kort};border:2px solid ${F.black};border-radius:${HANDKANT};box-shadow:3px 3px 0 ${F.black};transition:transform .2s,box-shadow .2s,background-color .2s,border-color .2s}
+.ob-val:hover{transform:translate(-1px,-2px);box-shadow:5px 5px 0 ${F.black}}
+.ob-val[aria-pressed=true]{background:#fff;border-color:${F.orange};box-shadow:3px 3px 0 ${F.orange}}
+.ob-val-namn{font:700 14.5px/1.2 Inter,system-ui,sans-serif}
+.ob-val-text{font-size:12px;line-height:1.35;color:${F.text2}}
+.ob-bock{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;background:${F.orange};color:#fff;display:flex;align-items:center;justify-content:center}
+
+.ob-falt{width:100%;min-height:52px;padding:13px 16px;border-radius:14px;border:2px solid ${F.black};background:#fff;color:${F.text};font:500 16px Inter,system-ui,sans-serif;outline:none;box-shadow:3px 3px 0 ${F.black}}
+.ob-falt::placeholder{color:#8a9499}
+.ob-chip{padding:7px 13px;border-radius:999px;border:1.5px solid rgba(20,60,120,.35);background:${F.kort};color:${F.black};font:600 13px/1.1 Inter,system-ui,sans-serif;cursor:pointer;transition:background-color .15s,border-color .15s}
+.ob-chip:hover{border-color:${F.black}}
+.ob-chip[aria-pressed=true]{background:${F.black};color:${F.kort};border-color:${F.black}}
+
+.ob-person{display:flex;align-items:center;gap:12px;width:100%;padding:11px 14px;cursor:pointer;font:inherit;text-align:left;color:${F.text};background:${F.kort};border:2px solid ${F.black};border-radius:${HANDKANT};box-shadow:3px 3px 0 ${F.black};transition:transform .2s,box-shadow .2s}
+.ob-person:hover{transform:translate(-1px,-2px);box-shadow:5px 5px 0 ${F.black}}
+.ob-folj{flex-shrink:0;display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:999px;font:700 12.5px/1 Inter,system-ui,sans-serif;border:1.5px solid ${F.black};background:${F.black};color:${F.kort}}
+.ob-folj.pa{background:transparent;color:${F.black}}
+
+.ob-funktion{display:flex;align-items:center;gap:14px;padding:12px 16px 12px 12px}
+.ob-funktion img{flex-shrink:0;width:84px;height:62px;object-fit:contain}
+.ob-funktion h3{margin:0 0 3px;font:700 17px/1.2 'Playfair Display',Georgia,serif;color:${F.black}}
+.ob-funktion p{margin:0;font-size:13.5px;line-height:1.45;color:${F.text2}}
+
+.ob-genvag{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:999px;border:1.5px solid ${F.black};background:${F.kort};color:${F.black};font:600 13.5px/1 Inter,system-ui,sans-serif;cursor:pointer;transition:background-color .15s}
+.ob-genvag:hover{background:#fff}
+
+.ob-bild{position:relative;width:96px;height:96px;border-radius:50%;padding:0;cursor:pointer;border:2px solid ${F.black};box-shadow:3px 3px 0 ${F.black};background:${F.hav};color:${F.kort};font:700 38px/1 'Playfair Display',Georgia,serif;display:flex;align-items:center;justify-content:center;overflow:visible}
+.ob-bild img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.ob-bild-kamera{position:absolute;right:-4px;bottom:-2px;width:32px;height:32px;border-radius:50%;background:${F.knapp};color:${F.kort};border:2px solid ${F.black};display:flex;align-items:center;justify-content:center}
+.ob-bild:focus-visible{outline:3px solid #f2c27a;outline-offset:3px}
+
+.ob-fel{margin:0 0 12px;padding:10px 14px;border-radius:12px;background:#fbe9e4;border:1.5px solid ${F.fel};color:${F.fel};font-size:13.5px;font-weight:600}
+
+.ob-framsteg{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 20px}
+.ob-framsteg i{width:9px;height:9px;border-radius:50%;border:1.5px solid ${F.black};background:transparent;transition:background-color .3s,width .3s}
+.ob-framsteg i.klar{background:${F.black}}
+.ob-framsteg i.nu{width:26px;border-radius:999px;background:${F.orange};border-color:${F.orange}}
+.ob-framsteg span{margin-left:6px;font:600 12px/1 Inter,system-ui,sans-serif;color:${F.havMork}}
+
+.ob-scen{position:relative;width:100%;margin:0 auto 22px;overflow:visible}
+.ob-scen img{position:absolute;display:block;user-select:none;-webkit-user-drag:none}
+.ob-gung{animation:ob-gung 5s ease-in-out infinite;transform-origin:50% 90%}
+.ob-snurr{animation:ob-snurr 60s linear infinite}
+.ob-segla{animation:ob-segla 9s ease-in-out infinite}
+
+@keyframes ob-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes ob-gung{0%,100%{transform:translateY(0) rotate(-1.2deg)}50%{transform:translateY(-3px) rotate(1.2deg)}}
+@keyframes ob-snurr{to{transform:rotate(360deg)}}
+@keyframes ob-segla{0%,100%{transform:translateX(0)}50%{transform:translateX(14px)}}
+@media (prefers-reduced-motion:reduce){.ob-steg,.ob-gung,.ob-snurr,.ob-segla{animation:none!important}.ob-knapp,.ob-val,.ob-person{transition:none}}
 `
 
-/* ── Animerad havs-bakgrund ──────────────────────────────────────────── */
-function SeaBackdrop() {
+/* ── Målat hav: en vattenpöl med ojämn kant och kritkorn (startsidans havsblå) ── */
+const POL = 'M8 17 C60 9 112 19 172 13 C232 7 300 17 392 11 C399 25 397 44 381 53 C300 59 102 59 22 55 C5 48 3 31 8 17 Z'
+function Hav({ hojd }: { hojd: number }) {
+  const id = 'ob-hav' + useId().replace(/[^a-zA-Z0-9]/g, '')
   return (
-    <div aria-hidden style={{
-      position: 'fixed', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0,
-    }}>
-      <div style={{
-        position: 'absolute', top: '-10%', left: '60%', width: 360, height: 360,
-        background: 'radial-gradient(circle, rgba(232,146,74,0.20) 0%, transparent 60%)',
-        filter: 'blur(12px)',
-      }}/>
-      <div style={{
-        position: 'absolute', top: '-15%', left: '5%', width: 320, height: 320,
-        background: 'radial-gradient(circle, rgba(45,125,138,0.30) 0%, transparent 65%)',
-        filter: 'blur(10px)',
-      }}/>
-      <div style={{
-        position: 'absolute', inset: 0, opacity: 0.45,
-        backgroundImage:
-          'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px),' +
-          'radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)',
-        backgroundSize: '90px 90px, 56px 56px',
-        backgroundPosition: '0 0, 45px 45px',
-      }}/>
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none"
-           style={{ position: 'absolute', bottom: -10, left: 0, width: '120%', height: 80,
-                    animation: 'ob-wave-shift 12s linear infinite', opacity: 0.18 }}>
-        <path d="M0,60 C150,90 350,30 600,55 C850,80 1050,30 1200,60 L1200,120 L0,120 Z" fill="#65b8c8"/>
-      </svg>
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none"
-           style={{ position: 'absolute', bottom: -20, left: 0, width: '125%', height: 90,
-                    animation: 'ob-wave-shift 18s linear infinite reverse', opacity: 0.10 }}>
-        <path d="M0,70 C200,100 400,40 600,70 C800,100 1000,40 1200,70 L1200,120 L0,120 Z" fill="#9ed5e1"/>
-      </svg>
-    </div>
-  )
-}
-
-/* ── Hero-illustration: fyrtorn + sailboat på horisonten ──────────── */
-function HeroHorizon() {
-  return (
-    <div style={{
-      position: 'relative', width: '100%', maxWidth: 360, aspectRatio: '16 / 10',
-      margin: '0 auto 28px',
-    }}>
-      <svg viewBox="0 0 360 225" width="100%" height="100%" style={{ overflow: 'visible' }}>
-        <defs>
-          <linearGradient id="ob-sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"  stopColor="#1a3d5a"/>
-            <stop offset="60%" stopColor="#2d6582"/>
-            <stop offset="100%" stopColor="#4a8da0"/>
-          </linearGradient>
-          <linearGradient id="ob-sunset" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#f4b06a" stopOpacity="0.9"/>
-            <stop offset="100%" stopColor="#e8924a" stopOpacity="0.4"/>
-          </linearGradient>
-          <linearGradient id="ob-sea-grad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1e5c82"/>
-            <stop offset="100%" stopColor="#0e3848"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="360" height="135" fill="url(#ob-sky)" rx="12"/>
-        <circle cx="240" cy="125" r="22" fill="url(#ob-sunset)"/>
-        <circle cx="240" cy="125" r="32" fill="rgba(244,176,106,0.18)"/>
-        <path d="M-5 130 Q 30 110 60 122 Q 80 105 110 120 Q 140 102 175 125 L 175 135 L -5 135 Z" fill="rgba(8,28,48,0.72)"/>
-        <path d="M280 132 Q 305 115 330 128 Q 350 112 365 130 L 365 135 L 280 135 Z" fill="rgba(8,28,48,0.65)"/>
-        <g transform="translate(178 95)">
-          <path d="M-22 40 Q 0 28 22 40 L 22 42 L -22 42 Z" fill="rgba(8,28,48,0.78)"/>
-          <rect x="-4" y="22" width="8" height="20" fill="#f5f4ef"/>
-          <rect x="-5" y="18" width="10" height="6" rx="1" fill="#1a2530"/>
-          <circle cx="0" cy="14" r="3.5" fill="#f4b06a" style={{ animation: 'ob-light-blink 4s infinite' }}/>
-          <circle cx="0" cy="14" r="9" fill="rgba(244,176,106,0.25)" style={{ animation: 'ob-light-blink 4s infinite' }}/>
+    <svg aria-hidden viewBox="0 0 400 60" preserveAspectRatio="none"
+      style={{ position: 'absolute', left: 0, width: '100%', bottom: 0, height: hojd, display: 'block', overflow: 'visible' }}>
+      <defs>
+        <filter id={`${id}-kant`} x="-3%" y="-20%" width="106%" height="140%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="2" seed="7" result="brus" />
+          <feDisplacementMap in="SourceGraphic" in2="brus" scale="5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+        <filter id={`${id}-korn`} x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="3" />
+          <feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 -2.2 1.25" />
+        </filter>
+        <clipPath id={`${id}-form`}><path d={POL} /></clipPath>
+      </defs>
+      <g filter={`url(#${id}-kant)`}>
+        <g clipPath={`url(#${id}-form)`}>
+          <rect width="400" height="60" fill={F.hav} />
+          <rect width="400" height="60" filter={`url(#${id}-korn)`} opacity=".22" />
+          <path d="M46 30 q9 -5 18 0 M120 42 q9 -5 18 0 M222 28 q9 -5 18 0 M300 44 q9 -5 18 0 M350 26 q9 -5 18 0"
+            stroke="rgba(255,255,255,.45)" strokeWidth="1.6" fill="none" strokeLinecap="round" />
         </g>
-        <rect x="0" y="135" width="360" height="90" fill="url(#ob-sea-grad)"/>
-        <path d="M0 150 Q 30 145 60 150 T 120 150 T 180 150 T 240 150 T 300 150 T 360 150" stroke="rgba(255,255,255,0.18)" strokeWidth="1" fill="none"/>
-        <path d="M0 165 Q 35 160 70 165 T 140 165 T 210 165 T 280 165 T 360 165" stroke="rgba(255,255,255,0.12)" strokeWidth="1" fill="none"/>
-        <path d="M0 182 Q 40 177 80 182 T 160 182 T 240 182 T 320 182 T 400 182" stroke="rgba(255,255,255,0.08)" strokeWidth="1" fill="none"/>
-        <g transform="translate(70 155)" style={{ animation: 'ob-boat-bob 4s ease-in-out infinite', transformOrigin: 'center' }}>
-          <path d="M-18 4 L 18 4 L 14 12 L -14 12 Z" fill="#f5f4ef"/>
-          <line x1="0" y1="4" x2="0" y2="-22" stroke="#f5f4ef" strokeWidth="1.2"/>
-          <path d="M0 -22 L 0 0 L 12 0 Z" fill="#f5f4ef"/>
-          <path d="M0 -18 L 0 -2 L -10 0 Z" fill="rgba(245,244,239,0.85)"/>
-          <ellipse cx="0" cy="14" rx="16" ry="2" fill="rgba(245,244,239,0.18)"/>
-        </g>
-        <g transform="translate(290 145)" style={{ animation: 'ob-boat-bob 5s ease-in-out infinite' }}>
-          <path d="M-6 1 L 6 1 L 5 4 L -5 4 Z" fill="rgba(245,244,239,0.7)"/>
-          <line x1="0" y1="1" x2="0" y2="-8" stroke="rgba(245,244,239,0.7)" strokeWidth="0.7"/>
-          <path d="M0 -8 L 4 0 L 0 0 Z" fill="rgba(245,244,239,0.65)"/>
-        </g>
-      </svg>
-    </div>
-  )
-}
-
-/* ── Tour-illustration: sjökort + GPS-rutt ────────────────────────── */
-function ChartRouteIllustration() {
-  return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 320, aspectRatio: '16 / 10', margin: '0 auto 24px' }}>
-      <svg viewBox="0 0 320 200" width="100%" height="100%">
-        <defs>
-          <linearGradient id="ob-chart-paper" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="#f5e9d0"/>
-            <stop offset="100%" stopColor="#e8d8b3"/>
-          </linearGradient>
-        </defs>
-        <rect x="8" y="8" width="304" height="184" rx="12" fill="url(#ob-chart-paper)"/>
-        {Array.from({ length: 8 }).map((_, i) => (
-          <line key={`v${i}`} x1={8 + i * 38} y1="8" x2={8 + i * 38} y2="192" stroke="rgba(60,90,130,0.15)" strokeWidth="0.5"/>
-        ))}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <line key={`h${i}`} x1="8" y1={8 + i * 46} x2="312" y2={8 + i * 46} stroke="rgba(60,90,130,0.15)" strokeWidth="0.5"/>
-        ))}
-        <path d="M50 60 Q 65 50 80 65 Q 70 75 55 75 Z" fill="#a8b58a"/>
-        <path d="M120 90 Q 145 78 165 95 Q 170 110 145 115 Q 120 110 120 90 Z" fill="#a8b58a"/>
-        <path d="M210 50 Q 230 45 245 60 Q 240 70 220 68 Z" fill="#a8b58a"/>
-        <path d="M250 130 Q 280 122 290 140 Q 280 155 255 150 Z" fill="#a8b58a"/>
-        <path d="M40 140 Q 60 132 70 145 Q 60 155 45 152 Z" fill="#a8b58a"/>
-        <path d="M30 100 Q 100 80 180 95 Q 250 110 300 95" stroke="rgba(60,90,130,0.25)" strokeWidth="0.6" fill="none" strokeDasharray="2 3"/>
-        <path d="M40 165 Q 70 130 120 120 Q 175 110 220 80 Q 260 65 280 60"
-              stroke="#c96e2a" strokeWidth="2.5" fill="none" strokeLinecap="round"
-              strokeDasharray="320" strokeDashoffset="320"
-              style={{ animation: 'ob-route-draw 1.6s 0.3s cubic-bezier(0.4,0,0.2,1) forwards' }}/>
-        <circle cx="40" cy="165" r="4" fill="#c96e2a"/>
-        <circle cx="40" cy="165" r="9" fill="rgba(201,110,42,0.20)"/>
-        <g transform="translate(280 60)" style={{ animation: 'ob-marker-pop 0.4s 1.6s both' }}>
-          <path d="M0 -10 Q -7 -10 -7 -3 Q -7 4 0 10 Q 7 4 7 -3 Q 7 -10 0 -10 Z" fill="#1e5c82"/>
-          <circle cx="0" cy="-3" r="2.5" fill="#f5f4ef"/>
-        </g>
-        <g transform="translate(175 105) rotate(-15)" style={{ animation: 'ob-boat-bob 3s ease-in-out infinite' }}>
-          <path d="M-7 0 L 7 0 L 5 4 L -5 4 Z" fill="#1e5c82"/>
-          <line x1="0" y1="0" x2="0" y2="-9" stroke="#1e5c82" strokeWidth="1"/>
-          <path d="M0 -9 L 5 0 L 0 0 Z" fill="#f5f4ef" stroke="#1e5c82" strokeWidth="0.5"/>
-        </g>
-        <g transform="translate(20 175)">
-          <rect x="0" y="0" width="100" height="14" rx="3" fill="rgba(30,92,130,0.85)"/>
-          <text x="6" y="10" fontFamily="monospace" fontSize="8" fill="#f5f4ef" letterSpacing="0.5">14.2 NM · 3h 12m</text>
-        </g>
-      </svg>
-    </div>
-  )
-}
-
-/* ── Tour-illustration: sjökort med markörer ──────────────────────── */
-function MapMarkersIllustration() {
-  const markers: { x: number; y: number; type: 'krog' | 'brygga' | 'bastu' | 'tank' }[] = [
-    { x: 80,  y: 55,  type: 'krog' },
-    { x: 175, y: 90,  type: 'brygga' },
-    { x: 248, y: 60,  type: 'bastu' },
-    { x: 230, y: 138, type: 'tank' },
-    { x: 110, y: 130, type: 'brygga' },
-  ]
-  const pinColor: Record<typeof markers[number]['type'], string> = {
-    krog: '#c96e2a',
-    brygga: '#1e5c82',
-    bastu: '#9d4d3a',
-    tank: '#2d7d8a',
-  }
-  return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 320, aspectRatio: '16 / 10', margin: '0 auto 24px' }}>
-      <svg viewBox="0 0 320 200" width="100%" height="100%">
-        <defs>
-          <linearGradient id="ob-map-water" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#aedce4"/>
-            <stop offset="100%" stopColor="#7fb6c5"/>
-          </linearGradient>
-        </defs>
-        <rect x="8" y="8" width="304" height="184" rx="12" fill="url(#ob-map-water)"/>
-        <path d="M30 30 Q 90 18 130 35 Q 145 55 110 75 Q 60 78 30 60 Z" fill="#a8b58a"/>
-        <path d="M180 110 Q 240 100 280 125 Q 290 155 250 165 Q 200 168 175 145 Z" fill="#a8b58a"/>
-        <path d="M210 30 Q 245 22 275 38 Q 280 55 255 60 Q 225 58 210 45 Z" fill="#a8b58a"/>
-        <ellipse cx="60" cy="120" rx="22" ry="9" fill="#a8b58a"/>
-        <ellipse cx="155" cy="160" rx="16" ry="7" fill="#a8b58a"/>
-        <path d="M0 90 Q 40 86 80 90 T 160 90 T 240 90 T 320 90" stroke="rgba(255,255,255,0.4)" strokeWidth="0.7" fill="none"/>
-        <path d="M0 175 Q 40 171 80 175 T 160 175 T 240 175 T 320 175" stroke="rgba(255,255,255,0.4)" strokeWidth="0.7" fill="none"/>
-        {markers.map((m, i) => (
-          <g key={i} transform={`translate(${m.x} ${m.y})`} style={{ animation: `ob-marker-pop 0.4s ${0.2 + i * 0.12}s both` }}>
-            <ellipse cx="0" cy="2" rx="6" ry="2" fill="rgba(0,0,0,0.18)"/>
-            <path d="M0 -14 Q -8 -14 -8 -5 Q -8 4 0 13 Q 8 4 8 -5 Q 8 -14 0 -14 Z" fill={pinColor[m.type]}/>
-            <circle cx="0" cy="-5" r="3" fill="#f5f4ef"/>
-          </g>
-        ))}
-        <g transform="translate(280 165)">
-          <circle cx="0" cy="0" r="14" fill="rgba(245,244,239,0.85)" stroke="rgba(8,28,48,0.5)" strokeWidth="0.7"/>
-          <path d="M0 -10 L 2 0 L 0 10 L -2 0 Z" fill="#1e5c82"/>
-          <path d="M-10 0 L 0 -2 L 10 0 L 0 2 Z" fill="rgba(8,28,48,0.4)"/>
-          <text x="0" y="-15" fontSize="5" fontWeight="700" fill="#1e5c82" textAnchor="middle">N</text>
-        </g>
-      </svg>
-    </div>
-  )
-}
-
-/* ── Tour-illustration: båtar möts + forum-bubblor ──────────────── */
-function CommunityIllustration() {
-  return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 320, aspectRatio: '16 / 10', margin: '0 auto 24px' }}>
-      <svg viewBox="0 0 320 200" width="100%" height="100%">
-        <defs>
-          <linearGradient id="ob-comm-sea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#2d6582"/>
-            <stop offset="100%" stopColor="#0e3848"/>
-          </linearGradient>
-        </defs>
-        <rect x="0" y="0" width="320" height="200" rx="12" fill="url(#ob-comm-sea)"/>
-        {[[40,30],[80,15],[140,25],[200,18],[270,35],[290,65]].map(([x,y], i) => (
-          <circle key={i} cx={x} cy={y} r="0.8" fill="rgba(255,255,255,0.6)"/>
-        ))}
-        <circle cx="265" cy="40" r="14" fill="#f5f4ef" opacity="0.85"/>
-        <circle cx="270" cy="38" r="12" fill="url(#ob-comm-sea)" opacity="0.5"/>
-        <path d="M0 130 Q 40 125 80 130 T 160 130 T 240 130 T 320 130" stroke="rgba(255,255,255,0.18)" strokeWidth="1" fill="none"/>
-        <path d="M0 150 Q 40 145 80 150 T 160 150 T 240 150 T 320 150" stroke="rgba(255,255,255,0.12)" strokeWidth="1" fill="none"/>
-        <path d="M0 170 Q 40 165 80 170 T 160 170 T 240 170 T 320 170" stroke="rgba(255,255,255,0.08)" strokeWidth="1" fill="none"/>
-        <g transform="translate(80 140)" style={{ animation: 'ob-boat-bob 3.5s ease-in-out infinite' }}>
-          <path d="M-15 4 L 15 4 L 12 11 L -12 11 Z" fill="#f5f4ef"/>
-          <line x1="0" y1="4" x2="0" y2="-22" stroke="#f5f4ef" strokeWidth="1.2"/>
-          <path d="M0 -22 L 0 0 L 12 0 Z" fill="#f5f4ef"/>
-          <path d="M0 -18 L 0 -2 L -10 0 Z" fill="rgba(245,244,239,0.85)"/>
-        </g>
-        <g transform="translate(220 145)" style={{ animation: 'ob-boat-bob 4s ease-in-out infinite 0.5s' }}>
-          <path d="M-13 4 L 13 4 L 11 10 L -11 10 Z" fill="#c96e2a"/>
-          <line x1="0" y1="4" x2="0" y2="-20" stroke="#f5f4ef" strokeWidth="1"/>
-          <path d="M0 -20 L 0 0 L -11 0 Z" fill="#f5f4ef"/>
-          <path d="M0 -16 L 0 -2 L 9 0 Z" fill="rgba(245,244,239,0.85)"/>
-        </g>
-        <g transform="translate(110 95)" style={{ animation: 'ob-bubble-rise 0.6s 0.4s both' }}>
-          <path d="M0 0 L 70 0 Q 78 0 78 8 L 78 22 Q 78 30 70 30 L 18 30 L 8 38 L 12 30 L 8 30 Q 0 30 0 22 L 0 8 Q 0 0 8 0 Z" fill="#f5f4ef"/>
-          <text x="39" y="20" fontSize="10" fontWeight="600" fill="#1e5c82" textAnchor="middle">Sandhamn?</text>
-        </g>
-        <g transform="translate(165 50)" style={{ animation: 'ob-bubble-rise 0.6s 0.9s both' }}>
-          <path d="M0 0 L 80 0 Q 88 0 88 8 L 88 22 Q 88 30 80 30 L 70 30 L 80 38 L 60 30 L 8 30 Q 0 30 0 22 L 0 8 Q 0 0 8 0 Z" fill="#c96e2a"/>
-          <text x="44" y="20" fontSize="10" fontWeight="600" fill="#f5f4ef" textAnchor="middle">Just lade till!</text>
-        </g>
-        <g transform="translate(150 80)" style={{ animation: 'ob-bubble-rise 0.6s 1.4s both' }}>
-          <path d="M0 6 L -6 0 Q -10 -4 -6 -8 Q -2 -12 0 -8 Q 2 -12 6 -8 Q 10 -4 6 0 Z" fill="#e8924a"/>
-        </g>
-      </svg>
-    </div>
-  )
-}
-
-/* ── Done-illustration: båt seglar mot horisonten ──────────────── */
-function DepartureIllustration() {
-  return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: 280, aspectRatio: '4 / 3', margin: '0 auto 24px' }}>
-      <svg viewBox="0 0 280 210" width="100%" height="100%">
-        <defs>
-          <linearGradient id="ob-done-sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1a3d5a"/>
-            <stop offset="60%" stopColor="#3a7088"/>
-            <stop offset="90%" stopColor="#e8924a"/>
-            <stop offset="100%" stopColor="#f4b06a"/>
-          </linearGradient>
-          <linearGradient id="ob-done-sea" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1e5c82"/>
-            <stop offset="100%" stopColor="#0e3848"/>
-          </linearGradient>
-        </defs>
-        <rect x="8" y="8" width="264" height="120" rx="12" fill="url(#ob-done-sky)"/>
-        <circle cx="200" cy="115" r="22" fill="#f4b06a" opacity="0.95"/>
-        <circle cx="200" cy="115" r="35" fill="rgba(244,176,106,0.30)"/>
-        <rect x="8" y="125" width="264" height="80" fill="url(#ob-done-sea)"/>
-        <ellipse cx="200" cy="130" rx="40" ry="3" fill="rgba(244,176,106,0.55)"/>
-        <path d="M0 145 Q 40 141 80 145 T 160 145 T 240 145 T 320 145" stroke="rgba(255,255,255,0.25)" strokeWidth="0.8" fill="none"/>
-        <path d="M0 165 Q 40 161 80 165 T 160 165 T 240 165 T 320 165" stroke="rgba(255,255,255,0.18)" strokeWidth="0.8" fill="none"/>
-        <path d="M0 185 Q 40 181 80 185 T 160 185 T 240 185 T 320 185" stroke="rgba(255,255,255,0.12)" strokeWidth="0.8" fill="none"/>
-        <g style={{ animation: 'ob-boat-sail 6s ease-out infinite' }}>
-          <g transform="translate(0 155)">
-            <path d="M-18 4 L 18 4 L 14 12 L -14 12 Z" fill="#f5f4ef"/>
-            <line x1="0" y1="4" x2="0" y2="-26" stroke="#f5f4ef" strokeWidth="1.4"/>
-            <path d="M0 -26 L 0 0 L 14 0 Z" fill="#f5f4ef"/>
-            <path d="M0 -20 L 0 -2 L -12 0 Z" fill="rgba(245,244,239,0.85)"/>
-          </g>
-        </g>
-        <path d="M40 122 Q 60 116 80 124 L 80 128 L 40 128 Z" fill="rgba(8,28,48,0.7)"/>
-        <path d="M250 122 Q 270 117 290 125 L 290 128 L 250 128 Z" fill="rgba(8,28,48,0.6)"/>
-      </svg>
-    </div>
-  )
-}
-
-/* ── Båt-typ SVG:er ────────────────────────────────────────────────── */
-function SailboatIcon() {
-  return (
-    <svg width={36} height={36} viewBox="0 0 64 64" fill="none">
-      <path d="M32 8 L32 46" stroke="rgba(245,244,239,0.92)" strokeWidth="2.5" strokeLinecap="round"/>
-      <path d="M32 10 L52 42 L14 42 Z" fill="rgba(245,244,239,0.18)" stroke="rgba(245,244,239,0.85)" strokeWidth="1.5" strokeLinejoin="round"/>
-      <path d="M32 16 L16 34 L32 34 Z" fill="rgba(245,244,239,0.12)" stroke="rgba(245,244,239,0.6)" strokeWidth="1" strokeLinejoin="round"/>
-      <path d="M10 46 Q32 54 54 46" stroke="rgba(165,205,225,0.85)" strokeWidth="2" strokeLinecap="round" fill="none"/>
+      </g>
     </svg>
   )
 }
-function MotorboatIcon() {
+
+/* En målad bild ur public/kreativ. Mått i procent av scenens bredd/höjd. */
+function Bild({ src, alt = '', style, className }: { src: string; alt?: string; style: React.CSSProperties; className?: string }) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt={alt} draggable={false} className={className} style={style} />
+}
+
+/* Välkomstscenen: sol, Thorkels båt och ön, som startsidans hero. */
+function ValkomstScen() {
   return (
-    <svg width={36} height={36} viewBox="0 0 64 64" fill="none">
-      <path d="M8 38 L20 28 L52 28 L58 38 Z" fill="rgba(245,244,239,0.18)" stroke="rgba(245,244,239,0.85)" strokeWidth="1.5" strokeLinejoin="round"/>
-      <path d="M20 28 L24 20 L42 20 L44 28" fill="rgba(245,244,239,0.10)" stroke="rgba(245,244,239,0.6)" strokeWidth="1.2"/>
-      <path d="M50 32 L56 32" stroke="rgba(245,244,239,0.85)" strokeWidth="2.5" strokeLinecap="round"/>
-      <path d="M4 40 Q32 50 60 40" stroke="rgba(165,205,225,0.85)" strokeWidth="2" strokeLinecap="round" fill="none"/>
+    <div className="ob-scen" aria-hidden style={{ aspectRatio: '16 / 10', maxWidth: 440 }}>
+      <Bild src="/kreativ/scen-sol.webp" className="ob-snurr" style={{ left: '2%', top: '2%', width: '19%' }} />
+      <Bild src="/kreativ/scen-o.webp" style={{ right: '1%', bottom: '19%', width: '42%' }} />
+      <Hav hojd={64} />
+      <Bild src="/kreativ/thorkel-bat-v.webp" className="ob-gung" style={{ left: '4%', bottom: '6%', width: '56%' }} />
+    </div>
+  )
+}
+
+/* Slutscenen: båten på väg ut, flaggan och fyren. */
+function AvgangScen() {
+  return (
+    <div className="ob-scen" aria-hidden style={{ aspectRatio: '16 / 9', maxWidth: 440 }}>
+      <Bild src="/kreativ/scen-sol.webp" className="ob-snurr" style={{ right: '4%', top: '0%', width: '17%' }} />
+      <Bild src="/kreativ/scen-flagga.webp" style={{ left: '2%', bottom: '20%', width: '8%' }} />
+      <Bild src="/kreativ/scen-fyr.webp" style={{ left: '8%', bottom: '14%', width: '25%' }} />
+      <Hav hojd={56} />
+      <div className="ob-segla" style={{ position: 'absolute', left: '40%', bottom: '5%', width: '48%' }}>
+        <Bild src="/kreativ/thorkel-bat-v.webp" className="ob-gung" style={{ position: 'relative', width: '100%' }} />
+      </div>
+    </div>
+  )
+}
+
+/* En liten scen ovanför frågestegen. */
+function LitenScen({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="ob-scen" aria-hidden style={{ height: 96, maxWidth: 300, marginBottom: 14 }}>
+      {children}
+      <Hav hojd={30} />
+    </div>
+  )
+}
+
+/* ── Båtikoner i bläck, samma linje som startsidans skyltikoner ───────────── */
+const IKON = { width: 46, height: 46, viewBox: '0 0 64 64', fill: 'none', stroke: F.black, strokeWidth: 2.4, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const }
+function SegelIkon() {
+  return (
+    <svg {...IKON} aria-hidden>
+      <path d="M32 8 V44" />
+      <path d="M34 10 L52 40 H34 Z" fill={F.hav} fillOpacity=".85" />
+      <path d="M30 16 L15 40 H30 Z" fill={F.hav} fillOpacity=".45" />
+      <path d="M10 46 H54 L49 52 H15 Z" fill={F.kort} />
+      <path d="M6 57 Q14 53 22 57 T38 57 T54 57" stroke={F.hav} />
     </svg>
   )
 }
-function KayakIcon() {
+function MotorIkon() {
   return (
-    <svg width={36} height={36} viewBox="0 0 64 64" fill="none">
-      <ellipse cx="32" cy="36" rx="26" ry="7" fill="rgba(245,244,239,0.18)" stroke="rgba(245,244,239,0.85)" strokeWidth="1.5"/>
-      <circle cx="32" cy="30" r="5" fill="rgba(245,244,239,0.20)" stroke="rgba(245,244,239,0.7)" strokeWidth="1.2"/>
-      <path d="M18 25 L12 16" stroke="rgba(245,244,239,0.85)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M46 25 L52 16" stroke="rgba(245,244,239,0.85)" strokeWidth="2" strokeLinecap="round"/>
+    <svg {...IKON} aria-hidden>
+      <path d="M8 40 H56 L50 48 H14 Z" fill={F.kort} />
+      <path d="M20 40 L24 30 H40 L44 40" fill={F.hav} fillOpacity=".45" />
+      <path d="M28 30 V24 H36" />
+      <path d="M6 56 Q14 52 22 56 T38 56 T54 56" stroke={F.hav} />
     </svg>
   )
 }
-function CharterIcon() {
+function KajakIkon() {
   return (
-    <svg width={36} height={36} viewBox="0 0 64 64" fill="none">
-      <circle cx="32" cy="14" r="4" stroke="rgba(245,244,239,0.85)" strokeWidth="1.8" fill="none"/>
-      <line x1="32" y1="18" x2="32" y2="46" stroke="rgba(245,244,239,0.85)" strokeWidth="2.2" strokeLinecap="round"/>
-      <line x1="22" y1="26" x2="42" y2="26" stroke="rgba(245,244,239,0.85)" strokeWidth="2" strokeLinecap="round"/>
-      <path d="M14 38 Q 32 56 50 38" stroke="rgba(245,244,239,0.85)" strokeWidth="2.2" strokeLinecap="round" fill="none"/>
-      <line x1="14" y1="38" x2="10" y2="34" stroke="rgba(245,244,239,0.85)" strokeWidth="2" strokeLinecap="round"/>
-      <line x1="50" y1="38" x2="54" y2="34" stroke="rgba(245,244,239,0.85)" strokeWidth="2" strokeLinecap="round"/>
+    <svg {...IKON} aria-hidden>
+      <path d="M6 42 Q32 50 58 42 Q32 34 6 42 Z" fill={F.orange} fillOpacity=".75" />
+      <circle cx="32" cy="30" r="4.5" fill={F.kort} />
+      <path d="M14 20 L50 46" />
+      <path d="M11 17 L17 23 M47 43 L53 49" strokeWidth="4" />
+      <path d="M6 56 Q14 52 22 56 T38 56 T54 56" stroke={F.hav} />
+    </svg>
+  )
+}
+function UtanBatIkon() {
+  return (
+    <svg {...IKON} aria-hidden>
+      <rect x="12" y="22" width="40" height="20" rx="3" fill={F.kort} />
+      <path d="M8 42 H56 L52 48 H12 Z" fill={F.hav} fillOpacity=".45" />
+      <path d="M22 22 V16 H42 V22" />
+      <path d="M18 29 H22 M27 29 H31 M36 29 H40 M45 29 H48" stroke={F.orange} strokeWidth="3" />
+      <path d="M6 57 Q14 53 22 57 T38 57 T54 57" stroke={F.hav} />
     </svg>
   )
 }
 
 const BOAT_OPTIONS = [
-  { value: 'Segelbåt', label: 'Segelbåt',     Icon: SailboatIcon, desc: 'Kryss och slör mellan öarna' },
-  { value: 'Motorbåt', label: 'Motorbåt',     Icon: MotorboatIcon, desc: 'Snabb genom skärgården' },
-  { value: 'Kajak',    label: 'Kajak / SUP',  Icon: KayakIcon, desc: 'Nära vattnet och tystnaden' },
-  { value: 'Charter',  label: 'Utan egen båt', Icon: CharterIcon, desc: 'Hyr, åker med eller mönstrar på' },
+  { value: 'Segelbåt', label: 'Segelbåt', Icon: SegelIkon, desc: 'Kryss och slör mellan öarna' },
+  { value: 'Motorbåt', label: 'Motorbåt', Icon: MotorIkon, desc: 'Snabbt genom skärgården' },
+  { value: 'Kajak', label: 'Kajak eller SUP', Icon: KajakIkon, desc: 'Nära vattnet och tystnaden' },
+  { value: 'Charter', label: 'Utan egen båt', Icon: UtanBatIkon, desc: 'Färja, hyrbåt eller med vänner' },
+]
+
+/* Tre saker man kan göra, med var sin målad bild från startsidan. */
+const FUNKTIONER = [
+  { bild: '/kreativ/scen-angbat.webp', rubrik: 'Planera turen', text: 'Rutter längs kusten, färjor och båtlinjer på ett ställe.' },
+  { bild: '/kreativ/scen-vastkust.webp', rubrik: 'Hitta öar och krogar', text: 'Gästhamnar, bryggor, bastur och mat, med riktiga koordinater.' },
+  { bild: '/kreativ/scen-eka.webp', rubrik: 'Logga och dela', text: 'Spara rutten med GPS, lägg till foton och följ andras turer.' },
 ]
 
 /** "åkersberga" → "Åkersberga"; "  Vaxholm " → "Vaxholm". Högst 60 tecken. */
@@ -442,169 +319,137 @@ const COMMON_PORTS = [
   'Strömstad', 'Trosa', 'Nynäshamn', 'Dalarö',
 ]
 
-/* ── Generic ikoner ─────────────────────────────────────────────────── */
-function CheckIcon({ size = 18, color = '#fff' }: { size?: number; color?: string }) {
+function Pil({ size = 18 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-         stroke={color} strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="20 6 9 17 4 12"/>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M5 12h14M13 6l6 6-6 6" />
     </svg>
   )
 }
-function ArrowRightIcon({ size = 16, color = '#fff' }: { size?: number; color?: string }) {
+function Bock({ size = 12 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-         stroke={color} strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
-      <line x1="5" y1="12" x2="19" y2="12"/>
-      <polyline points="12 5 19 12 12 19"/>
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <path d="M5 13l4 4L19 7" />
     </svg>
   )
 }
 
-/* ── Nav-hint: "Hitta det under X i menyn" ──────────────────────────── */
-function NavHint({ label }: { label: string }) {
+/* Framsteg: en prick per frågesteg, den aktuella är en orange streck. */
+function Framsteg({ current }: { current: Step }) {
+  const i = MELLANSTEG.indexOf(current)
+  if (i < 0) return null
   return (
-    <div style={{
-      display: 'inline-flex', alignItems: 'center', gap: 6,
-      alignSelf: 'center', margin: '0 auto 22px',
-      padding: '6px 14px', borderRadius: 999,
-      background: 'rgba(255,255,255,0.06)',
-      border: '1px solid rgba(255,255,255,0.10)',
-    }}>
-      <svg width="11" height="11" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="rgba(165,205,225,0.7)" strokeWidth="1.6"/>
-        <path d="M12 4 L13 12 L12 20 L11 12 Z" fill="rgba(165,205,225,0.9)"/>
-        <path d="M4 12 L12 11 L20 12 L12 13 Z" fill="rgba(165,205,225,0.4)"/>
-      </svg>
-      <span style={{ fontSize: 11, color: 'rgba(165,205,225,0.82)', fontWeight: 600, letterSpacing: '0.01em' }}>
-        Hitta det under <span style={{ color: 'rgba(165,235,248,0.98)' }}>{label}</span> i menyn
-      </span>
+    <div className="ob-framsteg" role="progressbar" aria-valuemin={1} aria-valuemax={MELLANSTEG.length} aria-valuenow={i + 1}
+      aria-label={`Steg ${i + 1} av ${MELLANSTEG.length}`}>
+      {MELLANSTEG.map((s, k) => <i key={s} className={k < i ? 'klar' : k === i ? 'nu' : ''} />)}
+      <span>{i + 1} av {MELLANSTEG.length}</span>
     </div>
   )
-}
-
-/* ── Kompass-progress ───────────────────────────────────────────────── */
-function CompassProgress({ current }: { current: Step }) {
-  if (current === 'welcome' || current === 'done') return null
-  const idx = stepIdx(current)
-  const MIDDLE_STEPS = TOTAL_STEPS - 2 // exkl. welcome + done = 6
-  const midIdx = idx - 1               // 0-baserat bland mellanstegen
-  const pct = (midIdx / (MIDDLE_STEPS - 1)) * 100
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 24 }}>
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="10" stroke="rgba(165,205,225,0.6)" strokeWidth="1.2"/>
-        <path d="M12 4 L 13.5 12 L 12 20 L 10.5 12 Z" fill="rgba(165,205,225,0.8)"/>
-        <path d="M4 12 L 12 10.5 L 20 12 L 12 13.5 Z" fill="rgba(165,205,225,0.38)"/>
-      </svg>
-      <div style={{
-        position: 'relative', width: 160, height: 3, borderRadius: 999,
-        background: 'rgba(255,255,255,0.10)', overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', inset: 0, width: `${Math.max(4, pct)}%`,
-          background: 'linear-gradient(90deg, #2d7d8a, #65b8c8)',
-          borderRadius: 999, transition: 'width 0.5s cubic-bezier(0.22,1,0.36,1)',
-        }}/>
-      </div>
-      <span style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.45)', letterSpacing: '0.04em' }}>
-        {midIdx + 1} av {MIDDLE_STEPS}
-      </span>
-    </div>
-  )
-}
-
-/* ── Layout-konstanter ─────────────────────────────────────────────── */
-const CARD: React.CSSProperties = {
-  position: 'relative', zIndex: 1,
-  width: '100%', maxWidth: 460, paddingTop: 28,
-  margin: '0 auto',
-  display: 'flex', flexDirection: 'column',
-  animation: 'ob-fadeUp 0.42s cubic-bezier(0.22,1,0.36,1) both',
-}
-
-const HEADING: React.CSSProperties = {
-  fontFamily: "'Playfair Display', serif",
-  fontSize: 30, fontWeight: 800, color: '#fff',
-  margin: '0 0 10px', letterSpacing: '-0.5px', lineHeight: 1.18,
-  textAlign: 'center',
-}
-
-const SUBTITLE: React.CSSProperties = {
-  fontSize: 15, color: 'rgba(255,255,255,0.68)',
-  margin: '0 auto 26px', lineHeight: 1.55, maxWidth: 380, textAlign: 'center',
-}
-
-const PRIMARY_BTN = (disabled = false): React.CSSProperties => ({
-  flex: 1, padding: '15px 20px', borderRadius: 14, border: 'none',
-  cursor: disabled ? 'not-allowed' : 'pointer', fontFamily: 'inherit',
-  background: disabled
-    ? 'rgba(255,255,255,0.08)'
-    : 'linear-gradient(135deg, #1e5c82 0%, #2d7d8a 50%, #65b8c8 100%)',
-  color: disabled ? 'rgba(255,255,255,0.55)' : '#fff',
-  fontSize: 15, fontWeight: 700, letterSpacing: '0.02em',
-  boxShadow: disabled ? 'none' : '0 8px 28px rgba(45,125,138,0.40)',
-  transition: 'all 0.2s',
-  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-})
-
-const BACK_BTN: React.CSSProperties = {
-  padding: '13px 16px', borderRadius: 14,
-  border: 'none', background: 'transparent',
-  color: 'rgba(255,255,255,0.55)',
-  fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
    HUVUDKOMPONENT
 ─────────────────────────────────────────────────────────────────────────── */
-export default function OnboardingFlow({ userId, initialUsername, suggestions }: Props) {
+export default function OnboardingFlow({ userId, halsning, nuvarandeNamn, namnForslag, avatar, tillbaka = null, suggestions, forhandsvisning = false }: Props) {
   const router = useRouter()
-  const supabase = createClient()
+  const supabase = useMemo(() => createClient(), [])
 
-  const [step, setStep] = useState<Step>('welcome')
+  const [step, setStep] = useState<Step>('valkomst')
   const [animKey, setAnimKey] = useState(0)
   const [startedAt] = useState(() => Date.now())
 
+  const [alias, setAlias] = useState(namnForslag)
+  const [bildFil, setBildFil] = useState<File | null>(null)
+  const [bildVisning, setBildVisning] = useState<string | null>(avatar)
+  const bildRef = useRef<HTMLInputElement>(null)
   const [boatType, setBoatType] = useState<string | null>(null)
   const [homePort, setHomePort] = useState('')
   const [followIds, setFollowIds] = useState<Set<string>>(new Set())
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState('')
-  // Spårning med skärmen avstängd finns bara i den inbyggda appen (tracker.ts).
-  const [inbyggdApp, setInbyggdApp] = useState(false)
-  useEffect(() => { setInbyggdApp(arInbyggdApp()) }, [])
   // Förslagen ordnas efter valen i guiden (samma hemmahamn, sedan båttyp).
   const sorteradeForslag = useMemo(
     () => rangordnaForslag(suggestions, normaliseraHamn(homePort), boatType),
     [suggestions, homePort, boatType],
   )
 
-  useEffect(() => { track('onboarding_started', { step: 1 }) }, [])
+  const spara = !forhandsvisning
+  useEffect(() => { if (spara) track('onboarding_started', { step: 1, version: VERSION }) }, [spara])
 
   // Guiden räknas som klar när slutskärmen visas, inte först när man trycker en
   // knapp där. Annars kom hela guiden tillbaka för den som stängde appen på
   // slutskärmen (granskningen 2026-11-22). Följningarna sparas fortfarande i finish().
   const klarMarkerad = useRef(false)
   useEffect(() => {
-    if (step !== 'done' || klarMarkerad.current) return
+    if (!spara || step !== 'klar' || klarMarkerad.current) return
     klarMarkerad.current = true
     // .then() krävs: frågan skickas först när den awaitas eller får en then.
     supabase.from('users').update({ onboarded_at: new Date().toISOString() }).eq('id', userId).is('onboarded_at', null)
       .then(({ error }) => { if (error) klarMarkerad.current = false })
-  }, [step, supabase, userId])
+  }, [spara, step, supabase, userId])
 
-  const goTo = (next: Step) => { setAnimKey(k => k + 1); setStep(next); track('onboarding_step', { step: stepIdx(next) + 1 }) }
+  // Ny skärm: börja överst, så att rubriken syns först på små telefoner.
+  useEffect(() => { window.scrollTo({ top: 0 }) }, [step])
+
+  const goTo = (next: Step) => {
+    setError('')
+    setAnimKey(k => k + 1)
+    setStep(next)
+    if (spara) track('onboarding_step', { step: stegNr(next), steg: next, version: VERSION })
+  }
   const goBack = () => {
-    const idx = stepIdx(step)
-    if (idx > 0) goTo(TOUR_STEPS[idx - 1]!)
+    const i = STEG.indexOf(step)
+    // Tillbaka från avgång när följsteget hoppades över: till hamnen.
+    if (step === 'klar' && suggestions.length === 0) return goTo('hamn')
+    if (i > 0) goTo(STEG[i - 1]!)
   }
   const goNext = () => {
-    const idx = stepIdx(step)
-    if (idx < TOTAL_STEPS - 1) goTo(TOUR_STEPS[idx + 1]!)
+    const i = STEG.indexOf(step)
+    if (i < STEG.length - 1) goTo(STEG[i + 1]!)
   }
 
-  /* Spara båt (steg 5) och hemmahamn (steg 6) var för sig. */
+  /* Namn och bild. Samma regler och samma lagring som "Redigera profil" (profil/page.tsx). */
+  const valjBild = (fil: File | undefined) => {
+    if (!fil) return
+    if (!fil.type.startsWith('image/')) { setError('Välj en bild.'); return }
+    setError('')
+    setBildFil(fil)
+    setBildVisning(URL.createObjectURL(fil))
+  }
+  const handleSaveName = async () => {
+    const namn = alias.trim().toLowerCase()
+    const fel = validateUsername(namn)
+    if (fel) { setError(fel); return }
+    setSaving(true); setError('')
+    try {
+      if (spara) {
+        if (namn !== nuvarandeNamn.toLowerCase()) {
+          // Samma kontroll som profilen: utan skiftläge, \ % _ escapas.
+          const monster = namn.replace(/[\\%_]/g, '\\$&')
+          const { data: upptaget } = await supabase.from('users').select('id').ilike('username', monster).neq('id', userId).limit(1)
+          if (upptaget && upptaget.length > 0) throw new Error('Namnet är redan taget. Prova ett annat.')
+        }
+        let bildUrl: string | undefined
+        if (bildFil) {
+          const liten = await komprimeraBild(bildFil, AVATAR_MAX_PX)
+          const ext = liten.name.split('.').pop() ?? 'jpg'
+          const sokvag = `avatars/${userId}.${ext}`
+          const { error: upFel } = await supabase.storage.from('images').upload(sokvag, liten, { upsert: true })
+          if (upFel) throw new Error('Bilden gick inte att ladda upp. Försök igen eller hoppa över bilden.')
+          bildUrl = supabase.storage.from('images').getPublicUrl(sokvag).data.publicUrl
+        }
+        const { error: e } = await supabase.from('users').update({ username: namn, ...(bildUrl ? { avatar: bildUrl } : {}) }).eq('id', userId)
+        if (e) throw new Error(e.code === '23505' ? 'Namnet är redan taget. Prova ett annat.' : 'Kunde inte spara. Försök igen.')
+      }
+      setSaving(false)
+      goNext()
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Något gick fel')
+      setSaving(false)
+    }
+  }
+
+  /* Spara båt och hemmahamn var för sig. */
   const handleSaveBoat = async () => {
     if (!boatType) return
     setSaving(true); setError('')
@@ -613,8 +458,10 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
       // hamnade det i vessel_model och visades som båtmodell: "Charter" för den
       // som valt "Utan egen båt". Den som saknar båt får ingen båttyp alls.
       const vesselType = boatType === 'Charter' ? null : boatType
-      const { error: e } = await supabase.from('users').update({ boat_type: boatType, vessel_type: vesselType }).eq('id', userId)
-      if (e) throw new Error('Kunde inte spara. Försök igen.')
+      if (spara) {
+        const { error: e } = await supabase.from('users').update({ boat_type: boatType, vessel_type: vesselType }).eq('id', userId)
+        if (e) throw new Error('Kunde inte spara. Försök igen.')
+      }
       setSaving(false)
       goNext()
     } catch (e) {
@@ -627,13 +474,13 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
     setSaving(true); setError('')
     try {
       const hamn = normaliseraHamn(homePort)
-      if (hamn) {
+      if (hamn && spara) {
         const { error: e } = await supabase.from('users').update({ home_port: hamn }).eq('id', userId)
         if (e) throw new Error('Kunde inte spara. Försök igen.')
       }
       setSaving(false)
       // Inga seglare att föreslå → hoppa direkt till avgång.
-      goTo(suggestions.length > 0 ? 'folj' : 'done')
+      goTo(suggestions.length > 0 ? 'folj' : 'klar')
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Något gick fel')
       setSaving(false)
@@ -642,7 +489,6 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
 
   const hamnForslag = hamnForslagFor(homePort)
 
-  /* Toggle follow + trigga notiser/push */
   const toggleFollow = (id: string) => {
     setFollowIds(prev => {
       const next = new Set(prev)
@@ -652,22 +498,18 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
     })
   }
 
-  /* Slutför onboarding och redirect till feed */
+  /* Slutför guiden och gå vidare */
   const finish = async (target: string = '/feed') => {
+    if (!spara) { setFollowIds(new Set()); goTo('valkomst'); return }
     setSaving(true)
     setError('')
     try {
-      // Markera onboardad
       await supabase.from('users').update({ onboarded_at: new Date().toISOString() }).eq('id', userId)
 
-      // Skapa follows + trigga notis och push
+      // Skapa följningar och notiser
       if (followIds.size > 0) {
-        const followRows = Array.from(followIds).map(fid => ({
-          follower_id: userId,
-          following_id: fid,
-        }))
+        const followRows = Array.from(followIds).map(fid => ({ follower_id: userId, following_id: fid }))
         await supabase.from('follows').upsert(followRows, { onConflict: 'follower_id,following_id', ignoreDuplicates: true })
-
         // Notis per följning. Servern kontrollerar följningen och skickar pushen själv.
         await Promise.allSettled(Array.from(followIds).map(fid =>
           fetch('/api/notifications/insert', {
@@ -677,7 +519,7 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
         ))
       }
 
-      track('onboarding_completed', { duration_seconds: Math.round((Date.now() - startedAt) / 1000) })
+      track('onboarding_completed', { duration_seconds: Math.round((Date.now() - startedAt) / 1000), version: VERSION })
       router.replace(target)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Något gick fel')
@@ -685,501 +527,255 @@ export default function OnboardingFlow({ userId, initialUsername, suggestions }:
     }
   }
 
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 1 — WELCOME
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'welcome') return (
+  const fel = error ? <div role="alert" className="ob-fel">{error}</div> : null
+  const tillbakaKnapp = <button type="button" onClick={goBack} className="ob-tillbaka">Tillbaka</button>
+
+  const planMal = boatType === 'Charter' ? '/utflykt' : '/planera/ny'
+  const planText = boatType === 'Charter' ? 'Planera en dag i skärgården' : 'Planera din första tur'
+
+  let innehall: React.ReactNode
+
+  /* ── 1. Välkommen ─────────────────────────────────────────────────── */
+  if (step === 'valkomst') innehall = (
     <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={{ ...CARD, justifyContent: 'center' }}>
-        <div style={{
-          textAlign: 'center', marginBottom: 18,
-          fontFamily: "'Playfair Display', serif", fontSize: 16, fontWeight: 700,
-          color: 'rgba(255,255,255,0.62)', letterSpacing: '0.32em',
-          animation: 'ob-fadeUp 0.4s 0.1s both',
-        }}>SVALLA</div>
+      <ValkomstScen />
+      <p className="ob-etikett">Välkommen till Svalla</p>
+      <h1 className="ob-rubrik">Välkommen ombord{halsning ? `, ${halsning}` : ''}</h1>
+      <p className="ob-text">
+        Här planerar du turen, hittar öar, krogar och bryggor och följer andra på sjön.
+        Vi visar det viktigaste på en minut.
+      </p>
+      <div className="ob-rad">
+        <button type="button" onClick={goNext} className="ob-knapp">Kasta loss <Pil /></button>
+      </div>
+      <button type="button" onClick={() => finish(tillbaka ?? '/feed')} disabled={saving} className="ob-lank">
+        {saving ? 'Sparar…' : 'Hoppa över guiden'}
+      </button>
+    </>
+  )
 
-        <div style={{ animation: 'ob-fadeUp 0.5s 0.18s both' }}>
-          <HeroHorizon/>
-        </div>
+  /* ── 2. Det här kan du göra ───────────────────────────────────────── */
+  else if (step === 'visning') innehall = (
+    <>
+      <Framsteg current={step} />
+      <h2 className="ob-rubrik">Det här kan du göra</h2>
+      <p className="ob-text">Allt finns i menyn, när du behöver det.</p>
+      <div style={{ display: 'grid', gap: 12, marginBottom: 24 }}>
+        {FUNKTIONER.map(f => (
+          <div key={f.rubrik} className="ob-kort ob-funktion">
+            <Bild src={f.bild} style={{ position: 'static' }} />
+            <div>
+              <h3>{f.rubrik}</h3>
+              <p>{f.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="ob-rad">
+        {tillbakaKnapp}
+        <button type="button" onClick={goNext} className="ob-knapp">Nästa <Pil /></button>
+      </div>
+    </>
+  )
 
-        <h1 style={{ ...HEADING, animation: 'ob-fadeUp 0.45s 0.32s both' }}>
-          Välkommen ombord{initialUsername ? `, ${initialUsername}` : ''}.
-        </h1>
-        <p style={{ ...SUBTITLE, animation: 'ob-fadeUp 0.45s 0.4s both' }}>
-          Svalla är skärgårdens digitala hemmahamn. Logga turer, hitta krogar och bryggor,
-          och möt andra som lever på vattnet. Vi tar dig genom det viktigaste på en minut.
-        </p>
-
-        <div style={{ display: 'flex', gap: 10, animation: 'ob-fadeUp 0.45s 0.5s both' }}>
-          <button onClick={goNext} style={PRIMARY_BTN(false)}>
-            Kasta loss <ArrowRightIcon/>
-          </button>
-        </div>
-        <button onClick={() => finish('/feed')} disabled={saving} style={{
-          ...BACK_BTN, marginTop: 14, alignSelf: 'center',
-          animation: 'ob-fadeUp 0.45s 0.6s both',
-        }}>
-          {saving ? 'Sparar…' : 'Hoppa över guiden'}
+  /* ── 3. Namn och bild ─────────────────────────────────────────────── */
+  else if (step === 'namn') innehall = (
+    <>
+      <Framsteg current={step} />
+      <h2 className="ob-rubrik">Vad ska vi kalla dig?</h2>
+      <p className="ob-text" style={{ marginBottom: 20 }}>
+        Namnet syns för andra på Svalla, på din profil och dina turer. Din e-post visas aldrig.
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginBottom: 22 }}>
+        <button type="button" onClick={() => bildRef.current?.click()} className="ob-bild" aria-label={bildVisning ? 'Byt profilbild' : 'Lägg till profilbild'}>
+          {bildVisning
+            // eslint-disable-next-line @next/next/no-img-element
+            ? <img src={bildVisning} alt="" />
+            : <span aria-hidden>{(alias.trim()[0] ?? '?').toUpperCase()}</span>}
+          <span className="ob-bild-kamera" aria-hidden>
+            <svg width={15} height={15} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.2} strokeLinecap="round" strokeLinejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z" /><circle cx="12" cy="13" r="3.5" /></svg>
+          </span>
+        </button>
+        <button type="button" onClick={() => bildRef.current?.click()} className="ob-lank" style={{ margin: 0 }}>
+          {bildVisning ? 'Byt bild' : 'Lägg till en bild (valfritt)'}
+        </button>
+        <input ref={bildRef} type="file" accept="image/*" hidden onChange={e => valjBild(e.target.files?.[0])} />
+      </div>
+      <label htmlFor="ob-namn" className="ob-etikett" style={{ textAlign: 'left', display: 'block', margin: '0 0 8px 4px' }}>Ditt namn på Svalla</label>
+      <div style={{ position: 'relative' }}>
+        <span aria-hidden style={{ position: 'absolute', left: 16, top: '50%', transform: 'translateY(-50%)', color: F.havMork, fontWeight: 700, fontSize: 16 }}>@</span>
+        <input id="ob-namn" type="text" value={alias} onChange={e => { setAlias(e.target.value.toLowerCase()); if (error) setError('') }}
+          placeholder="t.ex. anna-pa-sjon" autoComplete="off" autoCapitalize="none" spellCheck={false} maxLength={20}
+          className="ob-falt" style={{ paddingLeft: 34 }} aria-describedby="ob-namn-regel" />
+      </div>
+      <p id="ob-namn-regel" style={{ margin: '10px 4px 22px', fontSize: 12.5, lineHeight: 1.45, color: F.text3 }}>
+        3–20 tecken: a–z, siffror, _ . och -. Du kan ändra namnet senare i profilen.
+      </p>
+      {fel}
+      <div className="ob-rad">
+        {tillbakaKnapp}
+        <button type="button" onClick={handleSaveName} disabled={saving || alias.trim().length < 3} className="ob-knapp">
+          {saving ? 'Sparar…' : <>Nästa <Pil /></>}
         </button>
       </div>
     </>
   )
 
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 2 — TOUR: LOGGA TURER
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'tour_log') return (
+  /* ── 4. Båt ───────────────────────────────────────────────────────── */
+  else if (step === 'bat') innehall = (
     <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={CARD}>
-        <CompassProgress current={step}/>
-        <h2 style={HEADING}>Logga dina turer</h2>
-        <p style={SUBTITLE}>
-          Spåra rutten med GPS direkt från telefonen. Distans, tid, fart och rutt
-          sparas automatiskt, som ett digitalt loggboksuppslag.
-        </p>
-        <ChartRouteIllustration/>
-        <NavHint label="Logga"/>
-        <div style={{
-          display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 20,
-          flexWrap: 'wrap',
-        }}>
-          {[inbyggdApp ? 'GPS i bakgrunden' : 'GPS-spårning', 'Foto från turen', 'Betyg på turen'].map(b => (
-            <span key={b} style={{
-              fontSize: 11.5, fontWeight: 600, color: 'rgba(255,255,255,0.75)',
-              padding: '6px 12px', borderRadius: 999,
-              background: 'rgba(255,255,255,0.07)',
-              border: '1px solid rgba(255,255,255,0.12)',
-            }}>{b}</span>
-          ))}
-        </div>
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={goNext} style={PRIMARY_BTN(false)}>
-            Sätt kurs <ArrowRightIcon/>
-          </button>
-        </div>
-      </div>
-    </>
-  )
-
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 3 — TOUR: UTFORSKA SJÖKORTET
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'tour_map') return (
-    <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={CARD}>
-        <CompassProgress current={step}/>
-        <h2 style={HEADING}>Pejla in skärgården</h2>
-        <p style={SUBTITLE}>
-          Hitta krogar, gästbryggor, bastur och bensinmackar längs hela kusten.
-          Sökbar karta med riktiga koordinater, inga gissningar.
-        </p>
-        <MapMarkersIllustration/>
-        <NavHint label="Utforska"/>
-        <div style={{
-          display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 20,
-        }}>
-          {[
-            { color: '#c96e2a', label: 'Krogar & restauranger' },
-            { color: '#1e5c82', label: 'Gästbryggor' },
-            { color: '#9d4d3a', label: 'Bastur' },
-            { color: '#2d7d8a', label: 'Bensin & service' },
-          ].map(b => (
-            <div key={b.label} style={{
-              display: 'flex', alignItems: 'center', gap: 8,
-              padding: '8px 10px', borderRadius: 10,
-              background: 'rgba(255,255,255,0.05)',
-              border: '1px solid rgba(255,255,255,0.08)',
-            }}>
-              <span style={{ width: 10, height: 10, borderRadius: 999, background: b.color, flexShrink: 0 }}/>
-              <span style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.78)', fontWeight: 500 }}>{b.label}</span>
-            </div>
-          ))}
-        </div>
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={goNext} style={PRIMARY_BTN(false)}>
-            Sätt kurs <ArrowRightIcon/>
-          </button>
-        </div>
-      </div>
-    </>
-  )
-
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 4 — TOUR: APP-NAVIGATION (flöde + forum + planera)
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'tour_app') return (
-    <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={CARD}>
-        <CompassProgress current={step}/>
-        <h2 style={HEADING}>Hitta runt i Svalla</h2>
-        <p style={SUBTITLE}>
-          Allt du behöver finns i menyn. Här är en snabb karta.
-        </p>
-
-        {/* Nav-karta */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginBottom: 24, width: '100%' }}>
-          {[
-            {
-              icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.85)" strokeWidth="1.6" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>,
-              label: 'Flödet',
-              desc: 'Turer och inlägg från folk du följer',
-              color: '#1e5c82',
-            },
-            {
-              icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.85)" strokeWidth="1.6" strokeLinecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>,
-              label: 'Forum',
-              desc: 'Ställ frågor, dela tips, hitta din hamn',
-              color: '#2d7d8a',
-            },
-            {
-              icon: <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.85)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>,
-              label: 'Planera',
-              desc: 'Planera din nästa rutt längs kusten',
-              color: '#c96e2a',
-            },
-          ].map(({ icon, label, desc, color }) => (
-            <div key={label} style={{
-              display: 'flex', alignItems: 'center', gap: 14,
-              padding: '12px 16px', borderRadius: 14,
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.10)',
-            }}>
-              <div style={{
-                width: 44, height: 44, borderRadius: 12, flexShrink: 0,
-                background: `${color}33`,
-                border: `1px solid ${color}55`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>{icon}</div>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>{label}</div>
-                <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.52)', marginTop: 2 }}>{desc}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={goNext} style={PRIMARY_BTN(false)}>
-            Anpassa mig <ArrowRightIcon/>
-          </button>
-        </div>
-      </div>
-    </>
-  )
-
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 5 — BÅT (ett val, krävs: alla fyra täcker alla)
-     2026-11-16: förut låg båt, hamn och följ på en skärm, allt valfritt.
-     Senaste 90 dagarna: 15 klara onboardingar, 8 med båt, 7 med hamn.
-     Nu ett steg per fråga, båten måste väljas, hamnen går att hoppa över.
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'bat') return (
-    <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={CARD}>
-        <CompassProgress current={step}/>
-        <h2 style={HEADING}>Hur tar du dig ut?</h2>
-        <p style={{ ...SUBTITLE, marginBottom: 20 }}>
-          Styr vad du får se först: turer, rutter och platser som passar dig. Går att ändra i profilen.
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 22 }}>
-          {BOAT_OPTIONS.map(({ value, label, Icon, desc }) => {
-            const active = boatType === value
-            return (
-              <button key={value} onClick={() => setBoatType(value)} type="button" aria-pressed={active}
-                style={{
-                  position: 'relative',
-                  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
-                  padding: '16px 10px 14px', borderRadius: 14, border: 'none',
-                  cursor: 'pointer', fontFamily: 'inherit',
-                  background: active
-                    ? 'linear-gradient(135deg, rgba(30,92,130,0.60), rgba(45,125,138,0.52))'
-                    : 'rgba(255,255,255,0.06)',
-                  outline: active ? '2px solid rgba(165,235,248,0.95)' : '1.5px solid rgba(255,255,255,0.08)',
-                  transition: 'all 0.18s',
-                }}>
-                {/* Tydligare valt läge: bock i hörnet (granskningen 2026-11-22: valt kort syntes knappt). */}
-                {active && (
-                  <span aria-hidden style={{
-                    position: 'absolute', top: 8, right: 8, width: 20, height: 20, borderRadius: '50%',
-                    background: 'rgba(165,235,248,0.95)', color: '#0e3848',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  }}>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3.5} style={{ width: 12, height: 12 }}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                )}
-                <div style={{ opacity: active ? 1 : 0.7 }}><Icon/></div>
-                <span style={{ fontSize: 13, fontWeight: 700, color: active ? '#fff' : 'rgba(255,255,255,0.72)' }}>
-                  {label}
-                </span>
-                <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.48)', textAlign: 'center', lineHeight: 1.3 }}>
-                  {desc}
-                </span>
-              </button>
-            )
-          })}
-        </div>
-
-        {error && (
-          <div style={{
-            marginBottom: 12, padding: '10px 14px',
-            background: 'rgba(239,68,68,0.10)', color: 'rgba(255,180,180,0.95)',
-            fontSize: 13, fontWeight: 600, borderRadius: 12,
-            border: '1px solid rgba(239,68,68,0.25)',
-          }}>{error}</div>
-        )}
-
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={handleSaveBoat} disabled={saving || !boatType} style={PRIMARY_BTN(saving || !boatType)}>
-            {saving ? 'Sparar…' : <>Nästa <ArrowRightIcon/></>}
-          </button>
-        </div>
-        {/* Steget gick inte att hoppa över; båttypen kan sättas senare på profilen. */}
-        {!boatType && (
-          <button type="button" onClick={goNext} style={{
-            display: 'block', margin: '14px auto 0', background: 'none', border: 'none',
-            color: 'rgba(255,255,255,0.72)', fontSize: 13, fontWeight: 600, cursor: 'pointer',
-            fontFamily: 'inherit', textDecoration: 'underline', textUnderlineOffset: 3,
-          }}>
-            Hoppa över, välj senare på profilen
-          </button>
-        )}
-      </div>
-    </>
-  )
-
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 6 — HEMMAHAMN (fritext med förslag; går att hoppa över)
-     Fritext med flit: hemmahamnen är ofta en klubbhamn eller brygga som
-     inte finns i någon lista (Svinninge, Bosön, Raksta i dagens data).
-     Förslagen kommer från avgångsplatserna i planeraren och vanliga hamnar.
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'hamn') return (
-    <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={CARD}>
-        <CompassProgress current={step}/>
-        <h2 style={HEADING}>{boatType === 'Charter' ? 'Var brukar du ge dig ut?' : 'Var ligger båten?'}</h2>
-        <p style={{ ...SUBTITLE, marginBottom: 20 }}>
-          Hemmahamnen visas på din profil och hjälper oss föreslå seglare och turer nära dig.
-        </p>
-        <input
-          type="text"
-          value={homePort}
-          onChange={e => setHomePort(e.target.value)}
-          placeholder="t.ex. Vaxholm, Svinninge, Marstrand…"
-          autoComplete="off"
-          aria-label="Hemmahamn"
-          style={{
-            width: '100%', boxSizing: 'border-box',
-            padding: '13px 16px', borderRadius: 12,
-            border: `1.5px solid ${homePort.trim().length >= 2 ? 'rgba(165,225,235,0.40)' : 'rgba(255,255,255,0.13)'}`,
-            background: 'rgba(255,255,255,0.07)',
-            color: '#fff', fontSize: 15, fontFamily: 'inherit', fontWeight: 500,
-            outline: 'none', transition: 'border-color 0.2s', marginBottom: 10,
-          }}
-        />
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 22, minHeight: 32 }}>
-          {hamnForslag.map(p => (
-            <button key={p} onClick={() => setHomePort(p)} type="button"
-              style={{
-                padding: '6px 12px', borderRadius: 999,
-                border: '1px solid rgba(255,255,255,0.10)',
-                background: homePort === p ? 'rgba(101,184,200,0.20)' : 'rgba(255,255,255,0.04)',
-                color: homePort === p ? 'rgba(165,225,235,0.95)' : 'rgba(255,255,255,0.68)',
-                fontSize: 12, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit',
-                transition: 'all 0.15s',
-              }}>{p}</button>
-          ))}
-        </div>
-
-        {error && (
-          <div style={{
-            marginBottom: 12, padding: '10px 14px',
-            background: 'rgba(239,68,68,0.10)', color: 'rgba(255,180,180,0.95)',
-            fontSize: 13, fontWeight: 600, borderRadius: 12,
-            border: '1px solid rgba(239,68,68,0.25)',
-          }}>{error}</div>
-        )}
-
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={handleSavePort} disabled={saving} style={PRIMARY_BTN(saving)}>
-            {saving ? 'Sparar…' : homePort.trim().length >= 2 ? <>Nästa <ArrowRightIcon/></> : <>Hoppa över <ArrowRightIcon/></>}
-          </button>
-        </div>
-      </div>
-    </>
-  )
-
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 7 — FÖLJ SEGLARE (hoppas över automatiskt om inga förslag finns)
-  ═══════════════════════════════════════════════════════════════════════ */
-  if (step === 'folj') return (
-    <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={CARD}>
-        <CompassProgress current={step}/>
-        <h2 style={HEADING}>Följ några seglare</h2>
-        <p style={{ ...SUBTITLE, marginBottom: 20 }}>
-          Deras turer dyker upp i ditt flöde. Du kan följa och sluta följa när som helst.
-        </p>
-
-        {/* ── Följ seglare ── */}
-        {suggestions.length > 0 && (
-          <>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 22 }}>
-              {sorteradeForslag.slice(0, 3).map(s => {
-                const isFollowing = followIds.has(s.id)
-                return (
-                  <button key={s.id} onClick={() => toggleFollow(s.id)} type="button"
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: 12,
-                      padding: '10px 14px', borderRadius: 12,
-                      background: isFollowing ? 'rgba(101,184,200,0.10)' : 'rgba(255,255,255,0.05)',
-                      border: isFollowing ? '1px solid rgba(165,225,235,0.28)' : '1px solid rgba(255,255,255,0.08)',
-                      cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', width: '100%',
-                      transition: 'all 0.18s',
-                    }}>
-                    {s.avatar
-                      // eslint-disable-next-line @next/next/no-img-element
-                      ? <img src={s.avatar} alt="" width={36} height={36} style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}/>
-                      : <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'linear-gradient(135deg, #1e5c82, #2d7d8a)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{(s.username[0] ?? '?').toUpperCase()}</div>
-                    }
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 13.5, fontWeight: 700, color: '#fff' }}>@{s.username}</div>
-                      {(s.boat_type || s.vessel_model || s.home_port) && (
-                        <div style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.48)', marginTop: 1 }}>
-                          {[(s.boat_type ?? s.vessel_model) === 'Charter' ? 'Utan egen båt' : (s.boat_type || s.vessel_model), s.home_port].filter(Boolean).join(' · ')}
-                        </div>
-                      )}
-                    </div>
-                    <div style={{
-                      padding: '5px 12px', borderRadius: 999, flexShrink: 0,
-                      background: isFollowing ? 'rgba(101,184,200,0.18)' : 'linear-gradient(135deg, #1e5c82, #2d7d8a)',
-                      color: isFollowing ? 'rgba(165,225,235,0.95)' : '#fff',
-                      fontSize: 12, fontWeight: 700,
-                      display: 'flex', alignItems: 'center', gap: 5,
-                    }}>
-                      {isFollowing && <CheckIcon size={11} color="rgba(165,225,235,0.95)"/>}
-                      {isFollowing ? 'Följer' : 'Följ'}
-                    </div>
-                  </button>
-                )
-              })}
-            </div>
-          </>
-        )}
-
-
-        {error && (
-          <div style={{
-            marginBottom: 12, padding: '10px 14px',
-            background: 'rgba(239,68,68,0.10)', color: 'rgba(255,180,180,0.95)',
-            fontSize: 13, fontWeight: 600, borderRadius: 12,
-            border: '1px solid rgba(239,68,68,0.25)',
-          }}>{error}</div>
-        )}
-
-        <div style={{ display: 'flex', gap: 10 }}>
-          <button onClick={goBack} style={BACK_BTN}>← Tillbaka</button>
-          <button onClick={goNext} disabled={saving} style={PRIMARY_BTN(saving)}>
-            {followIds.size > 0 ? <>Sätt kurs <ArrowRightIcon/></> : <>Hoppa över <ArrowRightIcon/></>}
-          </button>
-        </div>
-      </div>
-    </>
-  )
-
-  /* ════════════════════════════════════════════════════════════════════════
-     STEG 8 — DONE (klar för avgång)
-  ═══════════════════════════════════════════════════════════════════════ */
-  return (
-    <>
-      <style>{KEYFRAMES}</style>
-      <SeaBackdrop/>
-      <div key={animKey} style={{ ...CARD, alignItems: 'center', textAlign: 'center' }}>
-        <div style={{
-          fontFamily: "'Playfair Display', serif", fontSize: 14, fontWeight: 700,
-          color: 'rgba(255,255,255,0.55)', letterSpacing: '0.32em',
-          marginBottom: 8, animation: 'ob-fadeUp 0.4s 0.1s both',
-        }}>SVALLA</div>
-
-        <DepartureIllustration/>
-
-        <h2 style={{ ...HEADING, fontSize: 32 }}>Klar för avgång</h2>
-        <p style={SUBTITLE}>
-          Du är ombord. Planera din första tur, eller börja med att se dig omkring.
-        </p>
-
-        {error && (
-          <div style={{
-            marginBottom: 14, padding: '11px 14px', width: '100%',
-            background: 'rgba(239,68,68,0.10)', color: 'rgba(255,180,180,0.95)',
-            fontSize: 13, fontWeight: 600, borderRadius: 12,
-            border: '1px solid rgba(239,68,68,0.25)',
-          }}>{error}</div>
-        )}
-
-        {/* Primär CTA */}
-        {/* Planering i stället för "logga första turen": av 97 nya konton hade 14
-            planerat en rutt och 1 sparat en tur (mätt 19 nov 2026). Den som valt
-            "Utan egen båt" får dagsplaneraren, som utgår från färjor. */}
-        <button onClick={() => finish(boatType === 'Charter' ? '/utflykt' : '/planera/ny')} disabled={saving} style={{
-          ...PRIMARY_BTN(saving), width: '100%',
-          padding: '17px 20px', fontSize: 16, marginBottom: 16,
-        }}>
-          {saving ? 'Sparar…' : <>{boatType === 'Charter' ? 'Planera en dag i skärgården' : 'Planera din första tur'} <ArrowRightIcon size={18}/></>}
-        </button>
-
-        {/* Nav-genvägar */}
-        <div style={{
-          fontSize: 11, fontWeight: 700, color: 'rgba(165,205,225,0.65)',
-          textTransform: 'uppercase', letterSpacing: '0.14em',
-          textAlign: 'center', marginBottom: 10,
-        }}>Eller utforska direkt</div>
-        {/* Fem genvägar: 3 + 2 centrerade i stället för ett rutnät med ett tomt hål. */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, width: '100%', marginBottom: 8 }}>
-          {[
-            { label: 'Flödet', path: '/feed', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
-            { label: 'Utforska', path: '/upptack', icon: <IconCompass size={20} strokeWidth={1.6} style={{ color: 'rgba(245,244,239,0.8)' }} /> },
-            { label: 'Forum', path: '/forum', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> },
-            { label: 'Logga tur', path: '/logga', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg> },
-            { label: 'Profil', path: '/profil', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(245,244,239,0.8)" strokeWidth="1.6" strokeLinecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> },
-          ].map(({ label, path, icon }) => (
-            <button key={path} onClick={() => finish(path)} disabled={saving} style={{
-              flex: '0 0 calc((100% - 16px) / 3)', boxSizing: 'border-box',
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 7,
-              padding: '12px 8px', borderRadius: 14,
-              border: '1px solid rgba(255,255,255,0.10)',
-              background: 'rgba(255,255,255,0.06)',
-              color: 'rgba(255,255,255,0.78)', fontSize: 11.5, fontWeight: 700,
-              cursor: saving ? 'wait' : 'pointer', fontFamily: 'inherit',
-              transition: 'all 0.18s',
-            }}>
-              {icon}
-              {label}
+      <Framsteg current={step} />
+      <LitenScen>
+        <Bild src="/kreativ/thorkel-bat-v.webp" className="ob-gung" style={{ left: '28%', bottom: '4%', width: '44%' }} />
+      </LitenScen>
+      <h2 className="ob-rubrik">Hur tar du dig ut?</h2>
+      <p className="ob-text" style={{ marginBottom: 20 }}>
+        Då visar vi turer, rutter och platser som passar dig först. Går att ändra i profilen.
+      </p>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
+        {BOAT_OPTIONS.map(({ value, label, Icon, desc }) => {
+          const valt = boatType === value
+          return (
+            <button key={value} type="button" onClick={() => setBoatType(value)} aria-pressed={valt} className="ob-val">
+              {valt && <span className="ob-bock" aria-hidden><Bock /></span>}
+              <Icon />
+              <span className="ob-val-namn">{label}</span>
+              <span className="ob-val-text">{desc}</span>
             </button>
-          ))}
-        </div>
+          )
+        })}
+      </div>
+      {fel}
+      <div className="ob-rad">
+        {tillbakaKnapp}
+        <button type="button" onClick={handleSaveBoat} disabled={saving || !boatType} className="ob-knapp">
+          {saving ? 'Sparar…' : <>Nästa <Pil /></>}
+        </button>
+      </div>
+      {!boatType && (
+        <button type="button" onClick={goNext} className="ob-lank">Hoppa över, välj senare i profilen</button>
+      )}
+    </>
+  )
+
+  /* ── 5. Hemmahamn ─────────────────────────────────────────────────────
+     Fritext med flit: hemmahamnen är ofta en klubbhamn eller brygga som
+     inte finns i någon lista. Förslagen kommer från planerarens avgångsplatser. */
+  else if (step === 'hamn') innehall = (
+    <>
+      <Framsteg current={step} />
+      <LitenScen>
+        <Bild src="/kreativ/scen-fyr.webp" style={{ left: '34%', bottom: '2%', width: '32%' }} />
+      </LitenScen>
+      <h2 className="ob-rubrik">{boatType === 'Charter' ? 'Var brukar du ge dig ut?' : 'Var ligger båten?'}</h2>
+      <p className="ob-text" style={{ marginBottom: 20 }}>
+        Hemmahamnen visas på din profil och hjälper oss att föreslå turer och seglare nära dig.
+      </p>
+      <label htmlFor="ob-hamn" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>Hemmahamn</label>
+      <input id="ob-hamn" type="text" value={homePort} onChange={e => setHomePort(e.target.value)}
+        placeholder="t.ex. Vaxholm, Svinninge, Marstrand…" autoComplete="off" className="ob-falt" />
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7, margin: '14px 0 24px', minHeight: 32 }}>
+        {hamnForslag.map(p => (
+          <button key={p} type="button" onClick={() => setHomePort(p)} aria-pressed={homePort === p} className="ob-chip">{p}</button>
+        ))}
+      </div>
+      {fel}
+      <div className="ob-rad">
+        {tillbakaKnapp}
+        <button type="button" onClick={handleSavePort} disabled={saving} className="ob-knapp">
+          {saving ? 'Sparar…' : homePort.trim().length >= 2 ? <>Nästa <Pil /></> : <>Hoppa över <Pil /></>}
+        </button>
       </div>
     </>
+  )
+
+  /* ── 6. Följ andra (hoppas över automatiskt om inga förslag finns) ── */
+  else if (step === 'folj') innehall = (
+    <>
+      <Framsteg current={step} />
+      <LitenScen>
+        <Bild src="/kreativ/scen-ejder.webp" className="ob-segla" style={{ left: '30%', bottom: '14%', width: '24%' }} />
+        <Bild src="/kreativ/scen-ejderunge.webp" className="ob-segla" style={{ left: '56%', bottom: '14%', width: '12%' }} />
+        <Bild src="/kreativ/scen-ejderunge.webp" className="ob-segla" style={{ left: '70%', bottom: '14%', width: '11%' }} />
+      </LitenScen>
+      <h2 className="ob-rubrik">Följ andra på sjön</h2>
+      <p className="ob-text" style={{ marginBottom: 20 }}>
+        Deras turer dyker upp i ditt flöde. Du kan sluta följa när som helst.
+      </p>
+      <div style={{ display: 'grid', gap: 12, marginBottom: 24 }}>
+        {sorteradeForslag.slice(0, 3).map(s => {
+          const foljer = followIds.has(s.id)
+          const bat = (s.boat_type ?? s.vessel_model) === 'Charter' ? 'Utan egen båt' : (s.boat_type || s.vessel_model)
+          const rad = [s.van ? 'Bjöd in dig' : null, bat, s.home_port].filter(Boolean).join(' · ')
+          return (
+            <button key={s.id} type="button" onClick={() => toggleFollow(s.id)} aria-pressed={foljer} className="ob-person">
+              {s.avatar
+                // eslint-disable-next-line @next/next/no-img-element
+                ? <img src={s.avatar} alt="" width={40} height={40} style={{ width: 40, height: 40, borderRadius: '50%', objectFit: 'cover', flexShrink: 0, border: `2px solid ${F.black}` }} />
+                : <span aria-hidden style={{ width: 40, height: 40, borderRadius: '50%', flexShrink: 0, background: F.hav, color: F.kort, border: `2px solid ${F.black}`, display: 'flex', alignItems: 'center', justifyContent: 'center', font: "700 16px 'Playfair Display',Georgia,serif" }}>{(s.username[0] ?? '?').toUpperCase()}</span>}
+              <span style={{ flex: 1, minWidth: 0 }}>
+                <span style={{ display: 'block', fontSize: 14.5, fontWeight: 700, color: F.text, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>@{s.username}</span>
+                {rad && <span style={{ display: 'block', fontSize: 12.5, color: F.text2, marginTop: 2 }}>{rad}</span>}
+              </span>
+              <span className={`ob-folj${foljer ? ' pa' : ''}`}>{foljer && <Bock size={11} />}{foljer ? 'Följer' : 'Följ'}</span>
+            </button>
+          )
+        })}
+      </div>
+      {fel}
+      <div className="ob-rad">
+        {tillbakaKnapp}
+        <button type="button" onClick={goNext} disabled={saving} className="ob-knapp">
+          {followIds.size > 0 ? <>Nästa <Pil /></> : <>Hoppa över <Pil /></>}
+        </button>
+      </div>
+    </>
+  )
+
+  /* ── 7. Klar för avgång ───────────────────────────────────────────── */
+  else innehall = (
+    <>
+      <AvgangScen />
+      <p className="ob-etikett">Allt klart</p>
+      <h2 className="ob-rubrik">Klar för avgång</h2>
+      <p className="ob-text">{tillbaka ? 'Fortsätt där du var, eller planera din första tur.' : 'Planera din första tur, eller se dig omkring först.'}</p>
+      {fel}
+      {/* Planering i stället för "logga första turen": av 97 nya konton hade 14
+          planerat en rutt och 1 sparat en tur (mätt 19 nov 2026). Den som valt
+          "Utan egen båt" får dagsplaneraren, som utgår från färjor.
+          Kom personen från en annan sida när kontot skapades är den förstavalet (2026-11-28). */}
+      <div className="ob-rad">
+        {tillbaka ? (
+          <button type="button" onClick={() => finish(tillbaka)} disabled={saving} className="ob-knapp">
+            {saving ? 'Sparar…' : <>Fortsätt där du var <Pil /></>}
+          </button>
+        ) : (
+          <button type="button" onClick={() => finish(planMal)} disabled={saving} className="ob-knapp">
+            {saving ? 'Sparar…' : <>{planText} <Pil /></>}
+          </button>
+        )}
+      </div>
+      <p className="ob-etikett" style={{ margin: '26px 0 12px', color: F.havMork }}>Eller börja här</p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8 }}>
+        {[
+          ...(tillbaka ? [{ label: planText, path: planMal }] : []),
+          { label: 'Flödet', path: '/feed' },
+          { label: 'Utforska', path: '/upptack' },
+          { label: 'Forum', path: '/forum' },
+          { label: 'Logga tur', path: '/logga' },
+          { label: 'Profil', path: '/profil' },
+        ].map(({ label, path }) => (
+          <button key={path} type="button" onClick={() => finish(path)} disabled={saving} className="ob-genvag">{label}</button>
+        ))}
+      </div>
+      <button type="button" onClick={goBack} className="ob-lank" style={{ marginTop: 20 }}>Tillbaka</button>
+    </>
+  )
+
+  return (
+    <div className="ob">
+      <style>{CSS}</style>
+      <div key={animKey} className="ob-steg">{innehall}</div>
+    </div>
   )
 }
