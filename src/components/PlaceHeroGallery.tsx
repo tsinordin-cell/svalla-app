@@ -18,9 +18,15 @@ import Image from 'next/image'
 interface Props {
   photos: string[]
   alt: string                       // Plats-namnet, för aria/alt
+  /**
+   * Fotograf och licens per bild-URL (2026-11-28). Fritt licensierade bilder
+   * (Wikimedia Commons, CC BY och CC BY-SA) kräver att fotografen anges.
+   * Visas i bildens nederkant och länkar till bildens sida när länk finns.
+   */
+  credits?: Record<string, { text: string; href?: string | null }>
 }
 
-export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props) {
+export default function PlaceHeroGallery({ photos: incomingPhotos, alt, credits }: Props) {
   const scrollerRef = useRef<HTMLDivElement>(null)
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(false)
@@ -154,6 +160,13 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
               loading={src.startsWith('/api/places/photo/') ? 'eager' : undefined}
               onError={() => markBroken(src)}
             />
+            {credits?.[src] && (
+              credits[src]!.href ? (
+                <a href={credits[src]!.href!} target="_blank" rel="noopener noreferrer license" className="phg-credit">{credits[src]!.text}</a>
+              ) : (
+                <span className="phg-credit">{credits[src]!.text}</span>
+              )
+            )}
           </div>
         ))}
       </div>
@@ -258,6 +271,17 @@ export default function PlaceHeroGallery({ photos: incomingPhotos, alt }: Props)
         @media (max-width: 719px) {
           .phg-raknare { bottom: 40px; }
         }
+      `}</style>
+      <style>{`
+        .phg-credit {
+          position: absolute; left: 6px; bottom: 6px; z-index: 2;
+          max-width: calc(100% - 12px);
+          font-size: 10px; line-height: 1.3; color: #fff;
+          background: rgba(0, 0, 0, 0.45); padding: 2px 6px; border-radius: 4px;
+          text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        /* Rubrikkortet ligger 28 px över bildens nederkant på mobil. */
+        @media (max-width: 719px) { .phg-credit { bottom: 40px; max-width: calc(100% - 90px); } }
       `}</style>
     </div>
   )
