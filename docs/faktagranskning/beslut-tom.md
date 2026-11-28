@@ -268,3 +268,6 @@ sökadress, och finnhamn.se lästes av en Granskare. Kvar:
 ### 11. (BESLUTAT 2026-11-25) Frys på batch 01:s öar och ö-mallarna
 Redaktörens rekommendation: annat arbete låter batch 01:s nio öar (Fjäderholmarna, Grinda, Vaxholm, Storholmen, Husarö, Utö, Möja, Sandhamn, Styrsö) och ö-mallarna under src/app/o/[slug]/ vara tills batch 01 är publicerad, eftersom varje ändring där tvingar fram en ny omläggning.
 Tom 2026-11-25 15:59 (New York): "Låter bra, kör".
+
+### 12. (BESLUTAT 2026-11-28) Mejlrutan på /vintertidtabeller
+Rutan lovade ett mejl vid nästa tidtabellsbyte, men inget skickar det automatiskt (0 anmälda med source 'vintertidtabeller', MÄTT 2026-11-28). Tom valde Redaktörens förslag: rutan står kvar och ser likadan ut, men texten blir en vanlig anmälan till nyhetsbrevet utan löfte om ett särskilt mejl.
