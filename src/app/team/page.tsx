@@ -19,10 +19,12 @@ export const dynamic = 'force-dynamic'
 // databasen. Overriden här gäller bara vad /team visar, för visningsnamn
 // och avatar-initialer som inte matchar det publika användarnamnet.
 // Nycklarna är de faktiska username-värdena i databasen (verifierade mot
-// produktion: 'tsinordin' och 'Matte') — matchas skiftlägesokänsligt.
+// produktion: 'tsinordin', 'Matte' och 'claes') — matchas skiftlägesokänsligt.
 const TEAM_DISPLAY: Record<string, { name: string; initials: string }> = {
   tsinordin: { name: 'Tom', initials: 'TN' },
   matte: { name: 'Max', initials: 'MB' },
+  // Claes blev admin 2026-11-28 (Toms ja). Efternamn okänt, därför bara C.
+  claes: { name: 'Claes', initials: 'C' },
 }
 
 type TeamDisplayUser = {
