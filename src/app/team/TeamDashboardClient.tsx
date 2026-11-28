@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase'
 import SvallaLogo from '@/components/SvallaLogo'
 import Icon from '@/components/Icon'
 import RoadmapView, { type Milestone, type RoadmapMerits, type RoadmapTraffic } from './RoadmapView'
-import type { KpiValues } from './roadmap-config'
+import type { KpiValues, KpiMal } from './roadmap-config'
 
 // ── Typer ─────────────────────────────────────────────────────────────────
 
@@ -801,7 +801,7 @@ export default function TeamDashboardClient({
   initialTasks: Task[]
   initialPrompts: Prompt[]
   initialActivity: Activity[]
-  roadmap: { kpis: KpiValues; merits: RoadmapMerits; traffic: RoadmapTraffic; milestones: Milestone[] }
+  roadmap: { kpis: KpiValues; merits: RoadmapMerits; traffic: RoadmapTraffic; milestones: Milestone[]; mal: KpiMal }
 }) {
   const supabase = useMemo(() => createClient(), [])
 
@@ -1237,6 +1237,7 @@ export default function TeamDashboardClient({
                 merits={roadmap.merits}
                 traffic={roadmap.traffic}
                 initialMilestones={roadmap.milestones}
+                initialMal={roadmap.mal}
                 currentUserId={currentUser.id}
                 onLog={message => { void postNote(message, null) }}
               />
