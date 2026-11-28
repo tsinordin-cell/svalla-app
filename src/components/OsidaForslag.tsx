@@ -19,7 +19,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import OsidaE from './OsidaE'
 
-type Foto = { url: string; fotograf: string; licens: string }
+type Foto = { url: string; fotograf: string; licens: string; ovrig?: boolean }
 type Kort = { namn: string; typ: string; text: string; sasong?: string; foto?: Foto }
 type Gora = { namn: string; text: string; ikon: string }
 export type OsidaData = {
