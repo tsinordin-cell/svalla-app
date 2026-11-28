@@ -1,0 +1,25 @@
+name: Hälsovakt avgångsrutorna
+
+# Var tredje timme: larmar på /team om avgångsrutorna inte kan hämta tider
+# (scripts/transit-halsa.mjs). Toms ja 2026-11-28.
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+jobs:
+  halsa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/transit-halsa.mjs
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node scripts/transit-halsa.mjs
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
